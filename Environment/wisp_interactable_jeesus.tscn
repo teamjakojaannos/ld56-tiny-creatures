@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlf877r5ah7de"]
+
+[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_animated_prop.tscn" id="1_pkyhl"]
+[ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="2_0oq2o"]
+
+[node name="WispInteractable" node_paths=PackedStringArray("AnimPlayer") instance=ExtResource("1_pkyhl")]
+AnimPlayer = NodePath("JesusStatue/AnimationPlayer")
+Animation = "WispInsideStatue"
+
+[node name="Target" parent="." index="1"]
+position = Vector2(-1, -47)
+
+[node name="JesusStatue" parent="." index="2" instance=ExtResource("2_0oq2o")]
+position = Vector2(-1, 24)
+
+[editable path="JesusStatue"]

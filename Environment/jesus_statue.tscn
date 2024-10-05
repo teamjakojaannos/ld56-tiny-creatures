@@ -1,9 +1,64 @@
-[gd_scene load_steps=4 format=3 uid="uid://8md5xlmkgeog"]
+[gd_scene load_steps=15 format=3 uid="uid://8md5xlmkgeog"]
 
+[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_p2wk0"]
 [ext_resource type="Texture2D" uid="uid://dmvtd7g7w28x6" path="res://Environment/yojeesus.png" id="1_s4p8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da6ih"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(0, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a8v8"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(56, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya7ow"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(112, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_regd5"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(168, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udsrr"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(224, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qxfy"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(280, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31nnp"]
+atlas = ExtResource("1_p2wk0")
+region = Rect2(336, 0, 56, 89)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yrnq2"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da6ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a8v8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya7ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_regd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udsrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qxfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31nnp")
+}],
+"loop": true,
+"name": &"WispInsideStatue",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_s4p8w")
@@ -16,6 +71,68 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ele0"]
 size = Vector2(41, 22)
 
+[sub_resource type="Animation" id="Animation_2qyb4"]
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["WispInsideStatue"]
+}
+
+[sub_resource type="Animation" id="Animation_02haq"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["default"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jwd0h"]
+_data = {
+"WispInsideStatue": SubResource("Animation_2qyb4"),
+"default": SubResource("Animation_02haq")
+}
+
 [node name="JesusStatue" type="Node2D"]
 y_sort_enabled = true
 
@@ -26,8 +143,14 @@ y_sort_enabled = true
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_yrnq2")
+animation = &"WispInsideStatue"
 offset = Vector2(0, -42.855)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-0.5, -12)
 shape = SubResource("RectangleShape2D_5ele0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jwd0h")
+}

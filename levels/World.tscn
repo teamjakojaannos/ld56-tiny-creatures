@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="12_pedfd"]
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="13_n4asy"]
 [ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="14_ukpv2"]
-[ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="15_exwpo"]
+[ext_resource type="PackedScene" uid="uid://dlf877r5ah7de" path="res://Environment/wisp_interactable_jeesus.tscn" id="15_dw6jf"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -325,6 +325,9 @@ texture_filter = 1
 position = Vector2(-46, 237)
 texture = ExtResource("11_a83ed")
 
+[node name="WispInteractable" parent="." instance=ExtResource("15_dw6jf")]
+position = Vector2(3, 298)
+
 [node name="BGimage2" type="Sprite2D" parent="."]
 z_index = -3
 texture_filter = 3
@@ -341,5 +344,5 @@ scale = Vector2(88.8286, 90.6125)
 texture = ExtResource("6_sapfe")
 metadata/_edit_lock_ = true
 
-[node name="JesusStatue" parent="." instance=ExtResource("15_exwpo")]
-position = Vector2(0, 322)
+[editable path="WispInteractable"]
+[editable path="WispInteractable/JesusStatue"]
