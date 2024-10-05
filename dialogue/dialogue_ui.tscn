@@ -37,13 +37,10 @@ alignment = 2
 [node name="Row" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
 layout_direction = 2
 layout_mode = 2
-SpeakerIsOnLeft = true
 
 [node name="Row2" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
 layout_mode = 2
-Text = "Onko kalia tehtaalla?? Antakkee!!?"
 
 [node name="InteractiveRow" parent="DialogueContainer/DialogueList" instance=ExtResource("3_ib14a")]
 layout_direction = 2
 layout_mode = 2
-SpeakerIsOnLeft = true

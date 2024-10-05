@@ -18,18 +18,18 @@ font = ExtResource("3_250kd")
 [sub_resource type="LabelSettings" id="LabelSettings_t0flu"]
 font = ExtResource("3_250kd")
 
-[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Portrait")]
-layout_direction = 3
+[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Portrait", "PortraitFrame")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("1_eubn3")
-InactiveDialogueColor = Color(0.18, 0.18, 0.18, 1)
 Portrait = NodePath("PortraitFrame/Character")
+PortraitFrame = NodePath("PortraitFrame")
 
 [node name="PortraitFrame" parent="." instance=ExtResource("2_atl8r")]
 layout_mode = 2
-
-[node name="Character" parent="PortraitFrame" index="0"]
-flip_h = false
 
 [node name="Selection" type="Label" parent="."]
 layout_mode = 2

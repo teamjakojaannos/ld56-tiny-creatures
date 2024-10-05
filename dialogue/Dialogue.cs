@@ -70,6 +70,7 @@ public partial class Dialogue : CanvasLayer {
 			}
 
 			var row = InteractiveDialogueRow.Instantiate<InteractiveDialogueRow>();
+			row.SpeakerIsOnLeft = content.IsLeft;
 			DialogueList.AddChild(row);
 
 			var options = row.GetNode("Options");
@@ -87,28 +88,30 @@ public partial class Dialogue : CanvasLayer {
 				options.AddChild(option);
 			}
 
-			row.SpeakerIsOnLeft = content.IsLeft;
 			row.SetupNumbers();
 			row.HighlightOption(0);
 			ActiveDialogueRow = row;
+
+			row.CallDeferred(MethodName.StartDialogue);
 		} else {
 			if (DialogueRow is null) {
 				return;
 			}
 
 			var row = DialogueRow.Instantiate<DialogueRow>();
+			row.SpeakerIsOnLeft = content.IsLeft;
 			DialogueList.AddChild(row);
 
 			row.Text = "";
-			row.FullText = "";
 			foreach (var line in content.Lines) {
-				row.FullText += line;
-				row.FullText += "\n";
+				row.Text += line;
+				row.Text += "\n";
 			}
-			row.FullText = row.FullText.Trim();
+			row.Text = row.Text.Trim();
 
-			row.SpeakerIsOnLeft = content.IsLeft;
 			ActiveDialogueRow = row;
+
+			row.CallDeferred(MethodName.StartDialogue);
 		}
 	}
 

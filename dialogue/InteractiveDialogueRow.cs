@@ -1,6 +1,5 @@
 using Godot;
 
-[Tool]
 public partial class InteractiveDialogueRow : DialogueRow {
     [Export]
     public Color DialogueColor = Colors.DarkGray;
@@ -18,6 +17,8 @@ public partial class InteractiveDialogueRow : DialogueRow {
 	protected override bool AutoplayAudio() {
 		return false;
 	}
+
+	public override bool IsReady => true;
 
 	public void SetupNumbers() {
         var numberLabel = GetNode<Label>("Numbers");

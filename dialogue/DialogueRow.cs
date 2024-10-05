@@ -1,17 +1,8 @@
 using Godot;
 
-[Tool]
 public partial class DialogueRow : HBoxContainer {
-    private bool _speakerIsOnLeft;
-
     [Export]
-    public bool SpeakerIsOnLeft {
-        set {
-            _speakerIsOnLeft = value;
-            Refresh();
-        }
-        get => _speakerIsOnLeft;
-    }
+    public bool SpeakerIsOnLeft { get; set; } = true;
 
     [Export]
     public string Text {
@@ -23,7 +14,7 @@ public partial class DialogueRow : HBoxContainer {
         get => TextContent?.Text ?? "";
     }
 
-    public bool IsReady => Text.Length == FullText.Length;
+    public virtual bool IsReady => TextContent!.VisibleCharacters == Text.Length;
 
     [Export]
     [ExportCategory("Prewire")]
@@ -32,14 +23,17 @@ public partial class DialogueRow : HBoxContainer {
     [Export]
     public TextureRect? Portrait;
 
-    public string FullText = "";
+    [Export]
+    public Control? PortraitFrame;
+
+    [Export]
+    public Control? TextContentContainer;
 
     protected virtual bool AutoplayAudio() {
         return true;
     }
 
-    public override void _Ready() {
-        base._Ready();
+    public void StartDialogue() {
         Refresh();
 
         if (GetNodeOrNull<Timer>("TextScrollTimer") is Timer timer && !Engine.IsEditorHint()) {
@@ -48,6 +42,8 @@ public partial class DialogueRow : HBoxContainer {
                 audio?.Play();
             }
 
+            TextContent!.VisibleCharacters = 0;
+            TextContent!.CustomMinimumSize = new(TextContent.Size.X, TextContent.Size.Y);
             timer.Timeout += () => {
                 if (IsReady) {
                     timer.Stop();
@@ -55,7 +51,7 @@ public partial class DialogueRow : HBoxContainer {
                     return;
                 }
 
-                Text = FullText.Left(Text.Length + 1);
+                TextContent!.VisibleCharacters++;
             };
 
             timer.Start();
@@ -68,8 +64,29 @@ public partial class DialogueRow : HBoxContainer {
         }
 
         Portrait.FlipH = SpeakerIsOnLeft;
-        LayoutDirection = SpeakerIsOnLeft
-            ? LayoutDirectionEnum.Ltr
-            : LayoutDirectionEnum.Rtl;
+        Alignment = SpeakerIsOnLeft
+            ? AlignmentMode.Begin
+            : AlignmentMode.End;
+        if (TextContent is not null) {
+            TextContent.SizeFlagsHorizontal = SpeakerIsOnLeft
+                ? SizeFlags.ShrinkBegin
+                : SizeFlags.ShrinkEnd;
+        }
+
+        if (TextContentContainer is null) {
+            Alignment = AlignmentMode.Begin;
+            return;
+        }
+
+        RemoveChild(PortraitFrame);
+        RemoveChild(TextContentContainer);
+
+        if (SpeakerIsOnLeft) {
+            AddChild(PortraitFrame);
+            AddChild(TextContentContainer);
+        } else {
+            AddChild(TextContentContainer);
+            AddChild(PortraitFrame);
+        }
     }
 }

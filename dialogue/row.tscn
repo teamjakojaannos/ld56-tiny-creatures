@@ -8,35 +8,33 @@
 [sub_resource type="LabelSettings" id="LabelSettings_12rh4"]
 font = ExtResource("2_8cx57")
 
-[node name="Row" type="HBoxContainer" node_paths=PackedStringArray("TextContent", "Portrait")]
-layout_direction = 3
+[node name="Row" type="HBoxContainer" node_paths=PackedStringArray("TextContent", "Portrait", "PortraitFrame", "TextContentContainer")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("1_o2yu2")
-Text = "A quick brown fox jumps over a lazy dog."
 TextContent = NodePath("TextContent")
 Portrait = NodePath("PortraitFrame/Character")
+PortraitFrame = NodePath("PortraitFrame")
+TextContentContainer = NodePath("TextContent")
 
 [node name="TextScrollTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
-[node name="PortraitFrame" parent="." instance=ExtResource("2_6tghr")]
-layout_mode = 2
-
-[node name="Character" parent="PortraitFrame" index="0"]
-flip_h = false
-
-[node name="TextContent" type="Label" parent="."]
-layout_mode = 2
-text = "A quick brown fox jumps over a lazy dog."
-label_settings = SubResource("LabelSettings_12rh4")
-
 [node name="SpeakingSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ewmgn")
 bus = &"SFX"
+
+[node name="PortraitFrame" parent="." instance=ExtResource("2_6tghr")]
+layout_mode = 2
+
+[node name="TextContent" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "A quick brown fox jumps over a lazy dog."
+label_settings = SubResource("LabelSettings_12rh4")
 
 [editable path="PortraitFrame"]
