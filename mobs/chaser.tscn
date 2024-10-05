@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://pk3tc6o4spst"]
 
-[ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="1_1lri3"]
 [ext_resource type="Script" path="res://mobs/Chaser.cs" id="1_sj5s6"]
+[ext_resource type="Texture2D" uid="uid://b8xsos5uydwdu" path="res://mobs/molli.png" id="2_sc6tr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34f4t"]
-size = Vector2(128, 127)
+size = Vector2(47, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a3q8h"]
 radius = 136.528
@@ -14,13 +14,16 @@ script = ExtResource("1_sj5s6")
 speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_1lri3")
+texture_filter = 1
+position = Vector2(0, -43.5)
+texture = ExtResource("2_sc6tr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(1, -1.5)
 shape = SubResource("RectangleShape2D_34f4t")
 
 [node name="SightCone" type="Area2D" parent="."]
+position = Vector2(0, -43.5)
 
 [node name="Cone" type="CollisionPolygon2D" parent="SightCone"]
 polygon = PackedVector2Array(-1, 1, -284, -484, 203, -484)
