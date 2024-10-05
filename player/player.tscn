@@ -9,14 +9,16 @@ height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cn8o3")
+Speed = 150.0
+Friction = 15.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
-position = Vector2(1, 0)
+position = Vector2(1, -15)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_60mn6")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
+position = Vector2(1, -14)
 shape = SubResource("CapsuleShape2D_o0stk")

@@ -5,12 +5,12 @@
 [node name="Main" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-190, 2)
+position = Vector2(36, -32)
 scale = Vector2(0.414062, 0.414062)
 texture = ExtResource("3_ucvm7")
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(130, -117)
+position = Vector2(-64, -38)
 
 [node name="PlayerStart2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(-127, 189)
+position = Vector2(76, 57)

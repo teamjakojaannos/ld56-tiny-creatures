@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Player : CharacterBody2D {
@@ -13,11 +14,19 @@ public partial class Player : CharacterBody2D {
 		spawns.Shuffle();
 
 		if (spawns[0] is Node2D spawn) {
-			GetParent()?.CallDeferred(MethodName.RemoveChild, this);
-			spawn.CallDeferred(MethodName.AddChild, this);
-
-			GlobalPosition = spawn.GlobalPosition;
+			CallDeferred(MethodName.TeleportAt, spawn);
 		}
+	}
+
+	private void TeleportAt(Node2D target) {
+		if (!target.IsInsideTree() || target.IsQueuedForDeletion()) {
+			throw new InvalidOperationException("Tried teleporting to a non-existent/deleted node!");
+		}
+
+		GetParent()?.RemoveChild(this);
+		target.AddChild(this);
+
+		GlobalPosition = target.GlobalPosition;
 	}
 
 	public override void _PhysicsProcess(double _delta) {
