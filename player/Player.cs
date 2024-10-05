@@ -76,6 +76,7 @@ public partial class Player : CharacterBody2D {
 		GlobalPosition = target.GlobalPosition;
 	}
 
+	private string animationDirection = "Down";
 	public override void _PhysicsProcess(double _delta) {
 		if (Engine.IsEditorHint()) {
 			return;
@@ -86,24 +87,24 @@ public partial class Player : CharacterBody2D {
 		var direction = IsAllowedToMove
 			? Input.GetVector("left", "right", "up", "down")
 			: Vector2.Zero;
-		var animationDirection = direction.X < 0.0
-			? "left"
-			: direction.X > 0.0
-			? "right"
-			: direction.Y < 0.0
-			? "left"
-			: "right";
 		if (direction.LengthSquared() > 0.001f) {
 			Velocity = direction * Speed * delta;
+			animationDirection = direction.X > 0.0
+				? "Left"
+				: direction.X < 0.0
+				? "Right"
+				: direction.Y < 0.0
+				? "Up"
+				: "Down";
 
-			Animation?.Play($"walk_{animationDirection}");
+			Animation?.Play($"Walk{animationDirection}");
 		} else {
 			var currentSpeed = Velocity.Length();
 			Velocity = Velocity.MoveToward(Vector2.Zero, currentSpeed * Friction * delta);
 		}
 
 		if (Velocity.LengthSquared() < 0.01f) {
-			Animation?.Play("idle");
+			Animation?.Play($"Idle{animationDirection}");
 		}
 
 		var wispPosition = Wisp.GlobalPosition;
