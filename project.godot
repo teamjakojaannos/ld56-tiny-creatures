@@ -29,6 +29,10 @@ window/stretch/aspect="keep_width"
 
 project/assembly_name="LD56"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+
 [global_group]
 
 PlayerSpawn="Marks the node as a valid position for player to spawn in."

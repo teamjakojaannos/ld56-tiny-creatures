@@ -46,37 +46,37 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_hlmqc"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_hyba7"]
+length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [&"Idle"]
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.466667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1]
+"values": ["Idle"]
 }
 
-[sub_resource type="Animation" id="Animation_2n2xg"]
-resource_name = "walk_left"
-length = 0.5
+[sub_resource type="Animation" id="Animation_ixygx"]
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -84,7 +84,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
@@ -99,25 +99,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Left"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": ["Left"]
 }
 
-[sub_resource type="Animation" id="Animation_tv35i"]
-resource_name = "walk_right"
-length = 0.5
-step = 0.05
+[sub_resource type="Animation" id="Animation_bk0mw"]
+length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -125,7 +112,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
@@ -140,27 +127,15 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Right"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": ["Right"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duy3k"]
 _data = {
+"Idle": SubResource("Animation_hyba7"),
+"Left": SubResource("Animation_ixygx"),
 "RESET": SubResource("Animation_jtxx1"),
-"idle": SubResource("Animation_hlmqc"),
-"walk_left": SubResource("Animation_2n2xg"),
-"walk_right": SubResource("Animation_tv35i")
+"Right": SubResource("Animation_bk0mw")
 }
 
 [sub_resource type="Gradient" id="Gradient_7omp7"]
@@ -196,7 +171,6 @@ shape = SubResource("RectangleShape2D_v1bly")
 libraries = {
 "": SubResource("AnimationLibrary_duy3k")
 }
-autoplay = "idle"
 
 [node name="SpiritTarget" type="Marker2D" parent="."]
 y_sort_enabled = true
