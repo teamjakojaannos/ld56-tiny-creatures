@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
 [ext_resource type="PackedScene" uid="uid://d1d0oklccd27c" path="res://Environment/kurpitsa_lyhty.tscn" id="2_bp6wn"]
-[ext_resource type="PackedScene" uid="uid://cuxnsn0v74xiw" path="res://Environment/Tree2.tscn" id="4_dlstp"]
-[ext_resource type="PackedScene" uid="uid://c2k5gtc3g00g5" path="res://Environment/tree_1.tscn" id="4_wrqcq"]
+[ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="4_dlstp"]
+[ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="4_wrqcq"]
 [ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="6_sapfe"]
 
 [node name="World" type="Node2D"]
