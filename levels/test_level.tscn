@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq51owvdgypd7"]
+
+[ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="3_0ko0p"]
+[ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="4_6ngi6"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-190, 2)
+scale = Vector2(0.414062, 0.414062)
+texture = ExtResource("3_0ko0p")
+
+[node name="Chaser" parent="." instance=ExtResource("4_6ngi6")]
+position = Vector2(460, -158)
+
+[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
