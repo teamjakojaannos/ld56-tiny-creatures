@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://6abkwwyeqfa8"]
+[gd_scene load_steps=18 format=3 uid="uid://6abkwwyeqfa8"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_8kue4"]
 [ext_resource type="Script" path="res://dialogue/DialogueTrigger.cs" id="3_0le5u"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="3_ucvm7"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="4_k8x3u"]
-[ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="5_1gsk1"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="5_6u75p"]
 
 [sub_resource type="Gradient" id="Gradient_jl0fw"]
@@ -146,6 +145,3 @@ position = Vector2(-64, -38)
 [node name="PlayerStart2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
 y_sort_enabled = true
 position = Vector2(76, 57)
-
-[node name="WispInteractable" parent="." instance=ExtResource("5_1gsk1")]
-position = Vector2(151, -74)

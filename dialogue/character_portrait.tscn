@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dva0mxjbjqfxy"]
 
-[ext_resource type="Texture2D" uid="uid://nobbj2tnaa6h" path="res://player/playerconcept-export.png" id="1_w7pdl"]
+[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="1_roa8q"]
 
 [node name="PortraitFrame" type="ColorRect"]
 clip_children = 2
@@ -11,11 +11,12 @@ size_flags_vertical = 4
 color = Color(0.237539, 0.237539, 0.237539, 1)
 
 [node name="Character" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
-offset_left = -7.0
-offset_top = 1.0
-offset_right = 491.0
-offset_bottom = 499.0
-scale = Vector2(0.145975, 0.145975)
-texture = ExtResource("1_w7pdl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_roa8q")
 flip_h = true

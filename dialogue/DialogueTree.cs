@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 
+[Tool]
 [GlobalClass]
 public partial class DialogueTree : Resource {
     [Export]

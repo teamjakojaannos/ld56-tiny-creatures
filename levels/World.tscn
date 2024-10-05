@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=19 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
@@ -16,7 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="12_pedfd"]
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="13_n4asy"]
 [ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="14_ukpv2"]
-[ext_resource type="PackedScene" uid="uid://dlf877r5ah7de" path="res://Environment/wisp_interactable_jeesus.tscn" id="15_dw6jf"]
+[ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="15_dw6jf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_453da"]
+radius = 62.0
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -325,8 +328,11 @@ texture_filter = 1
 position = Vector2(-46, 237)
 texture = ExtResource("11_a83ed")
 
-[node name="WispInteractable" parent="." instance=ExtResource("15_dw6jf")]
+[node name="Jösses" parent="." instance=ExtResource("15_dw6jf")]
 position = Vector2(3, 298)
+
+[node name="Trigger" parent="Jösses" index="0"]
+shape = SubResource("CircleShape2D_453da")
 
 [node name="BGimage2" type="Sprite2D" parent="."]
 z_index = -3
@@ -344,5 +350,5 @@ scale = Vector2(88.8286, 90.6125)
 texture = ExtResource("6_sapfe")
 metadata/_edit_lock_ = true
 
-[editable path="WispInteractable"]
-[editable path="WispInteractable/JesusStatue"]
+[editable path="Jösses"]
+[editable path="Jösses/JesusStatue"]

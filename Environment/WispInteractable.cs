@@ -80,8 +80,10 @@ public partial class WispInteractable : Area2D {
 	}
 
 	public virtual void StartInteract() {
+		EmitSignal(SignalName.InteractStart);
 	}
 
 	public virtual void StopInteract() {
+		EmitSignal(SignalName.InteractStop);
 	}
 }

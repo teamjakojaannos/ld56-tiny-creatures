@@ -1,16 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlf877r5ah7de"]
+[gd_scene load_steps=10 format=3 uid="uid://of321o8cgfku"]
 
-[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_animated_prop.tscn" id="1_pkyhl"]
+[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_0lsgy"]
 [ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="2_0oq2o"]
+[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_to6vm"]
+[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_2gwy1"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="5_62lje"]
+[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="5_t3dp6"]
+[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_uul17"]
 
-[node name="WispInteractable" node_paths=PackedStringArray("AnimPlayer") instance=ExtResource("1_pkyhl")]
-AnimPlayer = NodePath("JesusStatue/AnimationPlayer")
-Animation = "WispInsideStatue"
+[sub_resource type="Resource" id="Resource_0hvjq"]
+script = ExtResource("5_uul17")
+IsInteractive = false
+IsLeft = true
+Lines = ["owo"]
+Portrait = ExtResource("5_62lje")
+
+[sub_resource type="Resource" id="Resource_b5eqw"]
+script = ExtResource("5_uul17")
+IsInteractive = false
+IsLeft = false
+Lines = ["uwu"]
+Portrait = ExtResource("5_t3dp6")
+Next = SubResource("Resource_0hvjq")
+
+[node name="WispInteractable" instance=ExtResource("1_0lsgy")]
 
 [node name="Target" parent="." index="1"]
-position = Vector2(-1, -47)
+position = Vector2(0, -53)
 
 [node name="JesusStatue" parent="." index="2" instance=ExtResource("2_0oq2o")]
-position = Vector2(-1, 24)
+position = Vector2(0, 18)
+
+[node name="WispInteractableAnimatedProp" type="Node2D" parent="." index="3" node_paths=PackedStringArray("AnimPlayer")]
+script = ExtResource("3_to6vm")
+AnimPlayer = NodePath("../JesusStatue/AnimationPlayer")
+Animation = "WispInsideStatue"
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="." index="4"]
+script = ExtResource("4_2gwy1")
+DialogueTree = SubResource("Resource_b5eqw")
 
 [editable path="JesusStatue"]

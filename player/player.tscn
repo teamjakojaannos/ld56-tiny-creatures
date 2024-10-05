@@ -5,7 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="4_62syh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
-size = Vector2(11, 2)
+size = Vector2(11, 4)
 
 [sub_resource type="Animation" id="Animation_j73ac"]
 resource_name = "IdleDown"
@@ -417,7 +417,7 @@ centered = false
 offset = Vector2(-16, -45)
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
+position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_v1bly")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
