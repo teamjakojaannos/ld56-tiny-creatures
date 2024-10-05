@@ -56,7 +56,7 @@ public partial class Player : CharacterBody2D {
 		}
 
 		if (Velocity.LengthSquared() < 0.01f) {
-			Animation?.Play($"idle_{animationDirection}");
+			Animation?.Play("idle");
 		}
 		MoveAndCollide(Velocity);
 	}
