@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccfpbd6r6ek72"]
+
+[ext_resource type="AudioStream" uid="uid://bes13ryernvjn" path="res://music/pornhubimusa.ogg" id="1_a553t"]
+
+[node name="Jukebox" type="Node2D"]
+
+[node name="Pornhubimusa" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_a553t")
+autoplay = true
+bus = &"Music"
+playback_type = 1
