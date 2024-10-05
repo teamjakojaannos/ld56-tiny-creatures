@@ -5,18 +5,18 @@ namespace BogMonsterStuff;
 public static class BogMonsterStats {
 
 	// moves for this many seconds, then rolls to change state
-	public const float moveTime = 1.5f;
+	public const float moveTime = 3.0f;
 
 	// chance to stop movement and change state
-	public const float stopMoveChance = 0.25f;
+	public const float stopMoveChance = 0.40f;
 
 	// chance to stop movement and change state
-	public const float changeDirectionInsteadOfStoppingChance = 0.25f;
+	public const float changeDirectionInsteadOfStoppingChance = 0.10f;
 
-	public const float goUnderwaterChance = 0.10f;
+	public const float goUnderwaterChance = 0.40f;
 
 	// min/max time to stay underwater
-	public static (float, float) underwaterTime = (2.0f, 5.0f);
+	public static (float, float) underwaterTime = (1.0f, 3.0f);
 
 	// min and max idle time
 	public static (float, float) idleTime = (0.5f, 2.0f);
@@ -40,11 +40,8 @@ public abstract class BogMonsterAIState {
 }
 
 public class MovementState : BogMonsterAIState {
-
 	private float timePassed;
-
 	private Direction direction;
-
 	private float speed;
 
 	public MovementState(bool goingForward, float speed) {
@@ -56,6 +53,7 @@ public class MovementState : BogMonsterAIState {
 		timePassed += delta;
 		if (timePassed >= BogMonsterStats.moveTime) {
 			timePassed = 0.0f;
+
 			var stopMovement = monster.rng.Randf() < BogMonsterStats.stopMoveChance;
 			if (stopMovement) {
 				var idleTime = randomIdleTime(monster.rng);
@@ -63,13 +61,20 @@ public class MovementState : BogMonsterAIState {
 				return;
 			}
 
-			var goUnderwater = monster.rng.Randf() < BogMonsterStats.goUnderwaterChance;
-			if (goUnderwater) {
-				monster.goUnderwater();
+			var wentUnderwater = monster.rollToGoUnderwater(BogMonsterStats.goUnderwaterChance);
+			if (wentUnderwater) {
 				return;
 			}
 		}
 
+		var reachedEnd = moveMonster(monster, delta);
+
+		if (reachedEnd) {
+			endOfLine(monster);
+		}
+	}
+
+	private bool moveMonster(BogMonster monster, float delta) {
 		var sign = direction.isForward() ? 1.0f : -1.0f;
 		var movement = sign * speed * delta;
 
@@ -79,10 +84,9 @@ public class MovementState : BogMonsterAIState {
 			? monster.ProgressRatio >= 1.0f
 			: monster.ProgressRatio <= 0.0f;
 
-		if (reachedEnd) {
-			endOfLine(monster);
-		}
+		return reachedEnd;
 	}
+
 
 	private void endOfLine(BogMonster monster) {
 		var keepGoing = monster.rng.Randf() < BogMonsterStats.changeDirectionInsteadOfStoppingChance;
@@ -91,9 +95,8 @@ public class MovementState : BogMonsterAIState {
 			return;
 		}
 
-		var goUnderwater = monster.rng.Randf() < BogMonsterStats.goUnderwaterChance;
-		if (goUnderwater) {
-			monster.goUnderwater();
+		var wentUnderwater = monster.rollToGoUnderwater(BogMonsterStats.goUnderwaterChance);
+		if (wentUnderwater) {
 			return;
 		}
 
@@ -110,7 +113,6 @@ public class MovementState : BogMonsterAIState {
 public class IdleState : BogMonsterAIState {
 	private float timeWaited;
 	private float waitTime;
-
 	private Direction? nextDirection;
 
 	public IdleState(float waitTime, Direction? nextDirection) {
@@ -121,6 +123,11 @@ public class IdleState : BogMonsterAIState {
 	public override void doUpdate(BogMonster monster, float delta) {
 		timeWaited += delta;
 		if (timeWaited >= waitTime) {
+			var wentUnderwater = monster.rollToGoUnderwater(BogMonsterStats.goUnderwaterChance);
+			if (wentUnderwater) {
+				return;
+			}
+
 			bool goingForward;
 
 			if (nextDirection is Direction direction) {
@@ -135,10 +142,8 @@ public class IdleState : BogMonsterAIState {
 }
 
 public class UnderwaterState : BogMonsterAIState {
-
 	private float timePassed;
 	private float underwaterTime;
-
 	public bool animationDone;
 
 	public UnderwaterState(float underwaterTime) {

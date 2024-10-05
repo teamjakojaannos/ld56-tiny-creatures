@@ -4,7 +4,7 @@ using Godot;
 public partial class BogMonster : PathFollow2D {
 
 	[Export]
-	public float speed = 60.0f;
+	public float speed = 45.0f;
 
 	private Player? player;
 
@@ -13,9 +13,11 @@ public partial class BogMonster : PathFollow2D {
 	public RandomNumberGenerator rng = new();
 
 	private AnimationPlayer? animationPlayer;
+	private Timer? underwaterCooldown;
 
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 
 		ai = new BogMonsterStuff.MovementState(goingForward: true, speed);
 	}
@@ -39,11 +41,22 @@ public partial class BogMonster : PathFollow2D {
 		}
 	}
 
+	public bool rollToGoUnderwater(float chance) {
+		var goUnderwater = rng.Randf() < BogMonsterStats.goUnderwaterChance;
+		if (goUnderwater) {
+			this.goUnderwater();
+			return true;
+		}
+
+		return false;
+	}
+
 	public void goUnderwater() {
 		var (min, max) = BogMonsterStats.underwaterTime;
 		var underwaterTime = rng.RandfRange(min, max);
 		ai = new BogMonsterStuff.UnderwaterState(underwaterTime);
 		animationPlayer?.Play("go_underwater");
+		underwaterCooldown?.Start();
 	}
 
 	public void goUnderwaterAnimationDone() {
@@ -60,5 +73,9 @@ public partial class BogMonster : PathFollow2D {
 	public void emergefromWaterAnimationDone() {
 		var goingForward = Util.randomBool(rng);
 		ai = new MovementState(goingForward, speed);
+	}
+
+	public bool canGoUnderwater() {
+		return underwaterCooldown?.IsStopped() ?? true;
 	}
 }
