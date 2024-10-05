@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://pk3tc6o4spst"]
+
+[ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="1_1lri3"]
+[ext_resource type="Script" path="res://mobs/Chaser.cs" id="1_sj5s6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34f4t"]
+size = Vector2(128, 127)
+
+[node name="Chaser" type="RigidBody2D"]
+script = ExtResource("1_sj5s6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1lri3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_34f4t")
+
+[node name="SightCone" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SightCone"]
+polygon = PackedVector2Array(-1, 1, -284, -484, 203, -484)
+
+[connection signal="body_entered" from="SightCone" to="." method="sightConeEntered"]
+[connection signal="body_exited" from="SightCone" to="." method="sightConeExited"]
