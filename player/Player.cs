@@ -14,9 +14,8 @@ public partial class Player : CharacterBody2D {
 	public override void _Ready() {
 		base._Ready();
 		var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
-		spawns.Shuffle();
 
-		if (spawns[0] is Node2D spawn) {
+		if (spawns.PickRandom() is Node2D spawn) {
 			CallDeferred(MethodName.TeleportAt, spawn);
 		}
 	}
