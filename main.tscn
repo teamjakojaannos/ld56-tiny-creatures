@@ -1,11 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://6abkwwyeqfa8"]
+[gd_scene load_steps=6 format=3 uid="uid://6abkwwyeqfa8"]
 
+[ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_8kue4"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="3_ucvm7"]
+
+[sub_resource type="Gradient" id="Gradient_jl0fw"]
+offsets = PackedFloat32Array(0, 0.221885, 1)
+colors = PackedColorArray(0.400698, 0.400698, 0.400698, 1, 0.541033, 0.541033, 0.541033, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ajjet"]
+frequency = 0.0101
+fractal_octaves = 4
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_laquw"]
+width = 256
+height = 256
+color_ramp = SubResource("Gradient_jl0fw")
+noise = SubResource("FastNoiseLite_ajjet")
 
 [node name="Main" type="Node2D"]
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+position = Vector2(-486, -508)
+scale = Vector2(2, 2)
+color = Color(0.15, 0.13955, 0.1215, 1)
+script = ExtResource("1_8kue4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.784314, 0.701961, 0.560784, 1)
+offset_left = -486.0
+offset_top = -508.0
+offset_right = 26.0
+offset_bottom = 4.0
+scale = Vector2(2, 2)
+texture = SubResource("NoiseTexture2D_laquw")
+
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(36, -32)
+scale = Vector2(0.414062, 0.414062)
+texture = ExtResource("3_ucvm7")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(18, 90)
+scale = Vector2(0.414062, 0.414062)
+texture = ExtResource("3_ucvm7")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(-142, -89)
+scale = Vector2(0.414062, 0.414062)
+texture = ExtResource("3_ucvm7")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(163, 88)
+scale = Vector2(0.414062, 0.414062)
+texture = ExtResource("3_ucvm7")
+
+[node name="Icon5" type="Sprite2D" parent="."]
+position = Vector2(19, -141)
 scale = Vector2(0.414062, 0.414062)
 texture = ExtResource("3_ucvm7")
 

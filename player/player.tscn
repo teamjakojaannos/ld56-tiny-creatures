@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=13 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="Texture2D" uid="uid://nobbj2tnaa6h" path="res://player/playerconcept-export.png" id="2_60mn6"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
+[ext_resource type="Script" path="res://player/Spirit.cs" id="3_g77w7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0stk"]
 radius = 13.0
@@ -161,19 +162,22 @@ _data = {
 "walk_right": SubResource("Animation_tv35i")
 }
 
+[sub_resource type="Gradient" id="Gradient_7omp7"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k821t"]
+gradient = SubResource("Gradient_7omp7")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 script = ExtResource("1_cn8o3")
 Speed = 150.0
 Friction = 15.0
 Animation = NodePath("AnimationPlayer")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-texture_repeat = 1
-position = Vector2(1, -15)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_60mn6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -15)
@@ -189,3 +193,23 @@ shape = SubResource("CapsuleShape2D_o0stk")
 libraries = {
 "": SubResource("AnimationLibrary_duy3k")
 }
+
+[node name="SpiritTarget" type="Marker2D" parent="."]
+
+[node name="Spirit" type="Node2D" parent="SpiritTarget"]
+position = Vector2(-17, -32)
+script = ExtResource("3_g77w7")
+
+[node name="Sprite" type="Sprite2D" parent="SpiritTarget/Spirit"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-1.90735e-06, -2.00001)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_60mn6")
+region_enabled = true
+region_rect = Rect2(10, 90, 70, 110)
+
+[node name="PointLight" type="PointLight2D" parent="SpiritTarget/Spirit"]
+position = Vector2(0, 1)
+color = Color(0.231373, 0.701961, 0.721569, 1)
+texture = SubResource("GradientTexture2D_k821t")
