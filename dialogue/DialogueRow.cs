@@ -23,6 +23,8 @@ public partial class DialogueRow : HBoxContainer {
         get => TextContent?.Text ?? "";
     }
 
+    public bool IsReady => Text.Length == FullText.Length;
+
     [Export]
     [ExportCategory("Prewire")]
     public Label? TextContent;
@@ -30,13 +32,37 @@ public partial class DialogueRow : HBoxContainer {
     [Export]
     public TextureRect? Portrait;
 
-	public override void _Ready() {
-		base._Ready();
+    public string FullText = "";
 
+    protected virtual bool AutoplayAudio() {
+        return true;
+    }
+
+    public override void _Ready() {
+        base._Ready();
         Refresh();
-	}
 
-	private void Refresh() {
+        if (GetNodeOrNull<Timer>("TextScrollTimer") is Timer timer && !Engine.IsEditorHint()) {
+            var audio = GetNodeOrNull<AudioStreamPlayer>("SpeakingSfx");
+            if (AutoplayAudio()) {
+                audio?.Play();
+            }
+
+            timer.Timeout += () => {
+                if (IsReady) {
+                    timer.Stop();
+                    audio?.Stop();
+                    return;
+                }
+
+                Text = FullText.Left(Text.Length + 1);
+            };
+
+            timer.Start();
+        }
+    }
+
+    private void Refresh() {
         if (Portrait is null) {
             return;
         }

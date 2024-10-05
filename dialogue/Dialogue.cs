@@ -29,6 +29,7 @@ public partial class Dialogue : CanvasLayer {
 	public override void _Ready() {
 		base._Ready();
 
+		Clear();
 		Visible = false;
 	}
 
@@ -99,11 +100,12 @@ public partial class Dialogue : CanvasLayer {
 			DialogueList.AddChild(row);
 
 			row.Text = "";
+			row.FullText = "";
 			foreach (var line in content.Lines) {
-				row.Text += line;
-				row.Text += "\n";
+				row.FullText += line;
+				row.FullText += "\n";
 			}
-			row.Text = row.Text.Trim();
+			row.FullText = row.FullText.Trim();
 
 			row.SpeakerIsOnLeft = content.IsLeft;
 			ActiveDialogueRow = row;
@@ -132,6 +134,7 @@ public partial class Dialogue : CanvasLayer {
 
 		int? selectedOption = null;
 		bool isSelectEvent = @event.IsActionPressed("gui_accept");
+		bool isAllowedToProgress = ActiveDialogueRow.IsReady;
 		if (ActiveDialogueRow is InteractiveDialogueRow row) {
 			if (@event.IsActionPressed("dialogue_option_1")) {
 				row.HighlightOption(0);
@@ -157,7 +160,7 @@ public partial class Dialogue : CanvasLayer {
 			}
 		}
 
-		if (isSelectEvent) {
+		if (isSelectEvent && isAllowedToProgress) {
 			SelectOption(selectedOption ?? 0);
 		}
 	}

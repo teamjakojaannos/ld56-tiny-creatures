@@ -15,7 +15,11 @@ public partial class InteractiveDialogueRow : DialogueRow {
 
     public int HighlightedOption { get; private set; } = 0;
 
-    public void SetupNumbers() {
+	protected override bool AutoplayAudio() {
+		return false;
+	}
+
+	public void SetupNumbers() {
         var numberLabel = GetNode<Label>("Numbers");
         numberLabel.Text = "";
         for (var i = 0; i < OptionCount; i++) {
