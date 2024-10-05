@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=12 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
-[ext_resource type="Script" path="res://player/Spirit.cs" id="3_g77w7"]
-[ext_resource type="Texture2D" uid="uid://dhydd1udarkba" path="res://player/Wispy.png" id="4_yh5lg"]
+[ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="4_62syh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0stk"]
 radius = 13.0
@@ -21,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"right"]
+"values": [&"Idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -50,7 +49,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_hlmqc"]
 resource_name = "idle"
-length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,7 +60,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"right"]
+"values": [&"Idle"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -70,14 +69,15 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_2n2xg"]
 resource_name = "walk_left"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -85,10 +85,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.233333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 0]
+"values": [0, 1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -100,7 +100,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"left"]
+"values": [&"Left"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -117,6 +117,8 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_tv35i"]
 resource_name = "walk_right"
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -124,10 +126,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 0]
+"values": [0, 1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -139,7 +141,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"left"]
+"values": [&"Right"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -173,42 +175,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q53pl"]
-atlas = ExtResource("4_yh5lg")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aedbx"]
-atlas = ExtResource("4_yh5lg")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tx0ay"]
-atlas = ExtResource("4_yh5lg")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrjpe"]
-atlas = ExtResource("4_yh5lg")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g1c0f"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q53pl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aedbx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tx0ay")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrjpe")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation")]
 script = ExtResource("1_cn8o3")
 Speed = 150.0
@@ -218,9 +184,8 @@ Animation = NodePath("AnimationPlayer")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1, -15)
-scale = Vector2(0.1, 0.1)
 sprite_frames = ExtResource("3_88t4b")
-animation = &"right"
+animation = &"Idle"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(1, -14)
@@ -230,28 +195,16 @@ shape = SubResource("CapsuleShape2D_o0stk")
 libraries = {
 "": SubResource("AnimationLibrary_duy3k")
 }
+autoplay = "idle"
 
 [node name="SpiritTarget" type="Marker2D" parent="."]
 
-[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="SpiritTarget"]
-position = Vector2(-17, -31)
-rotation = -0.523943
-scale = Vector2(0.7, 0.7)
-node_a = NodePath("../Spirit")
-node_b = NodePath("../..")
-bias = 0.25
-length = 48.0
-rest_length = 32.0
-stiffness = 64.0
-damping = 2.0
-
 [node name="Spirit" type="RigidBody2D" parent="SpiritTarget"]
 top_level = true
-position = Vector2(-17, -32)
+position = Vector2(-51, -45)
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 2.0
-script = ExtResource("3_g77w7")
 
 [node name="PointLight" type="PointLight2D" parent="SpiritTarget/Spirit"]
 position = Vector2(0, 1)
@@ -260,8 +213,21 @@ texture = SubResource("GradientTexture2D_k821t")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpiritTarget/Spirit"]
+modulate = Color(1, 1, 1, 0.682353)
 texture_filter = 1
 position = Vector2(-4.76837e-07, -5)
-scale = Vector2(0.59375, 0.6875)
-sprite_frames = SubResource("SpriteFrames_g1c0f")
+sprite_frames = ExtResource("4_62syh")
+autoplay = "default"
 frame_progress = 0.229417
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="SpiritTarget/Spirit"]
+position = Vector2(0, 1)
+rotation = -0.863302
+scale = Vector2(0.7, 0.7)
+node_a = NodePath("..")
+node_b = NodePath("../../..")
+bias = 0.25
+length = 96.0
+rest_length = 48.0
+stiffness = 64.0
+damping = 2.0
