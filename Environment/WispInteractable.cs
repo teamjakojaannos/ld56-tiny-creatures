@@ -29,6 +29,12 @@ public partial class WispInteractable : Area2D {
 	private Node2D? wisp;
 	private bool isWispInteracting = false;
 
+	[Signal]
+	public delegate void InteractStartEventHandler();
+
+	[Signal]
+	public delegate void InteractStopEventHandler();
+
 	public override void _Ready() {
 		base._Ready();
 

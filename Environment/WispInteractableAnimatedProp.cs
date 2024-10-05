@@ -2,7 +2,8 @@ using System.Linq;
 using Godot;
 
 [Tool]
-public partial class WispInteractableAnimatedProp : WispInteractable {
+[GlobalClass]
+public partial class WispInteractableAnimatedProp : Node2D {
     private AnimationPlayer? _animationPlayer;
 
     [Export]
@@ -27,6 +28,11 @@ public partial class WispInteractableAnimatedProp : WispInteractable {
 
     public override string[] _GetConfigurationWarnings() {
         var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+
+        if (GetParentOrNull<WispInteractable>() is null) {
+            warnings = warnings.Append("Parent must be a WispInteractable!").ToArray();
+        }
+
         if (_animationPlayer is null) {
             warnings = warnings.Append("AnimationPlayer is not set!").ToArray();
         }
@@ -38,11 +44,15 @@ public partial class WispInteractableAnimatedProp : WispInteractable {
         return warnings;
     }
 
-    public override void StartInteract() {
-        AnimPlayer.Play(Animation);
-    }
+	public override void _Ready() {
+		base._Ready();
 
-	public override void StopInteract() {
-		AnimPlayer.Stop();
+        if (Engine.IsEditorHint()) {
+            return;
+        }
+
+        var parent = GetParent<WispInteractable>();
+        parent.InteractStart += () => AnimPlayer.Play(Animation);
+        parent.InteractStop += () => AnimPlayer.Stop();
 	}
 }
