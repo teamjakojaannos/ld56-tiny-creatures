@@ -156,6 +156,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation") groups=["Player"]]
+collision_mask = 3
 script = ExtResource("1_cn8o3")
 Speed = 150.0
 Friction = 15.0
