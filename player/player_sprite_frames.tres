@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b1l5xdbf81x8i"]
+
+[ext_resource type="Texture2D" uid="uid://nobbj2tnaa6h" path="res://player/playerconcept-export.png" id="1_opadx"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_opadx")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_opadx")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
