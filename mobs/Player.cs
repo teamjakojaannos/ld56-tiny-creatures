@@ -7,7 +7,7 @@ public partial class Player : CharacterBody2D {
 	public override void _PhysicsProcess(double _delta) {
 		var delta = (float)_delta;
 
-		var direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		var direction = Input.GetVector("left", "right", "up", "down");
 		var velocity = direction * speed * delta;
 
 		MoveAndCollide(velocity);
