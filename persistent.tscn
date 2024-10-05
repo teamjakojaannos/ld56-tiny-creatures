@@ -9,3 +9,4 @@
 motion_mode = 1
 
 [node name="Camera" parent="Player" instance=ExtResource("2_ifw1n")]
+zoom = Vector2(3, 3)

@@ -23,7 +23,6 @@ Persistent="*res://persistent.tscn"
 
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
-window/stretch/scale=3.0
 
 [dotnet]
 
