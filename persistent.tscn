@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://camera/camera.tscn" id="2_ifw1n"]
 
 [node name="Persistent" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_54i1f")]
+y_sort_enabled = true
 motion_mode = 1
 
 [node name="Camera" parent="Player" instance=ExtResource("2_ifw1n")]
