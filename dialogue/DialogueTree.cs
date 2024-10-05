@@ -13,6 +13,9 @@ public partial class DialogueTree : Resource {
     public Array<string> Lines = new(new[] { "Oispa kaljaa" });
 
     [Export]
+    public Texture2D? Portrait;
+
+    [Export]
     public DialogueTree? Next;
 
     [Export]

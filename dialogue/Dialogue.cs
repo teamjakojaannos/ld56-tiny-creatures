@@ -71,6 +71,9 @@ public partial class Dialogue : CanvasLayer {
 
 			var row = InteractiveDialogueRow.Instantiate<InteractiveDialogueRow>();
 			row.SpeakerIsOnLeft = content.IsLeft;
+			if (content.Portrait is not null) {
+				row.Portrait!.Texture = content.Portrait;
+			}
 			DialogueList.AddChild(row);
 
 			var options = row.GetNode("Options");
@@ -100,6 +103,9 @@ public partial class Dialogue : CanvasLayer {
 
 			var row = DialogueRow.Instantiate<DialogueRow>();
 			row.SpeakerIsOnLeft = content.IsLeft;
+			if (content.Portrait is not null) {
+				row.Portrait!.Texture = content.Portrait;
+			}
 			DialogueList.AddChild(row);
 
 			row.Text = "";
