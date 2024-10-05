@@ -44,4 +44,6 @@ layout_mode = 2
 Text = "Onko kalia tehtaalla?? Antakkee!!?"
 
 [node name="InteractiveRow" parent="DialogueContainer/DialogueList" instance=ExtResource("3_ib14a")]
+layout_direction = 2
 layout_mode = 2
+SpeakerIsOnLeft = true

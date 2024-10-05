@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://8iybuks6ooby"]
+[gd_scene load_steps=4 format=3 uid="uid://8iybuks6ooby"]
 
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="1_3d6se"]
+[ext_resource type="Script" path="res://dialogue/DialogueOption.cs" id="2_oat3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7j8ep"]
 resource_local_to_scene = true
 font = ExtResource("1_3d6se")
 
 [node name="Option1" type="Label"]
+mouse_filter = 1
 text = "Olutta?? Tällaisessa tilanteessa?"
 label_settings = SubResource("LabelSettings_7j8ep")
+script = ExtResource("2_oat3g")

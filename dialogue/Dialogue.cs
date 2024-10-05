@@ -7,6 +7,9 @@ public partial class Dialogue : CanvasLayer {
 	}
 
 	[Export]
+	public int MaxVisibleRows = 3;
+
+	[Export]
 	public PackedScene? DialogueRow;
 
 	[Export]
@@ -44,6 +47,7 @@ public partial class Dialogue : CanvasLayer {
 
 		foreach (var child in DialogueList.GetChildren()) {
 			DialogueList.RemoveChild(child);
+			child.QueueFree();
 		}
 	}
 
@@ -70,11 +74,15 @@ public partial class Dialogue : CanvasLayer {
 			var options = row.GetNode("Options");
 			foreach (var child in options.GetChildren()) {
 				options.RemoveChild(child);
+				child.QueueFree();
 			}
 
+			var idx = 0;
 			foreach (var line in content.Lines) {
-				var option = InteractiveDialogueRowOption.Instantiate<Label>();
+				var option = InteractiveDialogueRowOption.Instantiate<DialogueOption>();
 				option.Text = line;
+				option.OptionIndex = idx++;
+				option.Row = row;
 				options.AddChild(option);
 			}
 
@@ -102,6 +110,19 @@ public partial class Dialogue : CanvasLayer {
 		}
 	}
 
+	public void NextDialogue(DialogueTree next) {
+		if (DialogueList is null) {
+			return;
+		}
+
+		StartDialogue(next, false);
+		if (DialogueList.GetChildCount() > MaxVisibleRows) {
+			var child = DialogueList.GetChild(0);
+			DialogueList.RemoveChild(child);
+			child.QueueFree();
+		}
+	}
+
 	public override void _Input(InputEvent @event) {
 		base._Input(@event);
 
@@ -109,8 +130,8 @@ public partial class Dialogue : CanvasLayer {
 			return;
 		}
 
-		DialogueTree? next = null;
-		bool isSelectEvent = @event.IsActionPressed("dialogue_select_option");
+		int? selectedOption = null;
+		bool isSelectEvent = @event.IsActionPressed("gui_accept");
 		if (ActiveDialogueRow is InteractiveDialogueRow row) {
 			if (@event.IsActionPressed("dialogue_option_1")) {
 				row.HighlightOption(0);
@@ -118,30 +139,45 @@ public partial class Dialogue : CanvasLayer {
 				row.HighlightOption(1);
 			} else if (@event.IsActionPressed("dialogue_option_3")) {
 				row.HighlightOption(2);
+			} else if (@event.IsActionPressed("gui_up")) {
+				var option = row.HighlightedOption - 1;
+				if (option < 0) {
+					option = row.OptionCount - 1;
+				}
+
+				row.HighlightOption(option);
+			} else if (@event.IsActionPressed("gui_down")) {
+				var option = (row.HighlightedOption + 1) % row.OptionCount;
+				row.HighlightOption(option);
 			}
 
 			if (isSelectEvent) {
-				next = row.HighlightedOption switch {
-					0 => ActiveDialogue.Next,
-					1 => ActiveDialogue.Next2,
-					2 => ActiveDialogue.Next3,
-					_ => throw new InvalidOperationException("Selected option out of bounds"),
-				};
-
 				row.SelectOption(row.HighlightedOption);
-			}
-		} else {
-			if (isSelectEvent) {
-				next = ActiveDialogue.Next;
+				selectedOption = row.HighlightedOption;
 			}
 		}
 
 		if (isSelectEvent) {
-			if (next is null) {
-				CloseDialogue();
-			} else {
-				StartDialogue(next, false);
-			}
+			SelectOption(selectedOption ?? 0);
+		}
+	}
+
+	public void SelectOption(int option) {
+		if (ActiveDialogue is null) {
+			return;
+		}
+
+		var next = option switch {
+			0 => ActiveDialogue.Next,
+			1 => ActiveDialogue.Next2,
+			2 => ActiveDialogue.Next3,
+			_ => throw new InvalidOperationException("Selected option out of bounds"),
+		};
+
+		if (next is null) {
+			CloseDialogue();
+		} else {
+			NextDialogue(next);
 		}
 	}
 }
