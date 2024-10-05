@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b20ibux777wdy"]
+[gd_scene load_steps=9 format=3 uid="uid://b20ibux777wdy"]
 
 [ext_resource type="Script" path="res://dialogue/InteractiveDialogueRow.cs" id="1_eubn3"]
 [ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://dialogue/character_portrait.tscn" id="2_atl8r"]
@@ -8,6 +8,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_12rh4"]
 font = ExtResource("3_250kd")
 
+[sub_resource type="LabelSettings" id="LabelSettings_y2r4x"]
+resource_local_to_scene = true
+font = ExtResource("3_250kd")
+
 [sub_resource type="LabelSettings" id="LabelSettings_rqitf"]
 font = ExtResource("3_250kd")
 
@@ -15,13 +19,17 @@ font = ExtResource("3_250kd")
 font = ExtResource("3_250kd")
 
 [node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Portrait")]
-layout_direction = 2
+layout_direction = 3
 theme_override_constants/separation = 8
 script = ExtResource("1_eubn3")
+InactiveDialogueColor = Color(0.18, 0.18, 0.18, 1)
 Portrait = NodePath("PortraitFrame/Character")
 
 [node name="PortraitFrame" parent="." instance=ExtResource("2_atl8r")]
 layout_mode = 2
+
+[node name="Character" parent="PortraitFrame" index="0"]
+flip_h = false
 
 [node name="Selection" type="Label" parent="."]
 layout_mode = 2
@@ -42,6 +50,7 @@ layout_mode = 2
 
 [node name="Option1" parent="Options" instance=ExtResource("4_fctui")]
 layout_mode = 2
+label_settings = SubResource("LabelSettings_y2r4x")
 
 [node name="Option2" type="Label" parent="Options"]
 layout_mode = 2

@@ -127,6 +127,8 @@ public partial class Dialogue : CanvasLayer {
 					2 => ActiveDialogue.Next3,
 					_ => throw new InvalidOperationException("Selected option out of bounds"),
 				};
+
+				row.SelectOption(row.HighlightedOption);
 			}
 		} else {
 			if (isSelectEvent) {
