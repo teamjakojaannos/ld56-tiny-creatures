@@ -16,8 +16,8 @@ public partial class Chaser : RigidBody2D {
 	private Area2D? sightCone;
 
 
-	private ChaserAI aiState = new IdleState();
-	private RandomNumberGenerator rng = new RandomNumberGenerator();
+	private ChaserStuff.ChaserAI aiState = new ChaserStuff.IdleState();
+	private RandomNumberGenerator rng = new();
 
 	public override void _Ready() {
 		sightCone = GetNode<Area2D>("SightCone");
@@ -67,20 +67,20 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private void startChase(Player player) {
-		aiState = new ChaseState(player);
+		aiState = new ChaserStuff.ChaseState(player);
 	}
 
 	private void startSeeking(Vector2 lastPosition) {
-		aiState = new SeekState(lastPosition);
+		aiState = new ChaserStuff.SeekState(lastPosition);
 	}
 
 	public void startWandering() {
-		var (min, max) = ChaserStats.howFarNewTargetShouldBe;
+		var (min, max) = ChaserStuff.ChaserStats.howFarNewTargetShouldBe;
 		var randomPoint = Util.randomVector(rng, min, max);
-		aiState = new WanderState(GlobalPosition + randomPoint);
+		aiState = new ChaserStuff.WanderState(GlobalPosition + randomPoint);
 	}
 
 	public void startIdling() {
-		aiState = new IdleState();
+		aiState = new ChaserStuff.IdleState();
 	}
 }

@@ -9,12 +9,12 @@ public partial class BogMonster : PathFollow2D {
 
 	private Player? player;
 
-	public BogMonsterAIState ai = new MovementState(goingForward: true, 0.0f);
+	public BogMonsterStuff.BogMonsterAIState ai = new BogMonsterStuff.MovementState(goingForward: true, 0.0f);
 
 	public RandomNumberGenerator rng = new();
 
 	public override void _Ready() {
-		ai = new MovementState(goingForward: true, speed);
+		ai = new BogMonsterStuff.MovementState(goingForward: true, speed);
 	}
 
 	public override void _Process(double _delta) {

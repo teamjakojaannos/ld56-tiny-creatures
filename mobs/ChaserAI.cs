@@ -1,5 +1,7 @@
 using Godot;
 
+namespace ChaserStuff;
+
 public static class ChaserStats {
 	// idle for this many seconds, then change state
 	public const float idleTime = 5.0f;
