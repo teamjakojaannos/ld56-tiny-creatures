@@ -14,3 +14,4 @@ texture = ExtResource("3_0ko0p")
 position = Vector2(460, -158)
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(201, -234)

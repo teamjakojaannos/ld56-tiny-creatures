@@ -8,6 +8,9 @@ public partial class Chaser : RigidBody2D {
 	[Export(PropertyHint.Range, "-3.14,3.14,")]
 	public float coneAngleOffset = Mathf.Pi / 2.0f;
 
+	[Export]
+	public float turnSpeedDegPerSec = 45.0f;
+
 	private Node2D chaseTarget = null;
 
 	private Area2D sightCone;
@@ -20,19 +23,32 @@ public partial class Chaser : RigidBody2D {
 	public override void _Process(double _delta) {
 		var delta = (float)_delta;
 		if (chaseTarget != null) {
-			moveTowards(chaseTarget.Position, delta);
-			lookTowardsTarget(chaseTarget.Position);
+			moveTowards(chaseTarget.GlobalPosition, delta);
+			turnTowardsTarget(chaseTarget.GlobalPosition, delta);
 		}
 	}
 
 	private void moveTowards(Vector2 target, float delta) {
-		var velocity = (target - Position).Normalized() * speed * delta;
+		var velocity = (target - GlobalPosition).Normalized() * speed * delta;
 		MoveAndCollide(velocity);
 	}
 
-	private void lookTowardsTarget(Vector2 target) {
-		var angle = (target - Position).Angle() + coneAngleOffset;
-		sightCone.Rotation = angle;
+	private void turnTowardsTarget(Vector2 target, float delta) {
+
+
+		var turnSpeedRadPerSec = Mathf.DegToRad(turnSpeedDegPerSec);
+		var maxTurn = turnSpeedRadPerSec * delta;
+
+		var myPos = GlobalPosition;
+
+		var desiredAngle = myPos.AngleToPoint(target) + coneAngleOffset;
+		var currentAngle = sightCone.Rotation;
+		var rotationAmount = Mathf.AngleDifference(currentAngle, desiredAngle);
+		if (Mathf.Abs(rotationAmount) > maxTurn) {
+			rotationAmount = maxTurn * Mathf.Sign(rotationAmount);
+		}
+
+		sightCone.Rotation += rotationAmount;
 	}
 
 
