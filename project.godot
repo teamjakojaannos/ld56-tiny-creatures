@@ -15,9 +15,17 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Persistent="*res://persistent.tscn"
+
 [dotnet]
 
 project/assembly_name="LD56"
+
+[global_group]
+
+PlayerSpawn="Marks the node as a valid position for player to spawn in."
 
 [input]
 
