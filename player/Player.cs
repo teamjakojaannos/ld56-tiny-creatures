@@ -89,9 +89,9 @@ public partial class Player : CharacterBody2D {
 			: Vector2.Zero;
 		if (direction.LengthSquared() > 0.001f) {
 			Velocity = direction * Speed * delta;
-			animationDirection = direction.X > 0.0
+			animationDirection = direction.X < 0.0
 				? "Left"
-				: direction.X < 0.0
+				: direction.X > 0.0
 				? "Right"
 				: direction.Y < 0.0
 				? "Up"
