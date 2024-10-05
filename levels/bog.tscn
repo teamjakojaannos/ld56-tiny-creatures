@@ -44,7 +44,7 @@ shape = SubResource("WorldBoundaryShape2D_8e8uv")
 shape = SubResource("WorldBoundaryShape2D_jdmuq")
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(150, -200)
+position = Vector2(150, -129)
 curve = SubResource("Curve2D_011ts")
 
 [node name="BogMonster" parent="Path2D" instance=ExtResource("1_sd77c")]

@@ -10,7 +10,15 @@ public static class BogMonsterStats {
 	// chance to stop movement and change state
 	public const float stopMoveChance = 0.25f;
 
-	// min and max wait time
+	// chance to stop movement and change state
+	public const float changeDirectionInsteadOfStoppingChance = 0.25f;
+
+	public const float goUnderwaterChance = 0.10f;
+
+	// min/max time to stay underwater
+	public static (float, float) underwaterTime = (2.0f, 5.0f);
+
+	// min and max idle time
 	public static (float, float) idleTime = (0.5f, 2.0f);
 }
 
@@ -54,6 +62,12 @@ public class MovementState : BogMonsterAIState {
 				monster.ai = new IdleState(idleTime, nextDirection: null);
 				return;
 			}
+
+			var goUnderwater = monster.rng.Randf() < BogMonsterStats.goUnderwaterChance;
+			if (goUnderwater) {
+				monster.goUnderwater();
+				return;
+			}
 		}
 
 		var sign = direction.isForward() ? 1.0f : -1.0f;
@@ -71,6 +85,18 @@ public class MovementState : BogMonsterAIState {
 	}
 
 	private void endOfLine(BogMonster monster) {
+		var keepGoing = monster.rng.Randf() < BogMonsterStats.changeDirectionInsteadOfStoppingChance;
+		if (keepGoing) {
+			direction = direction.opposite();
+			return;
+		}
+
+		var goUnderwater = monster.rng.Randf() < BogMonsterStats.goUnderwaterChance;
+		if (goUnderwater) {
+			monster.goUnderwater();
+			return;
+		}
+
 		var idleTime = randomIdleTime(monster.rng);
 		monster.ai = new IdleState(idleTime, nextDirection: direction.opposite());
 	}
@@ -108,4 +134,28 @@ public class IdleState : BogMonsterAIState {
 	}
 }
 
+public class UnderwaterState : BogMonsterAIState {
+
+	private float timePassed;
+	private float underwaterTime;
+
+	public bool animationDone;
+
+	public UnderwaterState(float underwaterTime) {
+		this.underwaterTime = underwaterTime;
+	}
+
+	public override void doUpdate(BogMonster monster, float delta) {
+		if (!animationDone) {
+			return;
+		}
+
+		timePassed += delta;
+		if (timePassed >= underwaterTime) {
+			animationDone = false;
+			var randomPosition = monster.rng.Randf();
+			monster.emergeFromWaterAtPosition(randomPosition);
+		}
+	}
+}
 
