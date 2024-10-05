@@ -11,6 +11,8 @@ public partial class Player : CharacterBody2D {
 	[Export]
 	public AnimationPlayer? Animation;
 
+	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible;
+
 	public override void _Ready() {
 		base._Ready();
 		var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
@@ -33,7 +35,9 @@ public partial class Player : CharacterBody2D {
 	public override void _PhysicsProcess(double _delta) {
 		var delta = (float)_delta;
 
-		var direction = Input.GetVector("left", "right", "up", "down");
+		var direction = IsAllowedToMove
+			? Input.GetVector("left", "right", "up", "down")
+			: Vector2.Zero;
 		var animationDirection = direction.X < 0.0
 			? "left"
 			: direction.X > 0.0

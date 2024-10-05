@@ -1,23 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://hthnt1vcknxx"]
+[gd_scene load_steps=5 format=3 uid="uid://hthnt1vcknxx"]
 
+[ext_resource type="Script" path="res://dialogue/Dialogue.cs" id="1_e7iml"]
 [ext_resource type="PackedScene" uid="uid://ylwci2dowuy7" path="res://dialogue/row.tscn" id="1_h21uh"]
-[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="1_lwjfp"]
-[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://dialogue/character_portrait.tscn" id="2_00l17"]
-[ext_resource type="Script" path="res://dialogue/interactive_row.gd" id="2_huhwh"]
+[ext_resource type="PackedScene" uid="uid://b20ibux777wdy" path="res://dialogue/interactive_row.tscn" id="3_ib14a"]
+[ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_ly15r"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_12rh4"]
-font = ExtResource("1_lwjfp")
-
-[sub_resource type="LabelSettings" id="LabelSettings_7j8ep"]
-font = ExtResource("1_lwjfp")
-
-[sub_resource type="LabelSettings" id="LabelSettings_rqitf"]
-font = ExtResource("1_lwjfp")
-
-[sub_resource type="LabelSettings" id="LabelSettings_t0flu"]
-font = ExtResource("1_lwjfp")
-
-[node name="DialogueUI" type="CanvasLayer"]
+[node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("DialogueList")]
+script = ExtResource("1_e7iml")
+DialogueRow = ExtResource("1_h21uh")
+InteractiveDialogueRow = ExtResource("3_ib14a")
+InteractiveDialogueRowOption = ExtResource("4_ly15r")
+DialogueList = NodePath("DialogueContainer/DialogueList")
 
 [node name="DialogueContainer" type="Control" parent="."]
 layout_mode = 3
@@ -43,50 +36,13 @@ alignment = 2
 
 [node name="Row" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
 layout_mode = 2
+SpeakerIsOnLeft = true
 
 [node name="Row2" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
 layout_direction = 3
 layout_mode = 2
-speaker_is_on_left = false
-text = "Onko kalia tehtaalla?? Antakkee!!"
+Text = "Onko kalia tehtaalla?? Antakkee!!?"
 
-[node name="InteractiveRow" type="HBoxContainer" parent="DialogueContainer/DialogueList"]
-layout_direction = 2
+[node name="InteractiveRow" parent="DialogueContainer/DialogueList" instance=ExtResource("3_ib14a")]
+layout_direction = 3
 layout_mode = 2
-theme_override_constants/separation = 8
-script = ExtResource("2_huhwh")
-
-[node name="PortraitFrame" parent="DialogueContainer/DialogueList/InteractiveRow" instance=ExtResource("2_00l17")]
-layout_mode = 2
-
-[node name="Selection" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow"]
-layout_mode = 2
-text = "-
--
->"
-label_settings = SubResource("LabelSettings_12rh4")
-
-[node name="Numbers" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow"]
-layout_mode = 2
-text = "1
-2
-3"
-label_settings = SubResource("LabelSettings_12rh4")
-
-[node name="Options" type="VBoxContainer" parent="DialogueContainer/DialogueList/InteractiveRow"]
-layout_mode = 2
-
-[node name="Option1" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow/Options"]
-layout_mode = 2
-text = "Olutta?? Tällaisessa tilanteessa?"
-label_settings = SubResource("LabelSettings_7j8ep")
-
-[node name="Option2" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow/Options"]
-layout_mode = 2
-text = "No ehkä... yksi...."
-label_settings = SubResource("LabelSettings_rqitf")
-
-[node name="Option3" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow/Options"]
-layout_mode = 2
-text = "Ehrmannia?? LITRAN PURKEISSA!?!!?!?"
-label_settings = SubResource("LabelSettings_t0flu")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://6abkwwyeqfa8"]
+[gd_scene load_steps=15 format=3 uid="uid://6abkwwyeqfa8"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_8kue4"]
+[ext_resource type="Script" path="res://dialogue/DialogueTrigger.cs" id="3_0le5u"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="3_ucvm7"]
+[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="4_k8x3u"]
 
 [sub_resource type="Gradient" id="Gradient_jl0fw"]
 offsets = PackedFloat32Array(0, 0.221885, 1)
@@ -17,6 +19,50 @@ width = 256
 height = 256
 color_ramp = SubResource("Gradient_jl0fw")
 noise = SubResource("FastNoiseLite_ajjet")
+
+[sub_resource type="Resource" id="Resource_bl586"]
+script = ExtResource("4_k8x3u")
+IsInteractive = false
+IsLeft = false
+Lines = ["Oispa kaljaa"]
+
+[sub_resource type="Resource" id="Resource_08axp"]
+script = ExtResource("4_k8x3u")
+IsInteractive = false
+IsLeft = false
+Lines = ["Mutta jääkö se yhteen?"]
+
+[sub_resource type="Resource" id="Resource_lo4vp"]
+script = ExtResource("4_k8x3u")
+IsInteractive = false
+IsLeft = false
+Lines = ["Rahka-Saruman ebin :--DDd"]
+
+[sub_resource type="Resource" id="Resource_oj62y"]
+script = ExtResource("4_k8x3u")
+IsInteractive = true
+IsLeft = true
+Lines = ["Olutta?? Tällaisessa tilanteessa?", "No ehkä... yksi....", "Ehrmannia?? LITRAN PURKEISSA!?!!?!?"]
+Next = SubResource("Resource_bl586")
+Next2 = SubResource("Resource_08axp")
+Next3 = SubResource("Resource_lo4vp")
+
+[sub_resource type="Resource" id="Resource_1bju7"]
+script = ExtResource("4_k8x3u")
+IsInteractive = false
+IsLeft = false
+Lines = ["Onko kalia tehtaalla?? Antakkee!!"]
+Next = SubResource("Resource_oj62y")
+
+[sub_resource type="Resource" id="Resource_ypefv"]
+script = ExtResource("4_k8x3u")
+IsInteractive = false
+IsLeft = true
+Lines = ["A quick brown fox jumps over a lazy dog.", "Or something."]
+Next = SubResource("Resource_1bju7")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yujk0"]
+radius = 20.4
 
 [node name="Main" type="Node2D"]
 
@@ -50,6 +96,15 @@ texture = ExtResource("3_ucvm7")
 position = Vector2(-142, -89)
 scale = Vector2(0.414062, 0.414062)
 texture = ExtResource("3_ucvm7")
+
+[node name="DialogueTrigger" type="Area2D" parent="Icon3"]
+scale = Vector2(2.4151, 2.4151)
+script = ExtResource("3_0le5u")
+DialogueContent = SubResource("Resource_ypefv")
+
+[node name="Trigger" type="CollisionShape2D" parent="Icon3/DialogueTrigger"]
+shape = SubResource("CircleShape2D_yujk0")
+debug_color = Color(0.833851, 0.348161, 0.46535, 0.42)
 
 [node name="Icon4" type="Sprite2D" parent="."]
 position = Vector2(163, 88)
