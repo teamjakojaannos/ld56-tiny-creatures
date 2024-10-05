@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using Godot;
 
+[Tool]
 public partial class Player : CharacterBody2D {
 	[Export]
 	public float Speed = 300.0f;
@@ -13,8 +15,50 @@ public partial class Player : CharacterBody2D {
 
 	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible;
 
+	public Node2D? WispTarget { get; set; } = null;
+
+	private Node2D? _wispFollowNode;
+
+	[Export]
+	public Node2D WispFollowNode {
+		get => _wispFollowNode ?? Util.TrustMeBro<Node2D>();
+		set {
+			_wispFollowNode = value;
+			UpdateConfigurationWarnings();
+		}
+	}
+
+	private Node2D? _wisp;
+
+	[Export]
+	public Node2D Wisp {
+		get => _wisp ?? Util.TrustMeBro<Node2D>();
+		set {
+			_wisp = value;
+			UpdateConfigurationWarnings();
+		}
+	}
+
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? Array.Empty<string>();
+		if (_wispFollowNode is null) {
+			warnings = warnings.Append("WispFollowNode is not set!").ToArray();
+		}
+
+		if (_wisp is null) {
+			warnings = warnings.Append("Wisp is not set!").ToArray();
+		}
+
+		return warnings;
+	}
+
 	public override void _Ready() {
 		base._Ready();
+
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
 		if (spawns.Count != 0 && spawns.PickRandom() is Node2D spawn) {
 			CallDeferred(MethodName.TeleportAt, spawn);
@@ -33,6 +77,10 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public override void _PhysicsProcess(double _delta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)_delta;
 
 		var direction = IsAllowedToMove
@@ -51,15 +99,28 @@ public partial class Player : CharacterBody2D {
 			Animation?.Play($"walk_{animationDirection}");
 		} else {
 			var currentSpeed = Velocity.Length();
-			Velocity = new(
-				Mathf.MoveToward(Velocity.X, 0, currentSpeed * Friction * delta),
-				Mathf.MoveToward(Velocity.Y, 0, currentSpeed * Friction * delta)
-			);
+			Velocity = Velocity.MoveToward(Vector2.Zero, currentSpeed * Friction * delta);
 		}
 
 		if (Velocity.LengthSquared() < 0.01f) {
 			Animation?.Play("idle");
 		}
+
+		var wispPosition = Wisp.GlobalPosition;
 		MoveAndCollide(Velocity);
+
+		// HACK: Cancel out wisp movement to emulate top-level movement.
+		//       Can't use TopLevel=true as that breaks Y-sort.
+		Wisp.GlobalPosition = wispPosition;
+		if (WispTarget is not null) {
+
+			var distance = Wisp.GlobalPosition.DistanceTo(WispTarget.GlobalPosition);
+			Wisp.GlobalPosition =
+				Wisp.GlobalPosition.MoveToward(WispTarget.GlobalPosition, distance * 2.0f * delta);
+		} else {
+			var distance = Wisp.GlobalPosition.DistanceTo(WispFollowNode.GlobalPosition);
+			Wisp.GlobalPosition =
+				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 2.5f * delta);
+		}
 	}
 }

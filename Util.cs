@@ -11,4 +11,12 @@ public static class Util {
 	public static bool randomBool(RandomNumberGenerator rng) {
 		return rng.RandiRange(0, 1) == 0;
 	}
+
+	public static T TrustMeBro<T>() where T: class {
+		if (!Engine.IsEditorHint()) {
+			throw new System.InvalidOperationException("Value of a required exported field is null");
+		}
+
+		return null!;
+	}
 }

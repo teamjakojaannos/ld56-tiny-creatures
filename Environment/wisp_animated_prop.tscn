@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh0xgrc5pkvcy"]
+
+[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="1_dlft1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_453da"]
+radius = 46.0109
+
+[node name="WispInteractable" type="Area2D" node_paths=PackedStringArray("Target")]
+y_sort_enabled = true
+script = ExtResource("1_dlft1")
+Target = NodePath("Target")
+
+[node name="Trigger" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_453da")
+debug_color = Color(0.332261, 0.488051, 1, 0.42)
+
+[node name="Target" type="Marker2D" parent="."]
+position = Vector2(0, -6)
