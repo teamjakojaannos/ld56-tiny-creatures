@@ -64,9 +64,20 @@ text = "1
 3"
 label_settings = SubResource("LabelSettings_12rh4")
 
-[node name="Options" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow"]
+[node name="Options" type="VBoxContainer" parent="DialogueContainer/DialogueList/InteractiveRow"]
 layout_mode = 2
-text = "Olutta?? Tällaisessa tilanteessa?
-No ehkä... yksi....
-Ehrmannia?? LITRAN PURKEISSA!?!!?!?"
+
+[node name="Option1" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow/Options"]
+layout_mode = 2
+text = "Olutta?? Tällaisessa tilanteessa?"
+label_settings = SubResource("LabelSettings_12rh4")
+
+[node name="Option2" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow/Options"]
+layout_mode = 2
+text = "No ehkä... yksi...."
+label_settings = SubResource("LabelSettings_12rh4")
+
+[node name="Option3" type="Label" parent="DialogueContainer/DialogueList/InteractiveRow/Options"]
+layout_mode = 2
+text = "Ehrmannia?? LITRAN PURKEISSA!?!!?!?"
 label_settings = SubResource("LabelSettings_12rh4")
