@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
-[ext_resource type="PackedScene" uid="uid://d1d0oklccd27c" path="res://Environment/kurpitsa_lyhty.tscn" id="2_bp6wn"]
+[ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="3_f2lsx"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="4_dlstp"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="4_wrqcq"]
 [ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="6_g2fjj"]
@@ -23,12 +23,12 @@ script = ExtResource("1_chwgl")
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
 y_sort_enabled = true
-position = Vector2(-64, -38)
+position = Vector2(-46, 43)
 
 [node name="JokuHassuKalloKeppi" parent="." instance=ExtResource("1_fkk4j")]
 position = Vector2(-139, -62)
 
-[node name="KurpitsaLyhty" parent="." instance=ExtResource("2_bp6wn")]
+[node name="WispInteractableKurpitsa" parent="." instance=ExtResource("3_f2lsx")]
 position = Vector2(-113, -59)
 
 [node name="Trees" type="Node2D" parent="."]
