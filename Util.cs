@@ -7,4 +7,8 @@ public static class Util {
 
 		return Vector2.FromAngle(angle) * dist;
 	}
+
+	public static bool randomBool(RandomNumberGenerator rng) {
+		return rng.RandiRange(0, 1) == 0;
+	}
 }
