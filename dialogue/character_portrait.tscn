@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dva0mxjbjqfxy"]
+
+[ext_resource type="Texture2D" uid="uid://nobbj2tnaa6h" path="res://player/playerconcept-export.png" id="1_w7pdl"]
+
+[node name="PortraitFrame" type="ColorRect"]
+clip_children = 2
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.237539, 0.237539, 0.237539, 1)
+
+[node name="Character" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = -7.0
+offset_top = 1.0
+offset_right = 491.0
+offset_bottom = 499.0
+scale = Vector2(0.145975, 0.145975)
+texture = ExtResource("1_w7pdl")
+flip_h = true
