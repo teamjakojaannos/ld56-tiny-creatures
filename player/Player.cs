@@ -14,8 +14,7 @@ public partial class Player : CharacterBody2D {
 	public override void _Ready() {
 		base._Ready();
 		var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
-
-		if (spawns.PickRandom() is Node2D spawn) {
+		if (spawns.Count != 0 && spawns.PickRandom() is Node2D spawn) {
 			CallDeferred(MethodName.TeleportAt, spawn);
 		}
 	}
@@ -26,7 +25,7 @@ public partial class Player : CharacterBody2D {
 		}
 
 		GetParent()?.RemoveChild(this);
-		target.AddChild(this);
+		(target.GetParent() ?? target).AddChild(this);
 
 		GlobalPosition = target.GlobalPosition;
 	}
