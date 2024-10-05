@@ -1,15 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=18 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
 [ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="3_f2lsx"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="4_dlstp"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="4_wrqcq"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="6_2itic"]
 [ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="6_g2fjj"]
 [ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="6_sapfe"]
 [ext_resource type="Texture2D" uid="uid://b1gs3xtr5kj2x" path="res://Environment/medium_patch_2.png" id="7_dq5q5"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="8_5mwjx"]
 [ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="8_gra68"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="9_7ttu1"]
+[ext_resource type="Texture2D" uid="uid://2bklg3qfsuj0" path="res://Environment/medium_patch_1R.png" id="11_a83ed"]
+[ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="12_pedfd"]
+[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="13_n4asy"]
+[ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="14_ukpv2"]
+[ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="15_exwpo"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -43,6 +50,9 @@ position = Vector2(-216, -13)
 [node name="Tree6" parent="Trees" instance=ExtResource("4_dlstp")]
 position = Vector2(-81, -92)
 
+[node name="Tree9" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-278, -151)
+
 [node name="Tree1" parent="Trees" instance=ExtResource("4_wrqcq")]
 position = Vector2(-233, -71)
 
@@ -55,8 +65,64 @@ position = Vector2(-184, -39)
 [node name="Tree3" parent="Trees" instance=ExtResource("4_wrqcq")]
 position = Vector2(-146, -113)
 
-[node name="Grass" type="Node2D" parent="."]
+[node name="Tree8" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-391, -84)
+
+[node name="Tree10" parent="Trees" instance=ExtResource("12_pedfd")]
+position = Vector2(-68, 237)
+metadata/_edit_lock_ = true
+
+[node name="StonesETC" type="Node2D" parent="."]
 z_index = -1
+
+[node name="Stones" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-256, -24)
+texture = ExtResource("6_2itic")
+
+[node name="Stones5" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-65, 350)
+texture = ExtResource("6_2itic")
+
+[node name="Stones6" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-32, 291)
+texture = ExtResource("6_2itic")
+
+[node name="Stones7" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(102, 394)
+texture = ExtResource("6_2itic")
+
+[node name="Stones2" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-17, -56)
+texture = ExtResource("6_2itic")
+
+[node name="Stones3" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-33, -117)
+texture = ExtResource("8_5mwjx")
+
+[node name="Stones8" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(86, 285)
+texture = ExtResource("8_5mwjx")
+
+[node name="Stones9" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-138, 285)
+texture = ExtResource("8_5mwjx")
+
+[node name="Stones4" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-361, -80)
+texture = ExtResource("8_5mwjx")
+
+[node name="Grass" type="Node2D" parent="."]
+z_index = -2
+metadata/_edit_lock_ = true
 
 [node name="Grass1" type="Sprite2D" parent="Grass"]
 texture_filter = 1
@@ -162,21 +228,118 @@ texture = ExtResource("9_7ttu1")
 texture_filter = 1
 position = Vector2(-334, -91)
 texture = ExtResource("9_7ttu1")
+metadata/_edit_lock_ = true
 
 [node name="Grass16" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-334, -91)
+position = Vector2(-472, -209)
 texture = ExtResource("9_7ttu1")
 
 [node name="Grass18" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-334, -91)
+position = Vector2(-410, -80)
 texture = ExtResource("9_7ttu1")
 
-[node name="BGimage" type="Sprite2D" parent="."]
-z_index = -2
+[node name="Grass24" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(1, 318)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass33" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-81, 339)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass34" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-53, 352)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass39" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(78, 250)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass35" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-88, 366)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass25" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-68, 236)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass26" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-68, 236)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass28" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-72, 230)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass27" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(44, 300)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass37" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-110, 324)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass36" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-49, 326)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass38" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(58, 348)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass40" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(93, 240)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass31" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-96, 259)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass32" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-35, 266)
+texture = ExtResource("14_ukpv2")
+
+[node name="Grass29" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-46, 237)
+texture = ExtResource("11_a83ed")
+
+[node name="Grass30" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-46, 237)
+texture = ExtResource("11_a83ed")
+
+[node name="BGimage2" type="Sprite2D" parent="."]
+z_index = -3
 texture_filter = 3
-position = Vector2(-124, -84)
-scale = Vector2(18.1111, 14.6389)
+position = Vector2(2, 301)
+scale = Vector2(0.431625, 0.403125)
+texture = ExtResource("13_n4asy")
+metadata/_edit_lock_ = true
+
+[node name="BGimage" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 3
+position = Vector2(2.35663, 13.2191)
+scale = Vector2(88.8286, 90.6125)
 texture = ExtResource("6_sapfe")
 metadata/_edit_lock_ = true
+
+[node name="JesusStatue" parent="." instance=ExtResource("15_exwpo")]
+position = Vector2(0, 322)

@@ -7,7 +7,6 @@
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_54i1f")]
-y_sort_enabled = true
 motion_mode = 1
 
 [node name="Camera" parent="Player" instance=ExtResource("2_ifw1n")]
