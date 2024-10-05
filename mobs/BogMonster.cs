@@ -7,36 +7,30 @@ public partial class BogMonster : PathFollow2D {
 
 	private bool goingForward = true;
 
+	private Player? player;
+
+	private BogMonsterAIState ai = new MovementState(goingForward: true, 0.0f);
+
+	public override void _Ready() {
+		ai = new MovementState(goingForward: true, speed);
+	}
+
 	public override void _Process(double _delta) {
 		var delta = (float)_delta;
-		var sign = goingForward ? 1.0f : -1.0f;
-		var movement = sign * speed * delta;
 
-		Progress += movement;
-
-		var reachedEnd = goingForward
-			? ProgressRatio >= 1.0f
-			: ProgressRatio <= 0.0f;
-
-		if (reachedEnd) {
-			goingForward = !goingForward;
-		}
+		ai.doUpdate(this, delta);
 	}
 
 
 	public void sightConeEntered(Node2D node) {
-		if (node is not Player player) {
-			return;
+		if (node is Player player) {
+			this.player = player;
 		}
-
-		GD.Print("Player spotted!");
 	}
 
 	public void sightConeExited(Node2D node) {
-		if (node is not Player player) {
-			return;
+		if (node is Player) {
+			player = null;
 		}
-
-		GD.Print("Player lost");
 	}
 }

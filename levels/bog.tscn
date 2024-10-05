@@ -48,3 +48,4 @@ position = Vector2(150, -200)
 curve = SubResource("Curve2D_011ts")
 
 [node name="BogMonster" parent="Path2D" instance=ExtResource("1_sd77c")]
+rotates = true
