@@ -20,6 +20,8 @@ public static class BogMonsterStats {
 
 	// min and max idle time
 	public static (float, float) idleTime = (0.5f, 2.0f);
+
+	public const float emergeAtPlayerChance = 0.35f;
 }
 
 public enum Direction {
@@ -157,10 +159,18 @@ public class UnderwaterState : BogMonsterAIState {
 
 		timePassed += delta;
 		if (timePassed >= underwaterTime) {
-			animationDone = false;
+			emergeFromWater(monster);
+		}
+	}
+
+	private void emergeFromWater(BogMonster monster) {
+		animationDone = false;
+		var emergeAtPlayer = monster.rng.Randf() < BogMonsterStats.emergeAtPlayerChance;
+		if (emergeAtPlayer) {
+			monster.emergeFromWaterNearPlayer();
+		} else {
 			var randomPosition = monster.rng.Randf();
 			monster.emergeFromWaterAtPosition(randomPosition);
 		}
 	}
 }
-
