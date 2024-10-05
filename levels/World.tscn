@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=7 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
 [ext_resource type="PackedScene" uid="uid://d1d0oklccd27c" path="res://Environment/kurpitsa_lyhty.tscn" id="2_bp6wn"]
+[ext_resource type="PackedScene" uid="uid://cuxnsn0v74xiw" path="res://Environment/Tree2.tscn" id="4_dlstp"]
+[ext_resource type="PackedScene" uid="uid://c2k5gtc3g00g5" path="res://Environment/tree_1.tscn" id="4_wrqcq"]
+[ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="6_sapfe"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -11,7 +14,7 @@ y_sort_enabled = true
 visible = false
 position = Vector2(-486, -508)
 scale = Vector2(2, 2)
-color = Color(0.564935, 0.529671, 0.628585, 1)
+color = Color(0.128596, 0.114442, 0.153357, 1)
 script = ExtResource("1_chwgl")
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
@@ -19,7 +22,37 @@ y_sort_enabled = true
 position = Vector2(-64, -38)
 
 [node name="JokuHassuKalloKeppi" parent="." instance=ExtResource("1_fkk4j")]
-position = Vector2(-102, -48)
+position = Vector2(-139, -62)
 
 [node name="KurpitsaLyhty" parent="." instance=ExtResource("2_bp6wn")]
-position = Vector2(-78, -46)
+position = Vector2(-113, -59)
+
+[node name="Trees" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree4" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-189, -93)
+
+[node name="Tree5" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-216, -13)
+
+[node name="Tree6" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-81, -92)
+
+[node name="Tree1" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-233, -71)
+
+[node name="Tree7" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-58, -56)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-184, -39)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-146, -113)
+
+[node name="Sprite2D" type="Sprite2D" parent="Trees"]
+z_index = -1
+position = Vector2(-134, -86)
+scale = Vector2(11.0222, 9.57778)
+texture = ExtResource("6_sapfe")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2k5gtc3g00g5"]
+
+[ext_resource type="Texture2D" uid="uid://b0chx3j4jrrrb" path="res://Environment/MinjanPuu1.png" id="1_vnv7r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yshgr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vnv7r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfr0v"]
+size = Vector2(19, 7)
+
+[node name="Tree1" type="Node2D"]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 3
+sprite_frames = SubResource("SpriteFrames_yshgr")
+centered = false
+offset = Vector2(-26.79, -73.275)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.5, -3.5)
+shape = SubResource("RectangleShape2D_kfr0v")
