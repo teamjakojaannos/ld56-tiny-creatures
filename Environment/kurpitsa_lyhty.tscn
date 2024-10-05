@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1d0oklccd27c"]
+
+[ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://Environment/pumpkin.png" id="1_4gbqx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsobr"]
+size = Vector2(18, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acp5i"]
+atlas = ExtResource("1_4gbqx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_208q3"]
+atlas = ExtResource("1_4gbqx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjoio"]
+atlas = ExtResource("1_4gbqx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os1x5"]
+atlas = ExtResource("1_4gbqx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qm78g"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_acp5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_208q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjoio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os1x5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="KurpitsaLyhty" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_qsobr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_qm78g")
+frame_progress = 0.840228
+centered = false
+offset = Vector2(-15.805, -28.87)

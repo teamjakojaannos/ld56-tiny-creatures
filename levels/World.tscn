@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqmcerhi4wqpl"]
+
+[ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
+[ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
+[ext_resource type="PackedScene" uid="uid://d1d0oklccd27c" path="res://Environment/kurpitsa_lyhty.tscn" id="2_bp6wn"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+position = Vector2(-486, -508)
+scale = Vector2(2, 2)
+color = Color(0.564935, 0.529671, 0.628585, 1)
+script = ExtResource("1_chwgl")
+
+[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(-64, -38)
+
+[node name="JokuHassuKalloKeppi" parent="." instance=ExtResource("1_fkk4j")]
+y_sort_enabled = true
+position = Vector2(-102, -48)
+
+[node name="KurpitsaLyhty" parent="." instance=ExtResource("2_bp6wn")]
+position = Vector2(-78, -46)

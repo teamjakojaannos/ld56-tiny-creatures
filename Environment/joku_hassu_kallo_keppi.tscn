@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cye1w3nfypxqd"]
+
+[ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://Environment/jokuhassuproppi_idk.png" id="1_f5uop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axo0v"]
+size = Vector2(11, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8och"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f5uop")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="JokuHassuKalloKeppi" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_axo0v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_o8och")
+centered = false
+offset = Vector2(-17.345, -56.695)

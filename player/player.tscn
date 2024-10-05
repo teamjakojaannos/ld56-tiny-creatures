@@ -4,9 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="4_62syh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0stk"]
-radius = 13.0
-height = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
+size = Vector2(11, 2)
 
 [sub_resource type="Animation" id="Animation_jtxx1"]
 length = 0.001
@@ -182,14 +181,15 @@ Friction = 15.0
 Animation = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
 position = Vector2(1, -15)
 sprite_frames = ExtResource("3_88t4b")
 animation = &"Idle"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2(1, -14)
-shape = SubResource("CapsuleShape2D_o0stk")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_v1bly")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
