@@ -1,6 +1,5 @@
-[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://b1l5xdbf81x8i"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://b1l5xdbf81x8i"]
 
-[ext_resource type="Texture2D" uid="uid://c5dq68pi2j51" path="res://player/playerconcept-sheet.png" id="1_0k4ae"]
 [ext_resource type="Texture2D" uid="uid://b702m0uxy7s5a" path="res://player/PlayerIdleFront.png" id="1_1qv5b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yf3q4"]
@@ -19,21 +18,37 @@ region = Rect2(64, 0, 32, 45)
 atlas = ExtResource("1_1qv5b")
 region = Rect2(96, 0, 32, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tiji0"]
-atlas = ExtResource("1_0k4ae")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4qrd"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(0, 0, 32, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ajbf"]
-atlas = ExtResource("1_0k4ae")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnhuj"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(32, 0, 32, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sknp0"]
-atlas = ExtResource("1_0k4ae")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dmam"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(64, 0, 32, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjhjs"]
-atlas = ExtResource("1_0k4ae")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhns8"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(96, 0, 32, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kbbs"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(0, 0, 32, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtql2"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(32, 0, 32, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvkl5"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(64, 0, 32, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a4os"]
+atlas = ExtResource("1_1qv5b")
+region = Rect2(96, 0, 32, 45)
 
 [resource]
 animations = [{
@@ -56,10 +71,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tiji0")
+"texture": SubResource("AtlasTexture_r4qrd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5ajbf")
+"texture": SubResource("AtlasTexture_vnhuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dmam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhns8")
 }],
 "loop": true,
 "name": &"Left",
@@ -67,10 +88,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sknp0")
+"texture": SubResource("AtlasTexture_2kbbs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mjhjs")
+"texture": SubResource("AtlasTexture_dtql2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvkl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a4os")
 }],
 "loop": true,
 "name": &"Right",

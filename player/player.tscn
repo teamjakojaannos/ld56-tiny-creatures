@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=13 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
+[ext_resource type="Script" path="res://player/spirit_visuals.gd" id="3_ne40l"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="4_62syh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
@@ -174,38 +175,43 @@ libraries = {
 
 [node name="SpiritTarget" type="Marker2D" parent="."]
 y_sort_enabled = true
+position = Vector2(0, -24)
 
-[node name="Spirit" type="RigidBody2D" parent="SpiritTarget"]
-top_level = true
+[node name="SpiritVisuals" type="Node2D" parent="SpiritTarget"]
 y_sort_enabled = true
-position = Vector2(-51, -45)
-gravity_scale = 0.0
-lock_rotation = true
-linear_damp = 2.0
+script = ExtResource("3_ne40l")
 
-[node name="PointLight" type="PointLight2D" parent="SpiritTarget/Spirit"]
-position = Vector2(0, 1)
+[node name="PointLight" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
+position = Vector2(-55, -46)
 color = Color(0.231373, 0.701961, 0.721569, 1)
 texture = SubResource("GradientTexture2D_k821t")
 metadata/_edit_lock_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpiritTarget/Spirit"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpiritTarget/SpiritVisuals"]
 modulate = Color(1, 1, 1, 0.682353)
 y_sort_enabled = true
 texture_filter = 1
+position = Vector2(-55, -47)
 sprite_frames = ExtResource("4_62syh")
 autoplay = "default"
 frame_progress = 0.229417
 offset = Vector2(0, -12)
 
+[node name="Spirit" type="RigidBody2D" parent="SpiritTarget"]
+top_level = true
+position = Vector2(-55, -71)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 2.0
+
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="SpiritTarget/Spirit"]
-position = Vector2(0, 1)
+position = Vector2(3, 3)
 rotation = -0.863302
 scale = Vector2(0.7, 0.7)
 node_a = NodePath("..")
 node_b = NodePath("../../..")
 bias = 0.25
 length = 96.0
-rest_length = 48.0
+rest_length = 40.0
 stiffness = 64.0
 damping = 2.0
