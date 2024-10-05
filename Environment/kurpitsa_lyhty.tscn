@@ -36,7 +36,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_os1x5")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -54,6 +54,5 @@ shape = SubResource("RectangleShape2D_qsobr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qm78g")
-frame_progress = 0.840228
 centered = false
 offset = Vector2(-15.805, -28.87)
