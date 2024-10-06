@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=18 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
@@ -398,6 +398,14 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67s2t"]
+gradient = SubResource("Gradient_7omp7")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "WispFollowNode", "Wisp") groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 3
@@ -442,13 +450,22 @@ position = Vector2(-35, -29)
 
 [node name="PointLight" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
 position = Vector2(0, 1)
-color = Color(0.231373, 0.701961, 0.721569, 1)
-energy = 1.75
+color = Color(1, 0.856, 0.68, 1)
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.72549)
 shadow_filter = 2
 shadow_filter_smooth = 3.7
 texture = SubResource("GradientTexture2D_k821t")
+metadata/_edit_lock_ = true
+
+[node name="PointLight2" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
+position = Vector2(0, -5)
+color = Color(0.17, 1, 1, 1)
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.72549)
+shadow_filter = 2
+shadow_filter_smooth = 3.7
+texture = SubResource("GradientTexture2D_67s2t")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpiritTarget/SpiritVisuals"]
