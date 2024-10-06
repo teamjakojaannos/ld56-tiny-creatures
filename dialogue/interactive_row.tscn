@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b20ibux777wdy"]
 
 [ext_resource type="Script" path="res://dialogue/InteractiveDialogueRow.cs" id="1_eubn3"]
-[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://dialogue/character_portrait.tscn" id="2_atl8r"]
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="2_atl8r"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="3_250kd"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_fctui"]
 

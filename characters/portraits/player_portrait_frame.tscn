@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkufg3ywguvd5"]
+
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="1_cc1wt"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="2_sm7tg"]
+
+[node name="PortraitFrame" instance=ExtResource("1_cc1wt")]
+
+[node name="Character" parent="." index="0"]
+texture = ExtResource("2_sm7tg")
+flip_h = false

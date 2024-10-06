@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://ylwci2dowuy7"]
 
 [ext_resource type="Script" path="res://dialogue/DialogueRow.cs" id="1_o2yu2"]
-[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://dialogue/character_portrait.tscn" id="2_6tghr"]
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="2_6tghr"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_8cx57"]
 [ext_resource type="AudioStream" uid="uid://b2uxf54supp74" path="res://dialogue/puhe1.ogg" id="4_ewmgn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_12rh4"]
 font = ExtResource("2_8cx57")
 
-[node name="Row" type="HBoxContainer" node_paths=PackedStringArray("TextContent", "Portrait", "PortraitFrame", "TextContentContainer")]
+[node name="Row" type="HBoxContainer" node_paths=PackedStringArray("TextContent", "Portrait", "PortraitFrame")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 64.0
@@ -18,7 +18,6 @@ script = ExtResource("1_o2yu2")
 TextContent = NodePath("TextContent")
 Portrait = NodePath("PortraitFrame/Character")
 PortraitFrame = NodePath("PortraitFrame")
-TextContentContainer = NodePath("TextContent")
 
 [node name="TextScrollTimer" type="Timer" parent="."]
 wait_time = 0.05

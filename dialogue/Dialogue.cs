@@ -70,43 +70,17 @@ public partial class Dialogue : CanvasLayer {
 			}
 
 			var row = InteractiveDialogueRow.Instantiate<InteractiveDialogueRow>();
-			row.SpeakerIsOnLeft = content.IsLeft;
-			if (content.Portrait is not null) {
-				row.Portrait!.Texture = content.Portrait;
-			}
-			DialogueList.AddChild(row);
 
-			var options = row.GetNode("Options");
-			foreach (var child in options.GetChildren()) {
-				options.RemoveChild(child);
-				child.QueueFree();
-			}
+			row.ClearOptions();
+			row.SetupOptions(InteractiveDialogueRowOption, content.Lines);
 
-			var idx = 0;
-			foreach (var line in content.Lines) {
-				var option = InteractiveDialogueRowOption.Instantiate<DialogueOption>();
-				option.Text = line;
-				option.OptionIndex = idx++;
-				option.Row = row;
-				options.AddChild(option);
-			}
-
-			row.SetupNumbers();
-			row.HighlightOption(0);
 			ActiveDialogueRow = row;
-
-			row.CallDeferred(MethodName.StartDialogue);
 		} else {
 			if (DialogueRow is null) {
 				return;
 			}
 
 			var row = DialogueRow.Instantiate<DialogueRow>();
-			row.SpeakerIsOnLeft = content.IsLeft;
-			if (content.Portrait is not null) {
-				row.Portrait!.Texture = content.Portrait;
-			}
-			DialogueList.AddChild(row);
 
 			row.Text = "";
 			foreach (var line in content.Lines) {
@@ -116,7 +90,28 @@ public partial class Dialogue : CanvasLayer {
 			row.Text = row.Text.Trim();
 
 			ActiveDialogueRow = row;
+		}
 
+		if (ActiveDialogueRow is not null && DialogueList is not null) {
+			var row = ActiveDialogueRow;
+			row.SpeakerIsOnLeft = content.DialogueSide == GameCharacter.DialogueSide.Left;
+			row.PortraitIsFlippedOnLeft = content.PortraitFacing == GameCharacter.DialogueSide.Right;
+			DialogueList.AddChild(row);
+
+			var portrait = content?.Character?.Portrait;
+			if (portrait is not null) {
+				if (row.PortraitFrame is not null) {
+					row.RemoveChild(row.PortraitFrame);
+					row.PortraitFrame.QueueFree();
+					row.PortraitFrame = null;
+				}
+
+				var portraitFrame = portrait.Instantiate<Control>();
+				row.PortraitFrame = portraitFrame;
+				row.AddChild(portraitFrame);
+				row.MoveChild(portraitFrame, 0);
+			}
+			
 			row.CallDeferred(MethodName.StartDialogue);
 		}
 	}

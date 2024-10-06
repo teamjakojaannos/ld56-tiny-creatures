@@ -5,6 +5,9 @@ public partial class DialogueRow : HBoxContainer {
     public bool SpeakerIsOnLeft { get; set; } = true;
 
     [Export]
+    public bool PortraitIsFlippedOnLeft { get; set; } = false;
+
+    [Export]
     public string Text {
         set {
             if (TextContent is not null) {
@@ -25,9 +28,6 @@ public partial class DialogueRow : HBoxContainer {
 
     [Export]
     public Control? PortraitFrame;
-
-    [Export]
-    public Control? TextContentContainer;
 
     protected virtual bool AutoplayAudio() {
         return true;
@@ -63,7 +63,7 @@ public partial class DialogueRow : HBoxContainer {
             return;
         }
 
-        Portrait.FlipH = SpeakerIsOnLeft;
+        Portrait.FlipH = SpeakerIsOnLeft == PortraitIsFlippedOnLeft;
         Alignment = SpeakerIsOnLeft
             ? AlignmentMode.Begin
             : AlignmentMode.End;
@@ -73,20 +73,12 @@ public partial class DialogueRow : HBoxContainer {
                 : SizeFlags.ShrinkEnd;
         }
 
-        if (TextContentContainer is null) {
-            Alignment = AlignmentMode.Begin;
-            return;
-        }
-
-        RemoveChild(PortraitFrame);
-        RemoveChild(TextContentContainer);
-
         if (SpeakerIsOnLeft) {
-            AddChild(PortraitFrame);
-            AddChild(TextContentContainer);
+            var firstChildIndex = 0;
+            MoveChild(PortraitFrame, firstChildIndex);
         } else {
-            AddChild(TextContentContainer);
-            AddChild(PortraitFrame);
+            var lastChildIndex = GetChildCount() - 1;
+            MoveChild(PortraitFrame, lastChildIndex);
         }
     }
 }

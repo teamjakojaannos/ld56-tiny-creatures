@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class InteractiveDialogueRow : DialogueRow {
@@ -14,13 +15,29 @@ public partial class InteractiveDialogueRow : DialogueRow {
 
     public int HighlightedOption { get; private set; } = 0;
 
-	protected override bool AutoplayAudio() {
-		return false;
-	}
+    protected override bool AutoplayAudio() {
+        return false;
+    }
 
-	public override bool IsReady => true;
+    public override bool IsReady => true;
 
-	public void SetupNumbers() {
+    public void SetupOptions(PackedScene template, IEnumerable<string> optionLines) {
+        var options = GetNode("Options");
+
+        var idx = 0;
+        foreach (var line in optionLines) {
+            var option = template.Instantiate<DialogueOption>();
+            option.Text = line;
+            option.OptionIndex = idx++;
+            option.Row = this;
+            options.AddChild(option);
+        }
+
+        SetupNumbers();
+        HighlightOption(0);
+    }
+
+    public void SetupNumbers() {
         var numberLabel = GetNode<Label>("Numbers");
         numberLabel.Text = "";
         for (var i = 0; i < OptionCount; i++) {
@@ -29,6 +46,18 @@ public partial class InteractiveDialogueRow : DialogueRow {
             if (i != OptionCount - 1) {
                 numberLabel.Text += "\n";
             }
+        }
+    }
+
+    public void ClearOptions() {
+        if (OptionCount == 0) {
+            return;
+        }
+
+        var options = GetNode("Options");
+        foreach (var child in options.GetChildren()) {
+            options.RemoveChild(child);
+            child.QueueFree();
         }
     }
 

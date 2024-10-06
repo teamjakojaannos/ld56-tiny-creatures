@@ -4,24 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="2_0oq2o"]
 [ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_to6vm"]
 [ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_2gwy1"]
-[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="5_62lje"]
-[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="5_t3dp6"]
+[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="5_8bj12"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_uul17"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="6_olpj3"]
 
 [sub_resource type="Resource" id="Resource_0hvjq"]
 script = ExtResource("5_uul17")
+Character = ExtResource("6_olpj3")
 IsInteractive = false
-IsLeft = true
 Lines = ["owo"]
-Portrait = ExtResource("5_62lje")
+SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_b5eqw"]
 script = ExtResource("5_uul17")
+Character = ExtResource("5_8bj12")
 IsInteractive = false
-IsLeft = false
 Lines = ["uwu"]
-Portrait = ExtResource("5_t3dp6")
 Next = SubResource("Resource_0hvjq")
+SideOverride = 0
 
 [node name="WispInteractable" instance=ExtResource("1_0lsgy")]
 
