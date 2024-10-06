@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://vmxujk0vr6jd"]
+[gd_scene load_steps=4 format=3 uid="uid://vmxujk0vr6jd"]
 
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_37dk6"]
 [ext_resource type="PackedScene" uid="uid://d1d0oklccd27c" path="res://Environment/kurpitsa_lyhty.tscn" id="2_gd20f"]
+[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_os33n"]
 
-[node name="WispInteractableKurpitsa" node_paths=PackedStringArray("AnimPlayer") instance=ExtResource("1_37dk6")]
-AnimPlayer = NodePath("KurpitsaLyhty/AnimationPlayer")
-Animation = "default"
+[node name="WispInteractableKurpitsa" instance=ExtResource("1_37dk6")]
 GoalDistance = 8.0
 
 [node name="KurpitsaLyhty" parent="." index="2" instance=ExtResource("2_gd20f")]
+
+[node name="WispInteractableAnimatedProp" type="Node2D" parent="." index="3" node_paths=PackedStringArray("AnimPlayer")]
+script = ExtResource("3_os33n")
+AnimPlayer = NodePath("../KurpitsaLyhty/AnimationPlayer")
+Animation = "default"
 
 [editable path="KurpitsaLyhty"]
