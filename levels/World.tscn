@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=10 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3kraya2m5ti6" path="res://levels/hubarea.tscn" id="3_fayk7"]
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_vpm8c"]
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
+[ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
 animations = [{
@@ -41,6 +42,7 @@ position = Vector2(-489.378, -489.688)
 rotation = 0.823795
 scale = Vector2(0.447757, 0.671156)
 sprite_frames = SubResource("SpriteFrames_cgugi")
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
 z_index = -1
@@ -57,25 +59,24 @@ scale = Vector2(0.279308, 0.265398)
 sprite_frames = SubResource("SpriteFrames_8wu1u")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-z_index = -2
-offset_left = -2727.0
-offset_top = -2275.0
-offset_right = 2644.0
-offset_bottom = 2206.0
+z_index = -3
+offset_left = 2011.0
+offset_top = 225.0
+offset_right = 4093.0
+offset_bottom = 1467.0
 color = Color(0.317647, 0.211765, 0.109804, 1)
-metadata/_edit_lock_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = -2
 offset_left = -415.0
 offset_top = -541.0
-offset_right = 1.0
+offset_right = 110.0
 offset_bottom = -44.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
 metadata/_edit_lock_ = true
 
 [node name="ColorRect5" type="ColorRect" parent="."]
-z_index = -2
+z_index = -3
 offset_left = -632.0
 offset_top = -214.0
 offset_right = -537.0
@@ -84,7 +85,7 @@ color = Color(0.254902, 0.384314, 0.164706, 1)
 metadata/_edit_lock_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
-z_index = -2
+z_index = -3
 offset_left = -606.0
 offset_top = -359.0
 offset_right = -345.0
@@ -93,7 +94,7 @@ color = Color(0.254902, 0.384314, 0.164706, 1)
 metadata/_edit_lock_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="."]
-z_index = -2
+z_index = -3
 offset_left = -607.0
 offset_top = -305.0
 offset_right = -495.0
@@ -121,3 +122,6 @@ script = ExtResource("1_chwgl")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.15
+[node name="MAHSWAMP" parent="." instance=ExtResource("7_h7nj4")]
+position = Vector2(591, -186)
+metadata/_edit_lock_ = true

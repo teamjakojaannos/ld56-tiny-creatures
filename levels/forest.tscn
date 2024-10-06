@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="4_on0ma"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m4dhd"]
-vertices = PackedVector2Array(-79, 14, 65, -18, 193, -18, 742, 401.062, -46.5391, 105.109, -140.883, 46.4688, 193, -128, 742, -419, -601, -419, 65, -128, -194, 14, -49.5938, 164.047, -239, 136.727, -601, 402.93, -79, -95, -194, -95, -139.977, 208.031)
+vertices = PackedVector2Array(-79, 14, 65, -18, 193, -18, 742, 401.063, -46.5391, 105.109, -140.883, 46.4688, 193, -128, 742, -419, -601, -419, 65, -128, -194, 14, -49.5938, 164.047, -239, 136.727, -601, 402.93, -79, -95, -194, -95, -139.977, 208.031)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(2, 6, 7, 3), PackedInt32Array(8, 7, 6, 9), PackedInt32Array(10, 0, 5), PackedInt32Array(11, 4, 3), PackedInt32Array(10, 5, 12, 13), PackedInt32Array(1, 0, 14, 9), PackedInt32Array(8, 9, 14, 15), PackedInt32Array(13, 8, 15, 10), PackedInt32Array(13, 12, 16), PackedInt32Array(3, 13, 16), PackedInt32Array(3, 16, 11)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-651, -469, 792, -469, 792, 451, -651, 453)])
 source_geometry_mode = 2

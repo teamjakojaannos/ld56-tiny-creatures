@@ -1,0 +1,1506 @@
+[gd_scene load_steps=37 format=3 uid="uid://coeua2ueyu3oa"]
+
+[ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
+[ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
+[ext_resource type="Texture2D" uid="uid://bt83nh2lq0my1" path="res://Environment/SuoKansio/water_lilypad_large.png" id="2_g37ua"]
+[ext_resource type="Texture2D" uid="uid://ciwu3odidxyfv" path="res://Environment/SuoKansio/mediumruhot.png" id="2_j5o8c"]
+[ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="3_3120c"]
+[ext_resource type="Texture2D" uid="uid://b6ntkl8xww46x" path="res://Environment/SuoKansio/water_lilypad_large_dark.png" id="3_vddgl"]
+[ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="4_4mut1"]
+[ext_resource type="Texture2D" uid="uid://bsxajghkiveb3" path="res://Environment/SuoKansio/water_lilypad_mid.png" id="4_ahhpc"]
+[ext_resource type="PackedScene" uid="uid://ekfgg6vmxihr" path="res://Environment/SuoKansio/nakki_ruoho.tscn" id="5_o5nv0"]
+[ext_resource type="Texture2D" uid="uid://cv56dojciqcmq" path="res://Environment/SuoKansio/water_lilypad_mid_dark.png" id="5_u5ltr"]
+[ext_resource type="Texture2D" uid="uid://depc7mg3ky371" path="res://Environment/SuoKansio/water_lilypad_mid_flipped.png" id="6_vj12l"]
+[ext_resource type="Texture2D" uid="uid://y5o62ukodkxt" path="res://Environment/SuoKansio/water_lilypad_particle.png" id="7_pmb8t"]
+[ext_resource type="Texture2D" uid="uid://mhuajex5v4nr" path="res://Environment/SuoKansio/water_lilypad_small_dark.png" id="8_euet1"]
+[ext_resource type="Texture2D" uid="uid://ciux3dk7b58s0" path="res://Environment/SuoKansio/water_lilypad_small_dark_2.png" id="9_kkapl"]
+[ext_resource type="Texture2D" uid="uid://8mo44mtddlbu" path="res://Environment/SuoKansio/lilypad_underwater.png" id="10_j3dcw"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="10_yk16f"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="11_uvf0w"]
+[ext_resource type="Texture2D" uid="uid://dmus760dgghf2" path="res://Environment/SuoKansio/isoruohoT.png" id="13_3sq64"]
+[ext_resource type="Texture2D" uid="uid://8j7lf1aufu4q" path="res://Environment/SuoKansio/mediumruhob.png" id="14_6fw4u"]
+[ext_resource type="Texture2D" uid="uid://cb74wxd24gfx4" path="res://Environment/SuoKansio/pieniruohob.png" id="15_5s4u7"]
+[ext_resource type="Texture2D" uid="uid://ticgxfbkpce8" path="res://Environment/slab3.png" id="18_v5qky"]
+[ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="19_4vkq6"]
+[ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_lwecq"]
+[ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="20_0b7li"]
+[ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_wrs7f"]
+[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="21_b1c6j"]
+[ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
+[ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
+[ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
+[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
+[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
+radius = 107.0
+height = 696.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfkxh"]
+radius = 104.0
+height = 506.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qg4as"]
+radius = 93.0
+height = 466.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bshxa"]
+radius = 127.0
+height = 364.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vx0q8"]
+radius = 116.0
+height = 348.0
+
+[node name="MAHSWAMP" type="Node2D"]
+y_sort_enabled = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -514.0
+offset_top = -625.0
+offset_right = 1757.0
+offset_bottom = 315.0
+color = Color(0.317647, 0.211765, 0.109804, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -331.0
+offset_top = -607.0
+offset_right = 1736.0
+offset_bottom = 147.0
+color = Color(0.0666667, 0.0901961, 0.054902, 1)
+metadata/_edit_lock_ = true
+
+[node name="Lilypads" type="Node2D" parent="."]
+z_index = -1
+
+[node name="LilypadFlower" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-224, -392)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-203, -349)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-122, -396)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-199, -518)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-152, -361)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-116, -373)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadLargeDark2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-222, -504)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-149, -383)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMid5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(160, -308)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMid2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-205, -481)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-186, -363)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidDark2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-181, -501)
+texture = ExtResource("5_u5ltr")
+
+[node name="LilypadFlower9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(59.5, -477)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLargeDark6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(36.5, -463)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(53.5, -440)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(77.5, -460)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-202, -381)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-236, -359)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadParticle2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-120, -354)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-215, -362)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-176, -382)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-81.5, -344)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-0.5, -391)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-30.5, -356)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(5.5, -368)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadLargeDark7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-86, -303)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-27.5, -378)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMid7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-82, -275)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-64.5, -358)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-80.5, -376)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadMidFlipped4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-111, -284)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(1.5, -349)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-93.5, -357)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-54.5, -377)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(34.5, -344)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(115.5, -391)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(85.5, -356)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLarge4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(134, -337)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(121.5, -368)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadLargeDark5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(123, -309)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(88.5, -378)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(51.5, -358)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidDark5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(139, -286)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped3" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(35.5, -376)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle4" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(117.5, -349)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadParticle5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-61, -288)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadLargeDark14" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(142, -125)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid15" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(174, -137)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidFlipped11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(125, -145)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle12" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(146, -146)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(61.5, -377)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(412.5, -80)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(493.5, -127)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(463.5, -92)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(499.5, -104)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(466.5, -114)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(429.5, -94)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(413.5, -112)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(495.5, -85)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(439.5, -113)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower12" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(534, -75)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower13" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(615, -122)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(585, -87)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(621, -99)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(588, -109)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(551, -89)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(535, -107)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(617, -80)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(522, -88)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark12" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(561, -108)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower14" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(650, -75)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadMidDark10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(667, -89)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(651, -107)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadSmallDark13" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(677, -108)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(106, -336)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadMid8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(398, -96)
+texture = ExtResource("4_ahhpc")
+
+[node name="LilypadFlower15" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(642, -150)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower16" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(746, -163)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(716, -128)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark12" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(752, -140)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid12" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(719, -150)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(682, -130)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(666, -148)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(748, -121)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark14" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(692, -149)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower17" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(786.5, -111)
+texture = ExtResource("1_6phio")
+
+[node name="LilypadFlower18" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(867.5, -158)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadLarge10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(837.5, -123)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark13" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(873.5, -135)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid13" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(840.5, -145)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark12" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(803.5, -125)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(787.5, -143)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadParticle11" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(869.5, -116)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark15" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(774.5, -124)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark16" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(813.5, -144)
+texture = ExtResource("8_euet1")
+
+[node name="LilypadFlower19" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(902.5, -111)
+texture = ExtResource("1_6phio")
+
+[node name="WaterLilypadMidDark13" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(919.5, -125)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadMidFlipped10" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(903.5, -143)
+texture = ExtResource("6_vj12l")
+
+[node name="WaterLilypadSmallDark17" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(929.5, -144)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadMid14" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(650.5, -132)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadLarge5" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(323.5, -144)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLarge6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(372, -125)
+texture = ExtResource("2_g37ua")
+
+[node name="WaterLilypadLargeDark8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(359.5, -156)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadLargeDark9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(361, -97)
+texture = ExtResource("3_vddgl")
+
+[node name="WaterLilypadMid9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(326.5, -166)
+texture = ExtResource("4_ahhpc")
+
+[node name="WaterLilypadMidDark7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(377, -74)
+texture = ExtResource("5_u5ltr")
+
+[node name="WaterLilypadParticle6" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(355.5, -137)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadParticle7" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(332, -180)
+texture = ExtResource("7_pmb8t")
+
+[node name="WaterLilypadSmallDark8" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(344, -124)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark9" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(301, -160)
+texture = ExtResource("8_euet1")
+
+[node name="WaterLilypadSmallDark2" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(-233, -375)
+texture = ExtResource("9_kkapl")
+
+[node name="Stones22" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(135, -234)
+texture = ExtResource("10_yk16f")
+
+[node name="Stones20" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(209, -207)
+texture = ExtResource("11_uvf0w")
+
+[node name="Stones21" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(327, -226)
+texture = ExtResource("11_uvf0w")
+
+[node name="Stones19" type="Sprite2D" parent="Lilypads"]
+texture_filter = 1
+position = Vector2(234, -275)
+texture = ExtResource("10_yk16f")
+
+[node name="Grass" type="Node2D" parent="."]
+z_index = -2
+
+[node name="LilypadUnderwater" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-223, -369)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-189, -376)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater3" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-173, -352)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater4" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-162, -378)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater5" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-130, -361)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater10" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-67.5, -371)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater11" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-51.5, -347)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater12" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-40.5, -373)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater25" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-81, -291)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater13" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-8.5, -356)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater24" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-102, -273)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater51" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(134, -135)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater53" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(164, -128)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater52" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(144.5, -121.5)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater14" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(48.5, -371)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater15" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(64.5, -347)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater31" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(426.5, -107)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater32" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(442.5, -83)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater33" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(453.5, -109)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater34" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(485.5, -92)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater35" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(548, -102)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater36" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(564, -78)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater37" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(575, -104)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater38" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(607, -87)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater39" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(664, -102)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater40" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(680, -78)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater41" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(679, -143)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater42" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(695, -119)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater43" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(706, -145)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater44" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(738, -128)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater45" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(800.5, -138)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater46" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(816.5, -114)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater47" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(827.5, -140)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater48" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(859.5, -123)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater49" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(916.5, -138)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater50" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(932.5, -114)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater16" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(75.5, -373)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater18" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(112, -325)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater19" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(138, -346)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater17" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(107.5, -356)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater20" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(145, -315)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater26" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(350, -113)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater27" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(376, -134)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater28" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(345.5, -144)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater30" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(301, -156)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater29" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(383, -103)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater6" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-264, -486.5)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater7" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-220, -483)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater8" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-199, -500)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater9" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-181, -485)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater21" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(38.5, -442)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater22" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(59.5, -459)
+texture = ExtResource("10_j3dcw")
+
+[node name="LilypadUnderwater23" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(77.5, -444)
+texture = ExtResource("10_j3dcw")
+
+[node name="IsoruohoB" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-297, -611)
+texture = ExtResource("1_hchss")
+
+[node name="IsoruohoB5" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(212, -260)
+texture = ExtResource("1_hchss")
+
+[node name="IsoruohoB8" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(246, -239)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoB7" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(271, -203)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoB9" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(320, -242)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoB2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-343, -414)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoB3" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-304, -371)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoB6" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(183, -219)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoB4" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-346, -331)
+texture = ExtResource("1_hchss")
+metadata/_edit_lock_ = true
+
+[node name="Mediumruhot" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-332, -578)
+texture = ExtResource("2_j5o8c")
+metadata/_edit_lock_ = true
+
+[node name="Mediumruhot2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-323, -560)
+texture = ExtResource("2_j5o8c")
+metadata/_edit_lock_ = true
+
+[node name="IsoruohoT" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-295, -497)
+texture = ExtResource("13_3sq64")
+metadata/_edit_lock_ = true
+
+[node name="Mediumruhob" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(272, -269)
+texture = ExtResource("14_6fw4u")
+metadata/_edit_lock_ = true
+
+[node name="Mediumruhob2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(134, -234)
+texture = ExtResource("14_6fw4u")
+metadata/_edit_lock_ = true
+
+[node name="Pieniruohob" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(112, -212)
+texture = ExtResource("15_5s4u7")
+metadata/_edit_lock_ = true
+
+[node name="Pieniruohob2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(297, -284)
+texture = ExtResource("15_5s4u7")
+metadata/_edit_lock_ = true
+
+[node name="Slab3" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(200, -251)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab4" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(212, -253)
+texture = ExtResource("19_lwecq")
+
+[node name="Slab5" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(202, -274)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab1" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(188, -272)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(203, -263)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab13" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-278, -361)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab25" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-294, -364)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab21" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-266, -368)
+texture = ExtResource("19_lwecq")
+
+[node name="Slab22" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-288, -383)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab27" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-265, -377)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab23" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-301, -377)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab26" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-324, -377)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab24" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-281.5, -372.5)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab28" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-313, -364)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab29" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-357, -394)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab30" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-362, -367)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab31" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-328.5, -356.5)
+texture = ExtResource("19_lwecq")
+
+[node name="Slab32" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-350.5, -371.5)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab33" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-327.5, -365.5)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab34" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-343, -385)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab36" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-341, -365)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab55" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-484, -528)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab37" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-362, -381)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab35" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-377, -416.5)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab38" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-382, -389.5)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab39" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-370.5, -394)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab40" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-363, -407.5)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab52" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-459, -539)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab50" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-393, -514)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab54" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-416, -532)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab41" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-382, -403.5)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab42" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-367, -426)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab47" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-393, -421)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab58" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-404, -464)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab43" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-387, -448.5)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab49" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-395, -482)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab53" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-444, -528)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab44" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-380.5, -426)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab56" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-439, -542)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab51" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-397, -496)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab57" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-494, -545)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab45" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-373, -439.5)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab48" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-378, -470)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab46" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-392, -435.5)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab6" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(238, -220)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab19" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(290, -185)
+texture = ExtResource("18_v5qky")
+
+[node name="Slab7" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(249, -226)
+texture = ExtResource("19_lwecq")
+
+[node name="Slab11" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(221, -229)
+texture = ExtResource("19_lwecq")
+
+[node name="Slab8" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(234.5, -243.5)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab20" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(307, -188)
+texture = ExtResource("20_wrs7f")
+
+[node name="Slab9" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(220.5, -241.5)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab17" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(281, -208)
+texture = ExtResource("21_yvdlx")
+
+[node name="Slab10" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(235.5, -232.5)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab12" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(263, -217)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab14" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(262.5, -202.5)
+texture = ExtResource("19_lwecq")
+
+[node name="Slab15" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(249, -209)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab18" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(297, -197)
+texture = ExtResource("22_sibwg")
+
+[node name="Slab16" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(276.5, -193.5)
+texture = ExtResource("22_sibwg")
+
+[node name="PuutJaNakkiruohoTMS" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TreePile1" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-488, -436)
+
+[node name="TreePile2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-434, -641)
+
+[node name="TreePile3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-338, -677)
+
+[node name="NakkiRuoho" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-327, -518)
+
+[node name="NakkiRuoho6" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-344, -555)
+
+[node name="NakkiRuoho5" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-240, -586)
+
+[node name="NakkiRuoho4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-339, -457)
+
+[node name="NakkiRuoho9" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-241, -336)
+
+[node name="NakkiRuoho16" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-95, -389)
+
+[node name="NakkiRuoho17" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(70, -321)
+
+[node name="NakkiRuoho18" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(258, -282)
+
+[node name="NakkiRuoho23" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(336, -195)
+
+[node name="NakkiRuoho26" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(212, -181)
+
+[node name="NakkiRuoho28" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(120, -187)
+
+[node name="NakkiRuoho25" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(376, -252)
+
+[node name="NakkiRuoho11" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-280, -395)
+
+[node name="NakkiRuoho12" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-316, -297)
+
+[node name="NakkiRuoho14" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-296, -326)
+metadata/_edit_lock_ = true
+
+[node name="NakkiRuoho2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-290, -564)
+
+[node name="NakkiRuoho3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-307, -581)
+
+[node name="NakkiRuoho7" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-328, -450)
+
+[node name="NakkiRuoho15" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-261, -340)
+
+[node name="NakkiRuoho19" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-66, -397)
+
+[node name="NakkiRuoho20" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(87, -311)
+
+[node name="NakkiRuoho29" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(308, -109)
+
+[node name="NakkiRuoho30" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(325, -99)
+
+[node name="NakkiRuoho22" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(146, -259)
+
+[node name="NakkiRuoho24" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(358, -219)
+
+[node name="NakkiRuoho27" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(188, -188)
+
+[node name="NakkiRuoho31" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(188, -188)
+
+[node name="NakkiRuoho32" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(247, -170)
+
+[node name="NakkiRuoho21" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-12, -340)
+
+[node name="NakkiRuoho33" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(520.5, -120)
+
+[node name="NakkiRuoho34" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(685.5, -52)
+
+[node name="NakkiRuoho35" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(549.5, -128)
+
+[node name="NakkiRuoho36" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(603.5, -71)
+
+[node name="NakkiRuoho37" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(773, -156)
+
+[node name="NakkiRuoho38" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(938, -88)
+
+[node name="NakkiRuoho39" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(802, -164)
+
+[node name="NakkiRuoho40" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(856, -107)
+
+[node name="NakkiRuoho10" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-296, -422)
+
+[node name="NakkiRuoho13" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-325, -288)
+
+[node name="NakkiRuoho8" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-330, -549)
+
+[node name="Tree2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("19_4vkq6")]
+position = Vector2(342, -252)
+
+[node name="Tree1" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
+position = Vector2(296, -248)
+
+[node name="Tree3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
+position = Vector2(180, -203)
+metadata/_edit_lock_ = true
+
+[node name="Node2D" parent="PuutJaNakkiruohoTMS" instance=ExtResource("21_b1c6j")]
+position = Vector2(319, -234)
+
+[node name="BigStone" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
+position = Vector2(272, -260)
+
+[node name="BigStone3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
+position = Vector2(244, -177)
+
+[node name="BigStone2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
+position = Vector2(152, -210)
+
+[node name="SwampColliders" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(11, -492)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_uf1mt")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(386, -394)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rfkxh")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(499, 23)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rfkxh")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(877, -14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rfkxh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(-103, -259)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qg4as")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(521, -237)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bshxa")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="SwampColliders"]
+position = Vector2(178, -73)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vx0q8")
+
+[node name="Sieni1" parent="." instance=ExtResource("30_3ktkp")]
+position = Vector2(274, -242)
+
+[node name="Sieni2" parent="." instance=ExtResource("31_xvd85")]
+position = Vector2(159, -202)
+
+[node name="Sieni3" parent="." instance=ExtResource("31_xvd85")]
+position = Vector2(242, -262)

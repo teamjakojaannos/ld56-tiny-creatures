@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1vmt0w7rbmpt"]
+
+[ext_resource type="Texture2D" uid="uid://d4ca1jrsfhhrn" path="res://Environment/SuoKansio/suonakki.png" id="1_hgit7"]
+[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_hm07j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rup72"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hgit7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42rg7"]
+size = Vector2(20, 6)
+
+[node name="NakkiRuoho" type="Node2D"]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rup72")
+centered = false
+offset = Vector2(-19.105, -53.23)
+script = ExtResource("2_hm07j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_42rg7")
