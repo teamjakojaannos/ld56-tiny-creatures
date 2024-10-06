@@ -33,7 +33,7 @@ layout_mode = 2
 
 [node name="Options" type="VBoxContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 4
 
 [node name="Option1" parent="Options" instance=ExtResource("4_fctui")]
 layout_mode = 2

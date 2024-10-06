@@ -36,10 +36,4 @@ size_flags_horizontal = 8
 text = "A quick brown fox jumps over a lazy dog."
 label_settings = SubResource("LabelSettings_12rh4")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 2
-
 [editable path="PortraitFrame"]
