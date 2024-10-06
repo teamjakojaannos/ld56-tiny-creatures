@@ -58,6 +58,9 @@ public partial class Player : CharacterBody2D {
 		return warnings;
 	}
 
+	[Signal]
+	public delegate void ReadyToGoEventHandler();
+
 	public override void _Ready() {
 		base._Ready();
 
@@ -82,6 +85,8 @@ public partial class Player : CharacterBody2D {
 		(target.GetParent() ?? target).AddChild(this);
 
 		GlobalPosition = target.GlobalPosition;
+
+		EmitSignal(SignalName.ReadyToGo);
 	}
 
 	private string animationDirection = "Down";
@@ -131,7 +136,7 @@ public partial class Player : CharacterBody2D {
 		} else {
 			var distance = Wisp.GlobalPosition.DistanceTo(WispFollowNode.GlobalPosition);
 			Wisp.GlobalPosition =
-				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 2.5f * delta);
+				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 5f * delta);
 		}
 	}
 
@@ -145,5 +150,16 @@ public partial class Player : CharacterBody2D {
 
 	public void die() {
 		GD.Print("I am dead.");
+	}
+
+	public void SetupForIntro(Node2D wispLocation) {
+		setSpriteVisible(false);
+		setMovementEnabled(false);
+		WispTarget = wispLocation;
+		Wisp.GlobalPosition = wispLocation.GlobalPosition;
+	}
+
+	public void ReleaseAfterIntro() {
+		setSpriteVisible(true);
 	}
 }

@@ -89,7 +89,7 @@ SideOverride = 0
 [sub_resource type="CircleShape2D" id="CircleShape2D_yujk0"]
 radius = 20.4
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["PlayIntro"]]
 y_sort_enabled = true
 position = Vector2(1, 0)
 
@@ -145,11 +145,7 @@ texture = ExtResource("3_ucvm7")
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
 y_sort_enabled = true
-position = Vector2(-64, -38)
-
-[node name="PlayerStart2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-y_sort_enabled = true
-position = Vector2(76, 57)
+position = Vector2(-171, 84)
 
 [node name="WispInteractable" parent="." instance=ExtResource("7_1778r")]
 position = Vector2(233, -108)

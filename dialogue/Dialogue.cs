@@ -32,6 +32,9 @@ public partial class Dialogue : CanvasLayer {
 	[Signal]
 	public delegate void DialogueUpdatedEventHandler(string chosenOption);
 
+	[Signal]
+	public delegate void DialogueFinishedEventHandler();
+
 	public override void _Ready() {
 		base._Ready();
 
@@ -202,6 +205,8 @@ public partial class Dialogue : CanvasLayer {
 		var selectedOption = ActiveDialogue.Lines[option];
 		if (next is null) {
 			CloseDialogue();
+
+			EmitSignal(SignalName.DialogueFinished);
 		} else {
 			NextDialogue(next);
 		}
