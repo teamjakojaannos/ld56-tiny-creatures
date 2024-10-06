@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://Environment/gradient.png" id="2_uyh0o"]
 [ext_resource type="PackedScene" uid="uid://c3kraya2m5ti6" path="res://levels/hubarea.tscn" id="3_fayk7"]
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_vpm8c"]
-[ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
+[ext_resource type="PackedScene" path="res://levels/startingarea.tscn" id="4_n55f1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
 animations = [{

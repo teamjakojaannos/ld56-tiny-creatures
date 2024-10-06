@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6abkwwyeqfa8"]
+[gd_scene load_steps=24 format=3 uid="uid://6abkwwyeqfa8"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_8kue4"]
 [ext_resource type="Script" path="res://dialogue/DialogueTrigger.cs" id="3_0le5u"]
@@ -7,6 +7,10 @@
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="4_r571r"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="5_jbuev"]
 [ext_resource type="PackedScene" uid="uid://cpvb5hh4sr8br" path="res://Environment/GameplayRoina/wisp_interactable_spirit_lantern.tscn" id="7_1778r"]
+[ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="8_hlbby"]
+[ext_resource type="Texture2D" uid="uid://dtg0vfln8poep" path="res://Environment/pitka_hautakivi.png" id="9_wbj3c"]
+[ext_resource type="Texture2D" uid="uid://b8xsos5uydwdu" path="res://mobs/molli.png" id="10_sf5ih"]
+[ext_resource type="Texture2D" uid="uid://55bmdywmmaob" path="res://mobs/whyisthishere.png" id="11_rg7h3"]
 
 [sub_resource type="Gradient" id="Gradient_jl0fw"]
 offsets = PackedFloat32Array(0, 0.221885, 1)
@@ -149,3 +153,30 @@ position = Vector2(-171, 84)
 
 [node name="WispInteractable" parent="." instance=ExtResource("7_1778r")]
 position = Vector2(233, -108)
+
+[node name="Nakken" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(64, -8)
+texture = ExtResource("8_hlbby")
+
+[node name="PitkaHautakivi" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(101, -41)
+rotation = -2.48326
+scale = Vector2(0.50185, 0.50185)
+texture = ExtResource("9_wbj3c")
+
+[node name="Molli" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(109, -83)
+texture = ExtResource("10_sf5ih")
+
+[node name="Whyisthishere" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(82, -20)
+texture = ExtResource("11_rg7h3")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(92, 13, 24, 23)

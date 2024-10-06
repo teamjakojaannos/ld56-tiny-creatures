@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpvb5hh4sr8br"]
+[gd_scene load_steps=15 format=3 uid="uid://cpvb5hh4sr8br"]
 
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_vm5ug"]
 [ext_resource type="PackedScene" uid="uid://baf4p3kgidl8v" path="res://Environment/GameplayRoina/spirit_lantern.tscn" id="2_j5xvj"]
@@ -11,6 +11,17 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_24e3g"]
 resource_local_to_scene = true
 radius = 46.0435
+
+[sub_resource type="Gradient" id="Gradient_rmp88"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.276119, 0.490672, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.225746, 0.225746, 0.225746, 1, 0.0919339, 0.0919339, 0.0919339, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hcffb"]
+gradient = SubResource("Gradient_rmp88")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Resource" id="Resource_7gj5o"]
 script = ExtResource("5_r5eyy")
@@ -52,6 +63,9 @@ shape = SubResource("CircleShape2D_24e3g")
 position = Vector2(-22, -22)
 
 [node name="SpiritLantern" parent="." index="2" instance=ExtResource("2_j5xvj")]
+
+[node name="Light" parent="SpiritLantern/SpiritPath/Spirit" index="1"]
+texture = SubResource("GradientTexture2D_hcffb")
 
 [node name="WispInteractableAnimatedProp" type="Node2D" parent="." index="3" node_paths=PackedStringArray("AnimPlayer")]
 script = ExtResource("3_b4gqi")
