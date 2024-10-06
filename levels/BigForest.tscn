@@ -1,0 +1,397 @@
+[gd_scene load_steps=13 format=3 uid="uid://bm0s5e11ef8rh"]
+
+[ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_yfok4"]
+[ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_6f77w"]
+[ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="3_nar2a"]
+[ext_resource type="PackedScene" uid="uid://cpvb5hh4sr8br" path="res://Environment/GameplayRoina/wisp_interactable_spirit_lantern.tscn" id="4_11snj"]
+[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_tj2ar"]
+[ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="6_hhum4"]
+[ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="7_5k2xx"]
+[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="8_xkn2t"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="9_kqbk1"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="10_43yia"]
+[ext_resource type="Texture2D" uid="uid://b1gs3xtr5kj2x" path="res://Environment/medium_patch_2.png" id="11_po34a"]
+[ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_40s0t"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Tree48" parent="." instance=ExtResource("1_yfok4")]
+position = Vector2(-803, -217)
+
+[node name="Tree55" parent="." instance=ExtResource("1_yfok4")]
+position = Vector2(-1123, -54)
+
+[node name="Tree53" parent="." instance=ExtResource("1_yfok4")]
+position = Vector2(-1145, -352)
+
+[node name="Tree6" parent="." instance=ExtResource("1_yfok4")]
+position = Vector2(-6, -45)
+
+[node name="Tree59" parent="." instance=ExtResource("1_yfok4")]
+position = Vector2(-771, -45)
+
+[node name="Tree31" parent="." instance=ExtResource("2_6f77w")]
+position = Vector2(-60, -64)
+
+[node name="Tree58" parent="." instance=ExtResource("2_6f77w")]
+position = Vector2(-837, -43)
+
+[node name="Tree52" parent="." instance=ExtResource("2_6f77w")]
+position = Vector2(-1163, -287)
+
+[node name="Tree49" parent="." instance=ExtResource("2_6f77w")]
+position = Vector2(-861, -256)
+
+[node name="Tree54" parent="." instance=ExtResource("2_6f77w")]
+position = Vector2(-1169, -113)
+
+[node name="TreePile43" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-1338, -354)
+
+[node name="TreePile45" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(367, -190)
+
+[node name="TreePile46" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(449, -305)
+
+[node name="TreePile47" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(307, -395)
+
+[node name="TreePile48" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(172, -459)
+
+[node name="TreePile49" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(30, -516)
+
+[node name="TreePile50" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-124, -567)
+
+[node name="TreePile51" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-278, -524)
+
+[node name="TreePile52" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-424, -573)
+
+[node name="TreePile53" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-554, -513)
+
+[node name="TreePile54" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-694, -575)
+
+[node name="TreePile55" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-828, -637)
+
+[node name="TreePile56" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-974, -573)
+
+[node name="TreePile57" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-1094, -477)
+
+[node name="TreePile58" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-1198, -365)
+
+[node name="TreePile59" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-1329, -243)
+
+[node name="TreePile44" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-51, -251)
+
+[node name="TreePile60" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-202, -221)
+
+[node name="TreePile61" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-347, -181)
+
+[node name="TreePile62" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-480, -250)
+
+[node name="TreePile63" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-620, -223)
+
+[node name="TreePile38" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-77, -132)
+
+[node name="TreePile39" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(69, -165)
+
+[node name="WispInteractable" parent="." instance=ExtResource("4_11snj")]
+position = Vector2(-1286, -250)
+
+[node name="Node2D14" parent="." instance=ExtResource("5_tj2ar")]
+position = Vector2(-256, -150)
+
+[node name="Grass115" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-601, -77)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass113" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-289, -131)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass117" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1249, -253)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass13" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-384, -93)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass19" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-731, -80)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass119" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-821, -102)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass126" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-935, -178)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass120" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1117, -245)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass112" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-212, -50)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass114" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-253, -110)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass8" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-972, -56)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass123" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-884, -93)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass124" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-984, -156)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass122" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-706, -104)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass121" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1088, -214)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass118" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1194, -230)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass9" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-538, -94)
+texture = ExtResource("8_xkn2t")
+
+[node name="Grass11" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-871, -148)
+texture = ExtResource("8_xkn2t")
+
+[node name="Grass16" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-456, -78)
+texture = ExtResource("8_xkn2t")
+
+[node name="Tree4" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(45, 218.5)
+
+[node name="Tree57" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(173, 313.5)
+
+[node name="Tree5" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(-106, 139)
+
+[node name="Tree13" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(339, 148.5)
+
+[node name="Tree38" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(339, 148.5)
+
+[node name="Tree46" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(351, 203.5)
+
+[node name="Tree35" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(217, 171.5)
+
+[node name="Tree9" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(-44, 160.5)
+
+[node name="Tree59" parent="Grass16" instance=ExtResource("1_yfok4")]
+position = Vector2(-309, 44.5)
+
+[node name="Tree1" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(1, 240.5)
+
+[node name="Tree2" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(50, 272.5)
+
+[node name="Tree3" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(304, 173.5)
+
+[node name="Tree16" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(262, 144.5)
+
+[node name="Tree8" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(-157, 227.5)
+
+[node name="Tree60" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(-267, 124.5)
+
+[node name="Tree58" parent="Grass16" instance=ExtResource("2_6f77w")]
+position = Vector2(-375, 46.5)
+
+[node name="TreePile31" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(-538, 299.5)
+
+[node name="TreePile41" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(-677, 256.5)
+
+[node name="TreePile42" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(-713, 131.5)
+
+[node name="TreePile40" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(-488, 433.5)
+
+[node name="TreePile6" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(-194, 479.5)
+
+[node name="TreePile7" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(-31, 473.5)
+
+[node name="TreePile33" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(220, 422.5)
+
+[node name="TreePile37" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(73, 404.5)
+
+[node name="TreePile34" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(337, 388.5)
+
+[node name="TreePile35" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(354, 272.5)
+
+[node name="TreePile36" parent="Grass16" instance=ExtResource("3_nar2a")]
+position = Vector2(204, 131.5)
+
+[node name="Stones" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-146, 128)
+texture = ExtResource("9_kqbk1")
+
+[node name="Stones2" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-271, 162.5)
+texture = ExtResource("9_kqbk1")
+
+[node name="Stones3" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(201, 194.5)
+texture = ExtResource("10_43yia")
+
+[node name="Stones4" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-127, 231.5)
+texture = ExtResource("10_43yia")
+
+[node name="Grass1" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-117, 117)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass14" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-26, 145.5)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass15" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(225, 58.5)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass3" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(105, 250.5)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass29" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(275, 331.5)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass4" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(173, 229.5)
+texture = ExtResource("6_hhum4")
+
+[node name="Grass2" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(37, 248.5)
+texture = ExtResource("11_po34a")
+
+[node name="Grass5" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(121, 226.5)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass6" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-22, 267.5)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass7" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(71, 276.5)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass22" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-9, 126.5)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass21" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-149, 151.5)
+texture = ExtResource("7_5k2xx")
+
+[node name="Grass10" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(-48, 180.5)
+texture = ExtResource("8_xkn2t")
+
+[node name="Grass25" type="Sprite2D" parent="Grass16"]
+texture_filter = 1
+position = Vector2(201, 352.5)
+texture = ExtResource("8_xkn2t")
+
+[node name="TheWall4" parent="Grass16" instance=ExtResource("12_40s0t")]
+position = Vector2(-819, 83.5)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="TheWall5" parent="Grass16" instance=ExtResource("12_40s0t")]
+position = Vector2(-819, 83.5)
+rotation = 3.14159
+scale = Vector2(1, -1)

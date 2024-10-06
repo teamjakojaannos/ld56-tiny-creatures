@@ -1,0 +1,248 @@
+[gd_scene load_steps=13 format=3 uid="uid://c3kraya2m5ti6"]
+
+[ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
+[ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="3_r8doi"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="4_mnowf"]
+[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="6_32jsp"]
+[ext_resource type="Texture2D" uid="uid://bltq7cr2yubdt" path="res://Environment/Massaily_takamehta.png" id="7_cy7vp"]
+[ext_resource type="Texture2D" uid="uid://2bklg3qfsuj0" path="res://Environment/medium_patch_1R.png" id="8_xi6nj"]
+[ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="9_kgfcd"]
+[ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="10_lsb5y"]
+[ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
+[ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
+radius = 62.0
+
+[node name="Hubarea" type="Node2D"]
+y_sort_enabled = true
+
+[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(8, 206)
+
+[node name="Tree10" parent="." instance=ExtResource("1_diaiq")]
+position = Vector2(-85, 0)
+
+[node name="Tree75" parent="." instance=ExtResource("1_diaiq")]
+position = Vector2(-105, 166)
+
+[node name="Tree74" parent="." instance=ExtResource("1_diaiq")]
+position = Vector2(122.5, 109.5)
+scale = Vector2(-1, 1)
+
+[node name="BigStone3" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(-116, 21)
+
+[node name="BigStone9" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(-1, -120)
+
+[node name="BigStone4" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(152.5, 122.5)
+
+[node name="Stones5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(96.5, 178.5)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones16" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-67.5, 186.5)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-30.5, 99.5)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones7" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(55, 142)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones8" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(87.5, 93.5)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones9" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-136.5, 93.5)
+texture = ExtResource("4_mnowf")
+
+[node name="BGimage4" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 3
+position = Vector2(11.5, 74)
+scale = Vector2(0.853316, 0.685643)
+texture = ExtResource("6_32jsp")
+
+[node name="BGtreees2" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(295, 334)
+scale = Vector2(0.701708, 1.10424)
+texture = ExtResource("7_cy7vp")
+centered = false
+offset = Vector2(-199.45, -121.3)
+flip_h = true
+
+[node name="BGtreees4" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(-340, 310)
+scale = Vector2(0.701708, 1.10424)
+texture = ExtResource("7_cy7vp")
+centered = false
+offset = Vector2(-199.45, -121.3)
+
+[node name="BGtreees5" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(-270, 396)
+scale = Vector2(0.701708, 1.10424)
+texture = ExtResource("7_cy7vp")
+centered = false
+offset = Vector2(-199.45, -121.3)
+
+[node name="BGtreees3" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(214, 438)
+scale = Vector2(0.701708, 1.10424)
+texture = ExtResource("7_cy7vp")
+centered = false
+offset = Vector2(-199.45, -121.3)
+flip_h = true
+
+[node name="Grass" type="Node2D" parent="."]
+z_index = -2
+
+[node name="Grass24" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(2.5, 126.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass33" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-77.5, 164.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass34" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(132.5, 110.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass60" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(132.5, 110.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass59" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-115.5, 171.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass39" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(37.5, 52.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass35" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-86.5, 174.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass63" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(93.5, 105.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass26" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(74.5, 38.5)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass28" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-81, 6)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass27" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(45.5, 108.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass37" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-108.5, 132.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass36" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-47.5, 134.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass38" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(59.5, 156.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass64" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(128.5, 133.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass62" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-46.5, 184.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass40" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(75.5, 65.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass31" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-98, 37)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass32" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-33.5, 74.5)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass30" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-37, -8)
+texture = ExtResource("8_xi6nj")
+
+[node name="Grass61" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(35, 177)
+texture = ExtResource("9_kgfcd")
+
+[node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
+position = Vector2(4.5, 106.5)
+
+[node name="Trigger" parent="Jösses" index="0"]
+shape = SubResource("CircleShape2D_nyqg1")
+
+[node name="Hautakivirykelmä" parent="." instance=ExtResource("11_321uu")]
+position = Vector2(3, 13)
+
+[node name="TheWall" parent="." instance=ExtResource("12_i73y1")]
+position = Vector2(-92, -82)
+
+[node name="TheWall4" parent="." instance=ExtResource("12_i73y1")]
+position = Vector2(-273, 136)
+
+[node name="TheWall2" parent="." instance=ExtResource("12_i73y1")]
+position = Vector2(91, -83)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[editable path="Jösses"]
+[editable path="Jösses/JesusStatue"]
