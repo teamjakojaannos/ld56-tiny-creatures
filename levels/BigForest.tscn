@@ -1,29 +1,34 @@
-[gd_scene load_steps=28 format=3 uid="uid://bm0s5e11ef8rh"]
+[gd_scene load_steps=50 format=3 uid="uid://bm0s5e11ef8rh"]
 
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_yfok4"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_6f77w"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="3_nar2a"]
-[ext_resource type="PackedScene" uid="uid://cpvb5hh4sr8br" path="res://Environment/GameplayRoina/wisp_interactable_spirit_lantern.tscn" id="4_11snj"]
-[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_tj2ar"]
+[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="5_tj2ar"]
 [ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="6_hhum4"]
 [ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="7_5k2xx"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="8_xkn2t"]
 [ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="9_kqbk1"]
 [ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="10_43yia"]
 [ext_resource type="Texture2D" uid="uid://b1gs3xtr5kj2x" path="res://Environment/medium_patch_2.png" id="11_po34a"]
-[ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_40s0t"]
+[ext_resource type="PackedScene" path="res://Environment/the_wall.tscn" id="12_40s0t"]
 [ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="13_lug5l"]
 [ext_resource type="PackedScene" uid="uid://ddydax43gghjj" path="res://Environment/spooky_tree.tscn" id="14_nvxan"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="15_4m3yo"]
-[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="15_lorar"]
-[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
-[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="15_lorar"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="19_jmbxi"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="20_8l740"]
 [ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="21_m7ic5"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="22_sxeog"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="23_406oo"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="23_lcdbd"]
+[ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="24_fxq4l"]
+[ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="25_myprq"]
+[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="26_0bxoq"]
+[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="27_ddgh6"]
+[ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="28_m25tt"]
+[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="29_ohwp4"]
 
 [sub_resource type="Resource" id="Resource_ylqht"]
 script = ExtResource("23_406oo")
@@ -48,10 +53,395 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navmesh"
 agent_radius = 50.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4mq4y"]
+resource_local_to_scene = true
+radius = 46.0435
+
+[sub_resource type="Curve2D" id="Curve2D_o8i5l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 18.4055, -4.71937, -18.4055, 4.71937, -24, 30, 12.7423, 16.0459, -12.7423, -16.0459, -80, -5, -12.2704, 23.5969, 12.2704, -23.5969, -66, -96, -60.8799, -13.6862, 60.8799, 13.6862, 17, -127, -77.8696, -22.181, 77.8696, 22.181, 149, -2, -105.359, 46.6691, 105.359, -46.6691, 422, 176, 0, 0, 0, 0, 629, -150)
+}
+point_count = 8
+
+[sub_resource type="Gradient" id="Gradient_rmp88"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.276119, 0.490672, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.225746, 0.225746, 0.225746, 1, 0.0919339, 0.0919339, 0.0919339, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hcffb"]
+gradient = SubResource("Gradient_rmp88")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
+atlas = ExtResource("27_ddgh6")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beeid"]
+atlas = ExtResource("27_ddgh6")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nljhc"]
+atlas = ExtResource("27_ddgh6")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e78h"]
+atlas = ExtResource("27_ddgh6")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kwh76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10var")
+}],
+"loop": true,
+"name": &"idle_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beeid")
+}],
+"loop": true,
+"name": &"idle_open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nljhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e78h")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6ieeh"]
+resource_name = "RESET"
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0.55, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lantern:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_closed"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Lantern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BackWall:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpiritPath/Spirit:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpiritPath/Spirit:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2mg1j"]
+resource_name = "out"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.76667, 3.36667, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.102688, 0.290309, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 3.93333, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0.55, 1), Color(0, 1, 0.55, 1), Color(0, 1, 0.55, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
+tracks/2/interp = 2
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.8, 3.96667, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.25, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lantern:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"open"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Lantern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BackWall:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_kgfnr"]
+resource_name = "out_hupialue"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0.55, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
+tracks/2/interp = 2
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.7, 2.1, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.25, 1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Lantern:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"open"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Lantern:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BackWall:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SpiritPath/Spirit:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SpiritPath/Spirit:z_index")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vlr5"]
+_data = {
+"RESET": SubResource("Animation_6ieeh"),
+"out": SubResource("Animation_2mg1j"),
+"out_hupialue": SubResource("Animation_kgfnr")
+}
+
+[sub_resource type="Resource" id="Resource_7gj5o"]
+script = ExtResource("23_406oo")
+Character = ExtResource("23_lcdbd")
+IsInteractive = false
+Lines = ["Yayyy!!"]
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_gn1c6"]
+script = ExtResource("23_406oo")
+Character = ExtResource("23_lcdbd")
+IsInteractive = false
+Lines = ["No!! Don't leave me here!!"]
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_o41ml"]
+script = ExtResource("23_406oo")
+Character = ExtResource("22_sxeog")
+IsInteractive = true
+Lines = ["Yes", "No"]
+Next = SubResource("Resource_7gj5o")
+Next2 = SubResource("Resource_gn1c6")
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_kxuv5"]
+script = ExtResource("23_406oo")
+Character = ExtResource("23_lcdbd")
+IsInteractive = false
+Lines = ["Release the spirit?"]
+Next = SubResource("Resource_o41ml")
+SideOverride = 0
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(-1069, -545)
 
 [node name="Tree4" parent="." instance=ExtResource("1_yfok4")]
 position = Vector2(-411, 140.5)
@@ -405,9 +795,6 @@ position = Vector2(-77, -132)
 [node name="TreePile39" parent="." instance=ExtResource("3_nar2a")]
 position = Vector2(46, -172)
 
-[node name="WispInteractable" parent="." instance=ExtResource("4_11snj")]
-position = Vector2(-1085, -624)
-
 [node name="Node2D14" parent="." instance=ExtResource("5_tj2ar")]
 position = Vector2(-256, -150)
 
@@ -745,3 +1132,86 @@ DialogueTree = SubResource("Resource_f05ty")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_bbf2w")
+
+[node name="Kantolyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
+y_sort_enabled = true
+script = ExtResource("24_fxq4l")
+AnimPlayer = NodePath("WispInteractable/SpiritLantern/AnimationPlayer")
+AnimName = "out_hupialue"
+Location = "kantolyhty"
+
+[node name="WispInteractable" type="Area2D" parent="Kantolyhty" node_paths=PackedStringArray("Target")]
+y_sort_enabled = true
+position = Vector2(-1085, -624)
+script = ExtResource("25_myprq")
+Target = NodePath("Target")
+
+[node name="Trigger" type="CollisionShape2D" parent="Kantolyhty/WispInteractable"]
+shape = SubResource("CircleShape2D_4mq4y")
+debug_color = Color(0.332261, 0.488051, 1, 0.42)
+
+[node name="Target" type="Marker2D" parent="Kantolyhty/WispInteractable"]
+position = Vector2(-22, -22)
+
+[node name="SpiritLantern" type="Node2D" parent="Kantolyhty/WispInteractable"]
+
+[node name="Base" type="Sprite2D" parent="Kantolyhty/WispInteractable/SpiritLantern"]
+texture_filter = 1
+texture = ExtResource("26_0bxoq")
+offset = Vector2(-7, -20)
+
+[node name="BackWall" type="Sprite2D" parent="Kantolyhty/WispInteractable/SpiritLantern"]
+visible = false
+modulate = Color(0.51, 0.51, 0.51, 1)
+texture_filter = 1
+position = Vector2(2, 7)
+texture = ExtResource("27_ddgh6")
+offset = Vector2(-7, -20)
+region_enabled = true
+region_rect = Rect2(30, 23, 8, 18)
+
+[node name="SpiritPath" type="Path2D" parent="Kantolyhty/WispInteractable/SpiritLantern"]
+position = Vector2(0, -4)
+curve = SubResource("Curve2D_o8i5l")
+
+[node name="Spirit" type="PathFollow2D" parent="Kantolyhty/WispInteractable/SpiritLantern/SpiritPath"]
+rotates = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Kantolyhty/WispInteractable/SpiritLantern/SpiritPath/Spirit"]
+modulate = Color(0, 1, 0.55, 1)
+texture_filter = 1
+sprite_frames = ExtResource("28_m25tt")
+autoplay = "default"
+frame_progress = 0.984137
+offset = Vector2(0, -12)
+metadata/_edit_lock_ = true
+
+[node name="Light" type="PointLight2D" parent="Kantolyhty/WispInteractable/SpiritLantern/SpiritPath/Spirit"]
+position = Vector2(1, -7)
+scale = Vector2(2.9375, 2.9375)
+color = Color(0, 1, 0.55, 1)
+texture = SubResource("GradientTexture2D_hcffb")
+
+[node name="Lantern" type="AnimatedSprite2D" parent="Kantolyhty/WispInteractable/SpiritLantern"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kwh76")
+animation = &"idle_closed"
+autoplay = "idle_closed"
+offset = Vector2(-7, -20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Kantolyhty/WispInteractable/SpiritLantern"]
+libraries = {
+"": SubResource("AnimationLibrary_7vlr5")
+}
+autoplay = "RESET"
+
+[node name="WispInteractableAnimatedProp" type="Node2D" parent="Kantolyhty/WispInteractable" node_paths=PackedStringArray("AnimPlayer")]
+script = ExtResource("29_ohwp4")
+AnimPlayer = NodePath("../SpiritLantern/AnimationPlayer")
+Animation = "out_hupialue"
+RequireDialogue = true
+DialogueTrigger = "Yes"
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="Kantolyhty/WispInteractable"]
+script = ExtResource("21_m7ic5")
+DialogueTree = SubResource("Resource_kxuv5")

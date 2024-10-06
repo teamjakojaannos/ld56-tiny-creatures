@@ -701,14 +701,14 @@ color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä 2" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (kantolyhty)" type="Node2D" parent="Vispilät"]
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(-30, -7)
 script = ExtResource("12_lkge0")
-Location = "hupialue"
+Location = "kantolyhty"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä 2"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (kantolyhty)"]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -717,7 +717,7 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä 2"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (kantolyhty)"]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
