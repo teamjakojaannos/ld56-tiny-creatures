@@ -15,6 +15,12 @@ public partial class Chaser : RigidBody2D {
 
 	private Area2D? sightCone;
 
+	[Export]
+	public AnimationPlayer? AnimPlayer;
+
+	[Export]
+	public AnimatedSprite2D? Sprite;
+
 
 	private ChaserStuff.ChaserAI aiState = new ChaserStuff.IdleState();
 	private RandomNumberGenerator rng = new();
@@ -31,6 +37,14 @@ public partial class Chaser : RigidBody2D {
 	public void moveTowards(Vector2 target, float delta) {
 		var velocity = (target - GlobalPosition).Normalized() * speed * delta;
 		MoveAndCollide(velocity);
+
+		if (velocity.LengthSquared() > 0.0001f) {
+			AnimPlayer!.Play(velocity.Y >= 0.0f ? "WalkFront" : "WalkBack");
+
+			Sprite.FlipH = velocity.X > 0.0f;
+		} else {
+			AnimPlayer!.Play("Idle");
+		}
 	}
 
 	public void turnTowardsTarget(Vector2 target, float delta) {

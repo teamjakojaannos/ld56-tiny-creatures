@@ -141,6 +141,9 @@ tracks/1/keys = {
 "values": ["Idle"]
 }
 
+[sub_resource type="Animation" id="Animation_1xe1f"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_bq7qe"]
 length = 0.8
 loop_mode = 1
@@ -197,9 +200,6 @@ tracks/1/keys = {
 "values": ["WalkFront"]
 }
 
-[sub_resource type="Animation" id="Animation_1xe1f"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2dxh4"]
 _data = {
 "Idle": SubResource("Animation_d02tt"),
@@ -208,9 +208,11 @@ _data = {
 "WalkFront": SubResource("Animation_0kcay")
 }
 
-[node name="Chaser" type="RigidBody2D"]
+[node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite")]
 script = ExtResource("1_sj5s6")
 speed = 100.0
+AnimPlayer = NodePath("AnimationPlayer")
+Sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
