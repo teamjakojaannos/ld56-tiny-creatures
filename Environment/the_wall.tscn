@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://0dq7nmfcpdtd"]
+
+[ext_resource type="Texture2D" uid="uid://dwdbx53xa4rdt" path="res://Environment/The_Wall.png" id="1_gil63"]
+[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_nuyuc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2w1is"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gil63")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox5cv"]
+size = Vector2(152.875, 47.3416)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h80iq"]
+size = Vector2(159, 178)
+
+[node name="TheWall" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_2w1is")
+centered = false
+offset = Vector2(-87.195, -228.72)
+script = ExtResource("2_nuyuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-6, 3)
+rotation = -0.314159
+shape = SubResource("RectangleShape2D_ox5cv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3, -89)
+shape = SubResource("RectangleShape2D_h80iq")

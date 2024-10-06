@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=37 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="1_fkk4j"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="7_7rjox"]
 [ext_resource type="Texture2D" uid="uid://b1gs3xtr5kj2x" path="res://Environment/medium_patch_2.png" id="7_dq5q5"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="7_uk763"]
+[ext_resource type="PackedScene" uid="uid://cpvb5hh4sr8br" path="res://Environment/GameplayRoina/wisp_interactable_spirit_lantern.tscn" id="8_4hmqi"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="8_4pv5u"]
 [ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="8_5mwjx"]
 [ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="8_gra68"]
@@ -25,6 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="21_nxl3e"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_88gxh"]
 [ext_resource type="PackedScene" uid="uid://msnb3307oquv" path="res://Environment/puu_entrance.tscn" id="22_wtc67"]
+[ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="24_xml7o"]
+[ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://Environment/gradient.png" id="26_eu1hf"]
+[ext_resource type="Texture2D" uid="uid://bltq7cr2yubdt" path="res://Environment/Massaily_takamehta.png" id="27_m38d8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_453da"]
 radius = 62.0
@@ -44,6 +48,9 @@ size = Vector2(204, 442.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eagcy"]
 size = Vector2(161, 329)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp6iv"]
+size = Vector2(452, 143)
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 
@@ -56,10 +63,10 @@ script = ExtResource("1_chwgl")
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
 y_sort_enabled = true
-position = Vector2(-625, 606)
+position = Vector2(207, 354)
 
 [node name="JokuHassuKalloKeppi" parent="." instance=ExtResource("1_fkk4j")]
-position = Vector2(-367, 160)
+position = Vector2(-61, -18)
 
 [node name="WispInteractableKurpitsa" parent="." instance=ExtResource("3_f2lsx")]
 position = Vector2(-228, 781)
@@ -70,14 +77,41 @@ y_sort_enabled = true
 [node name="Tree4" parent="Trees" instance=ExtResource("4_dlstp")]
 position = Vector2(-417, 129)
 
+[node name="Tree57" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-289, 224)
+
 [node name="Tree5" parent="Trees" instance=ExtResource("4_dlstp")]
 position = Vector2(-568, 49.5)
 
+[node name="Tree48" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-803, -217)
+
+[node name="Tree55" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-1123, -54)
+
+[node name="Tree53" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-1145, -352)
+
 [node name="Tree6" parent="Trees" instance=ExtResource("4_dlstp")]
-position = Vector2(-324, 88)
+position = Vector2(-6, -45)
+
+[node name="Tree13" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-123, 59)
+
+[node name="Tree38" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-123, 59)
+
+[node name="Tree46" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-111, 114)
+
+[node name="Tree35" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-245, 82)
 
 [node name="Tree9" parent="Trees" instance=ExtResource("4_dlstp")]
 position = Vector2(-506, 71)
+
+[node name="Tree59" parent="Trees" instance=ExtResource("4_dlstp")]
+position = Vector2(-771, -45)
 
 [node name="Tree12" parent="Trees" instance=ExtResource("4_dlstp")]
 position = Vector2(-380, 530)
@@ -161,16 +195,28 @@ position = Vector2(-825, 521)
 position = Vector2(-461, 151)
 
 [node name="Tree7" parent="Trees" instance=ExtResource("4_wrqcq")]
-position = Vector2(-286, 166)
+position = Vector2(-82, 89)
+
+[node name="Tree11" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-82, 89)
 
 [node name="Tree20" parent="Trees" instance=ExtResource("4_wrqcq")]
-position = Vector2(-286, 166)
+position = Vector2(-19, -1)
+
+[node name="Tree21" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-19, -1)
+
+[node name="Tree31" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-60, -64)
 
 [node name="Tree2" parent="Trees" instance=ExtResource("4_wrqcq")]
 position = Vector2(-412, 183)
 
 [node name="Tree3" parent="Trees" instance=ExtResource("4_wrqcq")]
-position = Vector2(-374, 109)
+position = Vector2(-158, 84)
+
+[node name="Tree16" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-200, 55)
 
 [node name="Tree17" parent="Trees" instance=ExtResource("4_wrqcq")]
 position = Vector2(-596, 520)
@@ -275,7 +321,7 @@ position = Vector2(-274, 696)
 position = Vector2(-94, 733)
 
 [node name="Tree100" parent="Trees" instance=ExtResource("4_wrqcq")]
-position = Vector2(27, 563)
+position = Vector2(26, 577)
 
 [node name="Tree101" parent="Trees" instance=ExtResource("4_wrqcq")]
 position = Vector2(4, 526)
@@ -319,11 +365,29 @@ position = Vector2(238, 776)
 [node name="Tree8" parent="Trees" instance=ExtResource("4_wrqcq")]
 position = Vector2(-619, 138)
 
+[node name="Tree60" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-729, 35)
+
+[node name="Tree58" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-837, -43)
+
+[node name="Tree52" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-1163, -287)
+
+[node name="Tree49" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-861, -256)
+
+[node name="Tree54" parent="Trees" instance=ExtResource("4_wrqcq")]
+position = Vector2(-1169, -113)
+
 [node name="Tree10" parent="Trees" instance=ExtResource("12_pedfd")]
-position = Vector2(124.5, 175.5)
+position = Vector2(114, 148)
 
 [node name="Tree75" parent="Trees" instance=ExtResource("12_pedfd")]
-position = Vector2(73.5, 315.5)
+position = Vector2(94, 314)
+
+[node name="Tree104" parent="Trees" instance=ExtResource("12_pedfd")]
+position = Vector2(-17, 427)
 
 [node name="Tree74" parent="Trees" instance=ExtResource("12_pedfd")]
 position = Vector2(321.5, 257.5)
@@ -390,20 +454,98 @@ position = Vector2(464, 593)
 position = Vector2(551, 809)
 
 [node name="TreePile22" parent="Trees" instance=ExtResource("7_7rjox")]
-position = Vector2(73, 626)
+position = Vector2(72, 662)
 
 [node name="TreePile31" parent="Trees" instance=ExtResource("7_7rjox")]
-position = Vector2(73, 626)
+position = Vector2(-1000, 210)
+
+[node name="TreePile41" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-1139, 167)
+
+[node name="TreePile42" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-1175, 42)
+
+[node name="TreePile43" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-1338, -354)
+
+[node name="TreePile45" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(367, -190)
+
+[node name="TreePile46" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(449, -305)
+
+[node name="TreePile47" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(307, -395)
+
+[node name="TreePile48" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(172, -459)
+
+[node name="TreePile49" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(30, -516)
+
+[node name="TreePile50" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-124, -567)
+
+[node name="TreePile51" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-278, -524)
+
+[node name="TreePile52" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-424, -573)
+
+[node name="TreePile53" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-554, -513)
+
+[node name="TreePile54" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-694, -575)
+
+[node name="TreePile55" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-828, -637)
+
+[node name="TreePile56" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-974, -573)
+
+[node name="TreePile57" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-1094, -477)
+
+[node name="TreePile58" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-1198, -365)
+
+[node name="TreePile59" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-1329, -243)
+
+[node name="TreePile44" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-51, -251)
+
+[node name="TreePile60" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-202, -221)
+
+[node name="TreePile61" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-347, -181)
+
+[node name="TreePile62" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-480, -250)
+
+[node name="TreePile63" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-620, -223)
+
+[node name="TreePile40" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-950, 344)
+
+[node name="TreePile38" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-77, -132)
+
+[node name="TreePile39" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(69, -165)
 
 [node name="TreePile28" parent="Trees" instance=ExtResource("7_7rjox")]
-position = Vector2(-9, 546)
+position = Vector2(5, 559)
 
 [node name="TreePile24" parent="Trees" instance=ExtResource("7_7rjox")]
 visible = false
 position = Vector2(22, 522)
 
 [node name="TreePile23" parent="Trees" instance=ExtResource("7_7rjox")]
-position = Vector2(-143, 564)
+position = Vector2(-138, 572)
 
 [node name="TreePile5" parent="Trees" instance=ExtResource("7_7rjox")]
 position = Vector2(-803, 413)
@@ -417,11 +559,32 @@ position = Vector2(-493, 384)
 [node name="TreePile8" parent="Trees" instance=ExtResource("7_7rjox")]
 position = Vector2(-332, 452)
 
+[node name="TreePile32" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-205, 450)
+
+[node name="TreePile33" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-242, 333)
+
+[node name="TreePile37" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-389, 315)
+
+[node name="TreePile34" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-125, 299)
+
+[node name="TreePile35" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-108, 183)
+
+[node name="TreePile36" parent="Trees" instance=ExtResource("7_7rjox")]
+position = Vector2(-258, 42)
+
 [node name="TreePile2" parent="Trees" instance=ExtResource("7_7rjox")]
 position = Vector2(-821, 659)
 
 [node name="TreePile3" parent="Trees" instance=ExtResource("7_7rjox")]
 position = Vector2(-819, 538)
+
+[node name="WispInteractable" parent="Trees" instance=ExtResource("8_4hmqi")]
+position = Vector2(-1286, -250)
 
 [node name="Trunks" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -431,6 +594,9 @@ position = Vector2(-653, 512)
 
 [node name="Node2D4" parent="Trunks" instance=ExtResource("7_uk763")]
 position = Vector2(-387, 600)
+
+[node name="Node2D14" parent="Trunks" instance=ExtResource("7_uk763")]
+position = Vector2(-256, -150)
 
 [node name="Node2D6" parent="Trunks" instance=ExtResource("7_uk763")]
 position = Vector2(63, 845)
@@ -568,7 +734,13 @@ position = Vector2(-221, 950)
 position = Vector2(107, 951)
 
 [node name="BigStone3" parent="ShroomsETC" instance=ExtResource("22_88gxh")]
-position = Vector2(93.5, 186.5)
+position = Vector2(83, 169)
+
+[node name="BigStone8" parent="ShroomsETC" instance=ExtResource("22_88gxh")]
+position = Vector2(-54, 103)
+
+[node name="BigStone9" parent="ShroomsETC" instance=ExtResource("22_88gxh")]
+position = Vector2(198, 28)
 
 [node name="BigStone4" parent="ShroomsETC" instance=ExtResource("22_88gxh")]
 position = Vector2(351.5, 270.5)
@@ -598,7 +770,12 @@ texture = ExtResource("6_2itic")
 
 [node name="Stones7" type="Sprite2D" parent="StonesETC"]
 texture_filter = 1
-position = Vector2(71.5, 198.5)
+position = Vector2(55, 142)
+texture = ExtResource("6_2itic")
+
+[node name="Stones22" type="Sprite2D" parent="StonesETC"]
+texture_filter = 1
+position = Vector2(-10, 37)
 texture = ExtResource("6_2itic")
 
 [node name="Stones10" type="Sprite2D" parent="StonesETC"]
@@ -689,6 +866,11 @@ texture_filter = 1
 position = Vector2(-579, 27.5)
 texture = ExtResource("6_g2fjj")
 
+[node name="Grass115" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-601, -77)
+texture = ExtResource("6_g2fjj")
+
 [node name="Grass14" type="Sprite2D" parent="Grass"]
 texture_filter = 1
 position = Vector2(-488, 56)
@@ -696,12 +878,22 @@ texture = ExtResource("6_g2fjj")
 
 [node name="Grass20" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-423, 35)
+position = Vector2(-84, 10)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass15" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-555, 48)
+position = Vector2(-237, -31)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass113" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-289, -131)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass117" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-1249, -253)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass44" type="Sprite2D" parent="Grass"]
@@ -831,27 +1023,52 @@ texture = ExtResource("6_g2fjj")
 
 [node name="Grass17" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-601, 174)
+position = Vector2(-445, -40)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass12" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-572, 84)
+position = Vector2(-605, -44)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass13" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-572, 84)
+position = Vector2(-384, -93)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass19" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-639, 103)
+position = Vector2(-731, -80)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass119" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-821, -102)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass125" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-924, -35)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass126" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-935, -178)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass120" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-1117, -245)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass3" type="Sprite2D" parent="Grass"]
 texture_filter = 1
 position = Vector2(-357, 161)
+texture = ExtResource("6_g2fjj")
+
+[node name="Grass29" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-187, 242)
 texture = ExtResource("6_g2fjj")
 
 [node name="Grass4" type="Sprite2D" parent="Grass"]
@@ -881,7 +1098,22 @@ texture = ExtResource("8_gra68")
 
 [node name="Grass23" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-456, 0)
+position = Vector2(-519, -43)
+texture = ExtResource("8_gra68")
+
+[node name="Grass116" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-519, -43)
+texture = ExtResource("8_gra68")
+
+[node name="Grass112" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-212, -50)
+texture = ExtResource("8_gra68")
+
+[node name="Grass114" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-253, -110)
 texture = ExtResource("8_gra68")
 
 [node name="Grass43" type="Sprite2D" parent="Grass"]
@@ -1056,12 +1288,37 @@ texture = ExtResource("8_gra68")
 
 [node name="Grass8" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-716, 104)
+position = Vector2(-972, -56)
+texture = ExtResource("8_gra68")
+
+[node name="Grass123" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-884, -93)
+texture = ExtResource("8_gra68")
+
+[node name="Grass124" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-984, -156)
+texture = ExtResource("8_gra68")
+
+[node name="Grass122" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-706, -104)
+texture = ExtResource("8_gra68")
+
+[node name="Grass121" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-1088, -214)
+texture = ExtResource("8_gra68")
+
+[node name="Grass118" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-1194, -230)
 texture = ExtResource("8_gra68")
 
 [node name="Grass9" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-465, 119)
+position = Vector2(-538, -94)
 texture = ExtResource("9_7ttu1")
 
 [node name="Grass10" type="Sprite2D" parent="Grass"]
@@ -1069,19 +1326,29 @@ texture_filter = 1
 position = Vector2(-510, 91)
 texture = ExtResource("9_7ttu1")
 
+[node name="Grass111" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-155, -24)
+texture = ExtResource("9_7ttu1")
+
 [node name="Grass11" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-562, 131)
+position = Vector2(-871, -148)
+texture = ExtResource("9_7ttu1")
+
+[node name="Grass25" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-261, 263)
 texture = ExtResource("9_7ttu1")
 
 [node name="Grass16" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-700, 13)
+position = Vector2(-456, -78)
 texture = ExtResource("9_7ttu1")
 
 [node name="Grass18" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-638, 142)
+position = Vector2(-670, -46)
 texture = ExtResource("9_7ttu1")
 
 [node name="Grass41" type="Sprite2D" parent="Grass"]
@@ -1166,7 +1433,7 @@ texture = ExtResource("11_a83ed")
 
 [node name="Grass28" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(125.5, 177.5)
+position = Vector2(118, 154)
 texture = ExtResource("11_a83ed")
 
 [node name="Grass27" type="Sprite2D" parent="Grass"]
@@ -1211,7 +1478,7 @@ texture = ExtResource("14_ukpv2")
 
 [node name="Grass31" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(96.5, 198.5)
+position = Vector2(101, 185)
 texture = ExtResource("14_ukpv2")
 
 [node name="Grass32" type="Sprite2D" parent="Grass"]
@@ -1221,7 +1488,7 @@ texture = ExtResource("14_ukpv2")
 
 [node name="Grass30" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(161.5, 166.5)
+position = Vector2(162, 140)
 texture = ExtResource("11_a83ed")
 
 [node name="Jösses" parent="." instance=ExtResource("15_dw6jf")]
@@ -1235,18 +1502,107 @@ position = Vector2(195, 602)
 metadata/_edit_lock_ = true
 
 [node name="Hautakivirykelmä" parent="." instance=ExtResource("21_nxl3e")]
-position = Vector2(202.5, 181.5)
+position = Vector2(202, 161)
+
+[node name="TheWall" parent="." instance=ExtResource("24_xml7o")]
+position = Vector2(107, 66)
+
+[node name="TheWall2" parent="." instance=ExtResource("24_xml7o")]
+position = Vector2(290, 65)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="TheWall3" parent="." instance=ExtResource("24_xml7o")]
+position = Vector2(-45, 339)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="TheWall4" parent="." instance=ExtResource("24_xml7o")]
+position = Vector2(-1281, -6)
+rotation = 3.14159
+scale = Vector2(1, -1)
 
 [node name="BGimage2" type="Sprite2D" parent="."]
 z_index = -3
 texture_filter = 3
-position = Vector2(196, 307)
-scale = Vector2(0.443878, 0.539835)
+position = Vector2(240.5, 264)
+scale = Vector2(0.539541, 0.636676)
 texture = ExtResource("13_n4asy")
 metadata/_edit_lock_ = true
 
+[node name="BGimage5" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 3
+position = Vector2(54.5, 131.5)
+rotation = -2.59705
+scale = Vector2(0.139604, 0.23393)
+texture = ExtResource("13_n4asy")
+metadata/_edit_lock_ = true
+
+[node name="BGimage4" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 3
+position = Vector2(-9, 45)
+rotation = 0.534071
+scale = Vector2(0.282057, 0.671556)
+texture = ExtResource("26_eu1hf")
+metadata/_edit_lock_ = true
+
+[node name="BGimage6" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 3
+position = Vector2(201, -48)
+rotation = 1.5708
+scale = Vector2(0.625314, 0.53634)
+texture = ExtResource("26_eu1hf")
+metadata/_edit_lock_ = true
+
+[node name="BGimage3" type="Sprite2D" parent="."]
+z_index = -3
+texture_filter = 3
+position = Vector2(19, 413.813)
+scale = Vector2(0.434949, 0.168098)
+texture = ExtResource("13_n4asy")
+
+[node name="BGtreees" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(-83, 483)
+scale = Vector2(0.552036, 0.794559)
+texture = ExtResource("27_m38d8")
+centered = false
+offset = Vector2(-199.45, -121.3)
+
+[node name="BGtreees2" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(446, 433)
+scale = Vector2(0.701708, 1.10424)
+texture = ExtResource("27_m38d8")
+centered = false
+offset = Vector2(-199.45, -121.3)
+flip_h = true
+
+[node name="BGtreees3" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(503, 528)
+scale = Vector2(0.701708, 1.10424)
+texture = ExtResource("27_m38d8")
+centered = false
+offset = Vector2(-199.45, -121.3)
+flip_h = true
+
+[node name="BGtrees" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 3
+position = Vector2(-183.519, 422.174)
+scale = Vector2(0.639163, 0.957744)
+texture = ExtResource("27_m38d8")
+centered = false
+offset = Vector2(-199.45, -121.3)
+
 [node name="BGimage" type="Sprite2D" parent="."]
-modulate = Color(0.84, 0.7056, 0.7056, 1)
 z_index = -3
 texture_filter = 3
 position = Vector2(2.35663, 13.2191)
@@ -1257,6 +1613,7 @@ metadata/_edit_lock_ = true
 [node name="WorldColliders" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="WorldColliders"]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldColliders/StaticBody2D"]
 position = Vector2(-882.625, 776.5)
@@ -1281,6 +1638,10 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="WorldColliders/StaticBody2D"]
 position = Vector2(457, 715.5)
 shape = SubResource("RectangleShape2D_eagcy")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="WorldColliders/StaticBody2D"]
+position = Vector2(-201, 401.5)
+shape = SubResource("RectangleShape2D_dp6iv")
 
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]
