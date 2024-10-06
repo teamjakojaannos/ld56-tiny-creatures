@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://t6dprtco4mad"]
+[gd_scene load_steps=8 format=3 uid="uid://t6dprtco4mad"]
 
 [ext_resource type="Texture2D" uid="uid://bh8qgyrljfj0p" path="res://Environment/vinhapuu.png" id="1_7lte1"]
 [ext_resource type="Texture2D" uid="uid://dnip4a7gxtaxk" path="res://Environment/Minjanpuu2.png" id="1_pgmue"]
@@ -19,7 +19,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgnx"]
-size = Vector2(38.5, 16.5)
+size = Vector2(38.5, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33ep8"]
+size = Vector2(14, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68h7p"]
+size = Vector2(11, 13)
 
 [node name="Tree2" type="Node2D"]
 y_sort_enabled = true
@@ -36,5 +42,13 @@ offset = Vector2(11.43, -49.345)
 script = ExtResource("2_kfqf0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2.75, -10.75)
+position = Vector2(2.75, -10)
 shape = SubResource("RectangleShape2D_dwgnx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-3, 1.5)
+shape = SubResource("RectangleShape2D_33ep8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(22.5, 1.5)
+shape = SubResource("RectangleShape2D_68h7p")

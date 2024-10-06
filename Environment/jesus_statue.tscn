@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://8md5xlmkgeog"]
+[gd_scene load_steps=16 format=3 uid="uid://8md5xlmkgeog"]
 
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_p2wk0"]
 [ext_resource type="Texture2D" uid="uid://dmvtd7g7w28x6" path="res://Environment/yojeesus.png" id="1_s4p8w"]
+[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="3_n7be2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_da6ih"]
 atlas = ExtResource("1_p2wk0")
@@ -145,6 +146,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_yrnq2")
 animation = &"WispInsideStatue"
 offset = Vector2(0, -42.855)
+script = ExtResource("3_n7be2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-0.5, -12)
