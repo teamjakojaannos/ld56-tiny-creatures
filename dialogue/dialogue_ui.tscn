@@ -7,6 +7,7 @@
 
 [node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("DialogueList")]
 script = ExtResource("1_e7iml")
+OpacityOffsetPerRow = 0.33
 DialogueRow = ExtResource("1_h21uh")
 InteractiveDialogueRow = ExtResource("3_ib14a")
 InteractiveDialogueRowOption = ExtResource("4_ly15r")
