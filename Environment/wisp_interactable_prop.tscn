@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="1_oun0b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_453da"]
+resource_local_to_scene = true
 radius = 46.0109
 
 [node name="WispInteractable" type="Area2D" node_paths=PackedStringArray("Target")]

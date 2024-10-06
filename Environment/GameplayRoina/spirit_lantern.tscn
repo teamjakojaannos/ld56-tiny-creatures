@@ -1,0 +1,197 @@
+[gd_scene load_steps=15 format=3 uid="uid://baf4p3kgidl8v"]
+
+[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="1_2urqj"]
+[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="2_iaprk"]
+[ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="2_rmcfs"]
+
+[sub_resource type="Curve2D" id="Curve2D_sjoxl"]
+bake_interval = 20.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 45.6457, 37.1852, -45.6457, -37.1852, -66, -23, 107.492, 14.3044, -107.492, -14.3044, -157, -92, 130.961, -39.685, -130.961, 39.685, -392, -177, 85.461, 391.362, -85.461, -391.362, -1081, -578)
+}
+point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_rmp88"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.276119, 0.490672, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.225746, 0.225746, 0.225746, 1, 0.0919339, 0.0919339, 0.0919339, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hcffb"]
+gradient = SubResource("Gradient_rmp88")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
+atlas = ExtResource("1_2urqj")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beeid"]
+atlas = ExtResource("1_2urqj")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nljhc"]
+atlas = ExtResource("1_2urqj")
+region = Rect2(0, 0, 45, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e78h"]
+atlas = ExtResource("1_2urqj")
+region = Rect2(45, 0, 45, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kwh76"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10var")
+}],
+"loop": true,
+"name": &"idle_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beeid")
+}],
+"loop": true,
+"name": &"idle_open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nljhc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e78h")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6ieeh"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 0.55, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_2mg1j"]
+resource_name = "out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.76667, 3.36667, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.102688, 0.290309, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 3.93333, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 1, 0.55, 1), Color(0, 1, 0.55, 1), Color(0, 1, 0.55, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
+tracks/2/interp = 2
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.8, 3.96667, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.25, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vlr5"]
+_data = {
+"RESET": SubResource("Animation_6ieeh"),
+"out": SubResource("Animation_2mg1j")
+}
+
+[node name="SpiritLantern" type="Node2D"]
+
+[node name="Base" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_iaprk")
+offset = Vector2(-7, -20)
+
+[node name="SpiritPath" type="Path2D" parent="."]
+position = Vector2(0, -4)
+curve = SubResource("Curve2D_sjoxl")
+
+[node name="Spirit" type="PathFollow2D" parent="SpiritPath"]
+rotates = false
+
+[node name="Sprite" type="AnimatedSprite2D" parent="SpiritPath/Spirit"]
+modulate = Color(0, 1, 0.55, 1)
+texture_filter = 1
+sprite_frames = ExtResource("2_rmcfs")
+autoplay = "default"
+frame_progress = 0.0660001
+offset = Vector2(0, -12)
+metadata/_edit_lock_ = true
+
+[node name="Light" type="PointLight2D" parent="SpiritPath/Spirit"]
+position = Vector2(1, -7)
+scale = Vector2(2.9375, 2.9375)
+color = Color(0, 1, 0.55, 1)
+texture = SubResource("GradientTexture2D_hcffb")
+
+[node name="Lantern" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_kwh76")
+animation = &"idle_closed"
+autoplay = "idle_closed"
+offset = Vector2(-7, -20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7vlr5")
+}
+autoplay = "RESET"

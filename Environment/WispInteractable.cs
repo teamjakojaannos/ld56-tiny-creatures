@@ -17,6 +17,11 @@ public partial class WispInteractable : Area2D {
 	[Export]
 	public float GoalDistance = 16.0f;
 
+	[Export]
+	public bool OneShot = false;
+
+	public bool Done = false;
+
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
 		if (Target is null) {
@@ -28,6 +33,8 @@ public partial class WispInteractable : Area2D {
 
 	private Node2D? wisp;
 	private bool isWispInteracting = false;
+	private bool isFirstTimeStart = true;
+	private bool isFirstTimeStop = true;
 
 	[Signal]
 	public delegate void InteractStartEventHandler();
@@ -40,6 +47,10 @@ public partial class WispInteractable : Area2D {
 
 		if (!Engine.IsEditorHint()) {
 			BodyEntered += (body) => {
+				if (Done) {
+					return;
+				}
+
 				if (body is Player player) {
 					player.WispTarget = Target;
 					wisp = player.Wisp;
@@ -80,10 +91,28 @@ public partial class WispInteractable : Area2D {
 	}
 
 	public virtual void StartInteract() {
+		if (Done) {
+			return;
+		}
+
+		if (!isFirstTimeStart && OneShot) {
+			return;
+		}
+		isFirstTimeStart = false;
+
 		EmitSignal(SignalName.InteractStart);
 	}
 
 	public virtual void StopInteract() {
+		if (Done) {
+			return;
+		}
+
+		if (!isFirstTimeStop && OneShot) {
+			return;
+		}
+		isFirstTimeStop = false;
+
 		EmitSignal(SignalName.InteractStop);
 	}
 }

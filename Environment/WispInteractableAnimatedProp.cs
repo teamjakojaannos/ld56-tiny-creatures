@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 
@@ -26,6 +27,17 @@ public partial class WispInteractableAnimatedProp : Node2D {
         }
     }
 
+    [Export]
+    [ExportGroup("Dialogue")]
+    public bool RequireDialogue = false;
+
+    [Export]
+    public string? DialogueTrigger;
+
+    [Export]
+    public bool TriggerOnlyOnce = true;
+
+
     public override string[] _GetConfigurationWarnings() {
         var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
 
@@ -44,15 +56,41 @@ public partial class WispInteractableAnimatedProp : Node2D {
         return warnings;
     }
 
-	public override void _Ready() {
-		base._Ready();
+    public override void _Ready() {
+        base._Ready();
 
         if (Engine.IsEditorHint()) {
             return;
         }
 
         var parent = GetParent<WispInteractable>();
-        parent.InteractStart += () => AnimPlayer.Play(Animation);
-        parent.InteractStop += () => AnimPlayer.Stop();
-	}
+        parent.InteractStart += () => {
+            if (RequireDialogue) {
+                Dialogue.Instance(this).DialogueUpdated += CheckDialogueTrigger;
+            } else {
+                InteractStart();
+            }
+        };
+        parent.InteractStop += () => {
+            if (RequireDialogue) {
+                Dialogue.Instance(this).DialogueUpdated -= CheckDialogueTrigger;
+            } else {
+                AnimPlayer.Stop();
+            }
+        };
+    }
+
+    private void InteractStart() {
+        AnimPlayer.Play(Animation);
+    }
+
+    private void CheckDialogueTrigger(string chosenOption) {
+        if (chosenOption == DialogueTrigger) {
+            InteractStart();
+
+            if (TriggerOnlyOnce) {
+                GetParent<WispInteractable>().Done = true;
+            }
+        }
+    }
 }

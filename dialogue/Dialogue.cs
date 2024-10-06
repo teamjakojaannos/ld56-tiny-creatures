@@ -29,6 +29,9 @@ public partial class Dialogue : CanvasLayer {
 
 	public bool IsDialogueActive => ActiveDialogue != null && Visible;
 
+	[Signal]
+	public delegate void DialogueUpdatedEventHandler(string chosenOption);
+
 	public override void _Ready() {
 		base._Ready();
 
@@ -196,10 +199,13 @@ public partial class Dialogue : CanvasLayer {
 			_ => throw new InvalidOperationException("Selected option out of bounds"),
 		};
 
+		var selectedOption = ActiveDialogue.Lines[option];
 		if (next is null) {
 			CloseDialogue();
 		} else {
 			NextDialogue(next);
 		}
+
+		EmitSignal(SignalName.DialogueUpdated, selectedOption);
 	}
 }
