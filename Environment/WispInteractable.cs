@@ -20,7 +20,22 @@ public partial class WispInteractable : Area2D {
 	[Export]
 	public bool OneShot = false;
 
-	public bool Done = false;
+	private bool _done = false;
+	public bool Done {
+		get => _done;
+		set {
+			_done = value;
+			if (_done) {
+				isWispInteracting = false;
+				if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+					player.WispTarget = null;
+				}
+				wisp = null;
+
+				StopInteract();
+			}
+		}
+	}
 
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();

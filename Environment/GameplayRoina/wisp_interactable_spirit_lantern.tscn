@@ -39,7 +39,7 @@ SideOverride = 0
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
 IsInteractive = false
-Lines = ["Release?"]
+Lines = ["Release the spirit?"]
 Next = SubResource("Resource_o41ml")
 SideOverride = 0
 
