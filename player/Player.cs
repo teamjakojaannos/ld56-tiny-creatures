@@ -70,9 +70,14 @@ public partial class Player : CharacterBody2D {
 
 		playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-		var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
-		if (spawns.Count != 0 && spawns.PickRandom() is Node2D spawn) {
+		var mainPlayerSpawn = GetTree().GetFirstNodeInGroup("IntroPlayerSpawn");
+		if (mainPlayerSpawn is Node2D spawn) {
 			CallDeferred(MethodName.TeleportAt, spawn);
+		} else {
+			var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
+			if (spawns.Count != 0 && spawns.PickRandom() is Node2D fallbackRandomSpawn) {
+				CallDeferred(MethodName.TeleportAt, fallbackRandomSpawn);
+			}
 		}
 	}
 

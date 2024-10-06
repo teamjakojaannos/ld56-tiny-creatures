@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bm0s5e11ef8rh"]
+[gd_scene load_steps=52 format=3 uid="uid://bm0s5e11ef8rh"]
 
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_yfok4"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_6f77w"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ddydax43gghjj" path="res://Environment/spooky_tree.tscn" id="14_nvxan"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="15_4m3yo"]
 [ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="15_lorar"]
+[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="16_wbc7m"]
 [ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
 [ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="19_jmbxi"]
@@ -29,6 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="27_ddgh6"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="28_m25tt"]
 [ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="29_ohwp4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nq4ku"]
+resource_local_to_scene = true
+radius = 46.0109
 
 [sub_resource type="Resource" id="Resource_ylqht"]
 script = ExtResource("23_406oo")
@@ -1073,6 +1078,9 @@ position = Vector2(-1005, -566)
 [node name="JokuHassuKalloKeppi" parent="." instance=ExtResource("15_4m3yo")]
 position = Vector2(-193, -97)
 
+[node name="AnimatedSprite2D" parent="JokuHassuKalloKeppi/StaticBody2D" index="1"]
+script = ExtResource("16_wbc7m")
+
 [node name="Sieni1" parent="." instance=ExtResource("15_lorar")]
 position = Vector2(-1167, -86)
 
@@ -1126,11 +1134,18 @@ position = Vector2(-1240, -280)
 position = Vector2(-194, -98)
 OneShot = true
 
+[node name="Trigger" parent="WispInteractable2" index="0"]
+shape = SubResource("CircleShape2D_nq4ku")
+
+[node name="Target" parent="WispInteractable2" index="1"]
+position = Vector2(15, -16)
+
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="WispInteractable2"]
 script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_f05ty")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_bbf2w")
 
 [node name="Kantolyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
@@ -1215,3 +1230,6 @@ DialogueTrigger = "Yes"
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="Kantolyhty/WispInteractable"]
 script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_kxuv5")
+
+[editable path="JokuHassuKalloKeppi"]
+[editable path="WispInteractable2"]

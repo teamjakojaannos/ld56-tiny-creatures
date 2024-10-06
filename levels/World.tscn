@@ -32,15 +32,8 @@ animations = [{
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 
-[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(-936, 172)
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-position = Vector2(-486, -508)
-scale = Vector2(2, 2)
-color = Color(0.139854, 0.126901, 0.23601, 1)
-script = ExtResource("1_chwgl")
+[node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
+position = Vector2(-951, 197)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
@@ -119,3 +112,12 @@ metadata/_edit_lock_ = true
 [node name="Startingarea" parent="." instance=ExtResource("4_n55f1")]
 position = Vector2(-730, 215)
 metadata/_edit_lock_ = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-486, -508)
+scale = Vector2(2, 2)
+color = Color(0.0474933, 0.0432, 0.08, 1)
+script = ExtResource("1_chwgl")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.15

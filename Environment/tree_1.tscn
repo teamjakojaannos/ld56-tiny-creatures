@@ -19,7 +19,7 @@ animations = [{
 size = Vector2(19, 7)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l84vg"]
-polygon = PackedVector2Array(11, -3, 6, -12, 6, -21, 5, -37, 0, -37, -2, -21, -4, -14, -14, -7, -10, -2, -2, 0, 5, -1)
+polygon = PackedVector2Array(8, -5, 5, -12, 2, -20, -3, -13, -8, -7, -9, -2, -2, 0, 5, -1)
 
 [node name="Tree1" type="Node2D"]
 y_sort_enabled = true
@@ -49,6 +49,7 @@ texture = ExtResource("3_61c5q")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_l84vg")
+occluder_light_mask = 4
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." groups=["navmesh"]]
 visible = false

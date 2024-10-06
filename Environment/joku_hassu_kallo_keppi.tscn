@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cye1w3nfypxqd"]
+[gd_scene load_steps=6 format=3 uid="uid://cye1w3nfypxqd"]
 
 [ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://Environment/jokuhassuproppi_idk.png" id="1_f5uop"]
 
@@ -17,7 +17,10 @@ animations = [{
 }]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_24ir1"]
-polygon = PackedVector2Array(2, -53, 1, -34, 1, -28, -5, -24, -9, -50, -8, -22, -4, 2, -1, 1, -5, -21, 0, -25, 3, 1, 5, 0, 4, -26)
+polygon = PackedVector2Array(-3, 2, -1, 2, -1, 0, -3, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gn8c1"]
+polygon = PackedVector2Array(-4, 1, -3, 1, -3, 0, -4, 0)
 
 [node name="JokuHassuKalloKeppi" type="Node2D"]
 y_sort_enabled = true
@@ -37,4 +40,12 @@ centered = false
 offset = Vector2(-17.345, -56.695)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-1, 0)
 occluder = SubResource("OccluderPolygon2D_24ir1")
+occluder_light_mask = 4
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+light_mask = 0
+position = Vector2(6, 0)
+occluder = SubResource("OccluderPolygon2D_gn8c1")
+occluder_light_mask = 4

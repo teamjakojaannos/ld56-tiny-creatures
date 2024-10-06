@@ -40,6 +40,7 @@ PlayerSpawn="Marks the node as a valid position for player to spawn in."
 Player=""
 PlayIntro=""
 navmesh=""
+IntroPlayerSpawn=""
 
 [input]
 
@@ -116,7 +117,3 @@ gui_click={
 [physics]
 
 2d/default_gravity=0.0
-
-[rendering]
-
-renderer/rendering_method="mobile"

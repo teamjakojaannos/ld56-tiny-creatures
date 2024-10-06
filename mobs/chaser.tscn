@@ -257,6 +257,7 @@ _data = {
 }
 
 [node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite")]
+lock_rotation = true
 script = ExtResource("1_sj5s6")
 speed = 100.0
 AnimPlayer = NodePath("AnimationPlayer")

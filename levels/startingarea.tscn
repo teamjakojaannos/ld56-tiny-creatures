@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="3_tanrn"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="4_c3boq"]
-[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_cqeun"]
-[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="6_01lmh"]
-[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="7_2d1eo"]
-[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="8_naa27"]
+[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="5_cqeun"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="6_01lmh"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="7_2d1eo"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="8_naa27"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_m5587"]
 [ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="10_8ld2n"]
 [ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="11_t3v3c"]
 [ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="12_yhk3p"]
 [ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="13_leamw"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="14_i12ag"]
-[ext_resource type="PackedScene" uid="uid://msnb3307oquv" path="res://Environment/puu_entrance.tscn" id="15_3aa4f"]
+[ext_resource type="PackedScene" path="res://Environment/puu_entrance.tscn" id="15_3aa4f"]
 [ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="16_4hpj2"]
 
 [node name="Startingarea" type="Node2D"]
@@ -855,6 +855,7 @@ texture = ExtResource("14_i12ag")
 position = Vector2(453, -125)
 
 [node name="BGimage" type="Sprite2D" parent="."]
+light_mask = 3
 z_index = -3
 texture_filter = 3
 position = Vector2(21, 12)
