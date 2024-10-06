@@ -184,8 +184,12 @@ public partial class Dialogue : CanvasLayer {
 			}
 		}
 
-		if (isSelectEvent && isAllowedToProgress) {
-			SelectOption(selectedOption ?? 0);
+		if (isSelectEvent) {
+			if (isAllowedToProgress) {
+				SelectOption(selectedOption ?? 0);
+			} else {
+				ActiveDialogueRow.SkipScrollAnimation();
+			}
 		}
 	}
 

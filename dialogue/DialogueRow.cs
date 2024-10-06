@@ -71,6 +71,12 @@ public partial class DialogueRow : HBoxContainer {
             ?.Play(SpeakerIsOnLeft ? "enter_left" : "enter_right");
     }
 
+    public void SkipScrollAnimation() {
+        TextScrollTimer?.Stop();
+        TextContent!.VisibleCharacters = Text.Length;
+        SpeakingSfx?.Stop();
+    }
+
     private void Refresh() {
         if (PortraitFrame?.GetNodeOrNull<TextureRect>("PortraitFrame/Character") is TextureRect portrait) {
             portrait.FlipH = SpeakerIsOnLeft == PortraitIsFlippedOnLeft;
