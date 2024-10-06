@@ -3,6 +3,21 @@
 [ext_resource type="AudioStream" uid="uid://d7ythkgypxe3" path="res://mobs/nakki/stepwater5.ogg" id="1_m8vc0"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="2_iysyv"]
 
+[sub_resource type="Animation" id="Animation_n7t8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.096, 0.3424, 0.8, 0.576471)]
+}
+
 [sub_resource type="Animation" id="Animation_d2m0m"]
 resource_name = "spawn"
 length = 3.0
@@ -31,21 +46,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_n7t8s"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.096, 0.3424, 0.8, 0.576471)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fyvm0"]
