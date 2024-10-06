@@ -13,7 +13,9 @@ public partial class Player : CharacterBody2D {
 	[Export]
 	public AnimationPlayer? Animation;
 
-	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible;
+	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible && !frozen;
+
+	private bool frozen = false;
 
 	public Node2D? WispTarget { get; set; } = null;
 
@@ -134,7 +136,7 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public void setMovementEnabled(bool enabled) {
-		// TODO
+		frozen = !enabled;
 	}
 
 	public void die() {
