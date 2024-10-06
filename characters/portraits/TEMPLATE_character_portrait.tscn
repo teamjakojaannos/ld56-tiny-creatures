@@ -5,7 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_j80jm"]
 font = ExtResource("2_7ke3r")
-font_size = 8
+font_size = 12
 
 [node name="Container" type="VBoxContainer"]
 offset_right = 40.0

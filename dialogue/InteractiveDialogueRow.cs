@@ -61,11 +61,9 @@ public partial class InteractiveDialogueRow : DialogueRow {
 
             if (i == option) {
                 dialogueOption.Select();
-                GD.Print($"Selected {i}");
                 dialogueOption.LabelColor = SelectedDialogueColor;
             } else {
                 dialogueOption.Deselect();
-                GD.Print($"Deselected {i}");
                 dialogueOption.LabelColor = DialogueColor;
             }
         }
