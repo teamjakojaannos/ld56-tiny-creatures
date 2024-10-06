@@ -10,6 +10,9 @@ public partial class Dialogue : CanvasLayer {
 	public int MaxVisibleRows = 3;
 
 	[Export]
+	public float OpacityOffsetPerRow = 0.25f;
+
+	[Export]
 	public PackedScene? DialogueRow;
 
 	[Export]
@@ -130,6 +133,14 @@ public partial class Dialogue : CanvasLayer {
 			var child = DialogueList.GetChild(0);
 			DialogueList.RemoveChild(child);
 			child.QueueFree();
+		}
+
+		var childCount = DialogueList.GetChildCount();
+		for (var i = 0; i < childCount; ++i) {
+			var child = DialogueList.GetChild<Control>(i);
+			var color = child.Modulate;
+			var opacity = 1.0f - (childCount - 1 - i) * OpacityOffsetPerRow;
+			child.Modulate = new Color(color.R, color.G, color.B, opacity);
 		}
 	}
 
