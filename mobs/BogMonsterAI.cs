@@ -22,6 +22,10 @@ public static class BogMonsterStats {
 	public static (float, float) idleTime = (0.5f, 2.0f);
 
 	public const float emergeAtPlayerChance = 0.35f;
+
+	public const float alertTime = 7.5f;
+	public const float alertThreshold = 40.0f;
+	public const float attackThreshold = 100.0f;
 }
 
 public enum Direction {
@@ -39,6 +43,28 @@ public static class DirectionExtension {
 
 public abstract class BogMonsterAIState {
 	public abstract void doUpdate(BogMonster monster, float delta);
+
+	public virtual bool shouldTickDetection() {
+		return true;
+	}
+
+	public virtual void detectionLevelChanged(BogMonster monster) {
+		float detectionLevel = monster.detectionLevel;
+		if (detectionLevel >= BogMonsterStats.attackThreshold) {
+			monster.ai = new AttackState();
+			return;
+		}
+
+		if (detectionLevel >= BogMonsterStats.alertThreshold) {
+			monster.ai = new AlertedState(monster.speed);
+			return;
+		}
+	}
+
+	internal static float randomIdleTime(RandomNumberGenerator rng) {
+		var (min, max) = BogMonsterStats.idleTime;
+		return rng.RandfRange(min, max);
+	}
 }
 
 public class MovementState : BogMonsterAIState {
@@ -105,11 +131,6 @@ public class MovementState : BogMonsterAIState {
 		var idleTime = randomIdleTime(monster.rng);
 		monster.ai = new IdleState(idleTime, nextDirection: direction.opposite());
 	}
-
-	private static float randomIdleTime(RandomNumberGenerator rng) {
-		var (min, max) = BogMonsterStats.idleTime;
-		return rng.RandfRange(min, max);
-	}
 }
 
 public class IdleState : BogMonsterAIState {
@@ -163,6 +184,11 @@ public class UnderwaterState : BogMonsterAIState {
 		}
 	}
 
+	public override bool shouldTickDetection() {
+		// animation playing -> don't increase/decrease detection level
+		return animationDone;
+	}
+
 	private void emergeFromWater(BogMonster monster) {
 		animationDone = false;
 		var emergeAtPlayer = monster.rng.Randf() < BogMonsterStats.emergeAtPlayerChance;
@@ -172,5 +198,79 @@ public class UnderwaterState : BogMonsterAIState {
 			var randomPosition = monster.rng.Randf();
 			monster.emergeFromWaterAtPosition(randomPosition);
 		}
+	}
+
+	public override void detectionLevelChanged(BogMonster monster) { }
+}
+
+public class AlertedState : BogMonsterAIState {
+	private const float closeEnough = 10.0f;
+
+	private float speed;
+	private float timePassed;
+
+	public AlertedState(float speed) {
+		this.speed = speed;
+	}
+
+	public override void doUpdate(BogMonster monster, float delta) {
+		var r = getPlayerXPositionRelativeToMonster(monster);
+		if (r is not float relative) {
+			// can't find player for some reason
+			monster.detectionLevel = 0.0f;
+			monster.ai = new IdleState(randomIdleTime(monster.rng), null);
+			return;
+		}
+
+		timePassed += delta;
+		if (timePassed >= BogMonsterStats.alertTime) {
+			monster.detectionLevel = 0.0f;
+			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.speed);
+			return;
+		}
+
+		moveMonster(monster, relative, delta);
+	}
+
+	public float? getPlayerXPositionRelativeToMonster(BogMonster monster) {
+		var playerRef = monster.GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is not Player player) {
+			return null;
+		}
+
+		var playerPosition = player.GlobalPosition;
+		var monsterPosition = monster.GlobalPosition;
+
+		return monsterPosition.X - playerPosition.X;
+	}
+
+	private void moveMonster(BogMonster monster, float relativeX, float delta) {
+		if (Mathf.Abs(relativeX) <= closeEnough) {
+			return;
+		}
+
+		var sign = -Mathf.Sign(relativeX);
+		var movement = sign * speed * delta;
+
+		monster.Progress += movement;
+	}
+
+	public override void detectionLevelChanged(BogMonster monster) {
+		float detectionLevel = monster.detectionLevel;
+		if (detectionLevel >= BogMonsterStats.attackThreshold) {
+			monster.ai = new AttackState();
+			return;
+		}
+
+		if (detectionLevel == 0.0f) {
+			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.speed);
+			return;
+		}
+	}
+}
+
+public class AttackState : BogMonsterAIState {
+	public override void doUpdate(BogMonster monster, float delta) {
+		GD.Print("Attacking...");
 	}
 }

@@ -17,28 +17,43 @@ public partial class BogMonster : PathFollow2D {
 
 	private RayCast2D? lineOfSight;
 
-	private Sprite2D? debug;
+	public float detectionLevel;
+	[Export]
+	public float detectionGain = 30.0f;
+	[Export]
+	public float detectionDecay = 10.0f;
 
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
-		debug = GetNode<Sprite2D>("Debug");
 
 		ai = new MovementState(goingForward: true, speed);
-	}
-
-	public override void _Process(double _delta) {
-		var delta = (float)_delta;
-
-		ai.doUpdate(this, delta);
 	}
 
 	public override void _PhysicsProcess(double _delta) {
 		var delta = (float)_delta;
 
+		ai.doUpdate(this, delta);
+
+		var shouldTickDetection = ai.shouldTickDetection();
+		if (shouldTickDetection) {
+			updateDetection(delta);
+		}
+	}
+
+	private void updateDetection(float delta) {
 		var canSeePlayer = raycastToPlayer();
-		debug.Visible = canSeePlayer;
+
+		if (canSeePlayer) {
+			detectionLevel += detectionGain * delta;
+		} else {
+			detectionLevel -= detectionDecay * delta;
+		}
+
+		detectionLevel = Mathf.Clamp(detectionLevel, 0.0f, 100.0f);
+
+		ai.detectionLevelChanged(this);
 	}
 
 	private bool raycastToPlayer() {
