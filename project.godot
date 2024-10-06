@@ -109,6 +109,7 @@ gui_click={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
+2d_physics/layer_3="Line of sight"
 
 [physics]
 

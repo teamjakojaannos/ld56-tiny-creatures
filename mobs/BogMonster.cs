@@ -8,24 +8,58 @@ public partial class BogMonster : PathFollow2D {
 
 	private Player? player;
 
-	public BogMonsterStuff.BogMonsterAIState ai = new BogMonsterStuff.MovementState(goingForward: true, 0.0f);
+	public BogMonsterAIState ai = new MovementState(goingForward: true, 0.0f);
 
 	public RandomNumberGenerator rng = new();
 
 	private AnimationPlayer? animationPlayer;
 	private Timer? underwaterCooldown;
 
+	private RayCast2D? lineOfSight;
+
+	private Sprite2D? debug;
+
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
+		lineOfSight = GetNode<RayCast2D>("LineOfSight");
+		debug = GetNode<Sprite2D>("Debug");
 
-		ai = new BogMonsterStuff.MovementState(goingForward: true, speed);
+		ai = new MovementState(goingForward: true, speed);
 	}
 
 	public override void _Process(double _delta) {
 		var delta = (float)_delta;
 
 		ai.doUpdate(this, delta);
+	}
+
+	public override void _PhysicsProcess(double _delta) {
+		var delta = (float)_delta;
+
+		var canSeePlayer = raycastToPlayer();
+		debug.Visible = canSeePlayer;
+	}
+
+	private bool raycastToPlayer() {
+		if (player == null || lineOfSight == null) {
+			return false;
+		}
+
+
+		var playerPosition = player.GlobalPosition;
+		// raycast wants target as relative to itself, not global
+		var target = playerPosition - lineOfSight.GlobalPosition;
+		lineOfSight.TargetPosition = target;
+
+		lineOfSight.ForceRaycastUpdate();
+
+		if (!lineOfSight.IsColliding()) {
+			return false;
+		}
+
+		var collider = lineOfSight.GetCollider();
+		return collider is Player;
 	}
 
 
@@ -46,7 +80,7 @@ public partial class BogMonster : PathFollow2D {
 			return false;
 		}
 
-		var goUnderwater = rng.Randf() < BogMonsterStats.goUnderwaterChance;
+		var goUnderwater = rng.Randf() < chance;
 		if (goUnderwater) {
 			this.goUnderwater();
 			return true;
@@ -58,7 +92,7 @@ public partial class BogMonster : PathFollow2D {
 	public void goUnderwater() {
 		var (min, max) = BogMonsterStats.underwaterTime;
 		var underwaterTime = rng.RandfRange(min, max);
-		ai = new BogMonsterStuff.UnderwaterState(underwaterTime);
+		ai = new UnderwaterState(underwaterTime);
 		animationPlayer?.Play("go_underwater");
 		underwaterCooldown?.Start();
 	}

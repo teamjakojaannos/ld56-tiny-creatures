@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://0bej41ibbv6e"]
+
+[ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://Environment/kiviaki_kiinnostaa.png" id="1_o87j8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwyer"]
+size = Vector2(36, 20)
+
+[node name="BogRock" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+texture = ExtResource("1_o87j8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_qwyer")
