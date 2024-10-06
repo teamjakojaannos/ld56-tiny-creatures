@@ -33,7 +33,7 @@ animations = [{
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(-63, -249)
+position = Vector2(-936, 172)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -79,6 +79,7 @@ offset_top = -541.0
 offset_right = 1.0
 offset_bottom = -44.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
+metadata/_edit_lock_ = true
 
 [node name="ColorRect5" type="ColorRect" parent="."]
 z_index = -2
@@ -87,6 +88,7 @@ offset_top = -214.0
 offset_right = -537.0
 offset_bottom = -93.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
+metadata/_edit_lock_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 z_index = -2
@@ -95,6 +97,7 @@ offset_top = -359.0
 offset_right = -345.0
 offset_bottom = 38.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
+metadata/_edit_lock_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 z_index = -2
@@ -103,6 +106,7 @@ offset_top = -305.0
 offset_right = -495.0
 offset_bottom = -85.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
+metadata/_edit_lock_ = true
 
 [node name="Node2D" parent="." instance=ExtResource("2_q4msv")]
 position = Vector2(-514, -513)

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameCharacter" load_steps=2 format=3 uid="uid://c24lq4s6ae0f"]
+
+[ext_resource type="Script" path="res://characters/GameCharacter.cs" id="1_6f2hb"]
+
+[resource]
+script = ExtResource("1_6f2hb")
+Name = "???"
+DefaultDialogueSide = 0
+PortraitFacing = 0

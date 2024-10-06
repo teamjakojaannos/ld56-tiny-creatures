@@ -860,3 +860,4 @@ texture_filter = 3
 position = Vector2(21, 12)
 scale = Vector2(38.6667, 22.5333)
 texture = ExtResource("16_4hpj2")
+metadata/_edit_lock_ = true
