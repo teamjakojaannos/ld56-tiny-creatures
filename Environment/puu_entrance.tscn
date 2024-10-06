@@ -1,8 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://msnb3307oquv"]
+[gd_scene load_steps=12 format=3 uid="uid://msnb3307oquv"]
 
 [ext_resource type="Texture2D" uid="uid://chc5dyvdkfob4" path="res://Environment/IsopuuIso.png" id="1_8tiqo"]
 [ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_onxvc"]
 [ext_resource type="Texture2D" uid="uid://b2ljby7qpfc2c" path="res://Environment/IsopuuPieni.png" id="3_mchym"]
+[ext_resource type="Texture2D" uid="uid://bltq7cr2yubdt" path="res://Environment/Massaily_takamehta.png" id="4_dxmg6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r8cym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mchym")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ci7o1"]
 animations = [{
@@ -15,11 +27,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_r8cym"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5i3fy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_mchym")
+"texture": ExtResource("4_dxmg6")
 }],
 "loop": true,
 "name": &"default",
@@ -44,14 +56,6 @@ y_sort_enabled = true
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
-y_sort_enabled = true
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_ci7o1")
-centered = false
-offset = Vector2(-154.975, -170.69)
-script = ExtResource("2_onxvc")
-
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="StaticBody2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -60,6 +64,22 @@ sprite_frames = SubResource("SpriteFrames_r8cym")
 centered = false
 offset = Vector2(-233.635, -160.13)
 script = ExtResource("2_onxvc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ci7o1")
+centered = false
+offset = Vector2(-154.975, -170.69)
+script = ExtResource("2_onxvc")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(4, -74)
+sprite_frames = SubResource("SpriteFrames_5i3fy")
+centered = false
+offset = Vector2(-207.03, -157.235)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-39.5, -70)
