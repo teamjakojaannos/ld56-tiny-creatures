@@ -23,10 +23,13 @@ public partial class BogMonster : PathFollow2D {
 	[Export]
 	public float detectionDecay = 10.0f;
 
+	public AnimatedSprite2D? fakePlayer;
+
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
+		fakePlayer = GetNode<AnimatedSprite2D>("FakePlayer");
 
 		ai = new MovementState(goingForward: true, speed);
 	}
@@ -168,5 +171,31 @@ public partial class BogMonster : PathFollow2D {
 
 	public bool canGoUnderwater() {
 		return underwaterCooldown?.IsStopped() ?? true;
+	}
+
+	public void playAttackAnimation() {
+		animationPlayer?.Play("attack");
+	}
+
+	public void syncFakePlayerLocationAndHideAndStopPlayer() {
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is not Player player) {
+			return;
+		}
+
+		player.setSpriteVisible(false);
+		player.setMovementEnabled(false);
+		fakePlayer!.GlobalPosition = player.GlobalPosition;
+		fakePlayer!.Visible = true;
+	}
+
+	public void killPlayer() {
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is Player player) {
+			player.die();
+		}
+	}
+
+	public void attackAnimationDone() {
 	}
 }

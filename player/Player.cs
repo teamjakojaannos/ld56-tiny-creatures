@@ -39,6 +39,8 @@ public partial class Player : CharacterBody2D {
 		}
 	}
 
+	private AnimatedSprite2D? playerSprite;
+
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? Array.Empty<string>();
 		if (_wispFollowNode is null) {
@@ -58,6 +60,8 @@ public partial class Player : CharacterBody2D {
 		if (Engine.IsEditorHint()) {
 			return;
 		}
+
+		playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
 		if (spawns.Count != 0 && spawns.PickRandom() is Node2D spawn) {
@@ -123,5 +127,17 @@ public partial class Player : CharacterBody2D {
 			Wisp.GlobalPosition =
 				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 2.5f * delta);
 		}
+	}
+
+	public void setSpriteVisible(bool visible) {
+		playerSprite!.Visible = visible;
+	}
+
+	public void setMovementEnabled(bool enabled) {
+		// TODO
+	}
+
+	public void die() {
+		GD.Print("I am dead.");
 	}
 }

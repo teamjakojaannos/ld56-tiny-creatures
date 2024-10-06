@@ -270,7 +270,18 @@ public class AlertedState : BogMonsterAIState {
 }
 
 public class AttackState : BogMonsterAIState {
+	public bool animationPlaying;
+
 	public override void doUpdate(BogMonster monster, float delta) {
-		GD.Print("Attacking...");
+		if (!animationPlaying) {
+			animationPlaying = true;
+			monster.playAttackAnimation();
+		}
+	}
+
+	public override void detectionLevelChanged(BogMonster monster) { }
+
+	public override bool shouldTickDetection() {
+		return false;
 	}
 }

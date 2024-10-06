@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://lqgrfvh7c3b0"]
+[gd_scene load_steps=10 format=3 uid="uid://lqgrfvh7c3b0"]
 
 [ext_resource type="Script" path="res://mobs/BogMonster.cs" id="1_80vso"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_sf537"]
+[ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_pwbfi"]
+[ext_resource type="Texture2D" uid="uid://55bmdywmmaob" path="res://mobs/whyisthishere.png" id="4_r803u"]
 
 [sub_resource type="Animation" id="Animation_m8ex1"]
 length = 0.001
@@ -28,6 +30,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1.90735e-06, 1.90735e-06)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-94, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_33fha"]
@@ -112,9 +138,57 @@ tracks/2/keys = {
 "values": [Vector2(1.90735e-06, 1.90735e-06), Vector2(0, 5)]
 }
 
+[sub_resource type="Animation" id="Animation_r7x2t"]
+resource_name = "attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"syncFakePlayerLocationAndHideAndStopPlayer"
+}, {
+"args": [],
+"method": &"killPlayer"
+}, {
+"args": [],
+"method": &"attackAnimationDone"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-94, -9), Vector2(123, 180)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpi5j"]
 _data = {
 "RESET": SubResource("Animation_m8ex1"),
+"attack": SubResource("Animation_r7x2t"),
 "emerge_from_water": SubResource("Animation_33fha"),
 "go_underwater": SubResource("Animation_n7kaw")
 }
@@ -147,6 +221,20 @@ libraries = {
 [node name="UnderwaterCooldown" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="FakePlayer" type="AnimatedSprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, 100)
+sprite_frames = ExtResource("3_pwbfi")
+animation = &"IdleUp"
+
+[node name="Hand" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-94, -9)
+texture = ExtResource("4_r803u")
+flip_h = true
 
 [connection signal="body_entered" from="SightCone" to="." method="sightConeEntered"]
 [connection signal="body_exited" from="SightCone" to="." method="sightConeExited"]
