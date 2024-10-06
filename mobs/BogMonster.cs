@@ -23,13 +23,17 @@ public partial class BogMonster : PathFollow2D {
 	[Export]
 	public float detectionDecay = 10.0f;
 
+	public Node2D? attack;
 	public AnimatedSprite2D? fakePlayer;
+	public AnimatedSprite2D? hand;
 
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
-		fakePlayer = GetNode<AnimatedSprite2D>("FakePlayer");
+		attack = GetNode<Node2D>("Attack");
+		fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
+		hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
 		ai = new MovementState(goingForward: true, speed);
 	}
@@ -185,7 +189,7 @@ public partial class BogMonster : PathFollow2D {
 
 		player.setSpriteVisible(false);
 		player.setMovementEnabled(false);
-		fakePlayer!.GlobalPosition = player.GlobalPosition;
+		attack!.GlobalPosition = player.GlobalPosition;
 		fakePlayer!.Visible = true;
 	}
 
