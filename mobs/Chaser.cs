@@ -37,25 +37,30 @@ public partial class Chaser : RigidBody2D {
 		aiState.doUpdate(this, delta);
 
 		turnHead(delta);
-		moveTowardsCurrentTarget(delta);
+		var velocity = moveTowardsCurrentTarget(delta);
 
 		clearTargetsIfCompleted();
+
+		updateSprite(velocity);
 	}
 
-	private void moveTowardsCurrentTarget(float delta) {
+	private Vector2? moveTowardsCurrentTarget(float delta) {
 		if (movementTarget is not Vector2 target) {
-			return;
+			return null;
 		}
 
 		var velocity = GlobalPosition.DirectionTo(target) * speed * delta;
 		MoveAndCollide(velocity);
+		return velocity;
+	}
 
-		if (velocity.LengthSquared() > 0.0001f) {
+	private void updateSprite(Vector2? vel) {
+		if (vel is not Vector2 velocity || velocity.LengthSquared() < 0.0001f) {
+			AnimPlayer!.Play("Idle");
+		} else {
 			AnimPlayer!.Play(velocity.Y >= 0.0f ? "WalkFront" : "WalkBack");
 
 			Sprite!.FlipH = velocity.X > 0.0f;
-		} else {
-			AnimPlayer!.Play("Idle");
 		}
 	}
 
