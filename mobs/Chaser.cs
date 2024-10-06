@@ -51,15 +51,46 @@ public partial class Chaser : RigidBody2D {
 
 		var velocity = GlobalPosition.DirectionTo(target) * speed * delta;
 		MoveAndCollide(velocity);
+		lookTowardsMovement(target);
 		return velocity;
+	}
+
+	private void lookTowardsMovement(Vector2 target) {
+		clearLookTarget();
+
+		var desiredAngle = GlobalPosition.AngleToPoint(target) + coneAngleOffset;
+		sightCone!.Rotation = desiredAngle;
 	}
 
 	private void updateSprite(Vector2? vel) {
 		if (vel is not Vector2 velocity || velocity.LengthSquared() < 0.0001f) {
-			AnimPlayer!.Play("Idle");
+			const float fullCircle = Mathf.Pi * 2.0f;
+			const float halfCircle = fullCircle / 2.0f;
+			const float quarterCircle = fullCircle / 4.0f;
+
+			// this probably assumes that sight cone points upwards
+			// what we're trying to do here: if the angle is between -45deg and +45 deg -> it looks up
+			// 45-135 -> right etc
+			var angle = sightCone!.Rotation;
+			angle -= quarterCircle / 2.0f;
+			angle = (angle + fullCircle) % fullCircle;
+			var quarter = Mathf.FloorToInt(angle / quarterCircle);
+
+			if (quarter == 0 || quarter == 2) {
+				AnimPlayer!.Play("IdleFront");
+			} else {
+				AnimPlayer!.Play("IdleBack");
+			}
+
+			// here we're figuring if angle is between 0 and 180deg, or 180-360
+			var angle2 = sightCone!.Rotation;
+			angle2 = (angle2 + fullCircle) % fullCircle;
+
+			var half = Mathf.Floor(angle2 / halfCircle);
+			Sprite!.FlipH = half == 0;
+
 		} else {
 			AnimPlayer!.Play(velocity.Y >= 0.0f ? "WalkFront" : "WalkBack");
-
 			Sprite!.FlipH = velocity.X > 0.0f;
 		}
 	}

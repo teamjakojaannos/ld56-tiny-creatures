@@ -5,6 +5,8 @@ namespace ChaserStuff;
 public static class ChaserStats {
 	// idle for this many seconds, then change state
 	public const float idleTime = 5.0f;
+	public const float turnFrequency = 1.5f;
+	public const float turnChance = 0.25f;
 
 	// wander for this many seconds, then change state
 	public const float wanderTime = 15.0f;
@@ -32,12 +34,26 @@ public abstract class ChaserAI {
 public class IdleState : ChaserAI {
 
 	private float timePassed;
+	private float timeSinceLastTurn;
 
 	public override void doUpdate(Chaser chaser, float delta) {
 		timePassed += delta;
+		timeSinceLastTurn += delta;
+
+
 
 		if (timePassed >= ChaserStats.idleTime) {
 			chaser.startWandering();
+			return;
+		}
+
+		if (timeSinceLastTurn >= ChaserStats.turnFrequency) {
+			timeSinceLastTurn = 0.0f;
+			if (Util.diceRoll(chaser.rng, ChaserStats.turnChance)) {
+				var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
+				var newTarget = chaser.GlobalPosition + randomPos;
+				chaser.setLookDirection(newTarget);
+			}
 		}
 	}
 }
