@@ -1,65 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://b20ibux777wdy"]
+[gd_scene load_steps=4 format=3 uid="uid://b20ibux777wdy"]
 
 [ext_resource type="Script" path="res://dialogue/InteractiveDialogueRow.cs" id="1_eubn3"]
 [ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="2_atl8r"]
-[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="3_250kd"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_fctui"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_12rh4"]
-font = ExtResource("3_250kd")
-
-[sub_resource type="LabelSettings" id="LabelSettings_y2r4x"]
-resource_local_to_scene = true
-font = ExtResource("3_250kd")
-
-[sub_resource type="LabelSettings" id="LabelSettings_rqitf"]
-font = ExtResource("3_250kd")
-
-[sub_resource type="LabelSettings" id="LabelSettings_t0flu"]
-font = ExtResource("3_250kd")
-
-[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Portrait", "PortraitFrame")]
+[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Options", "Portrait", "PortraitFrame")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 65.0
 grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("1_eubn3")
-Portrait = NodePath("PortraitFrame/Character")
+Options = NodePath("Options")
+Portrait = NodePath("PortraitFrame/PortraitFrame/Character")
 PortraitFrame = NodePath("PortraitFrame")
 
 [node name="PortraitFrame" parent="." instance=ExtResource("2_atl8r")]
 layout_mode = 2
 
-[node name="Selection" type="Label" parent="."]
-layout_mode = 2
-text = "-
--
->"
-label_settings = SubResource("LabelSettings_12rh4")
-
-[node name="Numbers" type="Label" parent="."]
-layout_mode = 2
-text = "1
-2
-3"
-label_settings = SubResource("LabelSettings_12rh4")
-
 [node name="Options" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Option1" parent="Options" instance=ExtResource("4_fctui")]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_y2r4x")
 
-[node name="Option2" type="Label" parent="Options"]
+[node name="Option2" parent="Options" instance=ExtResource("4_fctui")]
 layout_mode = 2
-text = "No ehkä... yksi...."
-label_settings = SubResource("LabelSettings_rqitf")
 
-[node name="Option3" type="Label" parent="Options"]
+[node name="Option3" parent="Options" instance=ExtResource("4_fctui")]
 layout_mode = 2
-text = "Ehrmannia?? LITRAN PURKEISSA!?!!?!?"
-label_settings = SubResource("LabelSettings_t0flu")
 
 [editable path="PortraitFrame"]

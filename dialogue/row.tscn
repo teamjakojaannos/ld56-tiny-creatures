@@ -16,7 +16,7 @@ grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("1_o2yu2")
 TextContent = NodePath("TextContent")
-Portrait = NodePath("PortraitFrame/Character")
+Portrait = NodePath("PortraitFrame/PortraitFrame/Character")
 PortraitFrame = NodePath("PortraitFrame")
 
 [node name="TextScrollTimer" type="Timer" parent="."]
@@ -35,5 +35,11 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "A quick brown fox jumps over a lazy dog."
 label_settings = SubResource("LabelSettings_12rh4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
 
 [editable path="PortraitFrame"]

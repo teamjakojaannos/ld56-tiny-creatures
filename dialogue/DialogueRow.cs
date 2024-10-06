@@ -59,11 +59,10 @@ public partial class DialogueRow : HBoxContainer {
     }
 
     private void Refresh() {
-        if (Portrait is null) {
-            return;
+        if (Portrait is not null) {
+            Portrait.FlipH = SpeakerIsOnLeft == PortraitIsFlippedOnLeft;
         }
 
-        Portrait.FlipH = SpeakerIsOnLeft == PortraitIsFlippedOnLeft;
         Alignment = SpeakerIsOnLeft
             ? AlignmentMode.Begin
             : AlignmentMode.End;

@@ -107,6 +107,10 @@ public partial class Dialogue : CanvasLayer {
 				}
 
 				var portraitFrame = portrait.Instantiate<Control>();
+				if (portraitFrame.GetNode<Label>("Name") is Label nameLabel) {
+					nameLabel.Text = content?.Character?.Name ?? "???";
+				}
+
 				row.PortraitFrame = portraitFrame;
 				row.AddChild(portraitFrame);
 				row.MoveChild(portraitFrame, 0);

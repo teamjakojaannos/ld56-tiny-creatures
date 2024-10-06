@@ -5,6 +5,5 @@
 
 [node name="PortraitFrame" instance=ExtResource("1_cc1wt")]
 
-[node name="Character" parent="." index="0"]
+[node name="Character" parent="PortraitFrame" index="0"]
 texture = ExtResource("2_sm7tg")
-flip_h = false

@@ -3,12 +3,35 @@
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="1_3d6se"]
 [ext_resource type="Script" path="res://dialogue/DialogueOption.cs" id="2_oat3g"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7j8ep"]
+[sub_resource type="LabelSettings" id="LabelSettings_2reyo"]
 resource_local_to_scene = true
 font = ExtResource("1_3d6se")
 
-[node name="Option1" type="Label"]
+[node name="Option" type="HBoxContainer" node_paths=PackedStringArray("SelectionIndicator", "OptionIndexLabel", "TextContentLabel")]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+script = ExtResource("2_oat3g")
+SelectionIndicator = NodePath("SelectionIndicator")
+OptionIndexLabel = NodePath("OptionIndex")
+TextContentLabel = NodePath("TextContent")
+LabelSettings = SubResource("LabelSettings_2reyo")
+
+[node name="SelectionIndicator" type="Label" parent="."]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+mouse_filter = 1
+text = ">"
+label_settings = SubResource("LabelSettings_2reyo")
+
+[node name="OptionIndex" type="Label" parent="."]
+layout_mode = 2
+mouse_filter = 1
+text = "1:"
+label_settings = SubResource("LabelSettings_2reyo")
+
+[node name="TextContent" type="Label" parent="."]
+layout_mode = 2
 mouse_filter = 1
 text = "Olutta?? Tällaisessa tilanteessa?"
-label_settings = SubResource("LabelSettings_7j8ep")
-script = ExtResource("2_oat3g")
+label_settings = SubResource("LabelSettings_2reyo")

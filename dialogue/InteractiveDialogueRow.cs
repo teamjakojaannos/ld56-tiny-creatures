@@ -11,7 +11,10 @@ public partial class InteractiveDialogueRow : DialogueRow {
     [Export]
     public Color InactiveDialogueColor = Colors.Black;
 
-    public int OptionCount => GetNode("Options").GetChildCount();
+    [Export]
+    public Control? Options;
+
+    public int OptionCount => Options?.GetChildCount() ?? 0;
 
     public int HighlightedOption { get; private set; } = 0;
 
@@ -22,31 +25,16 @@ public partial class InteractiveDialogueRow : DialogueRow {
     public override bool IsReady => true;
 
     public void SetupOptions(PackedScene template, IEnumerable<string> optionLines) {
-        var options = GetNode("Options");
-
         var idx = 0;
         foreach (var line in optionLines) {
             var option = template.Instantiate<DialogueOption>();
             option.Text = line;
             option.OptionIndex = idx++;
             option.Row = this;
-            options.AddChild(option);
+            Options?.AddChild(option);
         }
 
-        SetupNumbers();
         HighlightOption(0);
-    }
-
-    public void SetupNumbers() {
-        var numberLabel = GetNode<Label>("Numbers");
-        numberLabel.Text = "";
-        for (var i = 0; i < OptionCount; i++) {
-            numberLabel.Text += $"{i + 1}:";
-
-            if (i != OptionCount - 1) {
-                numberLabel.Text += "\n";
-            }
-        }
     }
 
     public void ClearOptions() {
@@ -62,45 +50,43 @@ public partial class InteractiveDialogueRow : DialogueRow {
     }
 
     public void HighlightOption(int option) {
+        if (Options is null) {
+            return;
+        }
+
         HighlightedOption = option;
 
-        var selectionLabel = GetNode<Label>("Selection");
-        selectionLabel.Text = "";
         for (int i = 0; i < OptionCount; i++) {
-            var optionLabel = GetNode("Options").GetChild<Label>(i);
+            var dialogueOption = Options.GetChild<DialogueOption>(i);
 
             if (i == option) {
-                selectionLabel.Text += ">";
-                optionLabel.LabelSettings.FontColor = SelectedDialogueColor;
+                dialogueOption.Select();
+                GD.Print($"Selected {i}");
+                dialogueOption.LabelColor = SelectedDialogueColor;
             } else {
-                selectionLabel.Text += " ";
-                optionLabel.LabelSettings.FontColor = DialogueColor;
-            }
-
-            if (i != OptionCount - 1) {
-                selectionLabel.Text += "\n";
+                dialogueOption.Deselect();
+                GD.Print($"Deselected {i}");
+                dialogueOption.LabelColor = DialogueColor;
             }
         }
     }
 
     public void SelectOption(int option) {
+        if (Options is null) {
+            return;
+        }
+
         HighlightedOption = option;
 
-        var selectionLabel = GetNode<Label>("Selection");
-        selectionLabel.Text = "";
         for (int i = 0; i < OptionCount; i++) {
-            var optionLabel = GetNode("Options").GetChild<Label>(i);
+            var dialogueOption = GetNode("Options").GetChild<DialogueOption>(i);
 
             if (i == option) {
-                selectionLabel.Text += " ";
-                optionLabel.LabelSettings.FontColor = SelectedDialogueColor;
+                dialogueOption.Deselect();
+                dialogueOption.LabelSettings!.FontColor = SelectedDialogueColor;
             } else {
-                selectionLabel.Text += " ";
-                optionLabel.LabelSettings.FontColor = InactiveDialogueColor;
-            }
-
-            if (i != OptionCount - 1) {
-                selectionLabel.Text += "\n";
+                dialogueOption.Deselect();
+                dialogueOption.LabelSettings!.FontColor = InactiveDialogueColor;
             }
         }
     }
