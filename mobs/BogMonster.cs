@@ -6,6 +6,9 @@ public partial class BogMonster : PathFollow2D {
 	[Export]
 	public float speed = 45.0f;
 
+	[Export]
+	public PackedScene? WaterSplash;
+
 	private Player? player;
 
 	public BogMonsterAIState ai = new MovementState(goingForward: true, 0.0f);
@@ -23,15 +26,17 @@ public partial class BogMonster : PathFollow2D {
 	[Export]
 	public float detectionDecay = 10.0f;
 
-	public Node2D? attack;
+	public NakkiAttack? attack;
 	public AnimatedSprite2D? fakePlayer;
 	public AnimatedSprite2D? hand;
+
+	private bool playerWasKill = false;
 
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
-		attack = GetNode<Node2D>("Attack");
+		attack = GetNode<NakkiAttack>("Attack");
 		fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
@@ -46,6 +51,10 @@ public partial class BogMonster : PathFollow2D {
 		var shouldTickDetection = ai.shouldTickDetection();
 		if (shouldTickDetection) {
 			updateDetection(delta);
+		}
+
+		if (animationPlayer != null && animationPlayer.IsPlaying() && animationPlayer.CurrentAnimation == "attack") {
+			SyncHandLocation(1.0f * delta);
 		}
 	}
 
@@ -111,15 +120,20 @@ public partial class BogMonster : PathFollow2D {
 		return false;
 	}
 
-	public void goUnderwater() {
+	public void goUnderwater(float timeMult = 1.0f) {
 		var (min, max) = BogMonsterStats.underwaterTime;
 		var underwaterTime = rng.RandfRange(min, max);
-		ai = new UnderwaterState(underwaterTime);
+		ai = new UnderwaterState(underwaterTime * timeMult);
 		animationPlayer?.Play("go_underwater");
 		underwaterCooldown?.Start();
 	}
 
 	public void goUnderwaterAnimationDone() {
+		// HACK: if player was killed, just stay underwater
+		if (playerWasKill) {
+			return;
+		}
+
 		if (ai is UnderwaterState underwater) {
 			underwater.animationDone = true;
 		}
@@ -178,10 +192,55 @@ public partial class BogMonster : PathFollow2D {
 	}
 
 	public void playAttackAnimation() {
+		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+			if (hand is not null)  {
+				// HACK: scale instead of flipH to affect children, too
+				hand.Scale = player.GlobalPosition.X < GlobalPosition.X
+					? new(-1.0f, 1.0f)
+					: new(1.0f, 1.0f);
+			}
+
+			if (WaterSplash is not null) {
+				var splash = WaterSplash.Instantiate<Node2D>();
+				GetParent().AddChild(splash);
+				splash.GlobalPosition = player.GlobalPosition;
+			}
+		}
+
 		animationPlayer?.Play("attack");
+		ApplySlow();
+		SyncHandLocation(1.0f);
 	}
 
-	public void syncFakePlayerLocationAndHideAndStopPlayer() {
+	public void SyncHandLocation(float delta) {
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is not Player player || attack is null) {
+			return;
+		}
+
+		var distance = attack.GlobalPosition.DistanceTo(player.GlobalPosition);
+		attack.GlobalPosition = attack.GlobalPosition.MoveToward(player.GlobalPosition, distance * delta);
+	}
+
+	public void ApplySlow() {
+		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+			player.Slowed = true;
+		}
+	}
+
+	public void ClearSlow() {
+		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+			player.Slowed = false;
+		}
+	}
+
+	public void TryKillPlayer() {
+		if (attack!.IsPlayerInDanger) {
+			syncFakePlayerLocationAndHideAndKillPlayer();
+		}
+	}
+
+	public void syncFakePlayerLocationAndHideAndKillPlayer() {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
 			return;
@@ -189,17 +248,15 @@ public partial class BogMonster : PathFollow2D {
 
 		player.setSpriteVisible(false);
 		player.setMovementEnabled(false);
-		attack!.GlobalPosition = player.GlobalPosition;
+		SyncHandLocation(1.0f);
 		fakePlayer!.Visible = true;
-	}
 
-	public void killPlayer() {
-		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is Player player) {
-			player.die();
-		}
+		player.die();
+		playerWasKill = true;
 	}
 
 	public void attackAnimationDone() {
+		ClearSlow();
+		goUnderwater(0.25f);
 	}
 }

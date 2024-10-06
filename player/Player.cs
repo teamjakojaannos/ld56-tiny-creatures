@@ -41,6 +41,8 @@ public partial class Player : CharacterBody2D {
 		}
 	}
 
+	public bool Slowed { get; internal set; } = false;
+
 	private AnimatedSprite2D? playerSprite;
 
 	public override string[] _GetConfigurationWarnings() {
@@ -93,8 +95,10 @@ public partial class Player : CharacterBody2D {
 		var direction = IsAllowedToMove
 			? Input.GetVector("left", "right", "up", "down")
 			: Vector2.Zero;
+
+		var modifier = Slowed ? 0.5f : 1.0f;
 		if (direction.LengthSquared() > 0.001f) {
-			Velocity = direction * Speed * delta;
+			Velocity = direction * Speed * delta * modifier;
 			animationDirection = direction.X < 0.0
 				? "Left"
 				: direction.X > 0.0
