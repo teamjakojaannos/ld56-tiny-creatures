@@ -38,6 +38,8 @@ public partial class Intro : Node2D {
 		dialogue.DialogueFinished += IntroDialogueFinished;
 
 		dialogue.StartDialogue(IntroDialogue!);
+		var playerSprite = GetNode<AnimatedSprite2D>("PlayerSprite");
+		playerSprite.Play("IdleDown");
 	}
 
 	private void IntroDialogueFinished() {

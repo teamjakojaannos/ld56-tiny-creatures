@@ -34,6 +34,7 @@ custom_minimum_size = Vector2(76, 83)
 layout_mode = 2
 
 [node name="PortraitFrame" parent="PortraitFrameWrapper" instance=ExtResource("2_6tghr")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="TextContent" type="Label" parent="."]

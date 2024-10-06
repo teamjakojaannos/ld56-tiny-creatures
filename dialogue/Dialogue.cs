@@ -46,6 +46,10 @@ public partial class Dialogue : CanvasLayer {
 		ActiveDialogue = null;
 		ActiveDialogueRow = null;
 
+		GetNode<AnimationPlayer>("AnimationPlayer").Play("close");
+	}
+
+	public void CloseDialogueFinished() {
 		Clear();
 		Visible = false;
 	}
@@ -70,6 +74,7 @@ public partial class Dialogue : CanvasLayer {
 		Visible = true;
 
 		if (clear) {
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("open");
 			Clear();
 		}
 
