@@ -41,31 +41,35 @@ public class IdleState : ChaserAI {
 }
 
 public class WanderState : ChaserAI {
-
-	private const float closeEnough = 10.0f;
-
 	private Vector2 target;
 	private float timePassed;
+
+	private bool lookTargetSet;
+	private bool moveTargetSet;
+
 
 	public WanderState(Vector2 target) {
 		this.target = target;
 	}
 
 	public override void doUpdate(Chaser chaser, float delta) {
+		if (!lookTargetSet) {
+			lookTargetSet = true;
+			chaser.setLookDirection(target);
+		}
+
 		timePassed += delta;
 		if (timePassed >= ChaserStats.wanderTime) {
 			chaser.startIdling();
 			return;
 		}
 
-		var hasReachedTarget = target.DistanceSquaredTo(chaser.GlobalPosition) <= closeEnough;
-		if (hasReachedTarget) {
-			chaser.startIdling();
-			return;
-		}
+		// TODO: we could wait for initial turn to complete before starting movement
 
-		chaser.moveTowards(target, delta);
-		chaser.turnTowardsTarget(target, delta);
+		if (!moveTargetSet) {
+			moveTargetSet = true;
+			chaser.setMovementTarget(target);
+		}
 	}
 }
 
@@ -80,8 +84,8 @@ public class ChaseState : ChaserAI {
 	public override void doUpdate(Chaser chaser, float delta) {
 		var playerPos = player.GlobalPosition;
 
-		chaser.moveTowards(playerPos, delta);
-		chaser.turnTowardsTarget(playerPos, delta);
+		// TODO: update target every X seconds
+		// chaser.setMovementTarget(playerPos);
 	}
 }
 
@@ -96,8 +100,6 @@ public class SeekState : ChaserAI {
 
 	private float lookTimePassed;
 
-	private RandomNumberGenerator rng = new RandomNumberGenerator();
-
 	public SeekState(Vector2 lastSeen) {
 		this.walkTarget = lastSeen;
 		this.lookTarget = lastSeen;
@@ -106,6 +108,7 @@ public class SeekState : ChaserAI {
 	}
 
 	public override void doUpdate(Chaser chaser, float delta) {
+		/*
 		timePassed += delta;
 		if (timePassed >= ChaserStats.seekTime) {
 			chaser.startIdling();
@@ -141,5 +144,6 @@ public class SeekState : ChaserAI {
 			lookTarget = newTarget;
 			lookTimePassed = 0.0f;
 		}
+		*/
 	}
 }

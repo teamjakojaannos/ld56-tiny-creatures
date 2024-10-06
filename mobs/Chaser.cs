@@ -1,3 +1,4 @@
+using ChaserStuff;
 using Godot;
 
 public partial class Chaser : RigidBody2D {
@@ -11,8 +12,6 @@ public partial class Chaser : RigidBody2D {
 	[Export]
 	public float turnSpeedDegPerSec = 45.0f;
 
-	private Node2D? chaseTarget = null;
-
 	private Area2D? sightCone;
 
 	[Export]
@@ -22,20 +21,33 @@ public partial class Chaser : RigidBody2D {
 	public AnimatedSprite2D? Sprite;
 
 
-	private ChaserStuff.ChaserAI aiState = new ChaserStuff.IdleState();
+	private ChaserAI aiState = new IdleState();
 	private RandomNumberGenerator rng = new();
+
+	private float? whatDirectionToLook = null;
+	private Vector2? movementTarget = null;
+
 
 	public override void _Ready() {
 		sightCone = GetNode<Area2D>("SightCone");
 	}
 
-	public override void _Process(double _delta) {
+	public override void _PhysicsProcess(double _delta) {
 		var delta = (float)_delta;
 		aiState.doUpdate(this, delta);
+
+		turnHead(delta);
+		moveTowardsCurrentTarget(delta);
+
+		clearTargetsIfCompleted();
 	}
 
-	public void moveTowards(Vector2 target, float delta) {
-		var velocity = (target - GlobalPosition).Normalized() * speed * delta;
+	private void moveTowardsCurrentTarget(float delta) {
+		if (movementTarget is not Vector2 target) {
+			return;
+		}
+
+		var velocity = GlobalPosition.DirectionTo(target) * speed * delta;
 		MoveAndCollide(velocity);
 
 		if (velocity.LengthSquared() > 0.0001f) {
@@ -47,14 +59,56 @@ public partial class Chaser : RigidBody2D {
 		}
 	}
 
-	public void turnTowardsTarget(Vector2 target, float delta) {
+	public bool hasReachedMovementTarget() {
+		if (movementTarget is not Vector2 pos) {
+			return true;
+		}
+
+		const float closeEnough = 5.0f;
+		return GlobalPosition.DistanceSquaredTo(pos) <= closeEnough;
+	}
+
+	public void setMovementTarget(Vector2 targetGlobalPos) {
+		movementTarget = targetGlobalPos;
+	}
+
+	public void clearMovementTarget() {
+		movementTarget = null;
+	}
+
+	public void setLookDirection(Vector2 targetGlobalPos) {
+		var myPos = GlobalPosition;
+		var desiredAngle = myPos.AngleToPoint(targetGlobalPos) + coneAngleOffset;
+
+		whatDirectionToLook = desiredAngle;
+	}
+
+	public void clearLookTarget() {
+		whatDirectionToLook = null;
+	}
+
+	public bool isDoneTurning() {
+		const float closeEnough = 0.01f;
+
+		if (whatDirectionToLook is not float desiredAngle) {
+			return true;
+		}
+
+		var currentAngle = sightCone!.Rotation;
+		var diff = Mathf.AngleDifference(currentAngle, desiredAngle);
+		return Mathf.Abs(diff) <= closeEnough;
+	}
+
+	private void turnHead(float delta) {
+		if (whatDirectionToLook is not float desiredAngle) {
+			return;
+		}
+
 		var turnSpeedRadPerSec = Mathf.DegToRad(turnSpeedDegPerSec);
 		var maxTurn = turnSpeedRadPerSec * delta;
 
-		var myPos = GlobalPosition;
+		var currentAngle = sightCone!.Rotation;
 
-		var desiredAngle = myPos.AngleToPoint(target) + coneAngleOffset;
-		var currentAngle = sightCone.Rotation;
 		var rotationAmount = Mathf.AngleDifference(currentAngle, desiredAngle);
 		if (Mathf.Abs(rotationAmount) > maxTurn) {
 			rotationAmount = maxTurn * Mathf.Sign(rotationAmount);
@@ -63,6 +117,15 @@ public partial class Chaser : RigidBody2D {
 		sightCone.Rotation += rotationAmount;
 	}
 
+	private void clearTargetsIfCompleted() {
+		if (isDoneTurning()) {
+			clearLookTarget();
+		}
+
+		if (hasReachedMovementTarget()) {
+			clearMovementTarget();
+		}
+	}
 
 	public void sightConeEntered(Node2D node) {
 		if (node is not Player player) {
@@ -81,20 +144,32 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private void startChase(Player player) {
-		aiState = new ChaserStuff.ChaseState(player);
+		clearLookTarget();
+		clearMovementTarget();
+
+		aiState = new ChaseState(player);
 	}
 
 	private void startSeeking(Vector2 lastPosition) {
-		aiState = new ChaserStuff.SeekState(lastPosition);
+		clearLookTarget();
+		clearMovementTarget();
+
+		aiState = new SeekState(lastPosition);
 	}
 
 	public void startWandering() {
-		var (min, max) = ChaserStuff.ChaserStats.howFarNewTargetShouldBe;
+		clearLookTarget();
+		clearMovementTarget();
+
+		var (min, max) = ChaserStats.howFarNewTargetShouldBe;
 		var randomPoint = Util.randomVector(rng, min, max);
-		aiState = new ChaserStuff.WanderState(GlobalPosition + randomPoint);
+		aiState = new WanderState(GlobalPosition + randomPoint);
 	}
 
 	public void startIdling() {
-		aiState = new ChaserStuff.IdleState();
+		clearLookTarget();
+		clearMovementTarget();
+
+		aiState = new IdleState();
 	}
 }

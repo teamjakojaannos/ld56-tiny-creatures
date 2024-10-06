@@ -111,7 +111,7 @@ animations = [{
 size = Vector2(47, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a3q8h"]
-radius = 136.528
+radius = 75.0
 
 [sub_resource type="Animation" id="Animation_d02tt"]
 length = 0.8
@@ -228,7 +228,7 @@ shape = SubResource("RectangleShape2D_34f4t")
 position = Vector2(0, -43.5)
 
 [node name="Cone" type="CollisionPolygon2D" parent="SightCone"]
-polygon = PackedVector2Array(-1, 1, -284, -484, 203, -484)
+polygon = PackedVector2Array(0, 0, -150, -200, 150, -200)
 
 [node name="Circle" type="CollisionShape2D" parent="SightCone"]
 shape = SubResource("CircleShape2D_a3q8h")
