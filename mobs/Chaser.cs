@@ -25,11 +25,20 @@ public partial class Chaser : RigidBody2D {
 	public RandomNumberGenerator rng = new();
 
 	private float? whatDirectionToLook = null;
-	private Vector2? movementTarget = null;
 
+	private NavigationAgent2D? navigationAgent;
+	private bool navigationSetupDone = false;
 
 	public override void _Ready() {
 		sightCone = GetNode<Area2D>("SightCone");
+		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
+
+		Callable.From(ActorSetup).CallDeferred();
+	}
+
+	private async void ActorSetup() {
+		await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+		navigationSetupDone = true;
 	}
 
 	public override void _PhysicsProcess(double _delta) {
@@ -45,13 +54,15 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private Vector2? moveTowardsCurrentTarget(float delta) {
-		if (movementTarget is not Vector2 target) {
+		if (navigationAgent!.IsNavigationFinished()) {
 			return null;
 		}
 
-		var velocity = GlobalPosition.DirectionTo(target) * speed * delta;
+		var currentAgentPosition = GlobalTransform.Origin;
+		var nextPathPosition = navigationAgent.GetNextPathPosition();
+		var velocity = currentAgentPosition.DirectionTo(nextPathPosition) * speed * delta;
 		MoveAndCollide(velocity);
-		lookTowardsMovement(target);
+		lookTowardsMovement(nextPathPosition);
 		return velocity;
 	}
 
@@ -96,20 +107,21 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	public bool hasReachedMovementTarget() {
-		if (movementTarget is not Vector2 pos) {
-			return true;
-		}
-
-		const float closeEnough = 5.0f;
-		return GlobalPosition.DistanceSquaredTo(pos) <= closeEnough;
+		return navigationAgent!.IsNavigationFinished();
 	}
 
 	public void setMovementTarget(Vector2 targetGlobalPos) {
-		movementTarget = targetGlobalPos;
+		if (!navigationSetupDone) {
+			GD.Print("Trying to add target before navigation setup is done");
+			return;
+		}
+
+		navigationAgent!.TargetPosition = targetGlobalPos;
 	}
 
 	public void clearMovementTarget() {
-		movementTarget = null;
+		// is this correct way to stop?
+		navigationAgent!.TargetPosition = GlobalPosition;
 	}
 
 	public void setLookDirection(Vector2 targetGlobalPos) {

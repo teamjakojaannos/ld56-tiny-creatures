@@ -32,6 +32,7 @@ y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
+collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
 light_mask = 3
@@ -52,3 +53,8 @@ shape = SubResource("RectangleShape2D_33ep8")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(22.5, 1.5)
 shape = SubResource("RectangleShape2D_68h7p")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." groups=["navmesh"]]
+visible = false
+vertices = PackedVector2Array(-25, 0, 0, -23, 37, 0, 0, 18)
+affect_navigation_mesh = true

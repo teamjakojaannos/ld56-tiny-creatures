@@ -26,6 +26,7 @@ y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
+collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
 light_mask = 3
@@ -46,3 +47,8 @@ texture = ExtResource("3_0k38u")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_7u04c")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." groups=["navmesh"]]
+visible = false
+vertices = PackedVector2Array(-7, 1, -7, -8, 8, -8, 8, 1)
+affect_navigation_mesh = true
