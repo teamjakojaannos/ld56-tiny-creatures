@@ -1,12 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=9 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
+[ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://Environment/gradient.png" id="2_uyh0o"]
 [ext_resource type="PackedScene" uid="uid://c3kraya2m5ti6" path="res://levels/hubarea.tscn" id="3_fayk7"]
+[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_vpm8c"]
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uyh0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wu1u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vpm8c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+
+[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(-63, -249)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -15,7 +42,29 @@ scale = Vector2(2, 2)
 color = Color(0.139854, 0.126901, 0.23601, 1)
 script = ExtResource("1_chwgl")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(-489.378, -489.688)
+rotation = 0.823795
+scale = Vector2(0.447757, 0.671156)
+sprite_frames = SubResource("SpriteFrames_cgugi")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(-252, -624)
+rotation = 1.5708
+scale = Vector2(0.579057, 0.36952)
+sprite_frames = SubResource("SpriteFrames_cgugi")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+z_index = -2
+position = Vector2(-373.361, -387.025)
+rotation = -0.925025
+scale = Vector2(0.279308, 0.265398)
+sprite_frames = SubResource("SpriteFrames_8wu1u")
+
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
 offset_left = -2727.0
 offset_top = -2275.0
 offset_right = 2644.0
@@ -24,14 +73,40 @@ color = Color(0.317647, 0.211765, 0.109804, 1)
 metadata/_edit_lock_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -579.0
-offset_top = -466.0
+z_index = -2
+offset_left = -415.0
+offset_top = -541.0
 offset_right = 1.0
 offset_bottom = -44.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
 
+[node name="ColorRect5" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -632.0
+offset_top = -214.0
+offset_right = -537.0
+offset_bottom = -93.0
+color = Color(0.254902, 0.384314, 0.164706, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -606.0
+offset_top = -359.0
+offset_right = -345.0
+offset_bottom = 38.0
+color = Color(0.254902, 0.384314, 0.164706, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+z_index = -2
+offset_left = -607.0
+offset_top = -305.0
+offset_right = -495.0
+offset_bottom = -85.0
+color = Color(0.254902, 0.384314, 0.164706, 1)
+
 [node name="Node2D" parent="." instance=ExtResource("2_q4msv")]
 position = Vector2(-514, -513)
+metadata/_edit_lock_ = true
 
 [node name="Hubarea" parent="." instance=ExtResource("3_fayk7")]
 position = Vector2(-263, -373)
@@ -39,3 +114,4 @@ metadata/_edit_lock_ = true
 
 [node name="Startingarea" parent="." instance=ExtResource("4_n55f1")]
 position = Vector2(-730, 215)
+metadata/_edit_lock_ = true

@@ -7,28 +7,27 @@
 y_sort_enabled = true
 
 [node name="Tree2" parent="." instance=ExtResource("1_64oya")]
-position = Vector2(-23, -14)
+position = Vector2(52, 0)
 
 [node name="Tree8" parent="." instance=ExtResource("1_64oya")]
-position = Vector2(-25, 56)
+position = Vector2(50, 70)
 
 [node name="Tree10" parent="." instance=ExtResource("1_64oya")]
-position = Vector2(-103, -34)
+position = Vector2(-28, -20)
 
 [node name="Tree9" parent="." instance=ExtResource("1_64oya")]
-position = Vector2(-125, 41)
+position = Vector2(-50, 55)
 
 [node name="Tree4" parent="." instance=ExtResource("1_64oya")]
-position = Vector2(-79, 28)
+position = Vector2(-4, 42)
 
 [node name="Tree1" parent="." instance=ExtResource("2_pk8gs")]
-position = Vector2(-36, 17)
+position = Vector2(39, 31)
 
 [node name="Tree5" parent="." instance=ExtResource("2_pk8gs")]
-position = Vector2(-88, 58)
+position = Vector2(-13, 72)
 
 [node name="Tree3" parent="." instance=ExtResource("2_pk8gs")]
-position = Vector2(-75, -14)
 
 [node name="Tree6" parent="." instance=ExtResource("2_pk8gs")]
-position = Vector2(-122, 2)
+position = Vector2(-47, 16)
