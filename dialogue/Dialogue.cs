@@ -110,7 +110,6 @@ public partial class Dialogue : CanvasLayer {
 			var portrait = content?.Character?.Portrait;
 			if (portrait is not null) {
 				if (row.PortraitFrame is not null) {
-					row.RemoveChild(row.PortraitFrame);
 					row.PortraitFrame.QueueFree();
 					row.PortraitFrame = null;
 				}
@@ -121,10 +120,10 @@ public partial class Dialogue : CanvasLayer {
 				}
 
 				row.PortraitFrame = portraitFrame;
-				row.AddChild(portraitFrame);
-				row.MoveChild(portraitFrame, 0);
+				row.PortraitFrameWrapper!.AddChild(portraitFrame);
+				row.PortraitFrameWrapper.MoveChild(portraitFrame, 0);
 			}
-			
+
 			row.CallDeferred(MethodName.StartDialogue);
 		}
 	}

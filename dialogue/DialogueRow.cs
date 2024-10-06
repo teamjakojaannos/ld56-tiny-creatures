@@ -24,10 +24,19 @@ public partial class DialogueRow : HBoxContainer {
     public Label? TextContent;
 
     [Export]
-    public TextureRect? Portrait;
+    public Control? PortraitFrame;
 
     [Export]
-    public Control? PortraitFrame;
+    public Control? PortraitFrameWrapper;
+
+    [Export]
+    public HBoxContainer? Container;
+
+    [Export]
+    public Timer? TextScrollTimer;
+
+    [Export]
+    public AudioStreamPlayer? SpeakingSfx;
 
     protected virtual bool AutoplayAudio() {
         return true;
@@ -36,34 +45,38 @@ public partial class DialogueRow : HBoxContainer {
     public void StartDialogue() {
         Refresh();
 
-        if (GetNodeOrNull<Timer>("TextScrollTimer") is Timer timer && !Engine.IsEditorHint()) {
-            var audio = GetNodeOrNull<AudioStreamPlayer>("SpeakingSfx");
-            if (AutoplayAudio()) {
-                audio?.Play();
-            }
-
+        if (TextScrollTimer is not null && !Engine.IsEditorHint()) {
             TextContent!.VisibleCharacters = 0;
             TextContent!.CustomMinimumSize = new(TextContent.Size.X, TextContent.Size.Y);
-            timer.Timeout += () => {
+            TextScrollTimer.Timeout += () => {
                 if (IsReady) {
-                    timer.Stop();
-                    audio?.Stop();
+                    TextScrollTimer.Stop();
+                    SpeakingSfx!.Stop();
                     return;
                 }
 
                 TextContent!.VisibleCharacters++;
             };
 
-            timer.Start();
+            GetTree().CreateTimer(0.5f).Timeout += () => {
+                TextScrollTimer.Start();
+                if (AutoplayAudio()) {
+                    SpeakingSfx!.Play();
+                }
+            };
         }
+
+        PortraitFrame
+            ?.GetNode<AnimationPlayer>("AnimationPlayer")
+            ?.Play(SpeakerIsOnLeft ? "enter_left" : "enter_right");
     }
 
     private void Refresh() {
-        if (Portrait is not null) {
-            Portrait.FlipH = SpeakerIsOnLeft == PortraitIsFlippedOnLeft;
+        if (PortraitFrame?.GetNodeOrNull<TextureRect>("PortraitFrame/Character") is TextureRect portrait) {
+            portrait.FlipH = SpeakerIsOnLeft == PortraitIsFlippedOnLeft;
         }
 
-        Alignment = SpeakerIsOnLeft
+        Container!.Alignment = SpeakerIsOnLeft
             ? AlignmentMode.Begin
             : AlignmentMode.End;
         if (TextContent is not null) {
@@ -74,10 +87,10 @@ public partial class DialogueRow : HBoxContainer {
 
         if (SpeakerIsOnLeft) {
             var firstChildIndex = 0;
-            MoveChild(PortraitFrame, firstChildIndex);
+            MoveChild(PortraitFrameWrapper == this ? PortraitFrame : PortraitFrameWrapper, firstChildIndex);
         } else {
             var lastChildIndex = GetChildCount() - 1;
-            MoveChild(PortraitFrame, lastChildIndex);
+            MoveChild(PortraitFrameWrapper == this ? PortraitFrame : PortraitFrameWrapper, lastChildIndex);
         }
     }
 }

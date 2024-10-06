@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dva0mxjbjqfxy"]
+[gd_scene load_steps=8 format=3 uid="uid://dva0mxjbjqfxy"]
 
 [ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="1_roa8q"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_7ke3r"]
@@ -7,9 +7,129 @@
 font = ExtResource("2_7ke3r")
 font_size = 12
 
+[sub_resource type="Animation" id="Animation_jmyve"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6655w"]
+resource_name = "enter_right"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(200, -0.25, 0, 0.225, -1.5, 171.5, -0.1, 22, 0.1, -22, 4.5, -0.09, 76, 0.09, -76, 2.5, -0.05, 16, 0.05, -16, -0.5, -0.083, 20, 0.083, -20),
+"times": PackedFloat32Array(0, 0.433333, 0.633333, 0.8, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0j4sj"]
+resource_name = "enter_left"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-200, -0.25, 0, 0.225422, 1.5, -171.5, -0.1, -22, 0.1, 22, -4.5, -0.0898972, -76, 0.0898972, 76, -2.5, -0.0495773, -16, 0.0495773, 16, 0.5, -0.0829106, -20, 0.0829106, 20),
+"times": PackedFloat32Array(0, 0.433333, 0.633333, 0.8, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_es6j6"]
+_data = {
+"RESET": SubResource("Animation_jmyve"),
+"enter_left": SubResource("Animation_0j4sj"),
+"enter_right": SubResource("Animation_6655w")
+}
+
 [node name="Container" type="VBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 0.5
+offset_right = 76.5
+offset_bottom = 83.0
 
 [node name="PortraitFrame" type="ColorRect" parent="."]
 clip_children = 2
@@ -35,3 +155,8 @@ layout_mode = 2
 text = "Kuka Aku"
 label_settings = SubResource("LabelSettings_j80jm")
 horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_es6j6")
+}

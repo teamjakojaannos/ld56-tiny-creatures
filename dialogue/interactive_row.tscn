@@ -17,7 +17,7 @@ font = ExtResource("4_vw23s")
 resource_local_to_scene = true
 font = ExtResource("4_vw23s")
 
-[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Options", "Portrait", "PortraitFrame")]
+[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Options", "PortraitFrame", "PortraitFrameWrapper", "Container")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 65.0
@@ -25,11 +25,15 @@ grow_horizontal = 2
 theme_override_constants/separation = 8
 script = ExtResource("1_eubn3")
 Options = NodePath("Options")
-Portrait = NodePath("PortraitFrame/PortraitFrame/Character")
 PortraitFrame = NodePath("PortraitFrame")
+PortraitFrameWrapper = NodePath(".")
+Container = NodePath(".")
 
 [node name="PortraitFrame" parent="." instance=ExtResource("2_atl8r")]
 layout_mode = 2
+
+[node name="AnimationPlayer" parent="PortraitFrame" index="2"]
+autoplay = "enter_left"
 
 [node name="Options" type="VBoxContainer" parent="."]
 layout_mode = 2

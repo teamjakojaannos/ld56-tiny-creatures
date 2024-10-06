@@ -60,15 +60,19 @@ public partial class DialogueOption : Control {
 			OptionIndexLabel.LabelSettings = LabelSettings;
 		}
 
-		MouseEntered += () => {
-			Row?.HighlightOption(OptionIndex);
-			Select();
-			isHovered = true;
-		};
-		MouseExited += () => {
-			isHovered = false;
-			Deselect();
-		};
+		MouseEntered += OnMouseHover;
+		MouseExited += OnMouseLeave;
+	}
+
+	private void OnMouseHover() {
+		Row?.HighlightOption(OptionIndex);
+		Select();
+		isHovered = true;
+	}
+
+	private void OnMouseLeave() {
+		isHovered = false;
+		Deselect();
 	}
 
 	public override void _GuiInput(InputEvent @event) {
@@ -89,6 +93,14 @@ public partial class DialogueOption : Control {
 	public void Deselect() {
 		if (SelectionIndicator is not null) {
 			SelectionIndicator.Text = " ";
+		}
+	}
+
+	public void Deactivate() {
+		if (SelectionIndicator is not null) {
+			SelectionIndicator.Text = " ";
+			MouseEntered -= OnMouseHover;
+			MouseExited -= OnMouseLeave;
 		}
 	}
 }

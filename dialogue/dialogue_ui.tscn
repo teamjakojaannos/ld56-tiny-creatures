@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://hthnt1vcknxx"]
+[gd_scene load_steps=7 format=3 uid="uid://hthnt1vcknxx"]
 
 [ext_resource type="Script" path="res://dialogue/Dialogue.cs" id="1_e7iml"]
 [ext_resource type="PackedScene" uid="uid://ylwci2dowuy7" path="res://dialogue/row.tscn" id="1_h21uh"]
 [ext_resource type="PackedScene" uid="uid://b20ibux777wdy" path="res://dialogue/interactive_row.tscn" id="3_ib14a"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_ly15r"]
+
+[sub_resource type="Gradient" id="Gradient_jd6yg"]
+offsets = PackedFloat32Array(0, 0.998182)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bbcn0"]
+gradient = SubResource("Gradient_jd6yg")
+fill_from = Vector2(1, 1)
 
 [node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("DialogueList")]
 script = ExtResource("1_e7iml")
@@ -12,6 +20,15 @@ DialogueRow = ExtResource("1_h21uh")
 InteractiveDialogueRow = ExtResource("3_ib14a")
 InteractiveDialogueRowOption = ExtResource("4_ly15r")
 DialogueList = NodePath("DialogueContainer/DialogueList")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_bbcn0")
 
 [node name="DialogueContainer" type="Control" parent="."]
 layout_mode = 3
@@ -36,7 +53,6 @@ grow_vertical = 0
 alignment = 2
 
 [node name="Row" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
-layout_direction = 2
 layout_mode = 2
 
 [node name="Row2" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]

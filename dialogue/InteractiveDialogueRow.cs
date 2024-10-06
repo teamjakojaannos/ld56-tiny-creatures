@@ -79,11 +79,10 @@ public partial class InteractiveDialogueRow : DialogueRow {
         for (int i = 0; i < OptionCount; i++) {
             var dialogueOption = GetNode("Options").GetChild<DialogueOption>(i);
 
+            dialogueOption.Deactivate();
             if (i == option) {
-                dialogueOption.Deselect();
                 dialogueOption.LabelSettings!.FontColor = SelectedDialogueColor;
             } else {
-                dialogueOption.Deselect();
                 dialogueOption.LabelSettings!.FontColor = InactiveDialogueColor;
             }
         }
