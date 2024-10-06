@@ -41,7 +41,7 @@ public partial class Chaser : RigidBody2D {
 		if (velocity.LengthSquared() > 0.0001f) {
 			AnimPlayer!.Play(velocity.Y >= 0.0f ? "WalkFront" : "WalkBack");
 
-			Sprite.FlipH = velocity.X > 0.0f;
+			Sprite!.FlipH = velocity.X > 0.0f;
 		} else {
 			AnimPlayer!.Play("Idle");
 		}
