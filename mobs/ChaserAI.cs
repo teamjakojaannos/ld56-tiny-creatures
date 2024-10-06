@@ -18,8 +18,10 @@ public static class ChaserStats {
 	// motivation to name things properly ends here
 	public static (float, float) howFarNewTargetShouldBe = (100.0f, 1000.0f);
 
-	// in seek state: one in N chance to pick new target we it will walk, otherwise look around
-	public const int pickNewWalkTargetWeight = 3;
+	// update chase target position every x seconds
+	public const float chaseTargetPositionUpdateFrequency = 0.5f;
+
+	public const float keepLookingChance = 0.25f;
 }
 
 
@@ -75,75 +77,80 @@ public class WanderState : ChaserAI {
 
 public class ChaseState : ChaserAI {
 
+	private float timeSinceLastUpdate;
 	private Node2D player;
 
 	public ChaseState(Node2D player) {
 		this.player = player;
+		timeSinceLastUpdate = ChaserStats.chaseTargetPositionUpdateFrequency;
 	}
 
 	public override void doUpdate(Chaser chaser, float delta) {
 		var playerPos = player.GlobalPosition;
 
-		// TODO: update target every X seconds
-		// chaser.setMovementTarget(playerPos);
+		timeSinceLastUpdate += delta;
+		if (timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
+			timeSinceLastUpdate = 0.0f;
+			chaser.setLookDirection(playerPos);
+			chaser.setMovementTarget(playerPos);
+		}
 	}
 }
 
 public class SeekState : ChaserAI {
-
-	private const float closeEnough = 50.0f;
-
-	private Vector2 walkTarget;
-	private Vector2 lookTarget;
+	private Vector2 lastSeen;
+	private bool movementTargetSet;
+	private bool lookTargetSet;
 
 	private float timePassed;
 
 	private float lookTimePassed;
 
 	public SeekState(Vector2 lastSeen) {
-		this.walkTarget = lastSeen;
-		this.lookTarget = lastSeen;
-		// make the enemy pick new position on first time reaching target
-		this.lookTimePassed = ChaserStats.lookTime;
+		this.lastSeen = lastSeen;
+		this.lookTimePassed = 0.0f;
 	}
 
 	public override void doUpdate(Chaser chaser, float delta) {
-		/*
 		timePassed += delta;
 		if (timePassed >= ChaserStats.seekTime) {
 			chaser.startIdling();
 			return;
 		}
 
+		if (!lookTargetSet) {
+			lookTargetSet = true;
+			chaser.setLookDirection(lastSeen);
+		}
 
-		var hasReachedTarget = chaser.GlobalPosition.DistanceSquaredTo(walkTarget) <= closeEnough;
-		if (!hasReachedTarget) {
-			chaser.moveTowards(walkTarget, delta);
-			chaser.turnTowardsTarget(lookTarget, delta);
+		if (!movementTargetSet) {
+			movementTargetSet = true;
+			chaser.setMovementTarget(lastSeen);
+		}
+
+		if (chaser.hasReachedMovementTarget()) {
+			lookTimePassed += delta;
+		}
+
+		var shouldRollNewAction = lookTimePassed >= ChaserStats.lookTime;
+		if (!shouldRollNewAction) {
 			return;
 		}
 
-		lookTimePassed += delta;
-		if (lookTimePassed < ChaserStats.lookTime) {
-			// haven't spend enough time looking around -> keep looking
-			chaser.turnTowardsTarget(lookTarget, delta);
-			return;
-		}
+		lookTimePassed = 0.0f;
 
-
-		var pickNewWalkTarget = rng.RandiRange(0, ChaserStats.pickNewWalkTargetWeight) == 0;
-		if (pickNewWalkTarget) {
+		var pickNewMoveTarget = Util.diceRoll(chaser.rng, ChaserStats.keepLookingChance);
+		if (pickNewMoveTarget) {
 			var (min, max) = ChaserStats.howFarNewTargetShouldBe;
-			var randomPos = Util.randomVector(rng, min, max);
+			var randomPos = Util.randomVector(chaser.rng, min, max);
 			var newTarget = chaser.GlobalPosition + randomPos;
-			walkTarget = newTarget;
-			lookTarget = newTarget;
+			chaser.setLookDirection(newTarget);
+			chaser.setMovementTarget(newTarget);
+
 		} else {
-			var randomPos = Util.randomVector(rng, minDistance: 100.0f, maxDistance: 100.0f);
+			var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
 			var newTarget = chaser.GlobalPosition + randomPos;
-			lookTarget = newTarget;
-			lookTimePassed = 0.0f;
+			chaser.setLookDirection(newTarget);
 		}
-		*/
 	}
 }

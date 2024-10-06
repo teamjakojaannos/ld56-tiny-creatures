@@ -22,7 +22,7 @@ public partial class Chaser : RigidBody2D {
 
 
 	private ChaserAI aiState = new IdleState();
-	private RandomNumberGenerator rng = new();
+	public RandomNumberGenerator rng = new();
 
 	private float? whatDirectionToLook = null;
 	private Vector2? movementTarget = null;
