@@ -1,5 +1,6 @@
 using ChaserStuff;
 using Godot;
+using Godot.Collections;
 
 public partial class Chaser : RigidBody2D {
 
@@ -280,9 +281,32 @@ public partial class Chaser : RigidBody2D {
 		clearLookTarget();
 		clearMovementTarget();
 
-		var (min, max) = ChaserStats.howFarNewTargetShouldBe;
-		var randomPoint = Util.randomVector(rng, min, max);
-		aiState = new WanderState(GlobalPosition + randomPoint);
+
+		var randomPoint = getRandomNavigationPoint();
+		aiState = new WanderState(randomPoint);
+	}
+
+	private Vector2 getRandomNavigationPoint() {
+		var roots = GetTree().GetNodesInGroup("MarkoMarkersRoot");
+		var allPositions = new Array<Vector2>();
+
+		foreach (var root in roots) {
+			var children = root.GetChildren();
+			foreach (var child in children) {
+				if (child is Marker2D marker) {
+					allPositions.Add(marker.GlobalPosition);
+				}
+			}
+		}
+
+		if (allPositions.Count == 0) {
+			GD.Print("Can't find any navigation nodes for Marko, picking random point!");
+			var (min, max) = ChaserStats.howFarNewTargetShouldBe;
+			var randomPoint = Util.randomVector(rng, min, max);
+			return randomPoint + GlobalPosition;
+		} else {
+			return allPositions.PickRandom();
+		}
 	}
 
 	public void startIdling() {

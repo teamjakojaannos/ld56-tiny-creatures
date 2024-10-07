@@ -38,3 +38,17 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(141, 149, 225, 27, 297, 49, 207, 179)
+
+[node name="Marko" type="Node2D" parent="." groups=["MarkoMarkersRoot"]]
+
+[node name="Marker2D" type="Marker2D" parent="Marko"]
+position = Vector2(56.832, 74.1367)
+
+[node name="Marker2D2" type="Marker2D" parent="Marko"]
+position = Vector2(521.749, -41.181)
+
+[node name="Marker2D3" type="Marker2D" parent="Marko"]
+position = Vector2(-55.9023, 284.456)
+
+[node name="Marker2D4" type="Marker2D" parent="Marko"]
+position = Vector2(598.203, 202.339)

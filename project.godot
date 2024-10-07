@@ -42,6 +42,7 @@ PlayIntro=""
 navmesh=""
 IntroPlayerSpawn=""
 MainCamera=""
+MarkoMarkersRoot=""
 
 [input]
 
