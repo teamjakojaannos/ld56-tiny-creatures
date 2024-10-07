@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BogMonsterStats" load_steps=2 format=3 uid="uid://clyis4j0lhx0d"]
+
+[ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="1_us665"]
+
+[resource]
+script = ExtResource("1_us665")
+moveTime = 3.0
+stopMoveChance = 0.4
+changeDirectionInsteadOfStoppingChance = 0.1
+goUnderwaterChance = 0.4
+minUnderwaterTime = 1.0
+maxUnderwaterTime = 3.0
+minIdleTime = 0.5
+maxIdleTime = 2.0
+emergeAtPlayerChance = 0.35
+alertTime = 7.5
+alertThreshold = 40.0
+attackThreshold = 100.0

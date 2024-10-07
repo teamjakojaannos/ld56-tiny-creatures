@@ -2,32 +2,6 @@ using Godot;
 
 namespace BogMonsterStuff;
 
-public static class BogMonsterStats {
-
-	// moves for this many seconds, then rolls to change state
-	public const float moveTime = 3.0f;
-
-	// chance to stop movement and change state
-	public const float stopMoveChance = 0.40f;
-
-	// chance to stop movement and change state
-	public const float changeDirectionInsteadOfStoppingChance = 0.10f;
-
-	public const float goUnderwaterChance = 0.40f;
-
-	// min/max time to stay underwater
-	public static (float, float) underwaterTime = (1.0f, 3.0f);
-
-	// min and max idle time
-	public static (float, float) idleTime = (0.5f, 2.0f);
-
-	public const float emergeAtPlayerChance = 0.35f;
-
-	public const float alertTime = 7.5f;
-	public const float alertThreshold = 40.0f;
-	public const float attackThreshold = 100.0f;
-}
-
 public enum Direction {
 	Forward,
 	Backward,
@@ -50,20 +24,20 @@ public abstract class BogMonsterAIState {
 
 	public virtual void detectionLevelChanged(BogMonster monster) {
 		float detectionLevel = monster.detectionLevel;
-		if (detectionLevel >= BogMonsterStats.attackThreshold) {
+		if (detectionLevel >= monster.stats.attackThreshold) {
 			monster.ai = new AttackState();
 			return;
 		}
 
-		if (detectionLevel >= BogMonsterStats.alertThreshold) {
+		if (detectionLevel >= monster.stats.alertThreshold) {
 			monster.ai = new AlertedState(monster.speed);
 			return;
 		}
 	}
 
-	internal static float randomIdleTime(RandomNumberGenerator rng) {
-		var (min, max) = BogMonsterStats.idleTime;
-		return rng.RandfRange(min, max);
+	internal static float randomIdleTime(BogMonster monster) {
+		var (min, max) = monster.stats.idleTime;
+		return monster.rng.RandfRange(min, max);
 	}
 }
 
@@ -79,17 +53,17 @@ public class MovementState : BogMonsterAIState {
 
 	public override void doUpdate(BogMonster monster, float delta) {
 		timePassed += delta;
-		if (timePassed >= BogMonsterStats.moveTime) {
+		if (timePassed >= monster.stats.moveTime) {
 			timePassed = 0.0f;
 
-			var stopMovement = monster.rng.Randf() < BogMonsterStats.stopMoveChance;
+			var stopMovement = monster.rng.Randf() < monster.stats.stopMoveChance;
 			if (stopMovement) {
-				var idleTime = randomIdleTime(monster.rng);
+				var idleTime = randomIdleTime(monster);
 				monster.ai = new IdleState(idleTime, nextDirection: null);
 				return;
 			}
 
-			var wentUnderwater = monster.rollToGoUnderwater(BogMonsterStats.goUnderwaterChance);
+			var wentUnderwater = monster.rollToGoUnderwater(monster.stats.goUnderwaterChance);
 			if (wentUnderwater) {
 				return;
 			}
@@ -117,18 +91,18 @@ public class MovementState : BogMonsterAIState {
 
 
 	private void endOfLine(BogMonster monster) {
-		var keepGoing = monster.rng.Randf() < BogMonsterStats.changeDirectionInsteadOfStoppingChance;
+		var keepGoing = monster.rng.Randf() < monster.stats.changeDirectionInsteadOfStoppingChance;
 		if (keepGoing) {
 			direction = direction.opposite();
 			return;
 		}
 
-		var wentUnderwater = monster.rollToGoUnderwater(BogMonsterStats.goUnderwaterChance);
+		var wentUnderwater = monster.rollToGoUnderwater(monster.stats.goUnderwaterChance);
 		if (wentUnderwater) {
 			return;
 		}
 
-		var idleTime = randomIdleTime(monster.rng);
+		var idleTime = randomIdleTime(monster);
 		monster.ai = new IdleState(idleTime, nextDirection: direction.opposite());
 	}
 }
@@ -146,7 +120,7 @@ public class IdleState : BogMonsterAIState {
 	public override void doUpdate(BogMonster monster, float delta) {
 		timeWaited += delta;
 		if (timeWaited >= waitTime) {
-			var wentUnderwater = monster.rollToGoUnderwater(BogMonsterStats.goUnderwaterChance);
+			var wentUnderwater = monster.rollToGoUnderwater(monster.stats.goUnderwaterChance);
 			if (wentUnderwater) {
 				return;
 			}
@@ -191,7 +165,7 @@ public class UnderwaterState : BogMonsterAIState {
 
 	private void emergeFromWater(BogMonster monster) {
 		animationDone = false;
-		var emergeAtPlayer = monster.rng.Randf() < BogMonsterStats.emergeAtPlayerChance;
+		var emergeAtPlayer = monster.rng.Randf() < monster.stats.emergeAtPlayerChance;
 		if (emergeAtPlayer) {
 			monster.emergeFromWaterNearPlayer();
 		} else {
@@ -218,12 +192,12 @@ public class AlertedState : BogMonsterAIState {
 		if (r is not float relative) {
 			// can't find player for some reason
 			monster.detectionLevel = 0.0f;
-			monster.ai = new IdleState(randomIdleTime(monster.rng), null);
+			monster.ai = new IdleState(randomIdleTime(monster), null);
 			return;
 		}
 
 		timePassed += delta;
-		if (timePassed >= BogMonsterStats.alertTime) {
+		if (timePassed >= monster.stats.alertTime) {
 			monster.detectionLevel = 0.0f;
 			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.speed);
 			return;
@@ -257,7 +231,7 @@ public class AlertedState : BogMonsterAIState {
 
 	public override void detectionLevelChanged(BogMonster monster) {
 		float detectionLevel = monster.detectionLevel;
-		if (detectionLevel >= BogMonsterStats.attackThreshold) {
+		if (detectionLevel >= monster.stats.attackThreshold) {
 			monster.ai = new AttackState();
 			return;
 		}

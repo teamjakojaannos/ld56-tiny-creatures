@@ -32,6 +32,18 @@ public partial class BogMonster : PathFollow2D {
 
 	private bool playerWasKill = false;
 
+
+	private BogMonsterStats? _stats;
+
+	[Export]
+	public BogMonsterStats stats {
+		get => _stats ?? Util.TrustMeBro<BogMonsterStats>();
+		set {
+			_stats = value;
+			UpdateConfigurationWarnings();
+		}
+	}
+
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
@@ -121,7 +133,7 @@ public partial class BogMonster : PathFollow2D {
 	}
 
 	public void goUnderwater(float timeMult = 1.0f) {
-		var (min, max) = BogMonsterStats.underwaterTime;
+		var (min, max) = stats.underwaterTime;
 		var underwaterTime = rng.RandfRange(min, max);
 		ai = new UnderwaterState(underwaterTime * timeMult);
 		animationPlayer?.Play("go_underwater");
@@ -193,7 +205,7 @@ public partial class BogMonster : PathFollow2D {
 
 	public void playAttackAnimation() {
 		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
-			if (hand is not null)  {
+			if (hand is not null) {
 				// HACK: scale instead of flipH to affect children, too
 				hand.Scale = player.GlobalPosition.X < GlobalPosition.X
 					? new(-1.0f, 1.0f)
