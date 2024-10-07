@@ -5,8 +5,8 @@ using Godot.Collections;
 public partial class Chaser : RigidBody2D {
 
 	public float speed;
-	[Export] public float acceleration = 20.0f;
-	[Export] public float baseSpeed = 90.0f;
+	[Export] public float acceleration = 15.0f;
+	[Export] public float baseSpeed = 60.0f;
 	[Export] public float maxSpeed = 200.0f;
 
 	[Export(PropertyHint.Range, "-3.14,3.14,")]
