@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="10_lsb5y"]
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="12_bjl3q"]
-[ext_resource type="PackedScene" path="res://Environment/the_wall.tscn" id="12_i73y1"]
+[ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
 [ext_resource type="Script" path="res://levels/hubarea/HupiVispila.cs" id="12_lkge0"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="14_ntq3p"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="15_t7bcq"]
@@ -903,15 +903,15 @@ color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä 6" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (suo_etelä)" type="Node2D" parent="Vispilät"]
 modulate = Color(0, 1, 0.55, 1)
 z_index = 2
 y_sort_enabled = true
 position = Vector2(-21, 63)
 script = ExtResource("12_lkge0")
-Location = "hupialue"
+Location = "suo_etelä"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä 6"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suo_etelä)"]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -920,22 +920,22 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä 6"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (suo_etelä)"]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä 7" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (suosaari)" type="Node2D" parent="Vispilät"]
 modulate = Color(0, 1, 0.55, 1)
 z_index = 2
 y_sort_enabled = true
 position = Vector2(30, 64)
 script = ExtResource("12_lkge0")
-Location = "hupialue"
+Location = "suosaari"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä 7"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suosaari)"]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -944,7 +944,7 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä 7"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (suosaari)"]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
