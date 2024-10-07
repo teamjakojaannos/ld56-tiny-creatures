@@ -1336,6 +1336,23 @@ visible = false
 script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_s7avi")
 
+[node name="MarkoMarkers" type="Node2D" parent="." groups=["MarkoMarkersRoot"]]
+
+[node name="Marker2D" type="Marker2D" parent="MarkoMarkers"]
+position = Vector2(-1096.81, -180.027)
+
+[node name="Marker2D2" type="Marker2D" parent="MarkoMarkers"]
+position = Vector2(-995.319, -26.6916)
+
+[node name="Marker2D3" type="Marker2D" parent="MarkoMarkers"]
+position = Vector2(-964.171, 36.548)
+
+[node name="Marker2D4" type="Marker2D" parent="MarkoMarkers"]
+position = Vector2(-767.867, -365.759)
+
+[node name="Marker2D5" type="Marker2D" parent="MarkoMarkers"]
+position = Vector2(-394.931, -402.297)
+
 [editable path="JokuHassuKalloKeppi"]
 [editable path="WispInteractable2"]
 [editable path="NPC_crow/WispInteractable"]
