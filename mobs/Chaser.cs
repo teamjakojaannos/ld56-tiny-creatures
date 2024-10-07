@@ -45,6 +45,9 @@ public partial class Chaser : RigidBody2D {
 	[Export]
 	public Footsteps? Footsteps;
 
+	[Export]
+	public Footsteps? AttackSounds;
+
 	public override void _Ready() {
 		sightConeRoot = GetNode<Node2D>("SightCone");
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
@@ -302,6 +305,7 @@ public partial class Chaser : RigidBody2D {
 		clearLookTarget();
 		clearMovementTarget();
 
+		AttackSounds?.Play();
 		this.Jukebox().StartChase();
 		aiState = new ChaseState(player);
 	}
@@ -360,6 +364,7 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private void attackPlayer(Player player) {
+		AttackSounds?.Play();
 		isAttacking = true;
 		player.setSpriteVisible(false);
 		player.setMovementEnabled(false);

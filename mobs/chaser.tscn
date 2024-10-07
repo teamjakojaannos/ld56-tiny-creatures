@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://pk3tc6o4spst"]
+[gd_scene load_steps=47 format=3 uid="uid://pk3tc6o4spst"]
 
 [ext_resource type="Script" path="res://mobs/Chaser.cs" id="1_sj5s6"]
 [ext_resource type="Texture2D" uid="uid://bgqidrl2t46ak" path="res://mobs/markoidleB.png" id="2_i5kib"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" path="res://player/Footsteps.cs" id="9_d77we"]
 [ext_resource type="AudioStream" uid="uid://bdaw5eoepaqbj" path="res://mobs/morko/isoaskel1.ogg" id="10_xhd7h"]
 [ext_resource type="AudioStream" uid="uid://bf6b7018ta06l" path="res://mobs/morko/isoaskel2.ogg" id="11_ueypv"]
+[ext_resource type="AudioStream" uid="uid://ciu5m6wgbhk4q" path="res://mobs/morko/morokolli1.ogg" id="12_5i00f"]
+[ext_resource type="AudioStream" uid="uid://c3jk0h6p1llhj" path="res://mobs/morko/morokolli2.ogg" id="13_qrnb0"]
+[ext_resource type="AudioStream" uid="uid://t5l8ey31r463" path="res://mobs/morko/morokolli3.ogg" id="14_51dqm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_281o1"]
 atlas = ExtResource("2_i5kib")
@@ -452,13 +455,14 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_nl403"]
 radius = 20.0
 
-[node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite", "FootstepsTimer", "Footsteps")]
+[node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite", "FootstepsTimer", "Footsteps", "AttackSounds")]
 lock_rotation = true
 script = ExtResource("1_sj5s6")
 AnimPlayer = NodePath("AnimationPlayer")
 Sprite = NodePath("Sprite2D")
 FootstepsTimer = NodePath("FootstepTimer")
 Footsteps = NodePath("Footsteps")
+AttackSounds = NodePath("Node")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -571,6 +575,24 @@ position = Vector2(-1, -1)
 stream = ExtResource("11_ueypv")
 volume_db = -5.0
 max_distance = 500.0
+bus = &"SFX"
+
+[node name="Node" type="Node2D" parent="."]
+script = ExtResource("9_d77we")
+
+[node name="Morokolli1" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("12_5i00f")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Morokolli2" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("13_qrnb0")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Morokolli3" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("14_51dqm")
+volume_db = -5.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="SightCone/SightConeLarge" to="." method="enterSightConeLarge"]
