@@ -53,6 +53,11 @@ public partial class Chaser : RigidBody2D {
 			player.LightLevelChanged += playerLightLevelChanged;
 			activateSightCone(player.lightLevel);
 		}
+
+		this.Persistent().PlayerRespawned += () => {
+			isAttacking = false;
+			aiState = new IdleState();
+		};
 	}
 
 	private async void ActorSetup() {
