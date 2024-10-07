@@ -4,9 +4,6 @@ using Godot;
 public partial class BogMonster : PathFollow2D {
 
 	[Export]
-	public float speed = 45.0f;
-
-	[Export]
 	public PackedScene? WaterSplash;
 
 	private Player? player;
@@ -21,10 +18,6 @@ public partial class BogMonster : PathFollow2D {
 	private RayCast2D? lineOfSight;
 
 	public float detectionLevel;
-	[Export]
-	public float detectionGain = 30.0f;
-	[Export]
-	public float detectionDecay = 10.0f;
 
 	public NakkiAttack? attack;
 	public AnimatedSprite2D? fakePlayer;
@@ -52,12 +45,12 @@ public partial class BogMonster : PathFollow2D {
 		fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
-		ai = new MovementState(goingForward: true, speed);
+		ai = new MovementState(goingForward: true, stats.speed);
 
 		this.Persistent().PlayerRespawned += () => {
 			playerWasKill = false;	
 			animationPlayer?.Play("emerge_from_water");
-			ai = new MovementState(goingForward: true, speed);
+			ai = new MovementState(goingForward: true, stats.speed);
 		};
 	}
 
@@ -80,9 +73,9 @@ public partial class BogMonster : PathFollow2D {
 		var canSeePlayer = raycastToPlayer();
 
 		if (canSeePlayer) {
-			detectionLevel += detectionGain * delta;
+			detectionLevel += stats.detectionGain * delta;
 		} else {
-			detectionLevel -= detectionDecay * delta;
+			detectionLevel -= stats.detectionDecay * delta;
 		}
 
 		detectionLevel = Mathf.Clamp(detectionLevel, 0.0f, 100.0f);
@@ -202,7 +195,7 @@ public partial class BogMonster : PathFollow2D {
 
 	public void emergefromWaterAnimationDone() {
 		var goingForward = Util.randomBool(rng);
-		ai = new MovementState(goingForward, speed);
+		ai = new MovementState(goingForward, stats.speed);
 	}
 
 	public bool canGoUnderwater() {

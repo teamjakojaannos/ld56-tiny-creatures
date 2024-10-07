@@ -30,7 +30,7 @@ public abstract class BogMonsterAIState {
 		}
 
 		if (detectionLevel >= monster.stats.alertThreshold) {
-			monster.ai = new AlertedState(monster.speed);
+			monster.ai = new AlertedState(monster.stats.speed);
 			return;
 		}
 	}
@@ -133,7 +133,7 @@ public class IdleState : BogMonsterAIState {
 				goingForward = Util.randomBool(monster.rng);
 			}
 
-			monster.ai = new MovementState(goingForward, monster.speed);
+			monster.ai = new MovementState(goingForward, monster.stats.speed);
 		}
 	}
 }
@@ -199,7 +199,7 @@ public class AlertedState : BogMonsterAIState {
 		timePassed += delta;
 		if (timePassed >= monster.stats.alertTime) {
 			monster.detectionLevel = 0.0f;
-			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.speed);
+			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.stats.speed);
 			return;
 		}
 
@@ -237,7 +237,7 @@ public class AlertedState : BogMonsterAIState {
 		}
 
 		if (detectionLevel == 0.0f) {
-			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.speed);
+			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.stats.speed);
 			return;
 		}
 	}

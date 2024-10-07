@@ -3,6 +3,14 @@ using Godot;
 
 [GlobalClass]
 public partial class BogMonsterStats : Resource {
+	[Export]
+	public float speed = 45.0f;
+
+	[Export]
+	public float detectionGain = 100.0f;
+	[Export]
+	public float detectionDecay = 60.0f;
+
 	// moves for this many seconds, then rolls to change state
 	[Export] public float moveTime = 3.0f;
 
