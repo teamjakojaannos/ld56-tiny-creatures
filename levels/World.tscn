@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=15 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_vpm8c"]
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
 [ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
+[ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
 animations = [{
@@ -29,6 +30,18 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vohu8"]
+size = Vector2(303.614, 607.852)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cegll"]
+radius = 145.003
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2jur"]
+size = Vector2(1645.47, 470)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7di6y"]
+size = Vector2(1114.79, 502.093)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -183,3 +196,45 @@ energy = 0.15
 [node name="MAHSWAMP" parent="." instance=ExtResource("7_h7nj4")]
 position = Vector2(591, -186)
 metadata/_edit_lock_ = true
+
+[node name="MuzakTrigger" parent="." instance=ExtResource("8_apjqm")]
+position = Vector2(116, -679)
+
+[node name="CollisionShape2D" parent="MuzakTrigger" index="0"]
+position = Vector2(-94.5746, -19.2407)
+rotation = -0.696469
+shape = SubResource("RectangleShape2D_vohu8")
+debug_color = Color(0.870796, 0.266297, 0.579592, 0.42)
+
+[node name="MuzakTrigger2" parent="." instance=ExtResource("8_apjqm")]
+position = Vector2(305, -881)
+Music = 3
+
+[node name="CollisionShape2D" parent="MuzakTrigger2" index="0"]
+shape = SubResource("CircleShape2D_cegll")
+debug_color = Color(0.876866, 0.252168, 0.589213, 0.42)
+
+[node name="MuzakTrigger3" parent="." instance=ExtResource("8_apjqm")]
+position = Vector2(1117, -418)
+Music = 2
+
+[node name="CollisionShape2D" parent="MuzakTrigger3" index="0"]
+position = Vector2(67.8562, -26.1995)
+rotation = 0.0967079
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_s2jur")
+debug_color = Color(0.896646, 0.237324, 0.535031, 0.42)
+
+[node name="MuzakTrigger (starting area)" parent="." instance=ExtResource("8_apjqm")]
+position = Vector2(-661, 478)
+
+[node name="CollisionShape2D" parent="MuzakTrigger (starting area)" index="0"]
+position = Vector2(16, -173.5)
+rotation = 0.372051
+shape = SubResource("RectangleShape2D_7di6y")
+debug_color = Color(0.763283, 0.395835, 0.568219, 0.42)
+
+[editable path="MuzakTrigger"]
+[editable path="MuzakTrigger2"]
+[editable path="MuzakTrigger3"]
+[editable path="MuzakTrigger (starting area)"]

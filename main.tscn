@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://6abkwwyeqfa8"]
+[gd_scene load_steps=27 format=3 uid="uid://6abkwwyeqfa8"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_8kue4"]
 [ext_resource type="Script" path="res://dialogue/DialogueTrigger.cs" id="3_0le5u"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dtg0vfln8poep" path="res://Environment/pitka_hautakivi.png" id="9_wbj3c"]
 [ext_resource type="Texture2D" uid="uid://b8xsos5uydwdu" path="res://mobs/molli.png" id="10_sf5ih"]
 [ext_resource type="Texture2D" uid="uid://55bmdywmmaob" path="res://mobs/whyisthishere.png" id="11_rg7h3"]
+[ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="12_col43"]
 [ext_resource type="Script" path="res://music/MusicArea.cs" id="12_txexs"]
 
 [sub_resource type="Gradient" id="Gradient_jl0fw"]
@@ -201,13 +202,7 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(92, 13, 24, 23)
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(18, 90)
-script = ExtResource("12_txexs")
-Music = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_tv5wp")
+[node name="MuzakTrigger" parent="." instance=ExtResource("12_col43")]
 
 [node name="Area2D2" type="Area2D" parent="."]
 position = Vector2(163, 90)

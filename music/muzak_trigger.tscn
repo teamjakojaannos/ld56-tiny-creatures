@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgl3kd7qf4amn"]
+
+[ext_resource type="Script" path="res://music/MusicArea.cs" id="1_v24cj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tv5wp"]
+radius = 25.02
+
+[node name="MuzakTrigger" type="Area2D"]
+position = Vector2(18, 90)
+script = ExtResource("1_v24cj")
+Music = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tv5wp")

@@ -1,16 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccfpbd6r6ek72"]
+[gd_scene load_steps=6 format=3 uid="uid://ccfpbd6r6ek72"]
 
 [ext_resource type="AudioStream" uid="uid://bes13ryernvjn" path="res://music/pornhubimusa.ogg" id="1_a553t"]
 [ext_resource type="Script" path="res://music/Jukebox.cs" id="1_kqeya"]
 [ext_resource type="AudioStream" uid="uid://ck0ul4q2cf13y" path="res://music/metsamusa.ogg" id="2_4a1vx"]
 [ext_resource type="AudioStream" uid="uid://dvsmqj05ptpdo" path="res://music/suomusiikkiV2.ogg" id="3_i10xf"]
+[ext_resource type="AudioStream" uid="uid://cd8asm3qotxca" path="res://music/velhopsykoosi.ogg" id="5_hb858"]
 
-[node name="Jukebox" type="Node2D" node_paths=PackedStringArray("Metsämusa", "Pornhub", "Swhamp")]
+[node name="Jukebox" type="Node2D" node_paths=PackedStringArray("Metsämusa", "Pornhub", "Swhamp", "Psykoosi")]
 script = ExtResource("1_kqeya")
 FadeInSpeed = 0.1
 "Metsämusa" = NodePath("Metsamusa")
 Pornhub = NodePath("Pornhubimusa")
 Swhamp = NodePath("SuomusiikkiV2")
+Psykoosi = NodePath("Velhopsykoosi")
 
 [node name="Pornhubimusa" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_a553t")
@@ -24,3 +26,8 @@ bus = &"Music"
 [node name="SuomusiikkiV2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_i10xf")
 bus = &"Music"
+
+[node name="Velhopsykoosi" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hb858")
+pitch_scale = 2.0
+stream_paused = true

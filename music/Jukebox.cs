@@ -27,11 +27,14 @@ public partial class Jukebox : Node2D {
 	public AudioStreamPlayer? Pornhub;
 	[Export]
 	public AudioStreamPlayer? Swhamp;
+	[Export]
+	public AudioStreamPlayer? Psykoosi;
 
 	public enum MuzakTrack {
 		ForrestGump,
 		SfwHub,
 		GetOut,
+		Psykoosi,
 	}
 
 	private AudioStreamPlayer? GetStreamPlayer(MuzakTrack muzak) {
@@ -39,6 +42,7 @@ public partial class Jukebox : Node2D {
 			MuzakTrack.ForrestGump => Metsämusa,
 			MuzakTrack.SfwHub => Pornhub,
 			MuzakTrack.GetOut => Swhamp,
+			MuzakTrack.Psykoosi => Psykoosi,
 			_ => throw new NotImplementedException(),
 		};
 	}
