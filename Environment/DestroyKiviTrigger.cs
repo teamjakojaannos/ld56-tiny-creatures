@@ -2,6 +2,8 @@ using Godot;
 
 public partial class DestroyKiviTrigger : Area2D {
 
+	private bool isDestroyed;
+
 	[Export]
 	public Node2D? objectToDestroy;
 
@@ -13,8 +15,12 @@ public partial class DestroyKiviTrigger : Area2D {
 
 	public void bodyEntered(Node2D node) {
 		if (node is Player) {
+			if (isDestroyed) {
+				return;
+			}
+			isDestroyed = true;
+
 			objectToDestroy?.QueueFree();
-			objectToDestroy = null;
 
 			if (DialogueTree is not null) {
 				Dialogue.Instance(this).StartDialogue(DialogueTree);
