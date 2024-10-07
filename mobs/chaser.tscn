@@ -511,6 +511,7 @@ libraries = {
 [node name="LineOfSight" type="RayCast2D" parent="."]
 enabled = false
 collision_mask = 5
+collide_with_areas = true
 
 [node name="KillZone" type="Area2D" parent="."]
 collision_layer = 0

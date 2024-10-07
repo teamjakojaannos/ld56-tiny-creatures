@@ -31,3 +31,10 @@ navigation_polygon = SubResource("NavigationPolygon_m4dhd")
 
 [node name="Chaser" parent="NavigationRegion2D" instance=ExtResource("4_on0ma")]
 position = Vector2(359.168, 182.863)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(141, 149, 225, 27, 297, 49, 207, 179)
