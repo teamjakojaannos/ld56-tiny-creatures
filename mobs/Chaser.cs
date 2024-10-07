@@ -24,7 +24,7 @@ public partial class Chaser : RigidBody2D {
 	private ChaserAI aiState = new IdleState();
 	public RandomNumberGenerator rng = new();
 
-	private float? whatDirectionToLook = null;
+	private Vector2? whereToLookAt = null;
 
 	private NavigationAgent2D? navigationAgent;
 	private bool navigationSetupDone = false;
@@ -48,7 +48,9 @@ public partial class Chaser : RigidBody2D {
 		turnHead(delta);
 		var velocity = moveTowardsCurrentTarget(delta);
 
-		clearTargetsIfCompleted();
+		if (hasReachedMovementTarget()) {
+			clearMovementTarget();
+		}
 
 		updateSprite(velocity);
 	}
@@ -67,8 +69,12 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private void lookTowardsMovement(Vector2 target) {
-		clearLookTarget();
+		if (whereToLookAt is not null) {
+			// specific target overrides "look towards movement"
+			return;
+		}
 
+		clearLookTarget();
 		var desiredAngle = GlobalPosition.AngleToPoint(target) + coneAngleOffset;
 		sightCone!.Rotation = desiredAngle;
 	}
@@ -124,33 +130,41 @@ public partial class Chaser : RigidBody2D {
 		navigationAgent!.TargetPosition = GlobalPosition;
 	}
 
-	public void setLookDirection(Vector2 targetGlobalPos) {
-		var myPos = GlobalPosition;
-		var desiredAngle = myPos.AngleToPoint(targetGlobalPos) + coneAngleOffset;
+	public void setLookTarget(Vector2 targetGlobalPos, bool turnInstantly = false) {
+		whereToLookAt = targetGlobalPos;
 
-		whatDirectionToLook = desiredAngle;
+		if (turnInstantly) {
+			var myPos = GlobalPosition;
+			var desiredAngle = myPos.AngleToPoint(targetGlobalPos) + coneAngleOffset;
+			sightCone!.Rotation = desiredAngle;
+		}
 	}
 
 	public void clearLookTarget() {
-		whatDirectionToLook = null;
+		whereToLookAt = null;
 	}
 
 	public bool isDoneTurning() {
 		const float closeEnough = 0.01f;
 
-		if (whatDirectionToLook is not float desiredAngle) {
+		if (whereToLookAt is not Vector2 point) {
 			return true;
 		}
 
+		var myPos = GlobalPosition;
+		var desiredAngle = myPos.AngleToPoint(point) + coneAngleOffset;
 		var currentAngle = sightCone!.Rotation;
 		var diff = Mathf.AngleDifference(currentAngle, desiredAngle);
 		return Mathf.Abs(diff) <= closeEnough;
 	}
 
 	private void turnHead(float delta) {
-		if (whatDirectionToLook is not float desiredAngle) {
+		if (whereToLookAt is not Vector2 point) {
 			return;
 		}
+
+		var myPos = GlobalPosition;
+		var desiredAngle = myPos.AngleToPoint(point) + coneAngleOffset;
 
 		var turnSpeedRadPerSec = Mathf.DegToRad(turnSpeedDegPerSec);
 		var maxTurn = turnSpeedRadPerSec * delta;
@@ -163,16 +177,6 @@ public partial class Chaser : RigidBody2D {
 		}
 
 		sightCone.Rotation += rotationAmount;
-	}
-
-	private void clearTargetsIfCompleted() {
-		if (isDoneTurning()) {
-			clearLookTarget();
-		}
-
-		if (hasReachedMovementTarget()) {
-			clearMovementTarget();
-		}
 	}
 
 	public void sightConeEntered(Node2D node) {

@@ -52,7 +52,7 @@ public class IdleState : ChaserAI {
 			if (Util.diceRoll(chaser.rng, ChaserStats.turnChance)) {
 				var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
 				var newTarget = chaser.GlobalPosition + randomPos;
-				chaser.setLookDirection(newTarget);
+				chaser.setLookTarget(newTarget);
 			}
 		}
 	}
@@ -73,7 +73,7 @@ public class WanderState : ChaserAI {
 	public override void doUpdate(Chaser chaser, float delta) {
 		if (!lookTargetSet) {
 			lookTargetSet = true;
-			chaser.setLookDirection(target);
+			chaser.setLookTarget(target);
 		}
 
 		timePassed += delta;
@@ -104,10 +104,11 @@ public class ChaseState : ChaserAI {
 	public override void doUpdate(Chaser chaser, float delta) {
 		var playerPos = player.GlobalPosition;
 
+		chaser.setLookTarget(playerPos, turnInstantly: true);
+
 		timeSinceLastUpdate += delta;
 		if (timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
 			timeSinceLastUpdate = 0.0f;
-			chaser.setLookDirection(playerPos);
 			chaser.setMovementTarget(playerPos);
 		}
 	}
@@ -115,8 +116,7 @@ public class ChaseState : ChaserAI {
 
 public class SeekState : ChaserAI {
 	private Vector2 lastSeen;
-	private bool movementTargetSet;
-	private bool lookTargetSet;
+	private bool isTargetSet;
 
 	private float timePassed;
 
@@ -134,13 +134,9 @@ public class SeekState : ChaserAI {
 			return;
 		}
 
-		if (!lookTargetSet) {
-			lookTargetSet = true;
-			chaser.setLookDirection(lastSeen);
-		}
-
-		if (!movementTargetSet) {
-			movementTargetSet = true;
+		if (!isTargetSet) {
+			isTargetSet = true;
+			chaser.setLookTarget(lastSeen);
 			chaser.setMovementTarget(lastSeen);
 		}
 
@@ -160,13 +156,13 @@ public class SeekState : ChaserAI {
 			var (min, max) = ChaserStats.howFarNewTargetShouldBe;
 			var randomPos = Util.randomVector(chaser.rng, min, max);
 			var newTarget = chaser.GlobalPosition + randomPos;
-			chaser.setLookDirection(newTarget);
+			chaser.setLookTarget(newTarget, turnInstantly: true);
 			chaser.setMovementTarget(newTarget);
 
 		} else {
 			var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
 			var newTarget = chaser.GlobalPosition + randomPos;
-			chaser.setLookDirection(newTarget);
+			chaser.setLookTarget(newTarget);
 		}
 	}
 }
