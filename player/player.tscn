@@ -563,6 +563,8 @@ fill_to = Vector2(1, 0.5)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "WispFollowNode", "Wisp") groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 3
+motion_mode = 1
+safe_margin = 1.0
 script = ExtResource("1_cn8o3")
 Speed = 110.0
 Friction = 15.0
