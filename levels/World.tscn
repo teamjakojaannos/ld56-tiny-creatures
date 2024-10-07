@@ -77,7 +77,6 @@ ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
 
-[node name="World" type="Node2D"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je08u"]
 size = Vector2(20, 35.2941)
 
