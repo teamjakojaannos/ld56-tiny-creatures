@@ -32,6 +32,8 @@ script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
 Lines = ["Oispa kaljaa"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_3c2cv"]
@@ -39,6 +41,8 @@ script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
 Lines = ["No niinpä tietenkin...", "Olisihan se pitänyt arvata."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_nv8uc"]
@@ -47,6 +51,8 @@ Character = ExtResource("4_r571r")
 IsInteractive = true
 Lines = ["Kyllä", "Ei", "6-pack karhua ja sassiin"]
 Next3 = SubResource("Resource_3c2cv")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_08axp"]
@@ -55,6 +61,8 @@ Character = ExtResource("5_jbuev")
 IsInteractive = false
 Lines = ["Mutta jääkö se yhteen?"]
 Next = SubResource("Resource_nv8uc")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_lo4vp"]
@@ -62,6 +70,8 @@ script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
 Lines = ["Rahka-Saruman ebin :--DDd"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_oj62y"]
@@ -72,6 +82,8 @@ Lines = ["Olutta?? Tällaisessa tilanteessa?", "No ehkä... yksi....", "Ehrmanni
 Next = SubResource("Resource_bl586")
 Next2 = SubResource("Resource_08axp")
 Next3 = SubResource("Resource_lo4vp")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_1bju7"]
@@ -80,6 +92,8 @@ Character = ExtResource("5_jbuev")
 IsInteractive = false
 Lines = ["Onko kalia tehtaalla?? Antakkee!!"]
 Next = SubResource("Resource_oj62y")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_ypefv"]
@@ -88,6 +102,8 @@ Character = ExtResource("4_r571r")
 IsInteractive = false
 Lines = ["A quick brown fox jumps over a lazy dog.", "Or something."]
 Next = SubResource("Resource_1bju7")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yujk0"]

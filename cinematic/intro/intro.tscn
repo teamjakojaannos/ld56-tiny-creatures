@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2uu7btegjbbx"]
+[gd_scene load_steps=34 format=3 uid="uid://b2uu7btegjbbx"]
 
 [ext_resource type="Script" path="res://cinematic/intro/Intro.cs" id="1_1tsoc"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="2_3rkv6"]
@@ -8,27 +8,104 @@
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="6_qrwc5"]
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="7_b25v0"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="8_urttn"]
+[ext_resource type="AudioStream" uid="uid://cmcv86kvp32ul" path="res://cinematic/randomaani.ogg" id="9_y4k7t"]
+[ext_resource type="AudioStream" uid="uid://3kxovh4nqxxy" path="res://cinematic/bip3.ogg" id="10_3pcu4"]
+
+[sub_resource type="Resource" id="Resource_xhku5"]
+script = ExtResource("3_e6ywg")
+Character = ExtResource("2_5nu1f")
+IsInteractive = false
+Lines = ["Wakey! Wakey!", "Let me out!!"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_lp3n1"]
+script = ExtResource("3_e6ywg")
+Character = ExtResource("2_3rkv6")
+IsInteractive = false
+Lines = ["Surprised I'm still OK though"]
+Next = SubResource("Resource_xhku5")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_ro227"]
 script = ExtResource("3_e6ywg")
 Character = ExtResource("2_3rkv6")
 IsInteractive = false
-Lines = ["Ouch..."]
+Lines = ["That was a pretty harsh fall"]
+Next = SubResource("Resource_lp3n1")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_418lw"]
 script = ExtResource("3_e6ywg")
+Character = ExtResource("2_3rkv6")
+IsInteractive = false
+Lines = ["Ouch"]
+Next = SubResource("Resource_ro227")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_m0v20"]
+script = ExtResource("3_e6ywg")
+Character = ExtResource("2_3rkv6")
+IsInteractive = false
+Lines = ["Alright then.", "but you've got some explaining to do."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_krue5"]
+script = ExtResource("3_e6ywg")
 Character = ExtResource("2_5nu1f")
 IsInteractive = false
-Lines = ["Wakey wakey!"]
-Next = SubResource("Resource_ro227")
+Lines = ["Quit your yapping and let me out!!"]
+Next = SubResource("Resource_m0v20")
+ScreenShakeAmount = 15.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_wgum8"]
 script = ExtResource("3_e6ywg")
 Character = ExtResource("2_3rkv6")
 IsInteractive = false
-Lines = ["Oispa kaljaa"]
+Lines = ["Eh, what is a Wisp doing here?", "And why is it traped in a Spirit Lantern?"]
+Next = SubResource("Resource_krue5")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_18v5q"]
+script = ExtResource("3_e6ywg")
+Character = ExtResource("2_5nu1f")
+IsInteractive = false
+Lines = ["Ehrm... Thanks!!"]
+ScreenShakeAmount = 15.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_qoafp"]
+script = ExtResource("3_e6ywg")
+Character = ExtResource("2_3rkv6")
+IsInteractive = false
+Lines = ["You're welcome", "By the way"]
+Next = SubResource("Resource_18v5q")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_ok3o0"]
+script = ExtResource("3_e6ywg")
+Character = ExtResource("2_5nu1f")
+IsInteractive = false
+Lines = ["Gee finally"]
+Next = SubResource("Resource_qoafp")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Animation" id="Animation_jiuna"]
@@ -239,12 +316,13 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"ReleasePlayer"
+"method": &"LanternOpen"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_tcrjc"]
 length = 0.001
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -341,13 +419,67 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(0, -22)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Color:color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Color:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_f3281"]
+resource_name = "fade_in"
+length = 2.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Color:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Color:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b7b0w"]
 _data = {
 "01_stand_up": SubResource("Animation_jiuna"),
 "02_walk_to_lantern": SubResource("Animation_aw6ao"),
 "03_open_lantern": SubResource("Animation_5412a"),
-"RESET": SubResource("Animation_tcrjc")
+"RESET": SubResource("Animation_tcrjc"),
+"fade_in": SubResource("Animation_f3281")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
@@ -407,13 +539,17 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Intro" type="Node2D" node_paths=PackedStringArray("AnimPlayer", "WispInitialLocation")]
+[node name="Intro" type="Node2D" node_paths=PackedStringArray("AnimPlayer", "WispInitialLocation", "Tilulii", "Beep", "ScreenFader")]
 y_sort_enabled = true
 script = ExtResource("1_1tsoc")
 InitialDialogue = SubResource("Resource_418lw")
 IntroDialogue = SubResource("Resource_wgum8")
+CageOpenDialogue = SubResource("Resource_ok3o0")
 AnimPlayer = NodePath("AnimationPlayer")
 WispInitialLocation = NodePath("SpiritLantern/WispInitialLocation")
+Tilulii = NodePath("Tilulii")
+Beep = NodePath("Beep")
+ScreenFader = NodePath("CanvasLayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -476,3 +612,26 @@ texture_filter = 1
 sprite_frames = ExtResource("2_gbttp")
 animation = &"IntroStandUpComedy"
 offset = Vector2(0, -22)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Color" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Tilulii" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_y4k7t")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Beep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3pcu4")
+volume_db = -5.0
+pitch_scale = 0.57
+bus = &"SFX"

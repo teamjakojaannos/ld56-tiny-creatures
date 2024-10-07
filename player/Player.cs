@@ -163,8 +163,4 @@ public partial class Player : CharacterBody2D {
 		WispTarget = wispLocation;
 		Wisp.GlobalPosition = wispLocation.GlobalPosition;
 	}
-
-	public void ReleaseAfterIntro() {
-		setSpriteVisible(true);
-	}
 }

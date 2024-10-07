@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LD56"
-run/main_scene="res://main.tscn"
+run/main_scene="res://levels/World.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
@@ -41,6 +41,7 @@ Player=""
 PlayIntro=""
 navmesh=""
 IntroPlayerSpawn=""
+MainCamera=""
 
 [input]
 

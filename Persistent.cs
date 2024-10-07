@@ -23,8 +23,10 @@ public partial class Persistent : Node2D {
 		}
 
 		if (playIntro) {
+			Intro!.InitFadeIn();
 			Player!.ReadyToGo += StartIntro;
 		} else {
+			Intro?.ScreenFader?.Hide();
 			Intro?.Hide();
 		}
 	}

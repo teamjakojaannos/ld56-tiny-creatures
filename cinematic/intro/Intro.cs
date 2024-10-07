@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Intro : Node2D {
@@ -8,10 +9,22 @@ public partial class Intro : Node2D {
 	public DialogueTree? IntroDialogue;
 
 	[Export]
+	public DialogueTree? CageOpenDialogue;
+
+	[Export]
 	public AnimationPlayer? AnimPlayer;
 
 	[Export]
 	public Node2D? WispInitialLocation;
+
+	[Export]
+	public AudioStreamPlayer? Tilulii;
+
+	[Export]
+	public AudioStreamPlayer? Beep;
+
+	[Export]
+	public CanvasLayer? ScreenFader;
 
 	private Dialogue dialogue = null!;
 
@@ -22,8 +35,13 @@ public partial class Intro : Node2D {
 	}
 
 	public void Play() {
+		ScreenFader!.Visible = true;
+		AnimPlayer!.Play("fade_in");
+
 		GetTree().CreateTimer(2.0f).Timeout += () => {
 			dialogue.DialogueFinished += InitialDialogueFinished;
+
+			this.MainCamera().ApplyCameraShake(30.0f, 30.0f);
 			dialogue.StartDialogue(InitialDialogue!);
 		};
 	}
@@ -56,33 +74,58 @@ public partial class Intro : Node2D {
 		};
 	}
 
-	private void ReleasePlayer() {
-		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
-			var camera = player.GetNode<Camera2D>("Camera");
-			camera.PositionSmoothingEnabled = true;
-			camera.PositionSmoothingSpeed = 2.5f;
+	public void LanternOpen() {
+		dialogue.DialogueFinished += LanternOpenDialogueDone;
 
+		Tilulii?.Play();
+
+		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+			this.MainCamera().PositionSmoothingEnabled = true;
+			this.MainCamera().PositionSmoothingSpeed = 2.5f;
+
+			player.WispTarget = null;
+			if (player.Wisp is RigidBody2D rigidBody) {
+				rigidBody.ApplyImpulse(Vector2.Up * 10000.0f);
+			}
 			var playerSprite = GetNode<Node2D>("PlayerSprite");
 			var wispLocation = player.Wisp.GlobalPosition;
 			player.GlobalPosition = playerSprite.GlobalPosition;
 			player.Wisp.GlobalPosition = wispLocation;
 
 			playerSprite.Hide();
-			player.ReleaseAfterIntro();
+			player.setSpriteVisible(true);
+		}
+		GetTree().CreateTimer(2.0f).Timeout += () => {
+			dialogue.StartDialogue(CageOpenDialogue!);
+		};
+	}
 
+	private void LanternOpenDialogueDone() {
+		dialogue.DialogueFinished -= LanternOpenDialogueDone;
 
+		ReleasePlayer();
+	}
+
+	private void ReleasePlayer() {
+		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
 			GetTree().CreateTimer(0.25f).Timeout += () => {
-				player.WispTarget = null;
-				if (player.Wisp is RigidBody2D rigidBody) {
-					rigidBody.ApplyImpulse(Vector2.Up * 10000.0f);
-				}
-
 				player.setMovementEnabled(true);
 			};
 
 			GetTree().CreateTimer(2.0f).Timeout += () => {
-				camera.PositionSmoothingSpeed = 10.0f;
+				this.MainCamera().PositionSmoothingSpeed = 10.0f;
+
+				GetTree().CreateTimer(1.0f).Timeout += () => {
+					this.MainCamera().PositionSmoothingEnabled = false;
+					this.MainCamera().Offset = Vector2.Zero;
+					this.MainCamera().Position = Vector2.Zero;
+				};
 			};
 		}
+	}
+
+	public void InitFadeIn() {
+		ScreenFader!.Visible = true;
+		ScreenFader!.GetNodeOrNull<ColorRect>("Color").Color = Colors.Black;
 	}
 }

@@ -129,6 +129,12 @@ public partial class Dialogue : CanvasLayer {
 				row.PortraitFrameWrapper.MoveChild(portraitFrame, 0);
 			}
 
+			if (content is not null && content.ScreenShakeAmount > 0.1f) {
+				GetTree().CreateTimer(0.75f).Timeout += () => {
+					this.MainCamera().ApplyCameraShake(content!.ScreenShakeAmount, content.ScreenShakeFade);
+				};
+			}
+
 			row.CallDeferred(MethodName.StartDialogue);
 		}
 	}

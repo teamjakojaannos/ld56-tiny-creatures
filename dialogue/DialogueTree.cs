@@ -40,6 +40,13 @@ public partial class DialogueTree : Resource {
     public DialogueTree? Next3;
 
     [Export]
+    [ExportGroup("Effects")]
+    public float ScreenShakeAmount = 0.0f;
+    [Export]
+    public float ScreenShakeFade = 30.0f;
+
+
+    [Export]
     [ExportGroup("Overrides")]
     public DialogueSideOverride SideOverride;
 

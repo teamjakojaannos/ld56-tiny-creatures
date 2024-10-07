@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://cpkecrim8p1lx"]
+[gd_scene load_steps=3 format=3 uid="uid://cpkecrim8p1lx"]
 
-[node name="Camera" type="Camera2D"]
+[ext_resource type="Script" path="res://camera/CameraControl.cs" id="1_rypa6"]
+[ext_resource type="AudioStream" uid="uid://cj6rdnu57olcg" path="res://cinematic/isoaskel1.ogg" id="2_5ii7y"]
+
+[node name="Camera" type="Camera2D" node_paths=PackedStringArray("ThudSfx") groups=["MainCamera"]]
+script = ExtResource("1_rypa6")
+ThudSfx = NodePath("ThudSfx")
+
+[node name="ThudSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5ii7y")
+volume_db = -5.0
+pitch_scale = 0.75
+bus = &"SFX"
