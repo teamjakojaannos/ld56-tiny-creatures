@@ -90,11 +90,11 @@ public partial class Player : CharacterBody2D {
 
 		var mainPlayerSpawn = GetTree().GetFirstNodeInGroup("IntroPlayerSpawn");
 		if (mainPlayerSpawn is Node2D spawn) {
-			CallDeferred(MethodName.TeleportAt, spawn);
+			CallDeferred(MethodName.TeleportTo, spawn);
 		} else {
 			var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
 			if (spawns.Count != 0 && spawns.PickRandom() is Node2D fallbackRandomSpawn) {
-				CallDeferred(MethodName.TeleportAt, fallbackRandomSpawn);
+				CallDeferred(MethodName.TeleportTo, fallbackRandomSpawn);
 			}
 		}
 
@@ -110,13 +110,12 @@ public partial class Player : CharacterBody2D {
 		}
 	}
 
-	private void TeleportAt(Node2D target) {
+	public void TeleportTo(Node2D target) {
 		if (!target.IsInsideTree() || target.IsQueuedForDeletion()) {
 			throw new InvalidOperationException("Tried teleporting to a non-existent/deleted node!");
 		}
 
-		GetParent()?.RemoveChild(this);
-		(target.GetParent() ?? target).AddChild(this);
+		Reparent(target.GetParent() ?? target);
 
 		GlobalPosition = target.GlobalPosition;
 
@@ -126,6 +125,11 @@ public partial class Player : CharacterBody2D {
 	private string animationDirection = "Down";
 	public override void _PhysicsProcess(double _delta) {
 		if (Engine.IsEditorHint()) {
+			return;
+		}
+
+		if (Input.IsActionJustPressed("dbg_kill")) {
+			die();
 			return;
 		}
 
@@ -189,6 +193,7 @@ public partial class Player : CharacterBody2D {
 
 	public void die() {
 		GD.Print("I am dead.");
+		this.Persistent().ResetPlayerToHub();
 	}
 
 	public void SetupForIntro(Node2D wispLocation) {

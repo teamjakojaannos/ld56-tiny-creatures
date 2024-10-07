@@ -424,7 +424,7 @@ fill_to = Vector2(1, 0.5)
 y_sort_enabled = true
 collision_mask = 3
 script = ExtResource("1_cn8o3")
-Speed = 125.0
+Speed = 110.0
 Friction = 15.0
 Animation = NodePath("AnimationPlayer")
 Footsteps = NodePath("Footsteps")
@@ -523,7 +523,7 @@ lock_rotation = true
 linear_damp = 2.0
 
 [node name="FootstepTimer" type="Timer" parent="."]
-wait_time = 0.33
+wait_time = 0.4
 
 [node name="Footsteps" type="Node" parent="."]
 script = ExtResource("4_kghcv")

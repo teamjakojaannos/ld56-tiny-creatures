@@ -1,4 +1,15 @@
+using System.Linq;
 using Godot;
+
+public static class PersistentExt {
+	private static Persistent? _instance;
+
+	public static Persistent Persistent(this Node node) {
+		return _instance is not null
+			? _instance
+			: (_instance = node.GetTree().Root.GetNode<Persistent>("/root/Persistent"));
+	}
+}
 
 public partial class Persistent : Node2D {
 	public static Persistent Instance(Node node) {
@@ -40,5 +51,18 @@ public partial class Persistent : Node2D {
 
 		Player.SetupForIntro(Intro.WispInitialLocation!);
 		Intro.Play();
+	}
+
+	public void ResetPlayerToHub() {
+		var spawnpoint = (Node2D) GetTree()
+			.GetNodesInGroup("HubSpawn")
+			.PickRandom();
+
+		Intro!.FadeToBlack();
+
+		GetTree().CreateTimer(2.5f).Timeout += () => {
+			Player!.TeleportTo(spawnpoint);
+			Intro.FadeIn();
+		};
 	}
 }

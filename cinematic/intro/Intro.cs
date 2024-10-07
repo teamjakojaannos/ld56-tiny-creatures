@@ -128,4 +128,16 @@ public partial class Intro : Node2D {
 		ScreenFader!.Visible = true;
 		ScreenFader!.GetNodeOrNull<ColorRect>("Color").Color = Colors.Black;
 	}
+
+	public void FadeToBlack() {
+		ScreenFader!.Visible = true;
+		ScreenFader!.GetNodeOrNull<ColorRect>("Color").Color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+		AnimPlayer!.Play("fade_out");
+	}
+
+	public void FadeIn() {
+		InitFadeIn();
+		AnimPlayer!.Play("fade_in");
+	}
 }

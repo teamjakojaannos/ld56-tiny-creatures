@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="10_lsb5y"]
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="12_bjl3q"]
-[ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
+[ext_resource type="PackedScene" path="res://Environment/the_wall.tscn" id="12_i73y1"]
 [ext_resource type="Script" path="res://levels/hubarea/HupiVispila.cs" id="12_lkge0"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="14_ntq3p"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="15_t7bcq"]
@@ -424,9 +424,28 @@ SideOverride = 0
 [node name="Hubarea" type="Node2D"]
 y_sort_enabled = true
 
-[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+[node name="Spawnpoints" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(8, 206)
+
+[node name="HubSpawn" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(72, 199)
+
+[node name="HubSpawn2" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(-108, 107)
+
+[node name="HubSpawn3" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(-73, 207)
+
+[node name="HubSpawn4" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(82, -35)
+
+[node name="HubSpawn5" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
+y_sort_enabled = true
+position = Vector2(-152, -49)
 
 [node name="Tree10" parent="." instance=ExtResource("1_diaiq")]
 position = Vector2(-85, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b2uu7btegjbbx"]
+[gd_scene load_steps=37 format=3 uid="uid://b2uu7btegjbbx"]
 
 [ext_resource type="Script" path="res://cinematic/intro/Intro.cs" id="1_1tsoc"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="2_3rkv6"]
@@ -548,13 +548,43 @@ tracks/1/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_r4h7l"]
+resource_name = "fade_out"
+length = 2.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Color:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Color:color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b7b0w"]
 _data = {
 "01_stand_up": SubResource("Animation_jiuna"),
 "02_walk_to_lantern": SubResource("Animation_aw6ao"),
 "03_open_lantern": SubResource("Animation_5412a"),
 "RESET": SubResource("Animation_tcrjc"),
-"fade_in": SubResource("Animation_f3281")
+"fade_in": SubResource("Animation_f3281"),
+"fade_out": SubResource("Animation_r4h7l")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
