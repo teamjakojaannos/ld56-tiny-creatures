@@ -2468,3 +2468,13 @@ metadata/_edit_lock_ = true
 [node name="BogMonster" parent="." instance=ExtResource("36_i1gca")]
 position = Vector2(-230, -432)
 curve = SubResource("Curve2D_aev7m")
+
+[node name="LosBlockers" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Reeds" type="CollisionPolygon2D" parent="LosBlockers"]
+polygon = PackedVector2Array(-108, -404, -55, -404, -55, -387, -108, -387)
+
+[node name="CampArea" type="CollisionPolygon2D" parent="LosBlockers"]
+polygon = PackedVector2Array(74, -226, 242, -338, 394, -265, 244, -123)

@@ -493,6 +493,7 @@ polygon = PackedVector2Array(0, 0, -100, 250, 100, 250)
 [node name="LineOfSight" type="RayCast2D" parent="BogMonsterEntity"]
 enabled = false
 collision_mask = 5
+collide_with_areas = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BogMonsterEntity"]
 libraries = {
