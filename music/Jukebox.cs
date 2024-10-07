@@ -91,6 +91,10 @@ public partial class Jukebox : Node2D {
 	}
 
 	public void SwitchTrack(MuzakTrack muzak) {
+		if (currentTrack == MuzakTrack.Credits) {
+			return;
+		}
+
 		currentTrack = muzak;
 
 		foreach (var track in AllTracks) {
