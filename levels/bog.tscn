@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dixywuqdau81y"]
 
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="1_sd77c"]
-[ext_resource type="PackedScene" path="res://Environment/bog_rock.tscn" id="2_y0lh8"]
+[ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_y0lh8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vr34f"]
 distance = -50.0
@@ -44,12 +44,9 @@ shape = SubResource("WorldBoundaryShape2D_8e8uv")
 [node name="Right" type="CollisionShape2D" parent="Border"]
 shape = SubResource("WorldBoundaryShape2D_jdmuq")
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="BogMonster" parent="." instance=ExtResource("1_sd77c")]
 position = Vector2(150, -129)
 curve = SubResource("Curve2D_011ts")
-
-[node name="BogMonster" parent="Path2D" instance=ExtResource("1_sd77c")]
-rotates = true
 
 [node name="BogRock" parent="." instance=ExtResource("2_y0lh8")]
 position = Vector2(190, -41)

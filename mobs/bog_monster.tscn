@@ -471,42 +471,44 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="BogMonster" type="PathFollow2D"]
+[node name="BogMonster" type="Path2D"]
+
+[node name="BogMonsterEntity" type="PathFollow2D" parent="."]
 rotates = false
 loop = false
 script = ExtResource("1_80vso")
 WaterSplash = ExtResource("2_sgc4p")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="BogMonsterEntity"]
 texture_filter = 1
 position = Vector2(1.90735e-06, 1.90735e-06)
 texture = ExtResource("2_sf537")
 
-[node name="SightCone" type="Area2D" parent="."]
+[node name="SightCone" type="Area2D" parent="BogMonsterEntity"]
 collision_layer = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SightCone"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BogMonsterEntity/SightCone"]
 polygon = PackedVector2Array(0, 0, -100, 250, 100, 250)
 
-[node name="LineOfSight" type="RayCast2D" parent="."]
+[node name="LineOfSight" type="RayCast2D" parent="BogMonsterEntity"]
 enabled = false
 collision_mask = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BogMonsterEntity"]
 libraries = {
 "": SubResource("AnimationLibrary_fpi5j")
 }
 
-[node name="UnderwaterCooldown" type="Timer" parent="."]
+[node name="UnderwaterCooldown" type="Timer" parent="BogMonsterEntity"]
 wait_time = 10.0
 one_shot = true
 
-[node name="Attack" type="Node2D" parent="." node_paths=PackedStringArray("DangerZone")]
+[node name="Attack" type="Node2D" parent="BogMonsterEntity" node_paths=PackedStringArray("DangerZone")]
 position = Vector2(-100, 100)
 script = ExtResource("3_iy0he")
 DangerZone = NodePath("DangerZone/DangerZone")
 
-[node name="DangerZone" type="ColorRect" parent="Attack"]
+[node name="DangerZone" type="ColorRect" parent="BogMonsterEntity/Attack"]
 visible = false
 offset_left = -20.0
 offset_top = -17.0
@@ -514,27 +516,27 @@ offset_right = 20.0
 offset_bottom = 17.0
 color = Color(1, 0, 0, 0.356863)
 
-[node name="DangerZone" type="Area2D" parent="Attack/DangerZone"]
+[node name="DangerZone" type="Area2D" parent="BogMonsterEntity/Attack/DangerZone"]
 position = Vector2(20, 17)
 collision_layer = 0
 
-[node name="Collider" type="CollisionShape2D" parent="Attack/DangerZone/DangerZone"]
+[node name="Collider" type="CollisionShape2D" parent="BogMonsterEntity/Attack/DangerZone/DangerZone"]
 shape = SubResource("CircleShape2D_tmwsw")
 debug_color = Color(0.984372, 0, 0.344192, 0.42)
 
-[node name="Hand" type="AnimatedSprite2D" parent="Attack"]
+[node name="Hand" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack"]
 visible = false
 texture_filter = 1
 position = Vector2(-12, -41)
 sprite_frames = SubResource("SpriteFrames_2jsts")
 
-[node name="HandTopLayer" type="AnimatedSprite2D" parent="Attack/Hand"]
+[node name="HandTopLayer" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack/Hand"]
 visible = false
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4elgh")
 
-[node name="FakePlayer" type="AnimatedSprite2D" parent="Attack"]
+[node name="FakePlayer" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack"]
 visible = false
 texture_filter = 1
 sprite_frames = ExtResource("3_pwbfi")
@@ -542,5 +544,5 @@ animation = &"IdleUp"
 centered = false
 offset = Vector2(-16, -45)
 
-[connection signal="body_entered" from="SightCone" to="." method="sightConeEntered"]
-[connection signal="body_exited" from="SightCone" to="." method="sightConeExited"]
+[connection signal="body_entered" from="BogMonsterEntity/SightCone" to="BogMonsterEntity" method="sightConeEntered"]
+[connection signal="body_exited" from="BogMonsterEntity/SightCone" to="BogMonsterEntity" method="sightConeExited"]
