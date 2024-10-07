@@ -84,7 +84,7 @@ size = Vector2(20, 35.2941)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v13c3"]
 size = Vector2(20, 239)
 
-[node name="World" type="Node2D" groups=["PlayIntro"]]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]

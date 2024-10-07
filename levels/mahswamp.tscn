@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=105 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -25,16 +25,15 @@
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_lwecq"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="20_0b7li"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_wrs7f"]
-[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="21_b1c6j"]
+[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="21_b1c6j"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
 [ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://Environment/SuoKansio/pieniruohot.png" id="23_30oyg"]
-[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
-[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
-[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
-[ext_resource type="PackedScene" uid="uid://82edj5sbubfj" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
-[ext_resource type="PackedScene" uid="uid://baf4p3kgidl8v" path="res://Environment/GameplayRoina/spirit_lantern.tscn" id="35_gk7tg"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
+[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
+[ext_resource type="PackedScene" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="36_3gxow"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="36_fxb2t"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
@@ -50,7 +49,7 @@
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="41_locdt"]
 [ext_resource type="Script" path="res://Environment/WakeUpBogMonster.cs" id="41_nww2k"]
 [ext_resource type="Resource" uid="uid://cu2rxvl4dhjsk" path="res://mobs/nakki/nakki_stationary_stats.tres" id="49_6hpki"]
-[ext_resource type="PackedScene" uid="uid://c8foef0ggh6i5" path="res://Environment/creepy_statue.tscn" id="51_ccpha"]
+[ext_resource type="PackedScene" path="res://Environment/creepy_statue.tscn" id="51_ccpha"]
 [ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="52_d3b6v"]
 [ext_resource type="Script" path="res://Environment/MyEvilTrigger.cs" id="52_jc142"]
 
@@ -5571,10 +5570,6 @@ DialogueTrigger = "Yes"
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SuoSaariLyhty/WispInteractable"]
 script = ExtResource("39_78148")
 DialogueTree = SubResource("Resource_t04uw")
-
-[node name="SpiritLantern2" parent="." instance=ExtResource("35_gk7tg")]
-position = Vector2(1209, -184)
-metadata/_edit_lock_ = true
 
 [node name="SuoEteläLyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
 position = Vector2(546, -3)
