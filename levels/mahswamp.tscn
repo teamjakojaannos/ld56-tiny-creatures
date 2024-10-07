@@ -108,7 +108,7 @@ emergeAnimationSpeed = 2.0
 y_sort_enabled = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-z_index = -2
+z_index = -3
 offset_left = -514.0
 offset_top = -957.0
 offset_right = 1757.0
@@ -123,7 +123,6 @@ offset_top = -607.0
 offset_right = 1736.0
 offset_bottom = 147.0
 color = Color(0.0666667, 0.0901961, 0.054902, 1)
-metadata/_edit_lock_ = true
 
 [node name="Lilypads" type="Node2D" parent="."]
 z_index = -1
@@ -2094,13 +2093,7 @@ y_sort_enabled = true
 position = Vector2(-488, -436)
 
 [node name="TreePile4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
-position = Vector2(-434, -295)
-
-[node name="TreePile5" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
-position = Vector2(-468, -167)
-
-[node name="TreePile12" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
-position = Vector2(-392, -60)
+position = Vector2(-463, -293)
 
 [node name="TreePile2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
 position = Vector2(-468, -682)
@@ -2333,6 +2326,9 @@ position = Vector2(1123, -78)
 [node name="Tree4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("19_4vkq6")]
 position = Vector2(-350, -258)
 
+[node name="Tree12" parent="PuutJaNakkiruohoTMS" instance=ExtResource("19_4vkq6")]
+position = Vector2(-449, -163)
+
 [node name="Tree1" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
 position = Vector2(296, -248)
 
@@ -2341,6 +2337,15 @@ position = Vector2(1240, -175)
 
 [node name="Tree11" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
 position = Vector2(1165, -59)
+
+[node name="Tree13" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
+position = Vector2(-403, -129)
+
+[node name="Tree15" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
+position = Vector2(-555, -307)
+
+[node name="Tree14" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
+position = Vector2(-502, -164)
 
 [node name="Tree9" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
 position = Vector2(1029, -179)

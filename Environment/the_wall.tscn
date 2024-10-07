@@ -32,10 +32,12 @@ offset = Vector2(-87.195, -228.72)
 script = ExtResource("2_nuyuc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2(-6, 3)
 rotation = -0.314159
 shape = SubResource("RectangleShape2D_ox5cv")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2(-3, -89)
 shape = SubResource("RectangleShape2D_h80iq")

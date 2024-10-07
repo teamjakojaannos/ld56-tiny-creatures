@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://c37akv2ma8ael"]
+
+[ext_resource type="Texture2D" uid="uid://d1p5q5vfdmfxh" path="res://Environment/putous.png" id="1_qnd5g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pw64a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qnd5g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8afcv"]
+radius = 46.0
+height = 192.0
+
+[node name="WaterFallThing" type="Node2D"]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_pw64a")
+centered = false
+offset = Vector2(-97.99, -158.005)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(9, -14)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8afcv")

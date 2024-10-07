@@ -18,10 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="16_4hpj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk46w"]
-size = Vector2(448, 106)
+size = Vector2(448, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r8qtg"]
-size = Vector2(448, 106)
+size = Vector2(448, 68.4572)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0rt3"]
 size = Vector2(325.238, 106.957)
@@ -66,13 +66,16 @@ position = Vector2(-533, -100)
 position = Vector2(-251, -236)
 
 [node name="Tree44" parent="." instance=ExtResource("2_7y7d8")]
-position = Vector2(-162, -151)
+position = Vector2(-160, -197)
+
+[node name="Tree46" parent="." instance=ExtResource("2_7y7d8")]
+position = Vector2(-277, -206)
 
 [node name="Tree69" parent="." instance=ExtResource("2_7y7d8")]
 position = Vector2(-91, -57)
 
 [node name="Tree84" parent="." instance=ExtResource("2_7y7d8")]
-position = Vector2(-15, -114)
+position = Vector2(34, -169)
 
 [node name="Tree72" parent="." instance=ExtResource("2_7y7d8")]
 position = Vector2(-47, -176)
@@ -165,10 +168,13 @@ position = Vector2(-572, -4)
 position = Vector2(-88, -168)
 
 [node name="Tree15" parent="." instance=ExtResource("3_tanrn")]
-position = Vector2(-215, -211)
+position = Vector2(-176, -248)
 
 [node name="Tree68" parent="." instance=ExtResource("3_tanrn")]
-position = Vector2(-240, -125)
+position = Vector2(-181, -133)
+
+[node name="Tree74" parent="." instance=ExtResource("3_tanrn")]
+position = Vector2(-215, -220)
 
 [node name="Tree27" parent="." instance=ExtResource("3_tanrn")]
 position = Vector2(-485, -115)
@@ -225,10 +231,10 @@ position = Vector2(-290, 86)
 position = Vector2(-264, 56)
 
 [node name="Tree18" parent="." instance=ExtResource("3_tanrn")]
-position = Vector2(-290, -190)
+position = Vector2(-240, -117)
 
 [node name="Tree71" parent="." instance=ExtResource("3_tanrn")]
-position = Vector2(-66, -123)
+position = Vector2(-11, -150)
 
 [node name="Tree76" parent="." instance=ExtResource("3_tanrn")]
 position = Vector2(-15, -41)
@@ -508,7 +514,7 @@ position = Vector2(366, 214)
 
 [node name="Stones10" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-257, -216)
+position = Vector2(-293, -225)
 texture = ExtResource("10_8ld2n")
 
 [node name="Stones18" type="Sprite2D" parent="."]
@@ -899,11 +905,11 @@ metadata/_edit_lock_ = true
 [node name="AreaColliders" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColliders"]
-position = Vector2(-365, -343)
+position = Vector2(-365, -360)
 shape = SubResource("RectangleShape2D_nk46w")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="AreaColliders"]
-position = Vector2(-62, -270)
+position = Vector2(-54.9074, -287.38)
 rotation = 0.387463
 shape = SubResource("RectangleShape2D_r8qtg")
 

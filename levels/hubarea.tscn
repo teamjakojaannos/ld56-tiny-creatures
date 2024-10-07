@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=46 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -22,6 +22,10 @@
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="19_3jhl5"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="20_whttt"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="21_dpr77"]
+[ext_resource type="PackedScene" uid="uid://c37akv2ma8ael" path="res://Environment/water_fall_thing.tscn" id="23_cspl0"]
+[ext_resource type="PackedScene" uid="uid://b40kecv7ytk0c" path="res://Environment/fern.tscn" id="24_wympi"]
+[ext_resource type="Texture2D" uid="uid://dhxhdqbmbd08l" path="res://Environment/joki1.png" id="25_gl4a6"]
+[ext_resource type="Texture2D" uid="uid://ce08wererd3rf" path="res://Environment/pienirunko.png" id="26_g2r7u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
 radius = 62.0
@@ -448,7 +452,7 @@ y_sort_enabled = true
 position = Vector2(-152, -49)
 
 [node name="Tree10" parent="." instance=ExtResource("1_diaiq")]
-position = Vector2(-85, 0)
+position = Vector2(-74, 3)
 
 [node name="Tree11" parent="." instance=ExtResource("1_diaiq")]
 position = Vector2(-362, 248)
@@ -457,19 +461,20 @@ position = Vector2(-362, 248)
 position = Vector2(-362, 248)
 
 [node name="Tree75" parent="." instance=ExtResource("1_diaiq")]
-position = Vector2(81, -69)
+position = Vector2(227, -107)
 scale = Vector2(-1, 1)
 
 [node name="Tree76" parent="." instance=ExtResource("1_diaiq")]
 position = Vector2(-203, 191)
 
 [node name="Tree74" parent="." instance=ExtResource("1_diaiq")]
-position = Vector2(122.5, 109.5)
+position = Vector2(147.5, 132)
 scale = Vector2(-1, 1)
 
 [node name="Tree77" parent="." instance=ExtResource("1_diaiq")]
 z_index = 1
-position = Vector2(-81, -195)
+position = Vector2(53, -181)
+scale = Vector2(-1, 1)
 
 [node name="BigStone3" parent="." instance=ExtResource("2_5esea")]
 position = Vector2(-116, 21)
@@ -477,12 +482,45 @@ position = Vector2(-116, 21)
 [node name="BigStone9" parent="." instance=ExtResource("2_5esea")]
 position = Vector2(-2, -148)
 
+[node name="BigStone10" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(57, -104)
+
 [node name="BigStone4" parent="." instance=ExtResource("2_5esea")]
-position = Vector2(152.5, 122.5)
+position = Vector2(177.5, 145)
+
+[node name="BigStone11" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(198, -225)
+
+[node name="BigStone6" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(285, -102)
+
+[node name="BigStone5" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(128, -10)
+
+[node name="BigStone7" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(369, 41)
+
+[node name="BigStone8" parent="." instance=ExtResource("2_5esea")]
+position = Vector2(262, -6)
 
 [node name="Stones5" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(96.5, 178.5)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones13" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(323, -87)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones10" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(160, -3)
+texture = ExtResource("3_r8doi")
+
+[node name="Stones18" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(255, -294)
 texture = ExtResource("3_r8doi")
 
 [node name="Stones16" type="Sprite2D" parent="."]
@@ -502,7 +540,37 @@ texture = ExtResource("3_r8doi")
 
 [node name="Stones8" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(87.5, 93.5)
+position = Vector2(113, 114)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones12" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(263, 81)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones15" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(281, 20)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones11" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(72, -49)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones17" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(268, -141)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones19" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(276, -267)
+texture = ExtResource("4_mnowf")
+
+[node name="Stones14" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(323, -64)
 texture = ExtResource("4_mnowf")
 
 [node name="Stones9" type="Sprite2D" parent="."]
@@ -571,17 +639,17 @@ texture = ExtResource("8_xi6nj")
 
 [node name="Grass41" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(46, -59)
+position = Vector2(-61, 4)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass34" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(132.5, 110.5)
+position = Vector2(157.5, 133)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass60" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(132.5, 110.5)
+position = Vector2(157.5, 133)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass59" type="Sprite2D" parent="Grass"]
@@ -591,7 +659,7 @@ texture = ExtResource("8_xi6nj")
 
 [node name="Grass39" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(37.5, 52.5)
+position = Vector2(38, 24)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass35" type="Sprite2D" parent="Grass"]
@@ -601,17 +669,17 @@ texture = ExtResource("8_xi6nj")
 
 [node name="Grass63" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(93.5, 105.5)
+position = Vector2(118.5, 128)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass26" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(74.5, 38.5)
+position = Vector2(-22, -7)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass28" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-81, 6)
+position = Vector2(-61, -14)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass27" type="Sprite2D" parent="Grass"]
@@ -636,12 +704,12 @@ texture = ExtResource("9_kgfcd")
 
 [node name="Grass64" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(128.5, 133.5)
+position = Vector2(153.5, 156)
 texture = ExtResource("9_kgfcd")
 
 [node name="Grass62" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(29, -73)
+position = Vector2(-33, -25)
 texture = ExtResource("9_kgfcd")
 
 [node name="Grass65" type="Sprite2D" parent="Grass"]
@@ -651,27 +719,37 @@ texture = ExtResource("9_kgfcd")
 
 [node name="Grass40" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(75.5, 65.5)
+position = Vector2(-60, 52)
 texture = ExtResource("9_kgfcd")
 
 [node name="Grass31" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-98, 37)
+position = Vector2(41, -5)
 texture = ExtResource("9_kgfcd")
 
 [node name="Grass32" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-33.5, 74.5)
+position = Vector2(-31, 63)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass42" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(60, 58)
 texture = ExtResource("9_kgfcd")
 
 [node name="Grass30" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(-37, -8)
+position = Vector2(-2, 39)
 texture = ExtResource("8_xi6nj")
 
 [node name="Grass61" type="Sprite2D" parent="Grass"]
 texture_filter = 1
 position = Vector2(35, 177)
+texture = ExtResource("9_kgfcd")
+
+[node name="Grass66" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-84, 80)
 texture = ExtResource("9_kgfcd")
 
 [node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
@@ -954,6 +1032,78 @@ DialogueTrigger = "Yes"
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SpiritLantern/WispInteractable"]
 script = ExtResource("18_xn54u")
 DialogueTree = SubResource("Resource_kxuv5")
+
+[node name="WaterFallThing" parent="." instance=ExtResource("23_cspl0")]
+position = Vector2(157, -63)
+metadata/_edit_lock_ = true
+
+[node name="Fern" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(79, -108)
+
+[node name="Fern2" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(216, -102)
+
+[node name="Fern3" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(243, -98)
+
+[node name="Fern4" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(45, 6)
+
+[node name="Fern5" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(189, 135)
+
+[node name="Fern13" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(-64, 9)
+
+[node name="Fern12" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(288, 81)
+
+[node name="Fern14" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(272, 9)
+
+[node name="Fern6" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(-236, 175)
+
+[node name="Fern7" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(-100, 96)
+
+[node name="Fern8" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(116, 234)
+
+[node name="Fern9" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(-115, -107)
+
+[node name="Fern10" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(141, -26)
+
+[node name="Fern11" parent="." instance=ExtResource("24_wympi")]
+position = Vector2(205, -3)
+
+[node name="Pienirunko" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(219, -478)
+scale = Vector2(1.4697, 1.21212)
+texture = ExtResource("26_g2r7u")
+centered = false
+offset = Vector2(-32.55, -8.69)
+flip_h = true
+
+[node name="Joki1" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(371, -341)
+texture = ExtResource("25_gl4a6")
+metadata/_edit_lock_ = true
+
+[node name="AreaColliders" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaColliders"]
+visible = false
+polygon = PackedVector2Array(182, -469, 168, -447, 213, -342, 181, -310, 209, -239, 231, -223, 192, -165, 213, 14, 262, 57, 373, 97, 424, 99, 496, 130, 549, 118, 602, 87, 643, 95, 647, 64, 582, 44, 473, 73, 377, 60, 310, 13, 310, -22, 289, -76, 231, -128, 244, -177, 264, -213, 255, -258, 219, -296, 218, -311, 250, -324, 249, -362, 229, -427, 247, -451)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="AreaColliders"]
+visible = false
+polygon = PackedVector2Array(213, -814, 259, -815, 255, -788, 271, -767, 257, -708, 165, -667, 139, -629, 146, -576, 199, -544, 234, -531, 250, -484, 251, -471, 195, -482, 184, -510, 131, -546, 100, -574, 87, -624, 98, -652, 142, -682, 226, -737, 226, -765, 212, -788)
 
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]
