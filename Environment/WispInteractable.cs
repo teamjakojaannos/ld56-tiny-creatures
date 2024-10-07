@@ -51,18 +51,32 @@ public partial class WispInteractable : Area2D {
 	private bool isFirstTimeStart = true;
 	private bool isFirstTimeStop = true;
 
+	[Export]
+	public string RequireState = "";
+
+	[Export]
+	public string DisableIfState = "";
+
 	[Signal]
 	public delegate void InteractStartEventHandler();
 
 	[Signal]
 	public delegate void InteractStopEventHandler();
 
+	private bool RequirementsMet() {
+		return this.Persistent().State.Contains(RequireState.Trim());
+	}
+
+	private bool IsDisabledByState() {
+		return !this.Persistent().State.Contains(DisableIfState.Trim());
+	}
+
 	public override void _Ready() {
 		base._Ready();
 
 		if (!Engine.IsEditorHint()) {
 			BodyEntered += (body) => {
-				if (Done) {
+				if (Done || !RequirementsMet() || IsDisabledByState()) {
 					return;
 				}
 

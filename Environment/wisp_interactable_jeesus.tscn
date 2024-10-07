@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://of321o8cgfku"]
+[gd_scene load_steps=11 format=3 uid="uid://of321o8cgfku"]
 
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_0lsgy"]
 [ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="2_0oq2o"]
@@ -8,11 +8,17 @@
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_uul17"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="6_olpj3"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnrrf"]
+resource_local_to_scene = true
+radius = 46.0109
+
 [sub_resource type="Resource" id="Resource_0hvjq"]
 script = ExtResource("5_uul17")
 Character = ExtResource("6_olpj3")
 IsInteractive = false
 Lines = ["owo"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_b5eqw"]
@@ -21,9 +27,14 @@ Character = ExtResource("5_8bj12")
 IsInteractive = false
 Lines = ["uwu"]
 Next = SubResource("Resource_0hvjq")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [node name="WispInteractable" instance=ExtResource("1_0lsgy")]
+
+[node name="Trigger" parent="." index="0"]
+shape = SubResource("CircleShape2D_vnrrf")
 
 [node name="Target" parent="." index="1"]
 position = Vector2(0, -53)
