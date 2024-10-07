@@ -36,6 +36,9 @@ public partial class Player : CharacterBody2D {
 	public Timer? FootstepsTimer;
 
 	[Export]
+	public Sprite2D? Shadow;
+
+	[Export]
 	public Node2D WispFollowNode {
 		get => _wispFollowNode ?? Util.TrustMeBro<Node2D>();
 		set {
@@ -210,6 +213,7 @@ public partial class Player : CharacterBody2D {
 
 	public void setSpriteVisible(bool visible) {
 		playerSprite!.Visible = visible;
+		Shadow!.Visible = visible;
 
 		// HACK: avoid having flipped sprite in respawn anim
 		playerSprite!.FlipH = false;
