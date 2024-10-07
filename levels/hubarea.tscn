@@ -789,6 +789,7 @@ position = Vector2(-275.75, 191.313)
 shape = SubResource("RectangleShape2D_t6djx")
 
 [node name="MuzakTrigger" parent="." instance=ExtResource("12_p0n0e")]
+visible = false
 position = Vector2(10, 121)
 Music = 1
 

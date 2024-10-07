@@ -20,6 +20,9 @@ public partial class WispInteractableDialogueTrigger : Node2D {
 
     private bool isFirstTime = true;
 
+    [Export]
+    public string SetStateAfterDialogueEnd = "";
+
     public override string[] _GetConfigurationWarnings() {
         var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
         if (GetParentOrNull<WispInteractable>() is null) {
@@ -44,10 +47,19 @@ public partial class WispInteractableDialogueTrigger : Node2D {
         parent.InteractStart += () => {
             if (isFirstTime || !OneShot) {
                 Dialogue.Instance(this).StartDialogue(DialogueTree);
+                Dialogue.Instance(this).DialogueFinished += DialogueFinished;
             }
 
             isFirstTime = false;
         };
-        parent.InteractStop += () => {};
+        parent.InteractStop += () => {
+            Dialogue.Instance(this).DialogueFinished -= DialogueFinished;
+        };
+    }
+
+    private void DialogueFinished() {
+        if (SetStateAfterDialogueEnd is not null && SetStateAfterDialogueEnd.Trim().Length > 0) {
+            this.Persistent().State.Add(SetStateAfterDialogueEnd);
+        }
     }
 }

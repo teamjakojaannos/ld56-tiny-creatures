@@ -1,5 +1,6 @@
 using System.Linq;
 using Godot;
+using Godot.Collections;
 
 public static class PersistentExt {
 	private static Persistent? _instance;
@@ -29,6 +30,9 @@ public partial class Persistent : Node2D {
 
 	[Signal]
 	public delegate void PlayerRespawnedEventHandler();
+
+	[Export]
+	public Array<string> State = new();
 
 	public override void _Ready() {
 		var playIntro = false;
