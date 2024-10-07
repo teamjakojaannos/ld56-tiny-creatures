@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="GameCharacter" load_steps=2 format=3 uid="uid://bjgdriipgp3ew"]
+[gd_resource type="Resource" script_class="GameCharacter" load_steps=3 format=3 uid="uid://bjgdriipgp3ew"]
 
 [ext_resource type="Script" path="res://characters/GameCharacter.cs" id="1_j854s"]
+[ext_resource type="PackedScene" uid="uid://0sct2ap6syor" path="res://characters/portraits/crow_portrait_frame.tscn" id="1_vfq5j"]
 
 [resource]
 script = ExtResource("1_j854s")
-Name = "???"
-DefaultDialogueSide = 0
-PortraitFacing = 0
+Name = "Crow"
+DefaultDialogueSide = 1
+PortraitFacing = 1
+Portrait = ExtResource("1_vfq5j")

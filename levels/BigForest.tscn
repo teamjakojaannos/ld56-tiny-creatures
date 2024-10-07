@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bm0s5e11ef8rh"]
+[gd_scene load_steps=60 format=3 uid="uid://bm0s5e11ef8rh"]
 
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_yfok4"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_6f77w"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="27_ddgh6"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="28_m25tt"]
 [ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="29_ohwp4"]
+[ext_resource type="PackedScene" uid="uid://cektsywqa3k5v" path="res://characters/npc_crow.tscn" id="31_8avri"]
+[ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://characters/character_crow.tres" id="32_nb42a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nq4ku"]
 resource_local_to_scene = true
@@ -454,17 +456,70 @@ ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0445a"]
+resource_local_to_scene = true
+radius = 46.0109
+
+[sub_resource type="Resource" id="Resource_rd8gs"]
+script = ExtResource("23_406oo")
+Character = ExtResource("32_nb42a")
+IsInteractive = false
+Lines = ["I saw a wisp locked in a lantern! Strange, huh"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_clfvr"]
+script = ExtResource("23_406oo")
+Character = ExtResource("32_nb42a")
+IsInteractive = false
+Lines = ["Well, you should stay here with me then, bud. The monster can't get here!"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_q0gxb"]
+script = ExtResource("23_406oo")
+Character = ExtResource("22_sxeog")
+IsInteractive = true
+Lines = ["Looking for wisps", "Trying to run away from the monster"]
+Next = SubResource("Resource_rd8gs")
+Next2 = SubResource("Resource_clfvr")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_5dg6w"]
+script = ExtResource("23_406oo")
+Character = ExtResource("32_nb42a")
+IsInteractive = false
+Lines = ["What ya doin here bud?"]
+Next = SubResource("Resource_q0gxb")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_s7avi"]
+script = ExtResource("23_406oo")
+Character = ExtResource("32_nb42a")
+IsInteractive = false
+Lines = ["Caw Caw!"]
+Next = SubResource("Resource_5dg6w")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(-1069, -545)
+position = Vector2(-1080, 156)
 
 [node name="Tree4" parent="." instance=ExtResource("1_yfok4")]
 position = Vector2(-411, 140.5)
 
 [node name="Tree57" parent="." instance=ExtResource("1_yfok4")]
-position = Vector2(-640, 223)
+position = Vector2(-1142, 167)
 
 [node name="Tree5" parent="." instance=ExtResource("1_yfok4")]
 position = Vector2(-562, 61)
@@ -517,20 +572,29 @@ position = Vector2(-613, 149.5)
 [node name="Tree61" parent="." instance=ExtResource("2_6f77w")]
 position = Vector2(-723, 46.5)
 
+[node name="Tree69" parent="." instance=ExtResource("2_6f77w")]
+position = Vector2(-990, 150)
+
 [node name="Tree62" parent="." instance=ExtResource("2_6f77w")]
 position = Vector2(-831, -31.5)
 
 [node name="TreePile31" parent="." instance=ExtResource("3_nar2a")]
-position = Vector2(-994, 221.5)
+position = Vector2(-1356, 308)
 
 [node name="TreePile41" parent="." instance=ExtResource("3_nar2a")]
-position = Vector2(-1133, 178.5)
+position = Vector2(-1409, 159)
 
 [node name="TreePile42" parent="." instance=ExtResource("3_nar2a")]
 position = Vector2(-1169, 53.5)
 
 [node name="TreePile40" parent="." instance=ExtResource("3_nar2a")]
 position = Vector2(-944, 355.5)
+
+[node name="TreePile92" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-1080, 282)
+
+[node name="TreePile93" parent="." instance=ExtResource("3_nar2a")]
+position = Vector2(-1210, 358)
 
 [node name="TreePile71" parent="." instance=ExtResource("3_nar2a")]
 position = Vector2(-801, 367)
@@ -1157,6 +1221,7 @@ script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_f05ty")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_bbf2w")
 metadata/_edit_lock_ = true
 
@@ -1244,6 +1309,7 @@ script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_kxuv5")
 
 [node name="LosBlocker" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 0
 
@@ -1253,5 +1319,23 @@ polygon = PackedVector2Array(-885, -247, -884, -283, -839, -280, -828, -245, -77
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="LosBlocker"]
 polygon = PackedVector2Array(-1259, -922, -853, -885, -533, -637, 114, -592, 599, -345, 610, -133, 487, -139, 470, -197, 533, -281, 523, -336, 372, -384, 281, -412, 209, -384, 124, -399, 88, -442, 7, -453, -36, -503, -218, -518, -231, -460, -313, -462, -340, -506, -496.477, -504, -494, -433, -586, -426, -629, -497, -710, -498, -753, -548, -865, -556, -873, -472, -970, -476, -1008, -564, -895, -564, -895, -653, -966, -697, -989, -755, -1133, -768, -1150, -724, -1236, -719, -1249, -620, -1211, -589, -1276, -560, -1205, -504, -1125, -493, -1125, -410, -994, -389, -1000, -323, -1099, -334, -1147, -297, -1276, -283, -1277, -243, -1378, -230, -1380, -349, -1388, -719)
 
+[node name="NPC_crow" parent="." instance=ExtResource("31_8avri")]
+position = Vector2(-1297, 185)
+scale = Vector2(-1, 1)
+
+[node name="WispInteractable" parent="NPC_crow" instance=ExtResource("20_8l740")]
+
+[node name="Trigger" parent="NPC_crow/WispInteractable" index="0"]
+shape = SubResource("CircleShape2D_0445a")
+
+[node name="Target" parent="NPC_crow/WispInteractable" index="1"]
+position = Vector2(17, -24)
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="NPC_crow/WispInteractable"]
+visible = false
+script = ExtResource("21_m7ic5")
+DialogueTree = SubResource("Resource_s7avi")
+
 [editable path="JokuHassuKalloKeppi"]
 [editable path="WispInteractable2"]
+[editable path="NPC_crow/WispInteractable"]
