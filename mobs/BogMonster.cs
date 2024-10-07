@@ -55,7 +55,8 @@ public partial class BogMonster : PathFollow2D {
 		this.Persistent().PlayerRespawned += () => {
 			playerWasKill = false;
 			animationPlayer?.Play("emerge_from_water", customSpeed: stats.emergeAnimationSpeed);
-			ai = defaultState();
+			// this fixes things
+			ai = new MovementState(goingForward: true, stats.speed);
 			fakePlayer.Visible = false;
 		};
 	}
