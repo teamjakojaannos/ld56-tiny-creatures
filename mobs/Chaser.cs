@@ -302,6 +302,7 @@ public partial class Chaser : RigidBody2D {
 		clearLookTarget();
 		clearMovementTarget();
 
+		this.Jukebox().StartChase();
 		aiState = new ChaseState(player);
 	}
 
@@ -309,6 +310,7 @@ public partial class Chaser : RigidBody2D {
 		clearLookTarget();
 		clearMovementTarget();
 
+		this.Jukebox().StopChase();
 		aiState = new SeekState(lastPosition);
 	}
 

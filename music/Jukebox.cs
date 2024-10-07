@@ -30,6 +30,10 @@ public partial class Jukebox : Node2D {
 	[Export]
 	public AudioStreamPlayer? Psykoosi;
 
+
+	[Export]
+	public AudioStreamPlayer? Combat;
+
 	public enum MuzakTrack {
 		ForrestGump,
 		SfwHub,
@@ -50,6 +54,20 @@ public partial class Jukebox : Node2D {
 	private IEnumerable<MuzakTrack> AllTracks => Enum.GetValues<MuzakTrack>();
 
 	private MuzakTrack? currentTrack = MuzakTrack.SfwHub;
+
+	private bool isInCombat = false;
+
+	public void StartChase() {
+		isInCombat = true;
+
+		if (!Combat!.Playing) {
+			Combat.Play();
+		}
+	}
+
+	public void StopChase() {
+		isInCombat = false;
+	}
 
 	public override void _Ready() {
 		base._Ready();
@@ -94,8 +112,10 @@ public partial class Jukebox : Node2D {
 				continue;
 			}
 
-			var targetVolume = track == currentTrack ? 1.0f : 0.0f;
-			var fadeSpeed = track == currentTrack ? FadeInSpeed : FadeOutSpeed;
+			var isCurrentTrack = !isInCombat && track == currentTrack;
+
+			var targetVolume = isCurrentTrack ? 1.0f : 0.0f;
+			var fadeSpeed = isCurrentTrack ? FadeInSpeed : FadeOutSpeed;
 
 			var volume = Mathf.DbToLinear(stream.VolumeDb);
 			var adjusted = Mathf.MoveToward(volume, targetVolume, fadeSpeed * delta);
@@ -104,6 +124,19 @@ public partial class Jukebox : Node2D {
 			if (track != currentTrack && adjusted < 0.001f) {
 				stream.Stop();
 			}
+		}
+
+		var isCurrentTrack2 = isInCombat;
+		var targetVolume2 = isCurrentTrack2 ? 1.0f : 0.0f;
+		var fadeSpeed2 = isCurrentTrack2 ? FadeInSpeed : FadeOutSpeed;
+
+		var stream2 = Combat!;
+		var volume2 = Mathf.DbToLinear(stream2.VolumeDb);
+		var adjusted2 = Mathf.MoveToward(volume2, targetVolume2, fadeSpeed2 * delta);
+		stream2.VolumeDb = Mathf.LinearToDb(adjusted2);
+
+		if (adjusted2 < 0.0001f) {
+			stream2!.Stop();
 		}
 	}
 }
