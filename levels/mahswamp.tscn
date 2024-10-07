@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=93 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -38,7 +38,6 @@
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="36_3gxow"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="36_fxb2t"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
-[ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="37_budci"]
 [ext_resource type="Resource" uid="uid://c24lq4s6ae0f" path="res://characters/character_snail.tres" id="37_exxl1"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="37_ombns"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="38_b3qxu"]
@@ -50,6 +49,7 @@
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="40_wu8kc"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="41_locdt"]
 [ext_resource type="Script" path="res://Environment/WakeUpBogMonster.cs" id="41_nww2k"]
+[ext_resource type="Resource" uid="uid://cu2rxvl4dhjsk" path="res://mobs/nakki/nakki_stationary_stats.tres" id="49_6hpki"]
 [ext_resource type="PackedScene" uid="uid://c8foef0ggh6i5" path="res://Environment/creepy_statue.tscn" id="51_ccpha"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
@@ -547,28 +547,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0)
 }
 point_count = 2
-
-[sub_resource type="Resource" id="Resource_n4sxg"]
-script = ExtResource("37_budci")
-speed = 45.0
-detectionGain = 400.0
-detectionDecay = 400.0
-moveTime = 0.0
-stopMoveChance = 1.0
-changeDirectionInsteadOfStoppingChance = 0.0
-goUnderwaterChance = 1.0
-minUnderwaterTime = 2.0
-maxUnderwaterTime = 7.0
-minIdleTime = 4.0
-maxIdleTime = 10.0
-emergeAtPlayerChance = 0.0
-emergeAtSameLocationChance = 1.0
-alertTime = 7.5
-alertThreshold = 200.0
-attackThreshold = 100.0
-attackTime = 1.0
-attackAnimationSpeed = 1.0
-emergeAnimationSpeed = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2gb47"]
 resource_local_to_scene = true
@@ -5636,7 +5614,8 @@ position = Vector2(448.216, -160.421)
 curve = SubResource("Curve2D_5t27y")
 
 [node name="BogMonsterEntity" parent="StationaryNakki" index="0"]
-stats = SubResource("Resource_n4sxg")
+stats = ExtResource("49_6hpki")
+defaultStateIsWaitForTrigger = true
 
 [node name="WispInteractable" parent="." instance=ExtResource("38_b3qxu")]
 position = Vector2(333.313, -142.674)
