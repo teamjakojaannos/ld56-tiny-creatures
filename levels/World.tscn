@@ -337,7 +337,6 @@ position = Vector2(128, -123)
 shape = SubResource("RectangleShape2D_v13c3")
 
 [node name="Juuri" parent="." instance=ExtResource("14_kfeaf")]
-visible = false
 position = Vector2(-5, -6817)
 
 [editable path="MuzakTrigger"]
