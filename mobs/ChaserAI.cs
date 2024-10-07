@@ -21,7 +21,7 @@ public static class ChaserStats {
 	public static (float, float) wanderToNewTargetInRange = (100.0f, 500.0f);
 
 	// update chase target position every x seconds
-	public const float chaseTargetPositionUpdateFrequency = 0.5f;
+	public const float chaseTargetPositionUpdateFrequency = 0.2f;
 
 	public const float keepLookingChance = 0.25f;
 	public static (float, float) seekNewLocationInRange = (10.0f, 200.0f);

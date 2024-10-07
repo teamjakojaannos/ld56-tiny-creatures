@@ -4,8 +4,10 @@ using Godot.Collections;
 
 public partial class Chaser : RigidBody2D {
 
-	[Export]
-	public float speed = 150.0f;
+	public float speed;
+	[Export] public float acceleration = 20.0f;
+	[Export] public float baseSpeed = 90.0f;
+	[Export] public float maxSpeed = 200.0f;
 
 	[Export(PropertyHint.Range, "-3.14,3.14,")]
 	public float coneAngleOffset = Mathf.Pi / 2.0f;
@@ -58,6 +60,8 @@ public partial class Chaser : RigidBody2D {
 			isAttacking = false;
 			aiState = new IdleState();
 		};
+
+		speed = baseSpeed;
 	}
 
 	private async void ActorSetup() {
@@ -85,6 +89,7 @@ public partial class Chaser : RigidBody2D {
 
 
 		aiState.doUpdate(this, delta);
+		updateSpeed(delta);
 
 		turnHead(delta);
 		var velocity = moveTowardsCurrentTarget(delta);
@@ -94,6 +99,13 @@ public partial class Chaser : RigidBody2D {
 		}
 
 		updateSprite(velocity);
+	}
+
+	private void updateSpeed(float delta) {
+		var isChasing = aiState is ChaseState;
+		var sign = isChasing ? +1.0f : -1.0f;
+		speed += acceleration * delta * sign;
+		speed = Mathf.Clamp(speed, baseSpeed, maxSpeed);
 	}
 
 	private Vector2? moveTowardsCurrentTarget(float delta) {
