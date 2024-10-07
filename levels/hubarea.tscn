@@ -821,7 +821,6 @@ texture = ExtResource("9_kgfcd")
 
 [node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
-DisableIfState = "SpiritLanternInteracted"
 
 [node name="Trigger" parent="Jösses" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
@@ -831,7 +830,7 @@ OneShot = true
 
 [node name="Jösses_Win" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
-RequireState = "SpiritLanternInteracted"
+RequireNumberOfWisps = 7
 
 [node name="Trigger" parent="Jösses_Win" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")

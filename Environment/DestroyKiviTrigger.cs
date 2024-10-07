@@ -8,6 +8,9 @@ public partial class DestroyKiviTrigger : Area2D {
 	[Export]
 	public DialogueTree? DialogueTree;
 
+	[Export]
+	public AudioStreamPlayer? sfx;
+
 	public void bodyEntered(Node2D node) {
 		if (node is Player) {
 			objectToDestroy?.QueueFree();
@@ -15,6 +18,8 @@ public partial class DestroyKiviTrigger : Area2D {
 			if (DialogueTree is not null) {
 				Dialogue.Instance(this).StartDialogue(DialogueTree);
 			}
+
+			sfx?.Play();
 		}
 	}
 }
