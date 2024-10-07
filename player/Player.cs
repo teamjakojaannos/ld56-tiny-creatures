@@ -90,6 +90,8 @@ public partial class Player : CharacterBody2D {
 	[Signal]
 	public delegate void ReadyToGoEventHandler();
 
+	private bool invulnerable = true;
+
 	public override void _Ready() {
 		base._Ready();
 
@@ -101,11 +103,17 @@ public partial class Player : CharacterBody2D {
 
 		var mainPlayerSpawn = GetTree().GetFirstNodeInGroup("IntroPlayerSpawn");
 		if (mainPlayerSpawn is Node2D spawn) {
+			GD.Print($"Starting at intro spawn (\"{spawn.Name}\" at {spawn.GlobalPosition})");
+			GlobalPosition = Vector2.Right * 10_000f;
 			CallDeferred(MethodName.TeleportTo, spawn);
 		} else {
+			GD.Print("Falling back to random spawn");
 			var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
 			if (spawns.Count != 0 && spawns.PickRandom() is Node2D fallbackRandomSpawn) {
+				GD.Print("Found a spawnpoint");
 				CallDeferred(MethodName.TeleportTo, fallbackRandomSpawn);
+			} else {
+				GD.PushError("No spawns available");
 			}
 		}
 
@@ -130,6 +138,7 @@ public partial class Player : CharacterBody2D {
 
 		GlobalPosition = target.GlobalPosition;
 
+		invulnerable = false;
 		EmitSignal(SignalName.ReadyToGo);
 	}
 
@@ -212,6 +221,10 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public void die() {
+		if (invulnerable) {
+			return;
+		}
+
 		if (IsInCinematic) {
 			return;
 		}

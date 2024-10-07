@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmvi58d0isrru"]
+[gd_scene load_steps=10 format=3 uid="uid://bmvi58d0isrru"]
 
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_2ysck"]
 
@@ -12,16 +12,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.730769, 0.508547)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_duiv6"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3pwvs"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qwl2u"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_om5qg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttp52"]
+size = Vector2(966, 1874.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37fn0"]
 atlas = ExtResource("1_2ysck")
@@ -85,20 +77,22 @@ metadata/_edit_lock_ = true
 [node name="Boundaries" type="StaticBody2D" parent="."]
 
 [node name="Left" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(-725, 0)
-shape = SubResource("WorldBoundaryShape2D_duiv6")
+position = Vector2(-1391, -5)
+shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="Top" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(0, -700)
-shape = SubResource("WorldBoundaryShape2D_3pwvs")
+[node name="Left2" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(1314, -5)
+shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="Right" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(776, 0)
-shape = SubResource("WorldBoundaryShape2D_qwl2u")
+[node name="Left3" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-44, 1374)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="Bottom" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(0, 749)
-shape = SubResource("WorldBoundaryShape2D_om5qg")
+[node name="Left4" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-41, -1394)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_ttp52")
 
 [node name="StaticProps" type="Node2D" parent="."]
 y_sort_enabled = true

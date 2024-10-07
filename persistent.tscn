@@ -14,6 +14,7 @@ Player = NodePath("Player")
 [node name="Intro" parent="." instance=ExtResource("2_phnra")]
 
 [node name="Player" parent="." instance=ExtResource("1_54i1f")]
+position = Vector2(28248, 15640)
 
 [node name="Camera" parent="Player" instance=ExtResource("2_ifw1n")]
 zoom = Vector2(3, 3)

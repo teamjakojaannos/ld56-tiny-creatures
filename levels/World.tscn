@@ -267,6 +267,7 @@ debug_color = Color(0.896646, 0.237324, 0.535031, 0.42)
 
 [node name="MuzakTrigger (starting area)" parent="." instance=ExtResource("8_apjqm")]
 position = Vector2(-661, 478)
+collision_layer = 0
 
 [node name="CollisionShape2D" parent="MuzakTrigger (starting area)" index="0"]
 position = Vector2(16, -173.5)
@@ -336,6 +337,7 @@ position = Vector2(128, -123)
 shape = SubResource("RectangleShape2D_v13c3")
 
 [node name="Juuri" parent="." instance=ExtResource("14_kfeaf")]
+visible = false
 position = Vector2(-5, -6817)
 
 [editable path="MuzakTrigger"]
