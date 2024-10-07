@@ -57,6 +57,9 @@ public partial class WispInteractable : Area2D {
 	[Export]
 	public string DisableIfState = "";
 
+	[Export]
+	public bool HideIfDisabledOrRequirementsNotMet = true;
+
 	[Signal]
 	public delegate void InteractStartEventHandler();
 
@@ -68,7 +71,7 @@ public partial class WispInteractable : Area2D {
 	}
 
 	private bool IsDisabledByState() {
-		return DisableIfState.Trim().Length == 0 || !this.Persistent().State.Contains(DisableIfState.Trim());
+		return DisableIfState.Trim().Length != 0 && this.Persistent().State.Contains(DisableIfState.Trim());
 	}
 
 	public override void _Ready() {
@@ -108,7 +111,20 @@ public partial class WispInteractable : Area2D {
 	public override void _Process(double delta) {
 		base._Process(delta);
 
-		if (Engine.IsEditorHint() || wisp is null) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
+		if (HideIfDisabledOrRequirementsNotMet) {
+			if (!RequirementsMet() || IsDisabledByState()) {
+				Visible = false;
+				return;
+			}
+
+			Visible = true;
+		}
+
+		if (wisp is null) {
 			return;
 		}
 
