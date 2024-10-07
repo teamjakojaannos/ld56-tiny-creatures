@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=83 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -25,27 +25,29 @@
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_lwecq"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="20_0b7li"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_wrs7f"]
-[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="21_b1c6j"]
+[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="21_b1c6j"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
 [ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://Environment/SuoKansio/pieniruohot.png" id="23_30oyg"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
-[ext_resource type="PackedScene" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
+[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
+[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
+[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
+[ext_resource type="PackedScene" uid="uid://82edj5sbubfj" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="36_3gxow"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="36_fxb2t"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
 [ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="37_budci"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="37_ombns"]
+[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="38_b3qxu"]
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="38_farw4"]
+[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="39_78148"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="39_peqhq"]
 [ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="40_k23r2"]
-[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="41_bq82j"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="42_3s112"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="43_y24h0"]
-[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="44_v7mf7"]
+[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="40_v1suw"]
+[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="40_wu8kc"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="41_locdt"]
+[ext_resource type="Script" path="res://Environment/WakeUpBogMonster.cs" id="41_nww2k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
 radius = 107.0
@@ -434,8 +436,8 @@ _data = {
 }
 
 [sub_resource type="Resource" id="Resource_cgkfy"]
-script = ExtResource("44_v7mf7")
-Character = ExtResource("42_3s112")
+script = ExtResource("40_wu8kc")
+Character = ExtResource("40_v1suw")
 IsInteractive = false
 Lines = ["Yayyy!!"]
 ScreenShakeAmount = 0.0
@@ -443,8 +445,8 @@ ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_vacxv"]
-script = ExtResource("44_v7mf7")
-Character = ExtResource("42_3s112")
+script = ExtResource("40_wu8kc")
+Character = ExtResource("40_v1suw")
 IsInteractive = false
 Lines = ["No!! Don't leave me here!!"]
 ScreenShakeAmount = 0.0
@@ -452,8 +454,8 @@ ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_o41ml"]
-script = ExtResource("44_v7mf7")
-Character = ExtResource("43_y24h0")
+script = ExtResource("40_wu8kc")
+Character = ExtResource("41_locdt")
 IsInteractive = true
 Lines = ["Yes", "No"]
 Next = SubResource("Resource_cgkfy")
@@ -463,8 +465,8 @@ ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_t04uw"]
-script = ExtResource("44_v7mf7")
-Character = ExtResource("42_3s112")
+script = ExtResource("40_wu8kc")
+Character = ExtResource("40_v1suw")
 IsInteractive = false
 Lines = ["Release the spirit?"]
 Next = SubResource("Resource_o41ml")
@@ -506,6 +508,42 @@ emergeAtSameLocationChance = 1.0
 alertTime = 7.5
 alertThreshold = 200.0
 attackThreshold = 100.0
+attackTime = 1.0
+attackAnimationSpeed = 1.0
+emergeAnimationSpeed = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2gb47"]
+resource_local_to_scene = true
+radius = 46.0109
+
+[sub_resource type="Resource" id="Resource_7x6vo"]
+script = ExtResource("40_wu8kc")
+Character = ExtResource("40_v1suw")
+IsInteractive = false
+Lines = ["There's a monster in the water. He looks very dangerous."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_wcqjg"]
+script = ExtResource("40_wu8kc")
+Character = ExtResource("41_locdt")
+IsInteractive = false
+Lines = ["What is it?"]
+Next = SubResource("Resource_7x6vo")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_fqyaf"]
+script = ExtResource("40_wu8kc")
+Character = ExtResource("40_v1suw")
+IsInteractive = false
+Lines = ["HEY! Watch out!"]
+Next = SubResource("Resource_wcqjg")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
 
 [node name="MAHSWAMP" type="Node2D"]
 y_sort_enabled = true
@@ -2975,7 +3013,7 @@ RequireDialogue = true
 DialogueTrigger = "Yes"
 
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SuoSaariLyhty/WispInteractable"]
-script = ExtResource("41_bq82j")
+script = ExtResource("39_78148")
 DialogueTree = SubResource("Resource_t04uw")
 
 [node name="SuoEteläLyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
@@ -3057,7 +3095,7 @@ RequireDialogue = true
 DialogueTrigger = "Yes"
 
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SuoEteläLyhty/WispInteractable"]
-script = ExtResource("41_bq82j")
+script = ExtResource("39_78148")
 DialogueTree = SubResource("Resource_t04uw")
 
 [node name="BogMonster" parent="." instance=ExtResource("36_i1gca")]
@@ -3080,5 +3118,27 @@ curve = SubResource("Curve2D_5t27y")
 
 [node name="BogMonsterEntity" parent="StationaryNakki" index="0"]
 stats = SubResource("Resource_n4sxg")
+defaultStateIsWaitForTrigger = true
+
+[node name="WispInteractable" parent="." instance=ExtResource("38_b3qxu")]
+position = Vector2(333.313, -142.674)
+GoalDistance = 64.0
+OneShot = true
+
+[node name="Trigger" parent="WispInteractable" index="0"]
+shape = SubResource("CircleShape2D_2gb47")
+
+[node name="Target" parent="WispInteractable" index="1"]
+position = Vector2(75.6866, -42.3263)
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="WispInteractable"]
+script = ExtResource("39_78148")
+DialogueTree = SubResource("Resource_fqyaf")
+OneShot = true
+
+[node name="WakeUpBogMonster" type="Node2D" parent="WispInteractable" node_paths=PackedStringArray("monster")]
+script = ExtResource("41_nww2k")
+monster = NodePath("../../StationaryNakki/BogMonsterEntity")
 
 [editable path="StationaryNakki"]
+[editable path="WispInteractable"]

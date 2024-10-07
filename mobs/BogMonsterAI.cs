@@ -269,3 +269,15 @@ public class AttackState : BogMonsterAIState {
 		return false;
 	}
 }
+
+public class WaitUntilTriggerIsTriggeredState : BogMonsterAIState {
+
+	private bool animationSet;
+
+	public override void doUpdate(BogMonster monster, float delta) {
+		if (!animationSet) {
+			animationSet = true;
+			monster.playGoUnderwaterAnimationThisIsVeryHackyThingDontUse();
+		}
+	}
+}

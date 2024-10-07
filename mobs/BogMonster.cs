@@ -37,6 +37,8 @@ public partial class BogMonster : PathFollow2D {
 		}
 	}
 
+	[Export] public bool defaultStateIsWaitForTrigger;
+
 	public override void _Ready() {
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
@@ -48,14 +50,22 @@ public partial class BogMonster : PathFollow2D {
 		var attackTimer = GetNode<Timer>("AttackTimer");
 		attackTimer.WaitTime = stats.attackTime;
 
-		ai = new MovementState(goingForward: true, stats.speed);
+		ai = defaultState();
 
 		this.Persistent().PlayerRespawned += () => {
 			playerWasKill = false;
 			animationPlayer?.Play("emerge_from_water", customSpeed: stats.emergeAnimationSpeed);
-			ai = new MovementState(goingForward: true, stats.speed);
+			ai = defaultState();
 			fakePlayer.Visible = false;
 		};
+	}
+
+	public BogMonsterAIState defaultState() {
+		if (defaultStateIsWaitForTrigger) {
+			return new WaitUntilTriggerIsTriggeredState();
+		} else {
+			return new MovementState(goingForward: true, stats.speed);
+		}
 	}
 
 	public override void _PhysicsProcess(double _delta) {
@@ -141,6 +151,10 @@ public partial class BogMonster : PathFollow2D {
 		ai = new UnderwaterState(underwaterTime * timeMult);
 		animationPlayer?.Play("go_underwater");
 		underwaterCooldown?.Start();
+	}
+
+	public void playGoUnderwaterAnimationThisIsVeryHackyThingDontUse() {
+		animationPlayer?.Play("go_underwater");
 	}
 
 	public void goUnderwaterAnimationDone() {
