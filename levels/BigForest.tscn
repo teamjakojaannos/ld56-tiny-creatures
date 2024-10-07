@@ -40,6 +40,8 @@ script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
 Lines = ["This is a dangerous forest! We have to be careful."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_f05ty"]
@@ -48,6 +50,8 @@ Character = ExtResource("22_sxeog")
 IsInteractive = false
 Lines = ["Why is there skulls impaled on sticks!?"]
 Next = SubResource("Resource_ylqht")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbf2w"]
@@ -416,6 +420,8 @@ script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
 Lines = ["Yayyy!!"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_gn1c6"]
@@ -423,6 +429,8 @@ script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
 Lines = ["No!! Don't leave me here!!"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_o41ml"]
@@ -432,6 +440,8 @@ IsInteractive = true
 Lines = ["Yes", "No"]
 Next = SubResource("Resource_7gj5o")
 Next2 = SubResource("Resource_gn1c6")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_kxuv5"]
@@ -440,6 +450,8 @@ Character = ExtResource("23_lcdbd")
 IsInteractive = false
 Lines = ["Release the spirit?"]
 Next = SubResource("Resource_o41ml")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [node name="Node2D" type="Node2D"]
