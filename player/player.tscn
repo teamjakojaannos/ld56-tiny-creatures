@@ -609,7 +609,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "WispFollowNode", "Wisp", "Noppa") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "WispFollowNode", "Wisp") groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 3
 motion_mode = 1
@@ -618,12 +618,8 @@ script = ExtResource("1_cn8o3")
 Speed = 110.0
 Friction = 15.0
 Animation = NodePath("AnimationPlayer")
-Footsteps = NodePath("Footsteps")
-FootstepsWet = NodePath("FootstepsWet")
-FootstepsTimer = NodePath("FootstepTimer")
 WispFollowNode = NodePath("SpiritTarget/Spirit")
 Wisp = NodePath("SpiritTarget/SpiritVisuals")
-Noppa = NodePath("Ded")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -722,7 +718,7 @@ bus = &"SFX"
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.4
 
-[node name="Footsteps" type="Node" parent="."]
+[node name="Footsteps" type="Node2D" parent="."]
 script = ExtResource("4_kghcv")
 
 [node name="Askel1" type="AudioStreamPlayer" parent="Footsteps"]
@@ -750,7 +746,7 @@ stream = ExtResource("8_f4pld")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="FootstepsWet" type="Node" parent="."]
+[node name="FootstepsWet" type="Node2D" parent="."]
 script = ExtResource("4_kghcv")
 
 [node name="Stepwater1" type="AudioStreamPlayer" parent="FootstepsWet"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://pk3tc6o4spst"]
+[gd_scene load_steps=44 format=3 uid="uid://pk3tc6o4spst"]
 
 [ext_resource type="Script" path="res://mobs/Chaser.cs" id="1_sj5s6"]
 [ext_resource type="Texture2D" uid="uid://bgqidrl2t46ak" path="res://mobs/markoidleB.png" id="2_i5kib"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://cf7a5jq2ec6u4" path="res://mobs/markoattac.png" id="6_0x6f6"]
 [ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://mobs/player_in_trouble.png" id="7_p7lna"]
 [ext_resource type="Texture2D" uid="uid://ctacdgnwmqtbh" path="res://mobs/marko_kasi.png" id="8_4k2m5"]
+[ext_resource type="Script" path="res://player/Footsteps.cs" id="9_d77we"]
+[ext_resource type="AudioStream" uid="uid://bdaw5eoepaqbj" path="res://mobs/morko/isoaskel1.ogg" id="10_xhd7h"]
+[ext_resource type="AudioStream" uid="uid://bf6b7018ta06l" path="res://mobs/morko/isoaskel2.ogg" id="11_ueypv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_281o1"]
 atlas = ExtResource("2_i5kib")
@@ -449,11 +452,13 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_nl403"]
 radius = 20.0
 
-[node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite")]
+[node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite", "FootstepsTimer", "Footsteps")]
 lock_rotation = true
 script = ExtResource("1_sj5s6")
 AnimPlayer = NodePath("AnimationPlayer")
 Sprite = NodePath("Sprite2D")
+FootstepsTimer = NodePath("FootstepTimer")
+Footsteps = NodePath("Footsteps")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -531,6 +536,42 @@ visible = false
 texture_filter = 1
 position = Vector2(0, -43.5)
 texture = ExtResource("8_4k2m5")
+
+[node name="FootstepTimer" type="Timer" parent="."]
+wait_time = 0.8
+
+[node name="Footsteps" type="Node2D" parent="."]
+script = ExtResource("9_d77we")
+
+[node name="Isoaskel1" type="AudioStreamPlayer2D" parent="Footsteps"]
+position = Vector2(-1, -1)
+stream = ExtResource("10_xhd7h")
+volume_db = -5.0
+pitch_scale = 0.75
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="Isoaskel2" type="AudioStreamPlayer2D" parent="Footsteps"]
+position = Vector2(-1, -1)
+stream = ExtResource("11_ueypv")
+volume_db = -5.0
+pitch_scale = 0.75
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="Isoaskel3" type="AudioStreamPlayer2D" parent="Footsteps"]
+position = Vector2(-1, -1)
+stream = ExtResource("10_xhd7h")
+volume_db = -5.0
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="Isoaskel4" type="AudioStreamPlayer2D" parent="Footsteps"]
+position = Vector2(-1, -1)
+stream = ExtResource("11_ueypv")
+volume_db = -5.0
+max_distance = 500.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="SightCone/SightConeLarge" to="." method="enterSightConeLarge"]
 [connection signal="body_exited" from="SightCone/SightConeLarge" to="." method="exitSightConeLarge"]

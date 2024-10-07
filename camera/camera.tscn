@@ -12,3 +12,6 @@ stream = ExtResource("2_5ii7y")
 volume_db = -5.0
 pitch_scale = 0.75
 bus = &"SFX"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true

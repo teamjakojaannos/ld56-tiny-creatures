@@ -39,6 +39,12 @@ public partial class Chaser : RigidBody2D {
 	private Player? player;
 	private bool isAttacking;
 
+	[Export]
+	public Timer? FootstepsTimer;
+
+	[Export]
+	public Footsteps? Footsteps;
+
 	public override void _Ready() {
 		sightConeRoot = GetNode<Node2D>("SightCone");
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
@@ -62,6 +68,12 @@ public partial class Chaser : RigidBody2D {
 		};
 
 		speed = baseSpeed;
+
+		if (FootstepsTimer is not null) {
+			FootstepsTimer.Timeout += () => {
+				Footsteps?.Play();
+			};
+		}
 	}
 
 	private async void ActorSetup() {
@@ -93,6 +105,12 @@ public partial class Chaser : RigidBody2D {
 
 		turnHead(delta);
 		var velocity = moveTowardsCurrentTarget(delta);
+
+		if (velocity is not null && (velocity?.LengthSquared()) < 0.01f) {
+			FootstepsTimer?.Stop();
+		} else if (FootstepsTimer!.IsStopped()) {
+			FootstepsTimer.Start();
+		}
 
 		if (hasReachedMovementTarget()) {
 			clearMovementTarget();
