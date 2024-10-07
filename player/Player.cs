@@ -151,7 +151,6 @@ public partial class Player : CharacterBody2D {
 		}
 
 		if (WispTarget is not null) {
-
 			var distance = Wisp.GlobalPosition.DistanceTo(WispTarget.GlobalPosition);
 			Wisp.GlobalPosition =
 				Wisp.GlobalPosition.MoveToward(WispTarget.GlobalPosition, distance * 2.0f * delta);
@@ -169,7 +168,7 @@ public partial class Player : CharacterBody2D {
 
 		var modifier = Slowed ? 0.5f : 1.0f;
 		if (direction.LengthSquared() > 0.001f) {
-			Velocity = direction * Speed * delta * modifier;
+			Velocity = direction * Speed * modifier;
 			animationDirection = direction.X < 0.0
 				? "Left"
 				: direction.X > 0.0
@@ -194,7 +193,7 @@ public partial class Player : CharacterBody2D {
 		}
 
 		var wispPosition = Wisp.GlobalPosition;
-		MoveAndCollide(Velocity);
+		MoveAndSlide();
 
 		// HACK: Cancel out wisp movement to emulate top-level movement.
 		//       Can't use TopLevel=true as that breaks Y-sort.
