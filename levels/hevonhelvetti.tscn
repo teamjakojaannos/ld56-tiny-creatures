@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://bmvi58d0isrru"]
 
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_2ysck"]
-[ext_resource type="PackedScene" uid="uid://c287axru5rdlt" path="res://Environment/ryhmähauta.tscn" id="2_1vlf7"]
+[ext_resource type="PackedScene" path="res://Environment/ryhmähauta.tscn" id="2_1vlf7"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="3_q5w04"]
 [ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_d57h3"]
 [ext_resource type="Resource" uid="uid://dl7jjb2uygwtc" path="res://characters/character_jesse.tres" id="5_7bcto"]
@@ -58,7 +58,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_djy3h"]
-size = Vector2(40, 20)
+size = Vector2(43, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3u3cn"]
 radius = 30.0
@@ -140,12 +140,14 @@ offset = Vector2(0, -45)
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticProps"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticProps/StaticBody2D"]
-position = Vector2(0, -12)
+position = Vector2(-0.5, -12)
 shape = SubResource("RectangleShape2D_djy3h")
 
 [node name="Functional" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="WinTpTarget" type="Marker2D" parent="Functional" groups=["PlayerSpawn", "ViineriTpTarget"]]
+y_sort_enabled = true
 position = Vector2(0, 63)
 
 [node name="Ryhmähauta" parent="." instance=ExtResource("2_1vlf7")]
