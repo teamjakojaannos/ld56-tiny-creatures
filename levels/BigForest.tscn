@@ -3304,6 +3304,7 @@ debug_color = Color(0.332261, 0.488051, 1, 0.42)
 position = Vector2(-22, -22)
 
 [node name="SpiritLantern" type="Node2D" parent="Kantolyhty/WispInteractable"]
+y_sort_enabled = true
 metadata/_edit_lock_ = true
 
 [node name="Base" type="Sprite2D" parent="Kantolyhty/WispInteractable/SpiritLantern"]
@@ -3431,6 +3432,7 @@ position = Vector2(-322.258, -61.0251)
 position = Vector2(-1174.01, 212.755)
 
 [node name="Metsälyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
+y_sort_enabled = true
 script = ExtResource("24_fxq4l")
 AnimPlayer = NodePath("WispInteractable/SpiritLantern2/AnimationPlayer")
 Location = "metsä"
@@ -3449,6 +3451,7 @@ debug_color = Color(0.332261, 0.488051, 1, 0.42)
 position = Vector2(-23, -26)
 
 [node name="SpiritLantern2" type="Node2D" parent="Metsälyhty/WispInteractable"]
+y_sort_enabled = true
 position = Vector2(-3, 7)
 metadata/_edit_lock_ = true
 
@@ -3516,6 +3519,7 @@ script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_kxuv5")
 
 [node name="Pululyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
+y_sort_enabled = true
 script = ExtResource("24_fxq4l")
 AnimPlayer = NodePath("WispInteractable/SpiritLantern3/AnimationPlayer")
 Location = "pulu"
@@ -3534,6 +3538,7 @@ debug_color = Color(0.332261, 0.488051, 1, 0.42)
 position = Vector2(26, -22)
 
 [node name="SpiritLantern3" type="Node2D" parent="Pululyhty/WispInteractable"]
+y_sort_enabled = true
 position = Vector2(7, -2)
 metadata/_edit_lock_ = true
 
@@ -3601,6 +3606,7 @@ script = ExtResource("21_m7ic5")
 DialogueTree = SubResource("Resource_kxuv5")
 
 [node name="MetsälyhtySouth" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
+y_sort_enabled = true
 script = ExtResource("24_fxq4l")
 AnimPlayer = NodePath("WispInteractable/SpiritLantern/AnimationPlayer")
 Location = "metsä_south"
@@ -3619,6 +3625,7 @@ debug_color = Color(0.332261, 0.488051, 1, 0.42)
 position = Vector2(0, -6)
 
 [node name="SpiritLantern" type="Node2D" parent="MetsälyhtySouth/WispInteractable"]
+y_sort_enabled = true
 position = Vector2(1, 6)
 metadata/_edit_lock_ = true
 
