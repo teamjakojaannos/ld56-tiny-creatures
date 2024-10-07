@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=106 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -51,6 +51,8 @@
 [ext_resource type="Script" path="res://Environment/WakeUpBogMonster.cs" id="41_nww2k"]
 [ext_resource type="Resource" uid="uid://cu2rxvl4dhjsk" path="res://mobs/nakki/nakki_stationary_stats.tres" id="49_6hpki"]
 [ext_resource type="PackedScene" uid="uid://c8foef0ggh6i5" path="res://Environment/creepy_statue.tscn" id="51_ccpha"]
+[ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="52_d3b6v"]
+[ext_resource type="Script" path="res://Environment/MyEvilTrigger.cs" id="52_jc142"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
 radius = 107.0
@@ -549,7 +551,7 @@ size = Vector2(412.5, 11)
 size = Vector2(44, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l5whs"]
-size = Vector2(25, 12)
+size = Vector2(31, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl6wi"]
 size = Vector2(48, 11)
@@ -634,11 +636,36 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Resource" id="Resource_amied"]
+script = ExtResource("52_d3b6v")
+speed = 45.0
+detectionGain = 400.0
+detectionDecay = 400.0
+moveTime = 0.0
+stopMoveChance = 1.0
+changeDirectionInsteadOfStoppingChance = 0.0
+goUnderwaterChance = 1.0
+minUnderwaterTime = 2.0
+maxUnderwaterTime = 7.0
+minIdleTime = 4.0
+maxIdleTime = 10.0
+emergeAtPlayerChance = 0.0
+emergeAtSameLocationChance = 1.0
+alertTime = 7.5
+alertThreshold = 200.0
+attackThreshold = 100.0
+attackTime = 0.1
+attackAnimationSpeed = 5.0
+emergeAnimationSpeed = 5.0
+
 [sub_resource type="Curve2D" id="Curve2D_6cyir"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
 }
 point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nkknn"]
+radius = 43.1716
 
 [node name="MAHSWAMP" type="Node2D"]
 y_sort_enabled = true
@@ -5108,7 +5135,7 @@ position = Vector2(471.5, 186)
 position = Vector2(525.5, 243)
 
 [node name="NakkiRuoho76" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
-position = Vector2(368, 195)
+position = Vector2(385, 190)
 
 [node name="NakkiRuoho77" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
 position = Vector2(277.5, 135)
@@ -5117,7 +5144,7 @@ position = Vector2(277.5, 135)
 position = Vector2(306.5, 127)
 
 [node name="NakkiRuoho79" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
-position = Vector2(360.5, 184)
+position = Vector2(371.5, 180)
 
 [node name="NakkiRuoho80" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
 position = Vector2(154, 184)
@@ -5392,6 +5419,8 @@ position = Vector2(-387, -693)
 
 [node name="SwampColliders" type="StaticBody2D" parent="."]
 visible = false
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwampColliders"]
 position = Vector2(11, -492)
@@ -5658,7 +5687,7 @@ position = Vector2(944, -179)
 polygon = PackedVector2Array(-63, 104, 134, -118, 439, 41, 220, 185)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="LosBlockers"]
-position = Vector2(368.5, 188)
+position = Vector2(375.5, 186.5)
 shape = SubResource("RectangleShape2D_l5whs")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="LosBlockers"]
@@ -5726,12 +5755,29 @@ position = Vector2(333.584, 96.9822)
 curve = SubResource("Curve2D_qrvrw")
 
 [node name="BogMonsterEntity" parent="Stationary2" index="0"]
-stats = ExtResource("49_6hpki")
+stats = SubResource("Resource_amied")
 defaultStateIsWaitForTrigger = true
 
 [node name="BogMonster3" parent="." instance=ExtResource("36_i1gca")]
 position = Vector2(778.332, 65.9034)
 curve = SubResource("Curve2D_6cyir")
+
+[node name="MyEvilTrigger" type="Area2D" parent="." node_paths=PackedStringArray("monster")]
+position = Vector2(472.908, 210.613)
+collision_layer = 0
+script = ExtResource("52_jc142")
+monster = NodePath("../Stationary2/BogMonsterEntity")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyEvilTrigger"]
+position = Vector2(2.09244, 2.3871)
+shape = SubResource("CircleShape2D_nkknn")
+
+[node name="Timer1" type="Timer" parent="MyEvilTrigger"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="MyEvilTrigger"]
+one_shot = true
 
 [editable path="NpcSnail/WispInteractable"]
 [editable path="StationaryNakki"]

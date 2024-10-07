@@ -157,6 +157,10 @@ public partial class BogMonster : PathFollow2D {
 		animationPlayer?.Play("go_underwater");
 	}
 
+	public void playEmergeFromWaterAnimationThisIsVeryHackyThingDontUse() {
+		animationPlayer?.Play("emerge_from_water");
+	}
+
 	public void goUnderwaterAnimationDone() {
 		// HACK: if player was killed, just stay underwater
 		if (playerWasKill) {

@@ -272,7 +272,7 @@ public class AttackState : BogMonsterAIState {
 
 public class WaitUntilTriggerIsTriggeredState : BogMonsterAIState {
 
-	private bool animationSet;
+	public bool animationSet;
 
 	public override void doUpdate(BogMonster monster, float delta) {
 		if (!animationSet) {
