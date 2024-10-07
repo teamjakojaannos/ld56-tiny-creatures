@@ -52,7 +52,7 @@ public partial class BogMonster : PathFollow2D {
 
 		this.Persistent().PlayerRespawned += () => {
 			playerWasKill = false;
-			animationPlayer?.Play("emerge_from_water");
+			animationPlayer?.Play("emerge_from_water", customSpeed: stats.emergeAnimationSpeed);
 			ai = new MovementState(goingForward: true, stats.speed);
 			fakePlayer.Visible = false;
 		};
@@ -156,7 +156,7 @@ public partial class BogMonster : PathFollow2D {
 
 	public void emergeFromWaterAtPosition(float progress) {
 		ProgressRatio = progress;
-		animationPlayer?.Play("emerge_from_water");
+		animationPlayer?.Play("emerge_from_water", customSpeed: stats.emergeAnimationSpeed);
 	}
 
 	public void emergeFromWaterNearPlayer() {
@@ -222,7 +222,7 @@ public partial class BogMonster : PathFollow2D {
 			}
 		}
 
-		animationPlayer?.Play("start_attack");
+		animationPlayer?.Play("start_attack", customSpeed: stats.attackAnimationSpeed);
 		ApplySlow();
 		SyncHandLocation(1.0f);
 	}

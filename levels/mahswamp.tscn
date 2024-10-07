@@ -100,6 +100,9 @@ emergeAtSameLocationChance = 1.0
 alertTime = 7.5
 alertThreshold = 200.0
 attackThreshold = 100.0
+attackTime = 0.1
+attackAnimationSpeed = 2.5
+emergeAnimationSpeed = 2.0
 
 [node name="MAHSWAMP" type="Node2D"]
 y_sort_enabled = true

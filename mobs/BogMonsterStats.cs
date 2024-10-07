@@ -43,4 +43,6 @@ public partial class BogMonsterStats : Resource {
 
 	// how many seconds until the hand snatches the player
 	[Export] public float attackTime = 1.0f;
+	[Export] public float attackAnimationSpeed = 1.0f;
+	[Export] public float emergeAnimationSpeed = 1.0f;
 }
