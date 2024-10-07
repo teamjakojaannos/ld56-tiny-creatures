@@ -23,6 +23,7 @@ public partial class Persistent : Node2D {
 	[Export]
 	public Player? Player;
 
+	[Export]
 	public int SavedCount { get; internal set; } = 0;
 
 	[Signal]

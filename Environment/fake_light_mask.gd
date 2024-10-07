@@ -1,6 +1,6 @@
 extends Node2D
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	var lantern = player.get_node("SpiritTarget/SpiritVisuals") as Node2D
 	var is_player_past = lantern.global_position.y > global_position.y

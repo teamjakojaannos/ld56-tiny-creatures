@@ -58,7 +58,10 @@ public partial class WispInteractable : Area2D {
 	public string DisableIfState = "";
 
 	[Export]
-	public int RequireNumberOfWisps = -1;
+	public int RequireNumberOfWispsGreaterThan = -1;
+
+	[Export]
+	public int RequireNumberOfWispsLessThan = -1;
 
 	[Export]
 	public bool HideIfDisabledOrRequirementsNotMet = true;
@@ -71,8 +74,9 @@ public partial class WispInteractable : Area2D {
 
 	private bool RequirementsMet() {
 		bool state = RequireState.Trim().Length == 0 || this.Persistent().State.Contains(RequireState.Trim());
-		bool wisps = RequireNumberOfWisps == -1 || this.Persistent().SavedCount == RequireNumberOfWisps;
-		return state && wisps;
+		bool wispsGreat = RequireNumberOfWispsGreaterThan == -1 || this.Persistent().SavedCount > RequireNumberOfWispsGreaterThan;
+		bool wispsLess = RequireNumberOfWispsLessThan == -1 || this.Persistent().SavedCount < RequireNumberOfWispsLessThan;
+		return state && wispsGreat && wispsLess;
 	}
 
 	private bool IsDisabledByState() {

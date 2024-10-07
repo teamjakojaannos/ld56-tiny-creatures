@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://q6pq6h04st66"]
+
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="1_uuxxg"]
+[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="2_2nk6p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vne0t"]
+atlas = ExtResource("2_2nk6p")
+region = Rect2(168, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li2r8"]
+atlas = ExtResource("2_2nk6p")
+region = Rect2(224, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ohfm"]
+atlas = ExtResource("2_2nk6p")
+region = Rect2(280, 0, 56, 89)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qu02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vne0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li2r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ohfm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Container" instance=ExtResource("1_uuxxg")]
+offset_left = 0.5
+offset_right = 76.5
+
+[node name="Character" parent="PortraitFrame" index="0"]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PortraitFrame" index="1"]
+texture_filter = 1
+position = Vector2(32.5, 88)
+scale = Vector2(1.90179, 1.90179)
+sprite_frames = SubResource("SpriteFrames_8qu02")
+autoplay = "default"
+frame_progress = 0.629834
+
+[node name="Name" parent="." index="1"]
+text = "Jesse"

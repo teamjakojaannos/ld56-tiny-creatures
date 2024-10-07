@@ -77,7 +77,7 @@ ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
 
-[node name="World" type="Node2D" groups=["PlayIntro"]]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
