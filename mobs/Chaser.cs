@@ -12,7 +12,10 @@ public partial class Chaser : RigidBody2D {
 	[Export]
 	public float turnSpeedDegPerSec = 45.0f;
 
-	private Node2D? sightCone;
+	private Node2D? sightConeRoot;
+	private Area2D? sightConeSmall;
+	private Area2D? sightConeMedium;
+	private Area2D? sightConeLarge;
 
 	[Export]
 	public AnimationPlayer? AnimPlayer;
@@ -34,11 +37,21 @@ public partial class Chaser : RigidBody2D {
 	private bool isAttacking;
 
 	public override void _Ready() {
-		sightCone = GetNode<Node2D>("SightCone");
+		sightConeRoot = GetNode<Node2D>("SightCone");
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
 
+		sightConeSmall = GetNode<Area2D>("SightCone/SightConeSmall");
+		sightConeMedium = GetNode<Area2D>("SightCone/SightConeMedium");
+		sightConeLarge = GetNode<Area2D>("SightCone/SightConeLarge");
+
 		Callable.From(ActorSetup).CallDeferred();
+
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is Player player) {
+			player.LightLevelChanged += playerLightLevelChanged;
+			activateSightCone(player.lightLevel);
+		}
 	}
 
 	private async void ActorSetup() {
@@ -98,7 +111,7 @@ public partial class Chaser : RigidBody2D {
 
 		clearLookTarget();
 		var desiredAngle = GlobalPosition.AngleToPoint(target) + coneAngleOffset;
-		sightCone!.Rotation = desiredAngle;
+		sightConeRoot!.Rotation = desiredAngle;
 	}
 
 	private void updateSprite(Vector2? vel) {
@@ -109,7 +122,7 @@ public partial class Chaser : RigidBody2D {
 
 			// this probably assumes that sight cone points upwards
 			// check if angle is between [-90, 90]
-			var angle = sightCone!.Rotation;
+			var angle = sightConeRoot!.Rotation;
 			angle -= quarterCircle;
 			angle = (angle + fullCircle) % fullCircle;
 			var topOrBack = Mathf.FloorToInt(angle / halfCircle);
@@ -121,7 +134,7 @@ public partial class Chaser : RigidBody2D {
 			}
 
 			// here we're figuring if angle is between 0 and 180deg, or 180-360
-			var angle2 = sightCone!.Rotation;
+			var angle2 = sightConeRoot!.Rotation;
 			angle2 = (angle2 + fullCircle) % fullCircle;
 
 			var half = Mathf.Floor(angle2 / halfCircle);
@@ -157,7 +170,7 @@ public partial class Chaser : RigidBody2D {
 		if (turnInstantly) {
 			var myPos = GlobalPosition;
 			var desiredAngle = myPos.AngleToPoint(targetGlobalPos) + coneAngleOffset;
-			sightCone!.Rotation = desiredAngle;
+			sightConeRoot!.Rotation = desiredAngle;
 		}
 	}
 
@@ -174,7 +187,7 @@ public partial class Chaser : RigidBody2D {
 
 		var myPos = GlobalPosition;
 		var desiredAngle = myPos.AngleToPoint(point) + coneAngleOffset;
-		var currentAngle = sightCone!.Rotation;
+		var currentAngle = sightConeRoot!.Rotation;
 		var diff = Mathf.AngleDifference(currentAngle, desiredAngle);
 		return Mathf.Abs(diff) <= closeEnough;
 	}
@@ -190,14 +203,14 @@ public partial class Chaser : RigidBody2D {
 		var turnSpeedRadPerSec = Mathf.DegToRad(turnSpeedDegPerSec);
 		var maxTurn = turnSpeedRadPerSec * delta;
 
-		var currentAngle = sightCone!.Rotation;
+		var currentAngle = sightConeRoot!.Rotation;
 
 		var rotationAmount = Mathf.AngleDifference(currentAngle, desiredAngle);
 		if (Mathf.Abs(rotationAmount) > maxTurn) {
 			rotationAmount = maxTurn * Mathf.Sign(rotationAmount);
 		}
 
-		sightCone.Rotation += rotationAmount;
+		sightConeRoot.Rotation += rotationAmount;
 	}
 
 	private bool raycastToPlayer() {
@@ -227,11 +240,11 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	public void enterSightConeSmall(Node2D node) { sightConeEntered(node, SightConeSize.Small); }
-	public void enterSightConeMedium(Node2D node) { /*sightConeEntered(node, SightConeSize.Medium); */}
-	public void enterSightConeLarge(Node2D node) { /*sightConeEntered(node, SightConeSize.Large); */}
+	public void enterSightConeMedium(Node2D node) { sightConeEntered(node, SightConeSize.Medium); }
+	public void enterSightConeLarge(Node2D node) { sightConeEntered(node, SightConeSize.Large); }
 	public void exitSightConeSmall(Node2D node) { sightConeExited(node, SightConeSize.Small); }
-	public void exitSightConeMedium(Node2D node) { /*sightConeExited(node, SightConeSize.Medium); */}
-	public void exitSightConeLarge(Node2D node) { /*sightConeExited(node, SightConeSize.Large); */}
+	public void exitSightConeMedium(Node2D node) { sightConeExited(node, SightConeSize.Medium); }
+	public void exitSightConeLarge(Node2D node) { sightConeExited(node, SightConeSize.Large); }
 
 	private void sightConeEntered(Node2D node, SightConeSize size) {
 		if (node is not Player player) {
@@ -299,5 +312,24 @@ public partial class Chaser : RigidBody2D {
 		}
 
 		player.die();
+	}
+
+	private void playerLightLevelChanged(int newLightLevel) {
+		activateSightCone(newLightLevel);
+	}
+
+	private void activateSightCone(int lightLevel) {
+		var enableSmall = lightLevel <= 1;
+		var enableMedium = lightLevel == 2;
+		var enableLarge = lightLevel >= 3;
+
+		sightConeSmall!.Visible = enableSmall;
+		sightConeSmall!.Monitoring = enableSmall;
+
+		sightConeMedium!.Visible = enableMedium;
+		sightConeMedium!.Monitoring = enableMedium;
+
+		sightConeLarge!.Visible = enableLarge;
+		sightConeLarge!.Monitoring = enableLarge;
 	}
 }

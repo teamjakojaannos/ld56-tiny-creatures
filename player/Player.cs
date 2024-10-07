@@ -48,7 +48,7 @@ public partial class Player : CharacterBody2D {
 
 	private AnimatedSprite2D? playerSprite;
 
-	private int lightLevel = 1;
+	public int lightLevel = 1;
 	private const int lightLevelMin = 1;
 	private const int lightLevelMax = 3;
 
