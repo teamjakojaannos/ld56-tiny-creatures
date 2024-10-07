@@ -29,9 +29,13 @@ public partial class Chaser : RigidBody2D {
 	private NavigationAgent2D? navigationAgent;
 	private bool navigationSetupDone = false;
 
+	private RayCast2D? lineOfSight;
+	private Player? player;
+
 	public override void _Ready() {
 		sightCone = GetNode<Area2D>("SightCone");
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
+		lineOfSight = GetNode<RayCast2D>("LineOfSight");
 
 		Callable.From(ActorSetup).CallDeferred();
 	}
@@ -43,6 +47,19 @@ public partial class Chaser : RigidBody2D {
 
 	public override void _PhysicsProcess(double _delta) {
 		var delta = (float)_delta;
+
+		var seesPlayer = raycastToPlayer();
+		if (seesPlayer) {
+			if (aiState is not ChaseState) {
+				startChase(player!);
+			}
+		} else {
+			if (aiState is ChaseState chase) {
+				startSeeking(chase.lastSeenPosition);
+			}
+		}
+
+
 		aiState.doUpdate(this, delta);
 
 		turnHead(delta);
@@ -178,20 +195,41 @@ public partial class Chaser : RigidBody2D {
 		sightCone.Rotation += rotationAmount;
 	}
 
+	private bool raycastToPlayer() {
+		if (player == null) {
+			return false;
+		}
+
+
+		var playerPosition = player.GlobalPosition;
+		// raycast wants target as relative to itself, not global
+		var target = playerPosition - lineOfSight!.GlobalPosition;
+		lineOfSight.TargetPosition = target;
+
+		lineOfSight.ForceRaycastUpdate();
+
+		if (!lineOfSight.IsColliding()) {
+			return false;
+		}
+
+		var collider = lineOfSight.GetCollider();
+		return collider is Player;
+	}
+
 	public void sightConeEntered(Node2D node) {
 		if (node is not Player player) {
 			return;
 		}
 
-		startChase(player);
+		this.player = player;
 	}
 
 	public void sightConeExited(Node2D node) {
-		if (node is not Player player) {
+		if (node is not Player) {
 			return;
 		}
 
-		startSeeking(player.GlobalPosition);
+		player = null;
 	}
 
 	private void startChase(Player player) {

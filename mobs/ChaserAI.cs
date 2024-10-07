@@ -89,6 +89,8 @@ public class WanderState : ChaserAI {
 		if (!moveTargetSet) {
 			moveTargetSet = true;
 			chaser.setMovementTarget(target);
+			// clear look target so we look towards movement
+			chaser.clearLookTarget();
 		}
 	}
 }
@@ -97,10 +99,12 @@ public class ChaseState : ChaserAI {
 
 	private float timeSinceLastUpdate;
 	private Node2D player;
+	public Vector2 lastSeenPosition;
 
 	public ChaseState(Node2D player) {
 		this.player = player;
 		timeSinceLastUpdate = ChaserStats.chaseTargetPositionUpdateFrequency;
+		lastSeenPosition = player.GlobalPosition;
 	}
 
 	public override void doUpdate(Chaser chaser, float delta) {
@@ -112,6 +116,7 @@ public class ChaseState : ChaserAI {
 		if (timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
 			timeSinceLastUpdate = 0.0f;
 			chaser.setMovementTarget(playerPos);
+			lastSeenPosition = playerPos;
 		}
 	}
 }

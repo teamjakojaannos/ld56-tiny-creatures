@@ -308,5 +308,9 @@ libraries = {
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 
+[node name="LineOfSight" type="RayCast2D" parent="."]
+enabled = false
+collision_mask = 5
+
 [connection signal="body_entered" from="SightCone" to="." method="sightConeEntered"]
 [connection signal="body_exited" from="SightCone" to="." method="sightConeExited"]
