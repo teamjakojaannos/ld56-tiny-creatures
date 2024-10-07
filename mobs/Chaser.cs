@@ -86,14 +86,13 @@ public partial class Chaser : RigidBody2D {
 			const float quarterCircle = fullCircle / 4.0f;
 
 			// this probably assumes that sight cone points upwards
-			// what we're trying to do here: if the angle is between -45deg and +45 deg -> it looks up
-			// 45-135 -> right etc
+			// check if angle is between [-90, 90]
 			var angle = sightCone!.Rotation;
-			angle -= quarterCircle / 2.0f;
+			angle -= quarterCircle;
 			angle = (angle + fullCircle) % fullCircle;
-			var quarter = Mathf.FloorToInt(angle / quarterCircle);
+			var topOrBack = Mathf.FloorToInt(angle / halfCircle);
 
-			if (quarter == 0 || quarter == 2) {
+			if (topOrBack == 0) {
 				AnimPlayer!.Play("IdleFront");
 			} else {
 				AnimPlayer!.Play("IdleBack");
