@@ -244,12 +244,12 @@ public partial class Player : CharacterBody2D {
 
 	public override void _Input(InputEvent inputEvent) {
 		if (inputEvent.IsActionPressed("light_level_up")) {
-			addLightLevel(+1);
+			//addLightLevel(+1);
 			return;
 		}
 
 		if (inputEvent.IsActionPressed("light_level_down")) {
-			addLightLevel(-1);
+			//addLightLevel(-1);
 			return;
 		}
 	}
