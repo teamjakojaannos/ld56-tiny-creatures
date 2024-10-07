@@ -1064,7 +1064,6 @@ DialogueTrigger = "Yes"
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SpiritLantern/WispInteractable"]
 script = ExtResource("18_xn54u")
 DialogueTree = SubResource("Resource_kxuv5")
-SetStateAfterDialogueEnd = "SpiritLanternInteracted"
 
 [node name="WaterFallThing" parent="." instance=ExtResource("23_cspl0")]
 position = Vector2(157, -63)

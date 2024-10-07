@@ -78,10 +78,17 @@ ScreenShakeFade = 30.0
 SideOverride = 0
 
 [node name="World" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je08u"]
+size = Vector2(20, 35.2941)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v13c3"]
+size = Vector2(20, 239)
+
+[node name="World" type="Node2D" groups=["PlayIntro"]]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
-position = Vector2(-951, 197)
+position = Vector2(-1097, 68)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
@@ -312,8 +319,21 @@ DialogueTree = SubResource("Resource_4ugy4")
 position = Vector2(128, -246)
 scale = Vector2(1.53, 1.53)
 
-[node name="DestroyKiviTrigger2" parent="." instance=ExtResource("10_ifdrj")]
-position = Vector2(190, -243)
+[node name="StaticBody2D2" type="StaticBody2D" parent="BigStone2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigStone2/StaticBody2D2"]
+position = Vector2(0.653595, -10.4575)
+shape = SubResource("RectangleShape2D_je08u")
+
+[node name="DestroyKiviTrigger2" parent="." node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("10_ifdrj")]
+position = Vector2(201, -237)
+objectToDestroy = NodePath("../BigStone2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(128, -123)
+shape = SubResource("RectangleShape2D_v13c3")
 
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]
