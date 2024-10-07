@@ -233,6 +233,7 @@ public partial class Player : CharacterBody2D {
 		FootstepsTimer?.Stop();
 		this.Persistent().ResetPlayerToHub();
 		LieDown();
+		this.Jukebox().StopChase();
 	}
 
 	public void SetupForIntro(Node2D wispLocation) {
