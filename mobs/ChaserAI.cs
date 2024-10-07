@@ -82,7 +82,9 @@ public class WanderState : ChaserAI {
 			return;
 		}
 
-		// TODO: we could wait for initial turn to complete before starting movement
+		if (!chaser.isDoneTurning()) {
+			return;
+		}
 
 		if (!moveTargetSet) {
 			moveTargetSet = true;
