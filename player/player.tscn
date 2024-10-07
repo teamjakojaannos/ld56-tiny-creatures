@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=33 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
 [ext_resource type="AudioStream" uid="uid://cdlv0clfgfav" path="res://random_sfx/askel1.ogg" id="4_50csx"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="4_62syh"]
+[ext_resource type="AudioStream" uid="uid://dtktpkf5x1rgd" path="res://random_sfx/vesikuolema.ogg" id="4_eao0h"]
 [ext_resource type="Script" path="res://player/Footsteps.cs" id="4_kghcv"]
 [ext_resource type="AudioStream" uid="uid://x482eds70blo" path="res://random_sfx/askel2.ogg" id="5_065tq"]
 [ext_resource type="AudioStream" uid="uid://0cs7fbkti0v6" path="res://random_sfx/askel3.ogg" id="6_8m8n3"]
@@ -232,6 +233,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(-16, -45)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ded:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_blpkv"]
 length = 1.14286
@@ -434,6 +447,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-26, -45)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ded:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_w6158"]
 resource_name = "GetTheFuckUp"
@@ -482,7 +507,7 @@ tracks/3/path = NodePath("Footsteps")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 0.8, 1.4),
+"times": PackedFloat32Array(0.5, 0.8, 1.35),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -633,6 +658,11 @@ position = Vector2(0, -24)
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 2.0
+
+[node name="Ded" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_eao0h")
+volume_db = -5.0
+bus = &"SFX"
 
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.4
