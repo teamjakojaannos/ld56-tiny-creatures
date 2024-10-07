@@ -27,6 +27,9 @@ public partial class Persistent : Node2D {
 	[Signal]
 	public delegate void WispSavedEventHandler(string location);
 
+	[Signal]
+	public delegate void PlayerRespawnedEventHandler();
+
 	public override void _Ready() {
 		var playIntro = false;
 		foreach (var child in GetTree().Root.GetChildren()) {

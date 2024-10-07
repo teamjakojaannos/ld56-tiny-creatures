@@ -202,6 +202,9 @@ public partial class Player : CharacterBody2D {
 
 	public void setSpriteVisible(bool visible) {
 		playerSprite!.Visible = visible;
+
+		// HACK: avoid having flipped sprite in respawn anim
+		playerSprite!.FlipH = false;
 	}
 
 	public void setMovementEnabled(bool enabled) {

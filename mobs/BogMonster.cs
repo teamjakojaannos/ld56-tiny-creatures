@@ -53,6 +53,12 @@ public partial class BogMonster : PathFollow2D {
 		hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
 		ai = new MovementState(goingForward: true, speed);
+
+		this.Persistent().PlayerRespawned += () => {
+			// HACK: this might reset things lmao
+			playerWasKill = false;
+			goUnderwater();
+		};
 	}
 
 	public override void _PhysicsProcess(double _delta) {
