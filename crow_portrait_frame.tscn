@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://0sct2ap6syor"]
+
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="1_ra8ju"]
+[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="2_2kuft"]
+
+[node name="Container" instance=ExtResource("1_ra8ju")]
+
+[node name="Character" parent="PortraitFrame" index="0"]
+texture = ExtResource("2_2kuft")

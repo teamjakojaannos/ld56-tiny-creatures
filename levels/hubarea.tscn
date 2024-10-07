@@ -440,6 +440,10 @@ position = Vector2(-203, 191)
 position = Vector2(122.5, 109.5)
 scale = Vector2(-1, 1)
 
+[node name="Tree77" parent="." instance=ExtResource("1_diaiq")]
+z_index = 1
+position = Vector2(-81, -195)
+
 [node name="BigStone3" parent="." instance=ExtResource("2_5esea")]
 position = Vector2(-116, 21)
 
@@ -657,6 +661,7 @@ position = Vector2(3, 13)
 
 [node name="TheWall" parent="." instance=ExtResource("12_i73y1")]
 position = Vector2(-98, -139)
+metadata/_edit_lock_ = true
 
 [node name="TheWall4" parent="." instance=ExtResource("12_i73y1")]
 position = Vector2(-269, 147)

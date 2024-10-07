@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3kraya2m5ti6" path="res://levels/hubarea.tscn" id="3_fayk7"]
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_vpm8c"]
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
-[ext_resource type="PackedScene" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
+[ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
 animations = [{
@@ -85,7 +85,7 @@ color = Color(0.254902, 0.384314, 0.164706, 1)
 metadata/_edit_lock_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
-z_index = -3
+z_index = -2
 offset_left = -606.0
 offset_top = -359.0
 offset_right = -345.0

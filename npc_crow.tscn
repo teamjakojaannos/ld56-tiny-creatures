@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cektsywqa3k5v"]
+
+[ext_resource type="Texture2D" uid="uid://cdg318iofalvg" path="res://characters/Harakka.png" id="1_qj8df"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bffue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qj8df")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjvfa"]
+size = Vector2(12, 3)
+
+[node name="NPC_crow" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bffue")
+centered = false
+offset = Vector2(-12.72, -29.345)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/AnimatedSprite2D"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_pjvfa")
