@@ -59,10 +59,12 @@ public partial class Persistent : Node2D {
 			.PickRandom();
 
 		Intro!.FadeToBlack();
+		Player!.IsInCinematic = true;
+		Player!.setMovementEnabled(false);
 
 		GetTree().CreateTimer(2.5f).Timeout += () => {
 			Player!.TeleportTo(spawnpoint);
-			Intro.FadeIn();
+			Intro.FadeInAfterDeath();
 		};
 	}
 }

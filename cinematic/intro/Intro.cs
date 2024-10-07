@@ -136,8 +136,15 @@ public partial class Intro : Node2D {
 		AnimPlayer!.Play("fade_out");
 	}
 
-	public void FadeIn() {
+	public void FadeInAfterDeath() {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
+		
+		if (this.Persistent().Player is Player player) {
+			player.LieDown();
+			GetTree().CreateTimer(2.5f).Timeout += () => {
+				player.GetUp();
+			};
+		}
 	}
 }

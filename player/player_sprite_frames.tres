@@ -310,7 +310,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lrqe4")
 }],
-"loop": true,
+"loop": false,
 "name": &"IntroStandUpComedy",
 "speed": 5.0
 }, {

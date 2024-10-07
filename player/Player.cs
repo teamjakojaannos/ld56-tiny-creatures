@@ -16,7 +16,7 @@ public partial class Player : CharacterBody2D {
 	[Export]
 	public AnimationPlayer? Animation;
 
-	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible && !frozen;
+	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible && !frozen && !IsInCinematic;
 
 	private bool frozen = false;
 
@@ -56,6 +56,17 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public bool Slowed { get; internal set; } = false;
+
+	private bool _isInCinematic = false;
+	public bool IsInCinematic {
+		get => _isInCinematic;
+		internal set {
+			_isInCinematic = value;
+			if (value) {
+				Animation?.Stop();
+			}
+		}
+	}
 
 	private AnimatedSprite2D? playerSprite;
 
@@ -135,9 +146,26 @@ public partial class Player : CharacterBody2D {
 
 		var delta = (float)_delta;
 
+		if (!IsInCinematic) {
+			MovePlayer(delta);
+		}
+
+		if (WispTarget is not null) {
+
+			var distance = Wisp.GlobalPosition.DistanceTo(WispTarget.GlobalPosition);
+			Wisp.GlobalPosition =
+				Wisp.GlobalPosition.MoveToward(WispTarget.GlobalPosition, distance * 2.0f * delta);
+		} else {
+			var distance = Wisp.GlobalPosition.DistanceTo(WispFollowNode.GlobalPosition);
+			Wisp.GlobalPosition =
+				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 5f * delta);
+		}
+	}
+
+	private void MovePlayer(float delta) {
 		var direction = IsAllowedToMove
-			? Input.GetVector("left", "right", "up", "down")
-			: Vector2.Zero;
+						? Input.GetVector("left", "right", "up", "down")
+						: Vector2.Zero;
 
 		var modifier = Slowed ? 0.5f : 1.0f;
 		if (direction.LengthSquared() > 0.001f) {
@@ -171,16 +199,6 @@ public partial class Player : CharacterBody2D {
 		// HACK: Cancel out wisp movement to emulate top-level movement.
 		//       Can't use TopLevel=true as that breaks Y-sort.
 		Wisp.GlobalPosition = wispPosition;
-		if (WispTarget is not null) {
-
-			var distance = Wisp.GlobalPosition.DistanceTo(WispTarget.GlobalPosition);
-			Wisp.GlobalPosition =
-				Wisp.GlobalPosition.MoveToward(WispTarget.GlobalPosition, distance * 2.0f * delta);
-		} else {
-			var distance = Wisp.GlobalPosition.DistanceTo(WispFollowNode.GlobalPosition);
-			Wisp.GlobalPosition =
-				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 5f * delta);
-		}
 	}
 
 	public void setSpriteVisible(bool visible) {
@@ -192,8 +210,14 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public void die() {
+		if (IsInCinematic) {
+			return;
+		}
+		IsInCinematic = true;
+
 		GD.Print("I am dead.");
 		this.Persistent().ResetPlayerToHub();
+		LieDown();
 	}
 
 	public void SetupForIntro(Node2D wispLocation) {
@@ -220,5 +244,25 @@ public partial class Player : CharacterBody2D {
 		lightLevel = Mathf.Clamp(lightLevel, lightLevelMin, lightLevelMax);
 
 		EmitSignal(SignalName.LightLevelChanged, lightLevel);
+	}
+
+	public void LieDown() {
+		Animation!.Stop();
+		Animation!.Play("Die");
+	}
+
+	public void GetUp() {
+		Animation!.AnimationFinished += GetUpDone;
+		Animation!.Play("GetTheFuckUp");
+	}
+
+	private void GetUpDone(StringName _) {
+		Animation!.AnimationFinished -= GetUpDone;
+		animationDirection = "Right";
+
+		Animation!.Play($"Idle{animationDirection}");
+
+		setMovementEnabled(true);
+		IsInCinematic = false;
 	}
 }
