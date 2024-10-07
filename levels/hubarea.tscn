@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=50 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]

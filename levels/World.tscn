@@ -221,7 +221,6 @@ Music = 2
 [node name="CollisionShape2D" parent="MuzakTrigger3" index="0"]
 position = Vector2(67.8562, -26.1995)
 rotation = 0.0967079
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_s2jur")
 debug_color = Color(0.896646, 0.237324, 0.535031, 0.42)
 

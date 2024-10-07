@@ -30,4 +30,3 @@ bus = &"Music"
 [node name="Velhopsykoosi" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_hb858")
 pitch_scale = 2.0
-stream_paused = true
