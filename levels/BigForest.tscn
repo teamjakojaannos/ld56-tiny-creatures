@@ -440,7 +440,7 @@ ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
 
-[sub_resource type="Resource" id="Resource_o41ml"]
+[sub_resource type="Resource" id="Resource_v1a5f"]
 script = ExtResource("23_406oo")
 Character = ExtResource("22_sxeog")
 IsInteractive = true
@@ -456,7 +456,7 @@ script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
 Lines = ["Release the spirit?"]
-Next = SubResource("Resource_o41ml")
+Next = SubResource("Resource_v1a5f")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
