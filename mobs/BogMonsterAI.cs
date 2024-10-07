@@ -280,4 +280,8 @@ public class WaitUntilTriggerIsTriggeredState : BogMonsterAIState {
 			monster.playGoUnderwaterAnimationThisIsVeryHackyThingDontUse();
 		}
 	}
+
+	public override bool shouldTickDetection() {
+		return false;
+	}
 }
