@@ -60,6 +60,17 @@ public partial class WispInteractableDialogueTrigger : Node2D {
     private void DialogueFinished() {
         if (SetStateAfterDialogueEnd is not null && SetStateAfterDialogueEnd.Trim().Length > 0) {
             this.Persistent().State.Add(SetStateAfterDialogueEnd);
+
+            if (SetStateAfterDialogueEnd == "viineri") {
+                if (GetTree().GetFirstNodeInGroup("ViineriTpTarget") is Node2D win) {
+                    this.Persistent().Intro!.FadeToBlack();
+
+                    GetTree().CreateTimer(3.0f).Timeout += () => {
+                        this.Persistent().Player!.TeleportTo(win);
+                        this.Persistent().Intro!.FadeInAfterWin();
+                    };
+                }
+            }
         }
     }
 }

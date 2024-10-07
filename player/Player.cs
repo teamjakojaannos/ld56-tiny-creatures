@@ -270,4 +270,7 @@ public partial class Player : CharacterBody2D {
 
 		this.Persistent().EmitSignal(Persistent.SignalName.PlayerRespawned);
 	}
+
+	[Export]
+	public AudioStreamPlayer? Noppa;
 }

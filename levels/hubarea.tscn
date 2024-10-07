@@ -767,14 +767,14 @@ texture = ExtResource("9_kgfcd")
 
 [node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
-RequireNumberOfWispsLessThan = 7
+RequireNumberOfWispsLessThan = 1
 
 [node name="Trigger" parent="Jösses" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
 
 [node name="Jösses_Win" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
-RequireNumberOfWispsGreaterThan = 6
+RequireNumberOfWispsGreaterThan = 0
 
 [node name="Trigger" parent="Jösses_Win" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
@@ -782,6 +782,7 @@ shape = SubResource("CircleShape2D_nyqg1")
 [node name="WispInteractableDialogueTrigger" parent="Jösses_Win" index="4"]
 DialogueTree = SubResource("Resource_lars4")
 OneShot = true
+SetStateAfterDialogueEnd = "viineri"
 
 [node name="Hautakivirykelmä" parent="." instance=ExtResource("11_321uu")]
 position = Vector2(3, 13)

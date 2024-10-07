@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=28 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://vtuy0o27q8p3" path="res://characters/portraits/rock_portrait_frame.tscn" id="11_10n53"]
 [ext_resource type="Script" path="res://characters/GameCharacter.cs" id="12_k446b"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="13_1fx1h"]
+[ext_resource type="PackedScene" uid="uid://bmvi58d0isrru" path="res://levels/hevonhelvetti.tscn" id="14_kfeaf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
 animations = [{
@@ -333,6 +334,9 @@ objectToDestroy = NodePath("../BigStone2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(128, -123)
 shape = SubResource("RectangleShape2D_v13c3")
+
+[node name="Juuri" parent="." instance=ExtResource("14_kfeaf")]
+position = Vector2(-5, -6817)
 
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]

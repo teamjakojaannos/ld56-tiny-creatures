@@ -1,0 +1,117 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmvi58d0isrru"]
+
+[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_2ysck"]
+
+[sub_resource type="Gradient" id="Gradient_qf1tv"]
+offsets = PackedFloat32Array(0, 0.584307, 0.797997, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0569451, 0, 0, 0, 0.445743, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4ujf"]
+gradient = SubResource("Gradient_qf1tv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.730769, 0.508547)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_duiv6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3pwvs"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qwl2u"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_om5qg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37fn0"]
+atlas = ExtResource("1_2ysck")
+region = Rect2(112, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqyim"]
+atlas = ExtResource("1_2ysck")
+region = Rect2(168, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h560"]
+atlas = ExtResource("1_2ysck")
+region = Rect2(224, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r524m"]
+atlas = ExtResource("1_2ysck")
+region = Rect2(280, 0, 56, 89)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4c0er"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37fn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqyim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h560")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r524m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Juuri" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Background" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_left = -3530.0
+offset_top = -2651.0
+offset_right = 3431.0
+offset_bottom = 2760.0
+color = Color(0.254902, 0.384314, 0.164706, 1)
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+offset_left = -2519.0
+offset_top = -2555.0
+offset_right = 2555.0
+offset_bottom = 2519.0
+texture = SubResource("GradientTexture2D_o4ujf")
+metadata/_edit_lock_ = true
+
+[node name="Boundaries" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(-725, 0)
+shape = SubResource("WorldBoundaryShape2D_duiv6")
+
+[node name="Top" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(0, -700)
+shape = SubResource("WorldBoundaryShape2D_3pwvs")
+
+[node name="Right" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(776, 0)
+shape = SubResource("WorldBoundaryShape2D_qwl2u")
+
+[node name="Bottom" type="CollisionShape2D" parent="Boundaries"]
+position = Vector2(0, 749)
+shape = SubResource("WorldBoundaryShape2D_om5qg")
+
+[node name="StaticProps" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Jeesus" type="AnimatedSprite2D" parent="StaticProps"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4c0er")
+autoplay = "default"
+frame_progress = 0.374799
+offset = Vector2(0, -45)
+
+[node name="Functional" type="Node2D" parent="."]
+
+[node name="WinTpTarget" type="Marker2D" parent="Functional" groups=["PlayerSpawn", "ViineriTpTarget"]]
+position = Vector2(0, 63)
