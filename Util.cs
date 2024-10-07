@@ -1,6 +1,10 @@
 using Godot;
 
 public static class Util {
+	public static Vector2 randomVector(RandomNumberGenerator rng, (float, float) range) {
+		return randomVector(rng, range.Item1, range.Item2);
+	}
+
 	public static Vector2 randomVector(RandomNumberGenerator rng, float minDistance, float maxDistance) {
 		var angle = rng.RandfRange(0, Mathf.Pi * 2.0f);
 		var dist = rng.RandfRange(minDistance, maxDistance);

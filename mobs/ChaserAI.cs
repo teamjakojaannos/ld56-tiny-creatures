@@ -18,12 +18,13 @@ public static class ChaserStats {
 	public const float lookTime = 3.0f;
 
 	// motivation to name things properly ends here
-	public static (float, float) howFarNewTargetShouldBe = (100.0f, 1000.0f);
+	public static (float, float) wanderToNewTargetInRange = (100.0f, 500.0f);
 
 	// update chase target position every x seconds
 	public const float chaseTargetPositionUpdateFrequency = 0.5f;
 
 	public const float keepLookingChance = 0.25f;
+	public static (float, float) seekNewLocationInRange = (10.0f, 200.0f);
 }
 
 
@@ -160,8 +161,7 @@ public class SeekState : ChaserAI {
 
 		var pickNewMoveTarget = Util.diceRoll(chaser.rng, ChaserStats.keepLookingChance);
 		if (pickNewMoveTarget) {
-			var (min, max) = ChaserStats.howFarNewTargetShouldBe;
-			var randomPos = Util.randomVector(chaser.rng, min, max);
+			var randomPos = Util.randomVector(chaser.rng, ChaserStats.seekNewLocationInRange);
 			var newTarget = chaser.GlobalPosition + randomPos;
 			chaser.setLookTarget(newTarget, turnInstantly: true);
 			chaser.setMovementTarget(newTarget);

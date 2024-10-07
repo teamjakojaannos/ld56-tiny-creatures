@@ -301,8 +301,7 @@ public partial class Chaser : RigidBody2D {
 
 		if (allPositions.Count == 0) {
 			GD.Print("Can't find any navigation nodes for Marko, picking random point!");
-			var (min, max) = ChaserStats.howFarNewTargetShouldBe;
-			var randomPoint = Util.randomVector(rng, min, max);
+			var randomPoint = Util.randomVector(rng, ChaserStats.wanderToNewTargetInRange);
 			return randomPoint + GlobalPosition;
 		} else {
 			return allPositions.PickRandom();
