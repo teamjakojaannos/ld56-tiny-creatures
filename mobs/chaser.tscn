@@ -298,7 +298,6 @@ position = Vector2(1, -1.5)
 shape = SubResource("RectangleShape2D_34f4t")
 
 [node name="SightCone" type="Node2D" parent="."]
-position = Vector2(0, -33.5)
 
 [node name="SightConeLarge" type="Area2D" parent="SightCone"]
 visible = false
@@ -306,7 +305,7 @@ collision_layer = 0
 monitoring = false
 
 [node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeLarge"]
-polygon = PackedVector2Array(0, 25, -200, -275, 0, -320, 200, -275)
+polygon = PackedVector2Array(0, 0, -225, -270, 0, -320, 225, -270)
 
 [node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeLarge"]
 shape = SubResource("CircleShape2D_a3q8h")
@@ -318,7 +317,7 @@ collision_layer = 0
 monitoring = false
 
 [node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeMedium"]
-polygon = PackedVector2Array(0, 25, -150, -200, 0, -230, 150, -200)
+polygon = PackedVector2Array(0, 0, -160, -200, 0, -230, 160, -200)
 
 [node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeMedium"]
 shape = SubResource("CircleShape2D_33tce")
@@ -328,7 +327,7 @@ debug_color = Color(1, 0.4, 0, 0.156863)
 collision_layer = 0
 
 [node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeSmall"]
-polygon = PackedVector2Array(0, 25, -115, -150, 0, -170, 115, -150)
+polygon = PackedVector2Array(0, 0, -115, -150, 0, -170, 115, -150)
 
 [node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeSmall"]
 shape = SubResource("CircleShape2D_x7ap5")
