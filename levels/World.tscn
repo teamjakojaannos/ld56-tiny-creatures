@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=20 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
 [ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
+[ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_i1ql1"]
+[ext_resource type="PackedScene" uid="uid://bfkpkt3kv6jsq" path="res://Environment/destroy_kivi_trigger.tscn" id="10_ifdrj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
 animations = [{
@@ -277,6 +279,21 @@ offset_right = -1290.0
 offset_bottom = 939.0
 rotation = -0.654552
 texture = SubResource("GradientTexture2D_7iv8n")
+
+[node name="BigStone" parent="." instance=ExtResource("9_i1ql1")]
+position = Vector2(-267, -514)
+scale = Vector2(1.265, 1.265)
+
+[node name="DestroyKiviTrigger" parent="." node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("10_ifdrj")]
+position = Vector2(-266, -578)
+objectToDestroy = NodePath("../BigStone")
+
+[node name="BigStone2" parent="." instance=ExtResource("9_i1ql1")]
+position = Vector2(128, -246)
+scale = Vector2(1.53, 1.53)
+
+[node name="DestroyKiviTrigger2" parent="." instance=ExtResource("10_ifdrj")]
+position = Vector2(190, -243)
 
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]

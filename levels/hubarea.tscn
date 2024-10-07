@@ -549,9 +549,6 @@ scale = Vector2(-1, 1)
 [node name="BigStone3" parent="." instance=ExtResource("2_5esea")]
 position = Vector2(-116, 21)
 
-[node name="BigStone9" parent="." instance=ExtResource("2_5esea")]
-position = Vector2(-2, -148)
-
 [node name="BigStone10" parent="." instance=ExtResource("2_5esea")]
 position = Vector2(57, -104)
 
@@ -870,6 +867,7 @@ position = Vector2(10, 121)
 Music = 1
 
 [node name="CollisionShape2D" parent="MuzakTrigger" index="0"]
+visible = false
 position = Vector2(0, 34)
 shape = SubResource("CircleShape2D_ss1vx")
 
