@@ -400,13 +400,11 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_7omp7"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.177083, 0.548611, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.649306, 0.649306, 0.649306, 1, 0.235735, 0.235735, 0.235735, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.290909, 0.689091, 1)
+colors = PackedColorArray(0.83, 0.83, 0.83, 1, 0.649306, 0.649306, 0.649306, 1, 0.235735, 0.235735, 0.235735, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_67s2t"]
 gradient = SubResource("Gradient_7omp7")
-width = 32
-height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -464,9 +462,10 @@ shadow_item_cull_mask = 7
 texture = SubResource("GradientTexture2D_k821t")
 metadata/_edit_lock_ = true
 
-[node name="PointLight2" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
+[node name="WispGlow" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
 position = Vector2(0, -5)
 color = Color(0.17, 1, 1, 1)
+energy = 0.66
 shadow_color = Color(0, 0, 0, 0.72549)
 shadow_filter = 2
 shadow_filter_smooth = 3.7
@@ -492,7 +491,7 @@ shadow_filter_smooth = 3.7
 texture = SubResource("GradientTexture2D_k821t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpiritTarget/SpiritVisuals"]
-modulate = Color(1, 1, 1, 0.682353)
+modulate = Color(0.670689, 0.67069, 0.670689, 0.682353)
 light_mask = 5
 y_sort_enabled = true
 texture_filter = 1

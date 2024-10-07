@@ -408,6 +408,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [node name="Intro" type="Node2D" node_paths=PackedStringArray("AnimPlayer", "WispInitialLocation")]
+y_sort_enabled = true
 script = ExtResource("1_1tsoc")
 InitialDialogue = SubResource("Resource_418lw")
 IntroDialogue = SubResource("Resource_wgum8")
@@ -420,20 +421,23 @@ libraries = {
 }
 
 [node name="SpiritLantern" type="Node2D" parent="."]
+y_sort_enabled = true
 position = Vector2(108, 4)
 
 [node name="Base" type="Sprite2D" parent="SpiritLantern"]
+y_sort_enabled = true
 texture_filter = 1
+position = Vector2(0, -5)
 texture = ExtResource("6_qrwc5")
-offset = Vector2(-7, -20)
+offset = Vector2(-7, -15)
 
 [node name="BackWall" type="Sprite2D" parent="SpiritLantern"]
 visible = false
 modulate = Color(0.51, 0.51, 0.51, 1)
 texture_filter = 1
-position = Vector2(2, 7)
+position = Vector2(2, -8)
 texture = ExtResource("7_b25v0")
-offset = Vector2(-7, -20)
+offset = Vector2(-7, -5)
 region_enabled = true
 region_rect = Rect2(30, 23, 8, 18)
 
@@ -448,9 +452,9 @@ offset = Vector2(-7, -20)
 position = Vector2(0, -4)
 
 [node name="Spirit" type="Node2D" parent="SpiritLantern/WispInitialLocation"]
-visible = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="SpiritLantern/WispInitialLocation/Spirit"]
+visible = false
 modulate = Color(0, 1, 0.55, 1)
 texture_filter = 1
 sprite_frames = ExtResource("8_urttn")
@@ -460,12 +464,14 @@ offset = Vector2(0, -12)
 metadata/_edit_lock_ = true
 
 [node name="Light" type="PointLight2D" parent="SpiritLantern/WispInitialLocation/Spirit"]
+visible = false
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 sprite_frames = ExtResource("2_gbttp")
 animation = &"IntroStandUpComedy"
