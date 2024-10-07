@@ -4,6 +4,9 @@ using Godot;
 
 [Tool]
 public partial class Player : CharacterBody2D {
+	[Signal]
+	public delegate void LightLevelChangedEventHandler(int newLightLevel);
+
 	[Export]
 	public float Speed = 300.0f;
 
@@ -44,6 +47,10 @@ public partial class Player : CharacterBody2D {
 	public bool Slowed { get; internal set; } = false;
 
 	private AnimatedSprite2D? playerSprite;
+
+	private int lightLevel = 1;
+	private const int lightLevelMin = 1;
+	private const int lightLevelMax = 3;
 
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? Array.Empty<string>();
@@ -162,5 +169,24 @@ public partial class Player : CharacterBody2D {
 		setMovementEnabled(false);
 		WispTarget = wispLocation;
 		Wisp.GlobalPosition = wispLocation.GlobalPosition;
+	}
+
+	public override void _Input(InputEvent inputEvent) {
+		if (inputEvent.IsActionPressed("light_level_up")) {
+			addLightLevel(+1);
+			return;
+		}
+
+		if (inputEvent.IsActionPressed("light_level_down")) {
+			addLightLevel(-1);
+			return;
+		}
+	}
+
+	private void addLightLevel(int amount) {
+		lightLevel += amount;
+		lightLevel = Mathf.Clamp(lightLevel, lightLevelMin, lightLevelMax);
+
+		EmitSignal(SignalName.LightLevelChanged, lightLevel);
 	}
 }
