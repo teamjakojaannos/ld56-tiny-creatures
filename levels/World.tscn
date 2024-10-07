@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=18 format=3 uid="uid://dqmcerhi4wqpl"]
 
 [ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
@@ -42,6 +42,19 @@ size = Vector2(1645.47, 470)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7di6y"]
 size = Vector2(1114.79, 502.093)
+
+[sub_resource type="Gradient" id="Gradient_1j8qm"]
+offsets = PackedFloat32Array(0, 0.508046, 0.990805)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.87703, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dtb4r"]
+gradient = SubResource("Gradient_1j8qm")
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7iv8n"]
+gradient = SubResource("Gradient_1j8qm")
+fill = 1
+fill_from = Vector2(0.5, 0.521368)
+fill_to = Vector2(0.901709, 0.106838)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -232,6 +245,38 @@ position = Vector2(16, -173.5)
 rotation = 0.372051
 shape = SubResource("RectangleShape2D_7di6y")
 debug_color = Color(0.763283, 0.395835, 0.568219, 0.42)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -2071.0
+offset_top = 729.0
+offset_right = -1576.0
+offset_bottom = 2797.0
+rotation = -1.44161
+texture = SubResource("GradientTexture2D_dtb4r")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+offset_left = -1808.0
+offset_top = 437.0
+offset_right = -1313.0
+offset_bottom = 1465.0
+rotation = -0.896688
+texture = SubResource("GradientTexture2D_dtb4r")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -2814.0
+offset_top = -363.0
+offset_right = -2280.0
+offset_bottom = 1381.0
+rotation = -0.758619
+texture = SubResource("GradientTexture2D_dtb4r")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+offset_left = -2164.0
+offset_top = 294.0
+offset_right = -1290.0
+offset_bottom = 939.0
+rotation = -0.654552
+texture = SubResource("GradientTexture2D_7iv8n")
 
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]
