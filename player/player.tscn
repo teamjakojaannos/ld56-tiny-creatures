@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=34 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://yuwttnrqc7sd" path="res://random_sfx/stepwater3.ogg" id="12_6wfv3"]
 [ext_resource type="AudioStream" uid="uid://bym5d2fik0ct" path="res://random_sfx/stepwater4.ogg" id="13_swq0c"]
 [ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="14_2fnqg"]
+[ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://characters/shadow.png" id="16_x8taj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
 size = Vector2(11, 4)
@@ -614,7 +615,7 @@ collision_mask = 3
 motion_mode = 1
 safe_margin = 1.0
 script = ExtResource("1_cn8o3")
-Speed = 600.0
+Speed = 110.0
 Friction = 15.0
 Animation = NodePath("AnimationPlayer")
 Footsteps = NodePath("Footsteps")
@@ -776,3 +777,9 @@ bus = &"SFX"
 stream = ExtResource("14_2fnqg")
 volume_db = -15.0
 bus = &"SFX"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-7.7486e-07, -3)
+scale = Vector2(0.444444, 0.336111)
+texture = ExtResource("16_x8taj")

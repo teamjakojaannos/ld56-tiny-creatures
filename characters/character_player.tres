@@ -7,5 +7,5 @@
 script = ExtResource("1_krkiv")
 Name = "You"
 DefaultDialogueSide = 0
-PortraitFacing = 1
+PortraitFacing = 0
 Portrait = ExtResource("1_g7svl")

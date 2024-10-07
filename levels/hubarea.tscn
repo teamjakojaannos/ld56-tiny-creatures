@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=67 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -30,9 +30,49 @@
 [ext_resource type="Texture2D" uid="uid://ce08wererd3rf" path="res://Environment/pienirunko.png" id="26_g2r7u"]
 [ext_resource type="PackedScene" uid="uid://ekfgg6vmxihr" path="res://Environment/SuoKansio/nakki_ruoho.tscn" id="27_7pay1"]
 [ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="28_eaaws"]
+[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="31_wynok"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
 radius = 62.0
+
+[sub_resource type="Resource" id="Resource_31hsm"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("20_whttt")
+IsInteractive = false
+Lines = ["...Maybe."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_yhm2x"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["I'm no quite sure! But doesn't he look a bit like you?"]
+Next = SubResource("Resource_31hsm")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_0hvjq"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("20_whttt")
+IsInteractive = false
+Lines = ["...Who is this guy anyway?"]
+Next = SubResource("Resource_yhm2x")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_ri0jq"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["Look at me! I'm a statue!"]
+Next = SubResource("Resource_0hvjq")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_lars4"]
 script = ExtResource("21_dpr77")
@@ -441,6 +481,99 @@ ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aywjs"]
+radius = 93.0
+height = 312.0
+
+[sub_resource type="Resource" id="Resource_t6g3j"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["Thank you!", "We should start our search from the big forest in the northwest."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_54j8p"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("20_whttt")
+IsInteractive = false
+Lines = ["...I will help you. But I need to be back home at eight!"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_j06b5"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["Well, good luck finding back home alone then."]
+Next = SubResource("Resource_54j8p")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_nwg6l"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("20_whttt")
+IsInteractive = true
+Lines = ["Okay then. I will help you find your friends, and you help me get home.", "Nah. Not my problem."]
+Next = SubResource("Resource_t6g3j")
+Next2 = SubResource("Resource_j06b5")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_5svob"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["Listen! I really need your help!", "I have seven friends who need saving..."]
+Next = SubResource("Resource_nwg6l")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_b2qdn"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("20_whttt")
+IsInteractive = false
+Lines = ["That's rough. But I need to get home.", "I have D&D at eight."]
+Next = SubResource("Resource_5svob")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_ypkp1"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["We are in my home! The spirit realm!", "But recently something terrible happened...", "Monster came to the realm... and they trapped me and my friends!"]
+Next = SubResource("Resource_b2qdn")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_n3qsu"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("20_whttt")
+IsInteractive = false
+Lines = ["Alright, so what is going on?", "Where am I? And why were you trapped in a lantern?"]
+Next = SubResource("Resource_ypkp1")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_l6th5"]
+script = ExtResource("21_dpr77")
+Character = ExtResource("19_3jhl5")
+IsInteractive = false
+Lines = ["Phew! We got to my little home all safe and sound!"]
+Next = SubResource("Resource_n3qsu")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
 [node name="Hubarea" type="Node2D"]
 y_sort_enabled = true
 
@@ -767,14 +900,16 @@ texture = ExtResource("9_kgfcd")
 
 [node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
-RequireNumberOfWispsLessThan = 7
 
 [node name="Trigger" parent="Jösses" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
 
+[node name="WispInteractableDialogueTrigger" parent="Jösses" index="4"]
+DialogueTree = SubResource("Resource_ri0jq")
+OneShot = true
+
 [node name="Jösses_Win" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
-RequireNumberOfWispsGreaterThan = 6
 
 [node name="Trigger" parent="Jösses_Win" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
@@ -1201,8 +1336,27 @@ position = Vector2(169, -518)
 [node name="NakkiRuoho3" parent="." instance=ExtResource("28_eaaws")]
 position = Vector2(207, -325)
 
+[node name="LoreDumpTrigger" type="Node2D" parent="."]
+
+[node name="WispInteractable" parent="LoreDumpTrigger" instance=ExtResource("31_wynok")]
+position = Vector2(19, 248)
+OneShot = true
+
+[node name="Trigger" parent="LoreDumpTrigger/WispInteractable" index="0"]
+position = Vector2(-4, 32)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aywjs")
+
+[node name="Target" parent="LoreDumpTrigger/WispInteractable" index="1"]
+position = Vector2(-54, -41)
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="LoreDumpTrigger/WispInteractable"]
+script = ExtResource("18_xn54u")
+DialogueTree = SubResource("Resource_l6th5")
+
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]
 [editable path="Jösses_Win"]
 [editable path="Jösses_Win/JesusStatue"]
 [editable path="MuzakTrigger"]
+[editable path="LoreDumpTrigger/WispInteractable"]

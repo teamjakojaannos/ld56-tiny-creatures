@@ -1,16 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://c37akv2ma8ael"]
+[gd_scene load_steps=6 format=3 uid="uid://c37akv2ma8ael"]
 
-[ext_resource type="Texture2D" uid="uid://d1p5q5vfdmfxh" path="res://Environment/putous.png" id="1_qnd5g"]
+[ext_resource type="Texture2D" uid="uid://bwnvniky1c655" path="res://Environment/putous-sheet.png" id="1_ew2km"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx3t4"]
+atlas = ExtResource("1_ew2km")
+region = Rect2(0, 0, 199, 202)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmrvj"]
+atlas = ExtResource("1_ew2km")
+region = Rect2(199, 0, 199, 202)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pw64a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_qnd5g")
+"texture": SubResource("AtlasTexture_tx3t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmrvj")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8afcv"]
@@ -27,6 +38,8 @@ y_sort_enabled = true
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_pw64a")
+autoplay = "default"
+frame_progress = 0.586619
 centered = false
 offset = Vector2(-97.99, -158.005)
 

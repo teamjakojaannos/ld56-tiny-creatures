@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_4sygp")
-Name = "Vispilä"
+Name = "Wisp"
 DefaultDialogueSide = 1
 PortraitFacing = 0
 Portrait = ExtResource("1_0nhh6")

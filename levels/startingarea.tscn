@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqnpbajdyitec"]
+[gd_scene load_steps=31 format=3 uid="uid://cqnpbajdyitec"]
 
 [ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="1_oj8qh"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
@@ -34,6 +34,9 @@ size = Vector2(325.238, 106.957)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pt7of"]
 size = Vector2(87.619, 88.4551)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3rf1"]
+size = Vector2(236.809, 120.228)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omfh6"]
 size = Vector2(89, 309)
 
@@ -52,7 +55,7 @@ size = Vector2(96.4297, 521.563)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmhng"]
 size = Vector2(176.215, 435.374)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ka7j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bekmy"]
 size = Vector2(124.107, 171.138)
 
 [node name="Startingarea" type="Node2D"]
@@ -972,6 +975,10 @@ shape = SubResource("RectangleShape2D_u0rt3")
 position = Vector2(571.19, -187.772)
 shape = SubResource("RectangleShape2D_pt7of")
 
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="AreaColliders"]
+position = Vector2(718.595, -242.886)
+shape = SubResource("RectangleShape2D_r3rf1")
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AreaColliders"]
 position = Vector2(-557.5, -166.5)
 shape = SubResource("RectangleShape2D_omfh6")
@@ -1002,7 +1009,7 @@ shape = SubResource("RectangleShape2D_bmhng")
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="AreaColliders"]
 position = Vector2(692, -168)
 rotation = -0.811578
-shape = SubResource("RectangleShape2D_0ka7j")
+shape = SubResource("RectangleShape2D_bekmy")
 
 [node name="Puska" parent="." instance=ExtResource("17_g8vca")]
 position = Vector2(-312, -238)
