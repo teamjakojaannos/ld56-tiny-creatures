@@ -31,6 +31,7 @@ public partial class Chaser : RigidBody2D {
 
 	private RayCast2D? lineOfSight;
 	private Player? player;
+	private bool isAttacking;
 
 	public override void _Ready() {
 		sightCone = GetNode<Node2D>("SightCone");
@@ -47,6 +48,10 @@ public partial class Chaser : RigidBody2D {
 
 	public override void _PhysicsProcess(double _delta) {
 		var delta = (float)_delta;
+
+		if (isAttacking) {
+			return;
+		}
 
 		var seesPlayer = raycastToPlayer();
 		if (seesPlayer) {
@@ -272,5 +277,27 @@ public partial class Chaser : RigidBody2D {
 		clearMovementTarget();
 
 		aiState = new IdleState();
+	}
+
+	public void enteredKillZone(Node2D node) {
+		if (node is Player player) {
+			attackPlayer(player);
+		}
+	}
+
+	private void attackPlayer(Player player) {
+		isAttacking = true;
+		player.setSpriteVisible(false);
+		player.setMovementEnabled(false);
+		AnimPlayer!.Play("attack");
+	}
+
+	private void killPlayer() {
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is not Player player) {
+			return;
+		}
+
+		player.die();
 	}
 }

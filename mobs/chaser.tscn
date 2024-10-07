@@ -1,10 +1,13 @@
-[gd_scene load_steps=33 format=3 uid="uid://pk3tc6o4spst"]
+[gd_scene load_steps=41 format=3 uid="uid://pk3tc6o4spst"]
 
 [ext_resource type="Script" path="res://mobs/Chaser.cs" id="1_sj5s6"]
 [ext_resource type="Texture2D" uid="uid://bgqidrl2t46ak" path="res://mobs/markoidleB.png" id="2_i5kib"]
 [ext_resource type="Texture2D" uid="uid://bbx7wlsvjntr5" path="res://mobs/markoidle-sheet.png" id="2_onfjk"]
 [ext_resource type="Texture2D" uid="uid://4ytqvcbxd8x4" path="res://mobs/markowalkB.png" id="3_h8c1e"]
 [ext_resource type="Texture2D" uid="uid://hr7ghup46teh" path="res://mobs/markowalk.png" id="4_21l47"]
+[ext_resource type="Texture2D" uid="uid://cf7a5jq2ec6u4" path="res://mobs/markoattac.png" id="6_0x6f6"]
+[ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://mobs/player_in_trouble.png" id="7_p7lna"]
+[ext_resource type="Texture2D" uid="uid://ctacdgnwmqtbh" path="res://mobs/marko_kasi.png" id="8_4k2m5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_281o1"]
 atlas = ExtResource("2_i5kib")
@@ -69,6 +72,18 @@ region = Rect2(192, 0, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmne2"]
 atlas = ExtResource("4_21l47")
 region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3t5y"]
+atlas = ExtResource("6_0x6f6")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qskb4"]
+atlas = ExtResource("6_0x6f6")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsn35"]
+atlas = ExtResource("6_0x6f6")
+region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q4b4n"]
 animations = [{
@@ -138,6 +153,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"WalkFront",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3t5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qskb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsn35")
+}],
+"loop": true,
+"name": &"attack",
 "speed": 5.0
 }]
 
@@ -237,6 +266,42 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FakePlayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandOverlay:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FakePlayer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_bq7qe"]
 length = 0.8
@@ -294,14 +359,95 @@ tracks/1/keys = {
 "values": ["WalkFront"]
 }
 
+[sub_resource type="Animation" id="Animation_cp5as"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FakePlayer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.4333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HandOverlay:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FakePlayer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.466667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"killPlayer"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2dxh4"]
 _data = {
 "IdleBack": SubResource("Animation_7peuc"),
 "IdleFront": SubResource("Animation_d02tt"),
 "RESET": SubResource("Animation_1xe1f"),
 "WalkBack": SubResource("Animation_bq7qe"),
-"WalkFront": SubResource("Animation_0kcay")
+"WalkFront": SubResource("Animation_0kcay"),
+"attack": SubResource("Animation_cp5as")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nl403"]
+radius = 30.0
 
 [node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite")]
 lock_rotation = true
@@ -367,9 +513,30 @@ libraries = {
 enabled = false
 collision_mask = 5
 
+[node name="KillZone" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("CircleShape2D_nl403")
+debug_color = Color(0.302195, 0.513027, 0.251491, 0.42)
+
+[node name="FakePlayer" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+texture = ExtResource("7_p7lna")
+centered = false
+offset = Vector2(-16, -45)
+
+[node name="HandOverlay" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(0, -43.5)
+texture = ExtResource("8_4k2m5")
+
 [connection signal="body_entered" from="SightCone/SightConeLarge" to="." method="enterSightConeLarge"]
 [connection signal="body_exited" from="SightCone/SightConeLarge" to="." method="exitSightConeLarge"]
 [connection signal="body_entered" from="SightCone/SightConeMedium" to="." method="enterSightConeMedium"]
 [connection signal="body_exited" from="SightCone/SightConeMedium" to="." method="exitSightConeMedium"]
 [connection signal="body_entered" from="SightCone/SightConeSmall" to="." method="enterSightConeSmall"]
 [connection signal="body_exited" from="SightCone/SightConeSmall" to="." method="exitSightConeSmall"]
+[connection signal="body_entered" from="KillZone" to="." method="enteredKillZone"]
