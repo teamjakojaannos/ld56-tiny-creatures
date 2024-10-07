@@ -40,4 +40,7 @@ public partial class BogMonsterStats : Resource {
 	[Export] public float alertTime = 7.5f;
 	[Export] public float alertThreshold = 40.0f;
 	[Export] public float attackThreshold = 100.0f;
+
+	// how many seconds until the hand snatches the player
+	[Export] public float attackTime = 1.0f;
 }

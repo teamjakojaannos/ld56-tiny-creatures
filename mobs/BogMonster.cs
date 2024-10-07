@@ -45,10 +45,13 @@ public partial class BogMonster : PathFollow2D {
 		fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
+		var attackTimer = GetNode<Timer>("AttackTimer");
+		attackTimer.WaitTime = stats.attackTime;
+
 		ai = new MovementState(goingForward: true, stats.speed);
 
 		this.Persistent().PlayerRespawned += () => {
-			playerWasKill = false;	
+			playerWasKill = false;
 			animationPlayer?.Play("emerge_from_water");
 			ai = new MovementState(goingForward: true, stats.speed);
 			fakePlayer.Visible = false;
@@ -219,9 +222,13 @@ public partial class BogMonster : PathFollow2D {
 			}
 		}
 
-		animationPlayer?.Play("attack");
+		animationPlayer?.Play("start_attack");
 		ApplySlow();
 		SyncHandLocation(1.0f);
+	}
+
+	private void finishAttack() {
+		animationPlayer?.Play("finish_attack");
 	}
 
 	public void SyncHandLocation(float delta) {
