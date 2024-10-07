@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=59 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -9,10 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://2bklg3qfsuj0" path="res://Environment/medium_patch_1R.png" id="8_xi6nj"]
 [ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="9_kgfcd"]
 [ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="10_lsb5y"]
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="10_vjlym"]
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
+[ext_resource type="Script" path="res://characters/GameCharacter.cs" id="11_flhis"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="12_bjl3q"]
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
 [ext_resource type="Script" path="res://levels/hubarea/HupiVispila.cs" id="12_lkge0"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="12_mybb4"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="12_p0n0e"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="14_ntq3p"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="15_t7bcq"]
@@ -32,6 +35,67 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
 radius = 62.0
+
+[sub_resource type="PackedScene" id="PackedScene_supnb"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("PortraitFrame"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0),
+"variants": [ExtResource("10_vjlym")],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_uabfo"]
+script = ExtResource("11_flhis")
+Name = "Vispilä"
+DefaultDialogueSide = 1
+PortraitFacing = 0
+Portrait = SubResource("PackedScene_supnb")
+
+[sub_resource type="PackedScene" id="PackedScene_m06fg"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("PortraitFrame", "Character", "texture"),
+"node_count": 2,
+"node_paths": [NodePath("./PortraitFrame")],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 0, 0, 1073741824, -1, 2147483647, 262145, -1, 1, 2, 1, 0),
+"variants": [ExtResource("10_vjlym"), ExtResource("12_mybb4")],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_emumr"]
+script = ExtResource("11_flhis")
+Name = "You"
+DefaultDialogueSide = 0
+PortraitFacing = 1
+Portrait = SubResource("PackedScene_m06fg")
+
+[sub_resource type="Resource" id="Resource_pfadw"]
+script = ExtResource("21_dpr77")
+Character = SubResource("Resource_emumr")
+IsInteractive = false
+Lines = ["Hohoo"]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_lars4"]
+script = ExtResource("21_dpr77")
+Character = SubResource("Resource_uabfo")
+IsInteractive = false
+Lines = ["Hahaa"]
+Next = SubResource("Resource_pfadw")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6djx"]
 size = Vector2(134.5, 299.375)
@@ -760,11 +824,23 @@ texture = ExtResource("9_kgfcd")
 
 [node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
+DisableIfState = "SpiritLanternInteracted"
 
 [node name="Trigger" parent="Jösses" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
 
 [node name="WispInteractableDialogueTrigger" parent="Jösses" index="4"]
+OneShot = true
+
+[node name="Jösses_Win" parent="." instance=ExtResource("10_lsb5y")]
+position = Vector2(4.5, 106.5)
+RequireState = "SpiritLanternInteracted"
+
+[node name="Trigger" parent="Jösses_Win" index="0"]
+shape = SubResource("CircleShape2D_nyqg1")
+
+[node name="WispInteractableDialogueTrigger" parent="Jösses_Win" index="4"]
+DialogueTree = SubResource("Resource_lars4")
 OneShot = true
 
 [node name="Hautakivirykelmä" parent="." instance=ExtResource("11_321uu")]
@@ -1047,6 +1123,7 @@ DialogueTrigger = "Yes"
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SpiritLantern/WispInteractable"]
 script = ExtResource("18_xn54u")
 DialogueTree = SubResource("Resource_kxuv5")
+SetStateAfterDialogueEnd = "SpiritLanternInteracted"
 
 [node name="WaterFallThing" parent="." instance=ExtResource("23_cspl0")]
 position = Vector2(157, -63)
@@ -1185,4 +1262,6 @@ position = Vector2(207, -325)
 
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]
+[editable path="Jösses_Win"]
+[editable path="Jösses_Win/JesusStatue"]
 [editable path="MuzakTrigger"]

@@ -64,11 +64,11 @@ public partial class WispInteractable : Area2D {
 	public delegate void InteractStopEventHandler();
 
 	private bool RequirementsMet() {
-		return this.Persistent().State.Contains(RequireState.Trim());
+		return RequireState.Trim().Length == 0 || this.Persistent().State.Contains(RequireState.Trim());
 	}
 
 	private bool IsDisabledByState() {
-		return !this.Persistent().State.Contains(DisableIfState.Trim());
+		return DisableIfState.Trim().Length == 0 || !this.Persistent().State.Contains(DisableIfState.Trim());
 	}
 
 	public override void _Ready() {
