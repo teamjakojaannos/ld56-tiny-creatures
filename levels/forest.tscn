@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj0li25q75lcv"]
+[gd_scene load_steps=8 format=3 uid="uid://dj0li25q75lcv"]
 
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="1_wvf0p"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_ni4s8"]
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="3_q2adk"]
 [ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="4_on0ma"]
+[ext_resource type="PackedScene" uid="uid://bfkpkt3kv6jsq" path="res://Environment/destroy_kivi_trigger.tscn" id="5_whj01"]
+[ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="6_jpbjq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m4dhd"]
 vertices = PackedVector2Array(-79, 14, 65, -18, 193, -18, 742, 401.063, -46.5391, 105.109, -140.883, 46.4688, 193, -128, 742, -419, -601, -419, 65, -128, -194, 14, -49.5938, 164.047, -239, 136.727, -601, 402.93, -79, -95, -194, -95, -139.977, 208.031)
@@ -52,3 +54,10 @@ position = Vector2(-55.9023, 284.456)
 
 [node name="Marker2D4" type="Marker2D" parent="Marko"]
 position = Vector2(598.203, 202.339)
+
+[node name="DestroyKiviTrigger" parent="." node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("5_whj01")]
+position = Vector2(48.2192, 297.425)
+objectToDestroy = NodePath("../BogRock")
+
+[node name="BogRock" parent="." instance=ExtResource("6_jpbjq")]
+position = Vector2(-102, 274)

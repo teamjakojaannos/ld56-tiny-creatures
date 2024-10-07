@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfkpkt3kv6jsq"]
+
+[ext_resource type="Script" path="res://Environment/DestroyKiviTrigger.cs" id="1_wvxnv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8lqr"]
+radius = 32.0
+
+[node name="DestroyKiviTrigger" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_wvxnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j8lqr")
+
+[connection signal="body_entered" from="." to="." method="bodyEntered"]
