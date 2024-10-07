@@ -333,9 +333,7 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	public void enteredKillZone(Node2D node) {
-		GD.Print("Y");
 		if (node is Player player) {
-			GD.Print($"{player.GlobalPosition}");
 			attackPlayer(player);
 
 		}
@@ -349,10 +347,6 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private void killPlayer() {
-		GD.Print("kilPlayer?");
-
-
-
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
 			return;

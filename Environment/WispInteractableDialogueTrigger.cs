@@ -61,11 +61,8 @@ public partial class WispInteractableDialogueTrigger : Node2D {
         if (SetStateAfterDialogueEnd is not null && SetStateAfterDialogueEnd.Trim().Length > 0) {
             this.Persistent().State.Add(SetStateAfterDialogueEnd);
 
-            GD.Print("Joo?");
-
             var parent = GetParent<WispInteractable>();
             if (SetStateAfterDialogueEnd == "viineri" && parent is not null && parent.isWispInteracting) {
-                GD.Print("Mitä vittua");
                 if (GetTree().GetFirstNodeInGroup("ViineriTpTarget") is Node2D win) {
                     this.Persistent().Intro!.FadeToBlack();
 
