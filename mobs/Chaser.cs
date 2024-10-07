@@ -12,7 +12,7 @@ public partial class Chaser : RigidBody2D {
 	[Export]
 	public float turnSpeedDegPerSec = 45.0f;
 
-	private Area2D? sightCone;
+	private Node2D? sightCone;
 
 	[Export]
 	public AnimationPlayer? AnimPlayer;
@@ -33,7 +33,7 @@ public partial class Chaser : RigidBody2D {
 	private Player? player;
 
 	public override void _Ready() {
-		sightCone = GetNode<Area2D>("SightCone");
+		sightCone = GetNode<Node2D>("SightCone");
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
 
@@ -216,7 +216,19 @@ public partial class Chaser : RigidBody2D {
 		return collider is Player;
 	}
 
-	public void sightConeEntered(Node2D node) {
+
+	enum SightConeSize {
+		Small, Medium, Large
+	}
+
+	public void enterSightConeSmall(Node2D node) { sightConeEntered(node, SightConeSize.Small); }
+	public void enterSightConeMedium(Node2D node) { /*sightConeEntered(node, SightConeSize.Medium); */}
+	public void enterSightConeLarge(Node2D node) { /*sightConeEntered(node, SightConeSize.Large); */}
+	public void exitSightConeSmall(Node2D node) { sightConeExited(node, SightConeSize.Small); }
+	public void exitSightConeMedium(Node2D node) { /*sightConeExited(node, SightConeSize.Medium); */}
+	public void exitSightConeLarge(Node2D node) { /*sightConeExited(node, SightConeSize.Large); */}
+
+	private void sightConeEntered(Node2D node, SightConeSize size) {
 		if (node is not Player player) {
 			return;
 		}
@@ -224,7 +236,7 @@ public partial class Chaser : RigidBody2D {
 		this.player = player;
 	}
 
-	public void sightConeExited(Node2D node) {
+	private void sightConeExited(Node2D node, SightConeSize size) {
 		if (node is not Player) {
 			return;
 		}
