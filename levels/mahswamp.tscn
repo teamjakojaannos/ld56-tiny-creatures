@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=87 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -34,10 +34,12 @@
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
 [ext_resource type="PackedScene" uid="uid://82edj5sbubfj" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
+[ext_resource type="PackedScene" uid="uid://baf4p3kgidl8v" path="res://Environment/GameplayRoina/spirit_lantern.tscn" id="35_gk7tg"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="36_3gxow"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="36_fxb2t"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
 [ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="37_budci"]
+[ext_resource type="Resource" uid="uid://c24lq4s6ae0f" path="res://characters/character_snail.tres" id="37_exxl1"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="37_ombns"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="38_b3qxu"]
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="38_farw4"]
@@ -80,6 +82,19 @@ size = Vector2(142.5, 151)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfowt"]
 size = Vector2(248.25, 151)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2utbt"]
+resource_local_to_scene = true
+radius = 56.0089
+
+[sub_resource type="Resource" id="Resource_obebt"]
+script = ExtResource("40_wu8kc")
+Character = ExtResource("37_exxl1")
+IsInteractive = false
+Lines = ["My. my. my hand is…I’m repeating myself, I didn’t", " I won’t get into it now. Be careful, there’s many, many - anyway."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_17l5b"]
 resource_local_to_scene = true
@@ -2933,6 +2948,18 @@ position = Vector2(-384, -443)
 position = Vector2(-305, -642)
 scale = Vector2(-1, 1)
 
+[node name="WispInteractable" parent="NpcSnail" instance=ExtResource("38_b3qxu")]
+
+[node name="Trigger" parent="NpcSnail/WispInteractable" index="0"]
+shape = SubResource("CircleShape2D_2utbt")
+
+[node name="Target" parent="NpcSnail/WispInteractable" index="1"]
+position = Vector2(-18, -29)
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="NpcSnail/WispInteractable"]
+script = ExtResource("39_78148")
+DialogueTree = SubResource("Resource_obebt")
+
 [node name="SuoSaariLyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
 position = Vector2(1207.94, -188.891)
 script = ExtResource("36_fxb2t")
@@ -3015,6 +3042,9 @@ DialogueTrigger = "Yes"
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SuoSaariLyhty/WispInteractable"]
 script = ExtResource("39_78148")
 DialogueTree = SubResource("Resource_t04uw")
+
+[node name="SpiritLantern2" parent="." instance=ExtResource("35_gk7tg")]
+position = Vector2(1209, -184)
 
 [node name="SuoEteläLyhty" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
 position = Vector2(546, -3)
@@ -3118,7 +3148,6 @@ curve = SubResource("Curve2D_5t27y")
 
 [node name="BogMonsterEntity" parent="StationaryNakki" index="0"]
 stats = SubResource("Resource_n4sxg")
-defaultStateIsWaitForTrigger = true
 
 [node name="WispInteractable" parent="." instance=ExtResource("38_b3qxu")]
 position = Vector2(333.313, -142.674)
@@ -3140,5 +3169,6 @@ OneShot = true
 script = ExtResource("41_nww2k")
 monster = NodePath("../../StationaryNakki/BogMonsterEntity")
 
+[editable path="NpcSnail/WispInteractable"]
 [editable path="StationaryNakki"]
 [editable path="WispInteractable"]

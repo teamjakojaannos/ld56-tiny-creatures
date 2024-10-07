@@ -53,6 +53,7 @@ sprite_frames = SubResource("SpriteFrames_cgugi")
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
 z_index = -2
+texture_filter = 1
 position = Vector2(90.5435, -222.187)
 rotation = -3.08051
 scale = Vector2(0.601501, 0.528092)

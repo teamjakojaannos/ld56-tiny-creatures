@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=48 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://b40kecv7ytk0c" path="res://Environment/fern.tscn" id="24_wympi"]
 [ext_resource type="Texture2D" uid="uid://dhxhdqbmbd08l" path="res://Environment/joki1.png" id="25_gl4a6"]
 [ext_resource type="Texture2D" uid="uid://ce08wererd3rf" path="res://Environment/pienirunko.png" id="26_g2r7u"]
+[ext_resource type="PackedScene" uid="uid://ekfgg6vmxihr" path="res://Environment/SuoKansio/nakki_ruoho.tscn" id="27_7pay1"]
+[ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="28_eaaws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
 radius = 62.0
@@ -1104,6 +1106,69 @@ polygon = PackedVector2Array(182, -469, 168, -447, 213, -342, 181, -310, 209, -2
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="AreaColliders"]
 visible = false
 polygon = PackedVector2Array(213, -814, 259, -815, 255, -788, 271, -767, 257, -708, 165, -667, 139, -629, 146, -576, 199, -544, 234, -531, 250, -484, 251, -471, 195, -482, 184, -510, 131, -546, 100, -574, 87, -624, 98, -652, 142, -682, 226, -737, 226, -765, 212, -788)
+
+[node name="NakkiRuoho" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(250, -258)
+
+[node name="NakkiRuoho13" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(288, -68)
+
+[node name="NakkiRuoho15" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(361, 52)
+
+[node name="NakkiRuoho19" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(422, 75)
+
+[node name="NakkiRuoho21" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(496, 70)
+
+[node name="NakkiRuoho25" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(461, 97)
+
+[node name="NakkiRuoho16" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(304, -22)
+
+[node name="NakkiRuoho6" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(183, -438)
+
+[node name="NakkiRuoho10" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(149, -575)
+
+[node name="NakkiRuoho8" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(184, -510)
+
+[node name="NakkiRuoho4" parent="." instance=ExtResource("27_7pay1")]
+position = Vector2(200, -261)
+
+[node name="NakkiRuoho2" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(236, -264)
+
+[node name="NakkiRuoho12" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(271, -72)
+
+[node name="NakkiRuoho14" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(331, 44)
+
+[node name="NakkiRuoho17" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(370, 92)
+
+[node name="NakkiRuoho18" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(443, 81)
+
+[node name="NakkiRuoho5" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(226, -396)
+
+[node name="NakkiRuoho9" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(139, -582)
+
+[node name="NakkiRuoho11" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(107, -634)
+
+[node name="NakkiRuoho7" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(169, -518)
+
+[node name="NakkiRuoho3" parent="." instance=ExtResource("28_eaaws")]
+position = Vector2(207, -325)
 
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]

@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="GameCharacter" load_steps=2 format=3 uid="uid://c24lq4s6ae0f"]
+[gd_resource type="Resource" script_class="GameCharacter" load_steps=3 format=3 uid="uid://c24lq4s6ae0f"]
 
 [ext_resource type="Script" path="res://characters/GameCharacter.cs" id="1_6f2hb"]
+[ext_resource type="PackedScene" uid="uid://ci0uwpirpktwn" path="res://characters/portraits/snail_portrait_frame.tscn" id="1_kiid8"]
 
 [resource]
 script = ExtResource("1_6f2hb")
-Name = "???"
-DefaultDialogueSide = 0
+Name = "MC Slimak K."
+DefaultDialogueSide = 1
 PortraitFacing = 0
+Portrait = ExtResource("1_kiid8")
