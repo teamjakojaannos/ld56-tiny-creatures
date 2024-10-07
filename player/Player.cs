@@ -104,7 +104,6 @@ public partial class Player : CharacterBody2D {
 		var mainPlayerSpawn = GetTree().GetFirstNodeInGroup("IntroPlayerSpawn");
 		if (mainPlayerSpawn is Node2D spawn) {
 			GD.Print($"Starting at intro spawn (\"{spawn.Name}\" at {spawn.GlobalPosition})");
-			GlobalPosition = Vector2.Right * 10_000f;
 			CallDeferred(MethodName.TeleportTo, spawn);
 		} else {
 			GD.Print("Falling back to random spawn");
