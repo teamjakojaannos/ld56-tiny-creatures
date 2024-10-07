@@ -115,6 +115,7 @@ position = Vector2(-730, 215)
 metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2(-486, -508)
 scale = Vector2(2, 2)
 color = Color(0.0474933, 0.0432, 0.08, 1)

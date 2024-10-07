@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=39 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -29,7 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
+[ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://Environment/SuoKansio/pieniruohot.png" id="23_30oyg"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
+[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
@@ -58,11 +60,10 @@ y_sort_enabled = true
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = -2
 offset_left = -514.0
-offset_top = -625.0
+offset_top = -957.0
 offset_right = 1757.0
 offset_bottom = 315.0
 color = Color(0.317647, 0.211765, 0.109804, 1)
-metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -2
@@ -1300,8 +1301,43 @@ texture = ExtResource("22_sibwg")
 
 [node name="Slab16" type="Sprite2D" parent="Grass"]
 texture_filter = 1
-position = Vector2(276.5, -193.5)
-texture = ExtResource("22_sibwg")
+position = Vector2(-308, -437)
+texture = ExtResource("23_30oyg")
+
+[node name="Pieniruohot" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-323, -272)
+texture = ExtResource("23_30oyg")
+
+[node name="IsoruohoT2" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-293, -200)
+texture = ExtResource("13_3sq64")
+
+[node name="IsoruohoT3" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-306, -171)
+texture = ExtResource("13_3sq64")
+
+[node name="IsoruohoT4" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-307, -145)
+texture = ExtResource("13_3sq64")
+
+[node name="IsoruohoT5" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-193, -584)
+texture = ExtResource("13_3sq64")
+
+[node name="IsoruohoT6" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-152, -580)
+texture = ExtResource("13_3sq64")
+
+[node name="IsoruohoT7" type="Sprite2D" parent="Grass"]
+texture_filter = 1
+position = Vector2(-104, -586)
+texture = ExtResource("13_3sq64")
 
 [node name="PuutJaNakkiruohoTMS" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1309,11 +1345,23 @@ y_sort_enabled = true
 [node name="TreePile1" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
 position = Vector2(-488, -436)
 
+[node name="TreePile4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-434, -295)
+
+[node name="TreePile5" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-468, -167)
+
 [node name="TreePile2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
 position = Vector2(-434, -641)
 
 [node name="TreePile3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
 position = Vector2(-338, -677)
+
+[node name="TreePile6" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-203, -705)
+
+[node name="TreePile7" parent="PuutJaNakkiruohoTMS" instance=ExtResource("3_3120c")]
+position = Vector2(-70, -712)
 
 [node name="NakkiRuoho" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
 position = Vector2(-327, -518)
@@ -1357,6 +1405,9 @@ position = Vector2(-280, -395)
 [node name="NakkiRuoho12" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
 position = Vector2(-316, -297)
 
+[node name="NakkiRuoho41" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
+position = Vector2(-330, -219)
+
 [node name="NakkiRuoho14" parent="PuutJaNakkiruohoTMS" instance=ExtResource("4_4mut1")]
 position = Vector2(-296, -326)
 metadata/_edit_lock_ = true
@@ -1366,6 +1417,9 @@ position = Vector2(-290, -564)
 
 [node name="NakkiRuoho3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
 position = Vector2(-307, -581)
+
+[node name="NakkiRuoho43" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-212, -611)
 
 [node name="NakkiRuoho7" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
 position = Vector2(-328, -450)
@@ -1433,11 +1487,17 @@ position = Vector2(-296, -422)
 [node name="NakkiRuoho13" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
 position = Vector2(-325, -288)
 
+[node name="NakkiRuoho42" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
+position = Vector2(-350, -197)
+
 [node name="NakkiRuoho8" parent="PuutJaNakkiruohoTMS" instance=ExtResource("5_o5nv0")]
 position = Vector2(-330, -549)
 
 [node name="Tree2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("19_4vkq6")]
 position = Vector2(342, -252)
+
+[node name="Tree4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("19_4vkq6")]
+position = Vector2(-350, -258)
 
 [node name="Tree1" parent="PuutJaNakkiruohoTMS" instance=ExtResource("20_0b7li")]
 position = Vector2(296, -248)
@@ -1449,14 +1509,47 @@ metadata/_edit_lock_ = true
 [node name="Node2D" parent="PuutJaNakkiruohoTMS" instance=ExtResource("21_b1c6j")]
 position = Vector2(319, -234)
 
+[node name="Node2D2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("21_b1c6j")]
+position = Vector2(-371, -543)
+
 [node name="BigStone" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
 position = Vector2(272, -260)
+
+[node name="BigStone4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
+position = Vector2(-318, -610)
 
 [node name="BigStone3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
 position = Vector2(244, -177)
 
 [node name="BigStone2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("22_kbwl0")]
 position = Vector2(152, -210)
+
+[node name="Sieni5" parent="PuutJaNakkiruohoTMS" instance=ExtResource("31_6mesy")]
+position = Vector2(-419, -587)
+
+[node name="Sieni9" parent="PuutJaNakkiruohoTMS" instance=ExtResource("31_6mesy")]
+position = Vector2(-256, -629)
+
+[node name="Sieni1" parent="PuutJaNakkiruohoTMS" instance=ExtResource("30_3ktkp")]
+position = Vector2(274, -242)
+
+[node name="Sieni4" parent="PuutJaNakkiruohoTMS" instance=ExtResource("30_3ktkp")]
+position = Vector2(-415, -370)
+
+[node name="Sieni6" parent="PuutJaNakkiruohoTMS" instance=ExtResource("30_3ktkp")]
+position = Vector2(-360, -537)
+
+[node name="Sieni2" parent="PuutJaNakkiruohoTMS" instance=ExtResource("31_xvd85")]
+position = Vector2(159, -202)
+
+[node name="Sieni3" parent="PuutJaNakkiruohoTMS" instance=ExtResource("31_xvd85")]
+position = Vector2(242, -262)
+
+[node name="Sieni7" parent="PuutJaNakkiruohoTMS" instance=ExtResource("31_xvd85")]
+position = Vector2(-481, -567)
+
+[node name="Sieni8" parent="PuutJaNakkiruohoTMS" instance=ExtResource("31_xvd85")]
+position = Vector2(-305, -602)
 
 [node name="SwampColliders" type="StaticBody2D" parent="."]
 visible = false
@@ -1496,11 +1589,8 @@ position = Vector2(178, -73)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vx0q8")
 
-[node name="Sieni1" parent="." instance=ExtResource("30_3ktkp")]
-position = Vector2(274, -242)
+[node name="PlayerStart" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(-384, -443)
 
-[node name="Sieni2" parent="." instance=ExtResource("31_xvd85")]
-position = Vector2(159, -202)
-
-[node name="Sieni3" parent="." instance=ExtResource("31_xvd85")]
-position = Vector2(242, -262)
+[node name="PlayerStart2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(-384, -443)
