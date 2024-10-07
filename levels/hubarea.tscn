@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=66 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://2bklg3qfsuj0" path="res://Environment/medium_patch_1R.png" id="8_xi6nj"]
 [ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="9_kgfcd"]
 [ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="10_lsb5y"]
-[ext_resource type="Resource" uid="uid://dl7jjb2uygwtc" path="res://characters/character_jesse.tres" id="10_o7mbv"]
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="12_bjl3q"]
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
@@ -76,9 +75,9 @@ SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_lars4"]
 script = ExtResource("21_dpr77")
-Character = ExtResource("10_o7mbv")
+Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Olet viineri"]
+Lines = ["We did! We saved all my friends!"]
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -446,7 +445,7 @@ _data = {
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Yayyy!!"]
+Lines = ["Thank you!"]
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -475,7 +474,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Release the spirit?"]
+Lines = ["Free the wisp?"]
 Next = SubResource("Resource_o41ml")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -582,23 +581,7 @@ y_sort_enabled = true
 
 [node name="HubSpawn" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
-position = Vector2(72, 199)
-
-[node name="HubSpawn2" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
-y_sort_enabled = true
-position = Vector2(-108, 107)
-
-[node name="HubSpawn3" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
-y_sort_enabled = true
-position = Vector2(-73, 207)
-
-[node name="HubSpawn4" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
-y_sort_enabled = true
-position = Vector2(82, -35)
-
-[node name="HubSpawn5" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
-y_sort_enabled = true
-position = Vector2(-152, -49)
+position = Vector2(4, 148)
 
 [node name="Tree10" parent="." instance=ExtResource("1_diaiq")]
 position = Vector2(-74, 3)
@@ -910,6 +893,8 @@ OneShot = true
 
 [node name="Jösses_Win" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
+RequireNumberOfWispsGreaterThan = 6
+RequireNumberOfWispsLessThan = 10
 
 [node name="Trigger" parent="Jösses_Win" index="0"]
 shape = SubResource("CircleShape2D_nyqg1")
@@ -1346,6 +1331,7 @@ OneShot = true
 position = Vector2(-4, 32)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aywjs")
+metadata/_edit_lock_ = true
 
 [node name="Target" parent="LoreDumpTrigger/WispInteractable" index="1"]
 position = Vector2(-54, -41)

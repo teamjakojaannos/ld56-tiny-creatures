@@ -1,10 +1,14 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqnpbajdyitec"]
+[gd_scene load_steps=37 format=3 uid="uid://cqnpbajdyitec"]
 
 [ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="1_oj8qh"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
+[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="2_fhp40"]
+[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="3_402q5"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="3_tanrn"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="4_abnch"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="4_c3boq"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_cqeun"]
+[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_pqvmj"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="6_01lmh"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="7_2d1eo"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="8_naa27"]
@@ -20,7 +24,26 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_782fh"]
 resource_local_to_scene = true
-radius = 46.0109
+radius = 52.0096
+
+[sub_resource type="Resource" id="Resource_87rtj"]
+script = ExtResource("5_pqvmj")
+Character = ExtResource("4_abnch")
+IsInteractive = false
+Lines = ["What happened to hurrying out of here..."]
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
+
+[sub_resource type="Resource" id="Resource_2ifow"]
+script = ExtResource("5_pqvmj")
+Character = ExtResource("3_402q5")
+IsInteractive = false
+Lines = ["Booooooo! Look at how scary I am!"]
+Next = SubResource("Resource_87rtj")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
+SideOverride = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk46w"]
 size = Vector2(448, 72)
@@ -65,8 +88,12 @@ y_sort_enabled = true
 position = Vector2(53, 32)
 
 [node name="Trigger" parent="WispInteractableKurpitsa" index="0"]
-visible = false
 shape = SubResource("CircleShape2D_782fh")
+
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="WispInteractableKurpitsa"]
+script = ExtResource("2_fhp40")
+DialogueTree = SubResource("Resource_2ifow")
+OneShot = true
 
 [node name="Tree12" parent="." instance=ExtResource("2_7y7d8")]
 position = Vector2(-121, -207)

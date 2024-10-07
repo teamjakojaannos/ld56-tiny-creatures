@@ -79,12 +79,12 @@ ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je08u"]
-size = Vector2(20, 35.2941)
+size = Vector2(20, 50.3268)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v13c3"]
-size = Vector2(20, 239)
+size = Vector2(20, 214.5)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" groups=["PlayIntro"]]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
@@ -323,7 +323,7 @@ scale = Vector2(1.53, 1.53)
 [node name="StaticBody2D2" type="StaticBody2D" parent="BigStone2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigStone2/StaticBody2D2"]
-position = Vector2(0.653595, -10.4575)
+position = Vector2(0.653595, -2.94116)
 shape = SubResource("RectangleShape2D_je08u")
 
 [node name="DestroyKiviTrigger2" parent="." node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("10_ifdrj")]
@@ -333,7 +333,7 @@ objectToDestroy = NodePath("../BigStone2")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(128, -123)
+position = Vector2(128, -110.75)
 shape = SubResource("RectangleShape2D_v13c3")
 
 [node name="Juuri" parent="." instance=ExtResource("14_kfeaf")]
