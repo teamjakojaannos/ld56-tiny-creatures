@@ -30,7 +30,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="World" type="Node2D" groups=["PlayIntro"]]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]

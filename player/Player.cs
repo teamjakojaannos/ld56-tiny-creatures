@@ -25,6 +25,17 @@ public partial class Player : CharacterBody2D {
 	private Node2D? _wispFollowNode;
 
 	[Export]
+	public Footsteps? Footsteps;
+
+	[Export]
+	public Footsteps? FootstepsWet;
+
+	public bool IsWet = false;
+
+	[Export]
+	public Timer? FootstepsTimer;
+
+	[Export]
 	public Node2D WispFollowNode {
 		get => _wispFollowNode ?? Util.TrustMeBro<Node2D>();
 		set {
@@ -86,6 +97,17 @@ public partial class Player : CharacterBody2D {
 				CallDeferred(MethodName.TeleportAt, fallbackRandomSpawn);
 			}
 		}
+
+		if (FootstepsTimer is not null) {
+			FootstepsTimer.Timeout += () => {
+
+				if (IsWet) {
+					FootstepsWet?.Play();
+				} else {
+					Footsteps?.Play();
+				}
+			};
+		}
 	}
 
 	private void TeleportAt(Node2D target) {
@@ -125,12 +147,17 @@ public partial class Player : CharacterBody2D {
 				: "Down";
 
 			Animation?.Play($"Walk{animationDirection}");
+
+			if (FootstepsTimer is not null && FootstepsTimer.IsStopped()) {
+				FootstepsTimer.Start();
+			}
 		} else {
 			var currentSpeed = Velocity.Length();
 			Velocity = Velocity.MoveToward(Vector2.Zero, currentSpeed * Friction * delta);
 		}
 
 		if (Velocity.LengthSquared() < 0.01f) {
+			FootstepsTimer?.Stop();
 			Animation?.Play($"Idle{animationDirection}");
 		}
 

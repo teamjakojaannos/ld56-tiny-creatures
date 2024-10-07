@@ -10,6 +10,12 @@ public partial class MusicArea : Area2D {
 				return;
 			}
 
+			// HACK: change footstep sounds to wet variant when moving to swamp
+			if (Music == Jukebox.MuzakTrack.GetOut) {
+				player.IsWet = true;
+			} else {
+				player.IsWet = false;
+			}
 			this.Jukebox().SwitchTrack(Music);
 		};
 	}

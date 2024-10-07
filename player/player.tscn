@@ -1,8 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=30 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
+[ext_resource type="AudioStream" uid="uid://cdlv0clfgfav" path="res://random_sfx/askel1.ogg" id="4_50csx"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://player/spirit_sprite_frames.tres" id="4_62syh"]
+[ext_resource type="Script" path="res://player/Footsteps.cs" id="4_kghcv"]
+[ext_resource type="AudioStream" uid="uid://x482eds70blo" path="res://random_sfx/askel2.ogg" id="5_065tq"]
+[ext_resource type="AudioStream" uid="uid://0cs7fbkti0v6" path="res://random_sfx/askel3.ogg" id="6_8m8n3"]
+[ext_resource type="AudioStream" uid="uid://dgtllh2oqfuut" path="res://random_sfx/askel4.ogg" id="7_mb8du"]
+[ext_resource type="AudioStream" uid="uid://cplk3komsjo0g" path="res://random_sfx/askel5.ogg" id="8_f4pld"]
+[ext_resource type="AudioStream" uid="uid://jnlo5iriuip" path="res://random_sfx/stepwater1.ogg" id="10_nsfcd"]
+[ext_resource type="AudioStream" uid="uid://b4tpn12cqhpq8" path="res://random_sfx/stepwater2.ogg" id="11_te71y"]
+[ext_resource type="AudioStream" uid="uid://yuwttnrqc7sd" path="res://random_sfx/stepwater3.ogg" id="12_6wfv3"]
+[ext_resource type="AudioStream" uid="uid://bym5d2fik0ct" path="res://random_sfx/stepwater4.ogg" id="13_swq0c"]
+[ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="14_2fnqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
 size = Vector2(11, 4)
@@ -409,13 +420,16 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "WispFollowNode", "Wisp") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "WispFollowNode", "Wisp") groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 3
 script = ExtResource("1_cn8o3")
 Speed = 125.0
 Friction = 15.0
 Animation = NodePath("AnimationPlayer")
+Footsteps = NodePath("Footsteps")
+FootstepsWet = NodePath("FootstepsWet")
+FootstepsTimer = NodePath("FootstepTimer")
 WispFollowNode = NodePath("SpiritTarget/Spirit")
 Wisp = NodePath("SpiritTarget/SpiritVisuals")
 
@@ -507,3 +521,62 @@ position = Vector2(0, -24)
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 2.0
+
+[node name="FootstepTimer" type="Timer" parent="."]
+wait_time = 0.33
+
+[node name="Footsteps" type="Node" parent="."]
+script = ExtResource("4_kghcv")
+
+[node name="Askel1" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("4_50csx")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Askel2" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("5_065tq")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Askel3" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("6_8m8n3")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Askel4" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("7_mb8du")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Askel5" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("8_f4pld")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="FootstepsWet" type="Node" parent="."]
+script = ExtResource("4_kghcv")
+
+[node name="Stepwater1" type="AudioStreamPlayer" parent="FootstepsWet"]
+stream = ExtResource("10_nsfcd")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Stepwater2" type="AudioStreamPlayer" parent="FootstepsWet"]
+stream = ExtResource("11_te71y")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Stepwater3" type="AudioStreamPlayer" parent="FootstepsWet"]
+stream = ExtResource("12_6wfv3")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Stepwater4" type="AudioStreamPlayer" parent="FootstepsWet"]
+stream = ExtResource("13_swq0c")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Stepwater5" type="AudioStreamPlayer" parent="FootstepsWet"]
+stream = ExtResource("14_2fnqg")
+volume_db = -15.0
+bus = &"SFX"
