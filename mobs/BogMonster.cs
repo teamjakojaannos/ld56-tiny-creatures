@@ -51,6 +51,7 @@ public partial class BogMonster : PathFollow2D {
 			playerWasKill = false;	
 			animationPlayer?.Play("emerge_from_water");
 			ai = new MovementState(goingForward: true, stats.speed);
+			fakePlayer.Visible = false;
 		};
 	}
 

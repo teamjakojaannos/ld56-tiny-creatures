@@ -218,6 +218,7 @@ public partial class Player : CharacterBody2D {
 		IsInCinematic = true;
 
 		GD.Print("I am dead.");
+		FootstepsTimer?.Stop();
 		this.Persistent().ResetPlayerToHub();
 		LieDown();
 	}
