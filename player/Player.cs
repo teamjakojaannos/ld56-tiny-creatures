@@ -266,5 +266,7 @@ public partial class Player : CharacterBody2D {
 
 		setMovementEnabled(true);
 		IsInCinematic = false;
+
+		this.Persistent().EmitSignal(Persistent.SignalName.PlayerRespawned);
 	}
 }
