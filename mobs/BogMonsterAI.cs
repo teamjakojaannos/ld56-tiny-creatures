@@ -56,7 +56,7 @@ public class MovementState : BogMonsterAIState {
 		if (timePassed >= monster.stats.moveTime) {
 			timePassed = 0.0f;
 
-			var stopMovement = monster.rng.Randf() < monster.stats.stopMoveChance;
+			var stopMovement = Util.diceRoll(monster.rng, monster.stats.stopMoveChance);
 			if (stopMovement) {
 				var idleTime = randomIdleTime(monster);
 				monster.ai = new IdleState(idleTime, nextDirection: null);
@@ -165,7 +165,7 @@ public class UnderwaterState : BogMonsterAIState {
 
 	private void emergeFromWater(BogMonster monster) {
 		animationDone = false;
-		var emergeAtPlayer = monster.rng.Randf() < monster.stats.emergeAtPlayerChance;
+		var emergeAtPlayer = Util.diceRoll(monster.rng, monster.stats.emergeAtPlayerChance);
 		if (emergeAtPlayer) {
 			monster.emergeFromWaterNearPlayer();
 		} else {
