@@ -165,12 +165,22 @@ public class UnderwaterState : BogMonsterAIState {
 
 	private void emergeFromWater(BogMonster monster) {
 		animationDone = false;
+
+
+
 		var emergeAtPlayer = Util.diceRoll(monster.rng, monster.stats.emergeAtPlayerChance);
 		if (emergeAtPlayer) {
 			monster.emergeFromWaterNearPlayer();
 		} else {
-			var randomPosition = monster.rng.Randf();
-			monster.emergeFromWaterAtPosition(randomPosition);
+			var emergeAtSameSpot = Util.diceRoll(monster.rng, monster.stats.emergeAtSameLocationChance);
+			float position;
+			if (emergeAtSameSpot) {
+				position = monster.ProgressRatio;
+			} else {
+				position = monster.rng.Randf();
+			}
+
+			monster.emergeFromWaterAtPosition(position);
 		}
 	}
 

@@ -35,6 +35,7 @@ public partial class BogMonsterStats : Resource {
 	public (float, float) idleTime => (minIdleTime, maxIdleTime);
 
 	[Export] public float emergeAtPlayerChance = 0.35f;
+	[Export] public float emergeAtSameLocationChance = 0.0f;
 
 	[Export] public float alertTime = 7.5f;
 	[Export] public float alertThreshold = 40.0f;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://coeua2ueyu3oa"]
+[gd_scene load_steps=50 format=3 uid="uid://coeua2ueyu3oa"]
 
 [ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
 [ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
@@ -25,17 +25,18 @@
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_lwecq"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="20_0b7li"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_wrs7f"]
-[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="21_b1c6j"]
+[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="21_b1c6j"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
 [ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://Environment/SuoKansio/pieniruohot.png" id="23_30oyg"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
-[ext_resource type="PackedScene" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
+[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
+[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
+[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
+[ext_resource type="PackedScene" uid="uid://82edj5sbubfj" path="res://characters/NPC_snail.tscn" id="34_kqjx1"]
 [ext_resource type="PackedScene" uid="uid://baf4p3kgidl8v" path="res://Environment/GameplayRoina/spirit_lantern.tscn" id="35_gk7tg"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
+[ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="37_budci"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
 radius = 107.0
@@ -74,6 +75,31 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 350, 0)
 }
 point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_5t27y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0)
+}
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_n4sxg"]
+script = ExtResource("37_budci")
+speed = 45.0
+detectionGain = 400.0
+detectionDecay = 400.0
+moveTime = 0.0
+stopMoveChance = 1.0
+changeDirectionInsteadOfStoppingChance = 0.0
+goUnderwaterChance = 1.0
+minUnderwaterTime = 2.0
+maxUnderwaterTime = 7.0
+minIdleTime = 4.0
+maxIdleTime = 10.0
+emergeAtPlayerChance = 0.0
+emergeAtSameLocationChance = 1.0
+alertTime = 7.5
+alertThreshold = 200.0
+attackThreshold = 100.0
 
 [node name="MAHSWAMP" type="Node2D"]
 y_sort_enabled = true
@@ -2478,3 +2504,12 @@ polygon = PackedVector2Array(-108, -404, -55, -404, -55, -387, -108, -387)
 
 [node name="CampArea" type="CollisionPolygon2D" parent="LosBlockers"]
 polygon = PackedVector2Array(74, -226, 242, -338, 394, -265, 244, -123)
+
+[node name="StationaryNakki" parent="." instance=ExtResource("36_i1gca")]
+position = Vector2(448.216, -160.421)
+curve = SubResource("Curve2D_5t27y")
+
+[node name="BogMonsterEntity" parent="StationaryNakki" index="0"]
+stats = SubResource("Resource_n4sxg")
+
+[editable path="StationaryNakki"]
