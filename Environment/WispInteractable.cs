@@ -47,7 +47,7 @@ public partial class WispInteractable : Area2D {
 	}
 
 	private Node2D? wisp;
-	private bool isWispInteracting = false;
+	public bool isWispInteracting = false;
 	private bool isFirstTimeStart = true;
 	private bool isFirstTimeStop = true;
 

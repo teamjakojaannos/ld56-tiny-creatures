@@ -11,38 +11,38 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="Gradient" id="Gradient_rmp88"]
+[sub_resource type="Gradient" id="Gradient_pseuf"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.276119, 0.490672, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.225746, 0.225746, 0.225746, 1, 0.0919339, 0.0919339, 0.0919339, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hcffb"]
-gradient = SubResource("Gradient_rmp88")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvjin"]
+gradient = SubResource("Gradient_pseuf")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aq3i"]
 atlas = ExtResource("1_2urqj")
 region = Rect2(0, 0, 45, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_beeid"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_13mhg"]
 atlas = ExtResource("1_2urqj")
 region = Rect2(45, 0, 45, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nljhc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcd4p"]
 atlas = ExtResource("1_2urqj")
 region = Rect2(0, 0, 45, 45)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2e78h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0rbp"]
 atlas = ExtResource("1_2urqj")
 region = Rect2(45, 0, 45, 45)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kwh76"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_04asd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_10var")
+"texture": SubResource("AtlasTexture_3aq3i")
 }],
 "loop": true,
 "name": &"idle_closed",
@@ -50,7 +50,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_beeid")
+"texture": SubResource("AtlasTexture_13mhg")
 }],
 "loop": true,
 "name": &"idle_open",
@@ -58,17 +58,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nljhc")
+"texture": SubResource("AtlasTexture_hcd4p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2e78h")
+"texture": SubResource("AtlasTexture_b0rbp")
 }],
 "loop": false,
 "name": &"open",
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_6ieeh"]
+[sub_resource type="Animation" id="Animation_ry0a6"]
 resource_name = "RESET"
 length = 0.001
 step = 0.1
@@ -169,7 +169,7 @@ tracks/7/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_2mg1j"]
+[sub_resource type="Animation" id="Animation_q1nnn"]
 resource_name = "out"
 length = 5.0
 step = 0.1
@@ -246,7 +246,7 @@ tracks/5/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_kgfnr"]
+[sub_resource type="Animation" id="Animation_wb2r0"]
 resource_name = "out_hupialue"
 length = 3.0
 step = 0.1
@@ -347,11 +347,11 @@ tracks/7/keys = {
 "values": [0, 10]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vlr5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gpuue"]
 _data = {
-"RESET": SubResource("Animation_6ieeh"),
-"out": SubResource("Animation_2mg1j"),
-"out_hupialue": SubResource("Animation_kgfnr")
+"RESET": SubResource("Animation_ry0a6"),
+"out": SubResource("Animation_q1nnn"),
+"out_hupialue": SubResource("Animation_wb2r0")
 }
 
 [node name="SpiritLantern" type="Node2D"]
@@ -391,17 +391,17 @@ metadata/_edit_lock_ = true
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
-texture = SubResource("GradientTexture2D_hcffb")
+texture = SubResource("GradientTexture2D_nvjin")
 
 [node name="Lantern" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_kwh76")
+sprite_frames = SubResource("SpriteFrames_04asd")
 animation = &"idle_closed"
 autoplay = "idle_closed"
 offset = Vector2(-7, -20)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_7vlr5")
+"": SubResource("AnimationLibrary_gpuue")
 }
 autoplay = "RESET"

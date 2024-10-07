@@ -84,7 +84,15 @@ public partial class WispInteractableAnimatedProp : Node2D {
         AnimPlayer.Play(Animation);
     }
 
+    private void InteractStop() {
+        AnimPlayer.Stop();
+    }
+
     private void CheckDialogueTrigger(string chosenOption) {
+        if (!GetParent<WispInteractable>().isWispInteracting) {
+            return;
+        }
+
         if (chosenOption == DialogueTrigger) {
             InteractStart();
 
