@@ -29,6 +29,8 @@ public partial class Jukebox : Node2D {
 	public AudioStreamPlayer? Swhamp;
 	[Export]
 	public AudioStreamPlayer? Psykoosi;
+	[Export]
+	public AudioStreamPlayer? Credits;
 
 
 	[Export]
@@ -39,6 +41,7 @@ public partial class Jukebox : Node2D {
 		SfwHub,
 		GetOut,
 		Psykoosi,
+		Credits,
 	}
 
 	private AudioStreamPlayer? GetStreamPlayer(MuzakTrack muzak) {
@@ -47,6 +50,7 @@ public partial class Jukebox : Node2D {
 			MuzakTrack.SfwHub => Pornhub,
 			MuzakTrack.GetOut => Swhamp,
 			MuzakTrack.Psykoosi => Psykoosi,
+			MuzakTrack.Credits => Credits,
 			_ => throw new NotImplementedException(),
 		};
 	}

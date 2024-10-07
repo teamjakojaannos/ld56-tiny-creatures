@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccfpbd6r6ek72"]
+[gd_scene load_steps=8 format=3 uid="uid://ccfpbd6r6ek72"]
 
 [ext_resource type="AudioStream" uid="uid://bes13ryernvjn" path="res://music/pornhubimusa.ogg" id="1_a553t"]
 [ext_resource type="Script" path="res://music/Jukebox.cs" id="1_kqeya"]
@@ -6,14 +6,16 @@
 [ext_resource type="AudioStream" uid="uid://dvsmqj05ptpdo" path="res://music/suomusiikkiV2.ogg" id="3_i10xf"]
 [ext_resource type="AudioStream" uid="uid://cd8asm3qotxca" path="res://music/velhopsykoosi.ogg" id="5_hb858"]
 [ext_resource type="AudioStream" uid="uid://bnoj0relh32hj" path="res://music/vaaramusaV2.ogg" id="6_4qtf4"]
+[ext_resource type="AudioStream" uid="uid://bu0cp5gpcb1bn" path="res://music/creditsmusic.ogg" id="7_oemhg"]
 
-[node name="Jukebox" type="Node2D" node_paths=PackedStringArray("Metsämusa", "Pornhub", "Swhamp", "Psykoosi", "Combat")]
+[node name="Jukebox" type="Node2D" node_paths=PackedStringArray("Metsämusa", "Pornhub", "Swhamp", "Psykoosi", "Credits", "Combat")]
 script = ExtResource("1_kqeya")
 FadeInSpeed = 0.1
 "Metsämusa" = NodePath("Metsamusa")
 Pornhub = NodePath("Pornhubimusa")
 Swhamp = NodePath("SuomusiikkiV2")
 Psykoosi = NodePath("Velhopsykoosi")
+Credits = NodePath("Creditsmusic")
 Combat = NodePath("VaaramusaV2")
 
 [node name="Pornhubimusa" type="AudioStreamPlayer" parent="."]
@@ -37,3 +39,6 @@ bus = &"Music"
 [node name="VaaramusaV2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4qtf4")
 bus = &"Music"
+
+[node name="Creditsmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_oemhg")
