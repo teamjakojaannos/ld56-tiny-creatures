@@ -581,7 +581,7 @@ y_sort_enabled = true
 
 [node name="HubSpawn" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
-position = Vector2(4, 148)
+position = Vector2(70, 173)
 
 [node name="Tree10" parent="." instance=ExtResource("1_diaiq")]
 position = Vector2(-74, 3)
