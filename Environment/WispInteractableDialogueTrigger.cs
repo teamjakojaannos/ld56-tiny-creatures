@@ -46,6 +46,14 @@ public partial class WispInteractableDialogueTrigger : Node2D {
         var parent = GetParent<WispInteractable>();
         parent.InteractStart += () => {
             if (isFirstTime || !OneShot) {
+                var parent = GetParent<WispInteractable>();
+                if (SetStateAfterDialogueEnd == "viineri" && parent is not null && parent.isWispInteracting) {
+                    GD.Print("Starting early credits sequence");
+                    this.Jukebox().SwitchTrack(Jukebox.MuzakTrack.Credits);
+                    this.Persistent().Player!.IsInCinematic = true;
+                    this.Persistent().Player!.Animation!.Play("pan_camera_up");
+                }
+
                 Dialogue.Instance(this).StartDialogue(DialogueTree);
                 Dialogue.Instance(this).DialogueFinished += DialogueFinished;
             }
@@ -70,6 +78,7 @@ public partial class WispInteractableDialogueTrigger : Node2D {
                     GetTree().CreateTimer(3.0f).Timeout += () => {
                         this.Persistent().Player!.TeleportTo(win);
                         this.Persistent().Intro!.FadeInAfterWin();
+                        this.Persistent().Player!.IsInCinematic = false;
                     };
                 }
             }

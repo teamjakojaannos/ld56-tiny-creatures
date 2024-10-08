@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=36 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_cn8o3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_88t4b"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bym5d2fik0ct" path="res://random_sfx/stepwater4.ogg" id="13_swq0c"]
 [ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="14_2fnqg"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://characters/shadow.png" id="16_x8taj"]
+[ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://camera/camera.tscn" id="17_j406h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
 size = Vector2(11, 4)
@@ -167,6 +168,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_j73ac"]
@@ -407,6 +420,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_blpkv"]
 length = 1.14286
@@ -570,6 +595,22 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_c1cke"]
+resource_name = "pan_camera_up"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -100)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duy3k"]
 _data = {
 "Die": SubResource("Animation_lc08d"),
@@ -582,7 +623,8 @@ _data = {
 "WalkDown": SubResource("Animation_blpkv"),
 "WalkLeft": SubResource("Animation_vlrac"),
 "WalkRight": SubResource("Animation_xqpf5"),
-"WalkUp": SubResource("Animation_7l4qu")
+"WalkUp": SubResource("Animation_7l4qu"),
+"pan_camera_up": SubResource("Animation_c1cke")
 }
 
 [sub_resource type="Gradient" id="Gradient_yln5s"]
@@ -784,3 +826,6 @@ texture_filter = 1
 position = Vector2(-7.7486e-07, -3)
 scale = Vector2(0.444444, 0.336111)
 texture = ExtResource("16_x8taj")
+
+[node name="Camera" parent="." instance=ExtResource("17_j406h")]
+zoom = Vector2(3, 3)
