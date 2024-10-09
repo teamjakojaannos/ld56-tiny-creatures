@@ -1,0 +1,5 @@
+# A .gdignore present in a directory prevents Godot from importing any files
+# from that directory. Godot does not read this file. Only the presence of the
+# file is queried.
+#
+# Contents of this file are completely ignored by Godot.

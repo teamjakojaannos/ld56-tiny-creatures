@@ -1,18 +1,14 @@
 using System.Linq;
 using Godot;
 
-[Tool]
-public partial class WispInteractable : Area2D {
-	private Node2D? _target;
+using Jakojaannos.GodotSourceGenerator;
 
+[Tool]
+[GlobalClass]
+public partial class WispInteractable : Area2D {
 	[Export]
-	public Node2D Target {
-		get => _target ?? Util.TrustMeBro<Node2D>();
-		set {
-			_target = value;
-			UpdateConfigurationWarnings();
-		}
-	}
+	[ConfigWarning]
+	public partial Node2D Target { get; set; }
 
 	[Export]
 	public float GoalDistance = 16.0f;
@@ -37,14 +33,7 @@ public partial class WispInteractable : Area2D {
 		}
 	}
 
-	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
-		if (Target is null) {
-			warnings = warnings.Append("Target is not set!").ToArray();
-		}
-
-		return warnings;
-	}
+	public override partial string[] _GetConfigurationWarnings();
 
 	private Node2D? wisp;
 	public bool isWispInteracting = false;
