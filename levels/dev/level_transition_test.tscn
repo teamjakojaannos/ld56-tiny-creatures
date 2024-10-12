@@ -1,0 +1,152 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxsyyr8pxwdw3"]
+
+[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="1_lvnq7"]
+[ext_resource type="Script" path="res://levels/transition/LevelTransition.cs" id="1_x60ta"]
+[ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="2_bvgfc"]
+[ext_resource type="Texture2D" uid="uid://b0chx3j4jrrrb" path="res://Environment/MinjanPuu1.png" id="3_efkh0"]
+
+[node name="LevelRoot" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+
+[node name="FirstRoom" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Functional" type="Node2D" parent="FirstRoom"]
+y_sort_enabled = true
+
+[node name="PlayerStart" type="Marker2D" parent="FirstRoom/Functional" groups=["PlayerSpawn"]]
+position = Vector2(-82, 123)
+
+[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstRoom/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+position = Vector2(74, -0.999999)
+rotation = -0.155869
+script = ExtResource("1_x60ta")
+RedZone = NodePath("../..")
+BlueZone = NodePath("../../../FirstToSecond")
+TriggerSize = Vector2(40, 200)
+
+[node name="Environment" type="Node2D" parent="FirstRoom"]
+y_sort_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="FirstRoom/Environment"]
+z_index = -1
+offset_left = -455.0
+offset_top = -141.0
+offset_right = 51.0
+offset_bottom = 277.0
+color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+
+[node name="BigPatch1b" type="Sprite2D" parent="FirstRoom/Environment"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-27, 57)
+texture = ExtResource("1_lvnq7")
+
+[node name="BigPatch1b2" type="Sprite2D" parent="FirstRoom/Environment"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-93, 34)
+texture = ExtResource("1_lvnq7")
+
+[node name="BigPatch1b3" type="Sprite2D" parent="FirstRoom/Environment"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-110.5, 74.5)
+scale = Vector2(1.22881, 0.986842)
+texture = ExtResource("1_lvnq7")
+
+[node name="Chantarell" type="Sprite2D" parent="FirstRoom/Environment"]
+y_sort_enabled = true
+position = Vector2(-136, 92)
+texture = ExtResource("2_bvgfc")
+
+[node name="MinjanPuu1" type="Sprite2D" parent="FirstRoom/Environment"]
+y_sort_enabled = true
+position = Vector2(78, -88)
+texture = ExtResource("3_efkh0")
+
+[node name="FirstToSecond" type="Node2D" parent="."]
+visible = false
+y_sort_enabled = true
+
+[node name="Functional" type="Node2D" parent="FirstToSecond"]
+y_sort_enabled = true
+
+[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+position = Vector2(74, -0.999999)
+rotation = -0.155869
+script = ExtResource("1_x60ta")
+RedZone = NodePath("../../../FirstRoom")
+BlueZone = NodePath("../..")
+TriggerSize = Vector2(40, 200)
+
+[node name="LevelTransition (Transit to Second)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+position = Vector2(560, -120)
+script = ExtResource("1_x60ta")
+RedZone = NodePath("../..")
+BlueZone = NodePath("../../../SecondRoom")
+TriggerSize = Vector2(40, 200)
+
+[node name="Environment" type="Node2D" parent="FirstToSecond"]
+y_sort_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="FirstToSecond/Environment"]
+z_index = -1
+offset_left = -31.0
+offset_top = -38.0
+offset_right = 383.0
+offset_bottom = 130.0
+rotation = -0.424895
+color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="FirstToSecond/Environment"]
+z_index = -1
+offset_left = 341.0
+offset_top = -209.0
+offset_right = 583.0
+offset_bottom = -35.0
+color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+
+[node name="MinjanPuu2" type="Sprite2D" parent="FirstToSecond/Environment"]
+y_sort_enabled = true
+position = Vector2(567, -53)
+texture = ExtResource("3_efkh0")
+
+[node name="MinjanPuu3" type="Sprite2D" parent="FirstToSecond/Environment"]
+y_sort_enabled = true
+position = Vector2(66, 80)
+texture = ExtResource("3_efkh0")
+
+[node name="SecondRoom" type="Node2D" parent="."]
+visible = false
+y_sort_enabled = true
+
+[node name="Functional" type="Node2D" parent="SecondRoom"]
+y_sort_enabled = true
+
+[node name="PlayerStart" type="Marker2D" parent="SecondRoom/Functional"]
+position = Vector2(760, -156)
+
+[node name="LevelTransition (Second to Transit)" type="Node2D" parent="SecondRoom/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+position = Vector2(560, -120)
+script = ExtResource("1_x60ta")
+RedZone = NodePath("../../../FirstToSecond")
+BlueZone = NodePath("../..")
+TriggerSize = Vector2(40, 200)
+
+[node name="Environment" type="Node2D" parent="SecondRoom"]
+y_sort_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="SecondRoom/Environment"]
+z_index = -1
+offset_left = 559.0
+offset_top = -430.0
+offset_right = 1099.0
+offset_bottom = 60.0
+color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+
+[node name="MinjanPuu1" type="Sprite2D" parent="SecondRoom/Environment"]
+y_sort_enabled = true
+position = Vector2(559, -243)
+texture = ExtResource("3_efkh0")
