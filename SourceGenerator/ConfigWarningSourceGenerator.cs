@@ -124,8 +124,24 @@ public partial class {className} : {classBase} {{
     private static string GeneratedProperty(string propertyType, string propertyName) {
         return $@"
     public partial {propertyType} {propertyName} {{
-        get => Engine.IsEditorHint() ? _{propertyName}! : _{propertyName} ?? throw new InvalidOperationException(""Required field '{propertyName}' is not set!"");
-        set {{ _{propertyName} = value; UpdateConfigurationWarnings(); }}
+        get {{
+            if (Engine.IsEditorHint()) {{
+                if (_{propertyName} is Node node && node.IsQueuedForDeletion()) {{
+                    _{propertyName} = null;
+                }}
+                return _{propertyName}!;
+            }}
+
+            if (_{propertyName} is null) {{
+                throw new InvalidOperationException(""Required field '{propertyName}' is not set!"");
+            }}
+
+            return _{propertyName};
+        }}
+        set {{
+            _{propertyName} = value;
+            UpdateConfigurationWarnings();
+        }}
     }}
     private {propertyType}? _{propertyName};
 ";

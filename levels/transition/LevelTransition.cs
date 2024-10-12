@@ -21,7 +21,7 @@ public partial class LevelTransition : Node2D {
     private const string TO_RIGHT_ZONE_NAME = "ToBlueZone";
     public Area2D ToLeftZone {
         get {
-            return _toLeftZone ??= this.EnsureChildExists("ToRedZone", CreateTransitionTriggerLeft);
+            return _toLeftZone ??= this.EnsureChildExists(TO_LEFT_ZONE_NAME, CreateTransitionTriggerLeft);
         }
     }
 
@@ -29,7 +29,7 @@ public partial class LevelTransition : Node2D {
 
     public Area2D ToBlueZone {
         get {
-            return _toBlueZone ??= this.EnsureChildExists("ToBlueZone", CreateTransitionTriggerRight);
+            return _toBlueZone ??= this.EnsureChildExists(TO_RIGHT_ZONE_NAME, CreateTransitionTriggerRight);
         }
     }
     private Area2D? _toBlueZone;

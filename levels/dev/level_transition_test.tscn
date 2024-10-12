@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxsyyr8pxwdw3"]
+[gd_scene load_steps=6 format=3 uid="uid://dxsyyr8pxwdw3"]
 
+[ext_resource type="Script" path="res://levels/Level.cs" id="1_cx4my"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="1_lvnq7"]
 [ext_resource type="Script" path="res://levels/transition/LevelTransition.cs" id="1_x60ta"]
 [ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="2_bvgfc"]
@@ -9,8 +10,11 @@
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="FirstRoom" type="Node2D" parent="."]
+[node name="FirstRoom" type="Node2D" parent="." node_paths=PackedStringArray("LevelTransitions")]
 y_sort_enabled = true
+position = Vector2(-7, 0)
+script = ExtResource("1_cx4my")
+LevelTransitions = [NodePath("Functional/LevelTransition (First to Transit)")]
 
 [node name="Functional" type="Node2D" parent="FirstRoom"]
 y_sort_enabled = true
@@ -67,8 +71,8 @@ position = Vector2(78, -88)
 texture = ExtResource("3_efkh0")
 
 [node name="FirstToSecond" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
+position = Vector2(-7, 0)
 
 [node name="Functional" type="Node2D" parent="FirstToSecond"]
 y_sort_enabled = true
@@ -119,8 +123,8 @@ position = Vector2(66, 80)
 texture = ExtResource("3_efkh0")
 
 [node name="SecondRoom" type="Node2D" parent="."]
-visible = false
 y_sort_enabled = true
+position = Vector2(-7, 0)
 
 [node name="Functional" type="Node2D" parent="SecondRoom"]
 y_sort_enabled = true
