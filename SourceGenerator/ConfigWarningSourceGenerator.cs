@@ -124,7 +124,7 @@ public partial class {className} : {classBase} {{
     private static string GeneratedProperty(string propertyType, string propertyName) {
         return $@"
     public partial {propertyType} {propertyName} {{
-        get => Engine.IsEditorHint() ? _{propertyName}! : throw new InvalidOperationException(""Required field '${propertyName}' is not set!"");
+        get => Engine.IsEditorHint() ? _{propertyName}! : _{propertyName} ?? throw new InvalidOperationException(""Required field '{propertyName}' is not set!"");
         set {{ _{propertyName} = value; UpdateConfigurationWarnings(); }}
     }}
     private {propertyType}? _{propertyName};

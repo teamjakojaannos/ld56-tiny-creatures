@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public static class Util {
@@ -22,9 +23,26 @@ public static class Util {
 
 	public static T TrustMeBro<T>() where T: class {
 		if (!Engine.IsEditorHint()) {
-			throw new System.InvalidOperationException("Value of a required exported field is null");
+			throw new InvalidOperationException("Value of a required exported field is null");
 		}
 
 		return null!;
+	}
+
+	public static T EnsureChildExists<T>(this Node node, string name, Func<T> constructor) where T: Node {
+		if (!node.HasNode(name)) {
+			var newChild = constructor();
+			newChild.Name = name;
+
+			// TODO: can this be e.g. `@internal: Node.InternalMode.Front`
+			node.AddChild(newChild, forceReadableName: true);
+		}
+
+		var child = node.GetNode<T>(name);
+		if (child is not T t) {
+			throw new InvalidOperationException($"Node {node.Name} has a child with {name}, but unexpected type {child.GetType().Name} (expected: {typeof(T)})");
+		}
+
+		return t;
 	}
 }
