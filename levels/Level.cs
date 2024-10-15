@@ -38,7 +38,7 @@ public partial class Level : Node2D {
 
 		var previouslyAdjacentLevels = previousLevel?.GetAdjacentLevels() ?? [];
 		var newAdjacentLevels = GetAdjacentLevels()
-			.Where(other => !previouslyAdjacentLevels.Contains(other));
+			.Where(other => other != previousLevel && !previouslyAdjacentLevels.Contains(other));
 		var noLongerAdjacentLevels = previouslyAdjacentLevels
 			.Where(other => other != this && !newAdjacentLevels.Contains(other));
 
