@@ -10,11 +10,10 @@
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="FirstRoom" type="Node2D" parent="." node_paths=PackedStringArray("LevelTransitions")]
+[node name="FirstRoom" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-7, 0)
 script = ExtResource("1_cx4my")
-LevelTransitions = [NodePath("Functional/LevelTransition (First to Transit)")]
 
 [node name="Functional" type="Node2D" parent="FirstRoom"]
 y_sort_enabled = true
@@ -22,12 +21,12 @@ y_sort_enabled = true
 [node name="PlayerStart" type="Marker2D" parent="FirstRoom/Functional" groups=["PlayerSpawn"]]
 position = Vector2(-82, 123)
 
-[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstRoom/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstRoom/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
 position = Vector2(74, -0.999999)
 rotation = -0.155869
 script = ExtResource("1_x60ta")
-RedZone = NodePath("../..")
-BlueZone = NodePath("../../../FirstToSecond")
+RedLevel = NodePath("../..")
+BlueLevel = NodePath("../../../FirstToSecond")
 TriggerSize = Vector2(40, 200)
 
 [node name="Environment" type="Node2D" parent="FirstRoom"]
@@ -73,44 +72,45 @@ texture = ExtResource("3_efkh0")
 [node name="FirstToSecond" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-7, 0)
+script = ExtResource("1_cx4my")
 
 [node name="Functional" type="Node2D" parent="FirstToSecond"]
 y_sort_enabled = true
 
-[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
 position = Vector2(74, -0.999999)
 rotation = -0.155869
 script = ExtResource("1_x60ta")
-RedZone = NodePath("../../../FirstRoom")
-BlueZone = NodePath("../..")
+RedLevel = NodePath("../../../FirstRoom")
+BlueLevel = NodePath("../..")
 TriggerSize = Vector2(40, 200)
 
-[node name="LevelTransition (Transit to Second)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+[node name="LevelTransition (Transit to Second)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
 position = Vector2(560, -120)
 script = ExtResource("1_x60ta")
-RedZone = NodePath("../..")
-BlueZone = NodePath("../../../SecondRoom")
+RedLevel = NodePath("../..")
+BlueLevel = NodePath("../../../SecondRoom")
 TriggerSize = Vector2(40, 200)
 
 [node name="Environment" type="Node2D" parent="FirstToSecond"]
 y_sort_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="FirstToSecond/Environment"]
-z_index = -1
+z_index = -2
 offset_left = -31.0
 offset_top = -38.0
 offset_right = 383.0
 offset_bottom = 130.0
 rotation = -0.424895
-color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+color = Color(0.290667, 0.375782, 0.124553, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="FirstToSecond/Environment"]
 z_index = -1
 offset_left = 341.0
 offset_top = -209.0
-offset_right = 583.0
+offset_right = 560.0
 offset_bottom = -35.0
-color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+color = Color(0.290667, 0.375782, 0.124553, 1)
 
 [node name="MinjanPuu2" type="Sprite2D" parent="FirstToSecond/Environment"]
 y_sort_enabled = true
@@ -123,8 +123,10 @@ position = Vector2(66, 80)
 texture = ExtResource("3_efkh0")
 
 [node name="SecondRoom" type="Node2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(-7, 0)
+script = ExtResource("1_cx4my")
 
 [node name="Functional" type="Node2D" parent="SecondRoom"]
 y_sort_enabled = true
@@ -132,11 +134,11 @@ y_sort_enabled = true
 [node name="PlayerStart" type="Marker2D" parent="SecondRoom/Functional"]
 position = Vector2(760, -156)
 
-[node name="LevelTransition (Second to Transit)" type="Node2D" parent="SecondRoom/Functional" node_paths=PackedStringArray("RedZone", "BlueZone")]
+[node name="LevelTransition (Transit to Second)" type="Node2D" parent="SecondRoom/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
 position = Vector2(560, -120)
 script = ExtResource("1_x60ta")
-RedZone = NodePath("../../../FirstToSecond")
-BlueZone = NodePath("../..")
+RedLevel = NodePath("../../../FirstToSecond")
+BlueLevel = NodePath("../..")
 TriggerSize = Vector2(40, 200)
 
 [node name="Environment" type="Node2D" parent="SecondRoom"]
@@ -148,7 +150,7 @@ offset_left = 559.0
 offset_top = -430.0
 offset_right = 1099.0
 offset_bottom = 60.0
-color = Color(0.4364, 0.319498, 1.92523e-07, 1)
+color = Color(0.525194, 0.252532, 0.11261, 1)
 
 [node name="MinjanPuu1" type="Sprite2D" parent="SecondRoom/Environment"]
 y_sort_enabled = true

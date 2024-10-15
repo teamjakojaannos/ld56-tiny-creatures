@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 public static class Util {
@@ -34,8 +35,8 @@ public static class Util {
 			var newChild = constructor();
 			newChild.Name = name;
 
-			// TODO: can this be e.g. `@internal: Node.InternalMode.Front`
 			node.AddChild(newChild, forceReadableName: true);
+			newChild.Owner = node;
 		}
 
 		var child = node.GetNode<T>(name);
@@ -44,5 +45,28 @@ public static class Util {
 		}
 
 		return t;
+	}
+
+	public static IEnumerable<T> FindDescendantsOfType<T>(this Node node) {
+		var descendants = new List<T>();
+		foreach (var child in node.GetChildren()) {
+			if (child is T matching) {
+				descendants.Add(matching);
+			}
+
+			var transitiveDescendants = child.FindDescendantsOfType<T>();
+			descendants.AddRange(transitiveDescendants);
+		}
+
+		return descendants;
+	}
+
+	public static T? FindParentOfTypeOrNull<T>(this Node node) where T: class {
+		Node parent = node.GetParent();
+		while (parent is not T) {
+			parent = parent.GetParent();
+		}
+
+		return parent as T;
 	}
 }

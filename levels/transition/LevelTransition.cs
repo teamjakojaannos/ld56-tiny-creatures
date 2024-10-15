@@ -10,141 +10,134 @@ public partial class LevelTransition : Node2D {
 
     [Export]
     [ConfigWarning]
-    public partial Node2D RedZone { get; set; }
+    public partial Level RedLevel { get; set; }
 
     [Export]
     [ConfigWarning]
-    public partial Node2D BlueZone { get; set; }
+    public partial Level BlueLevel { get; set; }
 
     private const string TRIGGER_NODE_NAME = "Trigger";
-    private const string TO_LEFT_ZONE_NAME = "ToRedZone";
-    private const string TO_RIGHT_ZONE_NAME = "ToBlueZone";
-    public Area2D ToLeftZone {
+    private const string TO_LEFT_LEVEL_NAME = "ToRedLevel";
+    private const string TO_RIGHT_LEVEL_NAME = "ToBlueLevel";
+    public Area2D ToLeftLevel {
         get {
-            return _toLeftZone ??= this.EnsureChildExists(TO_LEFT_ZONE_NAME, CreateTransitionTriggerLeft);
+            return _toLeftLevel ??= this.EnsureChildExists(TO_LEFT_LEVEL_NAME, CreateTransitionTriggerLeft);
         }
     }
 
-    private Area2D? _toLeftZone;
+    private Area2D? _toLeftLevel;
 
-    public Area2D ToBlueZone {
+    public Area2D ToBlueLevel {
         get {
-            return _toBlueZone ??= this.EnsureChildExists(TO_RIGHT_ZONE_NAME, CreateTransitionTriggerRight);
+            return _toBlueLevel ??= this.EnsureChildExists(TO_RIGHT_LEVEL_NAME, CreateTransitionTriggerRight);
         }
     }
-    private Area2D? _toBlueZone;
+    private Area2D? _toBlueLevel;
 
-    public CollisionShape2D RedZoneTrigger {
+    public CollisionShape2D RedLevelTrigger {
         get {
-            return _redZoneTrigger ??= ToLeftZone.GetNode<CollisionShape2D>(TRIGGER_NODE_NAME);
+            return _redLevelTrigger ??= ToLeftLevel.GetNode<CollisionShape2D>(TRIGGER_NODE_NAME);
         }
     }
-    private CollisionShape2D? _redZoneTrigger;
+    private CollisionShape2D? _redLevelTrigger;
 
-    public CollisionShape2D BlueZoneTrigger {
+    public CollisionShape2D BlueLevelTrigger {
         get {
-            return _blueZoneTrigger ??= ToBlueZone.GetNode<CollisionShape2D>(TRIGGER_NODE_NAME);
+            return _blueLevelTrigger ??= ToBlueLevel.GetNode<CollisionShape2D>(TRIGGER_NODE_NAME);
         }
     }
-    private CollisionShape2D? _blueZoneTrigger;
+    private CollisionShape2D? _blueLevelTrigger;
 
     [Export]
     public Vector2 TriggerSize {
         get => _size;
         set {
             _size = value;
-            UpdateTriggerShape(RedZoneTrigger, true);
-            UpdateTriggerShape(BlueZoneTrigger, false);
+            UpdateTriggerShape(RedLevelTrigger, true);
+            UpdateTriggerShape(BlueLevelTrigger, false);
         }
     }
     private Vector2 _size = new(20.0f, 200.0f);
 
+    public bool IsInCurrentLevel => (parentLevel ??= this.FindParentOfTypeOrNull<Level>()) == this.Persistent().CurrentLevel;
 
     public override partial string[] _GetConfigurationWarnings();
 
-    private bool isInRedZoneTrigger = false;
-    private bool isInBlueZoneTrigger = false;
+    private bool isInRedLevelTrigger = false;
+    private bool isInBlueLevelTrigger = false;
+
+    private Level? parentLevel;
+
 
     public override void _Ready() {
         base._Ready();
 
-        UpdateTriggerShape(RedZoneTrigger, true);
-        UpdateTriggerShape(BlueZoneTrigger, false);
+        UpdateTriggerShape(RedLevelTrigger, true);
+        UpdateTriggerShape(BlueLevelTrigger, false);
 
-        if (!ToLeftZone.IsConnected(Area2D.SignalName.BodyEntered, Callable.From<Node2D>(ToZoneAEntered))) {
-            ToLeftZone.BodyEntered += ToZoneAEntered;
+        if (!ToLeftLevel.IsConnected(Area2D.SignalName.BodyEntered, Callable.From<Node2D>(ToRedLevelEntered))) {
+            ToLeftLevel.BodyEntered += ToRedLevelEntered;
         }
 
-        if (!ToLeftZone.IsConnected(Area2D.SignalName.BodyEntered, Callable.From<Node2D>(ToZoneAEntered))) {
-            ToBlueZone.BodyEntered += ToZoneBEntered;
+        if (!ToLeftLevel.IsConnected(Area2D.SignalName.BodyEntered, Callable.From<Node2D>(ToRedLevelEntered))) {
+            ToBlueLevel.BodyEntered += ToBlueLevelEntered;
         }
 
-        if (!ToLeftZone.IsConnected(Area2D.SignalName.BodyExited, Callable.From<Node2D>(ToZoneAEntered))) {
-            ToLeftZone.BodyExited += ToZoneAExited;
+        if (!ToLeftLevel.IsConnected(Area2D.SignalName.BodyExited, Callable.From<Node2D>(ToRedLevelEntered))) {
+            ToLeftLevel.BodyExited += ToRedLevelExited;
         }
 
-        if (!ToLeftZone.IsConnected(Area2D.SignalName.BodyEntered, Callable.From<Node2D>(ToZoneAEntered))) {
-            ToBlueZone.BodyExited += ToZoneBExited;
+        if (!ToLeftLevel.IsConnected(Area2D.SignalName.BodyEntered, Callable.From<Node2D>(ToRedLevelEntered))) {
+            ToBlueLevel.BodyExited += ToBlueLevelExited;
         }
     }
 
-    private void ToZoneAEntered(Node2D body) {
+    private void ToRedLevelEntered(Node2D body) {
+        if (!IsInCurrentLevel) {
+            return;
+        }
+
         if (body is not Player) {
             return;
         }
-        isInRedZoneTrigger = true;
-
-        var isEnteringTransit = !isInBlueZoneTrigger;
-        if (isEnteringTransit) {
-            EnteringTransit();
-        } else /* if isInZoneBTRigger*/ {
-            // Moving from Zone B towards Zone A (entered Zone B trigger first)
-            EnteringZoneA();
-        }
+        isInRedLevelTrigger = true;
     }
 
-    private void ToZoneBEntered(Node2D body) {
+    private void ToBlueLevelEntered(Node2D body) {
+        if (!IsInCurrentLevel) {
+            return;
+        }
+
         if (body is not Player) {
             return;
         }
-        isInBlueZoneTrigger = true;
+        isInBlueLevelTrigger = true;
+    }
 
-        var isEnteringTransit = !isInRedZoneTrigger;
-        if (isEnteringTransit) {
-            EnteringTransit();
-        } else /* if isInZoneATRigger*/ {
-            // Moving from Zone A towards Zone B (entered Zone A trigger first)
-            EnteringZoneB();
+    private void ToRedLevelExited(Node2D body) {
+        if (!IsInCurrentLevel) {
+            return;
+        }
+
+        isInRedLevelTrigger = false;
+
+        // Not in blue Level trigger either => must be entering the red Level
+        if (!isInBlueLevelTrigger) {
+            RedLevel.CallDeferred(Level.MethodName.Enter);
         }
     }
 
-    private void ToZoneAExited(Node2D body) {
-        isInRedZoneTrigger = false;
-    }
+    private void ToBlueLevelExited(Node2D body) {
+        if (!IsInCurrentLevel) {
+            return;
+        }
 
-    private void ToZoneBExited(Node2D body) {
-        isInBlueZoneTrigger = false;
-    }
+        isInBlueLevelTrigger = false;
 
-    private void EnteringTransit() {
-        BlueZone.Visible = true;
-        RedZone.Visible = true;
-    }
-
-    private void EnteringZoneA() {
-        CallDeferred(MethodName.ReparentPlayer, RedZone);
-        BlueZone.Visible = false;
-        RedZone.Visible = true;
-    }
-
-    private void EnteringZoneB() {
-        CallDeferred(MethodName.ReparentPlayer, BlueZone);
-        BlueZone.Visible = true;
-        RedZone.Visible = false;
-    }
-
-    private void ReparentPlayer(Node parent) {
-        this.Persistent().Player?.Reparent(parent);
+        // Not in red Level trigger either => must be entering the blue Level
+        if (!isInRedLevelTrigger) {
+            BlueLevel.CallDeferred(Level.MethodName.Enter);
+        }
     }
 
     private Area2D CreateTransitionTriggerLeft() {
@@ -182,7 +175,7 @@ public partial class LevelTransition : Node2D {
     private void UpdateTriggerShape(CollisionShape2D shape, bool isLeftTrigger) {
         shape.Shape = new RectangleShape2D() {
             Size = TriggerSize
-            
+
         };
         shape.Position = new Vector2(
             TriggerSize.X * (isLeftTrigger ? -0.5f : 0.5f),

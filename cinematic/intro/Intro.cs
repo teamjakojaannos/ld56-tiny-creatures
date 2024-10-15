@@ -1,6 +1,7 @@
-using System;
 using Godot;
 
+[Tool]
+[GlobalClass]
 public partial class Intro : Node2D {
 	[Export]
 	public DialogueTree? InitialDialogue;
@@ -29,6 +30,10 @@ public partial class Intro : Node2D {
 	private Dialogue dialogue = null!;
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		base._Ready();
 
 		dialogue = Dialogue.Instance(this);

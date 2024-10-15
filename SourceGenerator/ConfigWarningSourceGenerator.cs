@@ -133,7 +133,7 @@ public partial class {className} : {classBase} {{
             }}
 
             if (_{propertyName} is null) {{
-                throw new InvalidOperationException(""Required field '{propertyName}' is not set!"");
+                throw new InvalidOperationException($""Required field '{propertyName}' is not set on '{{Name}}'!"");
             }}
 
             return _{propertyName};

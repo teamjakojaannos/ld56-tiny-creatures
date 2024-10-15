@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Jakojaannos.GodotSourceGenerator;
 
 public static class PersistentExt {
 	private static Persistent? _instance;
@@ -12,6 +14,8 @@ public static class PersistentExt {
 	}
 }
 
+[Tool]
+[GlobalClass]
 public partial class Persistent : Node2D {
 	public static Persistent Instance(Node node) {
 		return node.GetTree().Root.GetNode<Persistent>("Persistent");
@@ -35,7 +39,17 @@ public partial class Persistent : Node2D {
 	[Export]
 	public Array<string> State = new();
 
+	[Export]
+	[ConfigWarning]
+	public partial Level CurrentLevel { get; set; }
+
+	public override partial string[] _GetConfigurationWarnings();
+
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var playIntro = false;
 		foreach (var child in GetTree().Root.GetChildren()) {
 			playIntro |= child.IsInGroup("PlayIntro");
@@ -62,7 +76,7 @@ public partial class Persistent : Node2D {
 	}
 
 	public void ResetPlayerToHub() {
-		var spawnpoint = (Node2D) GetTree()
+		var spawnpoint = (Node2D)GetTree()
 			.GetNodesInGroup("HubSpawn")
 			.PickRandom();
 

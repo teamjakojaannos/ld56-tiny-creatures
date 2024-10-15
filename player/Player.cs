@@ -3,6 +3,7 @@ using System.Linq;
 using Godot;
 
 [Tool]
+[GlobalClass]
 public partial class Player : CharacterBody2D {
 	[Signal]
 	public delegate void LightLevelChangedEventHandler(int newLightLevel);
@@ -136,7 +137,13 @@ public partial class Player : CharacterBody2D {
 			throw new InvalidOperationException("Tried teleporting to a non-existent/deleted node!");
 		}
 
-		Reparent(target.GetParent() ?? target);
+		var newLevel = target.FindParentOfTypeOrNull<Level>();
+		if (newLevel is not null && newLevel != this.Persistent().CurrentLevel) {
+			newLevel.Enter();
+		} else {
+			// FIXME: this should be removed once level system is in use everywhere
+			Reparent(target.GetParent() ?? target);
+		}
 
 		GlobalPosition = target.GlobalPosition;
 
