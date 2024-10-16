@@ -31,6 +31,11 @@ public partial class Level : Node2D {
 		GD.Print($"Entering {Name}");
 
 		var previousLevel = this.Persistent().CurrentLevel;
+		if (previousLevel == this) {
+			GD.Print("...but we are already here. Skipping.");
+			return;
+		}
+
 		this.Persistent().CurrentLevel = this;
 		this.Persistent().Player?.Reparent(this);
 
