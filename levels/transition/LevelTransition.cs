@@ -10,15 +10,16 @@ public partial class LevelTransition : Node2D {
 
     [Export]
     [ConfigWarning]
-    public partial Level RedLevel { get; set; }
+    private Level? _redLevel;
 
     [Export]
     [ConfigWarning]
-    public partial Level BlueLevel { get; set; }
+    private Level? _blueLevel;
 
     private const string TRIGGER_NODE_NAME = "Trigger";
     private const string TO_LEFT_LEVEL_NAME = "ToRedLevel";
     private const string TO_RIGHT_LEVEL_NAME = "ToBlueLevel";
+
     public Area2D ToLeftLevel {
         get {
             return _toLeftLevel ??= this.EnsureChildExists(TO_LEFT_LEVEL_NAME, () => CreateTransitionTrigger(true));

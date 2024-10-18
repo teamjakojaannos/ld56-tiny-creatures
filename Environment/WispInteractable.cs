@@ -8,7 +8,7 @@ using Jakojaannos.GodotSourceGenerator;
 public partial class WispInteractable : Area2D {
 	[Export]
 	[ConfigWarning]
-	public partial Node2D Target { get; set; }
+	private Node2D? _target;
 
 	[Export]
 	public float GoalDistance = 16.0f;

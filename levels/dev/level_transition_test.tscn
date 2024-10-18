@@ -21,12 +21,12 @@ y_sort_enabled = true
 [node name="PlayerStart" type="Marker2D" parent="FirstRoom/Functional" groups=["PlayerSpawn"]]
 position = Vector2(-82, 123)
 
-[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstRoom/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
+[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstRoom/Functional" node_paths=PackedStringArray("_redLevel", "_blueLevel")]
 position = Vector2(74, -0.999999)
 rotation = -0.155869
 script = ExtResource("1_x60ta")
-RedLevel = NodePath("../..")
-BlueLevel = NodePath("../../../FirstToSecond")
+_redLevel = NodePath("../..")
+_blueLevel = NodePath("../../../FirstToSecond")
 TriggerSize = Vector2(40, 200)
 
 [node name="Environment" type="Node2D" parent="FirstRoom"]
@@ -77,19 +77,19 @@ script = ExtResource("1_cx4my")
 [node name="Functional" type="Node2D" parent="FirstToSecond"]
 y_sort_enabled = true
 
-[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
+[node name="LevelTransition (First to Transit)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("_redLevel", "_blueLevel")]
 position = Vector2(74, -0.999999)
 rotation = -0.155869
 script = ExtResource("1_x60ta")
-RedLevel = NodePath("../../../FirstRoom")
-BlueLevel = NodePath("../..")
+_redLevel = NodePath("../../../FirstRoom")
+_blueLevel = NodePath("../..")
 TriggerSize = Vector2(40, 200)
 
-[node name="LevelTransition (Transit to Second)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
+[node name="LevelTransition (Transit to Second)" type="Node2D" parent="FirstToSecond/Functional" node_paths=PackedStringArray("_redLevel", "_blueLevel")]
 position = Vector2(560, -120)
 script = ExtResource("1_x60ta")
-RedLevel = NodePath("../..")
-BlueLevel = NodePath("../../../SecondRoom")
+_redLevel = NodePath("../..")
+_blueLevel = NodePath("../../../SecondRoom")
 TriggerSize = Vector2(40, 200)
 
 [node name="Environment" type="Node2D" parent="FirstToSecond"]
@@ -134,11 +134,11 @@ y_sort_enabled = true
 [node name="PlayerStart" type="Marker2D" parent="SecondRoom/Functional"]
 position = Vector2(760, -156)
 
-[node name="LevelTransition (Transit to Second)" type="Node2D" parent="SecondRoom/Functional" node_paths=PackedStringArray("RedLevel", "BlueLevel")]
+[node name="LevelTransition (Transit to Second)" type="Node2D" parent="SecondRoom/Functional" node_paths=PackedStringArray("_redLevel", "_blueLevel")]
 position = Vector2(560, -120)
 script = ExtResource("1_x60ta")
-RedLevel = NodePath("../../../FirstToSecond")
-BlueLevel = NodePath("../..")
+_redLevel = NodePath("../../../FirstToSecond")
+_blueLevel = NodePath("../..")
 TriggerSize = Vector2(40, 200)
 
 [node name="Environment" type="Node2D" parent="SecondRoom"]

@@ -41,7 +41,7 @@ public partial class Persistent : Node2D {
 
 	[Export]
 	[ConfigWarning]
-	public partial Level CurrentLevel { get; set; }
+	public Level? _currentLevel;
 
 	public override partial string[] _GetConfigurationWarnings();
 

@@ -58,16 +58,17 @@ public class ConfigWarningSourceGenerator : ISourceGenerator {
                 var relatedClass = semanticModel.GetDeclaredSymbol(declaredClass);
 
                 string generatedProperties = "";
-                foreach (var classProperty in declaredClass.Members.Where(m => m.IsKind(SyntaxKind.PropertyDeclaration)).OfType<PropertyDeclarationSyntax>()) {
+                foreach (var classProperty in declaredClass.Members.Where(m => m.IsKind(SyntaxKind.FieldDeclaration)).OfType<FieldDeclarationSyntax>()) {
                     var isConfigWarning = classProperty.DescendantTokens().Any(token => token.IsKind(SyntaxKind.IdentifierToken) && semanticModel.GetTypeInfo(token.Parent!).Type?.Name == configWarningAttributeSymbol.Name);
                     if (!isConfigWarning) {
                         continue;
                     }
 
-                    var propertyName = classProperty.Identifier.ToString();
-                    var propertyType = semanticModel.GetTypeInfo(classProperty.Type).Type!.Name;
-
-                    generatedProperties += GeneratedProperty(propertyType, propertyName);
+                    var fieldType = semanticModel.GetTypeInfo(classProperty.Declaration.Type).Type!.Name;
+                    foreach (var variable in classProperty.Declaration.Variables) {
+                        var fieldName = variable.Identifier.ToString();
+                        generatedProperties += GeneratedProperty(fieldType, fieldName);
+                    }
                 }
 
                 if (generatedProperties.Trim().Length > 0) {
@@ -121,29 +122,34 @@ public partial class {className} : {classBase} {{
 ";
     }
 
-    private static string GeneratedProperty(string propertyType, string propertyName) {
+    private static string GeneratedProperty(string propertyType, string backingFieldName) {
+        var propertyName = backingFieldName.TrimStart(['_']) switch {
+            null => throw new InvalidOperationException("Field name can't be null"),
+            "" => throw new InvalidOperationException("Field name can't be empty"),
+            var name => name[0].ToString().ToUpper() + name.Substring(1),
+        };
+
         return $@"
-    public partial {propertyType} {propertyName} {{
+    public {propertyType} {propertyName} {{
         get {{
             if (Engine.IsEditorHint()) {{
-                if (_{propertyName} is Node node && node.IsQueuedForDeletion()) {{
-                    _{propertyName} = null;
+                if ({backingFieldName} is Node node && node.IsQueuedForDeletion()) {{
+                    {backingFieldName} = null;
                 }}
-                return _{propertyName}!;
+                return {backingFieldName}!;
             }}
 
-            if (_{propertyName} is null) {{
+            if ({backingFieldName} is null) {{
                 throw new InvalidOperationException($""Required field '{propertyName}' is not set on '{{Name}}'!"");
             }}
 
-            return _{propertyName};
+            return {backingFieldName};
         }}
         set {{
-            _{propertyName} = value;
+            {backingFieldName} = value;
             UpdateConfigurationWarnings();
         }}
     }}
-    private {propertyType}? _{propertyName};
 ";
     }
 

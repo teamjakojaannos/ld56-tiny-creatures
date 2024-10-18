@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="2_phnra"]
 [ext_resource type="Script" path="res://levels/Level.cs" id="3_x7apt"]
 
-[node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player", "CurrentLevel")]
+[node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player", "_currentLevel")]
 y_sort_enabled = true
 script = ExtResource("1_krudr")
 Intro = NodePath("Intro")
 Player = NodePath("DefaultLevel/Player")
-CurrentLevel = NodePath("DefaultLevel")
+_currentLevel = NodePath("DefaultLevel")
 
 [node name="Intro" parent="." instance=ExtResource("2_phnra")]
 
