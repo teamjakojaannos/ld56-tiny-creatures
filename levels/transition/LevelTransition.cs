@@ -21,7 +21,7 @@ public partial class LevelTransition : Node2D {
     private const string TO_RIGHT_LEVEL_NAME = "ToBlueLevel";
     public Area2D ToLeftLevel {
         get {
-            return _toLeftLevel ??= this.EnsureChildExists(TO_LEFT_LEVEL_NAME, CreateTransitionTriggerLeft);
+            return _toLeftLevel ??= this.EnsureChildExists(TO_LEFT_LEVEL_NAME, () => CreateTransitionTrigger(true));
         }
     }
 
@@ -29,7 +29,7 @@ public partial class LevelTransition : Node2D {
 
     public Area2D ToBlueLevel {
         get {
-            return _toBlueLevel ??= this.EnsureChildExists(TO_RIGHT_LEVEL_NAME, CreateTransitionTriggerRight);
+            return _toBlueLevel ??= this.EnsureChildExists(TO_RIGHT_LEVEL_NAME, () => CreateTransitionTrigger(false));
         }
     }
     private Area2D? _toBlueLevel;
@@ -140,34 +140,18 @@ public partial class LevelTransition : Node2D {
         }
     }
 
-    private Area2D CreateTransitionTriggerLeft() {
+    private Area2D CreateTransitionTrigger(bool isLeft) {
         var trigger = new Area2D();
-        trigger.EnsureChildExists(TRIGGER_NODE_NAME, CreateTriggerShapeLeft);
+        trigger.EnsureChildExists(TRIGGER_NODE_NAME, () => CreateTriggerShape(isLeft));
 
         return trigger;
     }
 
-    private Area2D CreateTransitionTriggerRight() {
-        var trigger = new Area2D();
-        trigger.EnsureChildExists(TRIGGER_NODE_NAME, CreateTriggerShapeRight);
-
-        return trigger;
-    }
-
-    private CollisionShape2D CreateTriggerShapeLeft() {
+    private CollisionShape2D CreateTriggerShape(bool isLeft) {
         var shape = new CollisionShape2D() {
-            DebugColor = LEFT_COLOR,
+            DebugColor = isLeft ? LEFT_COLOR : RIGHT_COLOR,
         };
-        UpdateTriggerShape(shape, true);
-
-        return shape;
-    }
-
-    private CollisionShape2D CreateTriggerShapeRight() {
-        var shape = new CollisionShape2D() {
-            DebugColor = RIGHT_COLOR,
-        };
-        UpdateTriggerShape(shape, false);
+        UpdateTriggerShape(shape, isLeft);
 
         return shape;
     }
