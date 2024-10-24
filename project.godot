@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Persistent="*res://persistent.tscn"
 Dialogue="*res://dialogue/dialogue_ui.tscn"
 Jukebox="*res://music/jukebox.tscn"
+Levels="*res://levels/LevelsGlobal.tscn"
 
 [display]
 

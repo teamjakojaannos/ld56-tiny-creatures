@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Godot;
 
 public static class Util {
@@ -26,5 +29,24 @@ public static class Util {
 		}
 
 		return null!;
+	}
+
+	public static T AssertNotNullOutsideEditor<T>(this Node node) where T: class {
+		if (!Engine.IsEditorHint()) {
+			throw new System.InvalidOperationException($"Node \"{node.Name}\" is not fully configured: Value of a required property is missing");
+		}
+
+		return null!;
+	}
+
+	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node) {
+		return node
+            .GetType()
+            .GetProperties()
+            .Where(f => f.GetCustomAttribute<ExportAttribute>() is not null)
+            .Where(f => f.GetCustomAttribute<MustSetInEditorAttribute>() is not null)
+            .Where(field => field.GetValue(node) is null)
+            .Select(field => $"{field.Name} is required but not set!")
+            .ToArray();
 	}
 }
