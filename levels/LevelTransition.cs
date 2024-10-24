@@ -19,6 +19,32 @@ public partial class LevelTransition : Area2D {
     }
     private string? _otherScene;
 
+    [Export]
+    public bool PreviewOtherScene {
+        get => _previewOtherScene && _previewScene is not null && _previewScene.IsInsideTree() && !_previewScene.IsQueuedForDeletion();
+        set {
+            if (Engine.IsEditorHint()) {
+                _previewOtherScene = value;
+
+                if (_previewScene is not null) {
+                    _previewScene.GetParent()?.RemoveChild(_previewScene);
+                    _previewScene.QueueFree();
+                    _previewScene = null;
+                }
+
+                if (_previewOtherScene && _otherScene is not null) {
+                    var resource = ResourceLoader.Load<PackedScene>(_otherScene);
+                    _previewScene = resource.Instantiate<Level>();
+                    _previewScene.Name = "Other scene preview";
+                    AddChild(_previewScene);
+                }
+            }
+        }
+    }
+
+    private bool _previewOtherScene = false;
+    private Level? _previewScene;
+
     public override string[] _GetConfigurationWarnings() {
         return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
             .Union(this.CheckCommonConfigurationWarnings())

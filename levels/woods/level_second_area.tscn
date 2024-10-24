@@ -1,13 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwh4istt5yco0"]
+[gd_scene load_steps=9 format=3 uid="uid://cwh4istt5yco0"]
 
 [ext_resource type="Script" path="res://levels/Level.cs" id="1_n8vgx"]
+[ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="2_8hq3g"]
+[ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="3_6d80p"]
+[ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="4_5v6hf"]
+[ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="4_hi7a2"]
+[ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="5_kusee"]
+[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="5_wj245"]
+[ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="6_goygm"]
 
 [node name="SecondArea" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_n8vgx")
 
 [node name="Functional" type="Node2D" parent="."]
 
 [node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="World"]
 z_index = -3
@@ -16,3 +26,31 @@ offset_top = -128.0
 offset_right = 704.0
 offset_bottom = 128.0
 color = Color(0.389118, 0.334633, 0.179289, 1)
+
+[node name="SmallPtach1" type="Sprite2D" parent="World"]
+position = Vector2(216, 8)
+texture = ExtResource("4_hi7a2")
+
+[node name="BigPatch1b" type="Sprite2D" parent="World"]
+position = Vector2(288, 16)
+texture = ExtResource("5_wj245")
+
+[node name="Tree1" parent="World" instance=ExtResource("4_5v6hf")]
+position = Vector2(200, -120)
+
+[node name="Tree2" parent="World" instance=ExtResource("4_5v6hf")]
+position = Vector2(176, 120)
+
+[node name="TreePile1" parent="World" instance=ExtResource("5_kusee")]
+position = Vector2(296, -152)
+
+[node name="Tree3" parent="World" instance=ExtResource("6_goygm")]
+position = Vector2(224, 136)
+
+[node name="Chantarell" type="Sprite2D" parent="World"]
+position = Vector2(160, -112)
+texture = ExtResource("2_8hq3g")
+
+[node name="MediumPatch1" type="Sprite2D" parent="World"]
+position = Vector2(240, -24)
+texture = ExtResource("3_6d80p")

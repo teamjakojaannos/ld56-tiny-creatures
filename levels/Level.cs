@@ -1,5 +1,6 @@
 using Godot;
 
-public partial class Level : Node {
-    
+[Tool]
+[GlobalClass]
+public partial class Level : Node2D {
 }
