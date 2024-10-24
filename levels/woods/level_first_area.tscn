@@ -23,6 +23,7 @@ metadata/_edit_lock_ = true
 [node name="LevelTransition" type="Area2D" parent="Functional"]
 script = ExtResource("2_0gsd7")
 OtherScene = "res://levels/woods/level_second_area.tscn"
+entranceNodePath = NodePath("./Functional/EntranceLeft")
 
 [node name="Trigger" type="CollisionShape2D" parent="Functional/LevelTransition"]
 shape = SubResource("RectangleShape2D_5hrps")
