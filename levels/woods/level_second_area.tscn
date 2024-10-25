@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cwh4istt5yco0"]
 
-[ext_resource type="Script" path="res://Level/Level.cs" id="1_n8vgx"]
+[ext_resource type="Script" path="res://World/Level.cs" id="1_n8vgx"]
 [ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="2_8hq3g"]
 [ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="3_6d80p"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="4_5v6hf"]
