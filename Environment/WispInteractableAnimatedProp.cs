@@ -1,31 +1,24 @@
-using System;
 using System.Linq;
 using Godot;
 
 [Tool]
 [GlobalClass]
 public partial class WispInteractableAnimatedProp : Node2D {
+    [Export]
+    [MustSetInEditor]
+    public AnimationPlayer AnimPlayer {
+        get => this.GetNotNullExportPropertyWithNullableBackingField(_animationPlayer);
+        set => this.SetExportProperty(ref _animationPlayer, value);
+    }
     private AnimationPlayer? _animationPlayer;
 
     [Export]
-    public AnimationPlayer AnimPlayer {
-        get => _animationPlayer ?? Util.TrustMeBro<AnimationPlayer>();
-        set {
-            _animationPlayer = value;
-            UpdateConfigurationWarnings();
-        }
-    }
-
-    private string? _animation;
-
-    [Export]
+    [MustSetInEditor]
     public string Animation {
-        get => _animation ?? Util.TrustMeBro<string>();
-        set {
-            _animation = value;
-            UpdateConfigurationWarnings();
-        }
+        get => this.GetNotNullExportPropertyWithNullableBackingField(_animation);
+        set => this.SetExportProperty(ref _animation, value);
     }
+    private string? _animation;
 
     [Export]
     [ExportGroup("Dialogue")]
@@ -45,15 +38,9 @@ public partial class WispInteractableAnimatedProp : Node2D {
             warnings = warnings.Append("Parent must be a WispInteractable!").ToArray();
         }
 
-        if (_animationPlayer is null) {
-            warnings = warnings.Append("AnimationPlayer is not set!").ToArray();
-        }
-
-        if (_animation is null || _animation.Trim().Length == 0) {
-            warnings = warnings.Append("Animation is empty or not set!").ToArray();
-        }
-
-        return warnings;
+        return warnings
+            .Union(this.CheckCommonConfigurationWarnings())
+            .ToArray();
     }
 
     public override void _Ready() {

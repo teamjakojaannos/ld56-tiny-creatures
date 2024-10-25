@@ -1,8 +1,10 @@
+using System;
+using System.Linq;
 using BogMonsterStuff;
 using Godot;
 
+[Tool]
 public partial class BogMonster : PathFollow2D {
-
 	[Export]
 	public PackedScene? WaterSplash;
 
@@ -25,21 +27,27 @@ public partial class BogMonster : PathFollow2D {
 
 	private bool playerWasKill = false;
 
-
+	[Export]
+	[MustSetInEditor]
+	public BogMonsterStats stats {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_stats);
+		set => this.SetExportProperty(ref _stats, value);
+	}
 	private BogMonsterStats? _stats;
 
-	[Export]
-	public BogMonsterStats stats {
-		get => _stats ?? Util.TrustMeBro<BogMonsterStats>();
-		set {
-			_stats = value;
-			UpdateConfigurationWarnings();
-		}
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
 	}
 
 	[Export] public bool defaultStateIsWaitForTrigger;
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
@@ -70,6 +78,10 @@ public partial class BogMonster : PathFollow2D {
 	}
 
 	public override void _PhysicsProcess(double _delta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)_delta;
 
 		ai.doUpdate(this, delta);

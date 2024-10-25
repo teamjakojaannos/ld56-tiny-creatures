@@ -22,8 +22,6 @@ public partial class Player : CharacterBody2D {
 
 	public Node2D? WispTarget { get; set; } = null;
 
-	private Node2D? _wispFollowNode;
-
 	[Export]
 	public Footsteps? Footsteps;
 
@@ -39,24 +37,21 @@ public partial class Player : CharacterBody2D {
 	public Sprite2D? Shadow;
 
 	[Export]
+	[MustSetInEditor]
 	public Node2D WispFollowNode {
-		get => _wispFollowNode ?? Util.TrustMeBro<Node2D>();
-		set {
-			_wispFollowNode = value;
-			UpdateConfigurationWarnings();
-		}
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_wispFollowNode);
+		set => this.SetExportProperty(ref _wispFollowNode, value);
 	}
+	private Node2D? _wispFollowNode;
 
-	private Node2D? _wisp;
 
 	[Export]
+	[MustSetInEditor]
 	public Node2D Wisp {
-		get => _wisp ?? Util.TrustMeBro<Node2D>();
-		set {
-			_wisp = value;
-			UpdateConfigurationWarnings();
-		}
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_wisp);
+		set => this.SetExportProperty(ref _wisp, value);
 	}
+	private Node2D? _wisp;
 
 	public bool Slowed { get; internal set; } = false;
 
@@ -78,16 +73,9 @@ public partial class Player : CharacterBody2D {
 	private const int lightLevelMax = 3;
 
 	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? Array.Empty<string>();
-		if (_wispFollowNode is null) {
-			warnings = warnings.Append("WispFollowNode is not set!").ToArray();
-		}
-
-		if (_wisp is null) {
-			warnings = warnings.Append("Wisp is not set!").ToArray();
-		}
-
-		return warnings;
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
 	}
 
 	[Signal]

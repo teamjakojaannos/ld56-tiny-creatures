@@ -4,16 +4,13 @@ using Godot;
 [Tool]
 [GlobalClass]
 public partial class WispInteractableDialogueTrigger : Node2D {
-    private DialogueTree? _dialogueTree;
-
     [Export]
+    [MustSetInEditor]
     public DialogueTree DialogueTree {
-        get => _dialogueTree ?? Util.TrustMeBro<DialogueTree>();
-        set {
-            _dialogueTree = value;
-            UpdateConfigurationWarnings();
-        }
+        get => this.GetNotNullExportPropertyWithNullableBackingField(_dialogueTree);
+        set => this.SetExportProperty(ref _dialogueTree, value);
     }
+    private DialogueTree? _dialogueTree;
 
     [Export]
     public bool OneShot = false;
@@ -29,11 +26,9 @@ public partial class WispInteractableDialogueTrigger : Node2D {
             warnings = warnings.Append("Parent must be a WispInteractable!").ToArray();
         }
 
-        if (_dialogueTree is null) {
-            warnings = warnings.Append("DialogueTree is not set!").ToArray();
-        }
-
-        return warnings;
+        return warnings
+            .Union(this.CheckCommonConfigurationWarnings())
+            .ToArray();
     }
 
     public override void _Ready() {
