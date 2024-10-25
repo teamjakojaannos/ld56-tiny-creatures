@@ -39,6 +39,7 @@ public partial class Levels : Node2D {
 		// Move the player to the new scene
 		var player = this.Persistent().Player;
 		player?.Reparent(level);
+		player?.ResetPhysicsInterpolation();
 
 		// TODO: load adjacent scenes
 		// TODO: unload no-longer-adjacent scenes
@@ -52,6 +53,7 @@ public partial class Levels : Node2D {
 		var anchorOffset = anchorNode?.Position ?? Vector2.Zero;
 
 		level.GlobalPosition = exitNode.GlobalPosition - anchorOffset;
+		level.ResetPhysicsInterpolation();
 	}
 
 	private LevelLoader LoaderFor(string scene) {
