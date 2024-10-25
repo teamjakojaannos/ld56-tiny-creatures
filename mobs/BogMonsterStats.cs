@@ -26,13 +26,13 @@ public partial class BogMonsterStats : Resource {
 	[Export] public float minUnderwaterTime = 1.0f;
 	[Export] public float maxUnderwaterTime = 3.0f;
 
-	public (float, float) underwaterTime => (minUnderwaterTime, maxUnderwaterTime);
+	public (float, float) UnderwaterTime => (minUnderwaterTime, maxUnderwaterTime);
 
 	// min and max idle time
 	[Export] public float minIdleTime = 0.5f;
 	[Export] public float maxIdleTime = 2.0f;
 
-	public (float, float) idleTime => (minIdleTime, maxIdleTime);
+	public (float, float) IdleTime => (minIdleTime, maxIdleTime);
 
 	[Export] public float emergeAtPlayerChance = 0.35f;
 	[Export] public float emergeAtSameLocationChance = 0.0f;

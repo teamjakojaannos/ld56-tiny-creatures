@@ -1,4 +1,5 @@
 using System.Linq;
+
 using Godot;
 
 [Tool]
@@ -12,7 +13,7 @@ public partial class Footsteps : Node2D {
 				.Where(stream => !stream.Playing)
 				.ToList();
 
-			var sfx = available.Count ==  0
+			var sfx = available.Count == 0
 				// Fallback: just pick first
 				? GetChild<AudioStreamPlayer2D>(0)
 				: available[rng.RandiRange(0, available.Count - 1)];
@@ -24,7 +25,7 @@ public partial class Footsteps : Node2D {
 				.Where(stream => !stream.Playing)
 				.ToList();
 
-			var sfx = available.Count ==  0
+			var sfx = available.Count == 0
 				// Fallback: just pick first
 				? GetChild<AudioStreamPlayer>(0)
 				: available[rng.RandiRange(0, available.Count - 1)];

@@ -8,35 +8,35 @@ public enum Direction {
 }
 
 public static class DirectionExtension {
-	public static bool isForward(this Direction direction) => direction == Direction.Forward;
+	public static bool IsForward(this Direction direction) => direction == Direction.Forward;
 
-	public static Direction opposite(this Direction direction) {
+	public static Direction Opposite(this Direction direction) {
 		return direction == Direction.Forward ? Direction.Backward : Direction.Forward;
 	}
 }
 
 public abstract class BogMonsterAIState {
-	public abstract void doUpdate(BogMonster monster, float delta);
+	public abstract void DoUpdate(BogMonster monster, float delta);
 
-	public virtual bool shouldTickDetection() {
+	public virtual bool ShouldTickDetection() {
 		return true;
 	}
 
-	public virtual void detectionLevelChanged(BogMonster monster) {
+	public virtual void DetectionLevelChanged(BogMonster monster) {
 		float detectionLevel = monster.detectionLevel;
-		if (detectionLevel >= monster.stats.attackThreshold) {
+		if (detectionLevel >= monster.Stats.attackThreshold) {
 			monster.ai = new AttackState();
 			return;
 		}
 
-		if (detectionLevel >= monster.stats.alertThreshold) {
-			monster.ai = new AlertedState(monster.stats.speed);
+		if (detectionLevel >= monster.Stats.alertThreshold) {
+			monster.ai = new AlertedState(monster.Stats.speed);
 			return;
 		}
 	}
 
-	internal static float randomIdleTime(BogMonster monster) {
-		var (min, max) = monster.stats.idleTime;
+	internal static float RandomIdleTime(BogMonster monster) {
+		var (min, max) = monster.Stats.IdleTime;
 		return monster.rng.RandfRange(min, max);
 	}
 }
@@ -51,59 +51,58 @@ public class MovementState : BogMonsterAIState {
 		this.speed = speed;
 	}
 
-	public override void doUpdate(BogMonster monster, float delta) {
+	public override void DoUpdate(BogMonster monster, float delta) {
 		timePassed += delta;
-		if (timePassed >= monster.stats.moveTime) {
+		if (timePassed >= monster.Stats.moveTime) {
 			timePassed = 0.0f;
 
-			var stopMovement = monster.rng.DiceRoll(monster.stats.stopMoveChance);
+			var stopMovement = monster.rng.DiceRoll(monster.Stats.stopMoveChance);
 			if (stopMovement) {
-				var idleTime = randomIdleTime(monster);
+				var idleTime = RandomIdleTime(monster);
 				monster.ai = new IdleState(idleTime, nextDirection: null);
 				return;
 			}
 
-			var wentUnderwater = monster.rollToGoUnderwater(monster.stats.goUnderwaterChance);
+			var wentUnderwater = monster.RollToGoUnderwater(monster.Stats.goUnderwaterChance);
 			if (wentUnderwater) {
 				return;
 			}
 		}
 
-		var reachedEnd = moveMonster(monster, delta);
+		var reachedEnd = MoveMonster(monster, delta);
 
 		if (reachedEnd) {
-			endOfLine(monster);
+			EndOfLine(monster);
 		}
 	}
 
-	private bool moveMonster(BogMonster monster, float delta) {
-		var sign = direction.isForward() ? 1.0f : -1.0f;
+	private bool MoveMonster(BogMonster monster, float delta) {
+		var sign = direction.IsForward() ? 1.0f : -1.0f;
 		var movement = sign * speed * delta;
 
 		monster.Progress += movement;
 
-		var reachedEnd = direction.isForward()
+		var reachedEnd = direction.IsForward()
 			? monster.ProgressRatio >= 1.0f
 			: monster.ProgressRatio <= 0.0f;
 
 		return reachedEnd;
 	}
 
-
-	private void endOfLine(BogMonster monster) {
-		var keepGoing = monster.rng.Randf() < monster.stats.changeDirectionInsteadOfStoppingChance;
+	private void EndOfLine(BogMonster monster) {
+		var keepGoing = monster.rng.Randf() < monster.Stats.changeDirectionInsteadOfStoppingChance;
 		if (keepGoing) {
-			direction = direction.opposite();
+			direction = direction.Opposite();
 			return;
 		}
 
-		var wentUnderwater = monster.rollToGoUnderwater(monster.stats.goUnderwaterChance);
+		var wentUnderwater = monster.RollToGoUnderwater(monster.Stats.goUnderwaterChance);
 		if (wentUnderwater) {
 			return;
 		}
 
-		var idleTime = randomIdleTime(monster);
-		monster.ai = new IdleState(idleTime, nextDirection: direction.opposite());
+		var idleTime = RandomIdleTime(monster);
+		monster.ai = new IdleState(idleTime, nextDirection: direction.Opposite());
 	}
 }
 
@@ -117,10 +116,10 @@ public class IdleState : BogMonsterAIState {
 		this.nextDirection = nextDirection;
 	}
 
-	public override void doUpdate(BogMonster monster, float delta) {
+	public override void DoUpdate(BogMonster monster, float delta) {
 		timeWaited += delta;
 		if (timeWaited >= waitTime) {
-			var wentUnderwater = monster.rollToGoUnderwater(monster.stats.goUnderwaterChance);
+			var wentUnderwater = monster.RollToGoUnderwater(monster.Stats.goUnderwaterChance);
 			if (wentUnderwater) {
 				return;
 			}
@@ -128,12 +127,12 @@ public class IdleState : BogMonsterAIState {
 			bool goingForward;
 
 			if (nextDirection is Direction direction) {
-				goingForward = direction.isForward();
+				goingForward = direction.IsForward();
 			} else {
 				goingForward = RandomNumberGeneratorExtension.RandomBool(monster.rng);
 			}
 
-			monster.ai = new MovementState(goingForward, monster.stats.speed);
+			monster.ai = new MovementState(goingForward, monster.Stats.speed);
 		}
 	}
 }
@@ -147,32 +146,30 @@ public class UnderwaterState : BogMonsterAIState {
 		this.underwaterTime = underwaterTime;
 	}
 
-	public override void doUpdate(BogMonster monster, float delta) {
+	public override void DoUpdate(BogMonster monster, float delta) {
 		if (!animationDone) {
 			return;
 		}
 
 		timePassed += delta;
 		if (timePassed >= underwaterTime) {
-			emergeFromWater(monster);
+			EmergeFromWater(monster);
 		}
 	}
 
-	public override bool shouldTickDetection() {
+	public override bool ShouldTickDetection() {
 		// animation playing -> don't increase/decrease detection level
 		return animationDone;
 	}
 
-	private void emergeFromWater(BogMonster monster) {
+	private void EmergeFromWater(BogMonster monster) {
 		animationDone = false;
 
-
-
-		var emergeAtPlayer = monster.rng.DiceRoll(monster.stats.emergeAtPlayerChance);
+		var emergeAtPlayer = monster.rng.DiceRoll(monster.Stats.emergeAtPlayerChance);
 		if (emergeAtPlayer) {
-			monster.emergeFromWaterNearPlayer();
+			monster.EmergeFromWaterNearPlayer();
 		} else {
-			var emergeAtSameSpot = monster.rng.DiceRoll(monster.stats.emergeAtSameLocationChance);
+			var emergeAtSameSpot = monster.rng.DiceRoll(monster.Stats.emergeAtSameLocationChance);
 			float position;
 			if (emergeAtSameSpot) {
 				position = monster.ProgressRatio;
@@ -180,11 +177,11 @@ public class UnderwaterState : BogMonsterAIState {
 				position = monster.rng.Randf();
 			}
 
-			monster.emergeFromWaterAtPosition(position);
+			monster.EmergeFromWaterAtPosition(position);
 		}
 	}
 
-	public override void detectionLevelChanged(BogMonster monster) { }
+	public override void DetectionLevelChanged(BogMonster monster) { }
 }
 
 public class AlertedState : BogMonsterAIState {
@@ -197,26 +194,26 @@ public class AlertedState : BogMonsterAIState {
 		this.speed = speed;
 	}
 
-	public override void doUpdate(BogMonster monster, float delta) {
-		var r = getPlayerXPositionRelativeToMonster(monster);
+	public override void DoUpdate(BogMonster monster, float delta) {
+		var r = GetPlayerXPositionRelativeToMonster(monster);
 		if (r is not float relative) {
 			// can't find player for some reason
 			monster.detectionLevel = 0.0f;
-			monster.ai = new IdleState(randomIdleTime(monster), null);
+			monster.ai = new IdleState(RandomIdleTime(monster), null);
 			return;
 		}
 
 		timePassed += delta;
-		if (timePassed >= monster.stats.alertTime) {
+		if (timePassed >= monster.Stats.alertTime) {
 			monster.detectionLevel = 0.0f;
-			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.stats.speed);
+			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.Stats.speed);
 			return;
 		}
 
-		moveMonster(monster, relative, delta);
+		MoveMonster(monster, relative, delta);
 	}
 
-	public float? getPlayerXPositionRelativeToMonster(BogMonster monster) {
+	public static float? GetPlayerXPositionRelativeToMonster(BogMonster monster) {
 		var playerRef = monster.GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
 			return null;
@@ -228,7 +225,7 @@ public class AlertedState : BogMonsterAIState {
 		return monsterPosition.X - playerPosition.X;
 	}
 
-	private void moveMonster(BogMonster monster, float relativeX, float delta) {
+	private void MoveMonster(BogMonster monster, float relativeX, float delta) {
 		if (Mathf.Abs(relativeX) <= closeEnough) {
 			return;
 		}
@@ -239,15 +236,15 @@ public class AlertedState : BogMonsterAIState {
 		monster.Progress += movement;
 	}
 
-	public override void detectionLevelChanged(BogMonster monster) {
+	public override void DetectionLevelChanged(BogMonster monster) {
 		float detectionLevel = monster.detectionLevel;
-		if (detectionLevel >= monster.stats.attackThreshold) {
+		if (detectionLevel >= monster.Stats.attackThreshold) {
 			monster.ai = new AttackState();
 			return;
 		}
 
 		if (detectionLevel == 0.0f) {
-			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.stats.speed);
+			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.Stats.speed);
 			return;
 		}
 	}
@@ -256,16 +253,16 @@ public class AlertedState : BogMonsterAIState {
 public class AttackState : BogMonsterAIState {
 	public bool animationPlaying;
 
-	public override void doUpdate(BogMonster monster, float delta) {
+	public override void DoUpdate(BogMonster monster, float delta) {
 		if (!animationPlaying) {
 			animationPlaying = true;
-			monster.playAttackAnimation();
+			monster.PlayAttackAnimation();
 		}
 	}
 
-	public override void detectionLevelChanged(BogMonster monster) { }
+	public override void DetectionLevelChanged(BogMonster monster) { }
 
-	public override bool shouldTickDetection() {
+	public override bool ShouldTickDetection() {
 		return false;
 	}
 }
@@ -274,14 +271,14 @@ public class WaitUntilTriggerIsTriggeredState : BogMonsterAIState {
 
 	public bool animationSet;
 
-	public override void doUpdate(BogMonster monster, float delta) {
+	public override void DoUpdate(BogMonster monster, float delta) {
 		if (!animationSet) {
 			animationSet = true;
-			monster.playGoUnderwaterAnimationThisIsVeryHackyThingDontUse();
+			monster.PlayGoUnderwaterAnimationThisIsVeryHackyThingDontUse();
 		}
 	}
 
-	public override bool shouldTickDetection() {
+	public override bool ShouldTickDetection() {
 		return false;
 	}
 }

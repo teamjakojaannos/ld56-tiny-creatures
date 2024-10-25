@@ -1,6 +1,9 @@
 root = true
 
 [*.cs]
+dotnet_separate_import_directive_groups = true
+dotnet_sort_system_directives_first = true
+
 csharp_new_line_before_open_brace = none
 csharp_new_line_before_else = false
 csharp_new_line_before_catch = false
@@ -9,11 +12,27 @@ csharp_new_line_before_members_in_object_initializers = false
 csharp_new_line_before_members_in_anonymous_types = false
 csharp_new_line_between_query_expression_clauses = false
 indent_style = tab
-# CA1050 = Declare types in namespaces
-dotnet_diagnostic.CA1050.severity = none
-# IDE1006 = naming rule
-dotnet_diagnostic.IDE1006.severity = none
-# CA1822 = Mark members as static
-dotnet_diagnostic.CA1822.severity = none
+
+# IDE0005 = Using directive is unnecessary
+dotnet_diagnostic.IDE0005.severity = warning
+# IDE1006 = Naming rule
+dotnet_diagnostic.IDE1006.severity = warning
 # IDE0044 = Add readonly modifier
 dotnet_diagnostic.IDE0044.severity = none
+# IDE2000 = Allow multiple blank lines
+dotnet_diagnostic.IDE2000.severity = warning
+dotnet_style_allow_multiple_blank_lines_experimental = false
+# IDE2002: Consecutive braces must not have blank line between them
+dotnet_diagnostic.IDE2002.severity = warning
+csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false
+# IDE2003: Blank line required between block and subsequent statement
+dotnet_style_allow_statement_immediately_after_block_experimental = false
+
+# CA1050 = Declare types in namespaces
+dotnet_diagnostic.CA1050.severity = none
+# CA1822 = Mark members as static
+dotnet_diagnostic.CA1822.severity = none
+# CA1708 = Identifiers should differ by more than case
+dotnet_diagnostic.CA1822.severity = error
+# IDE0130: Namespace does not match folder structure
+dotnet_diagnostic.IDE0130.severity = none

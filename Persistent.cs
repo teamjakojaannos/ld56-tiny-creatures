@@ -1,4 +1,3 @@
-using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -62,13 +61,13 @@ public partial class Persistent : Node2D {
 	}
 
 	public void ResetPlayerToHub() {
-		var spawnpoint = (Node2D) GetTree()
+		var spawnpoint = (Node2D)GetTree()
 			.GetNodesInGroup("HubSpawn")
 			.PickRandom();
 
 		Intro!.FadeToBlack();
 		Player!.IsInCinematic = true;
-		Player!.setMovementEnabled(false);
+		Player!.SetMovementEnabled(false);
 
 		GetTree().CreateTimer(2.5f).Timeout += () => {
 			Player!.TeleportTo(spawnpoint);

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+
 using Godot;
 
 [Tool]
@@ -43,7 +44,6 @@ public partial class Player : CharacterBody2D {
 		set => this.SetExportProperty(ref _wispFollowNode, value);
 	}
 	private Node2D? _wispFollowNode;
-
 
 	[Export]
 	[MustSetInEditor]
@@ -139,7 +139,7 @@ public partial class Player : CharacterBody2D {
 		}
 
 		if (Input.IsActionJustPressed("dbg_kill")) {
-			die();
+			Die();
 			return;
 		}
 
@@ -199,7 +199,7 @@ public partial class Player : CharacterBody2D {
 		Wisp.GlobalPosition = wispPosition;
 	}
 
-	public void setSpriteVisible(bool visible) {
+	public void SetSpriteVisible(bool visible) {
 		playerSprite!.Visible = visible;
 		Shadow!.Visible = visible;
 
@@ -207,11 +207,11 @@ public partial class Player : CharacterBody2D {
 		playerSprite!.FlipH = false;
 	}
 
-	public void setMovementEnabled(bool enabled) {
+	public void SetMovementEnabled(bool enabled) {
 		frozen = !enabled;
 	}
 
-	public void die() {
+	public void Die() {
 		if (invulnerable) {
 			return;
 		}
@@ -229,8 +229,8 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public void SetupForIntro(Node2D wispLocation) {
-		setSpriteVisible(false);
-		setMovementEnabled(false);
+		SetSpriteVisible(false);
+		SetMovementEnabled(false);
 		WispTarget = wispLocation;
 		Wisp.GlobalPosition = wispLocation.GlobalPosition;
 	}
@@ -247,7 +247,7 @@ public partial class Player : CharacterBody2D {
 		}
 	}
 
-	private void addLightLevel(int amount) {
+	private void AddLightLevel(int amount) {
 		lightLevel += amount;
 		lightLevel = Mathf.Clamp(lightLevel, lightLevelMin, lightLevelMax);
 
@@ -270,7 +270,7 @@ public partial class Player : CharacterBody2D {
 
 		Animation!.Play($"Idle{animationDirection}");
 
-		setMovementEnabled(true);
+		SetMovementEnabled(true);
 		IsInCinematic = false;
 
 		this.Persistent().EmitSignal(Persistent.SignalName.PlayerRespawned);
