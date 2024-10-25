@@ -36,23 +36,31 @@ offset_bottom = 128.0
 color = Color(0.389118, 0.334633, 0.179289, 1)
 
 [node name="SmallPtach1" type="Sprite2D" parent="World"]
+z_index = -1
+y_sort_enabled = true
 position = Vector2(-200, 8)
 texture = ExtResource("4_hi7a2")
 
 [node name="BigPatch1b" type="Sprite2D" parent="World"]
+z_index = -1
+y_sort_enabled = true
 position = Vector2(-128, 16)
 texture = ExtResource("5_wj245")
 
-[node name="Tree1" parent="World" instance=ExtResource("4_5v6hf")]
+[node name="Tree1" type="Node2D" parent="World" instance=ExtResource("4_5v6hf")]
+y_sort_enabled = true
 position = Vector2(-216, -120)
 
-[node name="Tree2" parent="World" instance=ExtResource("4_5v6hf")]
+[node name="Tree2" type="Node2D" parent="World" instance=ExtResource("4_5v6hf")]
+y_sort_enabled = true
 position = Vector2(-240, 120)
 
-[node name="TreePile1" parent="World" instance=ExtResource("5_kusee")]
+[node name="TreePile1" type="Node2D" parent="World" instance=ExtResource("5_kusee")]
+y_sort_enabled = true
 position = Vector2(-120, -152)
 
-[node name="Tree3" parent="World" instance=ExtResource("6_goygm")]
+[node name="Tree3" type="Node2D" parent="World" instance=ExtResource("6_goygm")]
+y_sort_enabled = true
 position = Vector2(-192, 136)
 
 [node name="Chantarell" type="Sprite2D" parent="World"]
@@ -60,5 +68,7 @@ position = Vector2(-256, -112)
 texture = ExtResource("2_8hq3g")
 
 [node name="MediumPatch1" type="Sprite2D" parent="World"]
+z_index = -1
+y_sort_enabled = true
 position = Vector2(-176, -24)
 texture = ExtResource("3_6d80p")
