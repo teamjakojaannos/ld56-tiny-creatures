@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Jakojaannos.WisperingWoods.World;
+
 public static class LevelsExt {
 	private static Levels? _instance;
 

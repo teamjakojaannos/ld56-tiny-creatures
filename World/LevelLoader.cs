@@ -2,6 +2,8 @@ using System;
 
 using Godot;
 
+namespace Jakojaannos.WisperingWoods.World;
+
 public partial class LevelLoader : Node2D {
 	public string? LevelScene { get; set; }
 

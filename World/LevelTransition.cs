@@ -4,6 +4,8 @@ using System.Linq;
 
 using Godot;
 
+namespace Jakojaannos.WisperingWoods.World;
+
 [Tool]
 [GlobalClass]
 public partial class LevelTransition : Area2D {
