@@ -56,7 +56,7 @@ public class MovementState : BogMonsterAIState {
 		if (timePassed >= monster.stats.moveTime) {
 			timePassed = 0.0f;
 
-			var stopMovement = Util.diceRoll(monster.rng, monster.stats.stopMoveChance);
+			var stopMovement = monster.rng.DiceRoll(monster.stats.stopMoveChance);
 			if (stopMovement) {
 				var idleTime = randomIdleTime(monster);
 				monster.ai = new IdleState(idleTime, nextDirection: null);
@@ -130,7 +130,7 @@ public class IdleState : BogMonsterAIState {
 			if (nextDirection is Direction direction) {
 				goingForward = direction.isForward();
 			} else {
-				goingForward = Util.randomBool(monster.rng);
+				goingForward = RandomNumberGeneratorExtension.RandomBool(monster.rng);
 			}
 
 			monster.ai = new MovementState(goingForward, monster.stats.speed);
@@ -168,11 +168,11 @@ public class UnderwaterState : BogMonsterAIState {
 
 
 
-		var emergeAtPlayer = Util.diceRoll(monster.rng, monster.stats.emergeAtPlayerChance);
+		var emergeAtPlayer = monster.rng.DiceRoll(monster.stats.emergeAtPlayerChance);
 		if (emergeAtPlayer) {
 			monster.emergeFromWaterNearPlayer();
 		} else {
-			var emergeAtSameSpot = Util.diceRoll(monster.rng, monster.stats.emergeAtSameLocationChance);
+			var emergeAtSameSpot = monster.rng.DiceRoll(monster.stats.emergeAtSameLocationChance);
 			float position;
 			if (emergeAtSameSpot) {
 				position = monster.ProgressRatio;
@@ -209,7 +209,7 @@ public class AlertedState : BogMonsterAIState {
 		timePassed += delta;
 		if (timePassed >= monster.stats.alertTime) {
 			monster.detectionLevel = 0.0f;
-			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.stats.speed);
+			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.stats.speed);
 			return;
 		}
 
@@ -247,7 +247,7 @@ public class AlertedState : BogMonsterAIState {
 		}
 
 		if (detectionLevel == 0.0f) {
-			monster.ai = new MovementState(Util.randomBool(monster.rng), monster.stats.speed);
+			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.stats.speed);
 			return;
 		}
 	}

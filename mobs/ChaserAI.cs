@@ -50,8 +50,8 @@ public class IdleState : ChaserAI {
 
 		if (timeSinceLastTurn >= ChaserStats.turnFrequency) {
 			timeSinceLastTurn = 0.0f;
-			if (Util.diceRoll(chaser.rng, ChaserStats.turnChance)) {
-				var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
+			if (chaser.rng.DiceRoll(ChaserStats.turnChance)) {
+				var randomPos = chaser.rng.RandomVector(minDistance: 100.0f, maxDistance: 100.0f);
 				var newTarget = chaser.GlobalPosition + randomPos;
 				chaser.setLookTarget(newTarget);
 			}
@@ -159,15 +159,15 @@ public class SeekState : ChaserAI {
 
 		lookTimePassed = 0.0f;
 
-		var pickNewMoveTarget = Util.diceRoll(chaser.rng, ChaserStats.keepLookingChance);
+		var pickNewMoveTarget = chaser.rng.DiceRoll(ChaserStats.keepLookingChance);
 		if (pickNewMoveTarget) {
-			var randomPos = Util.randomVector(chaser.rng, ChaserStats.seekNewLocationInRange);
+			var randomPos = chaser.rng.RandomVector(ChaserStats.seekNewLocationInRange);
 			var newTarget = chaser.GlobalPosition + randomPos;
 			chaser.setLookTarget(newTarget, turnInstantly: true);
 			chaser.setMovementTarget(newTarget);
 
 		} else {
-			var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
+			var randomPos = RandomNumberGeneratorExtension.RandomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
 			var newTarget = chaser.GlobalPosition + randomPos;
 			chaser.setLookTarget(newTarget);
 		}

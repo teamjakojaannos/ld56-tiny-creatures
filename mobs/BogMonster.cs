@@ -229,7 +229,7 @@ public partial class BogMonster : PathFollow2D {
 	}
 
 	public void emergefromWaterAnimationDone() {
-		var goingForward = Util.randomBool(rng);
+		var goingForward = rng.RandomBool();
 		ai = new MovementState(goingForward, stats.speed);
 	}
 
