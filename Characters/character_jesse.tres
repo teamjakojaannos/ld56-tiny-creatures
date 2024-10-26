@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GameCharacter" load_steps=3 format=3 uid="uid://dl7jjb2uygwtc"]
 
-[ext_resource type="Script" path="res://characters/GameCharacter.cs" id="1_lyueo"]
-[ext_resource type="PackedScene" uid="uid://q6pq6h04st66" path="res://characters/portraits/jeesus_portrait_frame.tscn" id="1_myd4h"]
+[ext_resource type="Script" path="res://Characters/GameCharacter.cs" id="1_lyueo"]
+[ext_resource type="PackedScene" uid="uid://q6pq6h04st66" path="res://Characters/portraits/jeesus_portrait_frame.tscn" id="1_myd4h"]
 
 [resource]
 script = ExtResource("1_lyueo")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhydd1udarkba"
-path="res://.godot/imported/Wispy.png-7551856f73ad9e893f9b30b9b5f85d24.ctex"
+uid="uid://jg2vb53mabqb"
+path="res://.godot/imported/idlebugback.png-bc263e4af7a15574139bf5628fd62874.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/Wispy.png"
-dest_files=["res://.godot/imported/Wispy.png-7551856f73ad9e893f9b30b9b5f85d24.ctex"]
+source_file="res://Characters/Player/idlebugback.png"
+dest_files=["res://.godot/imported/idlebugback.png-bc263e4af7a15574139bf5628fd62874.ctex"]
 
 [params]
 

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cf7a5jq2ec6u4" path="res://mobs/markoattac.png" id="6_0x6f6"]
 [ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://mobs/player_in_trouble.png" id="7_p7lna"]
 [ext_resource type="Texture2D" uid="uid://ctacdgnwmqtbh" path="res://mobs/marko_kasi.png" id="8_4k2m5"]
-[ext_resource type="Script" path="res://player/Footsteps.cs" id="9_d77we"]
+[ext_resource type="Script" path="res://Characters/Player/Footsteps.cs" id="9_d77we"]
 [ext_resource type="AudioStream" uid="uid://bdaw5eoepaqbj" path="res://mobs/morko/isoaskel1.ogg" id="10_xhd7h"]
 [ext_resource type="AudioStream" uid="uid://bf6b7018ta06l" path="res://mobs/morko/isoaskel2.ogg" id="11_ueypv"]
 [ext_resource type="AudioStream" uid="uid://ciu5m6wgbhk4q" path="res://mobs/morko/morokolli1.ogg" id="12_5i00f"]

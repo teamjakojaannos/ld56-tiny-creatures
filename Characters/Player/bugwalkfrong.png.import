@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ce7j6gj4747hm"
-path="res://.godot/imported/bugwalkfrong.png-dcdcc4d4ffb69b0f0200aec9631b5eb4.ctex"
+path="res://.godot/imported/bugwalkfrong.png-3bd9e4f39d0e607f057361bba20d705e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/bugwalkfrong.png"
-dest_files=["res://.godot/imported/bugwalkfrong.png-dcdcc4d4ffb69b0f0200aec9631b5eb4.ctex"]
+source_file="res://Characters/Player/bugwalkfrong.png"
+dest_files=["res://.godot/imported/bugwalkfrong.png-3bd9e4f39d0e607f057361bba20d705e.ctex"]
 
 [params]
 

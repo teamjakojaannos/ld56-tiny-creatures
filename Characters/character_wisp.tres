@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="GameCharacter" load_steps=3 format=3 uid="uid://cpu2n8yikp7d"]
 
-[ext_resource type="PackedScene" uid="uid://dpcrfkh38mkjh" path="res://characters/portraits/wisp_portrait_frame.tscn" id="1_0nhh6"]
-[ext_resource type="Script" path="res://characters/GameCharacter.cs" id="1_4sygp"]
+[ext_resource type="PackedScene" uid="uid://dpcrfkh38mkjh" path="res://Characters/portraits/wisp_portrait_frame.tscn" id="1_0nhh6"]
+[ext_resource type="Script" path="res://Characters/GameCharacter.cs" id="1_4sygp"]
 
 [resource]
 script = ExtResource("1_4sygp")

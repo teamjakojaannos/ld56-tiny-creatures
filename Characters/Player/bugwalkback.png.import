@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3hw04ijrmoqo"
-path="res://.godot/imported/BugOpenCage.png-98054baab2c1b8da38897d426b0ff7b5.ctex"
+uid="uid://df7iw1y0i025q"
+path="res://.godot/imported/bugwalkback.png-76559ed1d8cc4bac5f1da9f20057964b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/BugOpenCage.png"
-dest_files=["res://.godot/imported/BugOpenCage.png-98054baab2c1b8da38897d426b0ff7b5.ctex"]
+source_file="res://Characters/Player/bugwalkback.png"
+dest_files=["res://.godot/imported/bugwalkback.png-76559ed1d8cc4bac5f1da9f20057964b.ctex"]
 
 [params]
 

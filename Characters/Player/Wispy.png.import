@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5dq68pi2j51"
-path="res://.godot/imported/playerconcept-sheet.png-b99e92a725da0f295392eaea4fbbb817.ctex"
+uid="uid://dhydd1udarkba"
+path="res://.godot/imported/Wispy.png-885ce0d6f885d45d970a7900748284d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/playerconcept-sheet.png"
-dest_files=["res://.godot/imported/playerconcept-sheet.png-b99e92a725da0f295392eaea4fbbb817.ctex"]
+source_file="res://Characters/Player/Wispy.png"
+dest_files=["res://.godot/imported/Wispy.png-885ce0d6f885d45d970a7900748284d8.ctex"]
 
 [params]
 

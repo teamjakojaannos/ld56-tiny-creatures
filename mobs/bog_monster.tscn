@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="2_sgc4p"]
 [ext_resource type="Resource" uid="uid://clyis4j0lhx0d" path="res://mobs/nakki/nakki_default_stats.tres" id="3_ht117"]
 [ext_resource type="Script" path="res://mobs/NakkiAttack.cs" id="3_iy0he"]
-[ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_pwbfi"]
+[ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="3_pwbfi"]
 [ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="4_xpyqs"]
 [ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://mobs/kasianimaatio-sheet-top.png" id="5_ex78f"]
 [ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="9_7uf8j"]

@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_i1ql1"]
 [ext_resource type="PackedScene" uid="uid://bfkpkt3kv6jsq" path="res://Environment/destroy_kivi_trigger.tscn" id="10_ifdrj"]
-[ext_resource type="PackedScene" uid="uid://vtuy0o27q8p3" path="res://characters/portraits/rock_portrait_frame.tscn" id="11_10n53"]
-[ext_resource type="Script" path="res://characters/GameCharacter.cs" id="12_k446b"]
+[ext_resource type="PackedScene" uid="uid://vtuy0o27q8p3" path="res://Characters/portraits/rock_portrait_frame.tscn" id="11_10n53"]
+[ext_resource type="Script" path="res://Characters/GameCharacter.cs" id="12_k446b"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="13_1fx1h"]
 [ext_resource type="PackedScene" uid="uid://bmvi58d0isrru" path="res://levels/hevonhelvetti.tscn" id="14_kfeaf"]
 

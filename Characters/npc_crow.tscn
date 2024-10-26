@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cektsywqa3k5v"]
 
-[ext_resource type="Texture2D" uid="uid://cdg318iofalvg" path="res://characters/Harakka.png" id="1_qj8df"]
+[ext_resource type="Texture2D" uid="uid://cdg318iofalvg" path="res://Characters/Harakka.png" id="1_qj8df"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bffue"]
 animations = [{

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6i2p27gnt5og"
-path="res://.godot/imported/idlebugSide.png-5f7be2768da753c9997cdaca55a7adfe.ctex"
+uid="uid://burgeb2ni3dv8"
+path="res://.godot/imported/PlayerRiseUP.png-87efd223f5e502ccdde3df67b5075940.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/idlebugSide.png"
-dest_files=["res://.godot/imported/idlebugSide.png-5f7be2768da753c9997cdaca55a7adfe.ctex"]
+source_file="res://Characters/Player/PlayerRiseUP.png"
+dest_files=["res://.godot/imported/PlayerRiseUP.png-87efd223f5e502ccdde3df67b5075940.ctex"]
 
 [params]
 

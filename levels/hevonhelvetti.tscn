@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" path="res://Environment/ryhmähauta.tscn" id="2_1vlf7"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="3_q5w04"]
 [ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_d57h3"]
-[ext_resource type="Resource" uid="uid://dl7jjb2uygwtc" path="res://characters/character_jesse.tres" id="5_7bcto"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="6_rg573"]
+[ext_resource type="Resource" uid="uid://dl7jjb2uygwtc" path="res://Characters/character_jesse.tres" id="5_7bcto"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="6_rg573"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="7_8kbal"]
 
 [sub_resource type="Gradient" id="Gradient_qf1tv"]

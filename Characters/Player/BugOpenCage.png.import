@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://burgeb2ni3dv8"
-path="res://.godot/imported/PlayerRiseUP.png-3214666ebe37bd5a8b88c34113ee08de.ctex"
+uid="uid://b3hw04ijrmoqo"
+path="res://.godot/imported/BugOpenCage.png-c5331ebabe7bd19ac0a62d824ad7497f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/PlayerRiseUP.png"
-dest_files=["res://.godot/imported/PlayerRiseUP.png-3214666ebe37bd5a8b88c34113ee08de.ctex"]
+source_file="res://Characters/Player/BugOpenCage.png"
+dest_files=["res://.godot/imported/BugOpenCage.png-c5331ebabe7bd19ac0a62d824ad7497f.ctex"]
 
 [params]
 

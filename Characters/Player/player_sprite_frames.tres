@@ -1,13 +1,13 @@
 [gd_resource type="SpriteFrames" load_steps=59 format=3 uid="uid://b1l5xdbf81x8i"]
 
-[ext_resource type="Texture2D" uid="uid://b702m0uxy7s5a" path="res://player/PlayerIdleFront.png" id="1_1qv5b"]
-[ext_resource type="Texture2D" uid="uid://jg2vb53mabqb" path="res://player/idlebugback.png" id="2_65id2"]
-[ext_resource type="Texture2D" uid="uid://6i2p27gnt5og" path="res://player/idlebugSide.png" id="3_bf0tg"]
-[ext_resource type="Texture2D" uid="uid://ce7j6gj4747hm" path="res://player/bugwalkfrong.png" id="4_2ssmq"]
-[ext_resource type="Texture2D" uid="uid://b3hw04ijrmoqo" path="res://player/BugOpenCage.png" id="4_o6ko3"]
-[ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://player/PlayerRiseUP.png" id="4_px4km"]
-[ext_resource type="Texture2D" uid="uid://c0ccrgb82b3lp" path="res://player/Bugwalkside.png" id="5_ymevv"]
-[ext_resource type="Texture2D" uid="uid://df7iw1y0i025q" path="res://player/bugwalkback.png" id="6_uqwws"]
+[ext_resource type="Texture2D" uid="uid://b702m0uxy7s5a" path="res://Characters/Player/PlayerIdleFront.png" id="1_1qv5b"]
+[ext_resource type="Texture2D" uid="uid://jg2vb53mabqb" path="res://Characters/Player/idlebugback.png" id="2_65id2"]
+[ext_resource type="Texture2D" uid="uid://6i2p27gnt5og" path="res://Characters/Player/idlebugSide.png" id="3_bf0tg"]
+[ext_resource type="Texture2D" uid="uid://ce7j6gj4747hm" path="res://Characters/Player/bugwalkfrong.png" id="4_2ssmq"]
+[ext_resource type="Texture2D" uid="uid://b3hw04ijrmoqo" path="res://Characters/Player/BugOpenCage.png" id="4_o6ko3"]
+[ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://Characters/Player/PlayerRiseUP.png" id="4_px4km"]
+[ext_resource type="Texture2D" uid="uid://c0ccrgb82b3lp" path="res://Characters/Player/Bugwalkside.png" id="5_ymevv"]
+[ext_resource type="Texture2D" uid="uid://df7iw1y0i025q" path="res://Characters/Player/bugwalkback.png" id="6_uqwws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yf3q4"]
 atlas = ExtResource("1_1qv5b")

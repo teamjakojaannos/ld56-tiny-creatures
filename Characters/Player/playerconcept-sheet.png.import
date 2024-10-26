@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0ccrgb82b3lp"
-path="res://.godot/imported/Bugwalkside.png-9abcaf46b63021efbe6f0c617bf6f0ff.ctex"
+uid="uid://c5dq68pi2j51"
+path="res://.godot/imported/playerconcept-sheet.png-059260ac5891f17b5982f58452403a62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/Bugwalkside.png"
-dest_files=["res://.godot/imported/Bugwalkside.png-9abcaf46b63021efbe6f0c617bf6f0ff.ctex"]
+source_file="res://Characters/Player/playerconcept-sheet.png"
+dest_files=["res://.godot/imported/playerconcept-sheet.png-059260ac5891f17b5982f58452403a62.ctex"]
 
 [params]
 

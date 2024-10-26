@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nobbj2tnaa6h"
-path="res://.godot/imported/playerconcept-export.png-0c948701c2cdec2df7a806c1ab7e82c4.ctex"
+uid="uid://6i2p27gnt5og"
+path="res://.godot/imported/idlebugSide.png-162242829e8a8a689bfb5671d12a3302.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/playerconcept-export.png"
-dest_files=["res://.godot/imported/playerconcept-export.png-0c948701c2cdec2df7a806c1ab7e82c4.ctex"]
+source_file="res://Characters/Player/idlebugSide.png"
+dest_files=["res://.godot/imported/idlebugSide.png-162242829e8a8a689bfb5671d12a3302.ctex"]
 
 [params]
 

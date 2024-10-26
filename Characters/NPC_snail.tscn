@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://82edj5sbubfj"]
 
-[ext_resource type="Texture2D" uid="uid://byyt6gntc3yw1" path="res://characters/etana.png" id="1_oa4gf"]
-[ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://characters/shadow.png" id="2_rl3u0"]
+[ext_resource type="Texture2D" uid="uid://byyt6gntc3yw1" path="res://Characters/etana.png" id="1_oa4gf"]
+[ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="2_rl3u0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q614x"]
 animations = [{

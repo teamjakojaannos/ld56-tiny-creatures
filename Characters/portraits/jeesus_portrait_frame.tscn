@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://q6pq6h04st66"]
 
-[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="1_uuxxg"]
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="1_uuxxg"]
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="2_2nk6p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vne0t"]
