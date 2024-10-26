@@ -2,33 +2,8 @@ using Godot;
 
 namespace Jakojaannos.WisperingWoods.World;
 
-public static class LevelsExt {
-	private static Levels? _instance;
-
-	public static Levels Levels(this Node node) {
-		return _instance ??= node.GetTree().Root.GetNode<Levels>("/root/Levels");
-	}
-}
-
 public partial class Levels : Node2D {
-	private Node2D LevelParent {
-		get {
-			if (_levelParent is null) {
-				//_levelParent = new Node2D() {
-				//    Name = "_LevelsProxy"
-				//};
-				// HACK: `Levels` is an autoloaded global node, thus most
-				//       things behave unexpectedly if added as a child.
-				//       Avoid issues by creating the "level container"
-				//       node within the current scene.
-				//GetTree().CurrentScene.AddChild(_levelParent);
-				_levelParent = this;
-			}
-
-			return _levelParent;
-		}
-	}
-	private Node2D? _levelParent;
+	public Node2D LevelParent => this;
 
 	public void TransitionToLevel(string toScene, NodePath entranceNodePath, Node2D exitNode) {
 		// Get the instance of the new level. This also forces loading the new

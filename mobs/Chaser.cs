@@ -282,7 +282,7 @@ public partial class Chaser : RigidBody2D {
 	public void ExitSightConeMedium(Node2D node) { SightConeExited(node, SightConeSize.Medium); }
 	public void ExitSightConeLarge(Node2D node) { SightConeExited(node, SightConeSize.Large); }
 
-	private void SightConeEntered(Node2D node, SightConeSize size) {
+	private void SightConeEntered(Node2D node, SightConeSize _) {
 		if (node is not Player player) {
 			return;
 		}
@@ -290,7 +290,7 @@ public partial class Chaser : RigidBody2D {
 		this.player = player;
 	}
 
-	private void SightConeExited(Node2D node, SightConeSize size) {
+	private void SightConeExited(Node2D node, SightConeSize _) {
 		if (node is not Player) {
 			return;
 		}

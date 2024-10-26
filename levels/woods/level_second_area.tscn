@@ -18,7 +18,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="EntranceLeft" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
-position = Vector2(-416, 0)
+position = Vector2(-288, 0)
 
 [node name="EntranceRight" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
 position = Vector2(416, 0)
@@ -47,20 +47,16 @@ y_sort_enabled = true
 position = Vector2(-128, 16)
 texture = ExtResource("5_wj245")
 
-[node name="Tree1" type="Node2D" parent="World" instance=ExtResource("4_5v6hf")]
-y_sort_enabled = true
+[node name="Tree1" parent="World" instance=ExtResource("4_5v6hf")]
 position = Vector2(-216, -120)
 
-[node name="Tree2" type="Node2D" parent="World" instance=ExtResource("4_5v6hf")]
-y_sort_enabled = true
+[node name="Tree2" parent="World" instance=ExtResource("4_5v6hf")]
 position = Vector2(-240, 120)
 
-[node name="TreePile1" type="Node2D" parent="World" instance=ExtResource("5_kusee")]
-y_sort_enabled = true
+[node name="TreePile1" parent="World" instance=ExtResource("5_kusee")]
 position = Vector2(-120, -152)
 
-[node name="Tree3" type="Node2D" parent="World" instance=ExtResource("6_goygm")]
-y_sort_enabled = true
+[node name="Tree3" parent="World" instance=ExtResource("6_goygm")]
 position = Vector2(-192, 136)
 
 [node name="Chantarell" type="Sprite2D" parent="World"]

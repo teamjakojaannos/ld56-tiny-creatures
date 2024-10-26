@@ -20,8 +20,9 @@ public partial class LevelTransition : Area2D {
 	}
 	private string? _otherScene;
 
+	// Exported, but hidden in editor.
 	[Export]
-	private NodePath entranceNodePath = "";
+	private NodePath _entranceNodePath = "";
 
 	public bool IsOtherScenePreviewVisible {
 		get => _previewScene is not null && _previewScene.IsInsideTree() && !_previewScene.IsQueuedForDeletion();
@@ -32,7 +33,7 @@ public partial class LevelTransition : Area2D {
 			return;
 		}
 
-		Levels.AdjustLevelPositionRelativeToCurrent(_previewScene, entranceNodePath, this);
+		Levels.AdjustLevelPositionRelativeToCurrent(_previewScene, _entranceNodePath, this);
 	}
 
 	private Level? _previewScene;
@@ -48,7 +49,7 @@ public partial class LevelTransition : Area2D {
 	public override void _ValidateProperty(Godot.Collections.Dictionary property) {
 		base._ValidateProperty(property);
 
-		if (property["name"].AsStringName() == PropertyName.entranceNodePath) {
+		if (property["name"].AsStringName() == PropertyName._entranceNodePath) {
 			var usage = PropertyUsageFlags.Storage | PropertyUsageFlags.NoEditor;
 			property["usage"] = (int)usage;
 		}
@@ -76,9 +77,9 @@ public partial class LevelTransition : Area2D {
 			});
 
 			var entranceNodeNames = FindOtherSceneEntrances()
-				.Select(node => node.Item2);
+				.Select(node => node.Name);
 
-			bool isEntranceAvailable = entranceNodeNames.Any();
+			var isEntranceAvailable = entranceNodeNames.Any();
 
 			var hintString =
 				isEntranceAvailable
@@ -117,35 +118,35 @@ public partial class LevelTransition : Area2D {
 
 	public override Variant _Get(StringName property) {
 		if (property == "EntranceNode") {
-			if (!entranceNodePath.IsEmpty) {
+			if (!_entranceNodePath.IsEmpty) {
 				var entranceNodes = FindOtherSceneEntrances();
 
-				for (int optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
-					var (path, _, _) = entranceNodes[optionIndex];
-					if (path == entranceNodePath) {
+				for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
+					var entrance = entranceNodes[optionIndex];
+					if (entrance.Path == _entranceNodePath) {
 						return optionIndex;
 					}
 				}
 			}
 
-			entranceNodePath = "";
+			_entranceNodePath = "";
 			NotifyPropertyListChanged();
 			return 0;
 		} else if (property == "OtherScenePreview") {
 			return IsOtherScenePreviewVisible;
 		} else if (property == "EntranceNodeOffset") {
-			if (!entranceNodePath.IsEmpty) {
+			if (!_entranceNodePath.IsEmpty) {
 				var entranceNodes = FindOtherSceneEntrances();
 
-				for (int optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
-					var (path, _, position) = entranceNodes[optionIndex];
-					if (path == entranceNodePath) {
-						return position;
+				for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
+					var entrance = entranceNodes[optionIndex];
+					if (entrance.Path == _entranceNodePath) {
+						return entrance.Position;
 					}
 				}
 			}
 
-			entranceNodePath = "";
+			_entranceNodePath = "";
 			NotifyPropertyListChanged();
 			return Vector2.Zero;
 		} else if (property == "OpenOtherScene") {
@@ -184,7 +185,7 @@ public partial class LevelTransition : Area2D {
 				_previewScene.Name = "Other scene preview";
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
-				if (entranceNodePath.IsEmpty) {
+				if (_entranceNodePath.IsEmpty) {
 					TrySelectEntranceNode(0);
 				}
 
@@ -194,7 +195,7 @@ public partial class LevelTransition : Area2D {
 			NotifyPropertyListChanged();
 		} else if (propertyName == "EntranceNodeOffset" && Engine.IsEditorHint()) {
 			if (_previewScene is not null && _otherScene is not null) {
-				var entranceMarker = _previewScene.GetNode<Node2D>(entranceNodePath);
+				var entranceMarker = _previewScene.GetNode<Node2D>(_entranceNodePath);
 				entranceMarker.Position = value.AsVector2();
 
 				var sceneToSave = new PackedScene();
@@ -215,7 +216,7 @@ public partial class LevelTransition : Area2D {
 				_previewScene.Name = "Other scene preview";
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
-				if (entranceNodePath.IsEmpty) {
+				if (_entranceNodePath.IsEmpty) {
 					TrySelectEntranceNode(0);
 				}
 
@@ -233,22 +234,22 @@ public partial class LevelTransition : Area2D {
 	private void TrySelectEntranceNode(int optionIndex) {
 		var entranceNodes = FindOtherSceneEntrances();
 		if (!entranceNodes.Any()) {
-			entranceNodePath = "";
+			_entranceNodePath = "";
 			UpdatePreviewPosition();
 			return;
 		}
 
-		var (path, _, _) = entranceNodes[Mathf.Min(optionIndex, entranceNodes.Count - 1)];
-		entranceNodePath = path;
+		var entrance = entranceNodes[Mathf.Min(optionIndex, entranceNodes.Count - 1)];
+		_entranceNodePath = entrance.Path;
 	}
 
-	private List<(NodePath, StringName, Vector2)> FindOtherSceneEntrances() {
+	private List<EntranceNode> FindOtherSceneEntrances() {
 		// Other scene is not properly set yet => return empty list
 		if (_otherScene is null || _otherScene.Trim() == "" || _otherScene.Trim() == "res://") {
 			return new();
 		}
 
-		var entranceNodes = new List<(NodePath, StringName, Vector2)>();
+		var entranceNodes = new List<EntranceNode>();
 
 		// FIXME: cache the loaded scene to a local field(?)
 		var resource = ResourceLoader.Load<PackedScene>(OtherScene);
@@ -270,11 +271,11 @@ public partial class LevelTransition : Area2D {
 				}
 			}
 
-			entranceNodes.Add((
-				sceneState.GetNodePath(nodeIndex),
-				sceneState.GetNodeName(nodeIndex),
-				position
-			));
+			entranceNodes.Add(new EntranceNode() {
+				Path = sceneState.GetNodePath(nodeIndex),
+				Name = sceneState.GetNodeName(nodeIndex),
+				Position = position
+			});
 		}
 
 		return entranceNodes;
@@ -303,7 +304,7 @@ public partial class LevelTransition : Area2D {
 
 		if (isExiting) {
 			GD.Print("Transitioning!");
-			this.Levels().CallDeferred(Levels.MethodName.TransitionToLevel, OtherScene, entranceNodePath, this);
+			this.Levels().CallDeferred(Levels.MethodName.TransitionToLevel, OtherScene, _entranceNodePath, this);
 		}
 	}
 
@@ -324,5 +325,11 @@ public partial class LevelTransition : Area2D {
 
 		var arrowheadPos = to - ExitDirection * DIRECTION_LINE_ARROWHEAD_SIZE;
 		DrawArc(arrowheadPos, DIRECTION_LINE_ARROWHEAD_SIZE, Mathf.DegToRad(-90.0f), Mathf.DegToRad(90.0f), 3, color, width: 2.0f, antialiased: false);
+	}
+
+	public readonly struct EntranceNode {
+		public readonly NodePath Path { init; get; }
+		public readonly StringName Name { init; get; }
+		public readonly Vector2 Position { init; get; }
 	}
 }
