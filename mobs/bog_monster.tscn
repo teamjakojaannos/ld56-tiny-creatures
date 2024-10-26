@@ -556,11 +556,11 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpi5j"]
 _data = {
-"RESET": SubResource("Animation_m8ex1"),
-"emerge_from_water": SubResource("Animation_33fha"),
-"finish_attack": SubResource("Animation_11ff7"),
-"go_underwater": SubResource("Animation_n7kaw"),
-"start_attack": SubResource("Animation_r7x2t")
+&"RESET": SubResource("Animation_m8ex1"),
+&"emerge_from_water": SubResource("Animation_33fha"),
+&"finish_attack": SubResource("Animation_11ff7"),
+&"start_attack": SubResource("Animation_r7x2t"),
+&"go_underwater": SubResource("Animation_n7kaw")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tmwsw"]
@@ -631,7 +631,7 @@ rotates = false
 loop = false
 script = ExtResource("1_80vso")
 WaterSplash = ExtResource("2_sgc4p")
-stats = ExtResource("3_ht117")
+Stats = ExtResource("3_ht117")
 
 [node name="Sprite2D" type="Sprite2D" parent="BogMonsterEntity"]
 texture_filter = 1
@@ -651,7 +651,7 @@ collide_with_areas = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BogMonsterEntity"]
 libraries = {
-"": SubResource("AnimationLibrary_fpi5j")
+&"": SubResource("AnimationLibrary_fpi5j")
 }
 
 [node name="UnderwaterCooldown" type="Timer" parent="BogMonsterEntity"]

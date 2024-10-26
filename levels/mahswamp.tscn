@@ -25,15 +25,15 @@
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_lwecq"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="20_0b7li"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_wrs7f"]
-[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="21_b1c6j"]
+[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="21_b1c6j"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
 [ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://Environment/SuoKansio/pieniruohot.png" id="23_30oyg"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
-[ext_resource type="PackedScene" path="res://Characters/NPC_snail.tscn" id="34_kqjx1"]
+[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
+[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
+[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
+[ext_resource type="PackedScene" uid="uid://82edj5sbubfj" path="res://Characters/NPC_snail.tscn" id="34_kqjx1"]
 [ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="36_3gxow"]
 [ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="36_fxb2t"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
@@ -49,7 +49,7 @@
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="41_locdt"]
 [ext_resource type="Script" path="res://Environment/WakeUpBogMonster.cs" id="41_nww2k"]
 [ext_resource type="Resource" uid="uid://cu2rxvl4dhjsk" path="res://mobs/nakki/nakki_stationary_stats.tres" id="49_6hpki"]
-[ext_resource type="PackedScene" path="res://Environment/creepy_statue.tscn" id="51_ccpha"]
+[ext_resource type="PackedScene" uid="uid://c8foef0ggh6i5" path="res://Environment/creepy_statue.tscn" id="51_ccpha"]
 [ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="52_d3b6v"]
 [ext_resource type="Script" path="res://Environment/MyEvilTrigger.cs" id="52_jc142"]
 
@@ -489,9 +489,9 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gpuue"]
 _data = {
-"RESET": SubResource("Animation_ry0a6"),
-"out": SubResource("Animation_q1nnn"),
-"out_hupialue": SubResource("Animation_wb2r0")
+&"RESET": SubResource("Animation_ry0a6"),
+&"out": SubResource("Animation_q1nnn"),
+&"out_hupialue": SubResource("Animation_wb2r0")
 }
 
 [sub_resource type="Resource" id="Resource_cgkfy"]
@@ -5569,7 +5569,7 @@ metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SuoSaariLyhty/WispInteractable/SpiritLantern2"]
 libraries = {
-"": SubResource("AnimationLibrary_gpuue")
+&"": SubResource("AnimationLibrary_gpuue")
 }
 autoplay = "RESET"
 
@@ -5652,7 +5652,7 @@ offset = Vector2(-7, -20)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SuoEteläLyhty/WispInteractable/SpiritLantern"]
 libraries = {
-"": SubResource("AnimationLibrary_gpuue")
+&"": SubResource("AnimationLibrary_gpuue")
 }
 autoplay = "RESET"
 
@@ -5715,7 +5715,7 @@ position = Vector2(448.216, -160.421)
 curve = SubResource("Curve2D_5t27y")
 
 [node name="BogMonsterEntity" parent="StationaryNakki" index="0"]
-stats = ExtResource("49_6hpki")
+Stats = ExtResource("49_6hpki")
 defaultStateIsWaitForTrigger = true
 
 [node name="WispInteractable" parent="." instance=ExtResource("38_b3qxu")]
@@ -5763,7 +5763,7 @@ position = Vector2(333.584, 96.9822)
 curve = SubResource("Curve2D_qrvrw")
 
 [node name="BogMonsterEntity" parent="Stationary2" index="0"]
-stats = SubResource("Resource_amied")
+Stats = SubResource("Resource_amied")
 defaultStateIsWaitForTrigger = true
 
 [node name="BogMonster3" parent="." instance=ExtResource("36_i1gca")]
