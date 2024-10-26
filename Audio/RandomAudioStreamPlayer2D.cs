@@ -9,8 +9,8 @@ namespace Jakojaannos.WisperingWoods.Audio;
 public partial class RandomAudioStreamPlayer2D : Node2D {
 	public void Play() {
 		var audioStreams = GetChildren()
-			.OfType<AudioStreamPlayer>()
-			.Select(PlayableAudioStream<AudioStreamPlayer>.From);
+			.OfType<AudioStreamPlayer2D>()
+			.Select(PlayableAudioStream<AudioStreamPlayer2D>.From);
 		RandomAudioStreamPlayer.PlayRandom(audioStreams);
 	}
 }

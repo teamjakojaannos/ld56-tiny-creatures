@@ -313,8 +313,8 @@ scale = Vector2(1.265, 1.265)
 
 [node name="DestroyKiviTrigger" parent="." node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("10_ifdrj")]
 position = Vector2(-266, -578)
-objectToDestroy = NodePath("../BigStone")
 DialogueTree = SubResource("Resource_4ugy4")
+objectToDestroy = NodePath("../BigStone")
 
 [node name="BigStone2" parent="." instance=ExtResource("9_i1ql1")]
 position = Vector2(128, -246)

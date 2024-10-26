@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://cdlv0clfgfav" path="res://random_sfx/askel1.ogg" id="4_50csx"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="4_62syh"]
 [ext_resource type="AudioStream" uid="uid://dtktpkf5x1rgd" path="res://random_sfx/vesikuolema.ogg" id="4_eao0h"]
-[ext_resource type="Script" path="res://Characters/Player/Footsteps.cs" id="4_kghcv"]
 [ext_resource type="AudioStream" uid="uid://x482eds70blo" path="res://random_sfx/askel2.ogg" id="5_065tq"]
 [ext_resource type="AudioStream" uid="uid://0cs7fbkti0v6" path="res://random_sfx/askel3.ogg" id="6_8m8n3"]
 [ext_resource type="AudioStream" uid="uid://dgtllh2oqfuut" path="res://random_sfx/askel4.ogg" id="7_mb8du"]
@@ -16,26 +15,11 @@
 [ext_resource type="AudioStream" uid="uid://bym5d2fik0ct" path="res://random_sfx/stepwater4.ogg" id="13_swq0c"]
 [ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="14_2fnqg"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="16_x8taj"]
+[ext_resource type="Script" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="17_8koe4"]
 [ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://camera/camera.tscn" id="17_j406h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
 size = Vector2(11, 4)
-
-[sub_resource type="Animation" id="Animation_c1cke"]
-resource_name = "pan_camera_up"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 2),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -100)]
-}
 
 [sub_resource type="Animation" id="Animation_jtxx1"]
 length = 0.001
@@ -124,8 +108,7 @@ tracks/6/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_vlrac"]
-resource_name = "WalkLeft"
+[sub_resource type="Animation" id="Animation_blpkv"]
 length = 1.14286
 loop_mode = 1
 tracks/0/type = "value"
@@ -150,7 +133,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["WalkRight"]
+"values": ["WalkDown"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -162,7 +145,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_xqpf5"]
@@ -192,151 +175,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["WalkRight"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_7l4qu"]
-length = 1.14286
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571, 0.571429, 0.714286, 0.857143, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["WalkUp"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_lc08d"]
-resource_name = "Die"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"IntroStandUpComedy"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-26, -45)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Ded:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite2D:flip_h")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_xembw"]
-resource_name = "IdleRight"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["IdleRight"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -433,7 +271,48 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_blpkv"]
+[sub_resource type="Animation" id="Animation_xembw"]
+resource_name = "IdleRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["IdleRight"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7l4qu"]
 length = 1.14286
 loop_mode = 1
 tracks/0/type = "value"
@@ -458,7 +337,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": ["WalkDown"]
+"values": ["WalkUp"]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -471,6 +350,47 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vlrac"]
+resource_name = "WalkLeft"
+length = 1.14286
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571, 0.571429, 0.714286, 0.857143, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["WalkRight"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_w6158"]
@@ -516,7 +436,7 @@ tracks/2/keys = {
 tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Footsteps")
+tracks/3/path = NodePath("Footsteps/Normal")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -611,20 +531,100 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_c1cke"]
+resource_name = "pan_camera_up"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -100)]
+}
+
+[sub_resource type="Animation" id="Animation_lc08d"]
+resource_name = "Die"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"IntroStandUpComedy"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-26, -45)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ded:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duy3k"]
 _data = {
-&"pan_camera_up": SubResource("Animation_c1cke"),
 &"RESET": SubResource("Animation_jtxx1"),
-&"WalkLeft": SubResource("Animation_vlrac"),
+&"WalkDown": SubResource("Animation_blpkv"),
 &"WalkRight": SubResource("Animation_xqpf5"),
-&"WalkUp": SubResource("Animation_7l4qu"),
-&"Die": SubResource("Animation_lc08d"),
-&"IdleRight": SubResource("Animation_xembw"),
 &"IdleDown": SubResource("Animation_j73ac"),
 &"IdleUp": SubResource("Animation_0epor"),
-&"WalkDown": SubResource("Animation_blpkv"),
+&"IdleRight": SubResource("Animation_xembw"),
+&"WalkUp": SubResource("Animation_7l4qu"),
+&"WalkLeft": SubResource("Animation_vlrac"),
 &"GetTheFuckUp": SubResource("Animation_w6158"),
-&"IdleLeft": SubResource("Animation_pwqys")
+&"IdleLeft": SubResource("Animation_pwqys"),
+&"pan_camera_up": SubResource("Animation_c1cke"),
+&"Die": SubResource("Animation_lc08d")
 }
 
 [sub_resource type="Gradient" id="Gradient_yln5s"]
@@ -660,8 +660,8 @@ script = ExtResource("1_cn8o3")
 Speed = 110.0
 Friction = 15.0
 Animation = NodePath("AnimationPlayer")
-Footsteps = NodePath("Footsteps")
-FootstepsWet = NodePath("FootstepsWet")
+Footsteps = NodePath("Footsteps/Normal")
+FootstepsWet = NodePath("Footsteps/Wet")
 FootstepsTimer = NodePath("FootstepTimer")
 Shadow = NodePath("Sprite2D")
 WispFollowNode = NodePath("SpiritTarget/Spirit")
@@ -765,77 +765,79 @@ bus = &"SFX"
 [node name="FootstepTimer" type="Timer" parent="."]
 wait_time = 0.4
 
-[node name="Footsteps" type="Node2D" parent="."]
-script = ExtResource("4_kghcv")
-
-[node name="Askel1" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource("4_50csx")
-volume_db = -10.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Askel2" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource("5_065tq")
-volume_db = -10.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Askel3" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource("6_8m8n3")
-volume_db = -10.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Askel4" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource("7_mb8du")
-volume_db = -10.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Askel5" type="AudioStreamPlayer" parent="Footsteps"]
-stream = ExtResource("8_f4pld")
-volume_db = -10.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="FootstepsWet" type="Node2D" parent="."]
-script = ExtResource("4_kghcv")
-
-[node name="Stepwater1" type="AudioStreamPlayer" parent="FootstepsWet"]
-stream = ExtResource("10_nsfcd")
-volume_db = -15.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Stepwater2" type="AudioStreamPlayer" parent="FootstepsWet"]
-stream = ExtResource("11_te71y")
-volume_db = -15.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Stepwater3" type="AudioStreamPlayer" parent="FootstepsWet"]
-stream = ExtResource("12_6wfv3")
-volume_db = -15.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Stepwater4" type="AudioStreamPlayer" parent="FootstepsWet"]
-stream = ExtResource("13_swq0c")
-volume_db = -15.0
-max_polyphony = 2
-bus = &"SFX"
-
-[node name="Stepwater5" type="AudioStreamPlayer" parent="FootstepsWet"]
-stream = ExtResource("14_2fnqg")
-volume_db = -15.0
-max_polyphony = 2
-bus = &"SFX"
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-7.7486e-07, -3)
 scale = Vector2(0.444444, 0.336111)
 texture = ExtResource("16_x8taj")
+
+[node name="Footsteps" type="Node2D" parent="."]
+
+[node name="Normal" type="Node2D" parent="Footsteps"]
+script = ExtResource("17_8koe4")
+
+[node name="Askel1" type="AudioStreamPlayer2D" parent="Footsteps/Normal"]
+stream = ExtResource("4_50csx")
+volume_db = -10.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Askel2" type="AudioStreamPlayer2D" parent="Footsteps/Normal"]
+stream = ExtResource("5_065tq")
+volume_db = -10.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Askel3" type="AudioStreamPlayer2D" parent="Footsteps/Normal"]
+stream = ExtResource("6_8m8n3")
+volume_db = -10.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Askel4" type="AudioStreamPlayer2D" parent="Footsteps/Normal"]
+stream = ExtResource("7_mb8du")
+volume_db = -10.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Askel5" type="AudioStreamPlayer2D" parent="Footsteps/Normal"]
+stream = ExtResource("8_f4pld")
+volume_db = -10.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Wet" type="Node2D" parent="Footsteps"]
+script = ExtResource("17_8koe4")
+
+[node name="Stepwater1" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+stream = ExtResource("10_nsfcd")
+volume_db = -15.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Stepwater2" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+stream = ExtResource("11_te71y")
+volume_db = -15.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Stepwater3" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+stream = ExtResource("12_6wfv3")
+volume_db = -15.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Stepwater4" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+stream = ExtResource("13_swq0c")
+volume_db = -15.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Stepwater5" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+stream = ExtResource("14_2fnqg")
+volume_db = -15.0
+max_polyphony = 2
+bus = &"SFX"
 
 [node name="Camera" parent="." instance=ExtResource("17_j406h")]
 zoom = Vector2(3, 3)

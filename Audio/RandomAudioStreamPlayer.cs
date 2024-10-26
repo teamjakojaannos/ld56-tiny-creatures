@@ -31,6 +31,8 @@ public partial class RandomAudioStreamPlayer : Node2D {
 			: (rng ?? s_rng).TryPickRandom(audioStreams, out selectedStream);
 		if (streamFound) {
 			selectedStream.Play();
+		} else {
+			GD.PrintErr($"Cannot play random audio stream: No audio streams available!");
 		}
 	}
 }

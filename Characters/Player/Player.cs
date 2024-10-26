@@ -3,6 +3,7 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Audio;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 [Tool]
@@ -26,10 +27,20 @@ public partial class Player : CharacterBody2D {
 	public Node2D? WispTarget { get; set; } = null;
 
 	[Export]
-	public Footsteps? Footsteps;
+	[MustSetInEditor]
+	public RandomAudioStreamPlayer2D Footsteps {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_footsteps);
+		set => this.SetExportProperty(ref _footsteps, value);
+	}
+	public RandomAudioStreamPlayer2D? _footsteps;
 
 	[Export]
-	public Footsteps? FootstepsWet;
+	[MustSetInEditor]
+	public RandomAudioStreamPlayer2D FootstepsWet {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_footstepsWet);
+		set => this.SetExportProperty(ref _footstepsWet, value);
+	}
+	public RandomAudioStreamPlayer2D? _footstepsWet;
 
 	public bool IsWet = false;
 
@@ -62,8 +73,8 @@ public partial class Player : CharacterBody2D {
 		get => _isInCinematic;
 		internal set {
 			_isInCinematic = value;
-			if (value) {
-				Animation?.Stop();
+			if (value && Animation is not null && Animation.IsPlaying()) {
+				Animation.Stop();
 			}
 		}
 	}
@@ -257,8 +268,12 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public void LieDown() {
-		Animation!.Stop();
-		Animation!.Play("Die");
+		if (Animation is not null) {
+			if (Animation.IsPlaying()) {
+				Animation.Stop();
+			}
+			Animation.Play("Die");
+		}
 	}
 
 	public void GetUp() {
