@@ -5,6 +5,9 @@ using BogMonsterStuff;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
+
 [Tool]
 public partial class BogMonster : PathFollow2D {
 	[Export]

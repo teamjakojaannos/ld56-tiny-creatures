@@ -4,7 +4,9 @@ using System.Reflection;
 
 using Godot;
 
-public static class ExportProp {
+namespace Jakojaannos.WisperingWoods.Util.Editor;
+
+public static class ExportPropertyExtension {
 	public static void SetExportProperty<T>(this Node node, ref T field, T value, bool notifyPropertyListChanged = false) {
 		field = value;
 		node.UpdateConfigurationWarnings();
@@ -18,18 +20,18 @@ public static class ExportProp {
 	/// Gets the value of the property, hiding the nullability of the backing
 	/// field. This is useful for e.g. any exported properties that are
 	/// required/expected to be configured in-editor.
-	/// 
+	///
 	/// Method throws in-game in case the value of the backing field is still
 	/// null. Due to this, care should be taken to not to read these fields in
 	/// e.g. `_Ready()` of `[Tool]`-scripts, as that might result in surprising
 	/// null reference exceptions on a seemingly non-null field.
-	/// 
+	///
 	/// The trade-off is to avoid the need for null-checks on any properties
 	/// known to be not-null at runtime, but still allow the initial value to
 	/// be null (before property is set in-editor). This cuts down boilerplate
 	/// from runtime usage of the property, but introduces a footgun for
 	/// initializers.
-	/// 
+	///
 	/// In context where null-checks are needed, the backing field should be
 	/// used directly. This includes e.g. any read accesses in `_Ready()` or
 	/// `_EnterTree()` methods of `[Tool]` scripts.

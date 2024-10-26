@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util;
+
 namespace BogMonsterStuff;
 
 public enum Direction {
@@ -206,7 +208,7 @@ public class AlertedState : BogMonsterAIState {
 		timePassed += delta;
 		if (timePassed >= monster.Stats.alertTime) {
 			monster.detectionLevel = 0.0f;
-			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.Stats.speed);
+			monster.ai = new MovementState(monster.rng.RandomBool(), monster.Stats.speed);
 			return;
 		}
 
@@ -244,7 +246,7 @@ public class AlertedState : BogMonsterAIState {
 		}
 
 		if (detectionLevel == 0.0f) {
-			monster.ai = new MovementState(RandomNumberGeneratorExtension.RandomBool(monster.rng), monster.Stats.speed);
+			monster.ai = new MovementState(monster.rng.RandomBool(), monster.Stats.speed);
 			return;
 		}
 	}

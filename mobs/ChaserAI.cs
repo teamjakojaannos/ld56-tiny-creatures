@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util;
+
 namespace ChaserStuff;
 
 public static class ChaserStats {

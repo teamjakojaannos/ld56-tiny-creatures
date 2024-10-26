@@ -3,6 +3,8 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util.Editor;
+
 [Tool]
 public partial class Player : CharacterBody2D {
 	[Signal]

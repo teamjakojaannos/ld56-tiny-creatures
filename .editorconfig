@@ -6,6 +6,8 @@ root = true
 ###################################################################
 [*.{cs,vb}]
 
+indent_style = tab
+
 # IDE0005 = Using directive is unnecessary
 #dotnet_diagnostic.IDE0005.severity = warning
 # IDE1006 = Naming rule
@@ -21,21 +23,12 @@ root = true
 # IDE2003: Blank line required between block and subsequent statement
 #dotnet_style_allow_statement_immediately_after_block_experimental = false
 
-# CA1050 = Declare types in namespaces
-#dotnet_diagnostic.CA1050.severity = none
-# CA1822 = Mark members as static
-#dotnet_diagnostic.CA1822.severity = none
-# CA1708 = Identifiers should differ by more than case
-#dotnet_diagnostic.CA1798.severity = error
 
-# IDE0130 = Namespace does not match folder structure
-#FIXME: severity of >warning breaks `dotnet format` on MSBuild workspaces
-#        related issue: https://github.com/dotnet/format/issues/1623
-#        should be promoted to warning if the issue is fixed
-#dotnet_diagnostic.IDE0130.severity = warning;
-#dotnet_diagnostic.IDE0130.severity = suggestion;
-
-indent_style = tab
+# Require use of namespaces based on directory structure
+## CA1050 = Declare types in namespaces
+## IDE0130 = Namespace does not match folder structure
+dotnet_diagnostic.CA1050.severity = warning
+dotnet_diagnostic.IDE0130.severity = warning;
 
 # Sort using and Import directives with System.* appearing first
 dotnet_sort_system_directives_first = true

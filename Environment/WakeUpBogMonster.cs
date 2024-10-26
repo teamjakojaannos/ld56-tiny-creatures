@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods;
+
 public partial class WakeUpBogMonster : Node2D {
 	[Export]
 	public BogMonster? monster;

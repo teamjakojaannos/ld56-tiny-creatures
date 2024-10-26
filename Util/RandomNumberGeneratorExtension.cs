@@ -1,5 +1,7 @@
 using Godot;
 
+namespace Jakojaannos.WisperingWoods.Util;
+
 public static class RandomNumberGeneratorExtension {
 	public static Vector2 RandomVector(this RandomNumberGenerator rng, (float, float) range) {
 		return RandomVector(rng, range.Item1, range.Item2);

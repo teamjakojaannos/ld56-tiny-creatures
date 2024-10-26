@@ -3,6 +3,8 @@ using ChaserStuff;
 using Godot;
 using Godot.Collections;
 
+using Jakojaannos.WisperingWoods.Util;
+
 public partial class Chaser : RigidBody2D {
 
 	public float speed;

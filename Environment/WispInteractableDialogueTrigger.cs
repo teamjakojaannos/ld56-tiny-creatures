@@ -2,6 +2,10 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util.Editor;
+
+namespace Jakojaannos.WisperingWoods;
+
 [Tool]
 [GlobalClass]
 public partial class WispInteractableDialogueTrigger : Node2D {

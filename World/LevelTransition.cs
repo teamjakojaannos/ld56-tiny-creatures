@@ -4,6 +4,8 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util.Editor;
+
 namespace Jakojaannos.WisperingWoods.World;
 
 [Tool]
