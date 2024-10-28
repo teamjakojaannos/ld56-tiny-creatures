@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class MusicArea : Area2D {
 	[Export]
 	public Jukebox.MuzakTrack Music = Jukebox.MuzakTrack.SfwHub;

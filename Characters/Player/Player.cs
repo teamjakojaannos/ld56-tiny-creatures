@@ -6,6 +6,8 @@ using Godot;
 using Jakojaannos.WisperingWoods.Audio;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
+namespace Jakojaannos.WisperingWoods.Characters.Player;
+
 [Tool]
 public partial class Player : CharacterBody2D {
 	[Signal]
@@ -18,7 +20,12 @@ public partial class Player : CharacterBody2D {
 	public float Friction = 10.0f;
 
 	[Export]
-	public AnimationPlayer? Animation;
+	[MustSetInEditor]
+	public AnimationPlayer? Animation {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_animation);
+		set => this.SetExportProperty(ref _animation, value);
+	}
+	private AnimationPlayer? _animation;
 
 	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible && !frozen && !IsInCinematic;
 
@@ -94,7 +101,7 @@ public partial class Player : CharacterBody2D {
 	[Signal]
 	public delegate void ReadyToGoEventHandler();
 
-	private bool invulnerable = true;
+	public bool Invulnerable { get; set; } = true;
 
 	public override void _Ready() {
 		base._Ready();
@@ -104,21 +111,6 @@ public partial class Player : CharacterBody2D {
 		}
 
 		playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-
-		var mainPlayerSpawn = GetTree().GetFirstNodeInGroup("IntroPlayerSpawn");
-		if (mainPlayerSpawn is Node2D spawn) {
-			GD.Print($"Starting at intro spawn (\"{spawn.Name}\" at {spawn.GlobalPosition})");
-			CallDeferred(MethodName.TeleportTo, spawn);
-		} else {
-			GD.Print("Falling back to random spawn");
-			var spawns = GetTree().GetNodesInGroup("PlayerSpawn");
-			if (spawns.Count != 0 && spawns.PickRandom() is Node2D fallbackRandomSpawn) {
-				GD.Print("Found a spawnpoint");
-				CallDeferred(MethodName.TeleportTo, fallbackRandomSpawn);
-			} else {
-				GD.PushError("No spawns available");
-			}
-		}
 
 		if (FootstepsTimer is not null) {
 			FootstepsTimer.Timeout += () => {
@@ -141,7 +133,7 @@ public partial class Player : CharacterBody2D {
 
 		GlobalPosition = target.GlobalPosition;
 
-		invulnerable = false;
+		Invulnerable = false;
 		EmitSignal(SignalName.ReadyToGo);
 	}
 
@@ -225,7 +217,7 @@ public partial class Player : CharacterBody2D {
 	}
 
 	public void Die() {
-		if (invulnerable) {
+		if (Invulnerable) {
 			return;
 		}
 

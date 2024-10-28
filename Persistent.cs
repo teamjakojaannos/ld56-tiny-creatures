@@ -1,6 +1,10 @@
 using Godot;
 using Godot.Collections;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
+namespace Jakojaannos.WisperingWoods;
+
 public static class PersistentExt {
 	private static Persistent? _instance;
 

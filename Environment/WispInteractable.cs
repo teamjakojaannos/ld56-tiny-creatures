@@ -2,6 +2,7 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;

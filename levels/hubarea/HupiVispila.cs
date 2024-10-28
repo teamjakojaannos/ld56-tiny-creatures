@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods;
+
 public partial class HupiVispila : Node2D {
 	[Export]
 	public string? Location;

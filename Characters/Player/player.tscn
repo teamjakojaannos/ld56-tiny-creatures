@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=37 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" path="res://Characters/Player/Player.cs" id="1_cn8o3"]
+[ext_resource type="Script" path="res://Gameplay/StartsAtNode.cs" id="2_6ksxn"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="3_88t4b"]
 [ext_resource type="AudioStream" uid="uid://cdlv0clfgfav" path="res://random_sfx/askel1.ogg" id="4_50csx"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="4_62syh"]
@@ -614,17 +615,17 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duy3k"]
 _data = {
 &"RESET": SubResource("Animation_jtxx1"),
-&"WalkDown": SubResource("Animation_blpkv"),
-&"WalkRight": SubResource("Animation_xqpf5"),
-&"IdleDown": SubResource("Animation_j73ac"),
-&"IdleUp": SubResource("Animation_0epor"),
-&"IdleRight": SubResource("Animation_xembw"),
-&"WalkUp": SubResource("Animation_7l4qu"),
-&"WalkLeft": SubResource("Animation_vlrac"),
-&"GetTheFuckUp": SubResource("Animation_w6158"),
 &"IdleLeft": SubResource("Animation_pwqys"),
 &"pan_camera_up": SubResource("Animation_c1cke"),
-&"Die": SubResource("Animation_lc08d")
+&"GetTheFuckUp": SubResource("Animation_w6158"),
+&"WalkUp": SubResource("Animation_7l4qu"),
+&"WalkRight": SubResource("Animation_xqpf5"),
+&"Die": SubResource("Animation_lc08d"),
+&"IdleUp": SubResource("Animation_0epor"),
+&"IdleRight": SubResource("Animation_xembw"),
+&"WalkDown": SubResource("Animation_blpkv"),
+&"IdleDown": SubResource("Animation_j73ac"),
+&"WalkLeft": SubResource("Animation_vlrac")
 }
 
 [sub_resource type="Gradient" id="Gradient_yln5s"]
@@ -667,6 +668,10 @@ Shadow = NodePath("Sprite2D")
 WispFollowNode = NodePath("SpiritTarget/Spirit")
 Wisp = NodePath("SpiritTarget/SpiritVisuals")
 Noppa = NodePath("Ded")
+
+[node name="StartsAtNode" type="Node" parent="."]
+script = ExtResource("2_6ksxn")
+SpawnpointGroups = [&"IntroPlayerSpawn", &"PlayerSpawn"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

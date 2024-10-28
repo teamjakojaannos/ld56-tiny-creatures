@@ -1,5 +1,8 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods;
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class Intro : Node2D {
 	[Export]
 	public DialogueTree? InitialDialogue;

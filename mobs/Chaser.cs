@@ -3,6 +3,8 @@ using ChaserStuff;
 using Godot;
 using Godot.Collections;
 
+using Jakojaannos.WisperingWoods;
+using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util;
 
 public partial class Chaser : RigidBody2D {
@@ -357,7 +359,6 @@ public partial class Chaser : RigidBody2D {
 	public void EnteredKillZone(Node2D node) {
 		if (node is Player player) {
 			AttackPlayer(player);
-
 		}
 	}
 

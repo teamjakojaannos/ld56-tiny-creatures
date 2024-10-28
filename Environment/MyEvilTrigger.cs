@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class MyEvilTrigger : Area2D {
 
 	[Export]
