@@ -73,7 +73,8 @@ public partial class LevelTransition : Area2D {
 			properties.Add(new Godot.Collections.Dictionary() {
 				{ "name", "OpenOtherScene" },
 				{ "type", (int)Variant.Type.Callable },
-				{ "hint", (int)PropertyHint.ToolButton },
+				{ "hint", (int)PropertyHint.None },
+				//{ "hint", (int)PropertyHint.ToolButton },
 				{ "hint_string", $"{MethodName.OpenOtherScene},{editIconName}" },
 				{ "usage", (int)(PropertyUsageFlags.Editor | PropertyUsageFlags.NoInstanceState) },
 			});
