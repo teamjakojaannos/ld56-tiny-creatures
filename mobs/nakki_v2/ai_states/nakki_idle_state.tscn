@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dma47e7f5etyd"]
+
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiIdleState.cs" id="1_0qf47"]
+
+[node name="NäkkiIdleState" type="Node"]
+script = ExtResource("1_0qf47")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

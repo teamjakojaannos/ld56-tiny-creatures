@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://8lvqy3vv7876"]
+
+[ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_i30b3"]
+[ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_bi5lu"]
+
+[sub_resource type="Curve2D" id="Curve2D_vhevo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
+}
+point_count = 2
+
+[node name="BogTest" type="Node2D"]
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(176, 84)
+
+[node name="Näkki" parent="." instance=ExtResource("1_i30b3")]
+position = Vector2(73, -27)
+curve = SubResource("Curve2D_vhevo")
+
+[node name="BogRock" parent="." instance=ExtResource("2_bi5lu")]
+position = Vector2(75, 10)

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd8qrla1d18g8"]
+
+[ext_resource type="Script" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
+[ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_88m0x"]
+[ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="3_6amd0"]
+[ext_resource type="PackedScene" uid="uid://bue7in6n06yhv" path="res://mobs/nakki_v2/ai_states/nakki_movement_state.tscn" id="4_sh5es"]
+
+[node name="Näkki" type="Path2D"]
+script = ExtResource("1_vi6in")
+
+[node name="NäkkiEntity" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="Sprite" type="Sprite2D" parent="NäkkiEntity"]
+texture_filter = 1
+texture = ExtResource("2_88m0x")
+
+[node name="SightCone" type="Area2D" parent="NäkkiEntity"]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NäkkiEntity/SightCone"]
+polygon = PackedVector2Array(0, 0, -60, 90, 60, 90)
+
+[node name="LineOfSight" type="RayCast2D" parent="NäkkiEntity"]
+enabled = false
+collision_mask = 5
+collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" parent="States" node_paths=PackedStringArray("_nextStates") instance=ExtResource("3_6amd0")]
+_nextStates = [NodePath("../Movement")]
+
+[node name="Movement" parent="States" node_paths=PackedStringArray("_nextStates") instance=ExtResource("4_sh5es")]
+_nextStates = [NodePath("../Idle")]
