@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd8qrla1d18g8"]
+[gd_scene load_steps=6 format=3 uid="uid://cd8qrla1d18g8"]
 
 [ext_resource type="Script" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_88m0x"]
 [ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="3_6amd0"]
 [ext_resource type="PackedScene" uid="uid://bue7in6n06yhv" path="res://mobs/nakki_v2/ai_states/nakki_movement_state.tscn" id="4_sh5es"]
+[ext_resource type="PackedScene" uid="uid://kignpg7mg7fw" path="res://mobs/nakki_v2/ai_states/nakki_stalk_state.tscn" id="5_g2xrd"]
 
 [node name="Näkki" type="Path2D"]
 script = ExtResource("1_vi6in")
@@ -34,3 +35,5 @@ collide_with_areas = true
 [node name="Idle" parent="States" instance=ExtResource("3_6amd0")]
 
 [node name="Movement" parent="States" instance=ExtResource("4_sh5es")]
+
+[node name="Stalk" parent="States" instance=ExtResource("5_g2xrd")]
