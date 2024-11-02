@@ -1,8 +1,18 @@
+using System.Collections.Generic;
+
 using Godot;
 
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiAiState : Node {
+
+	public virtual string StateName() {
+		return "???";
+	}
+
+	public virtual HashSet<string> RequiresStates() {
+		return [];
+	}
 
 	public virtual void EnterState(NakkiV2 nakki) {
 	}

@@ -1,10 +1,14 @@
+using System.Collections.Generic;
+
 using Godot;
 
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiV2 : Path2D {
 	[Export] private float _speed = 50.0f;
-	[Export] private NakkiAiState? _defaultState;
+	[Export] private string _defaultState = "idle";
+
+	private readonly Dictionary<string, NakkiAiState> _statesByName = [];
 
 	private NakkiAiState? _currentState;
 	private NakkiAiState? CurrentState {
@@ -36,43 +40,68 @@ public partial class NakkiV2 : Path2D {
 
 		_lineOfSight = _nakkiEntity.GetNode<RayCast2D>("LineOfSight");
 
+		LoadStates();
 		ResetStateToDefault();
 	}
 
-	public void ResetStateToDefault() {
-		if (_defaultState != null) {
-			CurrentState = _defaultState;
-			return;
+	private void LoadStates() {
+		var nodes = GetNode("States").GetChildren();
+		foreach (var node in nodes) {
+			if (node is not NakkiAiState state) {
+				var expected = nameof(NakkiAiState);
+				var nodeName = node.Name;
+				GD.PrintErr($"Näkki has non-{expected} state '{nodeName}'.");
+				continue;
+			}
+
+			var name = state.StateName();
+			if (_statesByName.ContainsKey(name)) {
+				GD.Print($"Warning, näkki has multiple states named '{name}'.");
+			}
+
+			_statesByName.Add(name, state);
 		}
 
-		// no default state given -> load first node
-		var states = GetNode("States").GetChildren();
-		if (states.Count == 0) {
-			GD.PrintErr("Näkki has no default state set, and no states as children!");
-			return;
-		}
+		// make sure all required states are present
+		foreach (var node in nodes) {
+			if (node is not NakkiAiState state) {
+				continue;
+			}
 
-		var first = states[0];
-		if (first is NakkiAiState aiState) {
-			CurrentState = aiState;
-			return;
-		} else {
-			var className = first.GetClass();
-			var expected = nameof(NakkiAiState);
-			GD.PrintErr($"Error loading Näkki's default state: found node of type {className}, expected {expected}.");
+			var reqs = state.RequiresStates();
+			foreach (var req in reqs) {
+				if (!_statesByName.ContainsKey(req)) {
+					var stateName = state.StateName();
+					GD.PrintErr($"Näkki's state '{req}' (required by {stateName}) is not found");
+				}
+			}
 		}
 	}
 
-	public void SwitchToState(NakkiAiState newState) {
-		CurrentState = newState;
+	public void ResetStateToDefault() {
+		var state = _statesByName.GetValueOrDefault(_defaultState);
+		if (state != null) {
+			CurrentState = state;
+		} else {
+			GD.PrintErr($"Cant find näkki's default state {_defaultState}");
+		}
+	}
+
+	public void TrySwitchToState(string stateName) {
+		var state = _statesByName.GetValueOrDefault(stateName);
+		if (state != null) {
+			CurrentState = state;
+		} else {
+			GD.PrintErr($"Cant find näkki's state '{stateName}'");
+		}
 	}
 
 	public void EnterAlertState() {
-		GD.Print("Näkki enters alerted state");
+		TrySwitchToState("alert");
 	}
 
 	public void EnterAttackState() {
-		GD.Print("Näkki enters attack state");
+		TrySwitchToState("attack");
 	}
 
 	public override void _PhysicsProcess(double ddelta) {

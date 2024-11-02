@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Godot;
 using Godot.Collections;
 
@@ -6,7 +8,7 @@ using Jakojaannos.WisperingWoods.Util;
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiIdleState : NakkiAiState {
-	[Export] private Array<NakkiAiState> _nextStates = [];
+	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneIdling = [];
 
 	[Export] private float _idleTime = 2.0f;
 
@@ -20,6 +22,18 @@ public partial class NakkiIdleState : NakkiAiState {
 		_timer.Timeout += () => {
 			_isDoneIdling = true;
 		};
+
+		if (_pickOneOfTheseStatesWhenDoneIdling.Count == 0) {
+			GD.PrintErr("Näkki's idle state's pick-a-state-after-done-with-idling-list is empty!");
+		}
+	}
+
+	public override string StateName() {
+		return "idle";
+	}
+
+	public override HashSet<string> RequiresStates() {
+		return new HashSet<string>(_pickOneOfTheseStatesWhenDoneIdling);
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -29,11 +43,12 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		_rng.TryPickRandom(_nextStates, out var next);
-		if (next != null) {
-			nakki.SwitchToState(next);
+		_rng.TryPickRandom(_pickOneOfTheseStatesWhenDoneIdling, out var name);
+		if (name != null) {
+			nakki.TrySwitchToState(name);
 		} else {
-			nakki.SwitchToState(this);
+			GD.PrintErr("Näkki's idle state failed to pick new state, resetting state to default");
+			nakki.ResetStateToDefault();
 		}
 	}
 
