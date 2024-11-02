@@ -4,24 +4,13 @@ using Godot;
 
 namespace Jakojaannos.WisperingWoods;
 
-public partial class NakkiAiState : Node {
+public abstract partial class NakkiAiState : Node {
 
-	public virtual string StateName() {
-		return "???";
-	}
-
-	public virtual HashSet<string> RequiresStates() {
-		return [];
-	}
-
-	public virtual void EnterState(NakkiV2 nakki) {
-	}
-
-	public virtual void ExitState(NakkiV2 nakki) {
-	}
-
-	public virtual void AiUpdate(NakkiV2 nakki) {
-	}
+	public abstract string StateName();
+	public abstract HashSet<string> RequiresStates();
+	public abstract void EnterState(NakkiV2 nakki);
+	public abstract void ExitState(NakkiV2 nakki);
+	public abstract void AiUpdate(NakkiV2 nakki);
 
 	public virtual bool ShouldTickDetection() {
 		return true;
