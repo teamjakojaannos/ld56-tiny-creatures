@@ -29,7 +29,7 @@ public partial class NakkiV2 : Path2D {
 	[Export] private float _detectionGain = 100.0f;
 	[Export] private float _detectionDecay = 60.0f;
 
-	[Export] public float _alertThreshold = 40.0f;
+	[Export] public float _stalkThreshold = 40.0f;
 	[Export] public float _attackThreshold = 100.0f;
 
 	public override void _Ready() {
@@ -96,8 +96,8 @@ public partial class NakkiV2 : Path2D {
 		}
 	}
 
-	public void EnterAlertState() {
-		TrySwitchToState("alert");
+	public void EnterStalkState() {
+		TrySwitchToState("stalk");
 	}
 
 	public void EnterAttackState() {
@@ -178,6 +178,10 @@ public partial class NakkiV2 : Path2D {
 		var totalLength = Curve.GetBakedLength();
 
 		_targetProgress = progressRatio * totalLength;
+	}
+
+	public void SetProgressTarget(float progress) {
+		_targetProgress = progress;
 	}
 
 	public void ClearMovementTarget() {

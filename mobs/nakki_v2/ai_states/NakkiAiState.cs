@@ -22,8 +22,8 @@ public abstract partial class NakkiAiState : Node {
 			return;
 		}
 
-		if (nakki._detectionLevel >= nakki._alertThreshold) {
-			nakki.EnterAlertState();
+		if (nakki._detectionLevel >= nakki._stalkThreshold) {
+			nakki.EnterStalkState();
 			return;
 		}
 	}
