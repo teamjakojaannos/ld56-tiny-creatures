@@ -31,8 +31,6 @@ collide_with_areas = true
 
 [node name="States" type="Node" parent="."]
 
-[node name="Idle" parent="States" node_paths=PackedStringArray("_nextStates") instance=ExtResource("3_6amd0")]
-_nextStates = [NodePath("../Movement")]
+[node name="Idle" parent="States" instance=ExtResource("3_6amd0")]
 
-[node name="Movement" parent="States" node_paths=PackedStringArray("_nextStates") instance=ExtResource("4_sh5es")]
-_nextStates = [NodePath("../Idle")]
+[node name="Movement" parent="States" instance=ExtResource("4_sh5es")]
