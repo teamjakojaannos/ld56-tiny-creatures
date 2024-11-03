@@ -4,6 +4,7 @@
 
 [node name="NäkkiUnderwaterState" type="Node"]
 script = ExtResource("1_1yefd")
+_pickOneOfTheseStatesWhenDoneDiving = ["idle", "movement"]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
