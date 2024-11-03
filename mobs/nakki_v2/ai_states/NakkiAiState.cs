@@ -27,4 +27,11 @@ public abstract partial class NakkiAiState : Node {
 			return;
 		}
 	}
+
+	public virtual void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) { }
+}
+
+public enum NakkiAnimation {
+	Dive,
+	EmergeFromWater
 }
