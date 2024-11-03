@@ -31,12 +31,12 @@ public partial class NakkiV2 : Path2D {
 
 	[Export] public float _stalkThreshold = 40.0f;
 	[Export] public float _attackThreshold = 100.0f;
-	[Export] public float _attackTime = 1.0f;
 
 	private AnimationPlayer? _animationPlayer;
 	private bool _isPlayerInDanger = false;
 	private bool _playerIsDead = false;
 	public Node2D? _attack;
+	private Timer? _attackTimer;
 	private AnimatedSprite2D? _fakePlayer;
 	public AnimatedSprite2D? _hand;
 
@@ -50,10 +50,8 @@ public partial class NakkiV2 : Path2D {
 
 		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 
-		// TODO: attack timer could be moved to attack state
-		var attackTimer = GetNode<Timer>("AttackTimer");
-		attackTimer.WaitTime = _attackTime;
-		attackTimer.Timeout += FinishAttack;
+		_attackTimer = GetNode<Timer>("AttackTimer");
+		_attackTimer.Timeout += FinishAttack;
 
 		_attack = GetNode<Node2D>("Attack");
 
@@ -63,6 +61,10 @@ public partial class NakkiV2 : Path2D {
 
 		_fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		_hand = GetNode<AnimatedSprite2D>("Attack/Hand");
+
+		if (Curve == null) {
+			GD.PrintErr("You forgot to set path for Näkki!");
+		}
 
 		LoadStates();
 		ResetStateToDefault();
@@ -236,7 +238,12 @@ public partial class NakkiV2 : Path2D {
 		}
 	}
 
-	public void PlayAttackAnimation() {
+	/// <summary>
+	/// Plays attack animation, which will start a timer. After 'attackTime' seconds
+	/// näkki will finish the attack and kill player is they are in the danger zone.
+	/// </summary>
+	public void PlayAttackAnimation(float attackTime) {
+		_attackTimer!.WaitTime = attackTime;
 		_animationPlayer!.Play("start_attack");
 	}
 

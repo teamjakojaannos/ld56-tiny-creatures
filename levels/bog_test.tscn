@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=6 format=3 uid="uid://8lvqy3vv7876"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_i30b3"]
 [ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_bi5lu"]
@@ -6,6 +6,18 @@
 [sub_resource type="Curve2D" id="Curve2D_vhevo"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_nnck7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 121, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_11nyg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150, 0)
 }
 point_count = 2
 
@@ -20,3 +32,20 @@ curve = SubResource("Curve2D_vhevo")
 
 [node name="BogRock" parent="." instance=ExtResource("2_bi5lu")]
 position = Vector2(75, 10)
+
+[node name="SlowNäkki" parent="." instance=ExtResource("1_i30b3")]
+position = Vector2(-78.0758, 127.468)
+curve = SubResource("Curve2D_nnck7")
+
+[node name="NäkkiAttackState" parent="SlowNäkki/States" index="3"]
+_attackTime = 5.0
+
+[node name="InstakillNäkki" parent="." instance=ExtResource("1_i30b3")]
+position = Vector2(215.314, 150.051)
+curve = SubResource("Curve2D_11nyg")
+
+[node name="NäkkiAttackState" parent="InstakillNäkki/States" index="3"]
+_attackTime = 0.1
+
+[editable path="SlowNäkki"]
+[editable path="InstakillNäkki"]
