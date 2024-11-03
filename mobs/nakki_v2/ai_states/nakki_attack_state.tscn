@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://baobtck5t1jct"]
+[gd_scene load_steps=3 format=3 uid="uid://baobtck5t1jct"]
 
 [ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiAttackState.cs" id="1_44k50"]
+[ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="2_4aw5x"]
 
 [node name="NäkkiAttackState" type="Node"]
 script = ExtResource("1_44k50")
+_waterSplash = ExtResource("2_4aw5x")
