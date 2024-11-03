@@ -130,8 +130,17 @@ public partial class NakkiV2 : Path2D {
 		TrySwitchToState("attack");
 	}
 
-	public void EnterDiveState() {
+	public void EnterDiveState(float timeMult = 1.0f) {
 		TrySwitchToState("underwater");
+
+		if (CurrentState is not NakkiUnderwaterState underwater) {
+			var expected = nameof(NakkiUnderwaterState);
+			var className = CurrentState?.GetClass() ?? "<null>";
+			GD.Print($"Unexpected diving state, expected {expected}, found {className}");
+			return;
+		}
+
+		underwater.SetDiveTimeMult(timeMult);
 	}
 
 	public override void _PhysicsProcess(double ddelta) {
@@ -256,8 +265,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private void AttackAnimationDone() {
-		EnterDiveState();
-		// TODO: go underwater for a short time
+		EnterDiveState(timeMult: 0.25f);
 	}
 
 	private void TryKillPlayer() {

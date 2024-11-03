@@ -17,6 +17,8 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 
 	private RandomNumberGenerator _rng = new();
 
+	private float _diveTimeMult = 1.0f;
+
 	public override void _Ready() {
 		_diveTimer = GetNode<Timer>("Timer");
 		_diveTimer.Timeout += () => {
@@ -53,6 +55,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override void EnterState(NakkiV2 nakki) {
+		_diveTimeMult = 1.0f;
 		_isDoneDiving = false;
 		_diveTimer!.Stop();
 		nakki.PlayDiveAnimation();
@@ -66,7 +69,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Dive) {
-			_diveTimer!.WaitTime = _underwaterTime;
+			_diveTimer!.WaitTime = _underwaterTime * _diveTimeMult;
 			_diveTimer.Start();
 			return;
 		}
@@ -82,4 +85,8 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) { }
+
+	public void SetDiveTimeMult(float timeMult) {
+		_diveTimeMult = timeMult;
+	}
 }
