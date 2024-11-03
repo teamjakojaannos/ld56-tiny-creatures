@@ -65,6 +65,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		nakki._detectionLevel = 0.0f;
 
 		_diveTimer!.Stop();
+		nakki.StartDiveCooldown();
 	}
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {

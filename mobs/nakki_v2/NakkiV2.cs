@@ -39,6 +39,7 @@ public partial class NakkiV2 : Path2D {
 	private Timer? _attackTimer;
 	private AnimatedSprite2D? _fakePlayer;
 	public AnimatedSprite2D? _hand;
+	private Timer? _diveCooldown;
 
 	public override void _Ready() {
 		_nakkiEntity = GetNode<PathFollow2D>("NäkkiEntity");
@@ -61,6 +62,8 @@ public partial class NakkiV2 : Path2D {
 
 		_fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		_hand = GetNode<AnimatedSprite2D>("Attack/Hand");
+
+		_diveCooldown = GetNode<Timer>("DiveCooldown");
 
 		if (Curve == null) {
 			GD.PrintErr("You forgot to set path for Näkki!");
@@ -299,7 +302,6 @@ public partial class NakkiV2 : Path2D {
 		_playerIsDead = true;
 	}
 
-
 	public void PlayDiveAnimation() {
 		_animationPlayer!.Play("go_underwater");
 	}
@@ -314,5 +316,15 @@ public partial class NakkiV2 : Path2D {
 
 	private void EmergeFromWaterAnimationDone() {
 		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.EmergeFromWater);
+	}
+
+	public void StartDiveCooldown() {
+		// restart timer if it was already running
+		_diveCooldown!.Stop();
+		_diveCooldown.Start();
+	}
+
+	public bool CanGoUnderwater() {
+		return _diveCooldown!.IsStopped();
 	}
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 using Godot;
 using Godot.Collections;
@@ -44,7 +45,11 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		_rng.TryPickRandom(_pickOneOfTheseStatesWhenDoneMoving, out var name);
+		var possibleStates = nakki.CanGoUnderwater()
+			? _pickOneOfTheseStatesWhenDoneMoving
+			: _pickOneOfTheseStatesWhenDoneMoving.Where(s => s != "underwater");
+
+		_rng.TryPickRandom(possibleStates, out var name);
 		if (name != null) {
 			nakki.TrySwitchToState(name);
 		} else {

@@ -714,3 +714,7 @@ bus = &"SFX"
 libraries = {
 "": SubResource("AnimationLibrary_h630f")
 }
+
+[node name="DiveCooldown" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
