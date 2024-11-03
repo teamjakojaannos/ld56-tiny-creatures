@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cd8qrla1d18g8"]
+[gd_scene load_steps=27 format=3 uid="uid://cd8qrla1d18g8"]
 
 [ext_resource type="Script" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_88m0x"]
@@ -10,6 +10,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="5_x2o33"]
 [ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="9_bce00"]
 [ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="9_oeiko"]
+[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="10_20cje"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ums85"]
 radius = 17.0294
@@ -281,7 +282,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"EmergefromWaterAnimationDone"
+"method": &"EmergeFromWaterAnimationDone"
 }]
 }
 tracks/2/type = "value"
@@ -697,6 +698,9 @@ offset = Vector2(-16, -45)
 [node name="Stalk" parent="States" instance=ExtResource("5_g2xrd")]
 
 [node name="NäkkiAttackState" parent="States" instance=ExtResource("9_bce00")]
+
+[node name="NäkkiUnderwaterState" parent="States" instance=ExtResource("10_20cje")]
+_pickOneOfTheseStatesWhenDoneDiving = ["idle", "movement"]
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true

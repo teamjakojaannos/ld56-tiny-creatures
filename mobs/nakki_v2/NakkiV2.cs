@@ -130,6 +130,10 @@ public partial class NakkiV2 : Path2D {
 		TrySwitchToState("attack");
 	}
 
+	public void EnterDiveState() {
+		TrySwitchToState("underwater");
+	}
+
 	public override void _PhysicsProcess(double ddelta) {
 		var delta = (float)ddelta;
 
@@ -252,8 +256,8 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private void AttackAnimationDone() {
+		EnterDiveState();
 		// TODO: go underwater for a short time
-		// GoUnderwater(0.25f);
 	}
 
 	private void TryKillPlayer() {
@@ -274,11 +278,20 @@ public partial class NakkiV2 : Path2D {
 		_playerIsDead = true;
 	}
 
-	private void EmergeFromWaterAnimationDone() {
-		// TODO: notify state that this is done
+
+	public void PlayDiveAnimation() {
+		_animationPlayer!.Play("go_underwater");
 	}
 
 	private void GoUnderwaterAnimationDone() {
-		// TODO: notify state that this is done
+		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.Dive);
+	}
+
+	public void PlayEmergeFromWaterAnimation() {
+		_animationPlayer!.Play("emerge_from_water");
+	}
+
+	private void EmergeFromWaterAnimationDone() {
+		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.EmergeFromWater);
 	}
 }
