@@ -11,6 +11,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneDiving = [];
 
 	[Export] private float _underwaterTime = 5.0f;
+	[Export] private string _stateName = "underwater";
 	private Timer? _diveTimer;
 	private bool _isDoneDiving = false;
 
@@ -28,7 +29,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override string StateName() {
-		return "underwater";
+		return _stateName;
 	}
 
 	public override HashSet<string> RequiresStates() {

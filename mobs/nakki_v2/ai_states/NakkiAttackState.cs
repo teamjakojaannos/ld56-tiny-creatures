@@ -7,12 +7,13 @@ namespace Jakojaannos.WisperingWoods;
 public partial class NakkiAttackState : NakkiAiState {
 
 	[Export] private float _attackTime = 1.0f;
+	[Export] private string _stateName = "attack";
 
 	public override void _Ready() {
 	}
 
 	public override string StateName() {
-		return "attack";
+		return _stateName;
 	}
 
 	public override HashSet<string> RequiresStates() {
