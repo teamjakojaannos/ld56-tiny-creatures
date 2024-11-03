@@ -37,14 +37,14 @@ position = Vector2(75, 10)
 position = Vector2(-78.0758, 127.468)
 curve = SubResource("Curve2D_nnck7")
 
-[node name="NäkkiAttackState" parent="SlowNäkki/States" index="3"]
+[node name="Attack" parent="SlowNäkki/States" index="3"]
 _attackTime = 5.0
 
 [node name="InstakillNäkki" parent="." instance=ExtResource("1_i30b3")]
 position = Vector2(215.314, 150.051)
 curve = SubResource("Curve2D_11nyg")
 
-[node name="NäkkiAttackState" parent="InstakillNäkki/States" index="3"]
+[node name="Attack" parent="InstakillNäkki/States" index="3"]
 _attackTime = 0.1
 
 [editable path="SlowNäkki"]

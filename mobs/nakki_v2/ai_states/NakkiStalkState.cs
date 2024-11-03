@@ -6,6 +6,7 @@ namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiStalkState : NakkiAiState {
 	[Export] private float _stalkTime = 5.0f;
+	[Export] private string _stateName = "stalk";
 	private Timer? _timer;
 	private bool _isDoneStalking;
 
@@ -17,7 +18,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	}
 
 	public override string StateName() {
-		return "stalk";
+		return _stateName;
 	}
 
 	public override HashSet<string> RequiresStates() {

@@ -11,6 +11,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneIdling = [];
 
 	[Export] private float _idleTime = 2.0f;
+	[Export] private string _stateName = "idle";
 
 	private Timer? _timer;
 	private bool _isDoneIdling = false;
@@ -29,7 +30,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	public override string StateName() {
-		return "idle";
+		return _stateName;
 	}
 
 	public override HashSet<string> RequiresStates() {

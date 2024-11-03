@@ -11,6 +11,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneMoving = [];
 
 	[Export] private float _moveTime = 5.0f;
+	[Export] private string _stateName = "movement";
 
 	private Timer? _timer;
 	private bool _isDoneMoving = false;
@@ -29,7 +30,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	public override string StateName() {
-		return "movement";
+		return _stateName;
 	}
 
 	public override HashSet<string> RequiresStates() {
