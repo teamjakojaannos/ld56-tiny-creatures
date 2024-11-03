@@ -31,6 +31,14 @@ public partial class NakkiV2 : Path2D {
 
 	[Export] public float _stalkThreshold = 40.0f;
 	[Export] public float _attackThreshold = 100.0f;
+	[Export] public float _attackTime = 1.0f;
+
+	private AnimationPlayer? _animationPlayer;
+	private bool _isPlayerInDanger = false;
+	private bool _playerIsDead = false;
+	public Node2D? _attack;
+	private AnimatedSprite2D? _fakePlayer;
+	public AnimatedSprite2D? _hand;
 
 	public override void _Ready() {
 		_nakkiEntity = GetNode<PathFollow2D>("NäkkiEntity");
@@ -39,6 +47,22 @@ public partial class NakkiV2 : Path2D {
 		sightcone.BodyExited += SightConeExited;
 
 		_lineOfSight = _nakkiEntity.GetNode<RayCast2D>("LineOfSight");
+
+		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+
+		// TODO: attack timer could be moved to attack state
+		var attackTimer = GetNode<Timer>("AttackTimer");
+		attackTimer.WaitTime = _attackTime;
+		attackTimer.Timeout += FinishAttack;
+
+		_attack = GetNode<Node2D>("Attack");
+
+		var dangerZone = GetNode<Area2D>("Attack/DangerZoneSprite/DangerZone");
+		dangerZone.BodyEntered += DangerZoneEntered;
+		dangerZone.BodyExited += DangerZoneExited;
+
+		_fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
+		_hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
 		LoadStates();
 		ResetStateToDefault();
@@ -188,15 +212,66 @@ public partial class NakkiV2 : Path2D {
 		_targetProgress = null;
 	}
 
-	public void SightConeEntered(Node2D node) {
+	private void SightConeEntered(Node2D node) {
 		if (node is Player player) {
 			_player = player;
 		}
 	}
 
-	public void SightConeExited(Node2D node) {
+	private void SightConeExited(Node2D node) {
 		if (node is Player) {
 			_player = null;
 		}
+	}
+
+	private void DangerZoneEntered(Node2D node) {
+		if (node is Player) {
+			_isPlayerInDanger = true;
+		}
+	}
+
+	private void DangerZoneExited(Node2D node) {
+		if (node is Player) {
+			_isPlayerInDanger = false;
+		}
+	}
+
+	public void PlayAttackAnimation() {
+		_animationPlayer!.Play("start_attack");
+	}
+
+	private void FinishAttack() {
+		_animationPlayer!.Play("finish_attack");
+	}
+
+	private void AttackAnimationDone() {
+		// TODO: go underwater for a short time
+		// GoUnderwater(0.25f);
+	}
+
+	private void TryKillPlayer() {
+		if (!_isPlayerInDanger) {
+			return;
+		}
+
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		if (playerRef is not Player player) {
+			return;
+		}
+
+		player.SetSpriteVisible(false);
+		player.SetMovementEnabled(false);
+		_fakePlayer!.Visible = true;
+
+		player.Die();
+		_playerIsDead = true;
+	}
+
+	private void EmergeFromWaterAnimationDone() {
+		// TODO: notify state that this is done
+	}
+
+	private void GoUnderwaterAnimationDone() {
+		// TODO: notify state that this is done
 	}
 }

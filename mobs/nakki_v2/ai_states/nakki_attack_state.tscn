@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://baobtck5t1jct"]
+
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiAttackState.cs" id="1_44k50"]
+
+[node name="NäkkiAttackState" type="Node"]
+script = ExtResource("1_44k50")
