@@ -67,6 +67,8 @@ public partial class NakkiV2 : Path2D {
 		}
 
 		LoadStates();
+		LoadOverrideStates();
+		CheckAllRequiredStatesArePresent();
 		ResetStateToDefault();
 	}
 
@@ -85,15 +87,26 @@ public partial class NakkiV2 : Path2D {
 				GD.Print($"Warning, näkki has multiple states named '{name}'.");
 			}
 
-			_statesByName.Add(name, state);
+			_statesByName[name] = state;
 		}
+	}
 
-		// make sure all required states are present
-		foreach (var node in nodes) {
-			if (node is not NakkiAiState state) {
-				continue;
+	/// <summary>
+	/// Adding a state as näkki's child will replace the default state. Useful
+	/// for example if we want to override "attack" state and don't want to
+	/// enable "editable children"
+	/// </summary>
+	private void LoadOverrideStates() {
+		var children = GetChildren();
+		foreach (var node in children) {
+			if (node is NakkiAiState state) {
+				_statesByName[state.StateName()] = state;
 			}
+		}
+	}
 
+	private void CheckAllRequiredStatesArePresent() {
+		foreach (var (name, state) in _statesByName) {
 			var reqs = state.RequiresStates();
 			foreach (var req in reqs) {
 				if (!_statesByName.ContainsKey(req)) {
