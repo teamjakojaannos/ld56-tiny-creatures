@@ -6,6 +6,8 @@ namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiAttackState : NakkiAiState {
 
+	[Export] private float _attackTime = 1.0f;
+
 	public override void _Ready() {
 	}
 
@@ -34,7 +36,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 		player.Slowed = true;
 		nakki._attack!.GlobalPosition = player.GlobalPosition;
-		nakki.PlayAttackAnimation();
+		nakki.PlayAttackAnimation(_attackTime);
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
