@@ -14,6 +14,9 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	[Export] private float _underwaterTimeVariation = 0.3f;
 	[Export] private float _emergeAtPlayerChance = 0.2f;
 	[Export] private string _stateName = "underwater";
+	[Export] private float _diveAnimationSpeed = 1.0f;
+	[Export] private float _emergeAnimationSpeed = 1.0f;
+
 	private Timer? _diveTimer;
 	private bool _isDoneDiving = false;
 	private bool _isEmerging = false;
@@ -55,7 +58,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		}
 
 		_isEmerging = true;
-		nakki.PlayEmergeFromWaterAnimation();
+		nakki.PlayEmergeFromWaterAnimation(_emergeAnimationSpeed);
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
@@ -73,7 +76,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		_isDoneDiving = false;
 		_isEmerging = false;
 		_diveTimer!.Stop();
-		nakki.PlayDiveAnimation();
+		nakki.PlayDiveAnimation(_diveAnimationSpeed);
 	}
 
 	public override void ExitState(NakkiV2 nakki) {

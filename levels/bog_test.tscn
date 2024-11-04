@@ -38,9 +38,10 @@ position = Vector2(75, 10)
 [node name="SlowNäkki" parent="." instance=ExtResource("1_i30b3")]
 position = Vector2(-78.0758, 127.468)
 curve = SubResource("Curve2D_nnck7")
+_defaultState = "underwater"
 
 [node name="SlowAttack" parent="SlowNäkki" instance=ExtResource("3_ohs1l")]
-_attackTime = 5.0
+_attackTime = 10.0
 
 [node name="NäkkiUnderwaterState" parent="SlowNäkki" instance=ExtResource("4_p3elr")]
 _emergeAtPlayerChance = 1.0
@@ -48,9 +49,14 @@ _emergeAtPlayerChance = 1.0
 [node name="InstakillNäkki" parent="." instance=ExtResource("1_i30b3")]
 position = Vector2(215.314, 150.051)
 curve = SubResource("Curve2D_11nyg")
+_defaultState = "movement"
 
 [node name="FastAttack" parent="InstakillNäkki" instance=ExtResource("3_ohs1l")]
 _attackTime = 0.1
+_animationSpeed = 5.0
+
+[node name="NäkkiUnderwaterState" parent="InstakillNäkki" instance=ExtResource("4_p3elr")]
+_emergeAnimationSpeed = 5.0
 
 [node name="BogRock2" parent="." instance=ExtResource("2_bi5lu")]
 position = Vector2(-35, 158)
