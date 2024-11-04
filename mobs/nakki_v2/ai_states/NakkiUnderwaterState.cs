@@ -11,6 +11,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneDiving = [];
 
 	[Export] private float _underwaterTime = 5.0f;
+	[Export] private float _underwaterTimeVariation = 0.3f;
 	[Export] private float _emergeAtPlayerChance = 0.2f;
 	[Export] private string _stateName = "underwater";
 	private Timer? _diveTimer;
@@ -84,7 +85,8 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Dive) {
-			_diveTimer!.WaitTime = _underwaterTime * _diveTimeMult;
+			var randomTime = _rng.RandomWithVariation(_underwaterTime, _underwaterTimeVariation);
+			_diveTimer!.WaitTime = randomTime * _diveTimeMult;
 			_diveTimer.Start();
 			return;
 		}

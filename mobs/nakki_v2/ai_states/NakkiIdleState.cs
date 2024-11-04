@@ -12,6 +12,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneIdling = [];
 
 	[Export] private float _idleTime = 2.0f;
+	[Export] private float _idleTimeVariation = 0.5f;
 	[Export] private string _stateName = "idle";
 
 	private Timer? _timer;
@@ -61,7 +62,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneIdling = false;
 
-		_timer!.WaitTime = _idleTime;
+		_timer!.WaitTime = _rng.RandomWithVariation(_idleTime, _idleTimeVariation);
 		_timer!.Start();
 	}
 
