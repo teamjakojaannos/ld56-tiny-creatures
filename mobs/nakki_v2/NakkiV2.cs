@@ -75,9 +75,16 @@ public partial class NakkiV2 : Path2D {
 		ResetStateToDefault();
 
 		this.Persistent().PlayerRespawned += () => {
+			_attackTimer.Stop();
+			_animationPlayer.Stop();
+			_animationPlayer.Play("RESET");
+
 			_isPlayerInDanger = false;
 			_playerIsDead = false;
 			_fakePlayer.Visible = false;
+			_hand.Visible = false;
+			_targetProgress = null;
+
 			ResetStateToDefault();
 		};
 	}
