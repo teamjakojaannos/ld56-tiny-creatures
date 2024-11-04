@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=17 format=3 uid="uid://8lvqy3vv7876"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_i30b3"]
 [ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_bi5lu"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="6_7klj3"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="7_vxuua"]
 [ext_resource type="Script" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
+[ext_resource type="PackedScene" uid="uid://c01xyyp3ncu0f" path="res://mobs/nakki_v2/ai_states/nakki_emerge_on_trigger_state.tscn" id="9_gdfdd"]
 
 [sub_resource type="Curve2D" id="Curve2D_vhevo"]
 _data = {
@@ -35,6 +36,15 @@ point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyv"]
 size = Vector2(130, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs7ua"]
+size = Vector2(130, 130)
+
+[sub_resource type="Curve2D" id="Curve2D_mtpd0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
 
 [node name="BogTest" type="Node2D"]
 
@@ -109,3 +119,38 @@ _nakkiToTrigger = NodePath("../../TriggerNäkki")
 [node name="Collider" type="CollisionShape2D" parent="TriggerSprite/Trigger"]
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_phpyv")
+
+[node name="TriggerSprite2" type="Sprite2D" parent="."]
+position = Vector2(300, 120)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_vxuua")
+
+[node name="Trigger" type="Area2D" parent="TriggerSprite2" node_paths=PackedStringArray("_nakkiToTrigger")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("8_pjiqu")
+_nakkiToTrigger = NodePath("../../TriggerNäkki2")
+
+[node name="Collider" type="CollisionShape2D" parent="TriggerSprite2/Trigger"]
+position = Vector2(0, 4.57764e-05)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bs7ua")
+
+[node name="TriggerNäkki2" parent="." instance=ExtResource("1_i30b3")]
+position = Vector2(395, 108)
+curve = SubResource("Curve2D_mtpd0")
+_defaultState = "emerge_on_trigger"
+_detectionGain = 400.0
+_stalkThreshold = 200.0
+
+[node name="EmergeOnTrigger" parent="TriggerNäkki2" instance=ExtResource("9_gdfdd")]
+
+[node name="Idle" parent="TriggerNäkki2" instance=ExtResource("6_7klj3")]
+_pickOneOfTheseStatesWhenDoneIdling = ["underwater", "idle", "emerge_on_trigger"]
+
+[node name="Underwater" parent="TriggerNäkki2" instance=ExtResource("4_p3elr")]
+_pickOneOfTheseStatesWhenDoneDiving = ["idle"]
+
+[node name="AttackState" parent="TriggerNäkki2" instance=ExtResource("3_ohs1l")]
+_attackTime = 0.5
+_animationSpeed = 3.0
