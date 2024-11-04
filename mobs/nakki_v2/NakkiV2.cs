@@ -283,9 +283,9 @@ public partial class NakkiV2 : Path2D {
 	/// Plays attack animation, which will start a timer. After 'attackTime' seconds
 	/// näkki will finish the attack and kill player is they are in the danger zone.
 	/// </summary>
-	public void PlayAttackAnimation(float attackTime) {
+	public void PlayAttackAnimation(float attackTime, float animationSpeed = 1.0f) {
 		_attackTimer!.WaitTime = attackTime;
-		_animationPlayer!.Play("start_attack");
+		_animationPlayer!.Play("start_attack", customSpeed: animationSpeed);
 	}
 
 	private void FinishAttack() {
@@ -314,16 +314,16 @@ public partial class NakkiV2 : Path2D {
 		_playerIsDead = true;
 	}
 
-	public void PlayDiveAnimation() {
-		_animationPlayer!.Play("go_underwater");
+	public void PlayDiveAnimation(float animationSpeed = 1.0f) {
+		_animationPlayer!.Play("go_underwater", customSpeed: animationSpeed);
 	}
 
 	private void GoUnderwaterAnimationDone() {
 		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.Dive);
 	}
 
-	public void PlayEmergeFromWaterAnimation() {
-		_animationPlayer!.Play("emerge_from_water");
+	public void PlayEmergeFromWaterAnimation(float animationSpeed = 1.0f) {
+		_animationPlayer!.Play("emerge_from_water", customSpeed: animationSpeed);
 	}
 
 	private void EmergeFromWaterAnimationDone() {

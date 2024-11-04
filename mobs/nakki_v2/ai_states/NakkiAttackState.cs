@@ -7,6 +7,7 @@ namespace Jakojaannos.WisperingWoods;
 public partial class NakkiAttackState : NakkiAiState {
 	[Export] private PackedScene? _waterSplash;
 	[Export] private float _attackTime = 1.0f;
+	[Export] private float _animationSpeed = 1.0f;
 	[Export] private string _stateName = "attack";
 
 	public override void _Ready() {
@@ -45,7 +46,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 		player.Slowed = true;
 		nakki._attack!.GlobalPosition = player.GlobalPosition;
-		nakki.PlayAttackAnimation(_attackTime);
+		nakki.PlayAttackAnimation(_attackTime, _animationSpeed);
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
