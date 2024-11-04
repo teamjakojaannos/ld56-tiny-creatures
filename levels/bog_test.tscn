@@ -25,7 +25,7 @@ point_count = 2
 
 [node name="BogTest" type="Node2D"]
 
-[node name="Marker2D" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+[node name="Marker2D" type="Marker2D" parent="." groups=["HubSpawn", "PlayerSpawn"]]
 position = Vector2(176, 84)
 
 [node name="Näkki" parent="." instance=ExtResource("1_i30b3")]
