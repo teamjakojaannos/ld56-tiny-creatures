@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 using Godot;
 
@@ -31,6 +33,14 @@ public abstract partial class NakkiAiState : Node {
 	public virtual void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) { }
 
 	public virtual void ReceiveTrigger(NakkiV2 nakki) { }
+
+	public static string[] AiStateNames() {
+		return Assembly.GetAssembly(typeof(NakkiAiState))
+			?.DefinedTypes
+			?.Where(type => type.IsSubclassOf(typeof(NakkiAiState)))
+			?.Select(aiStateType => aiStateType.Name)
+			?.ToArray() ?? [];
+	}
 }
 
 public enum NakkiAnimation {

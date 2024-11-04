@@ -4,9 +4,13 @@ using Godot;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiV2 : Path2D {
 	[Export] private float _speed = 50.0f;
 	[Export] private string _defaultState = "idle";
+
+	[Export]
+	public string DefaultStateButBetter { get; set; } = nameof(NakkiIdleState);
 
 	private readonly Dictionary<string, NakkiAiState> _statesByName = [];
 
@@ -41,7 +45,24 @@ public partial class NakkiV2 : Path2D {
 	public AnimatedSprite2D? _hand;
 	private Timer? _diveCooldown;
 
+	public override void _ValidateProperty(Godot.Collections.Dictionary property) {
+		base._ValidateProperty(property);
+
+		var propertyName = property["name"].AsStringName();
+		if (propertyName == PropertyName.DefaultStateButBetter) {
+			var stateNames = NakkiAiState.AiStateNames();
+			GD.Print($"state names: [{string.Join(",", stateNames)}]");
+
+			property["hint"] = (int)PropertyHint.Enum;
+			property["hint_string"] = string.Join(",", stateNames);
+		}
+	}
+
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_nakkiEntity = GetNode<PathFollow2D>("NäkkiEntity");
 		var sightcone = _nakkiEntity.GetNode<Area2D>("SightCone");
 		sightcone.BodyEntered += SightConeEntered;
@@ -174,6 +195,10 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public override void _PhysicsProcess(double ddelta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)ddelta;
 
 		CurrentState!.AiUpdate(this);
