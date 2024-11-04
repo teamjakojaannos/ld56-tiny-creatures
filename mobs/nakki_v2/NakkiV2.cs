@@ -239,6 +239,11 @@ public partial class NakkiV2 : Path2D {
 		_targetProgress = progress;
 	}
 
+	public void TeleportToProgress(float progress) {
+		_nakkiEntity!.Progress = progress;
+		_targetProgress = null;
+	}
+
 	public void ClearMovementTarget() {
 		_targetProgress = null;
 	}
@@ -326,5 +331,10 @@ public partial class NakkiV2 : Path2D {
 
 	public bool CanGoUnderwater() {
 		return _diveCooldown!.IsStopped();
+	}
+
+	public float GetPlayerXPositionRelative(Player player) {
+		var playerPosition = player.GlobalPosition;
+		return playerPosition.X - GlobalPosition.X;
 	}
 }

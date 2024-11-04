@@ -12,6 +12,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneMoving = [];
 
 	[Export] private float _moveTime = 5.0f;
+	[Export] private float _moveToPlayerChance = 0.2f;
 	[Export] private string _stateName = "movement";
 
 	private Timer? _timer;
@@ -59,8 +60,16 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	public override void EnterState(NakkiV2 nakki) {
-		var newPosition = _rng.Randf();
-		nakki.SetProgressRatioTarget(newPosition);
+		var playerRef = GetTree().GetFirstNodeInGroup("Player");
+		var moveToPlayer = _rng.DiceRoll(_moveToPlayerChance);
+
+		if (moveToPlayer && playerRef is Player player) {
+			var relative = nakki.GetPlayerXPositionRelative(player);
+			nakki.SetProgressTarget(relative);
+		} else {
+			var newPosition = _rng.Randf();
+			nakki.SetProgressRatioTarget(newPosition);
+		}
 
 		_isDoneMoving = false;
 		_timer!.WaitTime = _moveTime;
