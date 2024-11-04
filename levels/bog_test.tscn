@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=8 format=3 uid="uid://8lvqy3vv7876"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_i30b3"]
 [ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_bi5lu"]
 [ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="3_ohs1l"]
+[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="4_p3elr"]
 
 [sub_resource type="Curve2D" id="Curve2D_vhevo"]
 _data = {
@@ -41,9 +42,15 @@ curve = SubResource("Curve2D_nnck7")
 [node name="SlowAttack" parent="SlowNäkki" instance=ExtResource("3_ohs1l")]
 _attackTime = 5.0
 
+[node name="NäkkiUnderwaterState" parent="SlowNäkki" instance=ExtResource("4_p3elr")]
+_emergeAtPlayerChance = 1.0
+
 [node name="InstakillNäkki" parent="." instance=ExtResource("1_i30b3")]
 position = Vector2(215.314, 150.051)
 curve = SubResource("Curve2D_11nyg")
 
 [node name="FastAttack" parent="InstakillNäkki" instance=ExtResource("3_ohs1l")]
 _attackTime = 0.1
+
+[node name="BogRock2" parent="." instance=ExtResource("2_bi5lu")]
+position = Vector2(-35, 158)

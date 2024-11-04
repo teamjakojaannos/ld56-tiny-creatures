@@ -32,15 +32,8 @@ public partial class NakkiStalkState : NakkiAiState {
 			return;
 		}
 
-		var relative = GetPlayerXPositionRelative(nakki, player);
+		var relative = nakki.GetPlayerXPositionRelative(player);
 		nakki.SetProgressTarget(relative);
-	}
-
-	private static float GetPlayerXPositionRelative(NakkiV2 nakki, Player player) {
-		var playerPosition = player.GlobalPosition;
-		var myPosition = nakki.GlobalPosition;
-
-		return playerPosition.X - myPosition.X;
 	}
 
 	public override void EnterState(NakkiV2 nakki) {
