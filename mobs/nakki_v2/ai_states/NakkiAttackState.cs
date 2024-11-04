@@ -35,12 +35,14 @@ public partial class NakkiAttackState : NakkiAiState {
 
 		if (_waterSplash is not null) {
 			var splash = _waterSplash.Instantiate<Node2D>();
+			// we want to set position before making it visible (aka adding as a child)
+			// so it isn't out of position for 1 frame
+			splash.GlobalPosition = player.GlobalPosition - nakki.Position;
 			nakki.AddChild(splash);
-			splash.GlobalPosition = player.GlobalPosition;
 		}
 
 		// HACK: scale instead of flipH to affect children, too
-		nakki._hand!.Scale = player.GlobalPosition.X < nakki.GlobalPosition.X
+		nakki._hand!.Scale = player.GlobalPosition.X < nakki._nakkiEntity!.GlobalPosition.X
 			? new(-1.0f, 1.0f)
 			: new(1.0f, 1.0f);
 
