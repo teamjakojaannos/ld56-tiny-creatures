@@ -73,6 +73,13 @@ public partial class NakkiV2 : Path2D {
 		LoadOverrideStates();
 		CheckAllRequiredStatesArePresent();
 		ResetStateToDefault();
+
+		this.Persistent().PlayerRespawned += () => {
+			_isPlayerInDanger = false;
+			_playerIsDead = false;
+			_fakePlayer.Visible = false;
+			ResetStateToDefault();
+		};
 	}
 
 	private void LoadStates() {
