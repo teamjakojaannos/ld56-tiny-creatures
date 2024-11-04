@@ -20,7 +20,7 @@ public partial class NakkiV2 : Path2D {
 		}
 	}
 
-	private PathFollow2D? _nakkiEntity;
+	public PathFollow2D? _nakkiEntity;
 	private float? _targetProgress;
 
 	private Player? _player;
