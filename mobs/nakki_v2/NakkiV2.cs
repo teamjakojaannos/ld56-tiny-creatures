@@ -351,4 +351,8 @@ public partial class NakkiV2 : Path2D {
 		var playerPosition = player.GlobalPosition;
 		return playerPosition.X - GlobalPosition.X;
 	}
+
+	public void PlayerEnteredTrigger() {
+		CurrentState?.ReceiveTrigger(this);
+	}
 }
