@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcvw2bktvmn6e"]
+
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiDiveOnTriggerState.cs" id="1_gjlp2"]
+
+[node name="NäkkDiveOnTriggerState" type="Node"]
+script = ExtResource("1_gjlp2")

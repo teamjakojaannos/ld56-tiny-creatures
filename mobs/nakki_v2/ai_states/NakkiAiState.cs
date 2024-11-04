@@ -29,6 +29,8 @@ public abstract partial class NakkiAiState : Node {
 	}
 
 	public virtual void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) { }
+
+	public virtual void ReceiveTrigger(NakkiV2 nakki) { }
 }
 
 public enum NakkiAnimation {
