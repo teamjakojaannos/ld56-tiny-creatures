@@ -11,7 +11,8 @@ namespace Jakojaannos.WisperingWoods;
 public partial class NakkiMovementState : NakkiAiState {
 	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneMoving = [];
 
-	[Export] private float _moveTime = 5.0f;
+	[Export] private float _moveTime = 3.0f;
+	[Export] private float _moveTimeVariation = 0.3f;
 	[Export] private float _moveToPlayerChance = 0.2f;
 	[Export] private string _stateName = "movement";
 
@@ -72,7 +73,7 @@ public partial class NakkiMovementState : NakkiAiState {
 		}
 
 		_isDoneMoving = false;
-		_timer!.WaitTime = _moveTime;
+		_timer!.WaitTime = _rng.RandomWithVariation(_moveTime, _moveTimeVariation);
 		_timer!.Start();
 	}
 

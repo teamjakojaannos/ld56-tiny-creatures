@@ -2,13 +2,18 @@ using System.Collections.Generic;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util;
+
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiStalkState : NakkiAiState {
 	[Export] private float _stalkTime = 5.0f;
+	[Export] private float _stalkTimeVariation = 0.5f;
 	[Export] private string _stateName = "stalk";
 	private Timer? _timer;
 	private bool _isDoneStalking;
+
+	private RandomNumberGenerator _rng = new();
 
 	public override void _Ready() {
 		_timer = GetNode<Timer>("Timer");
@@ -39,7 +44,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneStalking = false;
 
-		_timer!.WaitTime = _stalkTime;
+		_timer!.WaitTime = _rng.RandomWithVariation(_stalkTime, _stalkTimeVariation);
 		_timer!.Start();
 	}
 
