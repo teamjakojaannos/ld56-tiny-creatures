@@ -8,6 +8,10 @@ public static class CameraControlExtension {
 			? _instance
 			: (_instance = (CameraControl)node.GetTree().GetFirstNodeInGroup("MainCamera"));
 	}
+
+	public static void Reset() {
+		_instance = null;
+	}
 }
 
 public partial class CameraControl : Camera2D {

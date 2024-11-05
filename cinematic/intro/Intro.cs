@@ -139,7 +139,7 @@ public partial class Intro : Node2D {
 	public void FadeInAfterDeath() {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
-		
+
 		if (this.Persistent().Player is Player player) {
 			player.setSpriteVisible(true);
 			GetTree().CreateTimer(2.5f).Timeout += () => {
@@ -151,7 +151,7 @@ public partial class Intro : Node2D {
 	public void FadeInAfterWin() {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
-		
+
 		if (this.Persistent().Player is Player player) {
 			player.Noppa!.VolumeDb = Mathf.LinearToDb(0.0f);
 			player.LieDown();

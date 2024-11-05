@@ -7,6 +7,8 @@
 [node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player")]
 y_sort_enabled = true
 script = ExtResource("1_krudr")
+MainScenePath = "res://levels/World.tscn"
+PlayerPrefab = ExtResource("1_54i1f")
 Intro = NodePath("Intro")
 Player = NodePath("Player")
 

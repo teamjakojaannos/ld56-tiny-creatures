@@ -95,6 +95,8 @@ public partial class Player : CharacterBody2D {
 
 	private bool invulnerable = true;
 
+	private static int spawnCount = 0;
+
 	public override void _Ready() {
 		base._Ready();
 
@@ -102,8 +104,25 @@ public partial class Player : CharacterBody2D {
 			return;
 		}
 
+		if (spawnCount == 0) {
+			Spawn();
+		}
+		spawnCount++;
+
 		playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
+		if (FootstepsTimer is not null) {
+			FootstepsTimer.Timeout += () => {
+				if (IsWet) {
+					FootstepsWet?.Play();
+				} else {
+					Footsteps?.Play();
+				}
+			};
+		}
+	}
+
+	public void Spawn() {
 		var mainPlayerSpawn = GetTree().GetFirstNodeInGroup("IntroPlayerSpawn");
 		if (mainPlayerSpawn is Node2D spawn) {
 			GD.Print($"Starting at intro spawn (\"{spawn.Name}\" at {spawn.GlobalPosition})");
@@ -117,17 +136,6 @@ public partial class Player : CharacterBody2D {
 			} else {
 				GD.PushError("No spawns available");
 			}
-		}
-
-		if (FootstepsTimer is not null) {
-			FootstepsTimer.Timeout += () => {
-
-				if (IsWet) {
-					FootstepsWet?.Play();
-				} else {
-					Footsteps?.Play();
-				}
-			};
 		}
 	}
 
