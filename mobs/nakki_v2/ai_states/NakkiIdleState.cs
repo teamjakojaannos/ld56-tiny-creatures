@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 
 using Godot;
@@ -9,11 +8,12 @@ using Jakojaannos.WisperingWoods.Util;
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiIdleState : NakkiAiState {
-	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneIdling = [];
+	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneIdling = [];
 
 	[Export] private float _idleTime = 2.0f;
 	[Export] private float _idleTimeVariation = 0.5f;
-	[Export] private string _stateName = "idle";
+	[Export] private NakkiStalkState? _stalkState;
+	[Export] private NakkiAttackState? _attackState;
 
 	private Timer? _timer;
 	private bool _isDoneIdling = false;
@@ -29,14 +29,14 @@ public partial class NakkiIdleState : NakkiAiState {
 		if (_pickOneOfTheseStatesWhenDoneIdling.Count == 0) {
 			GD.PrintErr("Näkki's idle state's pick-a-state-after-done-with-idling-list is empty!");
 		}
-	}
 
-	public override string StateName() {
-		return _stateName;
-	}
+		if (_stalkState == null) {
+			GD.PrintErr("Stalk state is null");
+		}
 
-	public override HashSet<string> RequiresStates() {
-		return new HashSet<string>(_pickOneOfTheseStatesWhenDoneIdling);
+		if (_attackState == null) {
+			GD.PrintErr("Attack state is null");
+		}
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -46,13 +46,11 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var possibleStates = nakki.CanGoUnderwater()
-			? _pickOneOfTheseStatesWhenDoneIdling
-			: _pickOneOfTheseStatesWhenDoneIdling.Where(s => s != "underwater");
+		var possibleStates = _pickOneOfTheseStatesWhenDoneIdling.Where(s => s.IsStateReady(nakki));
 
-		_rng.TryPickRandom(possibleStates, out var name);
-		if (name != null) {
-			nakki.TrySwitchToState(name);
+		_rng.TryPickRandom(possibleStates, out var state);
+		if (state != null) {
+			nakki.SwitchToState(state);
 		} else {
 			GD.PrintErr("Näkki's idle state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
@@ -68,5 +66,21 @@ public partial class NakkiIdleState : NakkiAiState {
 
 	public override void ExitState(NakkiV2 nakki) {
 		_timer!.Stop();
+	}
+
+	public override bool ShouldTickDetection() {
+		return true;
+	}
+
+	public override void DetectionLevelChanged(NakkiV2 nakki) {
+		if (nakki._detectionLevel >= nakki._attackThreshold) {
+			nakki.SwitchToState(_attackState!);
+			return;
+		}
+
+		if (nakki._detectionLevel >= nakki._stalkThreshold) {
+			nakki.SwitchToState(_stalkState!);
+			return;
+		}
 	}
 }

@@ -4,7 +4,6 @@
 
 [node name="NäkkiMovementState" type="Node"]
 script = ExtResource("1_o40xf")
-_pickOneOfTheseStatesWhenDoneMoving = ["idle", "underwater"]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

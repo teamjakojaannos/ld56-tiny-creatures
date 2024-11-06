@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Linq;
 
 using Godot;
 using Godot.Collections;
@@ -8,15 +8,15 @@ using Jakojaannos.WisperingWoods.Util;
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiUnderwaterState : NakkiAiState {
-	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneDiving = [];
+	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneDiving = [];
 
 	[Export] private float _underwaterTime = 5.0f;
 	[Export] private float _underwaterTimeVariation = 0.3f;
 	[Export] private float _emergeAtPlayerChance = 0.2f;
-	[Export] private string _stateName = "underwater";
 	[Export] private float _diveAnimationSpeed = 1.0f;
 	[Export] private float _emergeAnimationSpeed = 1.0f;
 
+	private Timer? _diveCooldown;
 	private Timer? _diveTimer;
 	private bool _isDoneDiving = false;
 	private bool _isEmerging = false;
@@ -31,17 +31,11 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 			_isDoneDiving = true;
 		};
 
+		_diveCooldown = GetNode<Timer>("DiveCooldown");
+
 		if (_pickOneOfTheseStatesWhenDoneDiving.Count == 0) {
 			GD.PrintErr("Näkki's underwater state's pick-a-state-after-done-with-diving-list is empty!");
 		}
-	}
-
-	public override string StateName() {
-		return _stateName;
-	}
-
-	public override HashSet<string> RequiresStates() {
-		return new(_pickOneOfTheseStatesWhenDoneDiving);
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -62,9 +56,11 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		_rng.TryPickRandom(_pickOneOfTheseStatesWhenDoneDiving, out var name);
-		if (name != null) {
-			nakki.TrySwitchToState(name);
+		var possibleStates = _pickOneOfTheseStatesWhenDoneDiving.Where(s => s.IsStateReady(nakki));
+
+		_rng.TryPickRandom(possibleStates, out var state);
+		if (state != null) {
+			nakki.SwitchToState(state);
 		} else {
 			GD.PrintErr("Näkki's underwater state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
@@ -83,7 +79,10 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		nakki._detectionLevel = 0.0f;
 
 		_diveTimer!.Stop();
-		nakki.StartDiveCooldown();
+
+		// restart timer if it was already running
+		_diveCooldown!.Stop();
+		_diveCooldown.Start();
 	}
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
@@ -108,5 +107,9 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 
 	public void SetDiveTimeMult(float timeMult) {
 		_diveTimeMult = timeMult;
+	}
+
+	public override bool IsStateReady(NakkiV2 nakki) {
+		return _diveCooldown!.IsStopped();
 	}
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 
 using Godot;
@@ -9,12 +8,13 @@ using Jakojaannos.WisperingWoods.Util;
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiMovementState : NakkiAiState {
-	[Export] private Array<string> _pickOneOfTheseStatesWhenDoneMoving = [];
+	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneMoving = [];
 
 	[Export] private float _moveTime = 3.0f;
 	[Export] private float _moveTimeVariation = 0.3f;
 	[Export] private float _moveToPlayerChance = 0.2f;
-	[Export] private string _stateName = "movement";
+	[Export] private NakkiStalkState? _stalkState;
+	[Export] private NakkiAttackState? _attackState;
 
 	private Timer? _timer;
 	private bool _isDoneMoving = false;
@@ -30,14 +30,14 @@ public partial class NakkiMovementState : NakkiAiState {
 		if (_pickOneOfTheseStatesWhenDoneMoving.Count == 0) {
 			GD.PrintErr("Näkki's movement state's pick-a-state-after-done-with-movement-list is empty!");
 		}
-	}
 
-	public override string StateName() {
-		return _stateName;
-	}
+		if (_stalkState == null) {
+			GD.PrintErr("Stalk state is null");
+		}
 
-	public override HashSet<string> RequiresStates() {
-		return new HashSet<string>(_pickOneOfTheseStatesWhenDoneMoving);
+		if (_attackState == null) {
+			GD.PrintErr("Attack state is null");
+		}
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -47,13 +47,11 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var possibleStates = nakki.CanGoUnderwater()
-			? _pickOneOfTheseStatesWhenDoneMoving
-			: _pickOneOfTheseStatesWhenDoneMoving.Where(s => s != "underwater");
+		var possibleStates = _pickOneOfTheseStatesWhenDoneMoving.Where(s => s.IsStateReady(nakki));
 
-		_rng.TryPickRandom(possibleStates, out var name);
-		if (name != null) {
-			nakki.TrySwitchToState(name);
+		_rng.TryPickRandom(possibleStates, out var state);
+		if (state != null) {
+			nakki.SwitchToState(state);
 		} else {
 			GD.PrintErr("Näkki's movement state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
@@ -80,5 +78,21 @@ public partial class NakkiMovementState : NakkiAiState {
 	public override void ExitState(NakkiV2 nakki) {
 		nakki.ClearMovementTarget();
 		_timer!.Stop();
+	}
+
+	public override bool ShouldTickDetection() {
+		return true;
+	}
+
+	public override void DetectionLevelChanged(NakkiV2 nakki) {
+		if (nakki._detectionLevel >= nakki._attackThreshold) {
+			nakki.SwitchToState(_attackState!);
+			return;
+		}
+
+		if (nakki._detectionLevel >= nakki._stalkThreshold) {
+			nakki.SwitchToState(_stalkState!);
+			return;
+		}
 	}
 }

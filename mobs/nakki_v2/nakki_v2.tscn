@@ -1,16 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://cd8qrla1d18g8"]
+[gd_scene load_steps=22 format=3 uid="uid://cd8qrla1d18g8"]
 
 [ext_resource type="Script" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_88m0x"]
-[ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="3_6amd0"]
 [ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="3_bvjim"]
 [ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://mobs/kasianimaatio-sheet-top.png" id="4_3k7wb"]
-[ext_resource type="PackedScene" uid="uid://bue7in6n06yhv" path="res://mobs/nakki_v2/ai_states/nakki_movement_state.tscn" id="4_sh5es"]
-[ext_resource type="PackedScene" uid="uid://kignpg7mg7fw" path="res://mobs/nakki_v2/ai_states/nakki_stalk_state.tscn" id="5_g2xrd"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="5_x2o33"]
-[ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="9_bce00"]
 [ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="9_oeiko"]
-[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="10_20cje"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ums85"]
 radius = 17.0294
@@ -688,18 +683,6 @@ sprite_frames = ExtResource("5_x2o33")
 animation = &"IdleUp"
 centered = false
 offset = Vector2(-16, -45)
-
-[node name="States" type="Node" parent="."]
-
-[node name="Idle" parent="States" instance=ExtResource("3_6amd0")]
-
-[node name="Movement" parent="States" instance=ExtResource("4_sh5es")]
-
-[node name="Stalk" parent="States" instance=ExtResource("5_g2xrd")]
-
-[node name="Attack" parent="States" instance=ExtResource("9_bce00")]
-
-[node name="Underwater" parent="States" instance=ExtResource("10_20cje")]
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true

@@ -6,9 +6,7 @@ namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiV2 : Path2D {
 	[Export] private float _speed = 50.0f;
-	[Export] private string _defaultState = "idle";
-
-	private readonly Dictionary<string, NakkiAiState> _statesByName = [];
+	[Export] private NakkiAiState? _defaultState;
 
 	private NakkiAiState? _currentState;
 	private NakkiAiState? CurrentState {
@@ -39,7 +37,6 @@ public partial class NakkiV2 : Path2D {
 	private Timer? _attackTimer;
 	private AnimatedSprite2D? _fakePlayer;
 	public AnimatedSprite2D? _hand;
-	private Timer? _diveCooldown;
 
 	public override void _Ready() {
 		_nakkiEntity = GetNode<PathFollow2D>("NäkkiEntity");
@@ -63,15 +60,14 @@ public partial class NakkiV2 : Path2D {
 		_fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		_hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
-		_diveCooldown = GetNode<Timer>("DiveCooldown");
-
 		if (Curve == null) {
 			GD.PrintErr("You forgot to set path for Näkki!");
 		}
 
-		LoadStates();
-		LoadOverrideStates();
-		CheckAllRequiredStatesArePresent();
+		if (_defaultState == null) {
+			GD.PrintErr("Näkki's default state is null");
+		}
+
 		ResetStateToDefault();
 
 		this.Persistent().PlayerRespawned += () => {
@@ -89,88 +85,12 @@ public partial class NakkiV2 : Path2D {
 		};
 	}
 
-	private void LoadStates() {
-		var nodes = GetNode("States").GetChildren();
-		foreach (var node in nodes) {
-			if (node is not NakkiAiState state) {
-				var expected = nameof(NakkiAiState);
-				var nodeName = node.Name;
-				GD.PrintErr($"Näkki has non-{expected} state '{nodeName}'.");
-				continue;
-			}
-
-			var name = state.StateName();
-			if (_statesByName.ContainsKey(name)) {
-				GD.Print($"Warning, näkki has multiple states named '{name}'.");
-			}
-
-			_statesByName[name] = state;
-		}
-	}
-
-	/// <summary>
-	/// Adding a state as näkki's child will replace the default state. Useful
-	/// for example if we want to override "attack" state and don't want to
-	/// enable "editable children"
-	/// </summary>
-	private void LoadOverrideStates() {
-		var children = GetChildren();
-		foreach (var node in children) {
-			if (node is NakkiAiState state) {
-				_statesByName[state.StateName()] = state;
-			}
-		}
-	}
-
-	private void CheckAllRequiredStatesArePresent() {
-		foreach (var (name, state) in _statesByName) {
-			var reqs = state.RequiresStates();
-			foreach (var req in reqs) {
-				if (!_statesByName.ContainsKey(req)) {
-					var stateName = state.StateName();
-					GD.PrintErr($"Näkki's state '{req}' (required by {stateName}) is not found");
-				}
-			}
-		}
-	}
-
 	public void ResetStateToDefault() {
-		var state = _statesByName.GetValueOrDefault(_defaultState);
-		if (state != null) {
-			CurrentState = state;
-		} else {
-			GD.PrintErr($"Cant find näkki's default state {_defaultState}");
-		}
+		CurrentState = _defaultState;
 	}
 
-	public void TrySwitchToState(string stateName) {
-		var state = _statesByName.GetValueOrDefault(stateName);
-		if (state != null) {
-			CurrentState = state;
-		} else {
-			GD.PrintErr($"Cant find näkki's state '{stateName}'");
-		}
-	}
-
-	public void EnterStalkState() {
-		TrySwitchToState("stalk");
-	}
-
-	public void EnterAttackState() {
-		TrySwitchToState("attack");
-	}
-
-	public void EnterDiveState(float timeMult = 1.0f) {
-		TrySwitchToState("underwater");
-
-		if (CurrentState is not NakkiUnderwaterState underwater) {
-			var expected = nameof(NakkiUnderwaterState);
-			var className = CurrentState?.GetClass() ?? "<null>";
-			GD.Print($"Unexpected diving state, expected {expected}, found {className}");
-			return;
-		}
-
-		underwater.SetDiveTimeMult(timeMult);
+	public void SwitchToState(NakkiAiState state) {
+		CurrentState = state;
 	}
 
 	public override void _PhysicsProcess(double ddelta) {
@@ -300,7 +220,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private void AttackAnimationDone() {
-		EnterDiveState(timeMult: 0.25f);
+		CurrentState!.NakkiAnimationFinished(this, NakkiAnimation.Attack);
 	}
 
 	private void TryKillPlayer() {
@@ -335,16 +255,6 @@ public partial class NakkiV2 : Path2D {
 
 	private void EmergeFromWaterAnimationDone() {
 		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.EmergeFromWater);
-	}
-
-	public void StartDiveCooldown() {
-		// restart timer if it was already running
-		_diveCooldown!.Stop();
-		_diveCooldown.Start();
-	}
-
-	public bool CanGoUnderwater() {
-		return _diveCooldown!.IsStopped();
 	}
 
 	public float GetPlayerXPositionRelative(Player player) {

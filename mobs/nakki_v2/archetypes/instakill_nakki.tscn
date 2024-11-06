@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0bvdnhtwhjen"]
+
+[ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_o6khv"]
+[ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="2_opm4y"]
+[ext_resource type="PackedScene" uid="uid://bue7in6n06yhv" path="res://mobs/nakki_v2/ai_states/nakki_movement_state.tscn" id="3_yxaas"]
+[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="4_vi8yp"]
+[ext_resource type="PackedScene" uid="uid://kignpg7mg7fw" path="res://mobs/nakki_v2/ai_states/nakki_stalk_state.tscn" id="5_n0yme"]
+[ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="6_fuelp"]
+
+[node name="Näkki" node_paths=PackedStringArray("_defaultState") instance=ExtResource("1_o6khv")]
+_defaultState = NodePath("Idle")
+
+[node name="Idle" parent="." index="6" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "_stalkState", "_attackState") instance=ExtResource("2_opm4y")]
+_pickOneOfTheseStatesWhenDoneIdling = [NodePath("../Movement"), NodePath("../Dive")]
+_stalkState = NodePath("../Stalk")
+_attackState = NodePath("../AttackState")
+
+[node name="Movement" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneMoving", "_stalkState", "_attackState") instance=ExtResource("3_yxaas")]
+_pickOneOfTheseStatesWhenDoneMoving = [NodePath("../Idle"), NodePath("../Dive")]
+_stalkState = NodePath("../Stalk")
+_attackState = NodePath("../AttackState")
+
+[node name="Dive" parent="." index="8" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_vi8yp")]
+_pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle"), NodePath("../Movement")]
+_emergeAnimationSpeed = 5.0
+
+[node name="Stalk" parent="." index="9" node_paths=PackedStringArray("_idleState", "_attackState", "_diveState") instance=ExtResource("5_n0yme")]
+_idleState = NodePath("../Idle")
+_attackState = NodePath("../AttackState")
+_diveState = NodePath("../Dive")
+
+[node name="AttackState" parent="." index="10" node_paths=PackedStringArray("_diveState") instance=ExtResource("6_fuelp")]
+_attackTime = 0.1
+_animationSpeed = 5.0
+_diveState = NodePath("../Dive")

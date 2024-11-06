@@ -1,31 +1,24 @@
 using Godot;
 
-using System.Collections.Generic;
-
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiAttackState : NakkiAiState {
 	[Export] private PackedScene? _waterSplash;
 	[Export] private float _attackTime = 1.0f;
 	[Export] private float _animationSpeed = 1.0f;
-	[Export] private string _stateName = "attack";
+	[Export] private NakkiUnderwaterState? _diveState;
 
 	public override void _Ready() {
 		if (_waterSplash == null) {
 			GD.PrintErr("You forgot to set water splash scene!");
 		}
+
+		if (_diveState == null) {
+			GD.PrintErr("Dive state is null");
+		}
 	}
 
-	public override string StateName() {
-		return _stateName;
-	}
-
-	public override HashSet<string> RequiresStates() {
-		return [];
-	}
-
-	public override void AiUpdate(NakkiV2 nakki) {
-	}
+	public override void AiUpdate(NakkiV2 nakki) { }
 
 	public override void EnterState(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
@@ -55,6 +48,13 @@ public partial class NakkiAttackState : NakkiAiState {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is Player player) {
 			player.Slowed = false;
+		}
+	}
+
+	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
+		if (animation == NakkiAnimation.Attack) {
+			nakki.SwitchToState(_diveState!);
+			_diveState!.SetDiveTimeMult(0.25f);
 		}
 	}
 

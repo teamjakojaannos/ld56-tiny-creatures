@@ -1,27 +1,28 @@
-using System.Collections.Generic;
-
 using Godot;
 
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiDiveOnTriggerState : NakkiAiState {
-
-	[Export] private string _stateName = "dive_on_trigger";
-	[Export] private string _diveStateName = "underwater";
+	[Export] private NakkiUnderwaterState? _diveState;
+	[Export] private NakkiStalkState? _stalkState;
+	[Export] private NakkiAttackState? _attackState;
 
 	public override void _Ready() {
-	}
+		if (_diveState == null) {
+			GD.PrintErr("Dive state is null");
+		}
 
-	public override string StateName() {
-		return _stateName;
-	}
+		if (_stalkState == null) {
+			GD.PrintErr("Stalk state is null");
+		}
 
-	public override HashSet<string> RequiresStates() {
-		return [_diveStateName];
+		if (_attackState == null) {
+			GD.PrintErr("Attack state is null");
+		}
 	}
 
 	public override void ReceiveTrigger(NakkiV2 nakki) {
-		nakki.TrySwitchToState(_diveStateName);
+		nakki.SwitchToState(_diveState!);
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) { }
@@ -29,4 +30,20 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) { }
 
 	public override void ExitState(NakkiV2 nakki) { }
+
+	public override bool ShouldTickDetection() {
+		return true;
+	}
+
+	public override void DetectionLevelChanged(NakkiV2 nakki) {
+		if (nakki._detectionLevel >= nakki._attackThreshold) {
+			nakki.SwitchToState(_attackState!);
+			return;
+		}
+
+		if (nakki._detectionLevel >= nakki._stalkThreshold) {
+			nakki.SwitchToState(_stalkState!);
+			return;
+		}
+	}
 }

@@ -1,12 +1,8 @@
-using System.Collections.Generic;
-
 using Godot;
 
 namespace Jakojaannos.WisperingWoods;
 public partial class NakkiEmergeOnTriggerState : NakkiAiState {
-
-	[Export] private string _stateName = "emerge_on_trigger";
-	[Export] private string _enterStateAfterEmerge = "idle";
+	[Export] private NakkiAiState? _enterStateAfterEmerge;
 	[Export] private float _emergeAnimationSpeed = 3.0f;
 	[Export] private float _emergeDelay = 3.0f;
 
@@ -21,14 +17,10 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 		_emergeOnTimeout.Timeout += () => {
 			_emergeTimerDone = true;
 		};
-	}
 
-	public override string StateName() {
-		return _stateName;
-	}
-
-	public override HashSet<string> RequiresStates() {
-		return [_enterStateAfterEmerge];
+		if (_enterStateAfterEmerge == null) {
+			GD.PrintErr("State to enter is null");
+		}
 	}
 
 	public override void ReceiveTrigger(NakkiV2 nakki) {
@@ -64,7 +56,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.EmergeFromWater) {
-			nakki.TrySwitchToState(_enterStateAfterEmerge);
+			nakki.SwitchToState(_enterStateAfterEmerge!);
 			return;
 		}
 

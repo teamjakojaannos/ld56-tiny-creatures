@@ -1,34 +1,32 @@
-[gd_scene load_steps=17 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=14 format=3 uid="uid://8lvqy3vv7876"]
 
-[ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_i30b3"]
+[ext_resource type="PackedScene" uid="uid://d2t0ix0154bii" path="res://mobs/nakki_v2/archetypes/nakki_default.tscn" id="1_sovr5"]
+[ext_resource type="PackedScene" uid="uid://d0bvdnhtwhjen" path="res://mobs/nakki_v2/archetypes/instakill_nakki.tscn" id="2_57t8s"]
 [ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_bi5lu"]
-[ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="3_ohs1l"]
-[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="4_p3elr"]
-[ext_resource type="PackedScene" uid="uid://dcvw2bktvmn6e" path="res://mobs/nakki_v2/ai_states/nakki_dive_on_trigger_state.tscn" id="5_vx6dr"]
-[ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="6_7klj3"]
+[ext_resource type="PackedScene" uid="uid://doaavktwaav52" path="res://mobs/nakki_v2/archetypes/nakki_dive_on_trigger.tscn" id="3_g5g6j"]
+[ext_resource type="PackedScene" uid="uid://cln17kxluf0oa" path="res://mobs/nakki_v2/archetypes/nakki_emerge_on_trigger.tscn" id="4_1ww58"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="7_vxuua"]
 [ext_resource type="Script" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
-[ext_resource type="PackedScene" uid="uid://c01xyyp3ncu0f" path="res://mobs/nakki_v2/ai_states/nakki_emerge_on_trigger_state.tscn" id="9_gdfdd"]
 
-[sub_resource type="Curve2D" id="Curve2D_vhevo"]
+[sub_resource type="Curve2D" id="Curve2D_w0l2u"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_nnck7"]
+[sub_resource type="Curve2D" id="Curve2D_ovfps"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 121, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_11nyg"]
+[sub_resource type="Curve2D" id="Curve2D_wmki6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_l07oa"]
+[sub_resource type="Curve2D" id="Curve2D_r44y0"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
@@ -40,70 +38,32 @@ size = Vector2(130, 130)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs7ua"]
 size = Vector2(130, 130)
 
-[sub_resource type="Curve2D" id="Curve2D_mtpd0"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 2
-
 [node name="BogTest" type="Node2D"]
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["HubSpawn", "PlayerSpawn"]]
 position = Vector2(176, 84)
 
-[node name="Näkki" parent="." instance=ExtResource("1_i30b3")]
+[node name="Näkki" parent="." instance=ExtResource("1_sovr5")]
 position = Vector2(73, -27)
-curve = SubResource("Curve2D_vhevo")
+curve = SubResource("Curve2D_w0l2u")
+
+[node name="InstakillNäkki" parent="." instance=ExtResource("2_57t8s")]
+position = Vector2(-12, 140)
+curve = SubResource("Curve2D_ovfps")
+
+[node name="DiveNäkki" parent="." instance=ExtResource("3_g5g6j")]
+position = Vector2(385, -22)
+curve = SubResource("Curve2D_wmki6")
+
+[node name="EmergeNäkki" parent="." instance=ExtResource("4_1ww58")]
+position = Vector2(400, 110)
+curve = SubResource("Curve2D_r44y0")
 
 [node name="BogRock" parent="." instance=ExtResource("2_bi5lu")]
 position = Vector2(75, 10)
 
-[node name="SlowNäkki" parent="." instance=ExtResource("1_i30b3")]
-position = Vector2(-78.0758, 127.468)
-curve = SubResource("Curve2D_nnck7")
-_defaultState = "underwater"
-
-[node name="SlowAttack" parent="SlowNäkki" instance=ExtResource("3_ohs1l")]
-_attackTime = 10.0
-
-[node name="NäkkiUnderwaterState" parent="SlowNäkki" instance=ExtResource("4_p3elr")]
-_emergeAtPlayerChance = 1.0
-
-[node name="InstakillNäkki" parent="." instance=ExtResource("1_i30b3")]
-position = Vector2(215.314, 150.051)
-curve = SubResource("Curve2D_11nyg")
-_defaultState = "movement"
-
-[node name="FastAttack" parent="InstakillNäkki" instance=ExtResource("3_ohs1l")]
-_attackTime = 0.1
-_animationSpeed = 5.0
-
-[node name="NäkkiUnderwaterState" parent="InstakillNäkki" instance=ExtResource("4_p3elr")]
-_emergeAnimationSpeed = 5.0
-
 [node name="BogRock2" parent="." instance=ExtResource("2_bi5lu")]
-position = Vector2(-35, 158)
-
-[node name="TriggerNäkki" parent="." instance=ExtResource("1_i30b3")]
-position = Vector2(400, -20)
-curve = SubResource("Curve2D_l07oa")
-_defaultState = "dive_on_trigger"
-_detectionGain = 400.0
-_stalkThreshold = 200.0
-
-[node name="DiveOnTrigger" parent="TriggerNäkki" instance=ExtResource("5_vx6dr")]
-
-[node name="Underwater" parent="TriggerNäkki" instance=ExtResource("4_p3elr")]
-_pickOneOfTheseStatesWhenDoneDiving = ["idle"]
-_emergeAtPlayerChance = 0.0
-_emergeAnimationSpeed = 3.0
-
-[node name="Idle" parent="TriggerNäkki" instance=ExtResource("6_7klj3")]
-_pickOneOfTheseStatesWhenDoneIdling = ["underwater", "idle"]
-
-[node name="Attack2" parent="TriggerNäkki" instance=ExtResource("3_ohs1l")]
-_attackTime = 0.2
-_animationSpeed = 4.0
+position = Vector2(13, 177)
 
 [node name="TriggerSprite" type="Sprite2D" parent="."]
 position = Vector2(309, 43)
@@ -114,10 +74,9 @@ texture = ExtResource("7_vxuua")
 collision_layer = 0
 monitorable = false
 script = ExtResource("8_pjiqu")
-_nakkiToTrigger = NodePath("../../TriggerNäkki")
+_nakkiToTrigger = NodePath("../../DiveNäkki")
 
 [node name="Collider" type="CollisionShape2D" parent="TriggerSprite/Trigger"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_phpyv")
 
 [node name="TriggerSprite2" type="Sprite2D" parent="."]
@@ -129,28 +88,8 @@ texture = ExtResource("7_vxuua")
 collision_layer = 0
 monitorable = false
 script = ExtResource("8_pjiqu")
-_nakkiToTrigger = NodePath("../../TriggerNäkki2")
+_nakkiToTrigger = NodePath("../../EmergeNäkki")
 
 [node name="Collider" type="CollisionShape2D" parent="TriggerSprite2/Trigger"]
 position = Vector2(0, 4.57764e-05)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bs7ua")
-
-[node name="TriggerNäkki2" parent="." instance=ExtResource("1_i30b3")]
-position = Vector2(395, 108)
-curve = SubResource("Curve2D_mtpd0")
-_defaultState = "emerge_on_trigger"
-_detectionGain = 400.0
-_stalkThreshold = 200.0
-
-[node name="EmergeOnTrigger" parent="TriggerNäkki2" instance=ExtResource("9_gdfdd")]
-
-[node name="Idle" parent="TriggerNäkki2" instance=ExtResource("6_7klj3")]
-_pickOneOfTheseStatesWhenDoneIdling = ["underwater", "idle", "emerge_on_trigger"]
-
-[node name="Underwater" parent="TriggerNäkki2" instance=ExtResource("4_p3elr")]
-_pickOneOfTheseStatesWhenDoneDiving = ["idle"]
-
-[node name="AttackState" parent="TriggerNäkki2" instance=ExtResource("3_ohs1l")]
-_attackTime = 0.5
-_animationSpeed = 3.0

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://doaavktwaav52"]
+
+[ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_m6u3r"]
+[ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="2_32frh"]
+[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="4_cqrig"]
+[ext_resource type="PackedScene" uid="uid://kignpg7mg7fw" path="res://mobs/nakki_v2/ai_states/nakki_stalk_state.tscn" id="5_y5xeq"]
+[ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="6_uwvgx"]
+[ext_resource type="PackedScene" uid="uid://dcvw2bktvmn6e" path="res://mobs/nakki_v2/ai_states/nakki_dive_on_trigger_state.tscn" id="7_tvs8m"]
+
+[node name="Näkki" node_paths=PackedStringArray("_defaultState") instance=ExtResource("1_m6u3r")]
+_defaultState = NodePath("DiveOnTrigger")
+_detectionGain = 4000.0
+_stalkThreshold = 200.0
+
+[node name="DiveOnTrigger" parent="." index="6" node_paths=PackedStringArray("_diveState", "_stalkState", "_attackState") instance=ExtResource("7_tvs8m")]
+_diveState = NodePath("../Dive")
+_stalkState = NodePath("../Stalk")
+_attackState = NodePath("../AttackState")
+
+[node name="Idle" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "_stalkState", "_attackState") instance=ExtResource("2_32frh")]
+_pickOneOfTheseStatesWhenDoneIdling = [NodePath("."), NodePath("../Dive")]
+_stalkState = NodePath("../Stalk")
+_attackState = NodePath("../AttackState")
+
+[node name="Dive" parent="." index="8" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_cqrig")]
+_pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
+_emergeAtPlayerChance = 0.0
+_emergeAnimationSpeed = 3.0
+
+[node name="AttackState" parent="." index="9" node_paths=PackedStringArray("_diveState") instance=ExtResource("6_uwvgx")]
+_attackTime = 0.2
+_animationSpeed = 4.0
+_diveState = NodePath("../Dive")
+
+[node name="Stalk" parent="." index="10" node_paths=PackedStringArray("_idleState", "_attackState", "_diveState") instance=ExtResource("5_y5xeq")]
+_stalkTime = 0.0
+_stalkTimeVariation = 0.0
+_idleState = NodePath("../Idle")
+_attackState = NodePath("../AttackState")
+_diveState = NodePath("../Dive")
