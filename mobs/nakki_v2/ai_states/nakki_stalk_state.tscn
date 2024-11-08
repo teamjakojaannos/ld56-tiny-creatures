@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiStalkState.cs" id="1_whjnl"]
 
-[node name="NäkkiAlertState" type="Node"]
+[node name="NäkkiStalkState" type="Node"]
 script = ExtResource("1_whjnl")
 
 [node name="Timer" type="Timer" parent="."]
