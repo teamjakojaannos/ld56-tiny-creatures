@@ -26,6 +26,7 @@ _attackState = NodePath("../AttackState")
 _pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
 _emergeAtPlayerChance = 0.0
 _emergeAnimationSpeed = 3.0
+_diveCooldown = 5.0
 
 [node name="AttackState" parent="." index="9" node_paths=PackedStringArray("_diveState") instance=ExtResource("6_uwvgx")]
 _attackTime = 0.2

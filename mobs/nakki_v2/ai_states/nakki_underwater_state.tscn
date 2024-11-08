@@ -9,5 +9,4 @@ script = ExtResource("1_1yefd")
 one_shot = true
 
 [node name="DiveCooldown" type="Timer" parent="."]
-wait_time = 10.0
 one_shot = true

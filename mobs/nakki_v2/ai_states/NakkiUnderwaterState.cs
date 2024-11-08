@@ -15,8 +15,9 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	[Export] private float _emergeAtPlayerChance = 0.2f;
 	[Export] private float _diveAnimationSpeed = 1.0f;
 	[Export] private float _emergeAnimationSpeed = 1.0f;
+	[Export] private float _diveCooldown = 10.0f;
 
-	private Timer? _diveCooldown;
+	private Timer? _diveCooldownTimer;
 	private Timer? _diveTimer;
 	private bool _isDoneDiving = false;
 	private bool _isEmerging = false;
@@ -31,7 +32,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 			_isDoneDiving = true;
 		};
 
-		_diveCooldown = GetNode<Timer>("DiveCooldown");
+		_diveCooldownTimer = GetNode<Timer>("DiveCooldown");
 
 		if (_pickOneOfTheseStatesWhenDoneDiving.Count == 0) {
 			GD.PrintErr("Näkki's underwater state's pick-a-state-after-done-with-diving-list is empty!");
@@ -81,8 +82,9 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		_diveTimer!.Stop();
 
 		// restart timer if it was already running
-		_diveCooldown!.Stop();
-		_diveCooldown.Start();
+		_diveCooldownTimer!.Stop();
+		_diveCooldownTimer.WaitTime = _diveCooldown;
+		_diveCooldownTimer.Start();
 	}
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
@@ -110,6 +112,6 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override bool IsStateReady(NakkiV2 nakki) {
-		return _diveCooldown!.IsStopped();
+		return _diveCooldownTimer!.IsStopped();
 	}
 }
