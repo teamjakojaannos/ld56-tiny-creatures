@@ -73,14 +73,6 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
-		if (nakki._detectionLevel >= nakki._attackThreshold) {
-			nakki.SwitchToState(_attackState!);
-			return;
-		}
-
-		if (nakki._detectionLevel >= nakki._stalkThreshold) {
-			nakki.SwitchToState(_stalkState!);
-			return;
-		}
+		StalkOrAttack(nakki, _attackState!, _stalkState!);
 	}
 }
