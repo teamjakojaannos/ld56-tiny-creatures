@@ -1,21 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://hthnt1vcknxx"]
+[gd_scene load_steps=11 format=3 uid="uid://hthnt1vcknxx"]
 
 [ext_resource type="Script" path="res://dialogue/Dialogue.cs" id="1_e7iml"]
 [ext_resource type="PackedScene" uid="uid://ylwci2dowuy7" path="res://dialogue/row.tscn" id="1_h21uh"]
 [ext_resource type="PackedScene" uid="uid://b20ibux777wdy" path="res://dialogue/interactive_row.tscn" id="3_ib14a"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_ly15r"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueManager.cs" id="5_1me1a"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueUI.cs" id="6_rsgew"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="7_kxuvq"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/TextDialogueLine.cs" id="8_q7vth"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="9_kknn3"]
 
-[sub_resource type="Gradient" id="Gradient_jd6yg"]
+[sub_resource type="Gradient" id="Gradient_em7oe"]
 offsets = PackedFloat32Array(0, 0.998182)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bbcn0"]
-gradient = SubResource("Gradient_jd6yg")
+gradient = SubResource("Gradient_em7oe")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_r0oxh"]
@@ -210,25 +205,3 @@ layout_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_75w22")
 }
-
-[node name="New" type="Node" parent="."]
-script = ExtResource("5_1me1a")
-
-[node name="Control" type="Control" parent="New"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_rsgew")
-
-[node name="Dialogue" type="Node" parent="New"]
-script = ExtResource("7_kxuvq")
-
-[node name="1" type="Node" parent="New/Dialogue"]
-script = ExtResource("8_q7vth")
-Speaker = ExtResource("9_kknn3")
-Side = 1
-
-[node name="2" type="Node" parent="New/Dialogue"]
-script = ExtResource("8_q7vth")
-Text = "More yapping"

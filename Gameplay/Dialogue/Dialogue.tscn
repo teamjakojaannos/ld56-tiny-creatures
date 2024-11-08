@@ -1,0 +1,292 @@
+[gd_scene load_steps=19 format=3 uid="uid://d3qquxamaxbfl"]
+
+[ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
+[ext_resource type="Shader" uid="uid://h4c1uiqf7bbi" path="res://Gameplay/Dialogue/UI/DialogueBackground.tres" id="2_4ko57"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="4_rcpy6"]
+[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="5_htjty"]
+[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="6_bvlql"]
+
+[sub_resource type="Gradient" id="Gradient_v0gls"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b4no2"]
+seed = 1
+frequency = 0.0067
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7ne41"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_v0gls")
+noise = SubResource("FastNoiseLite_b4no2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8bjrs"]
+shader = ExtResource("2_4ko57")
+shader_parameter/CurrentTime = 1222.21
+shader_parameter/TimeScale = 1.0
+shader_parameter/HorizontalScrollSpeed = -0.1
+shader_parameter/VerticalScrollSpeed = 1.0
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_7ne41")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ox3np"]
+seed = 2
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tag5s"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_v0gls")
+noise = SubResource("FastNoiseLite_ox3np")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kl6cq"]
+shader = ExtResource("2_4ko57")
+shader_parameter/CurrentTime = 1222.21
+shader_parameter/TimeScale = 1.0
+shader_parameter/HorizontalScrollSpeed = -0.05
+shader_parameter/VerticalScrollSpeed = 0.25
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_tag5s")
+
+[sub_resource type="Animation" id="Animation_vj67m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/BackgroundSmoke:SmokeTimeScale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/BackgroundSmoke:PercentageOffScreen")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/BackgroundSmoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xrldd"]
+resource_name = "ui_open"
+length = 2.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/BackgroundSmoke:SmokeTimeScale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2, 2.82843),
+"update": 0,
+"values": [1.5, 0.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/BackgroundSmoke:PercentageOffScreen")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/BackgroundSmoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqeli"]
+_data = {
+"RESET": SubResource("Animation_vj67m"),
+"ui_open": SubResource("Animation_xrldd")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8p5x"]
+font = ExtResource("5_htjty")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfu1d"]
+font = ExtResource("5_htjty")
+
+[node name="Dialogue" type="Node"]
+
+[node name="Active" type="Node" parent="."]
+script = ExtResource("1_fsicn")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BackgroundSmoke" type="Control" parent="UI"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kmp7t")
+
+[node name="Layer1" type="ColorRect" parent="UI/BackgroundSmoke"]
+material = SubResource("ShaderMaterial_8bjrs")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Layer2" type="ColorRect" parent="UI/BackgroundSmoke"]
+material = SubResource("ShaderMaterial_kl6cq")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_dqeli")
+}
+
+[node name="Rows" type="VBoxContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.975
+anchor_right = 0.95
+anchor_bottom = 0.975
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Row1" type="HBoxContainer" parent="UI/Rows"]
+modulate = Color(1, 1, 1, 0.301961)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CharacterPortrait" type="VBoxContainer" parent="UI/Rows/Row1"]
+layout_mode = 2
+
+[node name="PortraitFrame" type="TextureRect" parent="UI/Rows/Row1/CharacterPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="UI/Rows/Row1/CharacterPortrait/PortraitFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_rcpy6")
+
+[node name="CharacterName" type="Label" parent="UI/Rows/Row1/CharacterPortrait"]
+layout_mode = 2
+text = "Player"
+label_settings = SubResource("LabelSettings_n8p5x")
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="UI/Rows/Row1"]
+layout_mode = 2
+text = "A quick brown fox jumps over a lazy dog."
+label_settings = SubResource("LabelSettings_tfu1d")
+
+[node name="Row2" type="HBoxContainer" parent="UI/Rows"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Text" type="Label" parent="UI/Rows/Row2"]
+layout_mode = 2
+text = "Umm... Huh?"
+label_settings = SubResource("LabelSettings_tfu1d")
+
+[node name="CharacterPortrait" type="VBoxContainer" parent="UI/Rows/Row2"]
+layout_mode = 2
+
+[node name="PortraitFrame" type="TextureRect" parent="UI/Rows/Row2/CharacterPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="UI/Rows/Row2/CharacterPortrait/PortraitFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_bvlql")
+
+[node name="CharacterName" type="Label" parent="UI/Rows/Row2/CharacterPortrait"]
+layout_mode = 2
+text = "Crow"
+label_settings = SubResource("LabelSettings_n8p5x")
+horizontal_alignment = 1
+
+[node name="Row3" type="HBoxContainer" parent="UI/Rows"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CharacterPortrait" type="VBoxContainer" parent="UI/Rows/Row3"]
+layout_mode = 2
+
+[node name="PortraitFrame" type="TextureRect" parent="UI/Rows/Row3/CharacterPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="UI/Rows/Row3/CharacterPortrait/PortraitFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_rcpy6")
+
+[node name="CharacterName" type="Label" parent="UI/Rows/Row3/CharacterPortrait"]
+layout_mode = 2
+text = "Player"
+label_settings = SubResource("LabelSettings_n8p5x")
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="UI/Rows/Row3"]
+layout_mode = 2
+text = "Oh, this is just a placeholder. You silly."
+label_settings = SubResource("LabelSettings_tfu1d")

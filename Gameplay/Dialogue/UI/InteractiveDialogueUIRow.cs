@@ -1,6 +1,6 @@
 using System;
 
-namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
+namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 
 public partial class InteractiveDialogueUIRow : DialogueUIRow {
 	public int HighlightedOption { get; set; } = 0;

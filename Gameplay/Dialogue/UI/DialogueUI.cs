@@ -5,9 +5,9 @@ using Godot;
 
 using Jakojaannos.WisperingWoods.Util.Editor;
 
-namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
+namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 
-public partial class DialogueUI : Control {
+public partial class DialogueUI : CanvasLayer {
 	[Export]
 	[ExportGroup("Config")]
 	public int MaxVisibleRows { get; set; } = 3;

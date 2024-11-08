@@ -4,6 +4,8 @@ using Godot;
 
 using Jakojaannos.WisperingWoods.Util.Editor;
 
+using Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
+
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 public static class DialogueNodeExtension {
