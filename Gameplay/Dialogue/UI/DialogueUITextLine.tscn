@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6k7f3ni73i17"]
+
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="1_mbg6y"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUITextLine.cs" id="1_x8mh3"]
+[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_unvsu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8p5x"]
+font = ExtResource("2_unvsu")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfu1d"]
+font = ExtResource("2_unvsu")
+
+[node name="Line" type="HBoxContainer" node_paths=PackedStringArray("TextElement")]
+theme_override_constants/separation = 16
+script = ExtResource("1_x8mh3")
+Text = "A quick brown fox jumps over a lazy dog."
+TextElement = NodePath("Text")
+
+[node name="CharacterPortrait" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PortraitFrame" type="TextureRect" parent="CharacterPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="CharacterPortrait/PortraitFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mbg6y")
+
+[node name="CharacterName" type="Label" parent="CharacterPortrait"]
+layout_mode = 2
+text = "Player"
+label_settings = SubResource("LabelSettings_n8p5x")
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 2
+text = "A quick brown fox jumps over a lazy dog."
+label_settings = SubResource("LabelSettings_tfu1d")

@@ -4,7 +4,7 @@ namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]
 [GlobalClass]
-public partial class TextDialogueLine : DialogueLine {
+public partial class DialogueTextLine : DialogueLine {
 	[Export]
 	public string Text { get; set; } = "Just some yapping. Blablablabla. Etc.";
 

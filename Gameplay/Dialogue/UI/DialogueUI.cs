@@ -7,6 +7,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 
+[Tool]
 public partial class DialogueUI : CanvasLayer {
 	[Export]
 	[ExportGroup("Config")]
@@ -18,27 +19,27 @@ public partial class DialogueUI : CanvasLayer {
 	[Export]
 	[ExportGroup("Prewire")]
 	[MustSetInEditor]
-	public Control DialogueList {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_dialogueList);
-		set => this.SetExportProperty(ref _dialogueList, value);
+	public Control DialogueLines {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_dialogueLines);
+		set => this.SetExportProperty(ref _dialogueLines, value);
 	}
-	private Control? _dialogueList;
+	private Control? _dialogueLines;
 
 	[Export]
 	[MustSetInEditor]
-	public PackedScene DialogueRow {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_dialogueRow);
-		set => this.SetExportProperty(ref _dialogueRow, value);
+	public PackedScene DialogueLineTemplate {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_dialogueLineTemplate);
+		set => this.SetExportProperty(ref _dialogueLineTemplate, value);
 	}
-	private PackedScene? _dialogueRow;
+	private PackedScene? _dialogueLineTemplate;
 
 	[Export]
 	[MustSetInEditor]
-	public PackedScene InteractiveDialogueRow {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_interactiveDialogueRow);
-		set => this.SetExportProperty(ref _interactiveDialogueRow, value);
+	public PackedScene InteractiveDialogueLineTemplate {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_interactiveDialogueLineTemplate);
+		set => this.SetExportProperty(ref _interactiveDialogueLineTemplate, value);
 	}
-	private PackedScene? _interactiveDialogueRow;
+	private PackedScene? _interactiveDialogueLineTemplate;
 
 	[Export]
 	[MustSetInEditor]
@@ -48,7 +49,7 @@ public partial class DialogueUI : CanvasLayer {
 	}
 	private AnimationPlayer? _animation;
 
-	public DialogueUIRow? CurrentRow { get; internal set; }
+	public DialogueUILine? CurrentLine { get; internal set; }
 
 	[Signal]
 	public delegate void ClosedEventHandler();
@@ -57,6 +58,12 @@ public partial class DialogueUI : CanvasLayer {
 	public delegate void OpenedEventHandler();
 
 	public override void _Ready() {
+		_animation ??= GetChildren().OfType<AnimationPlayer>().FirstOrDefault();
+
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		base._Ready();
 
 		if (_animation is not null) {
@@ -73,6 +80,40 @@ public partial class DialogueUI : CanvasLayer {
 		Clear();
 	}
 
+	public void Reset() {
+		GD.Print("Resetting dialogue");
+		Clear();
+	}
+
+	public void StartDialogue() {
+		GD.Print("Starting dialogue");
+		Clear();
+
+		Animation.Play("StartDialogue");
+	}
+
+	public void FinishDialogue() {
+		GD.Print("Dialogue finished");
+		Clear();
+	}
+
+	public void AddLine(string text) {
+		var uiLine = DialogueLineTemplate.Instantiate<DialogueUITextLine>();
+		DialogueLines.AddChild(uiLine);
+		uiLine.Owner = DialogueLines;
+		uiLine.Text = text;
+
+		var lines = DialogueLines
+			.GetChildren()
+			.Where(child => child.GetType().IsAssignableTo(typeof(DialogueUILine)))
+			.Select(child => (child as DialogueUILine)!);
+		var position = (uint)lines.Count();
+		foreach (var line in lines) {
+			position--;
+			line.LinePosition = position;
+		}
+	}
+
 	private void OnOpened() {
 		EmitSignal(SignalName.Opened);
 	}
@@ -85,48 +126,53 @@ public partial class DialogueUI : CanvasLayer {
 	}
 
 	private void Clear() {
-		var dialogueRows = DialogueList
+		var dialogueRows = DialogueLines
 			.GetChildren()
-			.OfType<DialogueUIRow>();
+			.Where(child => typeof(DialogueUILine).IsAssignableFrom(child.GetType()));
 
 		foreach (var row in dialogueRows) {
-			DialogueList.RemoveChild(row);
+			DialogueLines.RemoveChild(row);
 			row.QueueFree();
 		}
 	}
 
 	public override void _Input(InputEvent @event) {
-		base._Input(@event);
-		if (CurrentRow is null) {
+		if (Engine.IsEditorHint()) {
 			return;
 		}
 
-		if (CurrentRow is InteractiveDialogueUIRow row) {
+		base._Input(@event);
+		if (CurrentLine is null) {
+			return;
+		}
+
+		// FIXME: why this isn't handled in the interactive line itself?
+		if (CurrentLine is DialogueUILineInteractive line) {
 			for (var i = 0; i < 3; i++) {
 				var action = $"dialogue_option_{i + 1}";
 				if (Input.IsActionJustPressed(action)) {
-					row.HighlightedOption = i;
+					line.HighlightedOption = i;
 				}
 			}
 
 			if (Input.IsActionJustPressed("gui_up")) {
-				var option = row.HighlightedOption - 1;
+				var option = line.HighlightedOption - 1;
 				if (option < 0) {
-					option = row.LastOptionIndex;
+					option = line.LastOptionIndex;
 				}
 
-				row.HighlightedOption = option;
+				line.HighlightedOption = option;
 			}
 
 			if (Input.IsActionJustPressed("gui_down")) {
-				var option = row.HighlightedOption + 1 % row.OptionCount;
-				row.HighlightedOption = option;
+				var option = line.HighlightedOption + 1 % line.OptionCount;
+				line.HighlightedOption = option;
 			}
 		}
 
 		if (@event.IsActionPressed("gui_accept")) {
-			if (!CurrentRow.IsFullyVisible) {
-				CurrentRow.SkipEntryAnimation();
+			if (!CurrentLine.IsFullyVisible) {
+				CurrentLine.SkipEntryAnimation();
 			} else {
 				NextDialogueLine();
 			}
@@ -134,12 +180,12 @@ public partial class DialogueUI : CanvasLayer {
 	}
 
 	private void NextDialogueLine() {
-		if (CurrentRow is InteractiveDialogueUIRow row) {
-			var optionIndex = row.HighlightedOption;
-			row.SelectOption();
-			this.DialogueManager().NextRowForOption(optionIndex);
-		} else {
-			this.DialogueManager().NextRow();
+		var optionIndex = -1;
+		if (CurrentLine is DialogueUILineInteractive row) {
+			optionIndex = row.HighlightedOption;
+			row.LockSelection();
 		}
+
+		this.DialogueManager().NextLine(optionIndex);
 	}
 }
