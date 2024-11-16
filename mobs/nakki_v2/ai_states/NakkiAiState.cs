@@ -24,12 +24,12 @@ public abstract partial class NakkiAiState : Node {
 		NakkiAttackState attackState,
 		NakkiStalkState stalkState
 	) {
-		if (nakki._detectionLevel >= nakki._attackThreshold) {
+		if (nakki._detectionLevel >= attackState._attackThreshold) {
 			nakki.SwitchToState(attackState!);
 			return;
 		}
 
-		if (nakki._detectionLevel >= nakki._stalkThreshold) {
+		if (nakki._detectionLevel >= stalkState._stalkThreshold) {
 			nakki.SwitchToState(stalkState!);
 			return;
 		}

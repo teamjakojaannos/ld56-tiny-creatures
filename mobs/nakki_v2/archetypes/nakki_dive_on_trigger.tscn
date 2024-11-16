@@ -10,7 +10,6 @@
 [node name="Näkki" node_paths=PackedStringArray("_defaultState") instance=ExtResource("1_m6u3r")]
 _defaultState = NodePath("DiveOnTrigger")
 _detectionGain = 4000.0
-_stalkThreshold = 200.0
 
 [node name="DiveOnTrigger" parent="." index="6" node_paths=PackedStringArray("_diveState", "_stalkState", "_attackState") instance=ExtResource("7_tvs8m")]
 _diveState = NodePath("../Dive")

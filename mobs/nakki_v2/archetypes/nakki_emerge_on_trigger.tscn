@@ -10,7 +10,6 @@
 [node name="Näkki" node_paths=PackedStringArray("_defaultState") instance=ExtResource("1_42m1v")]
 _defaultState = NodePath("EmergeOnTrigger")
 _detectionGain = 400.0
-_stalkThreshold = 200.0
 
 [node name="EmergeOnTrigger" parent="." index="6" node_paths=PackedStringArray("_enterStateAfterEmerge") instance=ExtResource("2_dnku5")]
 _enterStateAfterEmerge = NodePath("../Idle")

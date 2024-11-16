@@ -27,9 +27,6 @@ public partial class NakkiV2 : Path2D {
 	[Export] private float _detectionGain = 100.0f;
 	[Export] private float _detectionDecay = 60.0f;
 
-	[Export] public float _stalkThreshold = 40.0f;
-	[Export] public float _attackThreshold = 100.0f;
-
 	private AnimationPlayer? _animationPlayer;
 	private bool _isPlayerInDanger = false;
 	private bool _playerIsDead = false;

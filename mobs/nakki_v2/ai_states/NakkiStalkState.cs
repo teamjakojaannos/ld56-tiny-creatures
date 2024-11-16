@@ -5,6 +5,7 @@ using Jakojaannos.WisperingWoods.Util;
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiStalkState : NakkiAiState {
+	[Export] public float _stalkThreshold = 40.0f;
 	[Export] private float _stalkTime = 5.0f;
 	[Export] private float _stalkTimeVariation = 0.5f;
 	[Export] private float _diveChance = 0.2f;
@@ -75,7 +76,7 @@ public partial class NakkiStalkState : NakkiAiState {
 			return;
 		}
 
-		if (nakki._detectionLevel >= nakki._attackThreshold) {
+		if (nakki._detectionLevel >= _attackState!._attackThreshold) {
 			nakki.SwitchToState(_attackState!);
 			return;
 		}

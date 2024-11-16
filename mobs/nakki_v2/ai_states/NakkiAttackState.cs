@@ -3,6 +3,7 @@ using Godot;
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiAttackState : NakkiAiState {
+	[Export] public float _attackThreshold = 100.0f;
 	[Export] private PackedScene? _waterSplash;
 	[Export] private float _attackTime = 1.0f;
 	[Export] private float _animationSpeed = 1.0f;
