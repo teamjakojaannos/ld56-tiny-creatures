@@ -65,7 +65,8 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
 		if (nakki._detectionLevel <= 0.0f) {
 
-			if (_rng.DiceRoll(_diveChance)) {
+			var canDive = _diveState!.IsStateReady(nakki);
+			if (canDive && _rng.DiceRoll(_diveChance)) {
 				nakki.SwitchToState(_diveState!);
 			} else {
 				nakki.SwitchToState(_idleState!);

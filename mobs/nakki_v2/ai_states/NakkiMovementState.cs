@@ -47,12 +47,8 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var possibleStates = _pickOneOfTheseStatesWhenDoneMoving.Where(s => s.IsStateReady(nakki));
-
-		_rng.TryPickRandom(possibleStates, out var state);
-		if (state != null) {
-			nakki.SwitchToState(state);
-		} else {
+		var success = TrySwitchToOneOf(nakki, _pickOneOfTheseStatesWhenDoneMoving);
+		if (!success) {
 			GD.PrintErr("Näkki's movement state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
 		}

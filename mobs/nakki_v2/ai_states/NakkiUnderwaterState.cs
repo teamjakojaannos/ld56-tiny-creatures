@@ -57,12 +57,8 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var possibleStates = _pickOneOfTheseStatesWhenDoneDiving.Where(s => s.IsStateReady(nakki));
-
-		_rng.TryPickRandom(possibleStates, out var state);
-		if (state != null) {
-			nakki.SwitchToState(state);
-		} else {
+		var success = TrySwitchToOneOf(nakki, _pickOneOfTheseStatesWhenDoneDiving);
+		if (!success) {
 			GD.PrintErr("Näkki's underwater state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
 		}

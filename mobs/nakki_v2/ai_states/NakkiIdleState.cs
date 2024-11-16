@@ -46,12 +46,8 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var possibleStates = _pickOneOfTheseStatesWhenDoneIdling.Where(s => s.IsStateReady(nakki));
-
-		_rng.TryPickRandom(possibleStates, out var state);
-		if (state != null) {
-			nakki.SwitchToState(state);
-		} else {
+		var success = TrySwitchToOneOf(nakki, _pickOneOfTheseStatesWhenDoneIdling);
+		if (!success) {
 			GD.PrintErr("Näkki's idle state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
 		}

@@ -1,4 +1,9 @@
+using System.Linq;
+
 using Godot;
+using Godot.Collections;
+
+using Jakojaannos.WisperingWoods.Util;
 
 namespace Jakojaannos.WisperingWoods;
 
@@ -28,6 +33,20 @@ public abstract partial class NakkiAiState : Node {
 			nakki.SwitchToState(stalkState!);
 			return;
 		}
+	}
+
+	private static readonly RandomNumberGenerator s_rng = new();
+
+	public static bool TrySwitchToOneOf(NakkiV2 nakki, Array<NakkiAiState> states) {
+		var possibleStates = states.Where(s => s.IsStateReady(nakki));
+
+		s_rng.TryPickRandom(possibleStates, out var state);
+		if (state != null) {
+			nakki.SwitchToState(state);
+			return true;
+		}
+
+		return false;
 	}
 }
 
