@@ -16,6 +16,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	[Export] private float _diveAnimationSpeed = 1.0f;
 	[Export] private float _emergeAnimationSpeed = 1.0f;
 	[Export] private float _diveCooldown = 10.0f;
+	[Export] private float _maxEmergeDistance = 100.0f;
 
 	private Timer? _diveCooldownTimer;
 	private Timer? _diveTimer;
@@ -40,17 +41,26 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
-		if (!_isDoneDiving || _isEmerging) {
-			return;
+		if (_isDoneDiving && !_isEmerging) {
+			EmergeFromWater(nakki);
 		}
+	}
 
+	private void EmergeFromWater(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		var emergeAtPlayer = _rng.DiceRoll(_emergeAtPlayerChance);
+		var pathLength = nakki.PathLength();
 
-		if (emergeAtPlayer && playerRef is Player player) {
-			var relative = nakki.GetPlayerXPositionRelative(player);
-			nakki.TeleportToProgress(relative);
-		}
+		var emergeTo = (_rng.DiceRoll(_emergeAtPlayerChance) && playerRef is Player player)
+				? nakki.GetPlayerXPositionRelative(player)
+				: _rng.RandfRange(0.0f, pathLength);
+
+		var rand = _rng.RandfRange(-_maxEmergeDistance, _maxEmergeDistance);
+		var emergeFrom = emergeTo + rand;
+		emergeFrom = Mathf.Clamp(emergeFrom, 0f, pathLength);
+
+		// teleport first so it doesn't clear the move target
+		nakki.TeleportToProgress(emergeFrom);
+		nakki.SetProgressTarget(emergeTo);
 
 		_isEmerging = true;
 		nakki.PlayEmergeFromWaterAnimation(_emergeAnimationSpeed);
@@ -98,7 +108,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override bool ShouldTickDetection() {
-		return false;
+		return _isEmerging;
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) { }

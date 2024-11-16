@@ -179,6 +179,10 @@ public partial class NakkiV2 : Path2D {
 		_targetProgress = null;
 	}
 
+	public float PathLength() {
+		return Curve.GetBakedLength();
+	}
+
 	private void SightConeEntered(Node2D node) {
 		if (node is Player player) {
 			_player = player;
