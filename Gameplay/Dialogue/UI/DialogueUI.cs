@@ -59,18 +59,13 @@ public partial class DialogueUI : CanvasLayer {
 
 	public override void _Ready() {
 		_animation ??= GetChildren().OfType<AnimationPlayer>().FirstOrDefault();
-
-		if (Engine.IsEditorHint()) {
-			return;
-		}
-
 		base._Ready();
 
 		if (_animation is not null) {
 			Animation.AnimationFinished += (animation) => {
-				if (animation == "close") {
+				if (animation == "FinishDialogue") {
 					OnClosed();
-				} else if (animation == "open") {
+				} else if (animation == "StartDialogue") {
 					OnOpened();
 				}
 			};
@@ -82,6 +77,7 @@ public partial class DialogueUI : CanvasLayer {
 
 	public void Reset() {
 		GD.Print("Resetting dialogue");
+		Animation.Play("RESET");
 		Clear();
 	}
 
@@ -111,7 +107,15 @@ public partial class DialogueUI : CanvasLayer {
 		foreach (var line in lines) {
 			position--;
 			line.LinePosition = position;
+
+			/*
+			if (line != uiLine) {
+				line.OnProceedToNext();
+			}
+			*/
 		}
+
+		uiLine.OnAdded();
 	}
 
 	private void OnOpened() {

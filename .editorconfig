@@ -8,21 +8,6 @@ root = true
 
 indent_style = tab
 
-# IDE0005 = Using directive is unnecessary
-#dotnet_diagnostic.IDE0005.severity = warning
-# IDE1006 = Naming rule
-#dotnet_diagnostic.IDE1006.severity = warning
-# IDE0044 = Add readonly modifier
-#dotnet_diagnostic.IDE0044.severity = none
-# IDE2000 = Allow multiple blank lines
-#dotnet_diagnostic.IDE2000.severity = warning
-#dotnet_style_allow_multiple_blank_lines_experimental = false
-# IDE2002: Consecutive braces must not have blank line between them
-#dotnet_diagnostic.IDE2002.severity = warning
-#csharp_style_allow_blank_lines_between_consecutive_braces_experimental = false
-# IDE2003: Blank line required between block and subsequent statement
-#dotnet_style_allow_statement_immediately_after_block_experimental = false
-
 
 # Require use of namespaces based on directory structure
 ## CA1050 = Declare types in namespaces
@@ -217,3 +202,11 @@ csharp_preserve_single_line_statements = true
 
 # IDE0060: Remove unused parameter
 dotnet_diagnostic.IDE0060.severity = warning
+
+# CS8509: The switch expression does not handle some values of its input type
+#         (it is not exhaustive).
+dotnet_diagnostic.CS8509.severity = error
+
+# CS8524: The switch expression does not handle some values of its input type
+#         (it is not exhaustive) involving an unnamed enum value.
+dotnet_diagnostic.CS8524.severity = none

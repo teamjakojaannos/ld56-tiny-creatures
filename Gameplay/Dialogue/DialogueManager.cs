@@ -86,10 +86,16 @@ public partial class DialogueManager : Node {
 	}
 
 	public override void _Ready() {
+		_readyCalled = true;
+
 		ActiveDialogue ??= GetChildren().OfType<Dialogue>().FirstOrDefault();
 		_dialogueUI ??= GetChildren().OfType<DialogueUI>().FirstOrDefault();
 
-		_readyCalled = true;
+		if (_dialogueUI is not null) {
+			if (!DialogueUI.IsConnected(DialogueUI.SignalName.Opened, Callable.From(ShowFirstLine))) {
+				DialogueUI.Opened += ShowFirstLine;
+			}
+		}
 
 		if (Engine.IsEditorHint()) {
 			return;
@@ -114,10 +120,6 @@ public partial class DialogueManager : Node {
 		Reset();
 
 		DialogueUI.StartDialogue();
-
-		_currentLine = 0;
-		var firstLine = s_lines[_currentLine];
-		DialogueUI.AddLine(firstLine);
 	}
 
 	public void FinishDialogue() {
@@ -128,14 +130,20 @@ public partial class DialogueManager : Node {
 		throw new NotImplementedException();
 	}
 
+	private void ShowFirstLine() {
+		_currentLine = 0;
+		NextLine(-1);
+	}
+
 	public void NextLine(int _) {
-		_currentLine++;
 		if (_currentLine >= s_lines.Length) {
 			FinishDialogue();
 			return;
 		}
 
 		var nextLine = s_lines[_currentLine];
+		_currentLine++;
+
 		DialogueUI.AddLine(nextLine);
 	}
 }
