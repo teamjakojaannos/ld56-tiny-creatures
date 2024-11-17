@@ -16,21 +16,34 @@ public partial class BackgroundSmoke : Control {
 	}
 
 	[Export]
-	public float SmokeTimeScale { get; set; } = 0.25f;
-
-	private float _currentTime;
-
-	public override void _Process(double delta) {
-		base._Process(delta);
-
-		_currentTime += SmokeTimeScale * (float)delta;
-
-		var childMaterials = GetChildren()
+	public float SmokeTimeScale {
+		get => _smokeTimeScale;
+		set {
+			_smokeTimeScale = value;
+			var childMaterials = GetChildren()
 				.OfType<CanvasItem>()
 				.Select(child => child.Material)
 				.OfType<ShaderMaterial>();
-		foreach (var material in childMaterials) {
-			material.SetShaderParameter("CurrentTime", _currentTime);
+			foreach (var material in childMaterials) {
+				material.SetShaderParameter("TimeScale", _smokeTimeScale);
+			}
 		}
 	}
+	private float _smokeTimeScale = 0.25f;
+
+	[Export]
+	public float SmokeTimeOffset {
+		get => _smokeTimeOffset;
+		set {
+			_smokeTimeOffset = value;
+			var childMaterials = GetChildren()
+				.OfType<CanvasItem>()
+				.Select(child => child.Material)
+				.OfType<ShaderMaterial>();
+			foreach (var material in childMaterials) {
+				material.SetShaderParameter("TimeOffset", _smokeTimeOffset);
+			}
+		}
+	}
+	private float _smokeTimeOffset = 0.0f;
 }
