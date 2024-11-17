@@ -118,7 +118,7 @@ public partial class DialogueManager : Node {
 
 	public void StartDialogue() {
 		Reset();
-
+		_currentLine = 0;
 		DialogueUI.StartDialogue();
 	}
 

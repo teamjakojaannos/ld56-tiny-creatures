@@ -13,26 +13,6 @@ public partial class DialogueUILine : Control {
 	public DialogueSide Side { get; set; } = DialogueSide.Left;
 
 	[Export]
-	[ExportGroup("Animation")]
-	public float PercentageOffScreen {
-		get => _percentageOffScreen;
-		set {
-			_percentageOffScreen = value;
-
-			var totalLineWidth = GetRect().Size.X;
-			var portraitWidth = _portrait?.GetRect().Size.X ?? 1.0f;
-			var remappedValue = value * (portraitWidth / totalLineWidth);
-
-			AnchorLeft = Side switch {
-				DialogueSide.Right => remappedValue,
-				DialogueSide.Left => -remappedValue,
-			};
-			AnchorRight = AnchorLeft + 1.0f;
-		}
-	}
-	private float _percentageOffScreen;
-
-	[Export]
 	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public AnimationPlayer Animation {

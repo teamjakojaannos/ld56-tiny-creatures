@@ -90,7 +90,8 @@ public partial class DialogueUI : CanvasLayer {
 
 	public void FinishDialogue() {
 		GD.Print("Dialogue finished");
-		Clear();
+
+		Animation.Play("FinishDialogue");
 	}
 
 	public void AddLine(string text) {

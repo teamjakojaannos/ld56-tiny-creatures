@@ -6,15 +6,6 @@ namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 
 [Tool]
 public partial class BackgroundSmoke : Control {
-	[Export(PropertyHint.Range, "0,1")]
-	public float PercentageOffScreen {
-		get => AnchorTop * 2.0f;
-		set {
-			AnchorTop = value / 2.0f;
-			AnchorBottom = AnchorTop + 1.0f;
-		}
-	}
-
 	[Export]
 	public float SmokeTimeScale {
 		get => _smokeTimeScale;
@@ -32,18 +23,34 @@ public partial class BackgroundSmoke : Control {
 	private float _smokeTimeScale = 0.25f;
 
 	[Export]
-	public float SmokeTimeOffset {
-		get => _smokeTimeOffset;
+	public float SmokeTimeOffsetHorizontal {
+		get => _smokeTimeOffsetHorizontal;
 		set {
-			_smokeTimeOffset = value;
+			_smokeTimeOffsetHorizontal = value;
 			var childMaterials = GetChildren()
 				.OfType<CanvasItem>()
 				.Select(child => child.Material)
 				.OfType<ShaderMaterial>();
 			foreach (var material in childMaterials) {
-				material.SetShaderParameter("TimeOffset", _smokeTimeOffset);
+				material.SetShaderParameter("TimeOffsetHorizontal", _smokeTimeOffsetHorizontal);
 			}
 		}
 	}
-	private float _smokeTimeOffset = 0.0f;
+	private float _smokeTimeOffsetHorizontal = 0.0f;
+
+	[Export]
+	public float SmokeTimeOffsetVertical {
+		get => _smokeTimeOffsetVertical;
+		set {
+			_smokeTimeOffsetVertical = value;
+			var childMaterials = GetChildren()
+				.OfType<CanvasItem>()
+				.Select(child => child.Material)
+				.OfType<ShaderMaterial>();
+			foreach (var material in childMaterials) {
+				material.SetShaderParameter("TimeOffsetVertical", _smokeTimeOffsetVertical);
+			}
+		}
+	}
+	private float _smokeTimeOffsetVertical = 0.0f;
 }
