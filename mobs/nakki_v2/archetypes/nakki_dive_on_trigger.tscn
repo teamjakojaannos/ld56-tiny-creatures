@@ -33,6 +33,7 @@ _animationSpeed = 4.0
 _diveState = NodePath("../Dive")
 
 [node name="Stalk" parent="." index="10" node_paths=PackedStringArray("_idleState", "_attackState", "_diveState") instance=ExtResource("5_y5xeq")]
+_stalkThreshold = 200.0
 _stalkTime = 0.0
 _stalkTimeVariation = 0.0
 _idleState = NodePath("../Idle")
