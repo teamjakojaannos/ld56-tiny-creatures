@@ -100,8 +100,12 @@ public partial class DialogueUILine : HBoxContainer {
 		IsFullyVisible = true;
 	}
 
-	public void SkipEntryAnimation() {
-		throw new NotImplementedException();
+	public virtual void SkipEntryAnimation() {
+		if (Animation.CurrentAnimation == "Added") {
+			Animation.Seek(Animation.CurrentAnimationLength);
+		}
+
+		IsFullyVisible = true;
 	}
 
 	private void Refresh() {

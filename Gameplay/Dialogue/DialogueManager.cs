@@ -139,6 +139,11 @@ public partial class DialogueManager : Node {
 	}
 
 	public void NextLine(int _) {
+		if (!DialogueUI.IsIdle) {
+			DialogueUI.SkipCurrentAnimation();
+			return;
+		}
+
 		if (_currentLine >= _dialogueLines.Count) {
 			FinishDialogue();
 			return;

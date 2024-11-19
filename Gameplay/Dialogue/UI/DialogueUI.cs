@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Godot;
@@ -50,7 +51,16 @@ public partial class DialogueUI : CanvasLayer {
 	}
 	private AnimationPlayer? _animation;
 
-	public DialogueUILine? CurrentLine { get; internal set; }
+	public IEnumerable<DialogueUILine> Lines => DialogueLines
+			.GetChildren()
+			.Where(child => child.GetType().IsAssignableTo(typeof(DialogueUILine)))
+			.Select(child => (child as DialogueUILine)!);
+
+	public DialogueUILine? CurrentLine => Lines.LastOrDefault();
+
+	public bool IsIdle => CurrentLine is null
+		? !Animation.IsPlaying()
+		: CurrentLine.IsFullyVisible;
 
 	[Signal]
 	public delegate void ClosedEventHandler();
@@ -89,6 +99,14 @@ public partial class DialogueUI : CanvasLayer {
 		Animation.Play("StartDialogue");
 	}
 
+	public void SkipCurrentAnimation() {
+		if (Animation.CurrentAnimation == "StartDialogue") {
+			Animation.Seek(Animation.CurrentAnimationLength - 0.1);
+		} else {
+			CurrentLine?.SkipEntryAnimation();
+		}
+	}
+
 	public void FinishDialogue() {
 		GD.Print("Dialogue finished");
 
@@ -109,10 +127,7 @@ public partial class DialogueUI : CanvasLayer {
 			uiLine.Portrait.FlipH = isFacingWrongWay;
 		}
 
-		var lines = DialogueLines
-			.GetChildren()
-			.Where(child => child.GetType().IsAssignableTo(typeof(DialogueUILine)))
-			.Select(child => (child as DialogueUILine)!);
+		var lines = Lines;
 		var position = (uint)lines.Count();
 		foreach (var line in lines) {
 			position--;
@@ -179,11 +194,7 @@ public partial class DialogueUI : CanvasLayer {
 		}
 
 		if (@event.IsActionPressed("gui_accept")) {
-			if (!CurrentLine.IsFullyVisible) {
-				CurrentLine.SkipEntryAnimation();
-			} else {
-				NextDialogueLine();
-			}
+			NextDialogueLine();
 		}
 	}
 
@@ -191,7 +202,10 @@ public partial class DialogueUI : CanvasLayer {
 		var optionIndex = -1;
 		if (CurrentLine is DialogueUILineInteractive row) {
 			optionIndex = row.HighlightedOption;
-			row.LockSelection();
+
+			if (IsIdle) {
+				row.LockSelection();
+			}
 		}
 
 		this.DialogueManager().NextLine(optionIndex);

@@ -72,6 +72,14 @@ public partial class DialogueUITextLine : DialogueUILine {
 		SpeakingSfx.Play();
 	}
 
+	public override void SkipEntryAnimation() {
+		base.SkipEntryAnimation();
+
+		TextScrollTimer.Stop();
+		SpeakingSfx.Stop();
+		TextElement.VisibleCharacters = -1;
+	}
+
 	public override void OnAdded() {
 		base.OnAdded();
 
