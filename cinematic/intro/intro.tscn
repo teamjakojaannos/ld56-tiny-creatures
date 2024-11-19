@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="6_qrwc5"]
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="7_b25v0"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="8_urttn"]
-[ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://characters/shadow.png" id="9_vviyx"]
+[ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="9_vviyx"]
 [ext_resource type="AudioStream" uid="uid://cmcv86kvp32ul" path="res://cinematic/randomaani.ogg" id="9_y4k7t"]
 [ext_resource type="AudioStream" uid="uid://3kxovh4nqxxy" path="res://cinematic/bip3.ogg" id="10_3pcu4"]
 
