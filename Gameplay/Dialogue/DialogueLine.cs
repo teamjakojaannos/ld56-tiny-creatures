@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters;
+
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]
@@ -18,13 +20,7 @@ public abstract partial class DialogueLine : Resource {
 	}
 	private DialogueSide? _side;
 
-	// FIXME: multiple dialogue side enums
-	private DialogueSide DefaultSide => Speaker?.DefaultDialogueSide switch {
-		GameCharacter.DialogueSide.Left => DialogueSide.Left,
-		GameCharacter.DialogueSide.Right => DialogueSide.Right,
-		/* null or non-valid */
-		_ => DialogueSide.Left
-	};
+	private DialogueSide DefaultSide => Speaker?.DefaultDialogueSide ?? DialogueSide.Left;
 
 	public override bool _PropertyCanRevert(StringName property) {
 		if (property == PropertyName.Side) {

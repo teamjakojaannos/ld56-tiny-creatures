@@ -97,16 +97,18 @@ _data = {
 "RESET": SubResource("Animation_rlppr")
 }
 
-[node name="Line" type="HBoxContainer" node_paths=PackedStringArray("TextElement", "Animation", "Portrait")]
+[node name="Line" type="HBoxContainer" node_paths=PackedStringArray("TextElement", "Animation", "Portrait", "PortraitContainer", "PositionAnimator", "Layout")]
 anchors_preset = -1
-anchor_right = 0.999997
+anchor_right = 0.999996
 theme_override_constants/separation = 16
 script = ExtResource("1_x8mh3")
 Text = "A quick brown fox jumps over a lazy dog."
 TextElement = NodePath("Text")
-PercentageOffScreen = 2.0
 Animation = NodePath("AnimationPlayer")
-Portrait = NodePath("CharacterPortrait")
+Portrait = NodePath("CharacterPortrait/PortraitFrame/Portrait")
+PortraitContainer = NodePath("CharacterPortrait")
+PositionAnimator = NodePath("PositionAnimator")
+Layout = NodePath(".")
 
 [node name="CharacterPortrait" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -146,4 +148,3 @@ libraries = {
 script = ExtResource("4_3xi44")
 AnimatedControl = NodePath("..")
 UseSizeOf = NodePath("../CharacterPortrait")
-ScrollDirection = 2

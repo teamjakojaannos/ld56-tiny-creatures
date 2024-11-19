@@ -3,6 +3,7 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
@@ -94,11 +95,19 @@ public partial class DialogueUI : CanvasLayer {
 		Animation.Play("FinishDialogue");
 	}
 
-	public void AddLine(string text) {
+	public void AddLine(string text, DialogueSide side, GameCharacter? character) {
 		var uiLine = DialogueLineTemplate.Instantiate<DialogueUITextLine>();
 		DialogueLines.AddChild(uiLine);
 		uiLine.Owner = DialogueLines;
 		uiLine.Text = text;
+		uiLine.Side = side;
+
+		if (character?.Portrait is not null) {
+			uiLine.Portrait.Texture = character.Portrait;
+
+			var isFacingWrongWay = uiLine.Side == character.PortraitFacing;
+			uiLine.Portrait.FlipH = isFacingWrongWay;
+		}
 
 		var lines = DialogueLines
 			.GetChildren()
@@ -108,12 +117,6 @@ public partial class DialogueUI : CanvasLayer {
 		foreach (var line in lines) {
 			position--;
 			line.LinePosition = position;
-
-			/*
-			if (line != uiLine) {
-				line.OnProceedToNext();
-			}
-			*/
 		}
 
 		uiLine.OnAdded();

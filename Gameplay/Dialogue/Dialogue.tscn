@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3qquxamaxbfl"]
+[gd_scene load_steps=26 format=3 uid="uid://d3qquxamaxbfl"]
 
 [ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
 [ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUI.cs" id="2_klg46"]
 [ext_resource type="Script" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
 [ext_resource type="PackedScene" uid="uid://b6k7f3ni73i17" path="res://Gameplay/Dialogue/UI/DialogueUITextLine.tscn" id="3_4sdnn"]
-[ext_resource type="Resource" uid="uid://c24lq4s6ae0f" path="res://Characters/character_snail.tres" id="3_mgm3t"]
 [ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="5_8btbo"]
 [ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="6_61mji"]
@@ -15,7 +14,7 @@
 [sub_resource type="Resource" id="Resource_sbein"]
 script = ExtResource("4_d1t7j")
 Text = "This line should no longer be visible when the last line is."
-Speaker = ExtResource("3_mgm3t")
+Speaker = ExtResource("5_8btbo")
 Side = 1
 
 [sub_resource type="Resource" id="Resource_h0f25"]
@@ -397,7 +396,7 @@ grow_vertical = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.999999
 offset_bottom = 6.10352e-05
 grow_horizontal = 2
 grow_vertical = 2

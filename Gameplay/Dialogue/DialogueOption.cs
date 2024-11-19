@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters;
+
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]

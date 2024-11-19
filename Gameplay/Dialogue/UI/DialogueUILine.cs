@@ -9,7 +9,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 
 [Tool]
-public partial class DialogueUILine : Control {
+public partial class DialogueUILine : HBoxContainer {
 	[Export]
 	public DialogueSide Side {
 		get => _side;
@@ -29,13 +29,22 @@ public partial class DialogueUILine : Control {
 	}
 	private AnimationPlayer? _animation;
 
+	// FIXME: wrap portrait with a script and manage flipH and texture through that
 	[Export]
 	[MustSetInEditor]
-	public Control Portrait {
+	public TextureRect Portrait {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_portrait);
 		set => this.SetExportProperty(ref _portrait, value);
 	}
-	private Control? _portrait;
+	private TextureRect? _portrait;
+
+	[Export]
+	[MustSetInEditor]
+	public Control PortraitContainer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_portraitContainer);
+		set => this.SetExportProperty(ref _portraitContainer, value);
+	}
+	private Control? _portraitContainer;
 
 	[Export]
 	[MustSetInEditor]
@@ -44,6 +53,14 @@ public partial class DialogueUILine : Control {
 		set => this.SetExportProperty(ref _positionAnimator, value);
 	}
 	private PositionAnimator? _positionAnimator;
+
+	[Export]
+	[MustSetInEditor]
+	public HBoxContainer Layout {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_layout);
+		set => this.SetExportProperty(ref _layout, value);
+	}
+	private HBoxContainer? _layout;
 
 	public uint LinePosition {
 		get => _linePosition;
@@ -58,8 +75,10 @@ public partial class DialogueUILine : Control {
 
 	public override void _Ready() {
 		_animation ??= GetChildren().OfType<AnimationPlayer>().FirstOrDefault();
-		_portrait ??= GetNodeOrNull<Control>("CharacterPortrait");
+		_portraitContainer ??= GetNodeOrNull<TextureRect>("CharacterPortrait");
+		_portrait ??= GetNodeOrNull<TextureRect>("CharacterPortrait/PortraitFrame/Portrait");
 		_positionAnimator ??= GetChildren().OfType<PositionAnimator>().FirstOrDefault();
+		_layout ??= this;
 
 		if (_animation is not null) {
 			Animation.AnimationFinished += (animation) => {
@@ -72,8 +91,8 @@ public partial class DialogueUILine : Control {
 
 		if (_positionAnimator is not null) {
 			PositionAnimator.ScrollDirection = Side switch {
-				DialogueSide.Left => PositionAnimator.Direction.Right,
-				DialogueSide.Right => PositionAnimator.Direction.Left,
+				DialogueSide.Left => PositionAnimator.Direction.Left,
+				DialogueSide.Right => PositionAnimator.Direction.Right,
 			};
 		}
 	}
@@ -92,8 +111,20 @@ public partial class DialogueUILine : Control {
 
 		if (_positionAnimator is not null) {
 			PositionAnimator.ScrollDirection = Side switch {
-				DialogueSide.Left => PositionAnimator.Direction.Right,
-				DialogueSide.Right => PositionAnimator.Direction.Left,
+				DialogueSide.Left => PositionAnimator.Direction.Left,
+				DialogueSide.Right => PositionAnimator.Direction.Right,
+			};
+		}
+
+		if (_portrait is not null && _layout is not null) {
+			var portraitChildIndex = Side switch {
+				DialogueSide.Left => 0,
+				DialogueSide.Right => -1,
+			};
+			MoveChild(PortraitContainer, portraitChildIndex);
+			Layout.Alignment = Side switch {
+				DialogueSide.Left => AlignmentMode.Begin,
+				DialogueSide.Right => AlignmentMode.End,
 			};
 		}
 	}

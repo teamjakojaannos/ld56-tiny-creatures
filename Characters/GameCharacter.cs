@@ -1,22 +1,21 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
+
+namespace Jakojaannos.WisperingWoods.Characters;
+
 [Tool]
 [GlobalClass]
 public partial class GameCharacter : Resource {
-	public enum DialogueSide {
-		Left,
-		Right
-	}
+	[Export]
+	public string Name { get; set; } = "???";
 
 	[Export]
-	public string Name = "???";
+	public DialogueSide DefaultDialogueSide { get; set; } = DialogueSide.Left;
 
 	[Export]
-	public DialogueSide DefaultDialogueSide = DialogueSide.Left;
+	public DialogueSide PortraitFacing { get; set; } = DialogueSide.Left;
 
 	[Export]
-	public DialogueSide PortraitFacing = DialogueSide.Left;
-
-	[Export]
-	public PackedScene? Portrait;
+	public Texture2D? Portrait { get; set; }
 }

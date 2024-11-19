@@ -148,7 +148,7 @@ public partial class DialogueManager : Node {
 		_currentLine++;
 
 		if (nextLine is DialogueTextLine textLine) {
-			DialogueUI.AddLine(textLine.Text);
+			DialogueUI.AddLine(textLine.Text, textLine.Side, textLine.Speaker);
 		} else {
 			throw new NotImplementedException();
 		}
