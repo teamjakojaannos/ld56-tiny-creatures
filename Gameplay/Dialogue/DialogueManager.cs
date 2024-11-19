@@ -6,6 +6,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 
 using Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
@@ -31,6 +32,9 @@ public partial class DialogueManager : Node {
 		set => this.SetExportProperty(ref _dialogueUI, value);
 	}
 	private DialogueUI? _dialogueUI;
+
+	private List<DialogueLine> _dialogueLines = [];
+	private uint _currentLine = 0;
 
 	[Signal]
 	public delegate void DialogueOpenedEventHandler();
@@ -104,20 +108,19 @@ public partial class DialogueManager : Node {
 		base._Ready();
 	}
 
-	private static readonly string[] s_lines = [
-		"This line should no longer be visible when the last line is.",
-		"A quick brown fox jumps over a lazy dog.",
-		"Umm... Huh?",
-		"Oh, this is just a placeholder, you silly!"
-	];
-	private uint _currentLine = 0;
-
 	public void Reset() {
+		_dialogueLines.Clear();
 		DialogueUI.Reset();
 	}
 
 	public void StartDialogue() {
+		if (ActiveDialogue is null) {
+			GD.PrintErr("No active dialogue to start!");
+			return;
+		}
+
 		Reset();
+		_dialogueLines.AddRange(ActiveDialogue.Lines);
 		_currentLine = 0;
 		DialogueUI.StartDialogue();
 	}
@@ -136,14 +139,18 @@ public partial class DialogueManager : Node {
 	}
 
 	public void NextLine(int _) {
-		if (_currentLine >= s_lines.Length) {
+		if (_currentLine >= _dialogueLines.Count) {
 			FinishDialogue();
 			return;
 		}
 
-		var nextLine = s_lines[_currentLine];
+		var nextLine = _dialogueLines[(int)_currentLine];
 		_currentLine++;
 
-		DialogueUI.AddLine(nextLine);
+		if (nextLine is DialogueTextLine textLine) {
+			DialogueUI.AddLine(textLine.Text);
+		} else {
+			throw new NotImplementedException();
+		}
 	}
 }

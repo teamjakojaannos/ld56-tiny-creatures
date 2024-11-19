@@ -1,16 +1,11 @@
-using System;
-
 using Godot;
-
-using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]
 [GlobalClass]
-public abstract partial class DialogueLine : Node {
+public abstract partial class DialogueLine : Resource {
 	[Export]
-	[MustSetInEditor]
 	public GameCharacter? Speaker { get; set; }
 
 	[Export]

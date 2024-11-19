@@ -3,6 +3,7 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.UI;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
@@ -10,7 +11,14 @@ namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;
 [Tool]
 public partial class DialogueUILine : Control {
 	[Export]
-	public DialogueSide Side { get; set; } = DialogueSide.Left;
+	public DialogueSide Side {
+		get => _side;
+		set {
+			_side = value;
+			Refresh();
+		}
+	}
+	private DialogueSide _side = DialogueSide.Left;
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -29,6 +37,14 @@ public partial class DialogueUILine : Control {
 	}
 	private Control? _portrait;
 
+	[Export]
+	[MustSetInEditor]
+	public PositionAnimator PositionAnimator {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_positionAnimator);
+		set => this.SetExportProperty(ref _positionAnimator, value);
+	}
+	private PositionAnimator? _positionAnimator;
+
 	public uint LinePosition {
 		get => _linePosition;
 		internal set {
@@ -43,6 +59,7 @@ public partial class DialogueUILine : Control {
 	public override void _Ready() {
 		_animation ??= GetChildren().OfType<AnimationPlayer>().FirstOrDefault();
 		_portrait ??= GetNodeOrNull<Control>("CharacterPortrait");
+		_positionAnimator ??= GetChildren().OfType<PositionAnimator>().FirstOrDefault();
 
 		if (_animation is not null) {
 			Animation.AnimationFinished += (animation) => {
@@ -50,6 +67,13 @@ public partial class DialogueUILine : Control {
 					// TODO: start text scroll
 					IsFullyVisible = true;
 				}
+			};
+		}
+
+		if (_positionAnimator is not null) {
+			PositionAnimator.ScrollDirection = Side switch {
+				DialogueSide.Left => PositionAnimator.Direction.Right,
+				DialogueSide.Right => PositionAnimator.Direction.Left,
 			};
 		}
 	}
@@ -65,6 +89,13 @@ public partial class DialogueUILine : Control {
 			Modulate.B,
 			Mathf.Clamp(1.0f - LinePosition * 0.4f, 0.0f, 1.0f)
 		);
+
+		if (_positionAnimator is not null) {
+			PositionAnimator.ScrollDirection = Side switch {
+				DialogueSide.Left => PositionAnimator.Direction.Right,
+				DialogueSide.Right => PositionAnimator.Direction.Left,
+			};
+		}
 	}
 
 	public void OnAdded() {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3qquxamaxbfl"]
+[gd_scene load_steps=27 format=3 uid="uid://d3qquxamaxbfl"]
 
 [ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
 [ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
@@ -6,10 +6,319 @@
 [ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUI.cs" id="2_klg46"]
 [ext_resource type="Script" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
 [ext_resource type="PackedScene" uid="uid://b6k7f3ni73i17" path="res://Gameplay/Dialogue/UI/DialogueUITextLine.tscn" id="3_4sdnn"]
-[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="4_rcpy6"]
-[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="5_htjty"]
-[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="6_bvlql"]
+[ext_resource type="Resource" uid="uid://c24lq4s6ae0f" path="res://Characters/character_snail.tres" id="3_mgm3t"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="5_8btbo"]
+[ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="6_61mji"]
 [ext_resource type="Script" path="res://UI/PositionAnimator.cs" id="7_32f4m"]
+
+[sub_resource type="Resource" id="Resource_sbein"]
+script = ExtResource("4_d1t7j")
+Text = "This line should no longer be visible when the last line is."
+Speaker = ExtResource("3_mgm3t")
+Side = 1
+
+[sub_resource type="Resource" id="Resource_h0f25"]
+script = ExtResource("4_d1t7j")
+Text = "A quick brown fox jumps over a lazy dog."
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_5cuke"]
+script = ExtResource("4_d1t7j")
+Text = "Umm... Huh?"
+Speaker = ExtResource("6_61mji")
+Side = 1
+
+[sub_resource type="Resource" id="Resource_6wwag"]
+script = ExtResource("4_d1t7j")
+Text = "Oh, this is just a placeholder, you silly!"
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Animation" id="Animation_iqg36"]
+resource_name = "FinishDialogue"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UIRoot/BackgroundSmoke:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetHorizontal")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 50.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/UIRoot/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/UIRoot/Lines/LinesPosition:PercentageOffScreen")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 0.5, 1, 6.27667),
+"update": 0,
+"values": [0.0, 0.0, -0.025, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/UIRoot/Lines:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vj67m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetVertical")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UIRoot/BackgroundSmoke:PercentageOffScreen")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UIRoot/BackgroundSmoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetHorizontal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/UIRoot/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/UIRoot/Lines/LinesPosition:PercentageOffScreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/UIRoot/Lines:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xrldd"]
+resource_name = "StartDialogue"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetVertical")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.517632, 2),
+"update": 0,
+"values": [-4.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UIRoot/BackgroundSmoke:PercentageOffScreen")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UIRoot/BackgroundSmoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetHorizontal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-50.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/UIRoot/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/UIRoot/Lines/LinesPosition:PercentageOffScreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/UIRoot/Lines:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqeli"]
+_data = {
+"FinishDialogue": SubResource("Animation_iqg36"),
+"RESET": SubResource("Animation_vj67m"),
+"StartDialogue": SubResource("Animation_xrldd")
+}
 
 [sub_resource type="Gradient" id="Gradient_v0gls"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -52,297 +361,6 @@ shader_parameter/TimeOffsetVertical = 0.0
 shader_parameter/VerticalScrollSpeed = 0.25
 shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_tag5s")
 
-[sub_resource type="Animation" id="Animation_iqg36"]
-resource_name = "FinishDialogue"
-length = 3.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/BackgroundSmoke:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/BackgroundSmoke:SmokeTimeOffsetHorizontal")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 50.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.25]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("UI/Lines/LinesPosition:PercentageOffScreen")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 1.5),
-"transitions": PackedFloat32Array(1, 0.5, 1, 6.27667),
-"update": 0,
-"values": [0.0, 0.0, -0.025, 1.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("UI/Lines:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vj67m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/BackgroundSmoke:SmokeTimeOffsetVertical")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/BackgroundSmoke:PercentageOffScreen")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/BackgroundSmoke:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("UI/BackgroundSmoke:SmokeTimeOffsetHorizontal")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("UI/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("UI/Lines/LinesPosition:PercentageOffScreen")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("UI/Lines:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xrldd"]
-resource_name = "StartDialogue"
-length = 3.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/BackgroundSmoke:SmokeTimeOffsetVertical")
-tracks/0/interp = 2
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.1),
-"transitions": PackedFloat32Array(0.517632, 2),
-"update": 0,
-"values": [-4.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/BackgroundSmoke:PercentageOffScreen")
-tracks/1/interp = 2
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2.1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/BackgroundSmoke:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("UI/BackgroundSmoke:SmokeTimeOffsetHorizontal")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.3),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [-50.0, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("UI/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("UI/Lines/LinesPosition:PercentageOffScreen")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("UI/Lines:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqeli"]
-_data = {
-"FinishDialogue": SubResource("Animation_iqg36"),
-"RESET": SubResource("Animation_vj67m"),
-"StartDialogue": SubResource("Animation_xrldd")
-}
-
-[sub_resource type="LabelSettings" id="LabelSettings_n8p5x"]
-font = ExtResource("5_htjty")
-font_size = 12
-
-[sub_resource type="LabelSettings" id="LabelSettings_tfu1d"]
-font = ExtResource("5_htjty")
-
 [node name="Dialogue" type="Node" node_paths=PackedStringArray("ActiveDialogue", "DialogueUI")]
 script = ExtResource("1_tttv6")
 ActiveDialogue = NodePath("Preview")
@@ -350,24 +368,42 @@ DialogueUI = NodePath("UI")
 
 [node name="Preview" type="Node" parent="."]
 script = ExtResource("1_fsicn")
+Lines = [SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag")]
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("DialogueLines", "Animation")]
 visible = false
 script = ExtResource("2_klg46")
-DialogueLines = NodePath("Lines")
+DialogueLines = NodePath("UIRoot/Lines")
 DialogueLineTemplate = ExtResource("3_4sdnn")
 Animation = NodePath("AnimationPlayer")
 
-[node name="BackgroundSmoke" type="Control" parent="UI"]
-modulate = Color(1, 1, 1, 0)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_dqeli")
+}
+
+[node name="UIRoot" type="Control" parent="UI"]
+editor_description = "Exists just because Canvas Layer nodes don't have \"Clip Contents\""
+clip_contents = true
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.999999
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundSmoke" type="Control" parent="UI/UIRoot"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 6.10352e-05
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_kmp7t")
 
-[node name="Layer1" type="ColorRect" parent="UI/BackgroundSmoke"]
+[node name="Layer1" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke"]
 material = SubResource("ShaderMaterial_8bjrs")
 layout_mode = 1
 anchors_preset = -1
@@ -377,7 +413,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Layer2" type="ColorRect" parent="UI/BackgroundSmoke"]
+[node name="Layer2" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke"]
 material = SubResource("ShaderMaterial_kl6cq")
 layout_mode = 1
 anchors_preset = -1
@@ -387,141 +423,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BackgroundPosition" type="Node" parent="UI/BackgroundSmoke" node_paths=PackedStringArray("AnimatedControl", "UseSizeOf")]
+[node name="BackgroundPosition" type="Node" parent="UI/UIRoot/BackgroundSmoke" node_paths=PackedStringArray("AnimatedControl", "UseSizeOf")]
 script = ExtResource("7_32f4m")
 AnimatedControl = NodePath("..")
 UseSizeOf = NodePath("../Layer1")
 ScrollDirection = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_dqeli")
-}
-
-[node name="Lines" type="VBoxContainer" parent="UI"]
+[node name="Lines" type="VBoxContainer" parent="UI/UIRoot"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.975
 anchor_right = 0.95
 anchor_bottom = 0.975
+offset_top = -83.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="LinesPosition" type="Node" parent="UI/Lines" node_paths=PackedStringArray("AnimatedControl")]
+[node name="LinesPosition" type="Node" parent="UI/UIRoot/Lines" node_paths=PackedStringArray("AnimatedControl")]
 script = ExtResource("7_32f4m")
 AnimatedControl = NodePath("..")
 Offset = 0.975
 ScrollDirection = 1
-
-[node name="RowsMockup" type="VBoxContainer" parent="UI"]
-visible = false
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.975
-anchor_right = 0.95
-anchor_bottom = 0.975
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Row1" type="HBoxContainer" parent="UI/RowsMockup"]
-modulate = Color(1, 1, 1, 0.301961)
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="CharacterPortrait" type="VBoxContainer" parent="UI/RowsMockup/Row1"]
-layout_mode = 2
-
-[node name="PortraitFrame" type="TextureRect" parent="UI/RowsMockup/Row1/CharacterPortrait"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Portrait" type="TextureRect" parent="UI/RowsMockup/Row1/CharacterPortrait/PortraitFrame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_rcpy6")
-
-[node name="CharacterName" type="Label" parent="UI/RowsMockup/Row1/CharacterPortrait"]
-layout_mode = 2
-text = "Player"
-label_settings = SubResource("LabelSettings_n8p5x")
-horizontal_alignment = 1
-
-[node name="Text" type="Label" parent="UI/RowsMockup/Row1"]
-layout_mode = 2
-text = "A quick brown fox jumps over a lazy dog."
-label_settings = SubResource("LabelSettings_tfu1d")
-
-[node name="Row2" type="HBoxContainer" parent="UI/RowsMockup"]
-modulate = Color(1, 1, 1, 0.6)
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 2
-
-[node name="Text" type="Label" parent="UI/RowsMockup/Row2"]
-layout_mode = 2
-text = "Umm... Huh?"
-label_settings = SubResource("LabelSettings_tfu1d")
-
-[node name="CharacterPortrait" type="VBoxContainer" parent="UI/RowsMockup/Row2"]
-layout_mode = 2
-
-[node name="PortraitFrame" type="TextureRect" parent="UI/RowsMockup/Row2/CharacterPortrait"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Portrait" type="TextureRect" parent="UI/RowsMockup/Row2/CharacterPortrait/PortraitFrame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_bvlql")
-
-[node name="CharacterName" type="Label" parent="UI/RowsMockup/Row2/CharacterPortrait"]
-layout_mode = 2
-text = "Crow"
-label_settings = SubResource("LabelSettings_n8p5x")
-horizontal_alignment = 1
-
-[node name="Row3" type="HBoxContainer" parent="UI/RowsMockup"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="CharacterPortrait" type="VBoxContainer" parent="UI/RowsMockup/Row3"]
-layout_mode = 2
-
-[node name="PortraitFrame" type="TextureRect" parent="UI/RowsMockup/Row3/CharacterPortrait"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="Portrait" type="TextureRect" parent="UI/RowsMockup/Row3/CharacterPortrait/PortraitFrame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_rcpy6")
-
-[node name="CharacterName" type="Label" parent="UI/RowsMockup/Row3/CharacterPortrait"]
-layout_mode = 2
-text = "Player"
-label_settings = SubResource("LabelSettings_n8p5x")
-horizontal_alignment = 1
-
-[node name="Text" type="Label" parent="UI/RowsMockup/Row3"]
-layout_mode = 2
-text = "Oh, this is just a placeholder. You silly."
-label_settings = SubResource("LabelSettings_tfu1d")
