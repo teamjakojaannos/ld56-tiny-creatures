@@ -27,8 +27,55 @@ public partial class DialogueUITextLine : DialogueUILine {
 	}
 	private Label? _textElement;
 
+	[Export]
+	[MustSetInEditor]
+	public Timer TextScrollTimer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_textScrollTimer);
+		set => this.SetExportProperty(ref _textScrollTimer, value);
+	}
+	private Timer? _textScrollTimer;
+
+	[Export]
+	[MustSetInEditor]
+	public AudioStreamPlayer SpeakingSfx {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_speakingSfx);
+		set => this.SetExportProperty(ref _speakingSfx, value);
+	}
+	private AudioStreamPlayer? _speakingSfx;
+
+	public bool IsAllTextVisible => TextElement.VisibleCharacters == Text.Length;
+
 	public override void _Ready() {
-		_textElement ??= GetChildren().OfType<Label>().FirstOrDefault();
 		base._Ready();
+
+		_textElement ??= GetChildren().OfType<Label>().FirstOrDefault();
+		_textScrollTimer ??= GetChildren().OfType<Timer>().FirstOrDefault();
+		_speakingSfx ??= GetChildren().OfType<AudioStreamPlayer>().FirstOrDefault();
+
+		if (_textElement is null || _textScrollTimer is null || _speakingSfx is null) {
+			return;
+		}
+
+		TextScrollTimer.Timeout += () => {
+			if (IsAllTextVisible) {
+				TextScrollTimer.Stop();
+				SpeakingSfx.Stop();
+				IsFullyVisible = true;
+			}
+
+			TextElement.VisibleCharacters++;
+		};
+	}
+
+	protected override void OnAddedFinished() {
+		TextScrollTimer.Start();
+		SpeakingSfx.Play();
+	}
+
+	public override void OnAdded() {
+		base.OnAdded();
+
+		TextElement.VisibleCharacters = 0;
+		TextElement.CustomMinimumSize = TextElement.Size;
 	}
 }

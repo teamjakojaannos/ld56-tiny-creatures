@@ -71,7 +71,7 @@ public partial class DialogueUILine : HBoxContainer {
 	}
 	private uint _linePosition = 0;
 
-	public bool IsFullyVisible { get; private set; } = false;
+	public bool IsFullyVisible { get; protected set; } = false;
 
 	public override void _Ready() {
 		_animation ??= GetChildren().OfType<AnimationPlayer>().FirstOrDefault();
@@ -80,21 +80,24 @@ public partial class DialogueUILine : HBoxContainer {
 		_positionAnimator ??= GetChildren().OfType<PositionAnimator>().FirstOrDefault();
 		_layout ??= this;
 
-		if (_animation is not null) {
-			Animation.AnimationFinished += (animation) => {
-				if (animation == "Added") {
-					// TODO: start text scroll
-					IsFullyVisible = true;
-				}
-			};
+		if (_animation is null || _portraitContainer is null || _portrait is null || _positionAnimator is null || _layout is null) {
+			return;
 		}
 
-		if (_positionAnimator is not null) {
-			PositionAnimator.ScrollDirection = Side switch {
-				DialogueSide.Left => PositionAnimator.Direction.Left,
-				DialogueSide.Right => PositionAnimator.Direction.Right,
-			};
-		}
+		Animation.AnimationFinished += (animation) => {
+			if (animation == "Added") {
+				OnAddedFinished();
+			}
+		};
+
+		PositionAnimator.ScrollDirection = Side switch {
+			DialogueSide.Left => PositionAnimator.Direction.Left,
+			DialogueSide.Right => PositionAnimator.Direction.Right,
+		};
+	}
+
+	protected virtual void OnAddedFinished() {
+		IsFullyVisible = true;
 	}
 
 	public void SkipEntryAnimation() {
@@ -129,7 +132,7 @@ public partial class DialogueUILine : HBoxContainer {
 		}
 	}
 
-	public void OnAdded() {
+	public virtual void OnAdded() {
 		IsFullyVisible = false;
 		Visible = false;
 		Animation.Play("Added");
