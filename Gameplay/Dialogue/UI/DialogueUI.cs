@@ -169,7 +169,6 @@ public partial class DialogueUI : CanvasLayer {
 			return;
 		}
 
-		// FIXME: why this isn't handled in the interactive line itself?
 		if (CurrentLine is DialogueUILineInteractive line) {
 			for (var i = 0; i < 3; i++) {
 				var action = $"dialogue_option_{i + 1}";
