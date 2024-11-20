@@ -21,6 +21,16 @@ public partial class DialogueUILine : HBoxContainer {
 	private DialogueSide _side = DialogueSide.Left;
 
 	[Export]
+	public string CharacterName {
+		get => CharacterNameLabel?.Text ?? "Unknown";
+		set {
+			if (CharacterNameLabel is not null) {
+				CharacterNameLabel.Text = value;
+			}
+		}
+	}
+
+	[Export]
 	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public AnimationPlayer Animation {
@@ -37,6 +47,10 @@ public partial class DialogueUILine : HBoxContainer {
 		set => this.SetExportProperty(ref _portrait, value);
 	}
 	private TextureRect? _portrait;
+
+	[Export]
+	[MustSetInEditor]
+	public Label? CharacterNameLabel { get; set; }
 
 	[Export]
 	[MustSetInEditor]
@@ -76,8 +90,9 @@ public partial class DialogueUILine : HBoxContainer {
 	public override void _Ready() {
 		_animation ??= GetChildren().OfType<AnimationPlayer>().FirstOrDefault();
 		_portraitContainer ??= GetNodeOrNull<TextureRect>("CharacterPortrait");
-		_portrait ??= GetNodeOrNull<TextureRect>("CharacterPortrait/PortraitFrame/Portrait");
+		_portrait ??= _portraitContainer?.GetNodeOrNull<TextureRect>("PortraitFrame/Portrait");
 		_positionAnimator ??= GetChildren().OfType<PositionAnimator>().FirstOrDefault();
+		CharacterNameLabel ??= _portraitContainer?.GetNodeOrNull<Label>("CharacterName");
 		_layout ??= this;
 
 		if (_animation is null || _portraitContainer is null || _portrait is null || _positionAnimator is null || _layout is null) {

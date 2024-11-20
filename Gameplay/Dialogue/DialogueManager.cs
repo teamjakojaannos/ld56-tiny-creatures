@@ -54,7 +54,7 @@ public partial class DialogueManager : Node {
 	// FIXME: these can be changed to inspector buttons once Godot 4.4 lands
 	[Export]
 	[ExportCategory("Controls")]
-	public bool Control_Reset {
+	public bool Control_DebugReset {
 		get => false;
 		set {
 			if (!_readyCalled) {
@@ -85,7 +85,7 @@ public partial class DialogueManager : Node {
 				return;
 			}
 
-			CallDeferred(MethodName.NextLine, -1);
+			DebugSendUIInput(new DialogueUI.DialogueUIInputEvent.Proceed());
 		}
 	}
 
@@ -125,6 +125,10 @@ public partial class DialogueManager : Node {
 		DialogueUI.StartDialogue();
 	}
 
+	public void DebugSendUIInput(DialogueUI.DialogueUIInputEvent @event) {
+		DialogueUI.HandleInput(@event);
+	}
+
 	public void FinishDialogue() {
 		DialogueUI.FinishDialogue();
 	}
@@ -139,6 +143,10 @@ public partial class DialogueManager : Node {
 	}
 
 	public void NextLine(int _) {
+		if (DialogueUI.IsFinished) {
+			return;
+		}
+
 		if (!DialogueUI.IsIdle) {
 			DialogueUI.SkipCurrentAnimation();
 			return;

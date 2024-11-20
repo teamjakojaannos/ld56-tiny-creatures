@@ -21,6 +21,7 @@ Persistent="*res://persistent.tscn"
 Dialogue="*res://dialogue/dialogue_ui.tscn"
 Jukebox="*res://music/jukebox.tscn"
 Levels="*res://levels/LevelsGlobal.tscn"
+DialogueManager="*res://Gameplay/Dialogue/Dialogue.tscn"
 
 [display]
 

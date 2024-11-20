@@ -62,6 +62,8 @@ public partial class DialogueUI : CanvasLayer {
 		? !Animation.IsPlaying()
 		: CurrentLine.IsFullyVisible;
 
+	public bool IsFinished => !Visible;
+
 	[Signal]
 	public delegate void ClosedEventHandler();
 
@@ -127,6 +129,10 @@ public partial class DialogueUI : CanvasLayer {
 			uiLine.Portrait.FlipH = isFacingWrongWay;
 		}
 
+		if (character?.Name is not null) {
+			uiLine.CharacterName = character.Name;
+		}
+
 		var lines = Lines;
 		var position = (uint)lines.Count();
 		foreach (var line in lines) {
@@ -149,14 +155,23 @@ public partial class DialogueUI : CanvasLayer {
 	}
 
 	private void Clear() {
-		var dialogueRows = DialogueLines
-			.GetChildren()
-			.Where(child => typeof(DialogueUILine).IsAssignableFrom(child.GetType()));
-
-		foreach (var row in dialogueRows) {
+		var lines = Lines.ToList();
+		foreach (var row in lines) {
 			DialogueLines.RemoveChild(row);
 			row.QueueFree();
 		}
+	}
+
+	public interface DialogueUIInputEvent {
+		public sealed class SelectOption(uint option) : DialogueUIInputEvent {
+			public uint Option { get; init; } = option;
+		}
+
+		public sealed class NextOption : DialogueUIInputEvent;
+
+		public sealed class PreviousOption : DialogueUIInputEvent;
+
+		public sealed class Proceed : DialogueUIInputEvent;
 	}
 
 	public override void _Input(InputEvent @event) {
@@ -169,32 +184,39 @@ public partial class DialogueUI : CanvasLayer {
 			return;
 		}
 
-		if (CurrentLine is DialogueUILineInteractive line) {
-			for (var i = 0; i < 3; i++) {
-				var action = $"dialogue_option_{i + 1}";
-				if (Input.IsActionJustPressed(action)) {
-					line.HighlightedOption = i;
-				}
+		DialogueUIInputEvent? inputEvent = null;
+		for (var i = 0; i < 3; i++) {
+			var action = $"dialogue_option_{i + 1}";
+			if (Input.IsActionJustPressed(action)) {
+				inputEvent = new DialogueUIInputEvent.SelectOption((uint)i);
 			}
+		}
 
+		if (inputEvent is null) {
 			if (Input.IsActionJustPressed("gui_up")) {
-				var option = line.HighlightedOption - 1;
-				if (option < 0) {
-					option = line.LastOptionIndex;
-				}
-
-				line.HighlightedOption = option;
-			}
-
-			if (Input.IsActionJustPressed("gui_down")) {
-				var option = line.HighlightedOption + 1 % line.OptionCount;
-				line.HighlightedOption = option;
+				inputEvent = new DialogueUIInputEvent.PreviousOption();
+			} else if (Input.IsActionJustPressed("gui_down")) {
+				inputEvent = new DialogueUIInputEvent.NextOption();
+			} else if (@event.IsActionPressed("gui_accept")) {
+				inputEvent = new DialogueUIInputEvent.Proceed();
 			}
 		}
 
-		if (@event.IsActionPressed("gui_accept")) {
-			NextDialogueLine();
+		if (inputEvent is not null) {
+			HandleInput(inputEvent);
 		}
+	}
+
+	public void HandleInput(DialogueUIInputEvent @event) {
+		Action handler = @event switch {
+			DialogueUIInputEvent.Proceed => NextDialogueLine,
+			DialogueUIInputEvent.NextOption => NextDialogueOption,
+			DialogueUIInputEvent.PreviousOption => PreviousDialogueOption,
+			DialogueUIInputEvent.SelectOption selectEvent => () => SelectDialogueOption((int)selectEvent.Option),
+			_ => throw new NotImplementedException(),
+		};
+
+		handler();
 	}
 
 	private void NextDialogueLine() {
@@ -207,6 +229,46 @@ public partial class DialogueUI : CanvasLayer {
 			}
 		}
 
-		this.DialogueManager().NextLine(optionIndex);
+		// HACK: While in editor, the autoload/singleton is not the same as the
+		// instance being edited in the viewport. The UI is rendered fullscreen
+		// (whole editor window) instead of as part of the edited scene.
+		//
+		// To circumvent this, assume the parent is the dialogue manager while
+		// inside the editor.
+		if (Engine.IsEditorHint()) {
+			GetParentOrNull<DialogueManager>()?.NextLine(optionIndex);
+		} else {
+			this.DialogueManager().NextLine(optionIndex);
+		}
+	}
+
+	private void NextDialogueOption() {
+		if (CurrentLine is not DialogueUILineInteractive line) {
+			return;
+		}
+
+		var option = line.HighlightedOption + 1 % line.OptionCount;
+		SelectDialogueOption(option);
+	}
+
+	private void PreviousDialogueOption() {
+		if (CurrentLine is not DialogueUILineInteractive line) {
+			return;
+		}
+
+		var option = line.HighlightedOption - 1;
+		if (option < 0) {
+			option = line.LastOptionIndex;
+		}
+
+		SelectDialogueOption(option);
+	}
+
+	private void SelectDialogueOption(int optionIndex) {
+		if (CurrentLine is not DialogueUILineInteractive line) {
+			return;
+		}
+
+		line.HighlightedOption = optionIndex;
 	}
 }

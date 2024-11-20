@@ -98,7 +98,7 @@ _data = {
 "RESET": SubResource("Animation_rlppr")
 }
 
-[node name="Line" type="HBoxContainer" node_paths=PackedStringArray("TextElement", "TextScrollTimer", "SpeakingSfx", "Animation", "Portrait", "PortraitContainer", "PositionAnimator", "Layout")]
+[node name="Line" type="HBoxContainer" node_paths=PackedStringArray("TextElement", "TextScrollTimer", "SpeakingSfx", "Animation", "Portrait", "CharacterNameLabel", "PortraitContainer", "PositionAnimator", "Layout")]
 anchors_preset = -1
 anchor_right = 0.999996
 theme_override_constants/separation = 16
@@ -107,8 +107,10 @@ Text = "A quick brown fox jumps over a lazy dog."
 TextElement = NodePath("Text")
 TextScrollTimer = NodePath("TextScrollTimer")
 SpeakingSfx = NodePath("SpeakingSfx")
+CharacterName = "Example"
 Animation = NodePath("AnimationPlayer")
 Portrait = NodePath("CharacterPortrait/PortraitFrame/Portrait")
+CharacterNameLabel = NodePath("CharacterPortrait/CharacterName")
 PortraitContainer = NodePath("CharacterPortrait")
 PositionAnimator = NodePath("PositionAnimator")
 Layout = NodePath(".")
@@ -133,7 +135,7 @@ texture = ExtResource("1_mbg6y")
 
 [node name="CharacterName" type="Label" parent="CharacterPortrait"]
 layout_mode = 2
-text = "Player"
+text = "Example"
 label_settings = SubResource("LabelSettings_n8p5x")
 horizontal_alignment = 1
 
@@ -151,6 +153,7 @@ libraries = {
 script = ExtResource("4_3xi44")
 AnimatedControl = NodePath("..")
 UseSizeOf = NodePath("../CharacterPortrait")
+ScrollDirection = 2
 
 [node name="TextScrollTimer" type="Timer" parent="."]
 wait_time = 0.05
