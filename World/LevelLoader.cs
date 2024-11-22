@@ -5,6 +5,7 @@ using Godot;
 namespace Jakojaannos.WisperingWoods.World;
 
 public partial class LevelLoader : Node2D {
+	[Export]
 	public string? LevelScene { get; set; }
 
 	private State _state = new Unloaded();
@@ -17,8 +18,7 @@ public partial class LevelLoader : Node2D {
 	}
 
 	public override void _Ready() {
-		base._Ready();
-		CurrentState = new Unloaded();
+		ProcessMode = _state.ProcessMode;
 	}
 
 	public override void _Process(double delta) {
@@ -28,11 +28,13 @@ public partial class LevelLoader : Node2D {
 		}
 
 		if (CurrentState is Requested requested && requested.IsReady) {
-			CurrentState = new Loaded(LevelScene);
+			GD.Print($"Requested scene is fully loaded (\"{Name}\" / \"{LevelScene}\")");
+			CurrentState = new Loaded(LevelScene, requested.EntranceNodePath, requested.TransitionNode);
 		}
 
 		if (CurrentState is Loaded loaded && loaded.IsReady) {
-			CurrentState = new Instantiated(loaded.GetLevel(), this);
+			GD.Print($"Loaded scene is fully instantiated (\"{Name}\" / \"{LevelScene}\")");
+			CurrentState = new Instantiated(loaded.GetLevel(), this, loaded.EntranceNodePath, loaded.TransitionNode);
 		}
 	}
 
@@ -62,7 +64,9 @@ public partial class LevelLoader : Node2D {
 			// not yet been instantiated. This is somewhat awkward, so just
 			// block the main thread to instantiate the scene ASAP.
 			var level = scene.Instantiate<Level>();
-			CurrentState = new Instantiated(level, this);
+			var entranceNodePath = (NodePath?)null; // FIXME
+			var transitionNode = (Node2D?)null; // FIXME
+			CurrentState = new Instantiated(level, this, entranceNodePath, transitionNode);
 
 			GD.Print("Instantiating done!");
 
@@ -85,18 +89,27 @@ public partial class LevelLoader : Node2D {
 		}
 	}
 
-	public void ShowLevel() {
+	public void ShowLevel(NodePath entranceNodePath, Node2D transitionNode) {
 		if (LevelScene is null) {
-			return;
+			throw new InvalidOperationException($"Cannot show level: LevelScene is not set for loader \"{Name}\"");
 		}
+		GD.Print($"Showing level {Name} / {LevelScene}");
 
 		if (CurrentState is Unloaded) {
-			CurrentState = new Requested(LevelScene);
+			GD.Print($"-> Requesting load (\"{Name}\" / \"{LevelScene}\")");
+			CurrentState = new Requested(LevelScene, entranceNodePath, transitionNode);
 		}
 	}
 
 	public void HideLevel() {
 		CurrentState = new Unloaded();
+	}
+
+	internal void WithExistingInstance(Level instance) {
+		if (CurrentState is not Unloaded) {
+			throw new InvalidOperationException($"Tried to override instance of an already loaded level loader (\"{LevelScene}\" / \"{Name}\")");
+		}
+		CurrentState = new Instantiated(instance, this);
 	}
 
 	private abstract class State {
@@ -109,13 +122,19 @@ public partial class LevelLoader : Node2D {
 
 	private sealed class Requested : State {
 		public string Path { init; get; }
+		public NodePath EntranceNodePath { init; get; }
+		public Node2D TransitionNode { init; get; }
 
 		public override ProcessModeEnum ProcessMode => ProcessModeEnum.Always;
 
 		public bool IsReady => ResourceLoader.LoadThreadedGetStatus(Path) == ResourceLoader.ThreadLoadStatus.Loaded;
 
-		public Requested(string path) {
+		public Requested(string path, NodePath entranceNodePath, Node2D transitionNode) {
+			EntranceNodePath = entranceNodePath;
+			TransitionNode = transitionNode;
+
 			Path = path;
+			ResourceLoader.LoadThreadedRequest(path);
 		}
 	}
 
@@ -126,10 +145,16 @@ public partial class LevelLoader : Node2D {
 
 		public bool IsReady => level != null || WorkerThreadPool.IsTaskCompleted(taskId);
 
+		public NodePath EntranceNodePath { init; get; }
+		public Node2D TransitionNode { init; get; }
+
 		private Level? level;
 		private long taskId;
 
-		public Loaded(string path) {
+		public Loaded(string path, NodePath entranceNodePath, Node2D transitionNode) {
+			EntranceNodePath = entranceNodePath;
+			TransitionNode = transitionNode;
+
 			var loaded = ResourceLoader.LoadThreadedGet(path);
 			if (loaded is not PackedScene scene) {
 				throw new InvalidOperationException("Loaded level resource is not a scene!");
@@ -158,13 +183,18 @@ public partial class LevelLoader : Node2D {
 
 		public override ProcessModeEnum ProcessMode => ProcessModeEnum.Disabled;
 
-		public Instantiated(Level instance, Node2D parent) {
+		public Instantiated(Level instance, Node2D parent, NodePath? entranceNodePath = null, Node2D? exitNode = null) {
 			Level = instance;
 			// Explicitly set process mode of the level root to allow the level
 			// to process, even if it is inside a disabled loader node.
-
 			Level.ProcessMode = ProcessModeEnum.Pausable;
+
+			Level.GetParent()?.RemoveChild(Level);
 			parent.AddChild(Level);
+
+			if (entranceNodePath is not null && exitNode is not null) {
+				Levels.AdjustLevelPositionRelativeToCurrent(Level, entranceNodePath, exitNode);
+			}
 		}
 	}
 }

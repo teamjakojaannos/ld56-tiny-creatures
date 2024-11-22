@@ -26,6 +26,7 @@ public partial class LevelTransition : Area2D {
 	// Exported, but hidden in editor.
 	[Export]
 	private NodePath _entranceNodePath = "";
+	internal NodePath EntranceNodePath => _entranceNodePath;
 
 	public bool IsOtherScenePreviewVisible {
 		get => _previewScene is not null && _previewScene.IsInsideTree() && !_previewScene.IsQueuedForDeletion();
