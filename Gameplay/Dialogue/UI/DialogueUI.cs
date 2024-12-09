@@ -29,7 +29,7 @@ public partial class DialogueUI : CanvasLayer {
 
 	[Export]
 	[MustSetInEditor]
-	public PackedScene DialogueLineTemplate {
+	public PackedScene DialogueTextLineTemplate {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_dialogueLineTemplate);
 		set => this.SetExportProperty(ref _dialogueLineTemplate, value);
 	}
@@ -37,7 +37,7 @@ public partial class DialogueUI : CanvasLayer {
 
 	[Export]
 	[MustSetInEditor]
-	public PackedScene InteractiveDialogueLineTemplate {
+	public PackedScene DialogueChoiceLineTemplate {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_interactiveDialogueLineTemplate);
 		set => this.SetExportProperty(ref _interactiveDialogueLineTemplate, value);
 	}
@@ -115,12 +115,42 @@ public partial class DialogueUI : CanvasLayer {
 		Animation.Play("FinishDialogue");
 	}
 
-	public void AddLine(string text, DialogueSide side, GameCharacter? character) {
-		var uiLine = DialogueLineTemplate.Instantiate<DialogueUITextLine>();
+	public void AddTextLine(string text, DialogueSide side, GameCharacter? character) {
+		var uiLine = DialogueTextLineTemplate.Instantiate<DialogueUITextLine>();
+		SetupAddedLine(uiLine, text, side, character);
+		RefreshLinePositions();
+
+		uiLine.OnAdded();
+	}
+
+	public void AddChoiceLine(DialogueSide side, GameCharacter? character, IEnumerable<DialogueChoiceLine.Option> options) {
+		var uiLine = DialogueChoiceLineTemplate.Instantiate<DialogueUIChoiceLine>();
+		SetupAddedLine(uiLine, string.Empty, side, character);
+		RefreshLinePositions();
+
+		uiLine.ClearOptions();
+		uint optionIndex = 0;
+		foreach (var option in options) {
+			var uiOption = uiLine.OptionTemplate.Instantiate<DialogueUIChoiceLineOption>();
+			uiOption.Setup(optionIndex, option);
+
+			uiLine.AddOption(uiOption);
+			optionIndex++;
+		}
+		uiLine.UpdateHighlighted();
+
+		uiLine.OnAdded();
+	}
+
+	// FIXME: this should reside in `DialogueUILine` and be overridden by text/choice lines to add specific behaviour, if needed
+	private void SetupAddedLine(DialogueUILine uiLine, string text, DialogueSide side, GameCharacter? character) {
 		DialogueLines.AddChild(uiLine);
 		uiLine.Owner = DialogueLines;
-		uiLine.Text = text;
 		uiLine.Side = side;
+
+		if (uiLine is DialogueUITextLine textUiLine) {
+			textUiLine.Text = text;
+		}
 
 		if (character?.Portrait is not null) {
 			uiLine.Portrait.Texture = character.Portrait;
@@ -132,15 +162,14 @@ public partial class DialogueUI : CanvasLayer {
 		if (character?.Name is not null) {
 			uiLine.CharacterName = character.Name;
 		}
+	}
 
-		var lines = Lines;
-		var position = (uint)lines.Count();
-		foreach (var line in lines) {
+	private void RefreshLinePositions() {
+		var position = (uint)Lines.Count();
+		foreach (var line in Lines) {
 			position--;
 			line.LinePosition = position;
 		}
-
-		uiLine.OnAdded();
 	}
 
 	private void OnOpened() {
@@ -221,7 +250,7 @@ public partial class DialogueUI : CanvasLayer {
 
 	private void NextDialogueLine() {
 		var optionIndex = -1;
-		if (CurrentLine is DialogueUILineInteractive row) {
+		if (CurrentLine is DialogueUIChoiceLine row) {
 			optionIndex = row.HighlightedOption;
 
 			if (IsIdle) {
@@ -235,24 +264,24 @@ public partial class DialogueUI : CanvasLayer {
 		//
 		// To circumvent this, assume the parent is the dialogue manager while
 		// inside the editor.
-		if (Engine.IsEditorHint()) {
-			GetParentOrNull<DialogueManager>()?.NextLine(optionIndex);
-		} else {
-			this.DialogueManager().NextLine(optionIndex);
-		}
+		var manager = Engine.IsEditorHint()
+			? GetParentOrNull<DialogueManager>()
+			: this.DialogueManager();
+
+		manager.NextLine(optionIndex);
 	}
 
 	private void NextDialogueOption() {
-		if (CurrentLine is not DialogueUILineInteractive line) {
+		if (CurrentLine is not DialogueUIChoiceLine line) {
 			return;
 		}
 
-		var option = line.HighlightedOption + 1 % line.OptionCount;
-		SelectDialogueOption(option);
+		var option = (line.HighlightedOption + 1) % line.OptionCount;
+		line.HighlightedOption = option;
 	}
 
 	private void PreviousDialogueOption() {
-		if (CurrentLine is not DialogueUILineInteractive line) {
+		if (CurrentLine is not DialogueUIChoiceLine line) {
 			return;
 		}
 
@@ -261,14 +290,15 @@ public partial class DialogueUI : CanvasLayer {
 			option = line.LastOptionIndex;
 		}
 
-		SelectDialogueOption(option);
+		line.HighlightedOption = option;
 	}
 
 	private void SelectDialogueOption(int optionIndex) {
-		if (CurrentLine is not DialogueUILineInteractive line) {
+		if (CurrentLine is not DialogueUIChoiceLine line) {
 			return;
 		}
 
 		line.HighlightedOption = optionIndex;
+		NextDialogueLine();
 	}
 }

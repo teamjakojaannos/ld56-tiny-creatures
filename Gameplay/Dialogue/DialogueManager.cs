@@ -66,6 +66,18 @@ public partial class DialogueManager : Node {
 	}
 
 	[Export]
+	public bool Control_End {
+		get => false;
+		set {
+			if (!_readyCalled) {
+				return;
+			}
+
+			CallDeferred(MethodName.ShowLastLine);
+		}
+	}
+
+	[Export]
 	public bool Control_Open {
 		get => false;
 		set {
@@ -87,6 +99,36 @@ public partial class DialogueManager : Node {
 
 			DebugSendUIInput(new DialogueUI.DialogueUIInputEvent.Proceed());
 		}
+	}
+
+	[Export]
+	public bool Control_PreviousOption {
+		get => false;
+		set {
+			if (!_readyCalled) {
+				return;
+			}
+
+			DebugSendUIInput(new DialogueUI.DialogueUIInputEvent.PreviousOption());
+		}
+	}
+
+	[Export]
+	public bool Control_NextOption {
+		get => false;
+		set {
+			if (!_readyCalled) {
+				return;
+			}
+
+			DebugSendUIInput(new DialogueUI.DialogueUIInputEvent.NextOption());
+		}
+	}
+
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
 	}
 
 	public override void _Ready() {
@@ -113,6 +155,17 @@ public partial class DialogueManager : Node {
 		DialogueUI.Reset();
 	}
 
+	public void ShowLastLine() {
+		if (DialogueUI.IsFinished) {
+			StartDialogue();
+		}
+
+		for (++_currentLine; _currentLine < _dialogueLines.Count; ++_currentLine) {
+			ShowLine((int)_currentLine);
+			DialogueUI.SkipCurrentAnimation();
+		}
+	}
+
 	public void StartDialogue() {
 		if (ActiveDialogue is null) {
 			GD.PrintErr("No active dialogue to start!");
@@ -133,17 +186,13 @@ public partial class DialogueManager : Node {
 		DialogueUI.FinishDialogue();
 	}
 
-	public void NextRowForOption(int index) {
-		throw new NotImplementedException();
-	}
-
 	private void ShowFirstLine() {
 		_currentLine = 0;
 		NextLine(-1);
 	}
 
-	public void NextLine(int _) {
-		if (DialogueUI.IsFinished) {
+	public void NextLine(int optionIndex) {
+		if (DialogueUI.IsFinished || ActiveDialogue is null) {
 			return;
 		}
 
@@ -152,18 +201,58 @@ public partial class DialogueManager : Node {
 			return;
 		}
 
+		if (optionIndex >= 0) {
+			var nextDialogueBranch = ActiveDialogue
+				.GetChildren()
+				.OfType<Dialogue>()
+				.ElementAt(optionIndex);
+
+			_dialogueLines.AddRange(nextDialogueBranch.Lines);
+			ActiveDialogue = nextDialogueBranch;
+		}
+
 		if (_currentLine >= _dialogueLines.Count) {
 			FinishDialogue();
 			return;
 		}
 
-		var nextLine = _dialogueLines[(int)_currentLine];
+		ShowLine((int)_currentLine);
 		_currentLine++;
+	}
+
+	private void ShowLine(int lineIndex) {
+		if (ActiveDialogue is null) {
+			throw new InvalidOperationException($"Cannot show dialogue line {lineIndex}: No active dialogue");
+		}
+		if (lineIndex < 0 || lineIndex >= _dialogueLines.Count) {
+			throw new ArgumentOutOfRangeException($"Cannot show dialogue line {lineIndex}: Index is out of bounds");
+		}
+
+		var nextLine = _dialogueLines[lineIndex];
 
 		if (nextLine is DialogueTextLine textLine) {
-			DialogueUI.AddLine(textLine.Text, textLine.Side, textLine.Speaker);
+			DialogueUI.AddTextLine(textLine.Text, textLine.Side, textLine.Speaker);
+		} else if (nextLine is DialogueChoiceLine choiceLine) {
+			// Mangle dialgoue branches stored as children to more manageable dialogue options
+			var options = ActiveDialogue
+				.GetChildren()
+				.OfType<Dialogue>()
+				.Select(branch => new DialogueChoiceLine.Option() {
+					Text = GetDialogueBranchFirstLineAsText(branch),
+				});
+			DialogueUI.AddChoiceLine(choiceLine.Side, choiceLine.Speaker, options);
 		} else {
 			throw new NotImplementedException();
 		}
+	}
+
+	private static string GetDialogueBranchFirstLineAsText(Dialogue branch) {
+		var firstLine = branch.Lines.First();
+		if (firstLine is not DialogueTextLine textLine) {
+			// TODO: configuration warning
+			throw new InvalidOperationException("First dialogue line of a dialogue branch must be a text line!");
+		}
+
+		return textLine.Text;
 	}
 }

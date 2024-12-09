@@ -4,13 +4,7 @@ namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]
 [GlobalClass]
-public partial class ChoiceDialogueLine : DialogueLine {
-	[Export]
-	public string Prompt { get; set; } = "Choose one:";
-
-	[Export]
-	public Godot.Collections.Array<DialogueOption> Options { get; set; } = [];
-
+public partial class DialogueChoiceLine : DialogueLine {
 	/* --------- */
 	// FIXME: are these needed?
 	public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetPropertyList() {
@@ -25,4 +19,8 @@ public partial class ChoiceDialogueLine : DialogueLine {
 		return base._Set(property, value);
 	}
 	/* --------- */
+
+	public readonly struct Option {
+		public readonly string Text { get; init; }
+	}
 }

@@ -1,0 +1,167 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt5b1ny7gald6"]
+
+[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLine.cs" id="1_r4p8d"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="2_k16ub"]
+[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="3_shay1"]
+[ext_resource type="PackedScene" uid="uid://cu1ir7cvjn2l2" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLineOption.tscn" id="4_5btkh"]
+[ext_resource type="Script" path="res://UI/PositionAnimator.cs" id="4_cyp7r"]
+[ext_resource type="AudioStream" uid="uid://b2uxf54supp74" path="res://dialogue/puhe1.ogg" id="5_d33bj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n8p5x"]
+font = ExtResource("3_shay1")
+font_size = 12
+
+[sub_resource type="Animation" id="Animation_80455"]
+resource_name = "Added"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.82843, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PositionAnimator:PercentageOffScreen")
+tracks/2/interp = 2
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(2, -2, 1),
+"update": 0,
+"values": [2.0, -0.1, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rlppr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PositionAnimator:PercentageOffScreen")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7bm30"]
+_data = {
+"Added": SubResource("Animation_80455"),
+"RESET": SubResource("Animation_rlppr")
+}
+
+[node name="Line" type="HBoxContainer" node_paths=PackedStringArray("OptionsContainer", "Animation", "Portrait", "CharacterNameLabel", "PortraitContainer", "PositionAnimator", "Layout")]
+anchors_preset = -1
+anchor_right = 0.999996
+theme_override_constants/separation = 16
+script = ExtResource("1_r4p8d")
+OptionsContainer = NodePath("Options")
+OptionTemplate = ExtResource("4_5btkh")
+CharacterName = "Example"
+Animation = NodePath("AnimationPlayer")
+Portrait = NodePath("CharacterPortrait/PortraitFrame/Portrait")
+CharacterNameLabel = NodePath("CharacterPortrait/CharacterName")
+PortraitContainer = NodePath("CharacterPortrait")
+PositionAnimator = NodePath("PositionAnimator")
+Layout = NodePath(".")
+
+[node name="CharacterPortrait" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PortraitFrame" type="TextureRect" parent="CharacterPortrait"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Portrait" type="TextureRect" parent="CharacterPortrait/PortraitFrame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k16ub")
+
+[node name="CharacterName" type="Label" parent="CharacterPortrait"]
+layout_mode = 2
+text = "Example"
+label_settings = SubResource("LabelSettings_n8p5x")
+horizontal_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="1" parent="Options" instance=ExtResource("4_5btkh")]
+layout_mode = 2
+
+[node name="2" parent="Options" instance=ExtResource("4_5btkh")]
+layout_mode = 2
+
+[node name="3" parent="Options" instance=ExtResource("4_5btkh")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7bm30")
+}
+
+[node name="PositionAnimator" type="Node" parent="." node_paths=PackedStringArray("AnimatedControl", "UseSizeOf")]
+script = ExtResource("4_cyp7r")
+AnimatedControl = NodePath("..")
+UseSizeOf = NodePath("../CharacterPortrait")
+ScrollDirection = 2
+
+[node name="TextScrollTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="SpeakingSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_d33bj")
+bus = &"SFX"

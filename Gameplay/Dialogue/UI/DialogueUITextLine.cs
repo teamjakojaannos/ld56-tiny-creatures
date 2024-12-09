@@ -21,6 +21,7 @@ public partial class DialogueUITextLine : DialogueUILine {
 
 	[Export]
 	[ExportGroup("Prewire")]
+	[MustSetInEditor]
 	public Label TextElement {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_textElement);
 		set => this.SetExportProperty(ref _textElement, value);
@@ -48,11 +49,11 @@ public partial class DialogueUITextLine : DialogueUILine {
 	public override void _Ready() {
 		base._Ready();
 
-		_textElement ??= GetChildren().OfType<Label>().FirstOrDefault();
 		_textScrollTimer ??= GetChildren().OfType<Timer>().FirstOrDefault();
 		_speakingSfx ??= GetChildren().OfType<AudioStreamPlayer>().FirstOrDefault();
+		_textElement ??= GetChildren().OfType<Label>().FirstOrDefault();
 
-		if (_textElement is null || _textScrollTimer is null || _speakingSfx is null) {
+		if (_textScrollTimer is null || _speakingSfx is null || _textElement is null) {
 			return;
 		}
 

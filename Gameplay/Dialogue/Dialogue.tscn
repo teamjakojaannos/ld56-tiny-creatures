@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3qquxamaxbfl"]
+[gd_scene load_steps=31 format=3 uid="uid://d3qquxamaxbfl"]
 
 [ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
 [ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="5_8btbo"]
 [ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="6_61mji"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueChoiceLine.cs" id="6_lfg4c"]
 [ext_resource type="Script" path="res://UI/PositionAnimator.cs" id="7_32f4m"]
+[ext_resource type="PackedScene" uid="uid://dt5b1ny7gald6" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLine.tscn" id="8_urtq6"]
 
 [sub_resource type="Resource" id="Resource_sbein"]
 script = ExtResource("4_d1t7j")
@@ -32,6 +34,23 @@ Side = 1
 [sub_resource type="Resource" id="Resource_6wwag"]
 script = ExtResource("4_d1t7j")
 Text = "Oh, this is just a placeholder, you silly!"
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_lcxp5"]
+script = ExtResource("6_lfg4c")
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_yd4xi"]
+script = ExtResource("4_d1t7j")
+Text = "Pick option 1"
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_15204"]
+script = ExtResource("4_d1t7j")
+Text = "Pick option 2"
 Speaker = ExtResource("5_8btbo")
 Side = 0
 
@@ -367,13 +386,22 @@ DialogueUI = NodePath("UI")
 
 [node name="Preview" type="Node" parent="."]
 script = ExtResource("1_fsicn")
-Lines = [SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag")]
+Lines = [SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag"), SubResource("Resource_lcxp5")]
+
+[node name="AnotherBranch" type="Node" parent="Preview"]
+script = ExtResource("1_fsicn")
+Lines = [SubResource("Resource_yd4xi")]
+
+[node name="SomeBranch" type="Node" parent="Preview"]
+script = ExtResource("1_fsicn")
+Lines = [SubResource("Resource_15204")]
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("DialogueLines", "Animation")]
 visible = false
 script = ExtResource("2_klg46")
 DialogueLines = NodePath("UIRoot/Lines")
-DialogueLineTemplate = ExtResource("3_4sdnn")
+DialogueTextLineTemplate = ExtResource("3_4sdnn")
+DialogueChoiceLineTemplate = ExtResource("8_urtq6")
 Animation = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
@@ -396,7 +424,7 @@ grow_vertical = 2
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchor_right = 1.0
-anchor_bottom = 0.999999
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_kmp7t")
