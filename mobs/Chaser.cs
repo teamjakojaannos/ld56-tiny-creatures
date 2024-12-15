@@ -13,11 +13,14 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 
 [Tool]
 public partial class Chaser : RigidBody2D {
-
 	public float speed;
-	[Export] public float acceleration = 15.0f;
-	[Export] public float baseSpeed = 60.0f;
-	[Export] public float maxSpeed = 200.0f;
+
+	[Export]
+	public float acceleration = 15.0f;
+	[Export]
+	public float baseSpeed = 60.0f;
+	[Export]
+	public float maxSpeed = 200.0f;
 
 	[Export(PropertyHint.Range, "-3.14,3.14,")]
 	public float coneAngleOffset = Mathf.Pi / 2.0f;
@@ -37,7 +40,7 @@ public partial class Chaser : RigidBody2D {
 	public AnimatedSprite2D? Sprite;
 
 	private ChaserAI aiState = new IdleState();
-	public RandomNumberGenerator rng = new();
+	internal RandomNumberGenerator rng = new();
 
 	private Vector2? whereToLookAt = null;
 
@@ -45,11 +48,8 @@ public partial class Chaser : RigidBody2D {
 	private bool navigationSetupDone = false;
 
 	private RayCast2D? lineOfSight;
-	private Player? player;
+	private Node2D? _chaseTarget;
 	private bool isAttacking;
-
-	[Export]
-	public Timer? FootstepsTimer;
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -62,10 +62,20 @@ public partial class Chaser : RigidBody2D {
 
 	[Export]
 	[MustSetInEditor]
+	public Timer FootstepsTimer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_footstepsTimer);
+		set => this.SetExportProperty(ref _footstepsTimer, value);
+	}
+	private Timer? _footstepsTimer;
+
+
+	[Export]
+	[MustSetInEditor]
 	public RandomAudioStreamPlayer AttackSounds {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackSounds);
 		set => this.SetExportProperty(ref _attackSounds, value);
 	}
+
 	private RandomAudioStreamPlayer? _attackSounds;
 
 	public override string[] _GetConfigurationWarnings() {
@@ -79,9 +89,9 @@ public partial class Chaser : RigidBody2D {
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
 
-		sightConeSmall = GetNode<Area2D>("SightCone/SightConeSmall");
-		sightConeMedium = GetNode<Area2D>("SightCone/SightConeMedium");
-		sightConeLarge = GetNode<Area2D>("SightCone/SightConeLarge");
+		sightConeSmall = sightConeRoot.GetNode<Area2D>("SightConeSmall");
+		sightConeMedium = sightConeRoot.GetNode<Area2D>("SightConeMedium");
+		sightConeLarge = sightConeRoot.GetNode<Area2D>("SightConeLarge");
 
 		speed = baseSpeed;
 
@@ -123,14 +133,14 @@ public partial class Chaser : RigidBody2D {
 			return;
 		}
 
-		var seesPlayer = RaycastToPlayer();
+		var seesPlayer = RaycastToChaseTarget();
 		if (seesPlayer) {
 			if (aiState is not ChaseState) {
-				StartChase(player!);
+				StartChase(_chaseTarget!);
 			}
 		} else {
 			if (aiState is ChaseState chase) {
-				StartSeeking(chase.lastSeenPosition);
+				StartSeeking(chase.LastKnownTargetPosition);
 			}
 		}
 
@@ -283,14 +293,14 @@ public partial class Chaser : RigidBody2D {
 		sightConeRoot.Rotation += rotationAmount;
 	}
 
-	private bool RaycastToPlayer() {
-		if (player == null) {
+	private bool RaycastToChaseTarget() {
+		if (_chaseTarget == null) {
 			return false;
 		}
 
-		var playerPosition = player.GlobalPosition;
+		var targetPosition = _chaseTarget.GlobalPosition;
 		// raycast wants target as relative to itself, not global
-		var target = playerPosition - lineOfSight!.GlobalPosition;
+		var target = targetPosition - lineOfSight!.GlobalPosition;
 		lineOfSight.TargetPosition = target;
 
 		lineOfSight.ForceRaycastUpdate();
@@ -319,7 +329,7 @@ public partial class Chaser : RigidBody2D {
 			return;
 		}
 
-		this.player = player;
+		this._chaseTarget = player;
 	}
 
 	private void SightConeExited(Node2D node, SightConeSize _) {
@@ -327,16 +337,16 @@ public partial class Chaser : RigidBody2D {
 			return;
 		}
 
-		player = null;
+		_chaseTarget = null;
 	}
 
-	private void StartChase(Player player) {
+	private void StartChase(Node2D target) {
 		ClearLookTarget();
 		ClearMovementTarget();
 
 		AttackSounds?.Play();
 		this.Jukebox().StartChase();
-		aiState = new ChaseState(player);
+		aiState = new ChaseState(target);
 	}
 
 	private void StartSeeking(Vector2 lastPosition) {

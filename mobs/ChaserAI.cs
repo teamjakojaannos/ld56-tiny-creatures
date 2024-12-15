@@ -94,28 +94,22 @@ public class WanderState : ChaserAI {
 	}
 }
 
-public class ChaseState : ChaserAI {
+public class ChaseState(Node2D target) : ChaserAI {
+	public Vector2 LastKnownTargetPosition { get; private set; } = target.GlobalPosition;
 
-	private float timeSinceLastUpdate;
-	private Node2D player;
-	public Vector2 lastSeenPosition;
-
-	public ChaseState(Node2D player) {
-		this.player = player;
-		timeSinceLastUpdate = ChaserStats.chaseTargetPositionUpdateFrequency;
-		lastSeenPosition = player.GlobalPosition;
-	}
+	private float _timeSinceLastUpdate = ChaserStats.chaseTargetPositionUpdateFrequency;
+	private Node2D _target = target;
 
 	public override void DoUpdate(Chaser chaser, float delta) {
-		var playerPos = player.GlobalPosition;
+		var playerPos = _target.GlobalPosition;
 
 		chaser.SetLookTarget(playerPos, turnInstantly: true);
 
-		timeSinceLastUpdate += delta;
-		if (timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
-			timeSinceLastUpdate = 0.0f;
+		_timeSinceLastUpdate += delta;
+		if (_timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
+			_timeSinceLastUpdate = 0.0f;
 			chaser.SetMovementTarget(playerPos);
-			lastSeenPosition = playerPos;
+			LastKnownTargetPosition = playerPos;
 		}
 	}
 }
@@ -165,7 +159,7 @@ public class SeekState : ChaserAI {
 			chaser.SetMovementTarget(newTarget);
 
 		} else {
-			var randomPos = RandomNumberGeneratorExtension.RandomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
+			var randomPos = chaser.rng.RandomVector(minDistance: 100.0f, maxDistance: 100.0f);
 			var newTarget = chaser.GlobalPosition + randomPos;
 			chaser.SetLookTarget(newTarget);
 		}
