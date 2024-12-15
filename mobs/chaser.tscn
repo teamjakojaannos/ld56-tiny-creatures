@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cf7a5jq2ec6u4" path="res://mobs/markoattac.png" id="6_0x6f6"]
 [ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://mobs/player_in_trouble.png" id="7_p7lna"]
 [ext_resource type="Texture2D" uid="uid://ctacdgnwmqtbh" path="res://mobs/marko_kasi.png" id="8_4k2m5"]
-[ext_resource type="Script" path="res://Characters/Player/Footsteps.cs" id="9_d77we"]
 [ext_resource type="Script" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="9_l3s1e"]
 [ext_resource type="AudioStream" uid="uid://bdaw5eoepaqbj" path="res://mobs/morko/isoaskel1.ogg" id="10_xhd7h"]
 [ext_resource type="AudioStream" uid="uid://bf6b7018ta06l" path="res://mobs/morko/isoaskel2.ogg" id="11_ueypv"]
 [ext_resource type="AudioStream" uid="uid://ciu5m6wgbhk4q" path="res://mobs/morko/morokolli1.ogg" id="12_5i00f"]
+[ext_resource type="Script" path="res://Audio/RandomAudioStreamPlayer.cs" id="12_bgnlq"]
 [ext_resource type="AudioStream" uid="uid://c3jk0h6p1llhj" path="res://mobs/morko/morokolli2.ogg" id="13_qrnb0"]
 [ext_resource type="AudioStream" uid="uid://t5l8ey31r463" path="res://mobs/morko/morokolli3.ogg" id="14_51dqm"]
 
@@ -579,7 +579,7 @@ max_distance = 500.0
 bus = &"SFX"
 
 [node name="AttackSounds" type="Node2D" parent="."]
-script = ExtResource("9_d77we")
+script = ExtResource("12_bgnlq")
 
 [node name="Morokolli1" type="AudioStreamPlayer" parent="AttackSounds"]
 stream = ExtResource("12_5i00f")
