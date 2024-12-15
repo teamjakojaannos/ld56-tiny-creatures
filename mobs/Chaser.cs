@@ -1,11 +1,15 @@
+using System.Linq;
+
 using ChaserStuff;
 
 using Godot;
 using Godot.Collections;
 
 using Jakojaannos.WisperingWoods;
+using Jakojaannos.WisperingWoods.Audio;
 using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 public partial class Chaser : RigidBody2D {
 
@@ -47,10 +51,27 @@ public partial class Chaser : RigidBody2D {
 	public Timer? FootstepsTimer;
 
 	[Export]
-	public Footsteps? Footsteps;
+	[ExportGroup("Prewire")]
+	[MustSetInEditor]
+	public RandomAudioStreamPlayer2D Footsteps {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_footsteps);
+		set => this.SetExportProperty(ref _footsteps, value);
+	}
+	private RandomAudioStreamPlayer2D? _footsteps;
 
 	[Export]
-	public Footsteps? AttackSounds;
+	[MustSetInEditor]
+	public RandomAudioStreamPlayer AttackSounds {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackSounds);
+		set => this.SetExportProperty(ref _attackSounds, value);
+	}
+	private RandomAudioStreamPlayer? _attackSounds;
+
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void _Ready() {
 		sightConeRoot = GetNode<Node2D>("SightCone");
