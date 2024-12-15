@@ -45,8 +45,8 @@ public partial class Levels : Node2D {
 
 		// Move the player to the new scene
 		var player = this.Persistent().Player;
-		player?.Reparent(nextLevel);
-		player?.ResetPhysicsInterpolation();
+		player.Reparent(nextLevel);
+		player.ResetPhysicsInterpolation();
 
 		if (_currentScene is null) {
 			throw new NotImplementedException("TODO: hijack the initial scene");

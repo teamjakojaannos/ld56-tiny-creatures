@@ -11,6 +11,7 @@ using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
+[Tool]
 public partial class Chaser : RigidBody2D {
 
 	public float speed;
@@ -82,20 +83,22 @@ public partial class Chaser : RigidBody2D {
 		sightConeMedium = GetNode<Area2D>("SightCone/SightConeMedium");
 		sightConeLarge = GetNode<Area2D>("SightCone/SightConeLarge");
 
+		speed = baseSpeed;
+
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		Callable.From(ActorSetup).CallDeferred();
 
-		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is Player player) {
-			player.LightLevelChanged += PlayerLightLevelChanged;
-			ActivateSightCone(player.lightLevel);
-		}
+		var player = this.Persistent().Player;
+		player.LightLevelChanged += PlayerLightLevelChanged;
+		ActivateSightCone(player.lightLevel);
 
 		this.Persistent().PlayerRespawned += () => {
 			isAttacking = false;
 			aiState = new IdleState();
 		};
-
-		speed = baseSpeed;
 
 		if (FootstepsTimer is not null) {
 			FootstepsTimer.Timeout += () => {
@@ -110,6 +113,10 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	public override void _PhysicsProcess(double _delta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)_delta;
 
 		if (isAttacking) {

@@ -50,8 +50,8 @@ public partial class WispInteractableDialogueTrigger : Node2D {
 				if (SetStateAfterDialogueEnd == "viineri" && parent is not null && parent.isWispInteracting) {
 					GD.Print("Starting early credits sequence");
 					this.Jukebox().SwitchTrack(Jukebox.MuzakTrack.Credits);
-					this.Persistent().Player!.IsInCinematic = true;
-					this.Persistent().Player!.Animation!.Play("pan_camera_up");
+					this.Persistent().Player.IsInCinematic = true;
+					this.Persistent().Player.Animation!.Play("pan_camera_up");
 				}
 
 				Dialogue.Instance(this).StartDialogue(DialogueTree);
@@ -76,9 +76,9 @@ public partial class WispInteractableDialogueTrigger : Node2D {
 					this.Jukebox().SwitchTrack(Jukebox.MuzakTrack.Credits);
 
 					GetTree().CreateTimer(3.0f).Timeout += () => {
-						this.Persistent().Player!.TeleportTo(win);
-						this.Persistent().Intro!.FadeInAfterWin();
-						this.Persistent().Player!.IsInCinematic = false;
+						this.Persistent().Player.TeleportTo(win);
+						this.Persistent().Intro.FadeInAfterWin();
+						this.Persistent().Player.IsInCinematic = false;
 					};
 				}
 			}

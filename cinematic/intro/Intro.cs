@@ -3,6 +3,7 @@ using Godot;
 using Jakojaannos.WisperingWoods;
 using Jakojaannos.WisperingWoods.Characters.Player;
 
+[Tool]
 public partial class Intro : Node2D {
 	[Export]
 	public DialogueTree? InitialDialogue;
@@ -32,6 +33,10 @@ public partial class Intro : Node2D {
 
 	public override void _Ready() {
 		base._Ready();
+
+		if (Engine.IsEditorHint()) {
+			return;
+		}
 
 		dialogue = Dialogue.Instance(this);
 	}
@@ -142,12 +147,11 @@ public partial class Intro : Node2D {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
 
-		if (this.Persistent().Player is Player player) {
-			player.SetSpriteVisible(true);
-			GetTree().CreateTimer(2.5f).Timeout += () => {
-				player.GetUp();
-			};
-		}
+		var player = this.Persistent().Player;
+		player.SetSpriteVisible(true);
+		GetTree().CreateTimer(2.5f).Timeout += () => {
+			player.GetUp();
+		};
 	}
 
 	public void FadeInAfterWin() {

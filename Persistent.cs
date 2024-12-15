@@ -1,7 +1,10 @@
+using System.Linq;
+
 using Godot;
 using Godot.Collections;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
@@ -15,16 +18,28 @@ public static class PersistentExt {
 	}
 }
 
+[Tool]
 public partial class Persistent : Node2D {
 	public static Persistent Instance(Node node) {
 		return node.GetTree().Root.GetNode<Persistent>("Persistent");
 	}
 
 	[Export]
-	public Intro? Intro;
+	[ExportGroup("Prewire")]
+	[MustSetInEditor]
+	public Intro Intro {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_intro);
+		set => this.SetExportProperty(ref _intro, value);
+	}
+	public Intro? _intro;
 
 	[Export]
-	public Player? Player;
+	[MustSetInEditor]
+	public Player Player {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_player);
+		set => this.SetExportProperty(ref _player, value);
+	}
+	private Player? _player;
 
 	[Export]
 	public int SavedCount { get; internal set; } = 0;
@@ -38,25 +53,35 @@ public partial class Persistent : Node2D {
 	[Export]
 	public Array<string> State = new();
 
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var playIntro = false;
 		foreach (var child in GetTree().Root.GetChildren()) {
 			playIntro |= child.IsInGroup("PlayIntro");
 		}
 
 		if (playIntro) {
-			Intro!.InitFadeIn();
-			Player!.ReadyToGo += StartIntro;
+			Intro.InitFadeIn();
+			Player.ReadyToGo += StartIntro;
 		} else {
-			Intro?.ScreenFader?.Hide();
-			Intro?.Hide();
+			Intro.ScreenFader?.Hide();
+			Intro.Hide();
 		}
 	}
 
 	private void StartIntro() {
-		Player!.ReadyToGo -= StartIntro;
+		Player.ReadyToGo -= StartIntro;
 
-		Intro!.GetParentOrNull<Node2D>()?.RemoveChild(Intro);
+		Intro.GetParentOrNull<Node2D>()?.RemoveChild(Intro);
 		Player.GetParentOrNull<Node2D>()?.AddChild(Intro);
 		Intro.GlobalPosition = Player.GlobalPosition;
 
@@ -69,12 +94,12 @@ public partial class Persistent : Node2D {
 			.GetNodesInGroup("HubSpawn")
 			.PickRandom();
 
-		Intro!.FadeToBlack();
-		Player!.IsInCinematic = true;
-		Player!.SetMovementEnabled(false);
+		Intro.FadeToBlack();
+		Player.IsInCinematic = true;
+		Player.SetMovementEnabled(false);
 
 		GetTree().CreateTimer(2.5f).Timeout += () => {
-			Player!.TeleportTo(spawnpoint);
+			Player.TeleportTo(spawnpoint);
 			Intro.FadeInAfterDeath();
 		};
 	}
