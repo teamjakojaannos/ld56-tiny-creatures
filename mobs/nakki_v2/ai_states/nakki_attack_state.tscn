@@ -5,4 +5,4 @@
 
 [node name="NäkkiAttackState" type="Node"]
 script = ExtResource("1_44k50")
-_waterSplash = ExtResource("2_4aw5x")
+WaterSplash = ExtResource("2_4aw5x")

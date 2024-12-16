@@ -1,47 +1,70 @@
 using Godot;
+using System;
+using System.Linq;
 
-using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiStalkState : NakkiAiState {
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
 	[Export] public float _stalkThreshold = 40.0f;
 	[Export] private float _stalkTime = 5.0f;
 	[Export] private float _stalkTimeVariation = 0.5f;
 	[Export] private float _diveChance = 0.2f;
-	[Export] private NakkiIdleState? _idleState;
-	[Export] private NakkiAttackState? _attackState;
-	[Export] private NakkiUnderwaterState? _diveState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiIdleState? IdleState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_idleState);
+		set => this.SetExportProperty(ref _idleState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiIdleState? _idleState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiAttackState? AttackState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
+		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiAttackState? _attackState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiUnderwaterState? DiveState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
+		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiUnderwaterState? _diveState;
+
 
 	private Timer? _timer;
 	private bool _isDoneStalking;
-
 	private RandomNumberGenerator _rng = new();
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_timer = GetNode<Timer>("Timer");
 		_timer.Timeout += () => {
 			_isDoneStalking = true;
 		};
-
-		if (_idleState == null) {
-			GD.PrintErr("Idle state is null");
-		}
-
-		if (_attackState == null) {
-			GD.PrintErr("Attack state is null");
-		}
-
-		if (_diveState == null) {
-			GD.PrintErr("Dive state is null");
-		}
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
-			nakki.SwitchToState(_idleState!);
+			nakki.SwitchToState(IdleState!);
 			return;
 		}
 
@@ -67,18 +90,18 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
 		if (nakki._detectionLevel <= 0.0f) {
 
-			var canDive = _diveState!.IsStateReady(nakki);
+			var canDive = DiveState!.IsStateReady(nakki);
 			if (canDive && _rng.DiceRoll(_diveChance)) {
-				nakki.SwitchToState(_diveState!);
+				nakki.SwitchToState(DiveState!);
 			} else {
-				nakki.SwitchToState(_idleState!);
+				nakki.SwitchToState(IdleState!);
 			}
 
 			return;
 		}
 
-		if (nakki._detectionLevel >= _attackState!._attackThreshold) {
-			nakki.SwitchToState(_attackState!);
+		if (nakki._detectionLevel >= AttackState!._attackThreshold) {
+			nakki.SwitchToState(AttackState!);
 			return;
 		}
 	}

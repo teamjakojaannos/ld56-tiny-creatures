@@ -1,14 +1,27 @@
-using System.Linq;
-
 using Godot;
 using Godot.Collections;
+using System.Linq;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiUnderwaterState : NakkiAiState {
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+
+		if (_pickOneOfTheseStatesWhenDoneDiving.Count == 0) {
+			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
 	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneDiving = [];
 
 	[Export] private float _underwaterTime = 5.0f;
@@ -29,16 +42,16 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	private float _diveTimeMult = 1.0f;
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_diveTimer = GetNode<Timer>("Timer");
 		_diveTimer.Timeout += () => {
 			_isDoneDiving = true;
 		};
 
 		_diveCooldownTimer = GetNode<Timer>("DiveCooldown");
-
-		if (_pickOneOfTheseStatesWhenDoneDiving.Count == 0) {
-			GD.PrintErr("Näkki's underwater state's pick-a-state-after-done-with-diving-list is empty!");
-		}
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {

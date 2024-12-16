@@ -1,25 +1,41 @@
 using Godot;
+using System;
+using System.Linq;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiAttackState : NakkiAiState {
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
 	[Export] public float _attackThreshold = 100.0f;
-	[Export] private PackedScene? _waterSplash;
+
+	[Export]
+	[MustSetInEditor]
+	public PackedScene WaterSplash {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_waterSplash);
+		set => this.SetExportProperty(ref _waterSplash, value, notifyPropertyListChanged: true);
+	}
+	private PackedScene? _waterSplash;
+
 	[Export] private float _attackTime = 1.0f;
 	[Export] private float _animationSpeed = 1.0f;
-	[Export] private NakkiUnderwaterState? _diveState;
 
-	public override void _Ready() {
-		if (_waterSplash == null) {
-			GD.PrintErr("You forgot to set water splash scene!");
-		}
-
-		if (_diveState == null) {
-			GD.PrintErr("Dive state is null");
-		}
+	[Export]
+	[MustSetInEditor]
+	public NakkiUnderwaterState? DiveState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
+		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
 	}
+	private NakkiUnderwaterState? _diveState;
+
 
 	public override void AiUpdate(NakkiV2 nakki) { }
 
@@ -29,8 +45,8 @@ public partial class NakkiAttackState : NakkiAiState {
 			return;
 		}
 
-		if (_waterSplash is not null) {
-			var splash = _waterSplash.Instantiate<Node2D>();
+		if (WaterSplash is not null) {
+			var splash = WaterSplash.Instantiate<Node2D>();
 			// we want to set position before making it visible (aka adding as a child)
 			// so it isn't out of position for 1 frame
 			splash.GlobalPosition = player.GlobalPosition - nakki.Position;
@@ -56,8 +72,8 @@ public partial class NakkiAttackState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Attack) {
-			nakki.SwitchToState(_diveState!);
-			_diveState!.SetDiveTimeMult(0.25f);
+			nakki.SwitchToState(DiveState!);
+			DiveState!.SetDiveTimeMult(0.25f);
 		}
 	}
 

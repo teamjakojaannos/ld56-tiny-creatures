@@ -1,28 +1,46 @@
 using Godot;
+using System;
+using System.Linq;
+
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiDiveOnTriggerState : NakkiAiState {
-	[Export] private NakkiUnderwaterState? _diveState;
-	[Export] private NakkiStalkState? _stalkState;
-	[Export] private NakkiAttackState? _attackState;
-
-	public override void _Ready() {
-		if (_diveState == null) {
-			GD.PrintErr("Dive state is null");
-		}
-
-		if (_stalkState == null) {
-			GD.PrintErr("Stalk state is null");
-		}
-
-		if (_attackState == null) {
-			GD.PrintErr("Attack state is null");
-		}
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
 	}
 
+	[Export]
+	[MustSetInEditor]
+	public NakkiUnderwaterState? DiveState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
+		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiUnderwaterState? _diveState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiStalkState? StalkState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
+		set => this.SetExportProperty(ref _stalkState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiStalkState? _stalkState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiAttackState? AttackState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
+		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiAttackState? _attackState;
+
+
 	public override void ReceiveTrigger(NakkiV2 nakki) {
-		nakki.SwitchToState(_diveState!);
+		nakki.SwitchToState(DiveState!);
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) { }
@@ -36,6 +54,6 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
-		StalkOrAttack(nakki, _attackState!, _stalkState!);
+		StalkOrAttack(nakki, AttackState!, StalkState!);
 	}
 }

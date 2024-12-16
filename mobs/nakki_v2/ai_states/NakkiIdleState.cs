@@ -1,19 +1,48 @@
-using System.Linq;
-
 using Godot;
 using Godot.Collections;
+using System.Linq;
 
 using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiIdleState : NakkiAiState {
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+
+		if (_pickOneOfTheseStatesWhenDoneIdling.Count == 0) {
+			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
+
 	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneIdling = [];
 
 	[Export] private float _idleTime = 2.0f;
 	[Export] private float _idleTimeVariation = 0.5f;
-	[Export] private NakkiStalkState? _stalkState;
-	[Export] private NakkiAttackState? _attackState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiStalkState StalkState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
+		set => this.SetExportProperty(ref _stalkState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiStalkState? _stalkState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiAttackState? AttackState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
+		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiAttackState? _attackState;
+
 
 	private Timer? _timer;
 	private bool _isDoneIdling = false;
@@ -21,22 +50,14 @@ public partial class NakkiIdleState : NakkiAiState {
 	private RandomNumberGenerator _rng = new();
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_timer = GetNode<Timer>("Timer");
 		_timer.Timeout += () => {
 			_isDoneIdling = true;
 		};
-
-		if (_pickOneOfTheseStatesWhenDoneIdling.Count == 0) {
-			GD.PrintErr("Näkki's idle state's pick-a-state-after-done-with-idling-list is empty!");
-		}
-
-		if (_stalkState == null) {
-			GD.PrintErr("Stalk state is null");
-		}
-
-		if (_attackState == null) {
-			GD.PrintErr("Attack state is null");
-		}
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -69,6 +90,6 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
-		StalkOrAttack(nakki, _attackState!, _stalkState!);
+		StalkOrAttack(nakki, AttackState!, StalkState!);
 	}
 }

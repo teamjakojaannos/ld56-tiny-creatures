@@ -1,21 +1,49 @@
-using System.Linq;
-
 using Godot;
 using Godot.Collections;
+using System.Linq;
 
-using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiMovementState : NakkiAiState {
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+
+		if (_pickOneOfTheseStatesWhenDoneMoving.Count == 0) {
+			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
 	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneMoving = [];
 
 	[Export] private float _moveTime = 3.0f;
 	[Export] private float _moveTimeVariation = 0.3f;
 	[Export] private float _moveToPlayerChance = 0.2f;
-	[Export] private NakkiStalkState? _stalkState;
-	[Export] private NakkiAttackState? _attackState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiStalkState StalkState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
+		set => this.SetExportProperty(ref _stalkState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiStalkState? _stalkState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiAttackState? AttackState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
+		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiAttackState? _attackState;
+
 
 	private Timer? _timer;
 	private bool _isDoneMoving = false;
@@ -23,22 +51,14 @@ public partial class NakkiMovementState : NakkiAiState {
 	private RandomNumberGenerator _rng = new();
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_timer = GetNode<Timer>("Timer");
 		_timer.Timeout += () => {
 			_isDoneMoving = true;
 		};
-
-		if (_pickOneOfTheseStatesWhenDoneMoving.Count == 0) {
-			GD.PrintErr("Näkki's movement state's pick-a-state-after-done-with-movement-list is empty!");
-		}
-
-		if (_stalkState == null) {
-			GD.PrintErr("Stalk state is null");
-		}
-
-		if (_attackState == null) {
-			GD.PrintErr("Attack state is null");
-		}
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -82,6 +102,6 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
-		StalkOrAttack(nakki, _attackState!, _stalkState!);
+		StalkOrAttack(nakki, AttackState!, StalkState!);
 	}
 }

@@ -1,8 +1,27 @@
 using Godot;
+using System;
+using System.Linq;
+
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
+
+[Tool]
 public partial class NakkiEmergeOnTriggerState : NakkiAiState {
-	[Export] private NakkiAiState? _enterStateAfterEmerge;
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiAiState? EnterStateAfterEmerge {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_enterStateAfterEmerge);
+		set => this.SetExportProperty(ref _enterStateAfterEmerge, value, notifyPropertyListChanged: true);
+	}
+	private NakkiAiState? _enterStateAfterEmerge;
+
 	[Export] private float _emergeAnimationSpeed = 3.0f;
 	[Export] private float _emergeDelay = 3.0f;
 
@@ -13,14 +32,14 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	private bool _isEmerging = false;
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_emergeOnTimeout = GetNode<Timer>("Timer");
 		_emergeOnTimeout.Timeout += () => {
 			_emergeTimerDone = true;
 		};
-
-		if (_enterStateAfterEmerge == null) {
-			GD.PrintErr("State to enter is null");
-		}
 	}
 
 	public override void ReceiveTrigger(NakkiV2 nakki) {
@@ -56,7 +75,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.EmergeFromWater) {
-			nakki.SwitchToState(_enterStateAfterEmerge!);
+			nakki.SwitchToState(EnterStateAfterEmerge!);
 			return;
 		}
 

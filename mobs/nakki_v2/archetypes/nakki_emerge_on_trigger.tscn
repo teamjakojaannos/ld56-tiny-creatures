@@ -11,24 +11,24 @@
 _defaultState = NodePath("EmergeOnTrigger")
 _detectionGain = 400.0
 
-[node name="EmergeOnTrigger" parent="." index="6" node_paths=PackedStringArray("_enterStateAfterEmerge") instance=ExtResource("2_dnku5")]
-_enterStateAfterEmerge = NodePath("../Idle")
+[node name="EmergeOnTrigger" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge") instance=ExtResource("2_dnku5")]
+EnterStateAfterEmerge = NodePath("../Idle")
 
-[node name="Idle" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "_stalkState", "_attackState") instance=ExtResource("2_g7ur1")]
+[node name="Idle" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_g7ur1")]
 _pickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
-_stalkState = NodePath("../Stalk")
-_attackState = NodePath("../AttackState")
+StalkState = NodePath("../Stalk")
+AttackState = NodePath("../AttackState")
 
 [node name="Dive" parent="." index="8" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_elw0d")]
 _pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
 
-[node name="AttackState" parent="." index="9" node_paths=PackedStringArray("_diveState") instance=ExtResource("5_38bqf")]
+[node name="AttackState" parent="." index="9" node_paths=PackedStringArray("DiveState") instance=ExtResource("5_38bqf")]
 _attackTime = 0.5
 _animationSpeed = 3.0
-_diveState = NodePath("../Dive")
+DiveState = NodePath("../Dive")
 
-[node name="Stalk" parent="." index="10" node_paths=PackedStringArray("_idleState", "_attackState", "_diveState") instance=ExtResource("6_31dxb")]
+[node name="Stalk" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState") instance=ExtResource("6_31dxb")]
 _stalkThreshold = 200.0
-_idleState = NodePath("../Idle")
-_attackState = NodePath("../AttackState")
-_diveState = NodePath("../Dive")
+IdleState = NodePath("../Idle")
+AttackState = NodePath("../AttackState")
+DiveState = NodePath("../Dive")
