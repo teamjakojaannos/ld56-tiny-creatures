@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 namespace Jakojaannos.WisperingWoods;
 
 public partial class NakkiAttackState : NakkiAiState {

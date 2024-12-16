@@ -1,6 +1,7 @@
 using Godot;
 
 using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Characters.Player;
 
 namespace Jakojaannos.WisperingWoods;
 

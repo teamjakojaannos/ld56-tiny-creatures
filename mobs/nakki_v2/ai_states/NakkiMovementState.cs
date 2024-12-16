@@ -4,6 +4,7 @@ using Godot;
 using Godot.Collections;
 
 using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Characters.Player;
 
 namespace Jakojaannos.WisperingWoods;
 

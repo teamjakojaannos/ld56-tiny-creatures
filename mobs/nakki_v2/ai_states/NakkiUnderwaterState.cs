@@ -3,6 +3,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util;
 
 namespace Jakojaannos.WisperingWoods;

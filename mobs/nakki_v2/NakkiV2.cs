@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
 using Godot;
 
 namespace Jakojaannos.WisperingWoods;
