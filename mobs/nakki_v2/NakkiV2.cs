@@ -1,11 +1,32 @@
-using System.Collections.Generic;
+using Godot;
+using System;
+using System.Linq;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
-using Godot;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public partial class NakkiV2 : Path2D {
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? Array.Empty<string>();
+
+		if (Curve == null) {
+			warnings = warnings.Append("Add a curve for näkki to move along (under 'Path2D' in inspector)").ToArray();
+		} else if (Curve.PointCount == 0) {
+			warnings = warnings.Append("Add points for näkki's movement path (Curve resource under 'Path2D' in inspector)").ToArray();
+		}
+
+		if (_defaultState == null) {
+			warnings = warnings.Append("Default state is not set").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
 	[Export] private float _speed = 50.0f;
 	[Export] private NakkiAiState? _defaultState;
 
@@ -37,6 +58,10 @@ public partial class NakkiV2 : Path2D {
 	public AnimatedSprite2D? _hand;
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		_nakkiEntity = GetNode<PathFollow2D>("NäkkiEntity");
 		var sightcone = _nakkiEntity.GetNode<Area2D>("SightCone");
 		sightcone.BodyEntered += SightConeEntered;
@@ -57,14 +82,6 @@ public partial class NakkiV2 : Path2D {
 
 		_fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
 		_hand = GetNode<AnimatedSprite2D>("Attack/Hand");
-
-		if (Curve == null) {
-			GD.PrintErr("You forgot to set path for Näkki!");
-		}
-
-		if (_defaultState == null) {
-			GD.PrintErr("Näkki's default state is null");
-		}
 
 		ResetStateToDefault();
 
@@ -92,6 +109,10 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public override void _PhysicsProcess(double ddelta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)ddelta;
 
 		CurrentState!.AiUpdate(this);
