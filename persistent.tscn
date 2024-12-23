@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="2_phnra"]
 
 [node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player")]
+editor_description = "Contents of this scene persist when the scene is switched. Any initial contents are always available when starting the game in any scene."
 y_sort_enabled = true
 script = ExtResource("1_krudr")
 Intro = NodePath("Intro")

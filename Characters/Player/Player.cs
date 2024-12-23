@@ -104,8 +104,6 @@ public partial class Player : CharacterBody2D {
 	public bool Invulnerable { get; set; } = true;
 
 	public override void _Ready() {
-		base._Ready();
-
 		if (Engine.IsEditorHint()) {
 			return;
 		}

@@ -32,8 +32,6 @@ public partial class Intro : Node2D {
 	private Dialogue dialogue = null!;
 
 	public override void _Ready() {
-		base._Ready();
-
 		if (Engine.IsEditorHint()) {
 			return;
 		}

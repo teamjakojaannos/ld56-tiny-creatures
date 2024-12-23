@@ -61,6 +61,17 @@ public partial class Persistent : Node2D {
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
+			// Workaround https://github.com/godotengine/godot/issues/71373
+			// TL;DR: Persistent is an autoload, but when [Tool]-script gets
+			//        autoloaded at editor startup, it ends up being created as
+			//        a direct child of the editor window. The persistent scene
+			//        contains the default player instance, which in turn has
+			//        a camera as the child. This camera is then the first one
+			//        in the hierarchy, taking priority over the default editor
+			//        viewport.
+			if (GetViewport() is Window) {
+				QueueFree();
+			}
 			return;
 		}
 

@@ -144,10 +144,14 @@ public partial class DialogueManager : Node {
 		}
 
 		if (Engine.IsEditorHint()) {
+			// Workaround https://github.com/godotengine/godot/issues/71373
+			// TL;DR: we want configuration warnings, without an editor-global
+			//        instance.
+			if (GetViewport() is Window) {
+				QueueFree();
+			}
 			return;
 		}
-
-		base._Ready();
 	}
 
 	public void Reset() {
