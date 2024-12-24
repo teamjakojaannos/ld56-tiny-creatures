@@ -9,5 +9,5 @@ public abstract partial class BTNode : Node {
 		Running,
 	}
 
-	public abstract StatusCode Tick();
+	public abstract StatusCode Tick(AIState state, float delta);
 }
