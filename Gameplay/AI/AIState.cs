@@ -4,6 +4,8 @@ using Godot;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.AI;
 
+[Tool]
+[GlobalClass]
 public partial class AIState : Node {
 	private Dictionary<StringName, Variant> _state = [];
 

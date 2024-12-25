@@ -54,14 +54,25 @@ public static class ExportPropertyExtension {
 		return null!;
 	}
 
-	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node) {
+	public static IEnumerable<PropertyInfo> GetMissingRequiredProperties(this Node node) {
 		return node
 			.GetType()
 			.GetProperties()
 			.Where(f => f.GetCustomAttribute<ExportAttribute>() is not null)
 			.Where(f => f.GetCustomAttribute<MustSetInEditorAttribute>() is not null)
-			.Where(field => field.GetValue(node) is null)
+			.Where(prop => prop.GetValue(node) is null);
+	}
+
+	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node) {
+		return node
+			.GetMissingRequiredProperties()
 			.Select(field => $"\"{field.Name}\" on \"{node.Name}\" is required but not set!")
 			.ToArray();
+	}
+
+	public static bool IsMissingRequiredProperty(this Node node) {
+		return node
+			.GetMissingRequiredProperties()
+			.Any();
 	}
 }

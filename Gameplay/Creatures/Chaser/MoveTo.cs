@@ -1,3 +1,5 @@
+using System.Linq;
+
 using Godot;
 
 using Jakojaannos.WisperingWoods.Gameplay.AI;
@@ -5,6 +7,8 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Creatures.Chaser;
 
+[Tool]
+[GlobalClass]
 public partial class MoveTo : BTNode {
 	[Export]
 	public float Speed { get; set; } = 60.0f;
@@ -28,13 +32,38 @@ public partial class MoveTo : BTNode {
 
 	[Export]
 	[MustSetInEditor]
-	public RigidBody2D Actor {
+	public CharacterBody2D Actor {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_actor);
 		set => this.SetExportProperty(ref _actor, value);
 	}
-	private RigidBody2D? _actor;
+	private CharacterBody2D? _actor;
+
+	private bool _isNavSetupDone = false;
+
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
+
+	public override void _Ready() {
+		if (Engine.IsEditorHint() || this.IsMissingRequiredProperty()) {
+			return;
+		}
+
+		CallDeferred(MethodName.WaitNavSetup);
+	}
+
+	private async void WaitNavSetup() {
+		await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+		_isNavSetupDone = true;
+	}
 
 	public override StatusCode Tick(AIState state, float delta) {
+		if (!_isNavSetupDone) {
+			return StatusCode.Failure;
+		}
+
 		var target = state.GetState("target")?.AsVector2();
 		if (target is not Vector2 targetPoint) {
 			return StatusCode.Failure;
@@ -50,7 +79,8 @@ public partial class MoveTo : BTNode {
 		var nextPathPosition = NavigationAgent.GetNextPathPosition();
 		var velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed * delta;
 
-		Actor.MoveAndCollide(velocity);
+		Actor.Velocity = velocity;
+		Actor.MoveAndSlide();
 
 		return NavigationAgent.IsNavigationFinished() && SucceedImmediately
 			? StatusCode.Success

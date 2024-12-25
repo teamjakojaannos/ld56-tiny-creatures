@@ -8,6 +8,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Gameplay.Creatures.Chaser;
 
 [Tool]
+[GlobalClass]
 public partial class FaceTarget : BTNode {
 	[Export]
 	public float TurnSpeedDegrees { get; set; } = 45.0f;
@@ -57,6 +58,7 @@ public partial class FaceTarget : BTNode {
 
 		var remaining = desiredAngle - SightRoot.Rotation;
 		if (remaining < 0.1f) {
+			SightRoot.Rotation = desiredAngle;
 			return StatusCode.Success;
 		}
 

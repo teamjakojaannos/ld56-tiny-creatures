@@ -5,6 +5,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Gameplay.AI;
 
 [Tool]
+[GlobalClass]
 public partial class BehaviourTree : Node {
 	[Export]
 	[MustSetInEditor]
@@ -14,11 +15,19 @@ public partial class BehaviourTree : Node {
 	}
 	private BTNode? _root;
 
+	[Export]
+	[MustSetInEditor]
+	public AIState State {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_state);
+		set => this.SetExportProperty(ref _state, value);
+	}
+	private AIState? _state;
+
 	public override void _PhysicsProcess(double delta) {
-		if (Engine.IsEditorHint()) {
+		if (Engine.IsEditorHint() || this.IsMissingRequiredProperty()) {
 			return;
 		}
 
-		Root.Tick(state, (float)delta);
+		Root.Tick(State, (float)delta);
 	}
 }

@@ -9,12 +9,17 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Gameplay.Creatures.Chaser;
 
 [Tool]
-public partial class Chaser : Node2D {
-	[Export]
-	public BehaviourTree? Behaviour { get; set; }
-
+public partial class Chaser : CharacterBody2D {
 	[Export]
 	[ExportGroup("Prewire")]
+	[MustSetInEditor]
+	public BehaviourTree Behaviour {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_behaviour);
+		set => this.SetExportProperty(ref _behaviour, value);
+	}
+	private BehaviourTree? _behaviour;
+
+	[Export]
 	[MustSetInEditor]
 	public RandomAudioStreamPlayer2D Footsteps {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_footsteps);
@@ -45,9 +50,12 @@ public partial class Chaser : Node2D {
 	}
 
 	public override void _Ready() {
-		base._Ready();
+		_behaviour ??= GetNode<BehaviourTree>("Behaviour");
+		_footsteps ??= GetNode<RandomAudioStreamPlayer2D>("Footsteps");
+		_footstepsTimer ??= _footsteps?.GetNode<Timer>("Timer");
+		_attackSounds ??= GetNode<RandomAudioStreamPlayer>("AttackSounds");
 
-		if (Engine.IsEditorHint()) {
+		if (Engine.IsEditorHint() || this.IsMissingRequiredProperty()) {
 			return;
 		}
 	}

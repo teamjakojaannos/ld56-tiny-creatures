@@ -7,6 +7,8 @@ using Jakojaannos.WisperingWoods.Util;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Creatures.Chaser;
 
+[Tool]
+[GlobalClass]
 public partial class FindRandomNavigablePoint : BTNode {
 	private RandomNumberGenerator _rng = new();
 

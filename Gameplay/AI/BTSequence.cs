@@ -8,14 +8,16 @@ namespace Jakojaannos.WisperingWoods.Gameplay.AI;
 /// Executes nodes in sequence, stopping at the first one which has not yet
 /// succeeded. Fails immediately if a child fails.
 /// </summary>
+[Tool]
+[GlobalClass]
 public partial class BTSequence : BTControlFlow {
-	public override StatusCode Tick() {
+	public override StatusCode Tick(AIState state, float delta) {
 		var childNodes = GetChildren().OfType<BTNode>();
 
 		// Iterate children until we find one which still hasn't succeeded, or
 		// until we encounter one which fails.
 		foreach (var child in childNodes) {
-			var status = child.Tick();
+			var status = child.Tick(state, delta);
 			// If the child did not succeed (still running or failed), stop
 			if (status != StatusCode.Success) {
 				return status;
