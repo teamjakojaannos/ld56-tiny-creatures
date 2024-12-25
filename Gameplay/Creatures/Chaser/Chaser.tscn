@@ -219,13 +219,11 @@ script = ExtResource("5_73tm1")
 
 [node name="FaceTarget" type="Node" parent="Behaviour/Root" node_paths=PackedStringArray("Actor", "SightRoot")]
 script = ExtResource("6_eed8w")
-SucceedImmediately = true
 Actor = NodePath("../../..")
 SightRoot = NodePath("../../../SightCone")
 
 [node name="MoveTo" type="Node" parent="Behaviour/Root" node_paths=PackedStringArray("NavigationAgent", "Actor")]
 script = ExtResource("7_gtmsv")
-SucceedImmediately = true
 NavigationAgent = NodePath("../../../NavigationAgent")
 Actor = NodePath("../../..")
 

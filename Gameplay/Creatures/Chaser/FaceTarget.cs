@@ -56,7 +56,7 @@ public partial class FaceTarget : BTNode {
 		var coneAngleOffsetRadians = Mathf.DegToRad(ConeAngleOffsetDegrees);
 		var desiredAngle = Actor.GlobalPosition.AngleToPoint(targetPoint) + coneAngleOffsetRadians;
 
-		var remaining = desiredAngle - SightRoot.Rotation;
+		var remaining = Mathf.Abs(Mathf.AngleDifference(desiredAngle, SightRoot.Rotation));
 		if (remaining < 0.1f) {
 			SightRoot.Rotation = desiredAngle;
 			return StatusCode.Success;
@@ -68,7 +68,7 @@ public partial class FaceTarget : BTNode {
 		var newRotation = Mathf.RotateToward(SightRoot.Rotation, desiredAngle, radiansPerSecond);
 		SightRoot.Rotation = newRotation;
 
-		var remainingAfterRotation = desiredAngle - SightRoot.Rotation;
+		var remainingAfterRotation = Mathf.Abs(Mathf.AngleDifference(desiredAngle, SightRoot.Rotation));
 		return remainingAfterRotation < 0.1f && SucceedImmediately
 			? StatusCode.Success
 			: StatusCode.Running;

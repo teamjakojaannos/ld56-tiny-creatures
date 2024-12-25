@@ -72,12 +72,13 @@ public partial class MoveTo : BTNode {
 		NavigationAgent.TargetPosition = targetPoint;
 
 		if (NavigationAgent.IsNavigationFinished()) {
+			state.SetState("target", null);
 			return StatusCode.Success;
 		}
 
 		var currentAgentPosition = Actor.GlobalPosition;
 		var nextPathPosition = NavigationAgent.GetNextPathPosition();
-		var velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed * delta;
+		var velocity = currentAgentPosition.DirectionTo(nextPathPosition) * Speed;
 
 		Actor.Velocity = velocity;
 		Actor.MoveAndSlide();
