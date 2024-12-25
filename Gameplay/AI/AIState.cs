@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 using Godot;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.AI;
@@ -7,19 +5,23 @@ namespace Jakojaannos.WisperingWoods.Gameplay.AI;
 [Tool]
 [GlobalClass]
 public partial class AIState : Node {
-	private Dictionary<StringName, Variant> _state = [];
+	/// <summary>
+	/// Exported to help debugging in editor.
+	/// </summary>
+	[Export]
+	private Godot.Collections.Dictionary<StringName, Variant> State { get; set; } = [];
 
 	public void SetState(StringName field, Variant? value) {
 		if (value is not null) {
-			_state[field] = (Variant)value;
+			State[field] = (Variant)value;
 		} else {
-			_state.Remove(field);
+			State.Remove(field);
 		}
 	}
 
 	public Variant? GetState(StringName field) {
-		if (_state.ContainsKey(field)) {
-			return _state[field];
+		if (State.TryGetValue(field, out var value)) {
+			return value;
 		}
 
 		return null;
