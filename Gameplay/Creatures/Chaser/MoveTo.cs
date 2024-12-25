@@ -38,6 +38,9 @@ public partial class MoveTo : BTNode {
 	}
 	private CharacterBody2D? _actor;
 
+	[Export]
+	public StringName TargetState { get; set; } = "target";
+
 	private bool _isNavSetupDone = false;
 
 	public override string[] _GetConfigurationWarnings() {
@@ -64,7 +67,7 @@ public partial class MoveTo : BTNode {
 			return StatusCode.Failure;
 		}
 
-		var target = state.GetState("target")?.AsVector2();
+		var target = state.GetState(TargetState)?.AsVector2();
 		if (target is not Vector2 targetPoint) {
 			return StatusCode.Failure;
 		}
@@ -72,7 +75,7 @@ public partial class MoveTo : BTNode {
 		NavigationAgent.TargetPosition = targetPoint;
 
 		if (NavigationAgent.IsNavigationFinished()) {
-			state.SetState("target", null);
+			state.SetState(TargetState, null);
 			return StatusCode.Success;
 		}
 
