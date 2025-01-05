@@ -75,10 +75,27 @@ public partial class Levels : Node2D {
 		var anchorNode = entranceNodePath.IsEmpty
 			? null
 			: level.GetNodeOrNull<Node2D>(entranceNodePath);
-		var anchorOffset = anchorNode?.Position ?? Vector2.Zero;
 
+		// Anchor offset is the position of the entrance anchor, relative to the level it is in.
+		var anchorOffset = (anchorNode?.GlobalPosition ?? Vector2.Zero) - level.GlobalPosition;
+
+		// Position the level relative to the level transition we are transferring from, with
+		// the offset from the level entrance anchor.
 		level.GlobalPosition = exitNode.GlobalPosition - anchorOffset;
 		level.ResetPhysicsInterpolation();
+	}
+
+	private static Level? FindParentLevel(Node node) {
+		var parent = node.GetParent();
+		while (parent is not null) {
+			if (parent is Level level) {
+				return level;
+			}
+
+			parent = parent.GetParent();
+		}
+
+		return null;
 	}
 
 	public void PreloadLevel(string sceneName, NodePath entranceNodePath, Node2D transitionNode) {

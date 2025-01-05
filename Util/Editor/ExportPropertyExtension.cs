@@ -7,12 +7,16 @@ using Godot;
 namespace Jakojaannos.WisperingWoods.Util.Editor;
 
 public static class ExportPropertyExtension {
-	public static void SetExportProperty<T>(this Node node, ref T field, T value, bool notifyPropertyListChanged = false) {
+	public static void SetExportProperty<T>(this Node node, ref T field, T value, bool notifyPropertyListChanged = false, bool requestRedraw = false) {
 		field = value;
 		node.UpdateConfigurationWarnings();
 
 		if (notifyPropertyListChanged) {
 			node.NotifyPropertyListChanged();
+		}
+
+		if (requestRedraw && node is CanvasItem drawable) {
+			drawable.QueueRedraw();
 		}
 	}
 

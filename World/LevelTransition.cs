@@ -28,6 +28,15 @@ public partial class LevelTransition : Area2D {
 	private NodePath _entranceNodePath = "";
 	internal NodePath EntranceNodePath => _entranceNodePath;
 
+	[Export(PropertyHint.Range, "0,360,5,radians_as_degrees")]
+	public float ExitDirection {
+		get => _exitDirection;
+		set => this.SetExportProperty(ref _exitDirection, value, requestRedraw: true);
+	}
+	private float _exitDirection = 0.0f;
+
+	public Vector2 ExitDirectionVec => Vector2.FromAngle(ExitDirection);
+
 	public bool IsOtherScenePreviewVisible {
 		get => _previewScene is not null && _previewScene.IsInsideTree() && !_previewScene.IsQueuedForDeletion();
 	}
@@ -162,14 +171,13 @@ public partial class LevelTransition : Area2D {
 	}
 
 	public override bool _Set(StringName property, Variant value) {
-		string propertyName = property.ToString();
-		if (propertyName == "EntranceNode") {
+		if (property == "EntranceNode") {
 			var optionIndex = value.AsInt32();
 			TrySelectEntranceNode(optionIndex);
 			UpdatePreviewPosition();
 
 			return true;
-		} else if (propertyName == "OtherScenePreview" && Engine.IsEditorHint()) {
+		} else if (property == "OtherScenePreview" && Engine.IsEditorHint()) {
 			var valueBool = value.AsBool();
 			if (valueBool && _otherScene is null) {
 				GD.PrintErr("Cannot preview a scene: other scene is not configured!");
@@ -191,14 +199,15 @@ public partial class LevelTransition : Area2D {
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
 				if (_entranceNodePath.IsEmpty) {
+					GD.PrintErr("Entrance node path is empty");
 					TrySelectEntranceNode(0);
 				}
 
-				UpdatePreviewPosition();
 				AddChild(_previewScene);
+				UpdatePreviewPosition();
 			}
 			NotifyPropertyListChanged();
-		} else if (propertyName == "EntranceNodeOffset" && Engine.IsEditorHint()) {
+		} else if (property == "EntranceNodeOffset" && Engine.IsEditorHint()) {
 			if (_previewScene is not null && _otherScene is not null) {
 				var entranceMarker = _previewScene.GetNode<Node2D>(_entranceNodePath);
 				entranceMarker.Position = value.AsVector2();
@@ -286,8 +295,6 @@ public partial class LevelTransition : Area2D {
 		return entranceNodes;
 	}
 
-	public Vector2 ExitDirection => Transform.BasisXform(Vector2.Right);
-
 	public override void _Ready() {
 		base._Ready();
 		if (Engine.IsEditorHint()) {
@@ -304,7 +311,7 @@ public partial class LevelTransition : Area2D {
 
 		var directionToPlayer = GlobalPosition.DirectionTo(player.GlobalPosition);
 
-		var isOnExitSideRatio = ExitDirection.Dot(directionToPlayer);
+		var isOnExitSideRatio = ExitDirectionVec.Dot(directionToPlayer);
 		var isExiting = isOnExitSideRatio > 0.0f;
 
 		if (isExiting) {
@@ -322,14 +329,14 @@ public partial class LevelTransition : Area2D {
 	}
 
 	private void DrawTransitionDirection() {
-		var from = Position;
+		var from = Vector2.Zero;
 		var color = Colors.Red;
 
-		var to = from + ExitDirection * DIRECTION_LINE_LENGTH;
+		var to = from + ExitDirectionVec * DIRECTION_LINE_LENGTH;
 		DrawLine(from, to, color, width: 2.0f, antialiased: false);
 
-		var arrowheadPos = to - ExitDirection * DIRECTION_LINE_ARROWHEAD_SIZE;
-		DrawArc(arrowheadPos, DIRECTION_LINE_ARROWHEAD_SIZE, Mathf.DegToRad(-90.0f), Mathf.DegToRad(90.0f), 3, color, width: 2.0f, antialiased: false);
+		var arrowheadPos = to - ExitDirectionVec * DIRECTION_LINE_ARROWHEAD_SIZE;
+		DrawArc(arrowheadPos, DIRECTION_LINE_ARROWHEAD_SIZE, ExitDirection - Mathf.DegToRad(90.0f), ExitDirection + Mathf.DegToRad(90.0f), 3, color, width: 2.0f, antialiased: false);
 	}
 
 	public readonly struct EntranceNode {

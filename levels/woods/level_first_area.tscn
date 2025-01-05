@@ -26,6 +26,9 @@ metadata/_edit_lock_ = true
 [node name="Functional" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
+[node name="EntranceRight" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
+position = Vector2(128, 0)
+
 [node name="LevelTransition" type="Area2D" parent="Functional"]
 position = Vector2(128, 0)
 script = ExtResource("2_0gsd7")
