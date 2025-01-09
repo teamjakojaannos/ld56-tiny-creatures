@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxrjy3e4tlaby"]
+
+[ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_n5xmk"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_a8sn4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n25lo"]
+size = Vector2(32, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la621"]
+size = Vector2(32, 112)
+
+[node name="TemplateLevel" instance=ExtResource("1_n5xmk")]
+
+[node name="ToHub" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+position = Vector2(128, 0)
+script = ExtResource("2_a8sn4")
+OtherScene = "res://World/Levels/Forest/ForestHubLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToDarkForestPath")
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToHub" index="0"]
+shape = SubResource("RectangleShape2D_n25lo")
+
+[node name="ToDarkForest" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+position = Vector2(-128, 0)
+script = ExtResource("2_a8sn4")
+OtherScene = "res://World/Levels/DarkForest/DarkForestLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToPath")
+ExitDirection = 3.14159
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDarkForest" index="0"]
+shape = SubResource("RectangleShape2D_la621")
+
+[node name="Floor" type="ColorRect" parent="." index="1"]
+offset_left = -128.0
+offset_top = -56.0
+offset_right = 128.0
+offset_bottom = 56.0
+color = Color(0.219608, 0.192157, 0.0980392, 1)

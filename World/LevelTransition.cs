@@ -25,7 +25,7 @@ public partial class LevelTransition : Area2D {
 
 	// Exported, but hidden in editor.
 	[Export]
-	private NodePath _entranceNodePath = "";
+	private string _entranceNodePath = "";
 	internal NodePath EntranceNodePath => _entranceNodePath;
 
 	[Export(PropertyHint.Range, "0,360,5,radians_as_degrees")]
@@ -50,8 +50,8 @@ public partial class LevelTransition : Area2D {
 	}
 
 	private Level? _previewScene;
-	private StringName? previewSceneOriginalName;
-	private Vector2 previewSceneOriginalPosition = Vector2.Zero;
+	private StringName? _previewSceneOriginalName;
+	private Vector2 _previewSceneOriginalPosition = Vector2.Zero;
 
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
@@ -75,7 +75,7 @@ public partial class LevelTransition : Area2D {
 	}
 
 	public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetPropertyList() {
-		var properties = base._GetPropertyList() ?? new Godot.Collections.Array<Godot.Collections.Dictionary>();
+		var properties = new Godot.Collections.Array<Godot.Collections.Dictionary>();
 
 		// If the other scene is specified, obtain a list of valid entrance
 		// nodes and show a selection dropdown.
@@ -107,24 +107,22 @@ public partial class LevelTransition : Area2D {
 				{ "usage", (int)(PropertyUsageFlags.Editor | PropertyUsageFlags.NoInstanceState) },
 			});
 
-			if (isEntranceAvailable) {
-				// Don't allow modifying the offset without seeing the results
-				var usage =
-					IsOtherScenePreviewVisible
-						? PropertyUsageFlags.Editor | PropertyUsageFlags.NoInstanceState
-						: PropertyUsageFlags.Editor | PropertyUsageFlags.ReadOnly | PropertyUsageFlags.NoInstanceState;
+			properties.Add(new Godot.Collections.Dictionary() {
+				{ "name", "OtherScenePreview" },
+				{ "type", (int)Variant.Type.Bool },
+				{ "usage", (int)(PropertyUsageFlags.Editor | PropertyUsageFlags.NoInstanceState) },
+			});
+
+			// Don't allow modifying the offset without seeing the results (the offset is not stored,
+			// it is the global position of the entrance node)
+			if (isEntranceAvailable && IsOtherScenePreviewVisible) {
+				var usage = PropertyUsageFlags.Editor | PropertyUsageFlags.NoInstanceState;
 				properties.Add(new Godot.Collections.Dictionary() {
 					{ "name", "EntranceNodeOffset" },
 					{ "type", (int)Variant.Type.Vector2 },
 					{ "usage", (int)usage },
 				});
 			}
-
-			properties.Add(new Godot.Collections.Dictionary() {
-				{ "name", "OtherScenePreview" },
-				{ "type", (int)Variant.Type.Bool },
-				{ "usage", (int)(PropertyUsageFlags.Editor | PropertyUsageFlags.NoInstanceState) },
-			});
 		}
 
 		return properties;
@@ -132,7 +130,7 @@ public partial class LevelTransition : Area2D {
 
 	public override Variant _Get(StringName property) {
 		if (property == "EntranceNode") {
-			if (!_entranceNodePath.IsEmpty) {
+			if (!EntranceNodePath.IsEmpty) {
 				var entranceNodes = FindOtherSceneEntrances();
 
 				for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
@@ -141,15 +139,16 @@ public partial class LevelTransition : Area2D {
 						return optionIndex;
 					}
 				}
+
+				_entranceNodePath = "";
+				NotifyPropertyListChanged();
 			}
 
-			_entranceNodePath = "";
-			NotifyPropertyListChanged();
 			return 0;
 		} else if (property == "OtherScenePreview") {
 			return IsOtherScenePreviewVisible;
 		} else if (property == "EntranceNodeOffset") {
-			if (!_entranceNodePath.IsEmpty) {
+			if (!EntranceNodePath.IsEmpty) {
 				var entranceNodes = FindOtherSceneEntrances();
 
 				for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
@@ -158,10 +157,11 @@ public partial class LevelTransition : Area2D {
 						return entrance.Position;
 					}
 				}
+
+				_entranceNodePath = "";
+				NotifyPropertyListChanged();
 			}
 
-			_entranceNodePath = "";
-			NotifyPropertyListChanged();
 			return Vector2.Zero;
 		} else if (property == "OpenOtherScene") {
 			return Callable.From(OpenOtherScene);
@@ -193,13 +193,12 @@ public partial class LevelTransition : Area2D {
 			if (valueBool) {
 				var resource = ResourceLoader.Load<PackedScene>(_otherScene);
 				_previewScene = resource.Instantiate<Level>();
-				previewSceneOriginalName = _previewScene.Name;
-				previewSceneOriginalPosition = _previewScene.Position;
+				_previewSceneOriginalName = _previewScene.Name;
+				_previewSceneOriginalPosition = _previewScene.Position;
 				_previewScene.Name = "Other scene preview";
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
-				if (_entranceNodePath.IsEmpty) {
-					GD.PrintErr("Entrance node path is empty");
+				if (EntranceNodePath.IsEmpty) {
 					TrySelectEntranceNode(0);
 				}
 
@@ -207,15 +206,17 @@ public partial class LevelTransition : Area2D {
 				UpdatePreviewPosition();
 			}
 			NotifyPropertyListChanged();
+
+			return true;
 		} else if (property == "EntranceNodeOffset" && Engine.IsEditorHint()) {
 			if (_previewScene is not null && _otherScene is not null) {
 				var entranceMarker = _previewScene.GetNode<Node2D>(_entranceNodePath);
 				entranceMarker.Position = value.AsVector2();
 
 				var sceneToSave = new PackedScene();
-				_previewScene.Position = previewSceneOriginalPosition;
-				if (previewSceneOriginalName is not null) {
-					_previewScene.Name = previewSceneOriginalName;
+				_previewScene.Position = _previewSceneOriginalPosition;
+				if (_previewSceneOriginalName is not null) {
+					_previewScene.Name = _previewSceneOriginalName;
 				}
 				// FIXME: store the original
 				_previewScene.ProcessMode = ProcessModeEnum.Inherit;
@@ -230,7 +231,7 @@ public partial class LevelTransition : Area2D {
 				_previewScene.Name = "Other scene preview";
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
-				if (_entranceNodePath.IsEmpty) {
+				if (EntranceNodePath.IsEmpty) {
 					TrySelectEntranceNode(0);
 				}
 

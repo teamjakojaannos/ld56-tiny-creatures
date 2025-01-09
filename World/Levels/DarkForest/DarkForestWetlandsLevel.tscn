@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://qswuc3kb8tde"]
+
+[ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_2uslt"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_gqqyk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjq4m"]
+size = Vector2(128, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o72y5"]
+size = Vector2(32, 128)
+
+[node name="TemplateLevel" instance=ExtResource("1_2uslt")]
+
+[node name="ToHub" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+position = Vector2(0, 128)
+script = ExtResource("2_gqqyk")
+OtherScene = "res://World/Levels/Forest/ForestHubLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToWetlands")
+ExitDirection = 1.5708
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToHub" index="0"]
+shape = SubResource("RectangleShape2D_bjq4m")
+
+[node name="ToSwamp" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+position = Vector2(128, 0)
+script = ExtResource("2_gqqyk")
+OtherScene = "res://World/Levels/Swamp/SwampLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToWetlands")
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToSwamp" index="0"]
+shape = SubResource("RectangleShape2D_o72y5")
+
+[node name="Floor" type="ColorRect" parent="." index="1"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 128.0
+color = Color(0.219608, 0.192157, 0.0980392, 1)
+
+[node name="Floor2" type="ColorRect" parent="." index="2"]
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+color = Color(0.13308, 0.18, 0.1188, 1)
