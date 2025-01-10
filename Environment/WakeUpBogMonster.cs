@@ -1,10 +1,10 @@
 using Godot;
 
-public partial class WakeUpBogMonster : Node2D {
+using Jakojaannos.WisperingWoods;
 
+public partial class WakeUpBogMonster : Node2D {
 	[Export]
 	public BogMonster? monster;
-
 
 	public override void _Ready() {
 		var parent = GetParent<WispInteractable>();
@@ -18,6 +18,6 @@ public partial class WakeUpBogMonster : Node2D {
 
 	private void OnDialogueFinished() {
 		var currentPosition = monster!.ProgressRatio;
-		monster.emergeFromWaterAtPosition(currentPosition);
+		monster.EmergeFromWaterAtPosition(currentPosition);
 	}
 }

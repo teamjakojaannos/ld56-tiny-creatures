@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class DialogueTrigger : Area2D {
 	[Export]
 	public DialogueTree? DialogueContent;

@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://8md5xlmkgeog" path="res://Environment/jesus_statue.tscn" id="2_0oq2o"]
 [ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_to6vm"]
 [ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_2gwy1"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://characters/character_wisp.tres" id="5_8bj12"]
+[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="5_8bj12"]
 [ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_uul17"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://characters/character_player.tres" id="6_olpj3"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="6_olpj3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnrrf"]
 resource_local_to_scene = true

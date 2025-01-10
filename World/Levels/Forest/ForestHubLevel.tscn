@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1miki8xipq3r"]
+
+[ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_n6u4r"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_d22qt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bh3vp"]
+size = Vector2(128, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry8sh"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dq3fv"]
+size = Vector2(128, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsfsb"]
+size = Vector2(128, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4sll"]
+size = Vector2(32, 128)
+
+[node name="ForestHub" instance=ExtResource("1_n6u4r")]
+position = Vector2(96, 0)
+
+[node name="ToMeadows" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+position = Vector2(-96, 128)
+script = ExtResource("2_d22qt")
+OtherScene = "res://World/Levels/Forest/ForestMeadowsLevel.tscn"
+_entranceNodePath = "./Transitions/ToHub"
+ExitDirection = 1.5708
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToMeadows" index="0"]
+shape = SubResource("RectangleShape2D_bh3vp")
+
+[node name="ToDarkForestPath" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+position = Vector2(-288, 0)
+script = ExtResource("2_d22qt")
+OtherScene = "res://World/Levels/DarkForest/PathToDarkForestLevel.tscn"
+_entranceNodePath = "./Transitions/ToHub"
+ExitDirection = 3.14159
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDarkForestPath" index="0"]
+shape = SubResource("RectangleShape2D_ry8sh")
+
+[node name="ToDarkForest" type="Area2D" parent="Transitions" index="2" groups=["LevelEntrance"]]
+position = Vector2(-192, -128)
+script = ExtResource("2_d22qt")
+OtherScene = "res://World/Levels/DarkForest/DarkForestLevel.tscn"
+_entranceNodePath = "./Transitions/ToHub"
+ExitDirection = 4.71239
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDarkForest" index="0"]
+shape = SubResource("RectangleShape2D_dq3fv")
+
+[node name="ToWetlands" type="Area2D" parent="Transitions" index="3" groups=["LevelEntrance"]]
+position = Vector2(0, -128)
+script = ExtResource("2_d22qt")
+OtherScene = "res://World/Levels/DarkForest/DarkForestWetlandsLevel.tscn"
+_entranceNodePath = "./Transitions/ToHub"
+ExitDirection = 4.71239
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToWetlands" index="0"]
+shape = SubResource("RectangleShape2D_fsfsb")
+
+[node name="ToSwampHaven" type="Area2D" parent="Transitions" index="4" groups=["LevelEntrance"]]
+position = Vector2(96, 0)
+script = ExtResource("2_d22qt")
+OtherScene = "res://World/Levels/Swamp/HavenLevel.tscn"
+_entranceNodePath = "./Transitions/ToHub"
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToSwampHaven" index="0"]
+shape = SubResource("RectangleShape2D_s4sll")
+
+[node name="Floor" type="ColorRect" parent="." index="1"]
+offset_left = -288.0
+offset_top = -64.0
+offset_right = 96.0
+offset_bottom = 64.0
+color = Color(0.317647, 0.211765, 0.109804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Floor2" type="ColorRect" parent="." index="2"]
+offset_left = -160.0
+offset_top = 64.0
+offset_right = -32.0
+offset_bottom = 128.0
+color = Color(0.317647, 0.211765, 0.109804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Floor3" type="ColorRect" parent="." index="3"]
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = -64.0
+color = Color(0.317647, 0.211765, 0.109804, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Floor4" type="ColorRect" parent="." index="4"]
+offset_left = -256.0
+offset_top = -128.0
+offset_right = -128.0
+offset_bottom = -64.0
+color = Color(0.317647, 0.211765, 0.109804, 1)
+metadata/_edit_use_anchors_ = true

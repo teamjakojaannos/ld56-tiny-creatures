@@ -1,107 +1,98 @@
-using System;
 using System.Linq;
+
 using Godot;
+
+using Jakojaannos.WisperingWoods.Util.Editor;
+
+namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 [GlobalClass]
 public partial class WispInteractableAnimatedProp : Node2D {
-    private AnimationPlayer? _animationPlayer;
+	[Export]
+	[MustSetInEditor]
+	public AnimationPlayer AnimPlayer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_animationPlayer);
+		set => this.SetExportProperty(ref _animationPlayer, value);
+	}
+	private AnimationPlayer? _animationPlayer;
 
-    [Export]
-    public AnimationPlayer AnimPlayer {
-        get => _animationPlayer ?? Util.TrustMeBro<AnimationPlayer>();
-        set {
-            _animationPlayer = value;
-            UpdateConfigurationWarnings();
-        }
-    }
+	[Export]
+	[MustSetInEditor]
+	public string Animation {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_animation);
+		set => this.SetExportProperty(ref _animation, value);
+	}
+	private string? _animation;
 
-    private string? _animation;
+	[Export]
+	[ExportGroup("Dialogue")]
+	public bool RequireDialogue = false;
 
-    [Export]
-    public string Animation {
-        get => _animation ?? Util.TrustMeBro<string>();
-        set {
-            _animation = value;
-            UpdateConfigurationWarnings();
-        }
-    }
+	[Export]
+	public string? DialogueTrigger;
 
-    [Export]
-    [ExportGroup("Dialogue")]
-    public bool RequireDialogue = false;
+	[Export]
+	public bool TriggerOnlyOnce = true;
 
-    [Export]
-    public string? DialogueTrigger;
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
 
-    [Export]
-    public bool TriggerOnlyOnce = true;
+		if (GetParentOrNull<WispInteractable>() is null) {
+			warnings = warnings.Append("Parent must be a WispInteractable!").ToArray();
+		}
 
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
-    public override string[] _GetConfigurationWarnings() {
-        var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+	public override void _Ready() {
+		base._Ready();
 
-        if (GetParentOrNull<WispInteractable>() is null) {
-            warnings = warnings.Append("Parent must be a WispInteractable!").ToArray();
-        }
+		if (Engine.IsEditorHint()) {
+			return;
+		}
 
-        if (_animationPlayer is null) {
-            warnings = warnings.Append("AnimationPlayer is not set!").ToArray();
-        }
+		var parent = GetParent<WispInteractable>();
+		parent.InteractStart += () => {
+			if (RequireDialogue) {
+				Dialogue.Instance(this).DialogueUpdated += CheckDialogueTrigger;
+			} else {
+				InteractStart();
+			}
+		};
+		parent.InteractStop += () => {
+			if (RequireDialogue) {
+				Dialogue.Instance(this).DialogueUpdated -= CheckDialogueTrigger;
+			} else {
+				AnimPlayer.Stop();
+			}
+		};
+	}
 
-        if (_animation is null || _animation.Trim().Length == 0) {
-            warnings = warnings.Append("Animation is empty or not set!").ToArray();
-        }
+	private void InteractStart() {
+		AnimPlayer.Play(Animation);
+	}
 
-        return warnings;
-    }
+	private void InteractStop() {
+		AnimPlayer.Stop();
+	}
 
-    public override void _Ready() {
-        base._Ready();
+	private void CheckDialogueTrigger(string chosenOption) {
+		if (!GetParent<WispInteractable>().isWispInteracting) {
+			return;
+		}
 
-        if (Engine.IsEditorHint()) {
-            return;
-        }
+		if (chosenOption == DialogueTrigger) {
+			InteractStart();
+			if (DialogueTrigger is not null) {
+				this.Persistent().State.Add(DialogueTrigger);
+			}
 
-        var parent = GetParent<WispInteractable>();
-        parent.InteractStart += () => {
-            if (RequireDialogue) {
-                Dialogue.Instance(this).DialogueUpdated += CheckDialogueTrigger;
-            } else {
-                InteractStart();
-            }
-        };
-        parent.InteractStop += () => {
-            if (RequireDialogue) {
-                Dialogue.Instance(this).DialogueUpdated -= CheckDialogueTrigger;
-            } else {
-                AnimPlayer.Stop();
-            }
-        };
-    }
-
-    private void InteractStart() {
-        AnimPlayer.Play(Animation);
-    }
-
-    private void InteractStop() {
-        AnimPlayer.Stop();
-    }
-
-    private void CheckDialogueTrigger(string chosenOption) {
-        if (!GetParent<WispInteractable>().isWispInteracting) {
-            return;
-        }
-
-        if (chosenOption == DialogueTrigger) {
-            InteractStart();
-            if (DialogueTrigger is not null) {
-                this.Persistent().State.Add(DialogueTrigger);
-            }
-
-            if (TriggerOnlyOnce) {
-                GetParent<WispInteractable>().Done = true;
-            }
-        }
-    }
+			if (TriggerOnlyOnce) {
+				GetParent<WispInteractable>().Done = true;
+			}
+		}
+	}
 }

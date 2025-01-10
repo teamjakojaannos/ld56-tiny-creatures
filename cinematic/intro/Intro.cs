@@ -1,6 +1,9 @@
-using System;
 using Godot;
 
+using Jakojaannos.WisperingWoods;
+using Jakojaannos.WisperingWoods.Characters.Player;
+
+[Tool]
 public partial class Intro : Node2D {
 	[Export]
 	public DialogueTree? InitialDialogue;
@@ -29,7 +32,9 @@ public partial class Intro : Node2D {
 	private Dialogue dialogue = null!;
 
 	public override void _Ready() {
-		base._Ready();
+		if (Engine.IsEditorHint()) {
+			return;
+		}
 
 		dialogue = Dialogue.Instance(this);
 	}
@@ -93,7 +98,7 @@ public partial class Intro : Node2D {
 			player.Wisp.GlobalPosition = wispLocation;
 
 			playerSprite.Hide();
-			player.setSpriteVisible(true);
+			player.SetSpriteVisible(true);
 		}
 		GetTree().CreateTimer(2.0f).Timeout += () => {
 			dialogue.StartDialogue(CageOpenDialogue!);
@@ -109,7 +114,7 @@ public partial class Intro : Node2D {
 	private void ReleasePlayer() {
 		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
 			GetTree().CreateTimer(0.25f).Timeout += () => {
-				player.setMovementEnabled(true);
+				player.SetMovementEnabled(true);
 			};
 
 			GetTree().CreateTimer(2.0f).Timeout += () => {
@@ -139,23 +144,22 @@ public partial class Intro : Node2D {
 	public void FadeInAfterDeath() {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
-		
-		if (this.Persistent().Player is Player player) {
-			player.setSpriteVisible(true);
-			GetTree().CreateTimer(2.5f).Timeout += () => {
-				player.GetUp();
-			};
-		}
+
+		var player = this.Persistent().Player;
+		player.SetSpriteVisible(true);
+		GetTree().CreateTimer(2.5f).Timeout += () => {
+			player.GetUp();
+		};
 	}
 
 	public void FadeInAfterWin() {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
-		
+
 		if (this.Persistent().Player is Player player) {
 			player.Noppa!.VolumeDb = Mathf.LinearToDb(0.0f);
 			player.LieDown();
-			player.setSpriteVisible(true);
+			player.SetSpriteVisible(true);
 			GetTree().CreateTimer(2.5f).Timeout += () => {
 				player.GetUp();
 			};

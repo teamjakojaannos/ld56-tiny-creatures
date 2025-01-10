@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameCharacter" load_steps=3 format=3 uid="uid://bjgdriipgp3ew"]
+
+[ext_resource type="Script" path="res://Characters/GameCharacter.cs" id="1_j854s"]
+[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="1_s1wcx"]
+
+[resource]
+script = ExtResource("1_j854s")
+Name = "Crow"
+DefaultDialogueSide = 1
+PortraitFacing = 0
+Portrait = ExtResource("1_s1wcx")

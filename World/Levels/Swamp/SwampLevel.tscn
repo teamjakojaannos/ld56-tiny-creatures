@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdtulfcidgo5f"]
+
+[ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_tr6k8"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_1hujf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j27m0"]
+size = Vector2(32, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6q8q"]
+size = Vector2(32, 128)
+
+[node name="TemplateLevel" instance=ExtResource("1_tr6k8")]
+
+[node name="ToWetlands" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+position = Vector2(-64, 0)
+script = ExtResource("2_1hujf")
+OtherScene = "res://World/Levels/DarkForest/DarkForestWetlandsLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToSwamp")
+ExitDirection = 3.14159
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToWetlands" index="0"]
+shape = SubResource("RectangleShape2D_j27m0")
+
+[node name="ToBoss" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+position = Vector2(64, 0)
+script = ExtResource("2_1hujf")
+OtherScene = "res://World/Levels/Swamp/BossRoomLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToSwamp")
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToBoss" index="0"]
+shape = SubResource("RectangleShape2D_q6q8q")
+
+[node name="Floor" type="ColorRect" parent="." index="1"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.13308, 0.18, 0.1188, 1)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpcrfkh38mkjh"]
+
+[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="1_idtpa"]
+
+[node name="PortraitFrame" instance=ExtResource("1_idtpa")]

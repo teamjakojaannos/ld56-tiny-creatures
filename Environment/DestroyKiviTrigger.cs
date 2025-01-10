@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class DestroyKiviTrigger : Area2D {
 
 	private bool isDestroyed;
@@ -13,7 +15,7 @@ public partial class DestroyKiviTrigger : Area2D {
 	[Export]
 	public AudioStreamPlayer? sfx;
 
-	public void bodyEntered(Node2D node) {
+	public void HandleBodyEntered(Node2D node) {
 		if (node is Player) {
 			if (isDestroyed) {
 				return;

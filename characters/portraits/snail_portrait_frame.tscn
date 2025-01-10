@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci0uwpirpktwn"]
-
-[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://characters/portraits/TEMPLATE_character_portrait.tscn" id="1_qa6pp"]
-[ext_resource type="Texture2D" uid="uid://bqab431ashybk" path="res://dialogue/portraits/etanapappaportrait.png" id="2_1co2x"]
-
-[node name="Container" instance=ExtResource("1_qa6pp")]
-
-[node name="Character" parent="PortraitFrame" index="0"]
-texture = ExtResource("2_1co2x")

@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class NakkiAttack : Node2D {
 	[Export]
 	public Area2D? DangerZone;

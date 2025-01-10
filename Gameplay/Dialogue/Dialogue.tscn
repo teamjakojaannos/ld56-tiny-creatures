@@ -1,0 +1,473 @@
+[gd_scene load_steps=31 format=3 uid="uid://d3qquxamaxbfl"]
+
+[ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
+[ext_resource type="Shader" uid="uid://h4c1uiqf7bbi" path="res://Gameplay/Dialogue/UI/DialogueBackground.tres" id="2_4ko57"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUI.cs" id="2_klg46"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
+[ext_resource type="PackedScene" uid="uid://b6k7f3ni73i17" path="res://Gameplay/Dialogue/UI/DialogueUITextLine.tscn" id="3_4sdnn"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="5_8btbo"]
+[ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="6_61mji"]
+[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueChoiceLine.cs" id="6_lfg4c"]
+[ext_resource type="Script" path="res://UI/PositionAnimator.cs" id="7_32f4m"]
+[ext_resource type="PackedScene" uid="uid://dt5b1ny7gald6" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLine.tscn" id="8_urtq6"]
+
+[sub_resource type="Resource" id="Resource_sbein"]
+script = ExtResource("4_d1t7j")
+Text = "This line should no longer be visible when the last line is."
+Speaker = ExtResource("5_8btbo")
+Side = 1
+
+[sub_resource type="Resource" id="Resource_h0f25"]
+script = ExtResource("4_d1t7j")
+Text = "A quick brown fox jumps over a lazy dog."
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_5cuke"]
+script = ExtResource("4_d1t7j")
+Text = "Umm... Huh?"
+Speaker = ExtResource("6_61mji")
+Side = 1
+
+[sub_resource type="Resource" id="Resource_6wwag"]
+script = ExtResource("4_d1t7j")
+Text = "Oh, this is just a placeholder, you silly!"
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_lcxp5"]
+script = ExtResource("6_lfg4c")
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_yd4xi"]
+script = ExtResource("4_d1t7j")
+Text = "Pick option 1"
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_15204"]
+script = ExtResource("4_d1t7j")
+Text = "Pick option 2"
+Speaker = ExtResource("5_8btbo")
+Side = 0
+
+[sub_resource type="Animation" id="Animation_iqg36"]
+resource_name = "FinishDialogue"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UIRoot/BackgroundSmoke:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetHorizontal")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 50.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/UIRoot/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.25]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/UIRoot/Lines/LinesPosition:PercentageOffScreen")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 0.5, 1, 6.27667),
+"update": 0,
+"values": [0.0, 0.0, -0.025, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/UIRoot/Lines:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vj67m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetVertical")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UIRoot/BackgroundSmoke:PercentageOffScreen")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UIRoot/BackgroundSmoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetHorizontal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/UIRoot/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/UIRoot/Lines/LinesPosition:PercentageOffScreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/UIRoot/Lines:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xrldd"]
+resource_name = "StartDialogue"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetVertical")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.517632, 2),
+"update": 0,
+"values": [-4.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/UIRoot/BackgroundSmoke:PercentageOffScreen")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/UIRoot/BackgroundSmoke:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/UIRoot/BackgroundSmoke:SmokeTimeOffsetHorizontal")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [-50.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/UIRoot/BackgroundSmoke/BackgroundPosition:PercentageOffScreen")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/UIRoot/Lines/LinesPosition:PercentageOffScreen")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("UI/UIRoot/Lines:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqeli"]
+_data = {
+"FinishDialogue": SubResource("Animation_iqg36"),
+"RESET": SubResource("Animation_vj67m"),
+"StartDialogue": SubResource("Animation_xrldd")
+}
+
+[sub_resource type="Gradient" id="Gradient_v0gls"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b4no2"]
+seed = 1
+frequency = 0.0067
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7ne41"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_v0gls")
+noise = SubResource("FastNoiseLite_b4no2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8bjrs"]
+shader = ExtResource("2_4ko57")
+shader_parameter/TimeOffsetHorizontal = 0.0
+shader_parameter/TimeScale = 0.25
+shader_parameter/HorizontalScrollSpeed = -0.1
+shader_parameter/TimeOffsetVertical = 0.0
+shader_parameter/VerticalScrollSpeed = 1.0
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_7ne41")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ox3np"]
+seed = 2
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tag5s"]
+in_3d_space = true
+seamless = true
+color_ramp = SubResource("Gradient_v0gls")
+noise = SubResource("FastNoiseLite_ox3np")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kl6cq"]
+shader = ExtResource("2_4ko57")
+shader_parameter/TimeOffsetHorizontal = 0.0
+shader_parameter/TimeScale = 0.25
+shader_parameter/HorizontalScrollSpeed = -0.05
+shader_parameter/TimeOffsetVertical = 0.0
+shader_parameter/VerticalScrollSpeed = 0.25
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_tag5s")
+
+[node name="Dialogue" type="Node" node_paths=PackedStringArray("ActiveDialogue", "DialogueUI")]
+script = ExtResource("1_tttv6")
+ActiveDialogue = NodePath("Preview")
+DialogueUI = NodePath("UI")
+
+[node name="Preview" type="Node" parent="."]
+script = ExtResource("1_fsicn")
+Lines = [SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag"), SubResource("Resource_lcxp5")]
+
+[node name="AnotherBranch" type="Node" parent="Preview"]
+script = ExtResource("1_fsicn")
+Lines = [SubResource("Resource_yd4xi")]
+
+[node name="SomeBranch" type="Node" parent="Preview"]
+script = ExtResource("1_fsicn")
+Lines = [SubResource("Resource_15204")]
+
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("DialogueLines", "Animation")]
+visible = false
+script = ExtResource("2_klg46")
+DialogueLines = NodePath("UIRoot/Lines")
+DialogueTextLineTemplate = ExtResource("3_4sdnn")
+DialogueChoiceLineTemplate = ExtResource("8_urtq6")
+Animation = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_dqeli")
+}
+
+[node name="UIRoot" type="Control" parent="UI"]
+editor_description = "Exists just because Canvas Layer nodes don't have \"Clip Contents\""
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundSmoke" type="Control" parent="UI/UIRoot"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kmp7t")
+
+[node name="Layer1" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke"]
+material = SubResource("ShaderMaterial_8bjrs")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Layer2" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke"]
+material = SubResource("ShaderMaterial_kl6cq")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackgroundPosition" type="Node" parent="UI/UIRoot/BackgroundSmoke" node_paths=PackedStringArray("AnimatedControl", "UseSizeOf")]
+script = ExtResource("7_32f4m")
+AnimatedControl = NodePath("..")
+UseSizeOf = NodePath("../Layer1")
+ScrollDirection = 1
+
+[node name="Lines" type="VBoxContainer" parent="UI/UIRoot"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.975
+anchor_right = 0.95
+anchor_bottom = 0.975
+offset_top = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LinesPosition" type="Node" parent="UI/UIRoot/Lines" node_paths=PackedStringArray("AnimatedControl")]
+script = ExtResource("7_32f4m")
+AnimatedControl = NodePath("..")
+Offset = 0.975
+ScrollDirection = 1

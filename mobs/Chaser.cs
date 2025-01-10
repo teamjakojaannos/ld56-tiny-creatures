@@ -1,13 +1,26 @@
+using System.Linq;
+
 using ChaserStuff;
+
 using Godot;
 using Godot.Collections;
 
-public partial class Chaser : RigidBody2D {
+using Jakojaannos.WisperingWoods;
+using Jakojaannos.WisperingWoods.Audio;
+using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
+[Tool]
+public partial class Chaser : RigidBody2D {
 	public float speed;
-	[Export] public float acceleration = 15.0f;
-	[Export] public float baseSpeed = 60.0f;
-	[Export] public float maxSpeed = 200.0f;
+
+	[Export]
+	public float acceleration = 15.0f;
+	[Export]
+	public float baseSpeed = 60.0f;
+	[Export]
+	public float maxSpeed = 200.0f;
 
 	[Export(PropertyHint.Range, "-3.14,3.14,")]
 	public float coneAngleOffset = Mathf.Pi / 2.0f;
@@ -26,9 +39,8 @@ public partial class Chaser : RigidBody2D {
 	[Export]
 	public AnimatedSprite2D? Sprite;
 
-
 	private ChaserAI aiState = new IdleState();
-	public RandomNumberGenerator rng = new();
+	internal RandomNumberGenerator rng = new();
 
 	private Vector2? whereToLookAt = null;
 
@@ -36,41 +48,67 @@ public partial class Chaser : RigidBody2D {
 	private bool navigationSetupDone = false;
 
 	private RayCast2D? lineOfSight;
-	private Player? player;
+	private Node2D? _chaseTarget;
 	private bool isAttacking;
 
 	[Export]
-	public Timer? FootstepsTimer;
+	[ExportGroup("Prewire")]
+	[MustSetInEditor]
+	public RandomAudioStreamPlayer2D Footsteps {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_footsteps);
+		set => this.SetExportProperty(ref _footsteps, value);
+	}
+	private RandomAudioStreamPlayer2D? _footsteps;
 
 	[Export]
-	public Footsteps? Footsteps;
+	[MustSetInEditor]
+	public Timer FootstepsTimer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_footstepsTimer);
+		set => this.SetExportProperty(ref _footstepsTimer, value);
+	}
+	private Timer? _footstepsTimer;
+
 
 	[Export]
-	public Footsteps? AttackSounds;
+	[MustSetInEditor]
+	public RandomAudioStreamPlayer AttackSounds {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackSounds);
+		set => this.SetExportProperty(ref _attackSounds, value);
+	}
+
+	private RandomAudioStreamPlayer? _attackSounds;
+
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void _Ready() {
 		sightConeRoot = GetNode<Node2D>("SightCone");
 		navigationAgent = GetNode<NavigationAgent2D>("NavigationAgent");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
 
-		sightConeSmall = GetNode<Area2D>("SightCone/SightConeSmall");
-		sightConeMedium = GetNode<Area2D>("SightCone/SightConeMedium");
-		sightConeLarge = GetNode<Area2D>("SightCone/SightConeLarge");
+		sightConeSmall = sightConeRoot.GetNode<Area2D>("SightConeSmall");
+		sightConeMedium = sightConeRoot.GetNode<Area2D>("SightConeMedium");
+		sightConeLarge = sightConeRoot.GetNode<Area2D>("SightConeLarge");
+
+		speed = baseSpeed;
+
+		if (Engine.IsEditorHint()) {
+			return;
+		}
 
 		Callable.From(ActorSetup).CallDeferred();
 
-		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is Player player) {
-			player.LightLevelChanged += playerLightLevelChanged;
-			activateSightCone(player.lightLevel);
-		}
+		var player = this.Persistent().Player;
+		player.LightLevelChanged += PlayerLightLevelChanged;
+		ActivateSightCone(player.lightLevel);
 
 		this.Persistent().PlayerRespawned += () => {
 			isAttacking = false;
 			aiState = new IdleState();
 		};
-
-		speed = baseSpeed;
 
 		if (FootstepsTimer is not null) {
 			FootstepsTimer.Timeout += () => {
@@ -85,29 +123,32 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	public override void _PhysicsProcess(double _delta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)_delta;
 
 		if (isAttacking) {
 			return;
 		}
 
-		var seesPlayer = raycastToPlayer();
+		var seesPlayer = RaycastToChaseTarget();
 		if (seesPlayer) {
 			if (aiState is not ChaseState) {
-				startChase(player!);
+				StartChase(_chaseTarget!);
 			}
 		} else {
 			if (aiState is ChaseState chase) {
-				startSeeking(chase.lastSeenPosition);
+				StartSeeking(chase.LastKnownTargetPosition);
 			}
 		}
 
+		aiState.DoUpdate(this, delta);
+		UpdateSpeed(delta);
 
-		aiState.doUpdate(this, delta);
-		updateSpeed(delta);
-
-		turnHead(delta);
-		var velocity = moveTowardsCurrentTarget(delta);
+		TurnHead(delta);
+		var velocity = MoveTowardsCurrentTarget(delta);
 
 		if (velocity is not null && (velocity?.LengthSquared()) < 0.01f) {
 			FootstepsTimer?.Stop();
@@ -115,21 +156,21 @@ public partial class Chaser : RigidBody2D {
 			FootstepsTimer.Start();
 		}
 
-		if (hasReachedMovementTarget()) {
-			clearMovementTarget();
+		if (HasReachedMovementTarget()) {
+			ClearMovementTarget();
 		}
 
-		updateSprite(velocity);
+		UpdateSprite(velocity);
 	}
 
-	private void updateSpeed(float delta) {
+	private void UpdateSpeed(float delta) {
 		var isChasing = aiState is ChaseState;
 		var sign = isChasing ? +1.0f : -1.0f;
 		speed += acceleration * delta * sign;
 		speed = Mathf.Clamp(speed, baseSpeed, maxSpeed);
 	}
 
-	private Vector2? moveTowardsCurrentTarget(float delta) {
+	private Vector2? MoveTowardsCurrentTarget(float delta) {
 		if (navigationAgent!.IsNavigationFinished()) {
 			return null;
 		}
@@ -138,22 +179,22 @@ public partial class Chaser : RigidBody2D {
 		var nextPathPosition = navigationAgent.GetNextPathPosition();
 		var velocity = currentAgentPosition.DirectionTo(nextPathPosition) * speed * delta;
 		MoveAndCollide(velocity);
-		lookTowardsMovement(nextPathPosition);
+		LookTowardsMovement(nextPathPosition);
 		return velocity;
 	}
 
-	private void lookTowardsMovement(Vector2 target) {
+	private void LookTowardsMovement(Vector2 target) {
 		if (whereToLookAt is not null) {
 			// specific target overrides "look towards movement"
 			return;
 		}
 
-		clearLookTarget();
+		ClearLookTarget();
 		var desiredAngle = GlobalPosition.AngleToPoint(target) + coneAngleOffset;
 		sightConeRoot!.Rotation = desiredAngle;
 	}
 
-	private void updateSprite(Vector2? vel) {
+	private void UpdateSprite(Vector2? vel) {
 		if (vel is not Vector2 velocity || velocity.LengthSquared() < 0.0001f) {
 			const float fullCircle = Mathf.Pi * 2.0f;
 			const float halfCircle = fullCircle / 2.0f;
@@ -185,11 +226,11 @@ public partial class Chaser : RigidBody2D {
 		}
 	}
 
-	public bool hasReachedMovementTarget() {
+	public bool HasReachedMovementTarget() {
 		return navigationAgent!.IsNavigationFinished();
 	}
 
-	public void setMovementTarget(Vector2 targetGlobalPos) {
+	public void SetMovementTarget(Vector2 targetGlobalPos) {
 		if (!navigationSetupDone) {
 			GD.Print("Trying to add target before navigation setup is done");
 			return;
@@ -198,12 +239,12 @@ public partial class Chaser : RigidBody2D {
 		navigationAgent!.TargetPosition = targetGlobalPos;
 	}
 
-	public void clearMovementTarget() {
+	public void ClearMovementTarget() {
 		// is this correct way to stop?
 		navigationAgent!.TargetPosition = GlobalPosition;
 	}
 
-	public void setLookTarget(Vector2 targetGlobalPos, bool turnInstantly = false) {
+	public void SetLookTarget(Vector2 targetGlobalPos, bool turnInstantly = false) {
 		whereToLookAt = targetGlobalPos;
 
 		if (turnInstantly) {
@@ -213,11 +254,11 @@ public partial class Chaser : RigidBody2D {
 		}
 	}
 
-	public void clearLookTarget() {
+	public void ClearLookTarget() {
 		whereToLookAt = null;
 	}
 
-	public bool isDoneTurning() {
+	public bool IsDoneTurning() {
 		const float closeEnough = 0.01f;
 
 		if (whereToLookAt is not Vector2 point) {
@@ -231,7 +272,7 @@ public partial class Chaser : RigidBody2D {
 		return Mathf.Abs(diff) <= closeEnough;
 	}
 
-	private void turnHead(float delta) {
+	private void TurnHead(float delta) {
 		if (whereToLookAt is not Vector2 point) {
 			return;
 		}
@@ -252,15 +293,14 @@ public partial class Chaser : RigidBody2D {
 		sightConeRoot.Rotation += rotationAmount;
 	}
 
-	private bool raycastToPlayer() {
-		if (player == null) {
+	private bool RaycastToChaseTarget() {
+		if (_chaseTarget == null) {
 			return false;
 		}
 
-
-		var playerPosition = player.GlobalPosition;
+		var targetPosition = _chaseTarget.GlobalPosition;
 		// raycast wants target as relative to itself, not global
-		var target = playerPosition - lineOfSight!.GlobalPosition;
+		var target = targetPosition - lineOfSight!.GlobalPosition;
 		lineOfSight.TargetPosition = target;
 
 		lineOfSight.ForceRaycastUpdate();
@@ -273,61 +313,59 @@ public partial class Chaser : RigidBody2D {
 		return collider is Player;
 	}
 
-
 	enum SightConeSize {
 		Small, Medium, Large
 	}
 
-	public void enterSightConeSmall(Node2D node) { sightConeEntered(node, SightConeSize.Small); }
-	public void enterSightConeMedium(Node2D node) { sightConeEntered(node, SightConeSize.Medium); }
-	public void enterSightConeLarge(Node2D node) { sightConeEntered(node, SightConeSize.Large); }
-	public void exitSightConeSmall(Node2D node) { sightConeExited(node, SightConeSize.Small); }
-	public void exitSightConeMedium(Node2D node) { sightConeExited(node, SightConeSize.Medium); }
-	public void exitSightConeLarge(Node2D node) { sightConeExited(node, SightConeSize.Large); }
+	public void EnterSightConeSmall(Node2D node) { SightConeEntered(node, SightConeSize.Small); }
+	public void EnterSightConeMedium(Node2D node) { SightConeEntered(node, SightConeSize.Medium); }
+	public void EnterSightConeLarge(Node2D node) { SightConeEntered(node, SightConeSize.Large); }
+	public void ExitSightConeSmall(Node2D node) { SightConeExited(node, SightConeSize.Small); }
+	public void ExitSightConeMedium(Node2D node) { SightConeExited(node, SightConeSize.Medium); }
+	public void ExitSightConeLarge(Node2D node) { SightConeExited(node, SightConeSize.Large); }
 
-	private void sightConeEntered(Node2D node, SightConeSize size) {
+	private void SightConeEntered(Node2D node, SightConeSize _) {
 		if (node is not Player player) {
 			return;
 		}
 
-		this.player = player;
+		this._chaseTarget = player;
 	}
 
-	private void sightConeExited(Node2D node, SightConeSize size) {
+	private void SightConeExited(Node2D node, SightConeSize _) {
 		if (node is not Player) {
 			return;
 		}
 
-		player = null;
+		_chaseTarget = null;
 	}
 
-	private void startChase(Player player) {
-		clearLookTarget();
-		clearMovementTarget();
+	private void StartChase(Node2D target) {
+		ClearLookTarget();
+		ClearMovementTarget();
 
 		AttackSounds?.Play();
 		this.Jukebox().StartChase();
-		aiState = new ChaseState(player);
+		aiState = new ChaseState(target);
 	}
 
-	private void startSeeking(Vector2 lastPosition) {
-		clearLookTarget();
-		clearMovementTarget();
+	private void StartSeeking(Vector2 lastPosition) {
+		ClearLookTarget();
+		ClearMovementTarget();
 
 		this.Jukebox().StopChase();
 		aiState = new SeekState(lastPosition);
 	}
 
-	public void startWandering() {
-		clearLookTarget();
-		clearMovementTarget();
+	public void StartWandering() {
+		ClearLookTarget();
+		ClearMovementTarget();
 
-
-		var randomPoint = getRandomNavigationPoint();
+		var randomPoint = GetRandomNavigationPoint();
 		aiState = new WanderState(randomPoint);
 	}
 
-	private Vector2 getRandomNavigationPoint() {
+	private Vector2 GetRandomNavigationPoint() {
 		var roots = GetTree().GetNodesInGroup("MarkoMarkersRoot");
 		var allPositions = new Array<Vector2>();
 
@@ -342,49 +380,48 @@ public partial class Chaser : RigidBody2D {
 
 		if (allPositions.Count == 0) {
 			GD.Print("Can't find any navigation nodes for Marko, picking random point!");
-			var randomPoint = Util.randomVector(rng, ChaserStats.wanderToNewTargetInRange);
+			var randomPoint = rng.RandomVector(ChaserStats.wanderToNewTargetInRange);
 			return randomPoint + GlobalPosition;
 		} else {
 			return allPositions.PickRandom();
 		}
 	}
 
-	public void startIdling() {
-		clearLookTarget();
-		clearMovementTarget();
+	public void StartIdling() {
+		ClearLookTarget();
+		ClearMovementTarget();
 
 		aiState = new IdleState();
 	}
 
-	public void enteredKillZone(Node2D node) {
+	public void EnteredKillZone(Node2D node) {
 		if (node is Player player) {
-			attackPlayer(player);
-
+			AttackPlayer(player);
 		}
 	}
 
-	private void attackPlayer(Player player) {
+	private void AttackPlayer(Player player) {
 		AttackSounds?.Play();
 		isAttacking = true;
-		player.setSpriteVisible(false);
-		player.setMovementEnabled(false);
+		player.SetSpriteVisible(false);
+		player.SetMovementEnabled(false);
 		AnimPlayer!.Play("attack");
 	}
 
-	private void killPlayer() {
+	private void KillPlayer() {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
 			return;
 		}
 
-		player.die();
+		player.Die();
 	}
 
-	private void playerLightLevelChanged(int newLightLevel) {
-		activateSightCone(newLightLevel);
+	private void PlayerLightLevelChanged(int newLightLevel) {
+		ActivateSightCone(newLightLevel);
 	}
 
-	private void activateSightCone(int lightLevel) {
+	private void ActivateSightCone(int lightLevel) {
 		var enableSmall = lightLevel <= 1;
 		var enableMedium = lightLevel == 2;
 		var enableLarge = lightLevel >= 3;

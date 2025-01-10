@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Characters.Player;
+
 public partial class MyEvilTrigger : Area2D {
 
 	[Export]
@@ -12,35 +14,35 @@ public partial class MyEvilTrigger : Area2D {
 		first = GetNode<Timer>("Timer1");
 		second = GetNode<Timer>("Timer2");
 
-		first.Timeout += goUnderwater;
-		second.Timeout += emerge;
+		first.Timeout += GoUnderwater;
+		second.Timeout += Emerge;
 
-		BodyEntered += onBodyEnter;
+		BodyEntered += OnBodyEnter;
 
 		// make monster be underwater at start and not override the animation
-		monster!.playEmergeFromWaterAnimationThisIsVeryHackyThingDontUse();
+		monster!.PlayEmergeFromWaterAnimationThisIsVeryHackyThingDontUse();
 		if (monster.ai is BogMonsterStuff.WaitUntilTriggerIsTriggeredState trigger) {
 			trigger.animationSet = true;
 		}
 	}
 
-	public void onBodyEnter(Node2D node) {
+	public void OnBodyEnter(Node2D node) {
 		if (node is Player) {
-			startSequence();
+			StartSequence();
 		}
 	}
 
-	private void startSequence() {
+	private void StartSequence() {
 		first!.Start();
 		second!.Start();
 	}
 
-	private void goUnderwater() {
-		monster!.playGoUnderwaterAnimationThisIsVeryHackyThingDontUse();
+	private void GoUnderwater() {
+		monster!.PlayGoUnderwaterAnimationThisIsVeryHackyThingDontUse();
 	}
 
-	private void emerge() {
+	private void Emerge() {
 		var currentPosition = monster!.ProgressRatio;
-		monster.emergeFromWaterAtPosition(currentPosition);
+		monster.EmergeFromWaterAtPosition(currentPosition);
 	}
 }

@@ -1,8 +1,17 @@
+using System;
+using System.Linq;
+
 using BogMonsterStuff;
+
 using Godot;
 
-public partial class BogMonster : PathFollow2D {
+using Jakojaannos.WisperingWoods;
+using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
+[Tool]
+public partial class BogMonster : PathFollow2D {
 	[Export]
 	public PackedScene? WaterSplash;
 
@@ -25,21 +34,27 @@ public partial class BogMonster : PathFollow2D {
 
 	private bool playerWasKill = false;
 
-
+	[Export]
+	[MustSetInEditor]
+	public BogMonsterStats Stats {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_stats);
+		set => this.SetExportProperty(ref _stats, value);
+	}
 	private BogMonsterStats? _stats;
 
-	[Export]
-	public BogMonsterStats stats {
-		get => _stats ?? Util.TrustMeBro<BogMonsterStats>();
-		set {
-			_stats = value;
-			UpdateConfigurationWarnings();
-		}
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
 	}
 
 	[Export] public bool defaultStateIsWaitForTrigger;
 
 	public override void _Ready() {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		underwaterCooldown = GetNode<Timer>("UnderwaterCooldown");
 		lineOfSight = GetNode<RayCast2D>("LineOfSight");
@@ -48,35 +63,39 @@ public partial class BogMonster : PathFollow2D {
 		hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
 		var attackTimer = GetNode<Timer>("AttackTimer");
-		attackTimer.WaitTime = stats.attackTime;
+		attackTimer.WaitTime = Stats.attackTime;
 
-		ai = defaultState();
+		ai = DefaultState();
 
 		this.Persistent().PlayerRespawned += () => {
 			playerWasKill = false;
-			animationPlayer?.Play("emerge_from_water", customSpeed: stats.emergeAnimationSpeed);
+			animationPlayer?.Play("emerge_from_water", customSpeed: Stats.emergeAnimationSpeed);
 			// this fixes things
-			ai = new MovementState(goingForward: true, stats.speed);
+			ai = new MovementState(goingForward: true, Stats.speed);
 			fakePlayer.Visible = false;
 		};
 	}
 
-	public BogMonsterAIState defaultState() {
+	public BogMonsterAIState DefaultState() {
 		if (defaultStateIsWaitForTrigger) {
 			return new WaitUntilTriggerIsTriggeredState();
 		} else {
-			return new MovementState(goingForward: true, stats.speed);
+			return new MovementState(goingForward: true, Stats.speed);
 		}
 	}
 
 	public override void _PhysicsProcess(double _delta) {
+		if (Engine.IsEditorHint()) {
+			return;
+		}
+
 		var delta = (float)_delta;
 
-		ai.doUpdate(this, delta);
+		ai.DoUpdate(this, delta);
 
-		var shouldTickDetection = ai.shouldTickDetection();
+		var shouldTickDetection = ai.ShouldTickDetection();
 		if (shouldTickDetection) {
-			updateDetection(delta);
+			UpdateDetection(delta);
 		}
 
 		if (animationPlayer != null && animationPlayer.IsPlaying() && animationPlayer.CurrentAnimation == "attack") {
@@ -84,25 +103,24 @@ public partial class BogMonster : PathFollow2D {
 		}
 	}
 
-	private void updateDetection(float delta) {
-		var canSeePlayer = raycastToPlayer();
+	private void UpdateDetection(float delta) {
+		var canSeePlayer = RaycastToPlayer();
 
 		if (canSeePlayer) {
-			detectionLevel += stats.detectionGain * delta;
+			detectionLevel += Stats.detectionGain * delta;
 		} else {
-			detectionLevel -= stats.detectionDecay * delta;
+			detectionLevel -= Stats.detectionDecay * delta;
 		}
 
 		detectionLevel = Mathf.Clamp(detectionLevel, 0.0f, 100.0f);
 
-		ai.detectionLevelChanged(this);
+		ai.DetectionLevelChanged(this);
 	}
 
-	private bool raycastToPlayer() {
+	private bool RaycastToPlayer() {
 		if (player == null || lineOfSight == null) {
 			return false;
 		}
-
 
 		var playerPosition = player.GlobalPosition;
 		// raycast wants target as relative to itself, not global
@@ -119,50 +137,49 @@ public partial class BogMonster : PathFollow2D {
 		return collider is Player;
 	}
 
-
-	public void sightConeEntered(Node2D node) {
+	public void SightConeEntered(Node2D node) {
 		if (node is Player player) {
 			this.player = player;
 		}
 	}
 
-	public void sightConeExited(Node2D node) {
+	public void SightConeExited(Node2D node) {
 		if (node is Player) {
 			player = null;
 		}
 	}
 
-	public bool rollToGoUnderwater(float chance) {
-		if (!canGoUnderwater()) {
+	public bool RollToGoUnderwater(float chance) {
+		if (!CanGoUnderwater()) {
 			return false;
 		}
 
 		var goUnderwater = rng.Randf() < chance;
 		if (goUnderwater) {
-			this.goUnderwater();
+			this.GoUnderwater();
 			return true;
 		}
 
 		return false;
 	}
 
-	public void goUnderwater(float timeMult = 1.0f) {
-		var (min, max) = stats.underwaterTime;
+	public void GoUnderwater(float timeMult = 1.0f) {
+		var (min, max) = Stats.UnderwaterTime;
 		var underwaterTime = rng.RandfRange(min, max);
 		ai = new UnderwaterState(underwaterTime * timeMult);
 		animationPlayer?.Play("go_underwater");
 		underwaterCooldown?.Start();
 	}
 
-	public void playGoUnderwaterAnimationThisIsVeryHackyThingDontUse() {
+	public void PlayGoUnderwaterAnimationThisIsVeryHackyThingDontUse() {
 		animationPlayer?.Play("go_underwater");
 	}
 
-	public void playEmergeFromWaterAnimationThisIsVeryHackyThingDontUse() {
+	public void PlayEmergeFromWaterAnimationThisIsVeryHackyThingDontUse() {
 		animationPlayer?.Play("emerge_from_water");
 	}
 
-	public void goUnderwaterAnimationDone() {
+	public void GoUnderwaterAnimationDone() {
 		// HACK: if player was killed, just stay underwater
 		if (playerWasKill) {
 			return;
@@ -173,17 +190,17 @@ public partial class BogMonster : PathFollow2D {
 		}
 	}
 
-	public void emergeFromWaterAtPosition(float progress) {
+	public void EmergeFromWaterAtPosition(float progress) {
 		ProgressRatio = progress;
-		animationPlayer?.Play("emerge_from_water", customSpeed: stats.emergeAnimationSpeed);
+		animationPlayer?.Play("emerge_from_water", customSpeed: Stats.emergeAnimationSpeed);
 	}
 
-	public void emergeFromWaterNearPlayer() {
-		float ratio = getPositionRatioThingyThatIsNearestToPlayer() ?? rng.Randf();
-		emergeFromWaterAtPosition(ratio);
+	public void EmergeFromWaterNearPlayer() {
+		float ratio = GetPositionRatioThingyThatIsNearestToPlayer() ?? rng.Randf();
+		EmergeFromWaterAtPosition(ratio);
 	}
 
-	private float? getPositionRatioThingyThatIsNearestToPlayer() {
+	private float? GetPositionRatioThingyThatIsNearestToPlayer() {
 		if (GetParentOrNull<Path2D>() is not Path2D parent) {
 			return null;
 		}
@@ -216,16 +233,16 @@ public partial class BogMonster : PathFollow2D {
 		return Mathf.Clamp(progress, 0.0f, 1.0f);
 	}
 
-	public void emergefromWaterAnimationDone() {
-		var goingForward = Util.randomBool(rng);
-		ai = new MovementState(goingForward, stats.speed);
+	public void EmergefromWaterAnimationDone() {
+		var goingForward = rng.RandomBool();
+		ai = new MovementState(goingForward, Stats.speed);
 	}
 
-	public bool canGoUnderwater() {
+	public bool CanGoUnderwater() {
 		return underwaterCooldown?.IsStopped() ?? true;
 	}
 
-	public void playAttackAnimation() {
+	public void PlayAttackAnimation() {
 		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
 			if (hand is not null) {
 				// HACK: scale instead of flipH to affect children, too
@@ -241,12 +258,12 @@ public partial class BogMonster : PathFollow2D {
 			}
 		}
 
-		animationPlayer?.Play("start_attack", customSpeed: stats.attackAnimationSpeed);
+		animationPlayer?.Play("start_attack", customSpeed: Stats.attackAnimationSpeed);
 		ApplySlow();
 		SyncHandLocation(1.0f);
 	}
 
-	private void finishAttack() {
+	private void FinishAttack() {
 		animationPlayer?.Play("finish_attack");
 	}
 
@@ -274,27 +291,27 @@ public partial class BogMonster : PathFollow2D {
 
 	public void TryKillPlayer() {
 		if (attack!.IsPlayerInDanger) {
-			syncFakePlayerLocationAndHideAndKillPlayer();
+			SyncFakePlayerLocationAndHideAndKillPlayer();
 		}
 	}
 
-	public void syncFakePlayerLocationAndHideAndKillPlayer() {
+	public void SyncFakePlayerLocationAndHideAndKillPlayer() {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
 			return;
 		}
 
-		player.setSpriteVisible(false);
-		player.setMovementEnabled(false);
+		player.SetSpriteVisible(false);
+		player.SetMovementEnabled(false);
 		SyncHandLocation(1.0f);
 		fakePlayer!.Visible = true;
 
-		player.die();
+		player.Die();
 		playerWasKill = true;
 	}
 
-	public void attackAnimationDone() {
+	public void AttackAnimationDone() {
 		ClearSlow();
-		goUnderwater(0.25f);
+		GoUnderwater(0.25f);
 	}
 }

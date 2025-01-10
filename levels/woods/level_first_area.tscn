@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqrla80ph8o16"]
+
+[ext_resource type="Script" path="res://World/Level.cs" id="1_g2q8n"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_0gsd7"]
+[ext_resource type="PackedScene" uid="uid://cf0ylpk4p1e12" path="res://Gameplay/Creatures/Chaser/Chaser.tscn" id="3_8agvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hrps"]
+size = Vector2(128, 256)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dvh01"]
+vertices = PackedVector2Array(134.094, 154.922, -529.031, 150.07, -529.961, -152.039, 136.898, -154.953)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-540, -162, -539, 160, 144, 165, 147, -165)])
+
+[sub_resource type="Gradient" id="Gradient_umv8a"]
+colors = PackedColorArray(0.317647, 0.211765, 0.109804, 1, 0.388235, 0.333333, 0.180392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7gdib"]
+gradient = SubResource("Gradient_umv8a")
+
+[node name="FirstArea" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_g2q8n")
+metadata/_edit_lock_ = true
+
+[node name="Functional" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="EntranceRight" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
+position = Vector2(128, 0)
+
+[node name="LevelTransition" type="Area2D" parent="Functional"]
+position = Vector2(128, 0)
+script = ExtResource("2_0gsd7")
+OtherScene = "res://levels/woods/level_second_area.tscn"
+_entranceNodePath = NodePath("./Functional/EntranceLeft")
+
+[node name="Trigger" type="CollisionShape2D" parent="Functional/LevelTransition"]
+shape = SubResource("RectangleShape2D_5hrps")
+
+[node name="PlayerStart" type="Marker2D" parent="Functional" groups=["PlayerSpawn"]]
+position = Vector2(-184, 0)
+
+[node name="RoamTargets" type="Node2D" parent="Functional" groups=["MarkoMarkersRoot"]]
+
+[node name="1" type="Marker2D" parent="Functional/RoamTargets"]
+position = Vector2(-454, -84)
+
+[node name="2" type="Marker2D" parent="Functional/RoamTargets"]
+position = Vector2(-449, 91)
+
+[node name="3" type="Marker2D" parent="Functional/RoamTargets"]
+position = Vector2(52, -82)
+
+[node name="4" type="Marker2D" parent="Functional/RoamTargets"]
+position = Vector2(62, 93)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Functional"]
+navigation_polygon = SubResource("NavigationPolygon_dvh01")
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="World"]
+z_index = -3
+offset_left = -512.0
+offset_top = -128.0
+offset_right = 64.0
+offset_bottom = 128.0
+color = Color(0.317647, 0.211765, 0.109804, 1)
+
+[node name="ColorRect2" type="TextureRect" parent="World"]
+z_index = -3
+offset_left = 64.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = SubResource("GradientTexture2D_7gdib")
+
+[node name="Chaser" parent="." instance=ExtResource("3_8agvb")]
+position = Vector2(-378.962, -12.0124)

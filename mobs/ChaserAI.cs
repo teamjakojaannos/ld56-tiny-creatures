@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods.Util;
+
 namespace ChaserStuff;
 
 public static class ChaserStats {
@@ -27,9 +29,8 @@ public static class ChaserStats {
 	public static (float, float) seekNewLocationInRange = (10.0f, 200.0f);
 }
 
-
 public abstract class ChaserAI {
-	public abstract void doUpdate(Chaser chaser, float delta);
+	public abstract void DoUpdate(Chaser chaser, float delta);
 }
 
 public class IdleState : ChaserAI {
@@ -37,23 +38,21 @@ public class IdleState : ChaserAI {
 	private float timePassed;
 	private float timeSinceLastTurn;
 
-	public override void doUpdate(Chaser chaser, float delta) {
+	public override void DoUpdate(Chaser chaser, float delta) {
 		timePassed += delta;
 		timeSinceLastTurn += delta;
 
-
-
 		if (timePassed >= ChaserStats.idleTime) {
-			chaser.startWandering();
+			chaser.StartWandering();
 			return;
 		}
 
 		if (timeSinceLastTurn >= ChaserStats.turnFrequency) {
 			timeSinceLastTurn = 0.0f;
-			if (Util.diceRoll(chaser.rng, ChaserStats.turnChance)) {
-				var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
+			if (chaser.rng.DiceRoll(ChaserStats.turnChance)) {
+				var randomPos = chaser.rng.RandomVector(minDistance: 100.0f, maxDistance: 100.0f);
 				var newTarget = chaser.GlobalPosition + randomPos;
-				chaser.setLookTarget(newTarget);
+				chaser.SetLookTarget(newTarget);
 			}
 		}
 	}
@@ -66,58 +65,51 @@ public class WanderState : ChaserAI {
 	private bool lookTargetSet;
 	private bool moveTargetSet;
 
-
 	public WanderState(Vector2 target) {
 		this.target = target;
 	}
 
-	public override void doUpdate(Chaser chaser, float delta) {
+	public override void DoUpdate(Chaser chaser, float delta) {
 		if (!lookTargetSet) {
 			lookTargetSet = true;
-			chaser.setLookTarget(target);
+			chaser.SetLookTarget(target);
 		}
 
 		timePassed += delta;
 		if (timePassed >= ChaserStats.wanderTime) {
-			chaser.startIdling();
+			chaser.StartIdling();
 			return;
 		}
 
-		if (!chaser.isDoneTurning()) {
+		if (!chaser.IsDoneTurning()) {
 			return;
 		}
 
 		if (!moveTargetSet) {
 			moveTargetSet = true;
-			chaser.setMovementTarget(target);
+			chaser.SetMovementTarget(target);
 			// clear look target so we look towards movement
-			chaser.clearLookTarget();
+			chaser.ClearLookTarget();
 		}
 	}
 }
 
-public class ChaseState : ChaserAI {
+public class ChaseState(Node2D target) : ChaserAI {
+	public Vector2 LastKnownTargetPosition { get; private set; } = target.GlobalPosition;
 
-	private float timeSinceLastUpdate;
-	private Node2D player;
-	public Vector2 lastSeenPosition;
+	private float _timeSinceLastUpdate = ChaserStats.chaseTargetPositionUpdateFrequency;
+	private Node2D _target = target;
 
-	public ChaseState(Node2D player) {
-		this.player = player;
-		timeSinceLastUpdate = ChaserStats.chaseTargetPositionUpdateFrequency;
-		lastSeenPosition = player.GlobalPosition;
-	}
+	public override void DoUpdate(Chaser chaser, float delta) {
+		var playerPos = _target.GlobalPosition;
 
-	public override void doUpdate(Chaser chaser, float delta) {
-		var playerPos = player.GlobalPosition;
+		chaser.SetLookTarget(playerPos, turnInstantly: true);
 
-		chaser.setLookTarget(playerPos, turnInstantly: true);
-
-		timeSinceLastUpdate += delta;
-		if (timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
-			timeSinceLastUpdate = 0.0f;
-			chaser.setMovementTarget(playerPos);
-			lastSeenPosition = playerPos;
+		_timeSinceLastUpdate += delta;
+		if (_timeSinceLastUpdate >= ChaserStats.chaseTargetPositionUpdateFrequency) {
+			_timeSinceLastUpdate = 0.0f;
+			chaser.SetMovementTarget(playerPos);
+			LastKnownTargetPosition = playerPos;
 		}
 	}
 }
@@ -135,20 +127,20 @@ public class SeekState : ChaserAI {
 		this.lookTimePassed = 0.0f;
 	}
 
-	public override void doUpdate(Chaser chaser, float delta) {
+	public override void DoUpdate(Chaser chaser, float delta) {
 		timePassed += delta;
 		if (timePassed >= ChaserStats.seekTime) {
-			chaser.startIdling();
+			chaser.StartIdling();
 			return;
 		}
 
 		if (!isTargetSet) {
 			isTargetSet = true;
-			chaser.setLookTarget(lastSeen);
-			chaser.setMovementTarget(lastSeen);
+			chaser.SetLookTarget(lastSeen);
+			chaser.SetMovementTarget(lastSeen);
 		}
 
-		if (chaser.hasReachedMovementTarget()) {
+		if (chaser.HasReachedMovementTarget()) {
 			lookTimePassed += delta;
 		}
 
@@ -159,17 +151,17 @@ public class SeekState : ChaserAI {
 
 		lookTimePassed = 0.0f;
 
-		var pickNewMoveTarget = Util.diceRoll(chaser.rng, ChaserStats.keepLookingChance);
+		var pickNewMoveTarget = chaser.rng.DiceRoll(ChaserStats.keepLookingChance);
 		if (pickNewMoveTarget) {
-			var randomPos = Util.randomVector(chaser.rng, ChaserStats.seekNewLocationInRange);
+			var randomPos = chaser.rng.RandomVector(ChaserStats.seekNewLocationInRange);
 			var newTarget = chaser.GlobalPosition + randomPos;
-			chaser.setLookTarget(newTarget, turnInstantly: true);
-			chaser.setMovementTarget(newTarget);
+			chaser.SetLookTarget(newTarget, turnInstantly: true);
+			chaser.SetMovementTarget(newTarget);
 
 		} else {
-			var randomPos = Util.randomVector(chaser.rng, minDistance: 100.0f, maxDistance: 100.0f);
+			var randomPos = chaser.rng.RandomVector(minDistance: 100.0f, maxDistance: 100.0f);
 			var newTarget = chaser.GlobalPosition + randomPos;
-			chaser.setLookTarget(newTarget);
+			chaser.SetLookTarget(newTarget);
 		}
 	}
 }

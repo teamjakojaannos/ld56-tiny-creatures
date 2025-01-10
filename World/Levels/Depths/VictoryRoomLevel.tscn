@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2xgbl36osbx4"]
+
+[ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_pio6v"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_34tk1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3ltr"]
+size = Vector2(32, 128)
+
+[node name="Victory" instance=ExtResource("1_pio6v")]
+
+[node name="ToRevelation" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+position = Vector2(192, 128)
+script = ExtResource("2_34tk1")
+OtherScene = "res://World/Levels/Depths/RevelationRoomLevel.tscn"
+_entranceNodePath = "Transitions/ToVictory"
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToRevelation" index="0"]
+shape = SubResource("RectangleShape2D_a3ltr")
+
+[node name="Floor" type="ColorRect" parent="." index="1"]
+offset_left = -64.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.23, 0.216928, 0.2047, 1)
+
+[node name="Floor2" type="ColorRect" parent="." index="2"]
+offset_left = -128.0
+offset_top = -160.0
+offset_right = 128.0
+offset_bottom = 32.0
+color = Color(0.23, 0.216928, 0.2047, 1)
+
+[node name="Floor3" type="ColorRect" parent="." index="3"]
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 192.0
+color = Color(0.23, 0.216928, 0.2047, 1)

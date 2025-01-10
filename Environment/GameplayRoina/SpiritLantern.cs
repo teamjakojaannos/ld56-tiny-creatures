@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.WisperingWoods;
+
 public partial class SpiritLantern : Node2D {
 	[Export]
 	public AnimationPlayer? AnimPlayer;
@@ -15,7 +17,7 @@ public partial class SpiritLantern : Node2D {
 			GD.Print($"Anim Finished: {animation}");
 			if (animation == AnimName) {
 				GD.Print($"Yayy!!!");
-				Persistent.Instance(this).EmitSignal(Persistent.SignalName.WispSaved, Location);
+				this.Persistent().EmitSignal(Persistent.SignalName.WispSaved, Location);
 			}
 		};
 	}

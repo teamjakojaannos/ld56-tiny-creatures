@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://b20ibux777wdy" path="res://dialogue/interactive_row.tscn" id="3_ib14a"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_ly15r"]
 
-[sub_resource type="Gradient" id="Gradient_jd6yg"]
+[sub_resource type="Gradient" id="Gradient_em7oe"]
 offsets = PackedFloat32Array(0, 0.998182)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bbcn0"]
-gradient = SubResource("Gradient_jd6yg")
+gradient = SubResource("Gradient_em7oe")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_r0oxh"]

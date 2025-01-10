@@ -1,58 +1,60 @@
 using System;
+
 using Godot;
 using Godot.Collections;
+
+using Jakojaannos.WisperingWoods.Characters;
+using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]
 [GlobalClass]
 public partial class DialogueTree : Resource {
-    public GameCharacter.DialogueSide DialogueSide =>
-        OverriddenSide
-        ?? Character?.DefaultDialogueSide
-        ?? throw new InvalidOperationException("Dialogue tree missing game character information");
+	public DialogueSide DialogueSide =>
+		OverriddenSide
+		?? Character?.DefaultDialogueSide
+		?? throw new InvalidOperationException("Dialogue tree missing game character information");
 
-    private GameCharacter.DialogueSide? OverriddenSide => SideOverride switch {
-        DialogueSideOverride.Left => GameCharacter.DialogueSide.Left,
-        DialogueSideOverride.Right => GameCharacter.DialogueSide.Right,
-        _ => null
-    };
+	private DialogueSide? OverriddenSide => SideOverride switch {
+		DialogueSideOverride.Left => DialogueSide.Left,
+		DialogueSideOverride.Right => DialogueSide.Right,
+		_ => null
+	};
 
-    public GameCharacter.DialogueSide PortraitFacing =>
-        Character?.PortraitFacing
-        ?? throw new InvalidOperationException("Dialogue tree missing game character information");
+	public DialogueSide PortraitFacing =>
+		Character?.PortraitFacing
+		?? throw new InvalidOperationException("Dialogue tree missing game character information");
 
-    [Export]
-    public GameCharacter? Character;
+	[Export]
+	public GameCharacter? Character;
 
-    [Export]
-    public bool IsInteractive = false;
+	[Export]
+	public bool IsInteractive = false;
 
-    [Export]
-    public Array<string> Lines = new(new[] { "Oispa kaljaa" });
+	[Export]
+	public Array<string> Lines = new(new[] { "Oispa kaljaa" });
 
+	[Export]
+	public DialogueTree? Next;
 
-    [Export]
-    public DialogueTree? Next;
+	[Export]
+	public DialogueTree? Next2;
 
-    [Export]
-    public DialogueTree? Next2;
+	[Export]
+	public DialogueTree? Next3;
 
-    [Export]
-    public DialogueTree? Next3;
+	[Export]
+	[ExportGroup("Effects")]
+	public float ScreenShakeAmount = 0.0f;
+	[Export]
+	public float ScreenShakeFade = 30.0f;
 
-    [Export]
-    [ExportGroup("Effects")]
-    public float ScreenShakeAmount = 0.0f;
-    [Export]
-    public float ScreenShakeFade = 30.0f;
+	[Export]
+	[ExportGroup("Overrides")]
+	public DialogueSideOverride SideOverride;
 
-
-    [Export]
-    [ExportGroup("Overrides")]
-    public DialogueSideOverride SideOverride;
-
-    public enum DialogueSideOverride {
-        None,
-        Left,
-        Right
-    }
+	public enum DialogueSideOverride {
+		None,
+		Left,
+		Right
+	}
 }

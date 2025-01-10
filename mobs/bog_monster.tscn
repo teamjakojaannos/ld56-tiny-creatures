@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="2_sgc4p"]
 [ext_resource type="Resource" uid="uid://clyis4j0lhx0d" path="res://mobs/nakki/nakki_default_stats.tres" id="3_ht117"]
 [ext_resource type="Script" path="res://mobs/NakkiAttack.cs" id="3_iy0he"]
-[ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://player/player_sprite_frames.tres" id="3_pwbfi"]
+[ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="3_pwbfi"]
 [ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="4_xpyqs"]
 [ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://mobs/kasianimaatio-sheet-top.png" id="5_ex78f"]
 [ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="9_7uf8j"]
@@ -218,7 +218,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"emergefromWaterAnimationDone"
+"method": &"EmergefromWaterAnimationDone"
 }]
 }
 tracks/2/type = "value"
@@ -263,7 +263,7 @@ tracks/0/keys = {
 "method": &"TryKillPlayer"
 }, {
 "args": [],
-"method": &"attackAnimationDone"
+"method": &"AttackAnimationDone"
 }]
 }
 tracks/1/type = "value"
@@ -388,7 +388,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"goUnderwaterAnimationDone"
+"method": &"GoUnderwaterAnimationDone"
 }]
 }
 tracks/2/type = "value"
@@ -556,11 +556,11 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpi5j"]
 _data = {
-"RESET": SubResource("Animation_m8ex1"),
-"emerge_from_water": SubResource("Animation_33fha"),
-"finish_attack": SubResource("Animation_11ff7"),
-"go_underwater": SubResource("Animation_n7kaw"),
-"start_attack": SubResource("Animation_r7x2t")
+&"RESET": SubResource("Animation_m8ex1"),
+&"emerge_from_water": SubResource("Animation_33fha"),
+&"finish_attack": SubResource("Animation_11ff7"),
+&"start_attack": SubResource("Animation_r7x2t"),
+&"go_underwater": SubResource("Animation_n7kaw")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tmwsw"]
@@ -631,7 +631,7 @@ rotates = false
 loop = false
 script = ExtResource("1_80vso")
 WaterSplash = ExtResource("2_sgc4p")
-stats = ExtResource("3_ht117")
+Stats = ExtResource("3_ht117")
 
 [node name="Sprite2D" type="Sprite2D" parent="BogMonsterEntity"]
 texture_filter = 1
@@ -651,7 +651,7 @@ collide_with_areas = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BogMonsterEntity"]
 libraries = {
-"": SubResource("AnimationLibrary_fpi5j")
+&"": SubResource("AnimationLibrary_fpi5j")
 }
 
 [node name="UnderwaterCooldown" type="Timer" parent="BogMonsterEntity"]

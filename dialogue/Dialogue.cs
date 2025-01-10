@@ -1,5 +1,8 @@
 using System;
+
 using Godot;
+
+using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 public partial class Dialogue : CanvasLayer {
 	public static Dialogue Instance(Node node) {
@@ -108,8 +111,8 @@ public partial class Dialogue : CanvasLayer {
 
 		if (ActiveDialogueRow is not null && DialogueList is not null) {
 			var row = ActiveDialogueRow;
-			row.SpeakerIsOnLeft = content.DialogueSide == GameCharacter.DialogueSide.Left;
-			row.PortraitIsFlippedOnLeft = content.PortraitFacing == GameCharacter.DialogueSide.Right;
+			row.SpeakerIsOnLeft = content.DialogueSide == DialogueSide.Left;
+			row.PortraitIsFlippedOnLeft = content.PortraitFacing == DialogueSide.Right;
 			DialogueList.AddChild(row);
 
 			var portrait = content?.Character?.Portrait;
@@ -119,14 +122,14 @@ public partial class Dialogue : CanvasLayer {
 					row.PortraitFrame = null;
 				}
 
-				var portraitFrame = portrait.Instantiate<Control>();
-				if (portraitFrame.GetNode<Label>("Name") is Label nameLabel) {
-					nameLabel.Text = content?.Character?.Name ?? "???";
-				}
+				//var portraitFrame = portrait.Instantiate<Control>();
+				//if (portraitFrame.GetNode<Label>("Name") is Label nameLabel) {
+				//	nameLabel.Text = content?.Character?.Name ?? "???";
+				//}
 
-				row.PortraitFrame = portraitFrame;
-				row.PortraitFrameWrapper!.AddChild(portraitFrame);
-				row.PortraitFrameWrapper.MoveChild(portraitFrame, 0);
+				//row.PortraitFrame = portraitFrame;
+				//row.PortraitFrameWrapper!.AddChild(portraitFrame);
+				//row.PortraitFrameWrapper.MoveChild(portraitFrame, 0);
 			}
 
 			if (content is not null && content.ScreenShakeAmount > 0.1f) {

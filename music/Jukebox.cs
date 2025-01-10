@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+
 using Godot;
 
 public static class JukeboxExt {
@@ -32,7 +33,6 @@ public partial class Jukebox : Node2D {
 	[Export]
 	public AudioStreamPlayer? Credits;
 
-
 	[Export]
 	public AudioStreamPlayer? Combat;
 
@@ -55,7 +55,7 @@ public partial class Jukebox : Node2D {
 		};
 	}
 
-	private IEnumerable<MuzakTrack> AllTracks => Enum.GetValues<MuzakTrack>();
+	private static IEnumerable<MuzakTrack> AllTracks => Enum.GetValues<MuzakTrack>();
 
 	private MuzakTrack? currentTrack = MuzakTrack.SfwHub;
 

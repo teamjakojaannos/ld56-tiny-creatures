@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cundomcxptp7c"]
+
+[ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_i2y8a"]
+[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_3ftgs"]
+[ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_215ur"]
+[ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="4_085sw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wahi"]
+size = Vector2(32, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umsjk"]
+size = Vector2(32, 112)
+
+[node name="TemplateLevel" instance=ExtResource("1_i2y8a")]
+
+[node name="ToSwamp" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+position = Vector2(-128, 0)
+script = ExtResource("2_3ftgs")
+OtherScene = "res://World/Levels/Swamp/SwampLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToBoss")
+ExitDirection = 3.14159
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToSwamp" index="0"]
+shape = SubResource("RectangleShape2D_8wahi")
+
+[node name="ToHaven" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+position = Vector2(128, 0)
+script = ExtResource("2_3ftgs")
+OtherScene = "res://World/Levels/Swamp/HavenLevel.tscn"
+_entranceNodePath = NodePath("./Transitions/ToBoss")
+
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToHaven" index="0"]
+shape = SubResource("RectangleShape2D_umsjk")
+
+[node name="Floor" type="ColorRect" parent="." index="1"]
+offset_left = -128.0
+offset_top = -56.0
+offset_right = 128.0
+offset_bottom = 56.0
+color = Color(0.13308, 0.18, 0.1188, 1)
+
+[node name="Nakken" type="Sprite2D" parent="." index="2"]
+position = Vector2(-1, -79)
+texture = ExtResource("2_215ur")
+
+[node name="Kasianimaatio-sheet" type="Sprite2D" parent="." index="3"]
+position = Vector2(55, -79)
+texture = ExtResource("4_085sw")
+region_enabled = true
+region_rect = Rect2(11, 0, 41, 50)
+
+[node name="Kasianimaatio-sheet2" type="Sprite2D" parent="." index="4"]
+position = Vector2(-57, -79)
+texture = ExtResource("4_085sw")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(11, 0, 41, 50)

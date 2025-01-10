@@ -1,18 +1,22 @@
 using System.Linq;
+
 using Godot;
 
-[Tool]
-public partial class WispInteractable : Area2D {
-	private Node2D? _target;
+using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
+namespace Jakojaannos.WisperingWoods;
+
+[Tool]
+[GlobalClass]
+public partial class WispInteractable : Area2D {
 	[Export]
+	[MustSetInEditor]
 	public Node2D Target {
-		get => _target ?? Util.TrustMeBro<Node2D>();
-		set {
-			_target = value;
-			UpdateConfigurationWarnings();
-		}
+		get => _target ?? this.GetNotNullExportPropertyWithNullableBackingField(_target);
+		set => this.SetExportProperty(ref _target, value);
 	}
+	private Node2D? _target;
 
 	[Export]
 	public float GoalDistance = 16.0f;
@@ -38,12 +42,9 @@ public partial class WispInteractable : Area2D {
 	}
 
 	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
-		if (Target is null) {
-			warnings = warnings.Append("Target is not set!").ToArray();
-		}
-
-		return warnings;
+		return (base._GetConfigurationWarnings() ?? System.Array.Empty<string>())
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
 	}
 
 	private Node2D? wisp;
