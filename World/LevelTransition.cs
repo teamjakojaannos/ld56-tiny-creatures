@@ -26,7 +26,8 @@ public partial class LevelTransition : Area2D {
 	// Exported, but hidden in editor.
 	[Export]
 	private string _entranceNodePath = "";
-	internal NodePath EntranceNodePath => _entranceNodePath;
+	private bool IsEntranceNodePathSet => _otherScene is not null && _entranceNodePath.Length > 0;
+	internal string EntranceNodePath => _entranceNodePath;
 
 	[Export(PropertyHint.Range, "0,360,5,radians_as_degrees")]
 	public float ExitDirection {
@@ -63,7 +64,7 @@ public partial class LevelTransition : Area2D {
 		base._ValidateProperty(property);
 
 		if (property["name"].AsStringName() == PropertyName._entranceNodePath) {
-			var usage = PropertyUsageFlags.Storage | PropertyUsageFlags.NoEditor;
+			var usage = PropertyUsageFlags.NoEditor;
 			property["usage"] = (int)usage;
 		}
 	}
@@ -130,37 +131,35 @@ public partial class LevelTransition : Area2D {
 
 	public override Variant _Get(StringName property) {
 		if (property == "EntranceNode") {
-			if (!EntranceNodePath.IsEmpty) {
-				var entranceNodes = FindOtherSceneEntrances();
-
-				for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
-					var entrance = entranceNodes[optionIndex];
-					if (entrance.Path == _entranceNodePath) {
-						return optionIndex;
-					}
-				}
-
-				_entranceNodePath = "";
-				NotifyPropertyListChanged();
+			// Don't do anything until there is a valid entrance node to work with
+			if (!IsEntranceNodePathSet) {
+				return 0;
 			}
 
+			if (TryFindEntranceNode(_entranceNodePath) is (int index, _)) {
+				return index;
+			}
+
+			GD.PrintErr($"Unable to determine EntranceNode: Could not find entrance node at path \"{_entranceNodePath}\" from scene \"{OtherScene}\"");
+			DumpOtherSceneNodes();
+			_entranceNodePath = "";
+			NotifyPropertyListChanged();
 			return 0;
 		} else if (property == "OtherScenePreview") {
 			return IsOtherScenePreviewVisible;
 		} else if (property == "EntranceNodeOffset") {
-			if (!EntranceNodePath.IsEmpty) {
-				var entranceNodes = FindOtherSceneEntrances();
-
-				for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
-					var entrance = entranceNodes[optionIndex];
-					if (entrance.Path == _entranceNodePath) {
-						return entrance.Position;
-					}
-				}
-
-				_entranceNodePath = "";
-				NotifyPropertyListChanged();
+			// Don't do anything until there is a valid entrance node to work with
+			if (!IsEntranceNodePathSet) {
+				return Vector2.Zero;
 			}
+
+			if (TryFindEntranceNode(_entranceNodePath) is (_, EntranceNode entrance)) {
+				return entrance.Position;
+			}
+
+			GD.PrintErr($"Unable to determine EntranceNodeOffset: Could not find entrance node at path \"{_entranceNodePath}\" from scene \"{OtherScene}\"");
+			_entranceNodePath = "";
+			NotifyPropertyListChanged();
 
 			return Vector2.Zero;
 		} else if (property == "OpenOtherScene") {
@@ -168,6 +167,27 @@ public partial class LevelTransition : Area2D {
 		}
 
 		return default;
+	}
+
+	private (int, EntranceNode)? TryFindEntranceNode(NodePath path) {
+		var sanitizedPath = SanitizeEntrancePath(path);
+
+		var entranceNodes = FindOtherSceneEntrances();
+		for (var optionIndex = 0; optionIndex < entranceNodes.Count; optionIndex++) {
+			var entrance = entranceNodes[optionIndex];
+			if (SanitizeEntrancePath(entrance.Path) == sanitizedPath) {
+				return (optionIndex, entrance);
+			}
+		}
+
+		return null;
+	}
+
+	// HACK:
+	// Treat `./Foo/Bar` and `Foo/Bar` as the same path. Fixes issues with
+	// Godot being inconsistent about prefixing with `./` saving NodePaths.
+	private static string SanitizeEntrancePath(string path) {
+		return "./" + path.TrimPrefix("./");
 	}
 
 	public override bool _Set(StringName property, Variant value) {
@@ -198,7 +218,7 @@ public partial class LevelTransition : Area2D {
 				_previewScene.Name = "Other scene preview";
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
-				if (EntranceNodePath.IsEmpty) {
+				if (!IsEntranceNodePathSet) {
 					TrySelectEntranceNode(0);
 				}
 
@@ -209,7 +229,7 @@ public partial class LevelTransition : Area2D {
 
 			return true;
 		} else if (property == "EntranceNodeOffset" && Engine.IsEditorHint()) {
-			if (_previewScene is not null && _otherScene is not null) {
+			if (_previewScene is not null && IsOtherScenePreviewVisible) {
 				var entranceMarker = _previewScene.GetNode<Node2D>(_entranceNodePath);
 				entranceMarker.Position = value.AsVector2();
 
@@ -231,7 +251,7 @@ public partial class LevelTransition : Area2D {
 				_previewScene.Name = "Other scene preview";
 				_previewScene.ProcessMode = ProcessModeEnum.Disabled;
 
-				if (EntranceNodePath.IsEmpty) {
+				if (!IsEntranceNodePathSet) {
 					TrySelectEntranceNode(0);
 				}
 
@@ -248,20 +268,35 @@ public partial class LevelTransition : Area2D {
 
 	private void TrySelectEntranceNode(int optionIndex) {
 		var entranceNodes = FindOtherSceneEntrances();
-		if (!entranceNodes.Any()) {
+		if (optionIndex >= entranceNodes.Count || optionIndex < 0) {
+			GD.PrintErr($"Cannot pick entrance node {optionIndex}: Out of bounds [0,{entranceNodes.Count}]!");
 			_entranceNodePath = "";
 			UpdatePreviewPosition();
 			return;
 		}
 
-		var entrance = entranceNodes[Mathf.Min(optionIndex, entranceNodes.Count - 1)];
-		_entranceNodePath = entrance.Path;
+		var entrance = entranceNodes[optionIndex];
+		_entranceNodePath = SanitizeEntrancePath(entrance.Path);
+	}
+
+	private void DumpOtherSceneNodes() {
+		if (_otherScene is null || _otherScene.Trim() == "" || _otherScene.Trim() == "res://") {
+			GD.PrintErr("Other scene is unavailable!");
+			return;
+		}
+
+		var resource = ResourceLoader.Load<PackedScene>(OtherScene);
+		var sceneState = resource.GetState();
+		var nodesInScene = sceneState.GetNodeCount();
+		for (var nodeIndex = 0; nodeIndex < nodesInScene; nodeIndex++) {
+			GD.Print($"{_otherScene} node #{nodeIndex}: {sceneState.GetNodeName(nodeIndex)} at {sceneState.GetNodePath(nodeIndex)}");
+		}
 	}
 
 	private List<EntranceNode> FindOtherSceneEntrances() {
 		// Other scene is not properly set yet => return empty list
 		if (_otherScene is null || _otherScene.Trim() == "" || _otherScene.Trim() == "res://") {
-			return new();
+			return [];
 		}
 
 		var entranceNodes = new List<EntranceNode>();

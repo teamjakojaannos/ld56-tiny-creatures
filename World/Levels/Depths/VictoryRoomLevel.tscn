@@ -12,7 +12,7 @@ size = Vector2(32, 128)
 position = Vector2(192, 128)
 script = ExtResource("2_34tk1")
 OtherScene = "res://World/Levels/Depths/RevelationRoomLevel.tscn"
-_entranceNodePath = "Transitions/ToVictory"
+_entranceNodePath = "./Transitions/ToVictory"
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToRevelation" index="0"]
 shape = SubResource("RectangleShape2D_a3ltr")

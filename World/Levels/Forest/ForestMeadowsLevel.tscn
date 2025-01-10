@@ -25,7 +25,7 @@ shape = SubResource("RectangleShape2D_5bdgw")
 position = Vector2(64, -128)
 script = ExtResource("2_fjepk")
 OtherScene = "res://World/Levels/Forest/ForestHubLevel.tscn"
-_entranceNodePath = "Transitions/ToMeadows"
+_entranceNodePath = "./Transitions/ToMeadows"
 ExitDirection = 4.71239
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToHub" index="0"]
