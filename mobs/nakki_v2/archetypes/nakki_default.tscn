@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bue7in6n06yhv" path="res://mobs/nakki_v2/ai_states/nakki_movement_state.tscn" id="5_py2qn"]
 [ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="6_5ev1h"]
 
-[node name="Näkki" node_paths=PackedStringArray("_defaultState") instance=ExtResource("1_rptid")]
-_defaultState = NodePath("Idle")
+[node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_rptid")]
+DefaultState = NodePath("Idle")
 
 [node name="Idle" parent="." index="6" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_v75x7")]
 _pickOneOfTheseStatesWhenDoneIdling = [NodePath("../Movement"), NodePath("../Dive")]

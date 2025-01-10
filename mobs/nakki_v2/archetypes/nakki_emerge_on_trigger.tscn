@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="5_38bqf"]
 [ext_resource type="PackedScene" uid="uid://kignpg7mg7fw" path="res://mobs/nakki_v2/ai_states/nakki_stalk_state.tscn" id="6_31dxb"]
 
-[node name="Näkki" node_paths=PackedStringArray("_defaultState") instance=ExtResource("1_42m1v")]
-_defaultState = NodePath("EmergeOnTrigger")
+[node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_42m1v")]
+DefaultState = NodePath("EmergeOnTrigger")
 _detectionGain = 400.0
 
 [node name="EmergeOnTrigger" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge") instance=ExtResource("2_dnku5")]

@@ -18,17 +18,20 @@ public partial class NakkiV2 : Path2D {
 			warnings = warnings.Append("Add points for näkki's movement path (Curve resource under 'Path2D' in inspector)").ToArray();
 		}
 
-		if (_defaultState == null) {
-			warnings = warnings.Append("Default state is not set").ToArray();
-		}
-
 		return warnings
 			.Union(this.CheckCommonConfigurationWarnings())
 			.ToArray();
 	}
 
 	[Export] private float _speed = 50.0f;
-	[Export] private NakkiAiState? _defaultState;
+
+	[Export]
+	[MustSetInEditor]
+	public NakkiAiState DefaultState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_defaultState);
+		set => this.SetExportProperty(ref _defaultState, value, notifyPropertyListChanged: true);
+	}
+	private NakkiAiState? _defaultState;
 
 	private NakkiAiState? _currentState;
 	private NakkiAiState? CurrentState {
@@ -101,7 +104,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public void ResetStateToDefault() {
-		CurrentState = _defaultState;
+		CurrentState = DefaultState;
 	}
 
 	public void SwitchToState(NakkiAiState state) {
