@@ -10,19 +10,19 @@
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_o6khv")]
 DefaultState = NodePath("Idle")
 
-[node name="Idle" parent="." index="6" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_opm4y")]
-_pickOneOfTheseStatesWhenDoneIdling = [NodePath("../Movement"), NodePath("../Dive")]
+[node name="Idle" parent="." index="6" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_opm4y")]
+PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Movement"), NodePath("../Dive")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 
-[node name="Movement" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneMoving", "StalkState", "AttackState") instance=ExtResource("3_yxaas")]
-_pickOneOfTheseStatesWhenDoneMoving = [NodePath("../Idle"), NodePath("../Dive")]
+[node name="Movement" parent="." index="7" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneMoving", "StalkState", "AttackState") instance=ExtResource("3_yxaas")]
+PickOneOfTheseStatesWhenDoneMoving = [NodePath("../Idle"), NodePath("../Dive")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 
-[node name="Dive" parent="." index="8" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_vi8yp")]
-_pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle"), NodePath("../Movement")]
-_emergeAnimationSpeed = 5.0
+[node name="Dive" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_vi8yp")]
+PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle"), NodePath("../Movement")]
+EmergeAnimationSpeed = 5.0
 
 [node name="Stalk" parent="." index="9" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState") instance=ExtResource("5_n0yme")]
 IdleState = NodePath("../Idle")
@@ -30,6 +30,6 @@ AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")
 
 [node name="AttackState" parent="." index="10" node_paths=PackedStringArray("DiveState") instance=ExtResource("6_fuelp")]
-_attackTime = 0.1
-_animationSpeed = 5.0
+AttackTime = 0.1
+AnimationSpeed = 5.0
 DiveState = NodePath("../Dive")

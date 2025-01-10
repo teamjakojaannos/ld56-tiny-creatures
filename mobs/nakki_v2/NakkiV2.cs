@@ -48,9 +48,9 @@ public partial class NakkiV2 : Path2D {
 
 	private Player? _player;
 	private RayCast2D? _lineOfSight;
-	public float _detectionLevel = 0.0f;
-	[Export] private float _detectionGain = 100.0f;
-	[Export] private float _detectionDecay = 60.0f;
+	public float DetectionLevel { get; set; } = 0.0f;
+	[Export] public float DetectionGain { get; set; } = 100.0f;
+	[Export] public float DetectionDecay { get; set; } = 60.0f;
 
 	private AnimationPlayer? _animationPlayer;
 	private bool _isPlayerInDanger = false;
@@ -143,12 +143,12 @@ public partial class NakkiV2 : Path2D {
 		var canSeePlayer = RaycastHitsPlayer();
 
 		if (canSeePlayer) {
-			_detectionLevel += _detectionGain * delta;
+			DetectionLevel += DetectionGain * delta;
 		} else {
-			_detectionLevel -= _detectionDecay * delta;
+			DetectionLevel -= DetectionDecay * delta;
 		}
 
-		_detectionLevel = Mathf.Clamp(_detectionLevel, 0.0f, 100.0f);
+		DetectionLevel = Mathf.Clamp(DetectionLevel, 0.0f, 100.0f);
 
 		CurrentState!.DetectionLevelChanged(this);
 	}

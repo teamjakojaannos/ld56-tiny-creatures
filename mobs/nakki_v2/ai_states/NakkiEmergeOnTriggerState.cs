@@ -14,6 +14,9 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 			.ToArray();
 	}
 
+	[Export] public float EmergeAnimationSpeed { get; set; } = 3.0f;
+	[Export] public float EmergeDelay { get; set; } = 3.0f;
+
 	[Export]
 	[MustSetInEditor]
 	public NakkiAiState EnterStateAfterEmerge {
@@ -22,11 +25,8 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	}
 	private NakkiAiState? _enterStateAfterEmerge;
 
-	[Export] private float _emergeAnimationSpeed = 3.0f;
-	[Export] private float _emergeDelay = 3.0f;
 
 	private Timer? _emergeOnTimeout;
-
 	private bool _emergeTimerDone = false;
 	private bool _initialDiveAnimationDone = false;
 	private bool _isEmerging = false;
@@ -47,7 +47,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 			return;
 		}
 
-		_emergeOnTimeout!.WaitTime = _emergeDelay;
+		_emergeOnTimeout!.WaitTime = EmergeDelay;
 		_emergeOnTimeout.Start();
 	}
 
@@ -55,7 +55,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 		var timersDone = _emergeTimerDone && _initialDiveAnimationDone;
 
 		if (timersDone && !_isEmerging) {
-			nakki.PlayEmergeFromWaterAnimation(_emergeAnimationSpeed);
+			nakki.PlayEmergeFromWaterAnimation(EmergeAnimationSpeed);
 			_isEmerging = true;
 		}
 	}

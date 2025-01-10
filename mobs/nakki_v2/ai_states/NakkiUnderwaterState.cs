@@ -13,7 +13,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
 
-		if (_pickOneOfTheseStatesWhenDoneDiving.Count == 0) {
+		if (PickOneOfTheseStatesWhenDoneDiving.Count == 0) {
 			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
 		}
 
@@ -22,24 +22,23 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneDiving = [];
+	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneDiving { get; set; } = [];
+	[Export] public float UnderwaterTime { get; set; } = 5.0f;
+	[Export] public float UnderwaterTimeVariation { get; set; } = 0.3f;
+	[Export] public float EmergeAtPlayerChance { get; set; } = 0.2f;
+	[Export] public float DiveAnimationSpeed { get; set; } = 1.0f;
+	[Export] public float EmergeAnimationSpeed { get; set; } = 1.0f;
+	[Export] public float DiveCooldown { get; set; } = 10.0f;
+	[Export] public float MaxEmergeDistance { get; set; } = 100.0f;
 
-	[Export] private float _underwaterTime = 5.0f;
-	[Export] private float _underwaterTimeVariation = 0.3f;
-	[Export] private float _emergeAtPlayerChance = 0.2f;
-	[Export] private float _diveAnimationSpeed = 1.0f;
-	[Export] private float _emergeAnimationSpeed = 1.0f;
-	[Export] private float _diveCooldown = 10.0f;
-	[Export] private float _maxEmergeDistance = 100.0f;
 
 	private Timer? _diveCooldownTimer;
 	private Timer? _diveTimer;
 	private bool _isDoneDiving = false;
 	private bool _isEmerging = false;
-
 	private RandomNumberGenerator _rng = new();
-
 	private float _diveTimeMult = 1.0f;
+
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
@@ -64,11 +63,11 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		var pathLength = nakki.PathLength();
 
-		var emergeTo = (_rng.DiceRoll(_emergeAtPlayerChance) && playerRef is Player player)
+		var emergeTo = (_rng.DiceRoll(EmergeAtPlayerChance) && playerRef is Player player)
 				? nakki.GetPlayerXPositionRelative(player)
 				: _rng.RandfRange(0.0f, pathLength);
 
-		var rand = _rng.RandfRange(-_maxEmergeDistance, _maxEmergeDistance);
+		var rand = _rng.RandfRange(-MaxEmergeDistance, MaxEmergeDistance);
 		var emergeFrom = emergeTo + rand;
 		emergeFrom = Mathf.Clamp(emergeFrom, 0f, pathLength);
 
@@ -77,11 +76,11 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		nakki.SetProgressTarget(emergeTo);
 
 		_isEmerging = true;
-		nakki.PlayEmergeFromWaterAnimation(_emergeAnimationSpeed);
+		nakki.PlayEmergeFromWaterAnimation(EmergeAnimationSpeed);
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var success = TrySwitchToOneOf(nakki, _pickOneOfTheseStatesWhenDoneDiving);
+		var success = TrySwitchToOneOf(nakki, PickOneOfTheseStatesWhenDoneDiving);
 		if (!success) {
 			GD.PrintErr("Näkki's underwater state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
@@ -93,23 +92,23 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		_isDoneDiving = false;
 		_isEmerging = false;
 		_diveTimer!.Stop();
-		nakki.PlayDiveAnimation(_diveAnimationSpeed);
+		nakki.PlayDiveAnimation(DiveAnimationSpeed);
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
-		nakki._detectionLevel = 0.0f;
+		nakki.DetectionLevel = 0.0f;
 
 		_diveTimer!.Stop();
 
 		// restart timer if it was already running
 		_diveCooldownTimer!.Stop();
-		_diveCooldownTimer.WaitTime = _diveCooldown;
+		_diveCooldownTimer.WaitTime = DiveCooldown;
 		_diveCooldownTimer.Start();
 	}
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Dive) {
-			var randomTime = _rng.RandomWithVariation(_underwaterTime, _underwaterTimeVariation);
+			var randomTime = _rng.RandomWithVariation(UnderwaterTime, UnderwaterTimeVariation);
 			_diveTimer!.WaitTime = randomTime * _diveTimeMult;
 			_diveTimer.Start();
 			return;

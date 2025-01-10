@@ -16,10 +16,11 @@ public partial class NakkiStalkState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public float _stalkThreshold = 40.0f;
-	[Export] private float _stalkTime = 5.0f;
-	[Export] private float _stalkTimeVariation = 0.5f;
-	[Export] private float _diveChance = 0.2f;
+	[Export] public float StalkThreshold { get; set; } = 40.0f;
+	[Export] public float StalkTime { get; set; } = 5.0f;
+	[Export] public float StalkTimeVariation { get; set; } = 0.5f;
+	[Export] public float DiveChance { get; set; } = 0.2f;
+
 
 	[Export]
 	[MustSetInEditor]
@@ -50,6 +51,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	private bool _isDoneStalking;
 	private RandomNumberGenerator _rng = new();
 
+
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
 			return;
@@ -75,7 +77,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneStalking = false;
 
-		_timer!.WaitTime = _rng.RandomWithVariation(_stalkTime, _stalkTimeVariation);
+		_timer!.WaitTime = _rng.RandomWithVariation(StalkTime, StalkTimeVariation);
 		_timer!.Start();
 	}
 
@@ -88,10 +90,10 @@ public partial class NakkiStalkState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) {
-		if (nakki._detectionLevel <= 0.0f) {
+		if (nakki.DetectionLevel <= 0.0f) {
 
 			var canDive = DiveState!.IsStateReady(nakki);
-			if (canDive && _rng.DiceRoll(_diveChance)) {
+			if (canDive && _rng.DiceRoll(DiveChance)) {
 				nakki.CurrentState = DiveState;
 			} else {
 				nakki.CurrentState = IdleState;
@@ -100,7 +102,7 @@ public partial class NakkiStalkState : NakkiAiState {
 			return;
 		}
 
-		if (nakki._detectionLevel >= AttackState!._attackThreshold) {
+		if (nakki.DetectionLevel >= AttackState!.AttackThreshold) {
 			nakki.CurrentState = AttackState;
 			return;
 		}

@@ -9,26 +9,26 @@
 
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_42m1v")]
 DefaultState = NodePath("EmergeOnTrigger")
-_detectionGain = 400.0
+DetectionGain = 400.0
 
 [node name="EmergeOnTrigger" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge") instance=ExtResource("2_dnku5")]
 EnterStateAfterEmerge = NodePath("../Idle")
 
-[node name="Idle" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_g7ur1")]
-_pickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
+[node name="Idle" parent="." index="7" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_g7ur1")]
+PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 
-[node name="Dive" parent="." index="8" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_elw0d")]
-_pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
+[node name="Dive" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_elw0d")]
+PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
 
 [node name="AttackState" parent="." index="9" node_paths=PackedStringArray("DiveState") instance=ExtResource("5_38bqf")]
-_attackTime = 0.5
-_animationSpeed = 3.0
+AttackTime = 0.5
+AnimationSpeed = 3.0
 DiveState = NodePath("../Dive")
 
 [node name="Stalk" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState") instance=ExtResource("6_31dxb")]
-_stalkThreshold = 200.0
+StalkThreshold = 200.0
 IdleState = NodePath("../Idle")
 AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")

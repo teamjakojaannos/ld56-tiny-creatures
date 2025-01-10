@@ -15,7 +15,9 @@ public partial class NakkiAttackState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public float _attackThreshold = 100.0f;
+	[Export] public float AttackThreshold { get; set; } = 100.0f;
+	[Export] public float AttackTime { get; set; } = 1.0f;
+	[Export] public float AnimationSpeed { get; set; } = 1.0f;
 
 	[Export]
 	[MustSetInEditor]
@@ -24,9 +26,6 @@ public partial class NakkiAttackState : NakkiAiState {
 		set => this.SetExportProperty(ref _waterSplash, value, notifyPropertyListChanged: true);
 	}
 	private PackedScene? _waterSplash;
-
-	[Export] private float _attackTime = 1.0f;
-	[Export] private float _animationSpeed = 1.0f;
 
 	[Export]
 	[MustSetInEditor]
@@ -60,7 +59,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 		player.Slowed = true;
 		nakki._attack!.GlobalPosition = player.GlobalPosition;
-		nakki.PlayAttackAnimation(_attackTime, _animationSpeed);
+		nakki.PlayAttackAnimation(AttackTime, AnimationSpeed);
 	}
 
 	public override void ExitState(NakkiV2 nakki) {

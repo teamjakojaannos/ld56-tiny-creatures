@@ -12,7 +12,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
 
-		if (_pickOneOfTheseStatesWhenDoneIdling.Count == 0) {
+		if (PickOneOfTheseStatesWhenDoneIdling.Count == 0) {
 			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
 		}
 
@@ -21,11 +21,9 @@ public partial class NakkiIdleState : NakkiAiState {
 			.ToArray();
 	}
 
-
-	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneIdling = [];
-
-	[Export] private float _idleTime = 2.0f;
-	[Export] private float _idleTimeVariation = 0.5f;
+	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneIdling { get; set; } = [];
+	[Export] public float IdleTime { get; set; } = 2.0f;
+	[Export] public float IdleTimeVariation { get; set; } = 0.5f;
 
 	[Export]
 	[MustSetInEditor]
@@ -46,8 +44,8 @@ public partial class NakkiIdleState : NakkiAiState {
 
 	private Timer? _timer;
 	private bool _isDoneIdling = false;
-
 	private RandomNumberGenerator _rng = new();
+
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
@@ -67,7 +65,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var success = TrySwitchToOneOf(nakki, _pickOneOfTheseStatesWhenDoneIdling);
+		var success = TrySwitchToOneOf(nakki, PickOneOfTheseStatesWhenDoneIdling);
 		if (!success) {
 			GD.PrintErr("Näkki's idle state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
@@ -77,7 +75,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneIdling = false;
 
-		_timer!.WaitTime = _rng.RandomWithVariation(_idleTime, _idleTimeVariation);
+		_timer!.WaitTime = _rng.RandomWithVariation(IdleTime, IdleTimeVariation);
 		_timer!.Start();
 	}
 

@@ -13,7 +13,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
 
-		if (_pickOneOfTheseStatesWhenDoneMoving.Count == 0) {
+		if (PickOneOfTheseStatesWhenDoneMoving.Count == 0) {
 			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
 		}
 
@@ -22,11 +22,11 @@ public partial class NakkiMovementState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] private Array<NakkiAiState> _pickOneOfTheseStatesWhenDoneMoving = [];
+	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneMoving { get; set; } = [];
+	[Export] public float MoveTime { get; set; } = 3.0f;
+	[Export] public float MoveTimeVariation { get; set; } = 0.3f;
+	[Export] public float MoveToPlayerChance { get; set; } = 0.2f;
 
-	[Export] private float _moveTime = 3.0f;
-	[Export] private float _moveTimeVariation = 0.3f;
-	[Export] private float _moveToPlayerChance = 0.2f;
 
 	[Export]
 	[MustSetInEditor]
@@ -47,8 +47,8 @@ public partial class NakkiMovementState : NakkiAiState {
 
 	private Timer? _timer;
 	private bool _isDoneMoving = false;
-
 	private RandomNumberGenerator _rng = new();
+
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
@@ -68,7 +68,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 
 	private void SelectNewState(NakkiV2 nakki) {
-		var success = TrySwitchToOneOf(nakki, _pickOneOfTheseStatesWhenDoneMoving);
+		var success = TrySwitchToOneOf(nakki, PickOneOfTheseStatesWhenDoneMoving);
 		if (!success) {
 			GD.PrintErr("Näkki's movement state failed to pick new state, resetting state to default");
 			nakki.ResetStateToDefault();
@@ -77,7 +77,7 @@ public partial class NakkiMovementState : NakkiAiState {
 
 	public override void EnterState(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		var moveToPlayer = _rng.DiceRoll(_moveToPlayerChance);
+		var moveToPlayer = _rng.DiceRoll(MoveToPlayerChance);
 
 		if (moveToPlayer && playerRef is Player player) {
 			var relative = nakki.GetPlayerXPositionRelative(player);
@@ -88,7 +88,7 @@ public partial class NakkiMovementState : NakkiAiState {
 		}
 
 		_isDoneMoving = false;
-		_timer!.WaitTime = _rng.RandomWithVariation(_moveTime, _moveTimeVariation);
+		_timer!.WaitTime = _rng.RandomWithVariation(MoveTime, MoveTimeVariation);
 		_timer!.Start();
 	}
 

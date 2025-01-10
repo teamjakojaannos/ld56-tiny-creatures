@@ -9,33 +9,33 @@
 
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_m6u3r")]
 DefaultState = NodePath("DiveOnTrigger")
-_detectionGain = 4000.0
+DetectionGain = 4000.0
 
 [node name="DiveOnTrigger" parent="." index="6" node_paths=PackedStringArray("DiveState", "StalkState", "AttackState") instance=ExtResource("7_tvs8m")]
 DiveState = NodePath("../Dive")
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 
-[node name="Idle" parent="." index="7" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_32frh")]
-_pickOneOfTheseStatesWhenDoneIdling = [NodePath("."), NodePath("../Dive")]
+[node name="Idle" parent="." index="7" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_32frh")]
+PickOneOfTheseStatesWhenDoneIdling = [NodePath("."), NodePath("../Dive")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 
-[node name="Dive" parent="." index="8" node_paths=PackedStringArray("_pickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_cqrig")]
-_pickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
-_emergeAtPlayerChance = 0.0
-_emergeAnimationSpeed = 3.0
-_diveCooldown = 5.0
+[node name="Dive" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_cqrig")]
+PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
+EmergeAtPlayerChance = 0.0
+EmergeAnimationSpeed = 3.0
+DiveCooldown = 5.0
 
 [node name="AttackState" parent="." index="9" node_paths=PackedStringArray("DiveState") instance=ExtResource("6_uwvgx")]
-_attackTime = 0.2
-_animationSpeed = 4.0
+AttackTime = 0.2
+AnimationSpeed = 4.0
 DiveState = NodePath("../Dive")
 
 [node name="Stalk" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState") instance=ExtResource("5_y5xeq")]
-_stalkThreshold = 200.0
-_stalkTime = 0.0
-_stalkTimeVariation = 0.0
+StalkThreshold = 200.0
+StalkTime = 0.0
+StalkTimeVariation = 0.0
 IdleState = NodePath("../Idle")
 AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")
