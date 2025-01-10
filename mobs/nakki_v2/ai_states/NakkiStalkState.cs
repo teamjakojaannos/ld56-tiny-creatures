@@ -23,7 +23,7 @@ public partial class NakkiStalkState : NakkiAiState {
 
 	[Export]
 	[MustSetInEditor]
-	public NakkiIdleState? IdleState {
+	public NakkiIdleState IdleState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_idleState);
 		set => this.SetExportProperty(ref _idleState, value, notifyPropertyListChanged: true);
 	}
@@ -31,7 +31,7 @@ public partial class NakkiStalkState : NakkiAiState {
 
 	[Export]
 	[MustSetInEditor]
-	public NakkiAttackState? AttackState {
+	public NakkiAttackState AttackState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
 		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
 	}
@@ -39,7 +39,7 @@ public partial class NakkiStalkState : NakkiAiState {
 
 	[Export]
 	[MustSetInEditor]
-	public NakkiUnderwaterState? DiveState {
+	public NakkiUnderwaterState DiveState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
 		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
 	}
@@ -64,7 +64,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void AiUpdate(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		if (playerRef is not Player player) {
-			nakki.SwitchToState(IdleState!);
+			nakki.CurrentState = IdleState;
 			return;
 		}
 
@@ -92,16 +92,16 @@ public partial class NakkiStalkState : NakkiAiState {
 
 			var canDive = DiveState!.IsStateReady(nakki);
 			if (canDive && _rng.DiceRoll(_diveChance)) {
-				nakki.SwitchToState(DiveState!);
+				nakki.CurrentState = DiveState;
 			} else {
-				nakki.SwitchToState(IdleState!);
+				nakki.CurrentState = IdleState;
 			}
 
 			return;
 		}
 
 		if (nakki._detectionLevel >= AttackState!._attackThreshold) {
-			nakki.SwitchToState(AttackState!);
+			nakki.CurrentState = AttackState;
 			return;
 		}
 	}

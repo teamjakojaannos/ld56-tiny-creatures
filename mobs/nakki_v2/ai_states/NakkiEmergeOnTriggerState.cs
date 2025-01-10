@@ -16,7 +16,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 
 	[Export]
 	[MustSetInEditor]
-	public NakkiAiState? EnterStateAfterEmerge {
+	public NakkiAiState EnterStateAfterEmerge {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_enterStateAfterEmerge);
 		set => this.SetExportProperty(ref _enterStateAfterEmerge, value, notifyPropertyListChanged: true);
 	}
@@ -75,7 +75,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.EmergeFromWater) {
-			nakki.SwitchToState(EnterStateAfterEmerge!);
+			nakki.CurrentState = EnterStateAfterEmerge;
 			return;
 		}
 

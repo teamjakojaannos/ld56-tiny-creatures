@@ -33,8 +33,7 @@ public partial class NakkiV2 : Path2D {
 	}
 	private NakkiAiState? _defaultState;
 
-	private NakkiAiState? _currentState;
-	private NakkiAiState? CurrentState {
+	public NakkiAiState? CurrentState {
 		get => _currentState;
 		set {
 			CurrentState?.ExitState(this);
@@ -42,6 +41,7 @@ public partial class NakkiV2 : Path2D {
 			CurrentState?.EnterState(this);
 		}
 	}
+	private NakkiAiState? _currentState;
 
 	public PathFollow2D? _nakkiEntity;
 	private float? _targetProgress;
@@ -105,10 +105,6 @@ public partial class NakkiV2 : Path2D {
 
 	public void ResetStateToDefault() {
 		CurrentState = DefaultState;
-	}
-
-	public void SwitchToState(NakkiAiState state) {
-		CurrentState = state;
 	}
 
 	public override void _PhysicsProcess(double ddelta) {

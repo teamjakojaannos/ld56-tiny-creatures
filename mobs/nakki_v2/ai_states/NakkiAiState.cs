@@ -25,12 +25,12 @@ public abstract partial class NakkiAiState : Node {
 		NakkiStalkState stalkState
 	) {
 		if (nakki._detectionLevel >= attackState._attackThreshold) {
-			nakki.SwitchToState(attackState!);
+			nakki.CurrentState = attackState;
 			return;
 		}
 
 		if (nakki._detectionLevel >= stalkState._stalkThreshold) {
-			nakki.SwitchToState(stalkState!);
+			nakki.CurrentState = stalkState;
 			return;
 		}
 	}
@@ -42,7 +42,7 @@ public abstract partial class NakkiAiState : Node {
 
 		s_rng.TryPickRandom(possibleStates, out var state);
 		if (state != null) {
-			nakki.SwitchToState(state);
+			nakki.CurrentState = state;
 			return true;
 		}
 

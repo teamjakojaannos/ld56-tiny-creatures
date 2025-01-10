@@ -30,7 +30,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 	[Export]
 	[MustSetInEditor]
-	public NakkiUnderwaterState? DiveState {
+	public NakkiUnderwaterState DiveState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
 		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
 	}
@@ -72,7 +72,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Attack) {
-			nakki.SwitchToState(DiveState!);
+			nakki.CurrentState = DiveState;
 			DiveState!.SetDiveTimeMult(0.25f);
 		}
 	}
