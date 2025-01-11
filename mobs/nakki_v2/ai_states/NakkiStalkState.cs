@@ -11,7 +11,7 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 public partial class NakkiStalkState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
-		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+		return (base._GetConfigurationWarnings() ?? [])
 			.Union(this.CheckCommonConfigurationWarnings())
 			.ToArray();
 	}

@@ -10,7 +10,7 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 public partial class NakkiAttackState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
-		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
+		return (base._GetConfigurationWarnings() ?? [])
 			.Union(this.CheckCommonConfigurationWarnings())
 			.ToArray();
 	}
@@ -75,7 +75,7 @@ public partial class NakkiAttackState : NakkiAiState {
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Attack) {
 			nakki.CurrentState = DiveState;
-			DiveState!.SetDiveTimeMult(0.25f);
+			DiveState.DiveTimeMultiplier = 0.25f;
 		}
 	}
 

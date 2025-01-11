@@ -11,7 +11,7 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 public partial class NakkiMovementState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+		var warnings = base._GetConfigurationWarnings() ?? [];
 
 		if (PickOneOfTheseStatesWhenDoneMoving.Count == 0) {
 			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();

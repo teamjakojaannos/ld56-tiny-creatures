@@ -11,7 +11,7 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 public partial class NakkiUnderwaterState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? System.Array.Empty<string>();
+		var warnings = base._GetConfigurationWarnings() ?? [];
 
 		if (PickOneOfTheseStatesWhenDoneDiving.Count == 0) {
 			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
@@ -37,7 +37,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	private bool _isDoneDiving = false;
 	private bool _isEmerging = false;
 	private RandomNumberGenerator _rng = new();
-	private float _diveTimeMult = 1.0f;
+	public float DiveTimeMultiplier { get; set; } = 1.0f;
 
 
 	public override void _Ready() {
@@ -61,7 +61,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 
 	private void EmergeFromWater(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		var pathLength = nakki.PathLength();
+		var pathLength = nakki.PathLength;
 
 		var emergeTo = (_rng.DiceRoll(EmergeAtPlayerChance) && playerRef is Player player)
 				? nakki.GetPlayerXPositionRelative(player)
@@ -88,7 +88,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override void EnterState(NakkiV2 nakki) {
-		_diveTimeMult = 1.0f;
+		DiveTimeMultiplier = 1.0f;
 		_isDoneDiving = false;
 		_isEmerging = false;
 		_diveTimer!.Stop();
@@ -109,7 +109,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Dive) {
 			var randomTime = _rng.RandomWithVariation(UnderwaterTime, UnderwaterTimeVariation);
-			_diveTimer!.WaitTime = randomTime * _diveTimeMult;
+			_diveTimer!.WaitTime = randomTime * DiveTimeMultiplier;
 			_diveTimer.Start();
 			return;
 		}
@@ -125,10 +125,6 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	}
 
 	public override void DetectionLevelChanged(NakkiV2 nakki) { }
-
-	public void SetDiveTimeMult(float timeMult) {
-		_diveTimeMult = timeMult;
-	}
 
 	public override bool IsStateReady(NakkiV2 nakki) {
 		return _diveCooldownTimer!.IsStopped();
