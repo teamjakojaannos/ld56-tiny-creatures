@@ -21,11 +21,8 @@ public partial class NakkiIdleState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneIdling { get; set; } = [];
-	[Export] public float IdleTime { get; set; } = 2.0f;
-	[Export] public float IdleTimeVariation { get; set; } = 0.5f;
-
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public NakkiStalkState StalkState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
@@ -41,6 +38,11 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 	private NakkiAttackState? _attackState;
 
+
+	[ExportGroup("")]
+	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneIdling { get; set; } = [];
+	[Export] public float IdleTime { get; set; } = 2.0f;
+	[Export] public float IdleTimeVariation { get; set; } = 0.5f;
 
 	private Timer? _timer;
 	private bool _isDoneIdling = false;

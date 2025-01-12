@@ -15,11 +15,9 @@ public partial class NakkiAttackState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public float AttackThreshold { get; set; } = 100.0f;
-	[Export] public float AttackTime { get; set; } = 1.0f;
-	[Export] public float AnimationSpeed { get; set; } = 1.0f;
 
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public PackedScene WaterSplash {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_waterSplash);
@@ -35,6 +33,11 @@ public partial class NakkiAttackState : NakkiAiState {
 	}
 	private NakkiUnderwaterState? _diveState;
 
+
+	[ExportGroup("")]
+	[Export] public float AttackThreshold { get; set; } = 100.0f;
+	[Export] public float AttackTime { get; set; } = 1.0f;
+	[Export] public float AnimationSpeed { get; set; } = 1.0f;
 
 	public override void AiUpdate(NakkiV2 nakki) { }
 

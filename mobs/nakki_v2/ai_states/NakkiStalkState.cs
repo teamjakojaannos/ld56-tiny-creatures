@@ -16,13 +16,8 @@ public partial class NakkiStalkState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public float StalkThreshold { get; set; } = 40.0f;
-	[Export] public float StalkTime { get; set; } = 5.0f;
-	[Export] public float StalkTimeVariation { get; set; } = 0.5f;
-	[Export] public float DiveChance { get; set; } = 0.2f;
-
-
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public NakkiIdleState IdleState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_idleState);
@@ -46,6 +41,12 @@ public partial class NakkiStalkState : NakkiAiState {
 	}
 	private NakkiUnderwaterState? _diveState;
 
+
+	[ExportGroup("")]
+	[Export] public float StalkThreshold { get; set; } = 40.0f;
+	[Export] public float StalkTime { get; set; } = 5.0f;
+	[Export] public float StalkTimeVariation { get; set; } = 0.5f;
+	[Export] public float DiveChance { get; set; } = 0.2f;
 
 	private Timer? _timer;
 	private bool _isDoneStalking;

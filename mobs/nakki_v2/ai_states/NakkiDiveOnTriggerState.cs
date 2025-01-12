@@ -15,6 +15,7 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	}
 
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public NakkiUnderwaterState DiveState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);

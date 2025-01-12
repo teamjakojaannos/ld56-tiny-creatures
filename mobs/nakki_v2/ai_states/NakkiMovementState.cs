@@ -22,13 +22,8 @@ public partial class NakkiMovementState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneMoving { get; set; } = [];
-	[Export] public float MoveTime { get; set; } = 3.0f;
-	[Export] public float MoveTimeVariation { get; set; } = 0.3f;
-	[Export] public float MoveToPlayerChance { get; set; } = 0.2f;
-
-
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public NakkiStalkState StalkState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
@@ -44,6 +39,12 @@ public partial class NakkiMovementState : NakkiAiState {
 	}
 	private NakkiAttackState? _attackState;
 
+
+	[ExportGroup("")]
+	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneMoving { get; set; } = [];
+	[Export] public float MoveTime { get; set; } = 3.0f;
+	[Export] public float MoveTimeVariation { get; set; } = 0.3f;
+	[Export] public float MoveToPlayerChance { get; set; } = 0.2f;
 
 	private Timer? _timer;
 	private bool _isDoneMoving = false;

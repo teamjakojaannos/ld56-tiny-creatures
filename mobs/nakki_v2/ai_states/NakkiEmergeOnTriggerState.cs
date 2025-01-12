@@ -14,10 +14,8 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 			.ToArray();
 	}
 
-	[Export] public float EmergeAnimationSpeed { get; set; } = 3.0f;
-	[Export] public float EmergeDelay { get; set; } = 3.0f;
-
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public NakkiAiState EnterStateAfterEmerge {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_enterStateAfterEmerge);
@@ -25,6 +23,10 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	}
 	private NakkiAiState? _enterStateAfterEmerge;
 
+
+	[ExportGroup("")]
+	[Export] public float EmergeAnimationSpeed { get; set; } = 3.0f;
+	[Export] public float EmergeDelay { get; set; } = 3.0f;
 
 	private Timer? _emergeOnTimeout;
 	private bool _emergeTimerDone = false;
