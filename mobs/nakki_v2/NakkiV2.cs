@@ -96,13 +96,16 @@ public partial class NakkiV2 : Path2D {
 	private AnimatedSprite2D? _hand;
 
 
-	// TODO: make non-nullable
-	public NakkiAiState? CurrentState {
-		get => _currentState;
+	public NakkiAiState CurrentState {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_currentState);
 		set {
-			CurrentState?.ExitState(this);
+			// IMPORTANT: the property will be null before _Ready is called.
+			// Use backing field here to avoid an error on first write
+			_currentState?.ExitState(this);
 			_currentState = value;
-			CurrentState?.EnterState(this);
+			// it seems that Godot likes to reset node's fields when starting the game
+			// use ? operator here to avoid errors on launch
+			value?.EnterState(this);
 		}
 	}
 	private NakkiAiState? _currentState;
@@ -166,7 +169,7 @@ public partial class NakkiV2 : Path2D {
 
 		var delta = (float)ddelta;
 
-		CurrentState!.AiUpdate(this);
+		CurrentState.AiUpdate(this);
 
 		var shouldTickDetection = CurrentState.ShouldTickDetection();
 		if (shouldTickDetection) {
@@ -202,7 +205,7 @@ public partial class NakkiV2 : Path2D {
 
 		DetectionLevel = Mathf.Clamp(DetectionLevel, 0.0f, 100.0f);
 
-		CurrentState!.DetectionLevelChanged(this);
+		CurrentState.DetectionLevelChanged(this);
 	}
 
 	private bool RaycastHitsPlayer() {
@@ -292,7 +295,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private void AttackAnimationDone() {
-		CurrentState!.NakkiAnimationFinished(this, NakkiAnimation.Attack);
+		CurrentState.NakkiAnimationFinished(this, NakkiAnimation.Attack);
 	}
 
 	private void TryKillPlayer() {
@@ -318,7 +321,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private void GoUnderwaterAnimationDone() {
-		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.Dive);
+		CurrentState.NakkiAnimationFinished(this, NakkiAnimation.Dive);
 	}
 
 	public void PlayEmergeFromWaterAnimation(float animationSpeed = 1.0f) {
@@ -326,7 +329,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private void EmergeFromWaterAnimationDone() {
-		CurrentState?.NakkiAnimationFinished(this, NakkiAnimation.EmergeFromWater);
+		CurrentState.NakkiAnimationFinished(this, NakkiAnimation.EmergeFromWater);
 	}
 
 	public float GetPlayerXPositionRelative(Player player) {
@@ -335,6 +338,6 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public void PlayerEnteredTrigger() {
-		CurrentState?.ReceiveTrigger(this);
+		CurrentState.ReceiveTrigger(this);
 	}
 }
