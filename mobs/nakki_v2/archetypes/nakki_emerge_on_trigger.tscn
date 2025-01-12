@@ -14,21 +14,21 @@ DetectionGain = 400.0
 [node name="EmergeOnTrigger" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge") instance=ExtResource("2_dnku5")]
 EnterStateAfterEmerge = NodePath("../Idle")
 
-[node name="Idle" parent="." index="7" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_g7ur1")]
-PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
+[node name="Idle" parent="." index="7" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneIdling") instance=ExtResource("2_g7ur1")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
+PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
 
 [node name="Dive" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_elw0d")]
 PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
 
 [node name="AttackState" parent="." index="9" node_paths=PackedStringArray("DiveState") instance=ExtResource("5_38bqf")]
+DiveState = NodePath("../Dive")
 AttackTime = 0.5
 AnimationSpeed = 3.0
-DiveState = NodePath("../Dive")
 
 [node name="Stalk" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState") instance=ExtResource("6_31dxb")]
-StalkThreshold = 200.0
 IdleState = NodePath("../Idle")
 AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")
+StalkThreshold = 200.0

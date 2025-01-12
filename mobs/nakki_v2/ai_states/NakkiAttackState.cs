@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Linq;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
@@ -56,12 +55,12 @@ public partial class NakkiAttackState : NakkiAiState {
 		}
 
 		// HACK: scale instead of flipH to affect children, too
-		nakki._hand!.Scale = player.GlobalPosition.X < nakki._nakkiEntity!.GlobalPosition.X
+		nakki.Hand.Scale = player.GlobalPosition.X < nakki.NakkiEntity.GlobalPosition.X
 			? new(-1.0f, 1.0f)
 			: new(1.0f, 1.0f);
 
 		player.Slowed = true;
-		nakki._attack!.GlobalPosition = player.GlobalPosition;
+		nakki.Attack.GlobalPosition = player.GlobalPosition;
 		nakki.PlayAttackAnimation(AttackTime, AnimationSpeed);
 	}
 

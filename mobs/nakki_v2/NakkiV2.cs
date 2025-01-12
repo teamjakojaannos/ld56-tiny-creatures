@@ -22,9 +22,8 @@ public partial class NakkiV2 : Path2D {
 			.ToArray();
 	}
 
-	[Export] private float _speed = 50.0f;
-
 	[Export]
+	[ExportGroup("Prewire")]
 	[MustSetInEditor]
 	public NakkiAiState DefaultState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_defaultState);
@@ -32,6 +31,72 @@ public partial class NakkiV2 : Path2D {
 	}
 	private NakkiAiState? _defaultState;
 
+	[Export]
+	[MustSetInEditor]
+	public PathFollow2D NakkiEntity {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_nakkiEntity);
+		set => this.SetExportProperty(ref _nakkiEntity, value);
+	}
+	private PathFollow2D? _nakkiEntity;
+
+	[Export]
+	[MustSetInEditor]
+	public Area2D Sightcone {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_sightcone);
+		set => this.SetExportProperty(ref _sightcone, value);
+	}
+	private Area2D? _sightcone;
+
+	[Export]
+	[MustSetInEditor]
+	public RayCast2D LineOfSight {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_lineOfSight);
+		set => this.SetExportProperty(ref _lineOfSight, value);
+	}
+	private RayCast2D? _lineOfSight;
+
+	[Export]
+	[MustSetInEditor]
+	public AnimationPlayer AnimationPlayer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_animationPlayer);
+		set => this.SetExportProperty(ref _animationPlayer, value);
+	}
+	private AnimationPlayer? _animationPlayer;
+
+	[Export]
+	[MustSetInEditor]
+	public Node2D Attack {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attack);
+		set => this.SetExportProperty(ref _attack, value);
+	}
+	private Node2D? _attack;
+
+	[Export]
+	[MustSetInEditor]
+	public Area2D DangerZone {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_dangerZone);
+		set => this.SetExportProperty(ref _dangerZone, value);
+	}
+	private Area2D? _dangerZone;
+
+	[Export]
+	[MustSetInEditor]
+	public AnimatedSprite2D FakePlayer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_fakePlayer);
+		set => this.SetExportProperty(ref _fakePlayer, value);
+	}
+	private AnimatedSprite2D? _fakePlayer;
+
+	[Export]
+	[MustSetInEditor]
+	public AnimatedSprite2D Hand {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_hand);
+		set => this.SetExportProperty(ref _hand, value);
+	}
+	private AnimatedSprite2D? _hand;
+
+
+	// TODO: make non-nullable
 	public NakkiAiState? CurrentState {
 		get => _currentState;
 		set {
@@ -42,48 +107,36 @@ public partial class NakkiV2 : Path2D {
 	}
 	private NakkiAiState? _currentState;
 
-	public PathFollow2D? _nakkiEntity;
-	private float? _targetProgress;
 
-	private Player? _player;
-	private RayCast2D? _lineOfSight;
+	[ExportGroup("")]
+	[Export] public float Speed { get; set; } = 50.0f;
 	public float DetectionLevel { get; set; } = 0.0f;
 	[Export] public float DetectionGain { get; set; } = 100.0f;
 	[Export] public float DetectionDecay { get; set; } = 60.0f;
 
-	private AnimationPlayer? _animationPlayer;
+
+	private Timer? _attackTimer;
+	private float? _targetProgress;
+	private Player? _player;
 	private bool _isPlayerInDanger = false;
 	private bool _playerIsDead = false;
-	public Node2D? _attack;
-	private Timer? _attackTimer;
-	private AnimatedSprite2D? _fakePlayer;
-	public AnimatedSprite2D? _hand;
+
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
 			return;
 		}
 
-		_nakkiEntity = GetNode<PathFollow2D>("NäkkiEntity");
-		var sightcone = _nakkiEntity.GetNode<Area2D>("SightCone");
-		sightcone.BodyEntered += SightConeEntered;
-		sightcone.BodyExited += SightConeExited;
+		Sightcone.BodyEntered += SightConeEntered;
+		Sightcone.BodyExited += SightConeExited;
 
-		_lineOfSight = _nakkiEntity.GetNode<RayCast2D>("LineOfSight");
+		DangerZone.BodyEntered += DangerZoneEntered;
+		DangerZone.BodyExited += DangerZoneExited;
 
-		_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-
+		// TODO: add timer with code instead of in editor
 		_attackTimer = GetNode<Timer>("AttackTimer");
 		_attackTimer.Timeout += FinishAttack;
 
-		_attack = GetNode<Node2D>("Attack");
-
-		var dangerZone = GetNode<Area2D>("Attack/DangerZoneSprite/DangerZone");
-		dangerZone.BodyEntered += DangerZoneEntered;
-		dangerZone.BodyExited += DangerZoneExited;
-
-		_fakePlayer = GetNode<AnimatedSprite2D>("Attack/FakePlayer");
-		_hand = GetNode<AnimatedSprite2D>("Attack/Hand");
 
 		ResetStateToDefault();
 
@@ -94,13 +147,13 @@ public partial class NakkiV2 : Path2D {
 
 	public void ResetStateToDefault() {
 		_attackTimer.Stop();
-		_animationPlayer.Stop();
-		_animationPlayer.Play("RESET");
+		AnimationPlayer.Stop();
+		AnimationPlayer.Play("RESET");
 
 		_isPlayerInDanger = false;
 		_playerIsDead = false;
-		_fakePlayer.Visible = false;
-		_hand.Visible = false;
+		FakePlayer.Visible = false;
+		Hand.Visible = false;
 		_targetProgress = null;
 
 		CurrentState = DefaultState;
@@ -128,14 +181,14 @@ public partial class NakkiV2 : Path2D {
 			return;
 		}
 
-		var myProgress = _nakkiEntity!.Progress;
+		var myProgress = NakkiEntity.Progress;
 		var distanceToTarget = Mathf.Abs(target - myProgress);
-		var maxMovement = Mathf.Abs(_speed * delta);
+		var maxMovement = Mathf.Abs(Speed * delta);
 
 		var direction = myProgress < target ? 1.0f : -1.0f;
 		var movement = direction * Mathf.Min(maxMovement, distanceToTarget);
 
-		_nakkiEntity.Progress += movement;
+		NakkiEntity.Progress += movement;
 	}
 
 	private void UpdateDetection(float delta) {
@@ -153,20 +206,20 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	private bool RaycastHitsPlayer() {
-		if (_player == null || _lineOfSight == null) {
+		if (_player == null) {
 			return false;
 		}
 
 		var playerPosition = _player.GlobalPosition;
 		// raycast wants target as relative to itself, not global
-		var target = playerPosition - _lineOfSight!.GlobalPosition;
-		_lineOfSight.TargetPosition = target;
-		_lineOfSight.ForceRaycastUpdate();
-		if (!_lineOfSight.IsColliding()) {
+		var target = playerPosition - LineOfSight.GlobalPosition;
+		LineOfSight.TargetPosition = target;
+		LineOfSight.ForceRaycastUpdate();
+		if (!LineOfSight.IsColliding()) {
 			return false;
 		}
 
-		var collider = _lineOfSight.GetCollider();
+		var collider = LineOfSight.GetCollider();
 		return collider is Player;
 	}
 
@@ -176,7 +229,7 @@ public partial class NakkiV2 : Path2D {
 		}
 
 		var threshold = 10.0f;
-		var myProgress = _nakkiEntity!.Progress;
+		var myProgress = NakkiEntity.Progress;
 		return Mathf.Abs(myProgress - target) <= threshold;
 	}
 
@@ -191,7 +244,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public void TeleportToProgress(float progress) {
-		_nakkiEntity!.Progress = progress;
+		NakkiEntity.Progress = progress;
 		_targetProgress = null;
 	}
 
@@ -231,11 +284,11 @@ public partial class NakkiV2 : Path2D {
 	/// </summary>
 	public void PlayAttackAnimation(float attackTime, float animationSpeed = 1.0f) {
 		_attackTimer!.WaitTime = attackTime;
-		_animationPlayer!.Play("start_attack", customSpeed: animationSpeed);
+		AnimationPlayer.Play("start_attack", customSpeed: animationSpeed);
 	}
 
 	private void FinishAttack() {
-		_animationPlayer!.Play("finish_attack");
+		AnimationPlayer.Play("finish_attack");
 	}
 
 	private void AttackAnimationDone() {
@@ -254,14 +307,14 @@ public partial class NakkiV2 : Path2D {
 
 		player.SetSpriteVisible(false);
 		player.SetMovementEnabled(false);
-		_fakePlayer!.Visible = true;
+		FakePlayer.Visible = true;
 
 		player.Die();
 		_playerIsDead = true;
 	}
 
 	public void PlayDiveAnimation(float animationSpeed = 1.0f) {
-		_animationPlayer!.Play("go_underwater", customSpeed: animationSpeed);
+		AnimationPlayer.Play("go_underwater", customSpeed: animationSpeed);
 	}
 
 	private void GoUnderwaterAnimationDone() {
@@ -269,7 +322,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public void PlayEmergeFromWaterAnimation(float animationSpeed = 1.0f) {
-		_animationPlayer!.Play("emerge_from_water", customSpeed: animationSpeed);
+		AnimationPlayer.Play("emerge_from_water", customSpeed: animationSpeed);
 	}
 
 	private void EmergeFromWaterAnimationDone() {

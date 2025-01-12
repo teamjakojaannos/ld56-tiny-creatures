@@ -10,15 +10,15 @@
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_o6khv")]
 DefaultState = NodePath("Idle")
 
-[node name="Idle" parent="." index="6" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState") instance=ExtResource("2_opm4y")]
+[node name="Idle" parent="." index="6" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneIdling") instance=ExtResource("2_opm4y")]
+StalkState = NodePath("../Stalk")
+AttackState = NodePath("../AttackState")
 PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Movement"), NodePath("../Dive")]
-StalkState = NodePath("../Stalk")
-AttackState = NodePath("../AttackState")
 
-[node name="Movement" parent="." index="7" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneMoving", "StalkState", "AttackState") instance=ExtResource("3_yxaas")]
-PickOneOfTheseStatesWhenDoneMoving = [NodePath("../Idle"), NodePath("../Dive")]
+[node name="Movement" parent="." index="7" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneMoving") instance=ExtResource("3_yxaas")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
+PickOneOfTheseStatesWhenDoneMoving = [NodePath("../Idle"), NodePath("../Dive")]
 
 [node name="Dive" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_vi8yp")]
 PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle"), NodePath("../Movement")]
@@ -30,6 +30,6 @@ AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")
 
 [node name="AttackState" parent="." index="10" node_paths=PackedStringArray("DiveState") instance=ExtResource("6_fuelp")]
+DiveState = NodePath("../Dive")
 AttackTime = 0.1
 AnimationSpeed = 5.0
-DiveState = NodePath("../Dive")
