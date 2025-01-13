@@ -47,21 +47,9 @@ public partial class NakkiStalkState : NakkiAiState {
 	[Export] public float StalkTimeVariation { get; set; } = 0.5f;
 	[Export] public float DiveChance { get; set; } = 0.2f;
 
-	private Timer? _timer;
 	private bool _isDoneStalking;
 	private RandomNumberGenerator _rng = new();
 
-
-	public override void _Ready() {
-		if (Engine.IsEditorHint()) {
-			return;
-		}
-
-		_timer = GetNode<Timer>("Timer");
-		_timer.Timeout += () => {
-			_isDoneStalking = true;
-		};
-	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
@@ -77,13 +65,13 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneStalking = false;
 
-		_timer!.WaitTime = _rng.RandomWithVariation(StalkTime, StalkTimeVariation);
-		_timer!.Start();
+		var time = _rng.RandomWithVariation(StalkTime, StalkTimeVariation);
+		GetTree().CreateTimer(time).Timeout += () => {
+			_isDoneStalking = true;
+		};
 	}
 
-	public override void ExitState(NakkiV2 nakki) {
-		_timer!.Stop();
-	}
+	public override void ExitState(NakkiV2 nakki) { }
 
 	public override bool ShouldTickDetection() {
 		return true;

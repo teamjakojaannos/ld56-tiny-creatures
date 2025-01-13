@@ -4,9 +4,3 @@
 
 [node name="NäkkiUnderwaterState" type="Node"]
 script = ExtResource("1_1yefd")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="DiveCooldown" type="Timer" parent="."]
-one_shot = true

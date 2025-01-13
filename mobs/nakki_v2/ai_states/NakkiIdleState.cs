@@ -44,21 +44,9 @@ public partial class NakkiIdleState : NakkiAiState {
 	[Export] public float IdleTime { get; set; } = 2.0f;
 	[Export] public float IdleTimeVariation { get; set; } = 0.5f;
 
-	private Timer? _timer;
 	private bool _isDoneIdling = false;
 	private RandomNumberGenerator _rng = new();
 
-
-	public override void _Ready() {
-		if (Engine.IsEditorHint()) {
-			return;
-		}
-
-		_timer = GetNode<Timer>("Timer");
-		_timer.Timeout += () => {
-			_isDoneIdling = true;
-		};
-	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		if (_isDoneIdling) {
@@ -77,13 +65,13 @@ public partial class NakkiIdleState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneIdling = false;
 
-		_timer!.WaitTime = _rng.RandomWithVariation(IdleTime, IdleTimeVariation);
-		_timer!.Start();
+		var time = _rng.RandomWithVariation(IdleTime, IdleTimeVariation);
+		GetTree().CreateTimer(time).Timeout += () => {
+			_isDoneIdling = true;
+		};
 	}
 
-	public override void ExitState(NakkiV2 nakki) {
-		_timer!.Stop();
-	}
+	public override void ExitState(NakkiV2 nakki) { }
 
 	public override bool ShouldTickDetection() {
 		return true;

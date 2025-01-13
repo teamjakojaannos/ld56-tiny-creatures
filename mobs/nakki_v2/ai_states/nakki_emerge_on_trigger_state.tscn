@@ -4,6 +4,3 @@
 
 [node name="NäkkiEmergeOnTrigger" type="Node"]
 script = ExtResource("1_vv2wt")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true

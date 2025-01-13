@@ -27,29 +27,18 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	[Export] public float EmergeAnimationSpeed { get; set; } = 3.0f;
 	[Export] public float EmergeDelay { get; set; } = 3.0f;
 
-	private Timer? _emergeOnTimeout;
 	private bool _emergeTimerDone = false;
 	private bool _initialDiveAnimationDone = false;
 	private bool _isEmerging = false;
-
-	public override void _Ready() {
-		if (Engine.IsEditorHint()) {
-			return;
-		}
-
-		_emergeOnTimeout = GetNode<Timer>("Timer");
-		_emergeOnTimeout.Timeout += () => {
-			_emergeTimerDone = true;
-		};
-	}
 
 	public override void ReceiveTrigger(NakkiV2 nakki) {
 		if (_isEmerging) {
 			return;
 		}
 
-		_emergeOnTimeout!.WaitTime = EmergeDelay;
-		_emergeOnTimeout.Start();
+		GetTree().CreateTimer(EmergeDelay).Timeout += () => {
+			_emergeTimerDone = true;
+		};
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -62,7 +51,6 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	}
 
 	public override void EnterState(NakkiV2 nakki) {
-		_emergeOnTimeout!.Stop();
 		_emergeTimerDone = false;
 		_initialDiveAnimationDone = false;
 		_isEmerging = false;
@@ -70,9 +58,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 		nakki.PlayDiveAnimation(animationSpeed: 10.0f);
 	}
 
-	public override void ExitState(NakkiV2 nakki) {
-		_emergeOnTimeout!.Stop();
-	}
+	public override void ExitState(NakkiV2 nakki) { }
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.EmergeFromWater) {

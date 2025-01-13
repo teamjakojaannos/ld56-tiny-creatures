@@ -4,6 +4,3 @@
 
 [node name="NäkkiStalkState" type="Node"]
 script = ExtResource("1_whjnl")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true

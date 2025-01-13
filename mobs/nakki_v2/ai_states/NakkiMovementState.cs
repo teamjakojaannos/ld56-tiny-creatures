@@ -46,21 +46,9 @@ public partial class NakkiMovementState : NakkiAiState {
 	[Export] public float MoveTimeVariation { get; set; } = 0.3f;
 	[Export] public float MoveToPlayerChance { get; set; } = 0.2f;
 
-	private Timer? _timer;
 	private bool _isDoneMoving = false;
 	private RandomNumberGenerator _rng = new();
 
-
-	public override void _Ready() {
-		if (Engine.IsEditorHint()) {
-			return;
-		}
-
-		_timer = GetNode<Timer>("Timer");
-		_timer.Timeout += () => {
-			_isDoneMoving = true;
-		};
-	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		if (_isDoneMoving || nakki.HasReachedTarget()) {
@@ -89,13 +77,15 @@ public partial class NakkiMovementState : NakkiAiState {
 		}
 
 		_isDoneMoving = false;
-		_timer!.WaitTime = _rng.RandomWithVariation(MoveTime, MoveTimeVariation);
-		_timer!.Start();
+
+		var time = _rng.RandomWithVariation(MoveTime, MoveTimeVariation);
+		GetTree().CreateTimer(time).Timeout += () => {
+			_isDoneMoving = true;
+		};
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
 		nakki.ClearMovementTarget();
-		_timer!.Stop();
 	}
 
 	public override bool ShouldTickDetection() {

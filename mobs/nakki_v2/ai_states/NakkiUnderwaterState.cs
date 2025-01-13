@@ -32,12 +32,13 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	[Export] public float MaxEmergeDistance { get; set; } = 100.0f;
 
 
-	private Timer? _diveCooldownTimer;
-	private Timer? _diveTimer;
 	private bool _isDoneDiving = false;
 	private bool _isEmerging = false;
 	private RandomNumberGenerator _rng = new();
 	public float DiveTimeMultiplier { get; set; } = 1.0f;
+
+	private Timer? _diveCooldownTimer;
+	private bool _isReadyToDive = true;
 
 
 	public override void _Ready() {
@@ -45,12 +46,14 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 			return;
 		}
 
-		_diveTimer = GetNode<Timer>("Timer");
-		_diveTimer.Timeout += () => {
-			_isDoneDiving = true;
+		_diveCooldownTimer = new Timer {
+			Autostart = false,
+			OneShot = true
 		};
-
-		_diveCooldownTimer = GetNode<Timer>("DiveCooldown");
+		_diveCooldownTimer.Timeout += () => {
+			_isReadyToDive = true;
+		};
+		AddChild(_diveCooldownTimer);
 	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
@@ -91,26 +94,26 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		DiveTimeMultiplier = 1.0f;
 		_isDoneDiving = false;
 		_isEmerging = false;
-		_diveTimer!.Stop();
+		_isReadyToDive = false;
 		nakki.PlayDiveAnimation(DiveAnimationSpeed);
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
 		nakki.DetectionLevel = 0.0f;
 
-		_diveTimer!.Stop();
-
-		// restart timer if it was already running
+		// näkki will be forced into dive mode when missing an attack
+		// we need to reset timer if that happens
 		_diveCooldownTimer!.Stop();
-		_diveCooldownTimer.WaitTime = DiveCooldown;
-		_diveCooldownTimer.Start();
+		_diveCooldownTimer.Start(DiveCooldown);
 	}
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Dive) {
 			var randomTime = _rng.RandomWithVariation(UnderwaterTime, UnderwaterTimeVariation);
-			_diveTimer!.WaitTime = randomTime * DiveTimeMultiplier;
-			_diveTimer.Start();
+			var time = randomTime * DiveTimeMultiplier;
+			GetTree().CreateTimer(time).Timeout += () => {
+				_isDoneDiving = true;
+			};
 			return;
 		}
 
@@ -127,6 +130,6 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	public override void DetectionLevelChanged(NakkiV2 nakki) { }
 
 	public override bool IsStateReady(NakkiV2 nakki) {
-		return _diveCooldownTimer!.IsStopped();
+		return _isReadyToDive;
 	}
 }
