@@ -95,6 +95,14 @@ public partial class NakkiV2 : Path2D {
 	}
 	private AnimatedSprite2D? _hand;
 
+	[Export]
+	[MustSetInEditor]
+	public Timer AttackTimer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackTimer);
+		set => this.SetExportProperty(ref _attackTimer, value);
+	}
+	private Timer? _attackTimer;
+
 
 	public NakkiAiState CurrentState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_currentState);
@@ -118,7 +126,6 @@ public partial class NakkiV2 : Path2D {
 	[Export] public float DetectionDecay { get; set; } = 60.0f;
 
 
-	private Timer? _attackTimer;
 	private float? _targetProgress;
 	private Player? _player;
 	private bool _isPlayerInDanger = false;
@@ -136,9 +143,7 @@ public partial class NakkiV2 : Path2D {
 		DangerZone.BodyEntered += DangerZoneEntered;
 		DangerZone.BodyExited += DangerZoneExited;
 
-		// TODO: add timer with code instead of in editor
-		_attackTimer = GetNode<Timer>("AttackTimer");
-		_attackTimer.Timeout += FinishAttack;
+		AttackTimer.Timeout += FinishAttack;
 
 
 		ResetStateToDefault();
@@ -149,7 +154,7 @@ public partial class NakkiV2 : Path2D {
 	}
 
 	public void ResetStateToDefault() {
-		_attackTimer.Stop();
+		AttackTimer.Stop();
 		AnimationPlayer.Stop();
 		AnimationPlayer.Play("RESET");
 
@@ -286,7 +291,7 @@ public partial class NakkiV2 : Path2D {
 	/// näkki will finish the attack and kill player is they are in the danger zone.
 	/// </summary>
 	public void PlayAttackAnimation(float attackTime, float animationSpeed = 1.0f) {
-		_attackTimer!.WaitTime = attackTime;
+		AttackTimer.Start(attackTime);
 		AnimationPlayer.Play("start_attack", customSpeed: animationSpeed);
 	}
 

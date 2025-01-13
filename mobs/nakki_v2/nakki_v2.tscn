@@ -622,7 +622,7 @@ _data = {
 "start_attack": SubResource("Animation_ygnl6")
 }
 
-[node name="Näkki" type="Path2D" node_paths=PackedStringArray("NakkiEntity", "Sightcone", "LineOfSight", "AnimationPlayer", "Attack", "DangerZone", "FakePlayer", "Hand")]
+[node name="Näkki" type="Path2D" node_paths=PackedStringArray("NakkiEntity", "Sightcone", "LineOfSight", "AnimationPlayer", "Attack", "DangerZone", "FakePlayer", "Hand", "AttackTimer")]
 script = ExtResource("1_vi6in")
 NakkiEntity = NodePath("NäkkiEntity")
 Sightcone = NodePath("NäkkiEntity/SightCone")
@@ -632,6 +632,7 @@ Attack = NodePath("Attack")
 DangerZone = NodePath("Attack/DangerZoneSprite/DangerZone")
 FakePlayer = NodePath("Attack/FakePlayer")
 Hand = NodePath("Attack/Hand")
+AttackTimer = NodePath("AttackTimer")
 
 [node name="NäkkiEntity" type="PathFollow2D" parent="."]
 rotates = false
