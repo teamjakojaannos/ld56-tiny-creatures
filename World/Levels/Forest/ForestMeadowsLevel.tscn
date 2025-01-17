@@ -32,6 +32,7 @@ ExitDirection = 4.71239
 shape = SubResource("RectangleShape2D_nln4e")
 
 [node name="Floor" type="ColorRect" parent="." index="1"]
+z_index = -1
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 128.0
@@ -39,6 +40,7 @@ offset_bottom = 64.0
 color = Color(0.317647, 0.211765, 0.109804, 1)
 
 [node name="Floor2" type="ColorRect" parent="." index="2"]
+z_index = -1
 offset_top = -128.0
 offset_right = 128.0
 offset_bottom = -64.0

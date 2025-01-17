@@ -15,7 +15,7 @@ size = Vector2(32, 128)
 position = Vector2(480, -128)
 script = ExtResource("2_hcsgc")
 OtherScene = "res://World/Levels/Forest/ForestHubLevel.tscn"
-_entranceNodePath = NodePath("./Transitions/ToDarkForest")
+_entranceNodePath = "./Transitions/ToDarkForest"
 ExitDirection = 1.5708
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToHub" index="0"]
@@ -25,12 +25,13 @@ shape = SubResource("RectangleShape2D_xwswq")
 position = Vector2(128, 0)
 script = ExtResource("2_hcsgc")
 OtherScene = "res://World/Levels/DarkForest/PathToDarkForestLevel.tscn"
-_entranceNodePath = NodePath("./Transitions/ToDarkForest")
+_entranceNodePath = "./Transitions/ToDarkForest"
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToPath" index="0"]
 shape = SubResource("RectangleShape2D_te6ve")
 
 [node name="Floor" type="ColorRect" parent="." index="1"]
+z_index = -1
 offset_left = -256.0
 offset_top = -64.0
 offset_right = 128.0
@@ -38,6 +39,7 @@ offset_bottom = 64.0
 color = Color(0.219608, 0.192157, 0.0980392, 1)
 
 [node name="Floor2" type="ColorRect" parent="." index="2"]
+z_index = -1
 offset_left = -256.0
 offset_top = -448.0
 offset_right = -128.0
@@ -45,6 +47,7 @@ offset_bottom = -64.0
 color = Color(0.219608, 0.192157, 0.0980392, 1)
 
 [node name="Floor3" type="ColorRect" parent="." index="3"]
+z_index = -1
 offset_left = -256.0
 offset_top = -448.0
 offset_right = 544.0
@@ -52,6 +55,7 @@ offset_bottom = -320.0
 color = Color(0.219608, 0.192157, 0.0980392, 1)
 
 [node name="Floor4" type="ColorRect" parent="." index="4"]
+z_index = -1
 offset_left = 416.0
 offset_top = -320.0
 offset_right = 544.0

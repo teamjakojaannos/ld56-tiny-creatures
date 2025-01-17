@@ -71,6 +71,7 @@ _entranceNodePath = "./Transitions/ToHub"
 shape = SubResource("RectangleShape2D_s4sll")
 
 [node name="Floor" type="ColorRect" parent="." index="1"]
+z_index = -1
 offset_left = -288.0
 offset_top = -64.0
 offset_right = 96.0
@@ -79,6 +80,7 @@ color = Color(0.317647, 0.211765, 0.109804, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Floor2" type="ColorRect" parent="." index="2"]
+z_index = -1
 offset_left = -160.0
 offset_top = 64.0
 offset_right = -32.0
@@ -87,6 +89,7 @@ color = Color(0.317647, 0.211765, 0.109804, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Floor3" type="ColorRect" parent="." index="3"]
+z_index = -1
 offset_left = -64.0
 offset_top = -128.0
 offset_right = 64.0
@@ -95,6 +98,7 @@ color = Color(0.317647, 0.211765, 0.109804, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Floor4" type="ColorRect" parent="." index="4"]
+z_index = -1
 offset_left = -256.0
 offset_top = -128.0
 offset_right = -128.0

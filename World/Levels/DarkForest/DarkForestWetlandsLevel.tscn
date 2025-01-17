@@ -15,7 +15,7 @@ size = Vector2(32, 128)
 position = Vector2(0, 128)
 script = ExtResource("2_gqqyk")
 OtherScene = "res://World/Levels/Forest/ForestHubLevel.tscn"
-_entranceNodePath = NodePath("./Transitions/ToWetlands")
+_entranceNodePath = "./Transitions/ToWetlands"
 ExitDirection = 1.5708
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToHub" index="0"]
@@ -25,12 +25,13 @@ shape = SubResource("RectangleShape2D_bjq4m")
 position = Vector2(128, 0)
 script = ExtResource("2_gqqyk")
 OtherScene = "res://World/Levels/Swamp/SwampLevel.tscn"
-_entranceNodePath = NodePath("./Transitions/ToWetlands")
+_entranceNodePath = "./Transitions/ToWetlands"
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToSwamp" index="0"]
 shape = SubResource("RectangleShape2D_o72y5")
 
 [node name="Floor" type="ColorRect" parent="." index="1"]
+z_index = -1
 offset_left = -64.0
 offset_top = -64.0
 offset_right = 64.0
@@ -38,6 +39,7 @@ offset_bottom = 128.0
 color = Color(0.219608, 0.192157, 0.0980392, 1)
 
 [node name="Floor2" type="ColorRect" parent="." index="2"]
+z_index = -1
 offset_left = 64.0
 offset_top = -64.0
 offset_right = 128.0

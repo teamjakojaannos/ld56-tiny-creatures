@@ -18,6 +18,7 @@ size = Vector2(128, 32)
 position = Vector2(64, 0)
 script = ExtResource("2_1wgm1")
 OtherScene = "res://World/Levels/Forest/ForestMeadowsLevel.tscn"
+_entranceNodePath = "./Transitions/ToDepths"
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToMeadows" index="0"]
 shape = SubResource("RectangleShape2D_gi833")
@@ -26,7 +27,7 @@ shape = SubResource("RectangleShape2D_gi833")
 position = Vector2(-448, 0)
 script = ExtResource("2_1wgm1")
 OtherScene = "res://World/Levels/Depths/MausoleumLevel.tscn"
-_entranceNodePath = "Transitions/ToDepths"
+_entranceNodePath = "./Transitions/ToDepths"
 ExitDirection = 3.14159
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToMausoleum" index="0"]
@@ -36,7 +37,7 @@ shape = SubResource("RectangleShape2D_2aeeq")
 position = Vector2(-192, -128)
 script = ExtResource("2_1wgm1")
 OtherScene = "res://World/Levels/Depths/RevelationRoomLevel.tscn"
-_entranceNodePath = "Transitions/ToDepths"
+_entranceNodePath = "./Transitions/ToDepths"
 ExitDirection = 4.71239
 
 [node name="Shape" type="CollisionShape2D" parent="Transitions/ToRevelation" index="0"]
@@ -46,6 +47,7 @@ shape = SubResource("RectangleShape2D_m1o3k")
 position = Vector2(-192, 0)
 
 [node name="Floor" type="ColorRect" parent="." index="2"]
+z_index = -1
 offset_left = -320.0
 offset_top = -64.0
 offset_right = 64.0
@@ -53,6 +55,7 @@ offset_bottom = 64.0
 color = Color(0.23, 0.216928, 0.2047, 1)
 
 [node name="Floor2" type="ColorRect" parent="." index="3"]
+z_index = -1
 offset_left = -256.0
 offset_top = -128.0
 offset_right = -128.0
@@ -60,6 +63,7 @@ offset_bottom = -64.0
 color = Color(0.23, 0.216928, 0.2047, 1)
 
 [node name="Floor3" type="ColorRect" parent="." index="4"]
+z_index = -1
 offset_left = -448.0
 offset_top = -32.0
 offset_right = -320.0

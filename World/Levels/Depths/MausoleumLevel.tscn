@@ -18,6 +18,7 @@ _entranceNodePath = "./Transitions/ToMausoleum"
 shape = SubResource("RectangleShape2D_ioruo")
 
 [node name="Floor" type="ColorRect" parent="." index="1"]
+z_index = -1
 offset_left = -128.0
 offset_top = -128.0
 offset_right = 128.0
@@ -25,6 +26,7 @@ offset_bottom = 128.0
 color = Color(0.23, 0.216928, 0.2047, 1)
 
 [node name="Floor2" type="ColorRect" parent="." index="2"]
+z_index = -1
 offset_left = 128.0
 offset_top = -32.0
 offset_right = 192.0
