@@ -102,6 +102,10 @@ public partial class LevelLoader : Node2D {
 	}
 
 	public void HideLevel() {
+		if (CurrentState is Instantiated instance) {
+			instance.Level.QueueFree();
+		}
+
 		CurrentState = new Unloaded();
 	}
 
