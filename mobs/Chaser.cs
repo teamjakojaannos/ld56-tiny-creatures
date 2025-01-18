@@ -5,6 +5,8 @@ using ChaserStuff;
 using Godot;
 using Godot.Collections;
 
+using Jakojaannos.CodeGen;
+
 using Jakojaannos.WisperingWoods;
 using Jakojaannos.WisperingWoods.Audio;
 using Jakojaannos.WisperingWoods.Characters.Player;

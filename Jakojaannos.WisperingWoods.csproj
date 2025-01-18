@@ -1,8 +1,28 @@
 <Project Sdk="Godot.NET.Sdk/4.3.0">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
+    <!-- Target Lang level 13 to get support for partial properties -->
+    <LangVersion>13.0</LangVersion>
+
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <Nullable>enable</Nullable>
     <RootNamespace>Jakojaannos.WisperingWoods</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Exclude subprojects from the main project -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);Jakojaannos.CodeGen\**\*</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <!-- Reference to subprojects -->
+  <ItemGroup>
+    <ProjectReference
+      Include="Jakojaannos.CodeGen\Jakojaannos.CodeGen.csproj"
+      OutputItemType="Analyzer"
+    />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 </Project>
