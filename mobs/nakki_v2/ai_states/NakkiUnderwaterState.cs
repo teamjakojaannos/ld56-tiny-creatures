@@ -9,6 +9,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods;
 
 [Tool]
+[GlobalClass]
 public partial class NakkiUnderwaterState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? [];

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c01xyyp3ncu0f"]
-
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiEmergeOnTriggerState.cs" id="1_vv2wt"]
-
-[node name="NäkkiEmergeOnTrigger" type="Node"]
-script = ExtResource("1_vv2wt")

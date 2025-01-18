@@ -1,38 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://doaavktwaav52"]
+[gd_scene load_steps=8 format=3 uid="uid://doaavktwaav52"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_m6u3r"]
-[ext_resource type="PackedScene" uid="uid://dma47e7f5etyd" path="res://mobs/nakki_v2/ai_states/nakki_idle_state.tscn" id="2_32frh"]
-[ext_resource type="PackedScene" uid="uid://c31uxa8s5ifhh" path="res://mobs/nakki_v2/ai_states/nakki_underwater_state.tscn" id="4_cqrig"]
-[ext_resource type="PackedScene" uid="uid://kignpg7mg7fw" path="res://mobs/nakki_v2/ai_states/nakki_stalk_state.tscn" id="5_y5xeq"]
-[ext_resource type="PackedScene" uid="uid://baobtck5t1jct" path="res://mobs/nakki_v2/ai_states/nakki_attack_state.tscn" id="6_uwvgx"]
-[ext_resource type="PackedScene" uid="uid://dcvw2bktvmn6e" path="res://mobs/nakki_v2/ai_states/nakki_dive_on_trigger_state.tscn" id="7_tvs8m"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiDiveOnTriggerState.cs" id="2_eeidc"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiIdleState.cs" id="3_da1tm"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiUnderwaterState.cs" id="4_dpoi4"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiAttackState.cs" id="5_16nb6"]
+[ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="6_4ejdt"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiStalkState.cs" id="7_64e5s"]
 
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_m6u3r")]
 DefaultState = NodePath("DiveOnTrigger")
 DetectionGain = 4000.0
 
-[node name="DiveOnTrigger" parent="." index="6" node_paths=PackedStringArray("DiveState", "StalkState", "AttackState") instance=ExtResource("7_tvs8m")]
+[node name="DiveOnTrigger" type="Node" parent="." index="6" node_paths=PackedStringArray("DiveState", "StalkState", "AttackState")]
+script = ExtResource("2_eeidc")
 DiveState = NodePath("../Dive")
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 
-[node name="Idle" parent="." index="7" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneIdling") instance=ExtResource("2_32frh")]
+[node name="Idle" type="Node" parent="." index="7" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneIdling")]
+script = ExtResource("3_da1tm")
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
 PickOneOfTheseStatesWhenDoneIdling = [NodePath("."), NodePath("../Dive")]
 
-[node name="Dive" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving") instance=ExtResource("4_cqrig")]
+[node name="Dive" type="Node" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving")]
+script = ExtResource("4_dpoi4")
 PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
 EmergeAtPlayerChance = 0.0
 EmergeAnimationSpeed = 3.0
 DiveCooldown = 5.0
 
-[node name="AttackState" parent="." index="9" node_paths=PackedStringArray("DiveState") instance=ExtResource("6_uwvgx")]
+[node name="AttackState" type="Node" parent="." index="9" node_paths=PackedStringArray("DiveState")]
+script = ExtResource("5_16nb6")
+WaterSplash = ExtResource("6_4ejdt")
 DiveState = NodePath("../Dive")
 AttackTime = 0.2
 AnimationSpeed = 4.0
 
-[node name="Stalk" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState") instance=ExtResource("5_y5xeq")]
+[node name="Stalk" type="Node" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState")]
+script = ExtResource("7_64e5s")
 IdleState = NodePath("../Idle")
 AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c31uxa8s5ifhh"]
-
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiUnderwaterState.cs" id="1_1yefd"]
-
-[node name="NäkkiUnderwaterState" type="Node"]
-script = ExtResource("1_1yefd")

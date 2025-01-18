@@ -8,6 +8,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods;
 
 [Tool]
+[GlobalClass]
 public partial class NakkiIdleState : NakkiAiState {
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? [];
