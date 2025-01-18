@@ -3,6 +3,8 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.CodeGen;
+
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue.UI;

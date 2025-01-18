@@ -5,6 +5,8 @@ using BogMonsterStuff;
 
 using Godot;
 
+using Jakojaannos.CodeGen;
+
 using Jakojaannos.WisperingWoods;
 using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util;

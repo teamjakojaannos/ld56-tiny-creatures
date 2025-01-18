@@ -1,5 +1,7 @@
 using Godot;
 
+using Jakojaannos.CodeGen;
+
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.Gameplay.AI;
@@ -9,11 +11,7 @@ namespace Jakojaannos.WisperingWoods.Gameplay.AI;
 public partial class BehaviourTree : Node {
 	[Export]
 	[MustSetInEditor]
-	public BTNode Root {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_root);
-		set => this.SetExportProperty(ref _root, value);
-	}
-	private BTNode? _root;
+	public partial BTNode Root { get; set; }
 
 	[Export]
 	[MustSetInEditor]
@@ -22,6 +20,10 @@ public partial class BehaviourTree : Node {
 		set => this.SetExportProperty(ref _state, value);
 	}
 	private AIState? _state;
+
+	public override string[] _GetConfigurationWarnings() {
+		return this.CheckCommonConfigurationWarnings(base._GetConfigurationWarnings());
+	}
 
 	public override void _PhysicsProcess(double delta) {
 		if (Engine.IsEditorHint() || this.IsMissingRequiredProperty()) {

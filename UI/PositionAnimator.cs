@@ -1,6 +1,7 @@
 using Godot;
 
-using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
+using Jakojaannos.CodeGen;
+
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods.UI;

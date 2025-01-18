@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- NOTE 2025-01-17: Source generators MUST target netstandard2.0 -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- Recommended/required stricter linter rules for analyzers/generators -->
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+    <!-- Target Lang level 12 to match Godot being on .NET8 (= C#12)-->
+    <LangVersion>12.0</LangVersion>
+
+    <!-- Don't reference the source generator DLL directly -->
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+
+    <!-- Project configs -->
+    <RootNamespace>Jakojaannos.CodeGen</RootNamespace>
+
+    <!-- Opinionated configs -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Source generator interfaces and types -->
+  <ItemGroup>
+    <PackageReference
+      Include="Microsoft.CodeAnalysis.Analyzers"
+      Version="3.11.0"
+      PrivateAssets="all"
+    />
+    <PackageReference
+      Include="Microsoft.CodeAnalysis.CSharp"
+      Version="4.8.0"
+      PrivateAssets="all"
+    />
+  </ItemGroup>
+
+  <!-- Ensures the library is packaged as a source generator when using `dotnet pack` -->
+  <ItemGroup>
+    <None
+      Include="$(OutputPath)\$(AssemblyName).dll"
+      Pack="true" 
+      PackagePath="analyzers/dotnet/cs"
+      Visible="false"
+    />
+  </ItemGroup>
+
+</Project>

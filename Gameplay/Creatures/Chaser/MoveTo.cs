@@ -2,6 +2,8 @@ using System.Linq;
 
 using Godot;
 
+using Jakojaannos.CodeGen;
+
 using Jakojaannos.WisperingWoods.Gameplay.AI;
 using Jakojaannos.WisperingWoods.Util.Editor;
 

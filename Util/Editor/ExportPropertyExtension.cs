@@ -4,6 +4,8 @@ using System.Reflection;
 
 using Godot;
 
+using Jakojaannos.CodeGen;
+
 namespace Jakojaannos.WisperingWoods.Util.Editor;
 
 public static class ExportPropertyExtension {
@@ -67,11 +69,15 @@ public static class ExportPropertyExtension {
 			.Where(prop => prop.GetValue(node) is null);
 	}
 
-	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node) {
-		return node
+	public static string[] CheckCommonConfigurationWarnings(this Node node, string[]? baseWarnings = null) {
+		var missingPropertyWarnings = node
 			.GetMissingRequiredProperties()
-			.Select(field => $"\"{field.Name}\" on \"{node.Name}\" is required but not set!")
-			.ToArray();
+			.Select(field => $"\"{field.Name}\" on \"{node.Name}\" is required but not set!");
+
+		var allWarnings = (baseWarnings ?? [])
+			.Union(missingPropertyWarnings);
+
+		return [.. allWarnings];
 	}
 
 	public static bool IsMissingRequiredProperty(this Node node) {
