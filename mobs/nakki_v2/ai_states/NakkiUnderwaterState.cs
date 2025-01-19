@@ -11,18 +11,6 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 [GlobalClass]
 public partial class NakkiUnderwaterState : NakkiAiState {
-	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? [];
-
-		if (PickOneOfTheseStatesWhenDoneDiving.Count == 0) {
-			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
-		}
-
-		return warnings
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
-
 	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneDiving { get; set; } = [];
 	[Export] public float UnderwaterTime { get; set; } = 5.0f;
 	[Export] public float UnderwaterTimeVariation { get; set; } = 0.3f;
@@ -37,10 +25,20 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 	private bool _isEmerging = false;
 	private RandomNumberGenerator _rng = new();
 	public float DiveTimeMultiplier { get; set; } = 1.0f;
-
 	private Timer? _diveCooldownTimer;
 	private bool _isReadyToDive = true;
 
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? [];
+
+		if (PickOneOfTheseStatesWhenDoneDiving.Count == 0) {
+			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {

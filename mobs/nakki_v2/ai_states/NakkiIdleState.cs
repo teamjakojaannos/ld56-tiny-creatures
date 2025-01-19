@@ -10,17 +10,9 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 [GlobalClass]
 public partial class NakkiIdleState : NakkiAiState {
-	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? [];
-
-		if (PickOneOfTheseStatesWhenDoneIdling.Count == 0) {
-			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
-		}
-
-		return warnings
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
+	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneIdling { get; set; } = [];
+	[Export] public float IdleTime { get; set; } = 2.0f;
+	[Export] public float IdleTimeVariation { get; set; } = 0.5f;
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -39,15 +31,20 @@ public partial class NakkiIdleState : NakkiAiState {
 	}
 	private NakkiAttackState? _attackState;
 
-
-	[ExportGroup("")]
-	[Export] public Array<NakkiAiState> PickOneOfTheseStatesWhenDoneIdling { get; set; } = [];
-	[Export] public float IdleTime { get; set; } = 2.0f;
-	[Export] public float IdleTimeVariation { get; set; } = 0.5f;
-
 	private bool _isDoneIdling = false;
 	private RandomNumberGenerator _rng = new();
 
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? [];
+
+		if (PickOneOfTheseStatesWhenDoneIdling.Count == 0) {
+			warnings = warnings.Append("Add one or more states to 'pick one of these when done'-list").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		if (_isDoneIdling) {

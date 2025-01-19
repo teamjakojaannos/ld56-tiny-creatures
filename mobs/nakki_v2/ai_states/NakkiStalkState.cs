@@ -10,11 +10,10 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 [GlobalClass]
 public partial class NakkiStalkState : NakkiAiState {
-	public override string[] _GetConfigurationWarnings() {
-		return (base._GetConfigurationWarnings() ?? [])
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
+	[Export] public float StalkThreshold { get; set; } = 40.0f;
+	[Export] public float StalkTime { get; set; } = 5.0f;
+	[Export] public float StalkTimeVariation { get; set; } = 0.5f;
+	[Export] public float DiveChance { get; set; } = 0.2f;
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -41,16 +40,14 @@ public partial class NakkiStalkState : NakkiAiState {
 	}
 	private NakkiUnderwaterState? _diveState;
 
-
-	[ExportGroup("")]
-	[Export] public float StalkThreshold { get; set; } = 40.0f;
-	[Export] public float StalkTime { get; set; } = 5.0f;
-	[Export] public float StalkTimeVariation { get; set; } = 0.5f;
-	[Export] public float DiveChance { get; set; } = 0.2f;
-
 	private bool _isDoneStalking;
 	private RandomNumberGenerator _rng = new();
 
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");

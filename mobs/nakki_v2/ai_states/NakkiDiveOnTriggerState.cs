@@ -8,12 +8,6 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 [GlobalClass]
 public partial class NakkiDiveOnTriggerState : NakkiAiState {
-	public override string[] _GetConfigurationWarnings() {
-		return (base._GetConfigurationWarnings() ?? [])
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
-
 	[Export]
 	[ExportGroup("Prewire")]
 	[MustSetInEditor]
@@ -39,6 +33,11 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	}
 	private NakkiAttackState? _attackState;
 
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void ReceiveTrigger(NakkiV2 nakki) {
 		nakki.CurrentState = DiveState;

@@ -8,19 +8,10 @@ namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class NakkiV2 : Path2D {
-	public override string[] _GetConfigurationWarnings() {
-		var warnings = base._GetConfigurationWarnings() ?? [];
+	[Export] public float Speed { get; set; } = 50.0f;
+	[Export] public float DetectionGain { get; set; } = 100.0f;
+	[Export] public float DetectionDecay { get; set; } = 60.0f;
 
-		if (Curve == null) {
-			warnings = warnings.Append("Add a curve for näkki to move along (under 'Path2D' in inspector)").ToArray();
-		} else if (Curve.PointCount == 0) {
-			warnings = warnings.Append("Add points for näkki's movement path (Curve resource under 'Path2D' in inspector)").ToArray();
-		}
-
-		return warnings
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -118,19 +109,25 @@ public partial class NakkiV2 : Path2D {
 	}
 	private NakkiAiState? _currentState;
 
-
-	[ExportGroup("")]
-	[Export] public float Speed { get; set; } = 50.0f;
 	public float DetectionLevel { get; set; } = 0.0f;
-	[Export] public float DetectionGain { get; set; } = 100.0f;
-	[Export] public float DetectionDecay { get; set; } = 60.0f;
-
-
 	private float? _targetProgress;
 	private Player? _player;
 	private bool _isPlayerInDanger = false;
 	private bool _playerIsDead = false;
 
+	public override string[] _GetConfigurationWarnings() {
+		var warnings = base._GetConfigurationWarnings() ?? [];
+
+		if (Curve == null) {
+			warnings = warnings.Append("Add a curve for näkki to move along (under 'Path2D' in inspector)").ToArray();
+		} else if (Curve.PointCount == 0) {
+			warnings = warnings.Append("Add points for näkki's movement path (Curve resource under 'Path2D' in inspector)").ToArray();
+		}
+
+		return warnings
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {

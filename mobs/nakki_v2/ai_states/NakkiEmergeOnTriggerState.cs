@@ -8,11 +8,8 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 [GlobalClass]
 public partial class NakkiEmergeOnTriggerState : NakkiAiState {
-	public override string[] _GetConfigurationWarnings() {
-		return (base._GetConfigurationWarnings() ?? [])
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
+	[Export] public float EmergeAnimationSpeed { get; set; } = 3.0f;
+	[Export] public float EmergeDelay { get; set; } = 3.0f;
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -23,14 +20,15 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	}
 	private NakkiAiState? _enterStateAfterEmerge;
 
-
-	[ExportGroup("")]
-	[Export] public float EmergeAnimationSpeed { get; set; } = 3.0f;
-	[Export] public float EmergeDelay { get; set; } = 3.0f;
-
 	private bool _emergeTimerDone = false;
 	private bool _initialDiveAnimationDone = false;
 	private bool _isEmerging = false;
+
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void ReceiveTrigger(NakkiV2 nakki) {
 		if (_isEmerging) {

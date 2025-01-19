@@ -9,11 +9,9 @@ namespace Jakojaannos.WisperingWoods;
 [Tool]
 [GlobalClass]
 public partial class NakkiAttackState : NakkiAiState {
-	public override string[] _GetConfigurationWarnings() {
-		return (base._GetConfigurationWarnings() ?? [])
-			.Union(this.CheckCommonConfigurationWarnings())
-			.ToArray();
-	}
+	[Export] public float AttackThreshold { get; set; } = 100.0f;
+	[Export] public float AttackTime { get; set; } = 1.0f;
+	[Export] public float AnimationSpeed { get; set; } = 1.0f;
 
 
 	[Export]
@@ -33,11 +31,11 @@ public partial class NakkiAttackState : NakkiAiState {
 	}
 	private NakkiUnderwaterState? _diveState;
 
-
-	[ExportGroup("")]
-	[Export] public float AttackThreshold { get; set; } = 100.0f;
-	[Export] public float AttackTime { get; set; } = 1.0f;
-	[Export] public float AnimationSpeed { get; set; } = 1.0f;
+	public override string[] _GetConfigurationWarnings() {
+		return (base._GetConfigurationWarnings() ?? [])
+			.Union(this.CheckCommonConfigurationWarnings())
+			.ToArray();
+	}
 
 	public override void AiUpdate(NakkiV2 nakki) { }
 
