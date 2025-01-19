@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://e4lcf5dy62ty"]
+
+[ext_resource type="Texture2D" uid="uid://dhydd1udarkba" path="res://Characters/Wisp/WispIdle.png" id="1_7rrng"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjbjk"]
+atlas = ExtResource("1_7rrng")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bmni"]
+atlas = ExtResource("1_7rrng")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyx8e"]
+atlas = ExtResource("1_7rrng")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aks2r"]
+atlas = ExtResource("1_7rrng")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjbjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bmni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyx8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aks2r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]

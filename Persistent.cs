@@ -9,12 +9,10 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods;
 
 public static class PersistentExt {
-	private static Persistent? _instance;
+	private static Persistent? s_instance;
 
 	public static Persistent Persistent(this Node node) {
-		return _instance is not null
-			? _instance
-			: (_instance = node.GetTree().Root.GetNode<Persistent>("/root/Persistent"));
+		return s_instance ??= node.GetTree().Root.GetNode<Persistent>("/root/Persistent");
 	}
 }
 

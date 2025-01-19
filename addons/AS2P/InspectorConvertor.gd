@@ -1,7 +1,7 @@
 @tool
 extends EditorInspectorPlugin
 
-const NodeSelectorProperty = preload("./NodeSelectorProperty.gd")
+const NodeSelectorProperty = preload("res://addons/AS2P/NodeSelectorProperty.gd")
 
 var node_selector: NodeSelectorProperty
 

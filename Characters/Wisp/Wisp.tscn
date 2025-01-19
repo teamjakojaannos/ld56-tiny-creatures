@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjx73xc8t74mp"]
+
+[ext_resource type="SpriteFrames" uid="uid://e4lcf5dy62ty" path="res://Characters/Wisp/WispSpriteFrames.tres" id="1_1ygce"]
+[ext_resource type="Script" path="res://Characters/Wisp/Wisp.cs" id="1_nv7b8"]
+
+[node name="Wisp" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_nv7b8")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_1ygce")
+animation = &"idle"
+frame_progress = 0.0344705
+offset = Vector2(0, -12)

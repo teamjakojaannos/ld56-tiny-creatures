@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhydd1udarkba"
-path="res://.godot/imported/Wispy.png-885ce0d6f885d45d970a7900748284d8.ctex"
+path="res://.godot/imported/WispIdle.png-c05bd38f7c2dac421e31d409690d3838.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/Wispy.png"
-dest_files=["res://.godot/imported/Wispy.png-885ce0d6f885d45d970a7900748284d8.ctex"]
+source_file="res://Characters/Wisp/WispIdle.png"
+dest_files=["res://.godot/imported/WispIdle.png-c05bd38f7c2dac421e31d409690d3838.ctex"]
 
 [params]
 

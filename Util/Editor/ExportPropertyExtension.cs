@@ -68,7 +68,7 @@ public static class ExportPropertyExtension {
 			.Where(prop => prop.GetValue(node) is null);
 	}
 
-	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node, string[]? baseWarnings = null) {
+	public static string[] CheckCommonConfigurationWarnings(this Node node, string[]? baseWarnings = null) {
 		var missingProps = node
 			.GetMissingRequiredProperties()
 			.Select(field => $"\"{field.Name}\" on \"{node.Name}\" is required but not set!");
