@@ -70,11 +70,11 @@ position = Vector2(309, 43)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_vxuua")
 
-[node name="Trigger" type="Area2D" parent="TriggerSprite" node_paths=PackedStringArray("_nakkiToTrigger")]
+[node name="Trigger" type="Area2D" parent="TriggerSprite" node_paths=PackedStringArray("NakkiToTrigger")]
 collision_layer = 0
 monitorable = false
 script = ExtResource("8_pjiqu")
-_nakkiToTrigger = NodePath("../../DiveNäkki")
+NakkiToTrigger = NodePath("../../DiveNäkki")
 
 [node name="Collider" type="CollisionShape2D" parent="TriggerSprite/Trigger"]
 shape = SubResource("RectangleShape2D_phpyv")
@@ -84,11 +84,11 @@ position = Vector2(300, 120)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("7_vxuua")
 
-[node name="Trigger" type="Area2D" parent="TriggerSprite2" node_paths=PackedStringArray("_nakkiToTrigger")]
+[node name="Trigger" type="Area2D" parent="TriggerSprite2" node_paths=PackedStringArray("NakkiToTrigger")]
 collision_layer = 0
 monitorable = false
 script = ExtResource("8_pjiqu")
-_nakkiToTrigger = NodePath("../../EmergeNäkki")
+NakkiToTrigger = NodePath("../../EmergeNäkki")
 
 [node name="Collider" type="CollisionShape2D" parent="TriggerSprite2/Trigger"]
 position = Vector2(0, 4.57764e-05)
