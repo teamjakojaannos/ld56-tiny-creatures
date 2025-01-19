@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -67,11 +68,51 @@ public static class ExportPropertyExtension {
 			.Where(prop => prop.GetValue(node) is null);
 	}
 
-	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node) {
-		return node
+	public static IEnumerable<string> CheckCommonConfigurationWarnings(this Node node, string[]? baseWarnings = null) {
+		var missingProps = node
 			.GetMissingRequiredProperties()
-			.Select(field => $"\"{field.Name}\" on \"{node.Name}\" is required but not set!")
-			.ToArray();
+			.Select(field => $"\"{field.Name}\" on \"{node.Name}\" is required but not set!");
+
+		var parentMismatch = node.HasValidParent()
+			? Array.Empty<string>()
+			: [$"Parent of {node.GetType().Name} must be {node.FormatParentTypesAsList()}"];
+
+		return [
+			.. missingProps,
+			.. parentMismatch,
+			.. baseWarnings ?? []
+		];
+	}
+
+	public static Type? TypeOfParent(this Node node) {
+		return node.GetParent().GetType();
+	}
+
+	public static bool HasValidParent(this Node node) {
+		var expected = node.ExpectedParentTypes();
+		return expected is null || expected.Any(t => t.IsAssignableFrom(node.TypeOfParent()));
+	}
+
+	private static string FormatParentTypesAsList(this Node node) {
+		var expected = node.ExpectedParentTypes();
+		if (expected is null || expected.Length == 0) {
+			return "any descendant class of Node";
+		}
+
+		if (expected.Length == 1) {
+			return $"a {expected[0].Name}";
+		}
+
+		var validParents = string.Join(", ", node.ExpectedParentTypes()?.Select(t => t.Name) ?? []);
+		return $"one of [{validParents}]";
+	}
+
+	private static Type[]? ExpectedParentTypes(this Node node) {
+		var requireParentAttribute = node
+			.GetType()
+			.GetCustomAttribute<RequireParentAttribute>();
+
+		return requireParentAttribute?.ParentTypes;
 	}
 
 	public static bool IsMissingRequiredProperty(this Node node) {

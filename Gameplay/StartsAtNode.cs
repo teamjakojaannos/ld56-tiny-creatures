@@ -3,19 +3,25 @@ using System;
 using Godot;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 
 namespace Jakojaannos.WisperingWoods.Gameplay;
 
 [Tool]
 [GlobalClass]
+[RequireParent(typeof(Node2D))]
 public partial class StartsAtNode : Node {
 	[Export]
 	public Node2D? Spawnpoint { get; set; }
 
 	[Export]
 	[ExportGroup("Groups")]
-	public Godot.Collections.Array<StringName> SpawnpointGroups { get; set; } = new();
+	public Godot.Collections.Array<StringName> SpawnpointGroups { get; set; } = [];
+
+	public override string[] _GetConfigurationWarnings() {
+		return [.. this.CheckCommonConfigurationWarnings(base._GetConfigurationWarnings())];
+	}
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
