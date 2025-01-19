@@ -7,6 +7,7 @@ using Jakojaannos.WisperingWoods.Util;
 
 namespace Jakojaannos.WisperingWoods;
 
+[Tool]
 public abstract partial class NakkiAiState : Node {
 	public virtual bool IsStateReady(NakkiV2 nakki) {
 		return true;
