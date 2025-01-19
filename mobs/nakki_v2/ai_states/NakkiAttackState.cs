@@ -21,7 +21,7 @@ public partial class NakkiAttackState : NakkiAiState {
 	[MustSetInEditor]
 	public PackedScene WaterSplash {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_waterSplash);
-		set => this.SetExportProperty(ref _waterSplash, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _waterSplash, value);
 	}
 	private PackedScene? _waterSplash;
 
@@ -29,7 +29,7 @@ public partial class NakkiAttackState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiUnderwaterState DiveState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
-		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _diveState, value);
 	}
 	private NakkiUnderwaterState? _diveState;
 

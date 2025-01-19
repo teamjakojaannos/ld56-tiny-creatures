@@ -19,7 +19,7 @@ public partial class NakkiEmergeOnTriggerState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiAiState EnterStateAfterEmerge {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_enterStateAfterEmerge);
-		set => this.SetExportProperty(ref _enterStateAfterEmerge, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _enterStateAfterEmerge, value);
 	}
 	private NakkiAiState? _enterStateAfterEmerge;
 

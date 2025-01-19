@@ -28,7 +28,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiStalkState StalkState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
-		set => this.SetExportProperty(ref _stalkState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _stalkState, value);
 	}
 	private NakkiStalkState? _stalkState;
 
@@ -36,7 +36,7 @@ public partial class NakkiMovementState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiAttackState? AttackState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
-		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _attackState, value);
 	}
 	private NakkiAttackState? _attackState;
 

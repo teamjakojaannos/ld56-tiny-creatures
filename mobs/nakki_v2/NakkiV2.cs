@@ -27,7 +27,7 @@ public partial class NakkiV2 : Path2D {
 	[MustSetInEditor]
 	public NakkiAiState DefaultState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_defaultState);
-		set => this.SetExportProperty(ref _defaultState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _defaultState, value);
 	}
 	private NakkiAiState? _defaultState;
 

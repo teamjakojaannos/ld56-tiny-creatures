@@ -21,7 +21,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiIdleState IdleState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_idleState);
-		set => this.SetExportProperty(ref _idleState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _idleState, value);
 	}
 	private NakkiIdleState? _idleState;
 
@@ -29,7 +29,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiAttackState AttackState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
-		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _attackState, value);
 	}
 	private NakkiAttackState? _attackState;
 
@@ -37,7 +37,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiUnderwaterState DiveState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
-		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _diveState, value);
 	}
 	private NakkiUnderwaterState? _diveState;
 

@@ -19,7 +19,7 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiUnderwaterState DiveState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_diveState);
-		set => this.SetExportProperty(ref _diveState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _diveState, value);
 	}
 	private NakkiUnderwaterState? _diveState;
 
@@ -27,7 +27,7 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiStalkState StalkState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_stalkState);
-		set => this.SetExportProperty(ref _stalkState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _stalkState, value);
 	}
 	private NakkiStalkState? _stalkState;
 
@@ -35,7 +35,7 @@ public partial class NakkiDiveOnTriggerState : NakkiAiState {
 	[MustSetInEditor]
 	public NakkiAttackState AttackState {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_attackState);
-		set => this.SetExportProperty(ref _attackState, value, notifyPropertyListChanged: true);
+		set => this.SetExportProperty(ref _attackState, value);
 	}
 	private NakkiAttackState? _attackState;
 
