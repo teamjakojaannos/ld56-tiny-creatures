@@ -110,6 +110,8 @@ _data = {
 
 [node name="Lilypad" type="Node2D" node_paths=PackedStringArray("AnimationPlayer")]
 script = ExtResource("1_lpmwe")
+UnderwaterTime = 2.0
+SinkSpeed = 1.25
 AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="PlayerDetector" type="Area2D" parent="."]

@@ -8,7 +8,8 @@ namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class BossLilypad : Node2D {
-	[Export] public float UnderwaterTime { get; set; } = 2.0f;
+	[Export] public float UnderwaterTime { get; set; } = 1.5f;
+	[Export] public float SinkSpeed { get; set; } = 1.0f;
 
 
 	[Export]
@@ -67,7 +68,7 @@ public partial class BossLilypad : Node2D {
 
 	public void StartSinking() {
 		IsUnderwater = true;
-		AnimationPlayer.Play("sink");
+		AnimationPlayer.Play("sink", customSpeed: SinkSpeed);
 	}
 
 	private void SinkAnimationDone() {

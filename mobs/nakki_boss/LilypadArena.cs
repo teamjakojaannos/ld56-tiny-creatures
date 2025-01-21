@@ -1,11 +1,19 @@
 using Godot;
 using Godot.Collections;
 
+using Jakojaannos.WisperingWoods.Util;
+
 namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class LilypadArena : Node2D {
+	[Export] public float UnderwaterTime { get; set; } = 1.5f;
+	[Export] public float UnderwaterTimeVariation { get; set; } = 0.5f;
+	[Export] public float SinkSpeed { get; set; } = 1.0f;
+	[Export] public float SinkSpeedVariation { get; set; } = 0.5f;
+
 	private Array<BossLilypad> _lilypads = [];
+	private RandomNumberGenerator _rng = new();
 
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
@@ -32,6 +40,8 @@ public partial class LilypadArena : Node2D {
 	public void SinkLilypads() {
 		var lilypads = SelectRandomLilypads(_lilypads);
 		foreach (var lilypad in lilypads) {
+			lilypad.UnderwaterTime = _rng.ApplyRandomVariation(UnderwaterTime, UnderwaterTimeVariation);
+			lilypad.SinkSpeed = _rng.ApplyRandomVariation(SinkSpeed, SinkSpeedVariation);
 			lilypad.StartSinking();
 		}
 	}
