@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4cbh5rl7pbi0"]
+
+[ext_resource type="Script" path="res://mobs/nakki_boss/LilypadArena.cs" id="1_xfovr"]
+
+[node name="LilypadArena" type="Node2D"]
+script = ExtResource("1_xfovr")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx1rgdo7tcgiw"]
+
+[ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_7tlj0"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiEmergeOnTriggerState.cs" id="2_8m28h"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiBossIdle.cs" id="3_j3hhp"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiLilypadAttack.cs" id="4_0wcte"]
+
+[node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_7tlj0")]
+DefaultState = NodePath("NakkiEmergeOnTriggerState")
+
+[node name="NakkiEmergeOnTriggerState" type="Node" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge")]
+script = ExtResource("2_8m28h")
+EnterStateAfterEmerge = NodePath("../NakkiBossIdle")
+
+[node name="NakkiBossIdle" type="Node" parent="." index="7"]
+script = ExtResource("3_j3hhp")
+
+[node name="NakkiLilypadAttack" type="Node" parent="." index="8" node_paths=PackedStringArray("IdleState")]
+script = ExtResource("4_0wcte")
+IdleState = NodePath("../NakkiBossIdle")

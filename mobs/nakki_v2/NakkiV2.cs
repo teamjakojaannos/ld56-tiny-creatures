@@ -8,6 +8,8 @@ namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class NakkiV2 : Path2D {
+	[Signal] public delegate void LilypadAttackSignalEventHandler();
+
 	[Export] public float Speed { get; set; } = 50.0f;
 	[Export] public float DetectionGain { get; set; } = 100.0f;
 	[Export] public float DetectionDecay { get; set; } = 60.0f;
@@ -341,5 +343,17 @@ public partial class NakkiV2 : Path2D {
 
 	public void PlayerEnteredTrigger() {
 		CurrentState.ReceiveTrigger(this);
+	}
+
+	public void PlayLilypadAttackAnimation() {
+		AnimationPlayer.Play("lilypad_attack");
+	}
+
+	private void LilypadAttackAnimationDone() {
+		CurrentState.NakkiAnimationFinished(this, NakkiAnimation.LilypadAttack);
+	}
+
+	private void SinkLilypads() {
+		EmitSignal(SignalName.LilypadAttackSignal);
 	}
 }

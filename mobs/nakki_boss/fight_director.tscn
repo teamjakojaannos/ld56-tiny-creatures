@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2umev6qdjism"]
+
+[ext_resource type="Script" path="res://mobs/nakki_boss/FightDirector.cs" id="1_43e36"]
+
+[node name="FightDirector" type="Node"]
+script = ExtResource("1_43e36")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=22 format=3 uid="uid://8lvqy3vv7876"]
 
 [ext_resource type="PackedScene" uid="uid://d2t0ix0154bii" path="res://mobs/nakki_v2/archetypes/nakki_default.tscn" id="1_sovr5"]
 [ext_resource type="PackedScene" uid="uid://d0bvdnhtwhjen" path="res://mobs/nakki_v2/archetypes/instakill_nakki.tscn" id="2_57t8s"]
@@ -6,7 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://doaavktwaav52" path="res://mobs/nakki_v2/archetypes/nakki_dive_on_trigger.tscn" id="3_g5g6j"]
 [ext_resource type="PackedScene" uid="uid://cln17kxluf0oa" path="res://mobs/nakki_v2/archetypes/nakki_emerge_on_trigger.tscn" id="4_1ww58"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="7_vxuua"]
+[ext_resource type="PackedScene" uid="uid://c2umev6qdjism" path="res://mobs/nakki_boss/fight_director.tscn" id="8_frbou"]
 [ext_resource type="Script" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
+[ext_resource type="PackedScene" uid="uid://dx1rgdo7tcgiw" path="res://mobs/nakki_boss/nakki_boss.tscn" id="8_wcbjp"]
+[ext_resource type="PackedScene" uid="uid://1hvnb01k8tt3" path="res://mobs/nakki_boss/boss_lilypad.tscn" id="9_h6tgj"]
+[ext_resource type="PackedScene" uid="uid://b4cbh5rl7pbi0" path="res://mobs/nakki_boss/lilypad_arena.tscn" id="10_ucfyn"]
 
 [sub_resource type="Curve2D" id="Curve2D_w0l2u"]
 _data = {
@@ -38,10 +42,25 @@ size = Vector2(130, 130)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bs7ua"]
 size = Vector2(130, 130)
 
+[sub_resource type="Curve2D" id="Curve2D_kvgq2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpqvo"]
+size = Vector2(400, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur1bv"]
+size = Vector2(10, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w5tt"]
+size = Vector2(31, 107)
+
 [node name="BogTest" type="Node2D"]
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["HubSpawn", "PlayerSpawn"]]
-position = Vector2(176, 84)
+position = Vector2(718, -41)
 
 [node name="Näkki" parent="." instance=ExtResource("1_sovr5")]
 position = Vector2(73, -27)
@@ -93,3 +112,82 @@ NakkiToTrigger = NodePath("../../EmergeNäkki")
 [node name="Collider" type="CollisionShape2D" parent="TriggerSprite2/Trigger"]
 position = Vector2(0, 4.57764e-05)
 shape = SubResource("RectangleShape2D_bs7ua")
+
+[node name="BossArena" type="Node2D" parent="."]
+position = Vector2(1091, -110)
+
+[node name="FightDirector" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadAttack", "LilypadArena") instance=ExtResource("8_frbou")]
+Nakki = NodePath("../MotherNäkki")
+LilypadAttack = NodePath("../MotherNäkki/NakkiLilypadAttack")
+LilypadArena = NodePath("../LilypadArena")
+
+[node name="ColorRect" type="ColorRect" parent="BossArena"]
+offset_left = -278.0
+offset_top = -92.0
+offset_right = 271.0
+offset_bottom = 183.0
+color = Color(0.0666667, 0.0901961, 0.054902, 1)
+
+[node name="MotherNäkki" parent="BossArena" instance=ExtResource("8_wcbjp")]
+position = Vector2(-39, -27)
+curve = SubResource("Curve2D_kvgq2")
+DetectionGain = 0.0
+DetectionDecay = 100.0
+
+[node name="LilypadArena" parent="BossArena" instance=ExtResource("10_ucfyn")]
+position = Vector2(-76, 28)
+
+[node name="Lilypad" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+
+[node name="Lilypad2" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(36, 0)
+
+[node name="Lilypad3" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(72, 0)
+
+[node name="Lilypad4" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(0, 26)
+
+[node name="Lilypad5" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(36, 26)
+
+[node name="Lilypad6" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(72, 26)
+
+[node name="Lilypad7" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(0, 52)
+
+[node name="Lilypad8" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(36, 52)
+
+[node name="Lilypad9" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(72, 52)
+
+[node name="Walls" type="StaticBody2D" parent="BossArena"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="BossArena/Walls"]
+shape = SubResource("RectangleShape2D_cpqvo")
+
+[node name="Bottom" type="CollisionShape2D" parent="BossArena/Walls"]
+position = Vector2(0, 100)
+shape = SubResource("RectangleShape2D_cpqvo")
+
+[node name="Right" type="CollisionShape2D" parent="BossArena/Walls"]
+position = Vector2(195, 50)
+shape = SubResource("RectangleShape2D_ur1bv")
+
+[node name="BossTrigger" type="Area2D" parent="BossArena" node_paths=PackedStringArray("NakkiToTrigger")]
+position = Vector2(-223, 62)
+script = ExtResource("8_pjiqu")
+NakkiToTrigger = NodePath("../MotherNäkki")
+
+[node name="Sprite2D" type="Sprite2D" parent="BossArena/BossTrigger"]
+scale = Vector2(0.234375, 0.859375)
+texture = ExtResource("7_vxuua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/BossTrigger"]
+shape = SubResource("RectangleShape2D_8w5tt")
+
+[editable path="BossArena/MotherNäkki"]
