@@ -21,6 +21,14 @@ public partial class BossLilypad : Node2D {
 	}
 	private AnimationPlayer? _animationPlayer;
 
+	[Export]
+	[MustSetInEditor]
+	public CollisionShape2D Blocker {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_blocker);
+		set => this.SetExportProperty(ref _blocker, value);
+	}
+	private CollisionShape2D? _blocker;
+
 	private Timer UnderwaterTimer {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_underwaterTimer);
 		set => this.SetExportProperty(ref _underwaterTimer, value);
@@ -64,6 +72,8 @@ public partial class BossLilypad : Node2D {
 				RiseAnimationDone();
 			}
 		};
+
+		SetSolid(false);
 	}
 
 	public void StartSinking() {
@@ -72,6 +82,7 @@ public partial class BossLilypad : Node2D {
 	}
 
 	private void SinkAnimationDone() {
+		SetSolid(true);
 		UnderwaterTimer.Start(UnderwaterTime);
 	}
 
@@ -81,6 +92,7 @@ public partial class BossLilypad : Node2D {
 
 	private void RiseAnimationDone() {
 		IsUnderwater = false;
+		SetSolid(false);
 	}
 
 	public void ForceToSurface() {
@@ -88,6 +100,7 @@ public partial class BossLilypad : Node2D {
 		AnimationPlayer.Stop();
 		AnimationPlayer.Play("RESET");
 		IsUnderwater = false;
+		SetSolid(false);
 	}
 
 	private void DealDamage() {
@@ -95,6 +108,10 @@ public partial class BossLilypad : Node2D {
 			// TODO:
 			GD.Print("Oh no! Player died from standing on lilypad!");
 		}
+	}
+
+	private void SetSolid(bool isSolid) {
+		Blocker.SetDeferred(CollisionShape2D.PropertyName.Disabled, !isSolid);
 	}
 
 	private void OnBodyEnter(Node2D node) {

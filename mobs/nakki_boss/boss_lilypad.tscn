@@ -108,11 +108,19 @@ _data = {
 "sink": SubResource("Animation_mhkvb")
 }
 
-[node name="Lilypad" type="Node2D" node_paths=PackedStringArray("AnimationPlayer")]
+[node name="Lilypad" type="Node2D" node_paths=PackedStringArray("AnimationPlayer", "Blocker")]
 script = ExtResource("1_lpmwe")
 UnderwaterTime = 2.0
 SinkSpeed = 1.25
 AnimationPlayer = NodePath("AnimationPlayer")
+Blocker = NodePath("Blocker/Collider")
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Collider" type="CollisionShape2D" parent="Blocker"]
+shape = SubResource("RectangleShape2D_3k24a")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
