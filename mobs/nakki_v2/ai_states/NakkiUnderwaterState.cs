@@ -108,7 +108,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
 		if (animation == NakkiAnimation.Dive) {
-			var randomTime = _rng.RandomWithVariation(UnderwaterTime, UnderwaterTimeVariation);
+			var randomTime = _rng.ApplyRandomVariation(UnderwaterTime, UnderwaterTimeVariation);
 			var time = randomTime * DiveTimeMultiplier;
 			GetTree().CreateTimer(time).Timeout += () => {
 				_isDoneDiving = true;

@@ -63,7 +63,7 @@ public partial class NakkiStalkState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneStalking = false;
 
-		var time = _rng.RandomWithVariation(StalkTime, StalkTimeVariation);
+		var time = _rng.ApplyRandomVariation(StalkTime, StalkTimeVariation);
 		GetTree().CreateTimer(time).Timeout += () => {
 			_isDoneStalking = true;
 		};

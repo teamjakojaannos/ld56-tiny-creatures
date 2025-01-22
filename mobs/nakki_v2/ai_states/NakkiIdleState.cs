@@ -63,7 +63,7 @@ public partial class NakkiIdleState : NakkiAiState {
 	public override void EnterState(NakkiV2 nakki) {
 		_isDoneIdling = false;
 
-		var time = _rng.RandomWithVariation(IdleTime, IdleTimeVariation);
+		var time = _rng.ApplyRandomVariation(IdleTime, IdleTimeVariation);
 		GetTree().CreateTimer(time).Timeout += () => {
 			_isDoneIdling = true;
 		};

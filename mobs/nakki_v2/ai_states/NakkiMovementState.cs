@@ -76,7 +76,7 @@ public partial class NakkiMovementState : NakkiAiState {
 
 		_isDoneMoving = false;
 
-		var time = _rng.RandomWithVariation(MoveTime, MoveTimeVariation);
+		var time = _rng.ApplyRandomVariation(MoveTime, MoveTimeVariation);
 		GetTree().CreateTimer(time).Timeout += () => {
 			_isDoneMoving = true;
 		};

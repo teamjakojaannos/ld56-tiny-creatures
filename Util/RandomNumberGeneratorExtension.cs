@@ -55,8 +55,8 @@ public static class RandomNumberGeneratorExtension {
 			.First();
 	}
 
-	public static float RandomWithVariation(this RandomNumberGenerator rng, float baseChance, float variationPercent) {
-		var v = rng.RandfRange(-variationPercent, variationPercent);
-		return baseChance * (1.0f + v);
+	public static float ApplyRandomVariation(this RandomNumberGenerator rng, float value, float variationPercent) {
+		var variation = rng.RandfRange(-variationPercent, variationPercent);
+		return value * (1.0f + variation);
 	}
 }
