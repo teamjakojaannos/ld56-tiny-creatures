@@ -61,11 +61,9 @@ public partial class NakkiLilypadAttack : NakkiAiState {
 	}
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
-		if (animation != NakkiAnimation.LilypadAttack) {
-			return;
+		if (animation == NakkiAnimation.LilypadAttack) {
+			_animationDone = true;
 		}
-
-		_animationDone = true;
 	}
 
 	public override bool IsStateReady(NakkiV2 nakki) {
