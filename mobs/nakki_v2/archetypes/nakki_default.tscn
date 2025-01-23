@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2t0ix0154bii"]
+
+[ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_rptid"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiIdleState.cs" id="2_ynyiy"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiMovementState.cs" id="3_6bclu"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiUnderwaterState.cs" id="4_nbli3"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiStalkState.cs" id="5_vjygf"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiAttackState.cs" id="6_ij3x4"]
+[ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="7_w8aiv"]
+
+[node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_rptid")]
+DefaultState = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="." index="6" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneIdling")]
+script = ExtResource("2_ynyiy")
+StalkState = NodePath("../Stalk")
+AttackState = NodePath("../AttackState")
+PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Movement"), NodePath("../Dive")]
+
+[node name="Movement" type="Node" parent="." index="7" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneMoving")]
+script = ExtResource("3_6bclu")
+StalkState = NodePath("../Stalk")
+AttackState = NodePath("../AttackState")
+PickOneOfTheseStatesWhenDoneMoving = [NodePath("../Idle"), NodePath("../Dive")]
+
+[node name="Dive" type="Node" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving")]
+script = ExtResource("4_nbli3")
+PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle"), NodePath("../Movement")]
+
+[node name="Stalk" type="Node" parent="." index="9" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState")]
+script = ExtResource("5_vjygf")
+IdleState = NodePath("../Idle")
+AttackState = NodePath("../AttackState")
+DiveState = NodePath("../Dive")
+
+[node name="AttackState" type="Node" parent="." index="10" node_paths=PackedStringArray("DiveState")]
+script = ExtResource("6_ij3x4")
+WaterSplash = ExtResource("7_w8aiv")
+DiveState = NodePath("../Dive")

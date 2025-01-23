@@ -54,4 +54,9 @@ public static class RandomNumberGeneratorExtension {
 			.Skip(rng.RandiRange(0, values.Count() - 1))
 			.First();
 	}
+
+	public static float ApplyRandomVariation(this RandomNumberGenerator rng, float value, float variationPercent) {
+		var variation = rng.RandfRange(-variationPercent, variationPercent);
+		return value * (1.0f + variation);
+	}
 }

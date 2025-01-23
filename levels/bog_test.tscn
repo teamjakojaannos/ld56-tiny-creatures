@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://8lvqy3vv7876"]
+
+[ext_resource type="PackedScene" uid="uid://d2t0ix0154bii" path="res://mobs/nakki_v2/archetypes/nakki_default.tscn" id="1_sovr5"]
+[ext_resource type="PackedScene" uid="uid://d0bvdnhtwhjen" path="res://mobs/nakki_v2/archetypes/instakill_nakki.tscn" id="2_57t8s"]
+[ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_bi5lu"]
+[ext_resource type="PackedScene" uid="uid://doaavktwaav52" path="res://mobs/nakki_v2/archetypes/nakki_dive_on_trigger.tscn" id="3_g5g6j"]
+[ext_resource type="PackedScene" uid="uid://cln17kxluf0oa" path="res://mobs/nakki_v2/archetypes/nakki_emerge_on_trigger.tscn" id="4_1ww58"]
+[ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="7_vxuua"]
+[ext_resource type="Script" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
+
+[sub_resource type="Curve2D" id="Curve2D_w0l2u"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ovfps"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_wmki6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_r44y0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phpyv"]
+size = Vector2(130, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bs7ua"]
+size = Vector2(130, 130)
+
+[node name="BogTest" type="Node2D"]
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["HubSpawn", "PlayerSpawn"]]
+position = Vector2(176, 84)
+
+[node name="Näkki" parent="." instance=ExtResource("1_sovr5")]
+position = Vector2(73, -27)
+curve = SubResource("Curve2D_w0l2u")
+
+[node name="InstakillNäkki" parent="." instance=ExtResource("2_57t8s")]
+position = Vector2(-12, 140)
+curve = SubResource("Curve2D_ovfps")
+
+[node name="DiveNäkki" parent="." instance=ExtResource("3_g5g6j")]
+position = Vector2(385, -22)
+curve = SubResource("Curve2D_wmki6")
+
+[node name="EmergeNäkki" parent="." instance=ExtResource("4_1ww58")]
+position = Vector2(400, 110)
+curve = SubResource("Curve2D_r44y0")
+
+[node name="BogRock" parent="." instance=ExtResource("2_bi5lu")]
+position = Vector2(75, 10)
+
+[node name="BogRock2" parent="." instance=ExtResource("2_bi5lu")]
+position = Vector2(13, 177)
+
+[node name="TriggerSprite" type="Sprite2D" parent="."]
+position = Vector2(309, 43)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_vxuua")
+
+[node name="Trigger" type="Area2D" parent="TriggerSprite" node_paths=PackedStringArray("NakkiToTrigger")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("8_pjiqu")
+NakkiToTrigger = NodePath("../../DiveNäkki")
+
+[node name="Collider" type="CollisionShape2D" parent="TriggerSprite/Trigger"]
+shape = SubResource("RectangleShape2D_phpyv")
+
+[node name="TriggerSprite2" type="Sprite2D" parent="."]
+position = Vector2(300, 120)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_vxuua")
+
+[node name="Trigger" type="Area2D" parent="TriggerSprite2" node_paths=PackedStringArray("NakkiToTrigger")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("8_pjiqu")
+NakkiToTrigger = NodePath("../../EmergeNäkki")
+
+[node name="Collider" type="CollisionShape2D" parent="TriggerSprite2/Trigger"]
+position = Vector2(0, 4.57764e-05)
+shape = SubResource("RectangleShape2D_bs7ua")
