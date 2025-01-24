@@ -135,9 +135,9 @@ curve = SubResource("Curve2D_kvgq2")
 DetectionGain = 0.0
 DetectionDecay = 100.0
 
-[node name="NakkiSweepAttackState" parent="BossArena/MotherNäkki" index="9" node_paths=PackedStringArray("SweepAttackContainer", "SweepAttackPosition")]
+[node name="NakkiSweepAttackState" parent="BossArena/MotherNäkki" index="9" node_paths=PackedStringArray("SweepAttackContainer", "SweepAttackPositions")]
 SweepAttackContainer = NodePath("../../SweepAttackContainer")
-SweepAttackPosition = NodePath("../../SweepAttackPositions/Marker2D")
+SweepAttackPositions = [NodePath("../../SweepAttackPositions/Marker2D"), NodePath("../../SweepAttackPositions/Marker2D2"), NodePath("../../SweepAttackPositions/Marker2D3")]
 
 [node name="LilypadArena" parent="BossArena" instance=ExtResource("10_ucfyn")]
 position = Vector2(-76, 28)
@@ -198,7 +198,13 @@ shape = SubResource("RectangleShape2D_8w5tt")
 [node name="SweepAttackPositions" type="Node2D" parent="BossArena"]
 
 [node name="Marker2D" type="Marker2D" parent="BossArena/SweepAttackPositions"]
-position = Vector2(-76, 10)
+position = Vector2(-76, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="BossArena/SweepAttackPositions"]
+position = Vector2(-39, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="BossArena/SweepAttackPositions"]
+position = Vector2(-3, 0)
 
 [node name="SweepAttackContainer" type="Node2D" parent="BossArena"]
 

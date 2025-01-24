@@ -1,5 +1,6 @@
 using Godot;
 using System.Linq;
+using Godot.Collections;
 
 using Jakojaannos.WisperingWoods.Util.Editor;
 
@@ -37,12 +38,7 @@ public partial class NakkiSweepAttackState : NakkiAiState {
 	private Node2D? _sweepAttackContainer;
 
 	[Export]
-	[MustSetInEditor]
-	public Node2D SweepAttackPosition {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_sweepAttackPosition);
-		set => this.SetExportProperty(ref _sweepAttackPosition, value);
-	}
-	private Node2D? _sweepAttackPosition;
+	public Array<Node2D> SweepAttackPositions { get; set; } = [];
 
 	private Timer CooldownTimer {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_cooldownTimer);
@@ -57,6 +53,10 @@ public partial class NakkiSweepAttackState : NakkiAiState {
 
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? [];
+
+		if (SweepAttackPositions.Count == 0) {
+			warnings = warnings.Append("List of sweep attack positions is empty!").ToArray();
+		}
 
 		return warnings
 			.Union(this.CheckCommonConfigurationWarnings())
@@ -104,7 +104,8 @@ public partial class NakkiSweepAttackState : NakkiAiState {
 			   attack pos = attack global pos - parent global pos
 			              = marker global pos - parent global pos
 		*/
-		var position = SweepAttackPosition.GlobalPosition - SweepAttackContainer.GlobalPosition;
+		var sweepPosition = SweepAttackPositions.PickRandom();
+		var position = sweepPosition.GlobalPosition - SweepAttackContainer.GlobalPosition;
 		sweep.Position = position;
 
 		SweepAttackContainer.AddChild(sweep);
