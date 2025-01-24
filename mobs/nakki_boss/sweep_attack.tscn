@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccskr82gjkepb"]
+
+[ext_resource type="Script" path="res://mobs/nakki_boss/SweepAttack.cs" id="1_57nrk"]
+[ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="1_iiyog"]
+
+[sub_resource type="Curve2D" id="Curve2D_hgus0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100)
+}
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lps2"]
+atlas = ExtResource("1_iiyog")
+region = Rect2(0, 0, 55, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1ahd"]
+atlas = ExtResource("1_iiyog")
+region = Rect2(55, 0, 55, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jna12"]
+atlas = ExtResource("1_iiyog")
+region = Rect2(110, 0, 55, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqmau"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lps2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1ahd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jna12")
+}],
+"loop": false,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k87j"]
+size = Vector2(40, 20)
+
+[sub_resource type="Animation" id="Animation_g8st3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path/Follow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path/Follow/Hand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2k4in"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path/Follow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path/Follow/Hand:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efk5p"]
+_data = {
+"RESET": SubResource("Animation_g8st3"),
+"attack": SubResource("Animation_2k4in")
+}
+
+[node name="SweepAttack" type="Node2D" node_paths=PackedStringArray("PlayerDetector", "AnimationPlayer")]
+script = ExtResource("1_57nrk")
+PlayerDetector = NodePath("Path/Follow/PlayerDetector")
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hgus0")
+
+[node name="Follow" type="PathFollow2D" parent="Path"]
+rotates = false
+loop = false
+
+[node name="Hand" type="AnimatedSprite2D" parent="Path/Follow"]
+sprite_frames = SubResource("SpriteFrames_tqmau")
+
+[node name="PlayerDetector" type="Area2D" parent="Path/Follow"]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path/Follow/PlayerDetector"]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_1k87j")
+debug_color = Color(0.784314, 0, 0, 0.419608)
+
+[node name="DangerZone" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 100.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(1, 0, 0, 0.25098)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_efk5p")
+}

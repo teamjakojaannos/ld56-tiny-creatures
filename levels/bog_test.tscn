@@ -116,10 +116,11 @@ shape = SubResource("RectangleShape2D_bs7ua")
 [node name="BossArena" type="Node2D" parent="."]
 position = Vector2(1091, -110)
 
-[node name="FightDirector" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadAttack", "LilypadArena") instance=ExtResource("8_frbou")]
+[node name="FightDirector" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadAttack", "LilypadArena", "SweepAttack") instance=ExtResource("8_frbou")]
 Nakki = NodePath("../MotherNäkki")
 LilypadAttack = NodePath("../MotherNäkki/NakkiLilypadAttack")
 LilypadArena = NodePath("../LilypadArena")
+SweepAttack = NodePath("../MotherNäkki/NakkiSweepAttackState")
 
 [node name="ColorRect" type="ColorRect" parent="BossArena"]
 offset_left = -278.0
@@ -133,6 +134,10 @@ position = Vector2(-39, -27)
 curve = SubResource("Curve2D_kvgq2")
 DetectionGain = 0.0
 DetectionDecay = 100.0
+
+[node name="NakkiSweepAttackState" parent="BossArena/MotherNäkki" index="9" node_paths=PackedStringArray("SweepAttackContainer", "SweepAttackPosition")]
+SweepAttackContainer = NodePath("../../SweepAttackContainer")
+SweepAttackPosition = NodePath("../../SweepAttackPositions/Marker2D")
 
 [node name="LilypadArena" parent="BossArena" instance=ExtResource("10_ucfyn")]
 position = Vector2(-76, 28)
@@ -189,5 +194,12 @@ texture = ExtResource("7_vxuua")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/BossTrigger"]
 shape = SubResource("RectangleShape2D_8w5tt")
+
+[node name="SweepAttackPositions" type="Node2D" parent="BossArena"]
+
+[node name="Marker2D" type="Marker2D" parent="BossArena/SweepAttackPositions"]
+position = Vector2(-76, 10)
+
+[node name="SweepAttackContainer" type="Node2D" parent="BossArena"]
 
 [editable path="BossArena/MotherNäkki"]

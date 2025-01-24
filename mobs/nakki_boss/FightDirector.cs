@@ -32,6 +32,14 @@ public partial class FightDirector : Node {
 	}
 	private LilypadArena? _lilypadArena;
 
+	[Export]
+	[MustSetInEditor]
+	public NakkiSweepAttackState SweepAttack {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_sweepAttack);
+		set => this.SetExportProperty(ref _sweepAttack, value);
+	}
+	private NakkiSweepAttackState? _sweepAttack;
+
 
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? [])
@@ -67,6 +75,12 @@ public partial class FightDirector : Node {
 
 		if (canUseLilypadAttack) {
 			Nakki.CurrentState = LilypadAttack;
+			return;
+		}
+
+		var canUseSweepAttack = SweepAttack.IsStateReady(Nakki);
+		if (canUseSweepAttack) {
+			Nakki.CurrentState = SweepAttack;
 			return;
 		}
 	}
