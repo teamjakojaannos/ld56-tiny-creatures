@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=23 format=3 uid="uid://8lvqy3vv7876"]
 
 [ext_resource type="PackedScene" uid="uid://d2t0ix0154bii" path="res://mobs/nakki_v2/archetypes/nakki_default.tscn" id="1_sovr5"]
 [ext_resource type="PackedScene" uid="uid://d0bvdnhtwhjen" path="res://mobs/nakki_v2/archetypes/instakill_nakki.tscn" id="2_57t8s"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dx1rgdo7tcgiw" path="res://mobs/nakki_boss/nakki_boss.tscn" id="8_wcbjp"]
 [ext_resource type="PackedScene" uid="uid://1hvnb01k8tt3" path="res://mobs/nakki_boss/boss_lilypad.tscn" id="9_h6tgj"]
 [ext_resource type="PackedScene" uid="uid://b4cbh5rl7pbi0" path="res://mobs/nakki_boss/lilypad_arena.tscn" id="10_ucfyn"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiBossMovementState.cs" id="10_uig1i"]
 
 [sub_resource type="Curve2D" id="Curve2D_w0l2u"]
 _data = {
@@ -44,7 +45,7 @@ size = Vector2(130, 130)
 
 [sub_resource type="Curve2D" id="Curve2D_kvgq2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0)
 }
 point_count = 2
 
@@ -116,10 +117,11 @@ shape = SubResource("RectangleShape2D_bs7ua")
 [node name="BossArena" type="Node2D" parent="."]
 position = Vector2(1091, -110)
 
-[node name="FightDirector" type="Node" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadArena")]
+[node name="FightDirector" type="Node" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadArena", "StartPosition")]
 script = ExtResource("8_hk11w")
 Nakki = NodePath("../MotherNäkki")
 LilypadArena = NodePath("../LilypadArena")
+StartPosition = NodePath("../NakkiMovementPoints/Stage1")
 
 [node name="ColorRect" type="ColorRect" parent="BossArena"]
 offset_left = -278.0
@@ -134,9 +136,15 @@ curve = SubResource("Curve2D_kvgq2")
 DetectionGain = 0.0
 DetectionDecay = 100.0
 
-[node name="EasyStage" parent="BossArena/MotherNäkki" index="8" node_paths=PackedStringArray("SweepAttackContainer", "SweepAttackPositions")]
+[node name="EasyStage" parent="BossArena/MotherNäkki" index="8" node_paths=PackedStringArray("NextState", "SweepAttackContainer", "SweepAttackPositions")]
+NextState = NodePath("../NakkiBossMovementState")
 SweepAttackContainer = NodePath("../../SweepAttackContainer")
 SweepAttackPositions = [NodePath("../../SweepAttackPositions/Marker2D"), NodePath("../../SweepAttackPositions/Marker2D2"), NodePath("../../SweepAttackPositions/Marker2D3")]
+
+[node name="NakkiBossMovementState" type="Node" parent="BossArena/MotherNäkki" node_paths=PackedStringArray("NextState", "MovementTarget")]
+script = ExtResource("10_uig1i")
+NextState = NodePath("../NakkiBossIdle")
+MovementTarget = NodePath("../../NakkiMovementPoints/Stage2")
 
 [node name="LilypadArena" parent="BossArena" instance=ExtResource("10_ucfyn")]
 position = Vector2(-76, 28)
@@ -206,5 +214,13 @@ position = Vector2(-39, 0)
 position = Vector2(-3, 0)
 
 [node name="SweepAttackContainer" type="Node2D" parent="BossArena"]
+
+[node name="NakkiMovementPoints" type="Node2D" parent="BossArena"]
+
+[node name="Stage1" type="Marker2D" parent="BossArena/NakkiMovementPoints"]
+position = Vector2(-39, -27)
+
+[node name="Stage2" type="Marker2D" parent="BossArena/NakkiMovementPoints"]
+position = Vector2(51, -27)
 
 [editable path="BossArena/MotherNäkki"]

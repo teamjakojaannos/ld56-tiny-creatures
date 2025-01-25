@@ -24,6 +24,14 @@ public partial class FightDirector : Node {
 	}
 	private LilypadArena? _lilypadArena;
 
+	[Export]
+	[MustSetInEditor]
+	public Node2D StartPosition {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_startPosition);
+		set => this.SetExportProperty(ref _startPosition, value);
+	}
+	private Node2D? _startPosition;
+
 
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? [])
@@ -59,5 +67,7 @@ public partial class FightDirector : Node {
 
 	private void Reset() {
 		LilypadArena.ResetLilypads();
+		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
+		Nakki.TeleportToProgress(relative.X);
 	}
 }

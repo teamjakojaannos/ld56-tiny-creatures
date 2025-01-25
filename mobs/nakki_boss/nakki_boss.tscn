@@ -16,7 +16,6 @@ EnterStateAfterEmerge = NodePath("../EasyStage")
 [node name="NakkiBossIdle" type="Node" parent="." index="7"]
 script = ExtResource("3_j3hhp")
 
-[node name="EasyStage" type="Node" parent="." index="8" node_paths=PackedStringArray("NextState")]
+[node name="EasyStage" type="Node" parent="." index="8"]
 script = ExtResource("4_5ghso")
-NextState = NodePath("../NakkiBossIdle")
 SweepAttackScene = ExtResource("6_uiu03")
