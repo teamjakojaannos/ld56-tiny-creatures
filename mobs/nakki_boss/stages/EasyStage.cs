@@ -14,6 +14,15 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 	[Export] public int MinAttacksBeforeNextState { get; set; } = 3;
 	[Export] public int MaxAttacksBeforeNextState { get; set; } = 6;
 
+	[ExportGroup("SweepAttack")]
+	[Export] public float HandSpeed { get; set; } = 50.0f;
+
+	[ExportGroup("LilypadAttack")]
+	[Export] public float UnderwaterTime { get; set; } = 1.5f;
+	[Export] public float UnderwaterTimeVariation { get; set; } = 0.5f;
+	[Export] public float SinkSpeed { get; set; } = 1.0f;
+	[Export] public float SinkSpeedVariation { get; set; } = 0.5f;
+
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -129,7 +138,7 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 	public LilypadAttackStats GetAttackStats() {
 		var id = LilypadAttackStats.GenerateId();
 		_waitingForAttackId = id;
-		return new(attackId: id);
+		return new(AttackId: id);
 	}
 
 	private void StartCooldown() {
@@ -155,6 +164,7 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 
 		var sweep = SweepAttackScene.Instantiate<SweepAttack>();
 		sweep.AttackDone += StartCooldown;
+		sweep.Speed = HandSpeed;
 
 		/* We need to set position before we add attack node as a child, otherwise we could
 			accidentally spawn it on top of player for 1 frame (or 0.1 of a frame), causing it

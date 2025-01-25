@@ -5,15 +5,13 @@ public interface HasLilypadAttack {
 	public void LilypadAttackWasCompleted(int attackId);
 }
 
-public class LilypadAttackStats {
-
-	public readonly int? AttackId;
-
-	public LilypadAttackStats() { }
-
-	public LilypadAttackStats(int attackId) {
-		AttackId = attackId;
-	}
+public record LilypadAttackStats(
+		float UnderwaterTime = 1.5f,
+		float UnderwaterTimeVariation = 0.5f,
+		float SinkSpeed = 1.0f,
+		float SinkSpeedVariation = 0.5f,
+		int? AttackId = null
+	) {
 
 	public static LilypadAttackStats Default() {
 		return new();

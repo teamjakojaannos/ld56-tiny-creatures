@@ -10,11 +10,6 @@ using LilypadAttack = (int id, HashSet<BossLilypad> lilypads);
 
 [Tool]
 public partial class LilypadArena : Node2D {
-	[Export] public float UnderwaterTime { get; set; } = 1.5f;
-	[Export] public float UnderwaterTimeVariation { get; set; } = 0.5f;
-	[Export] public float SinkSpeed { get; set; } = 1.0f;
-	[Export] public float SinkSpeedVariation { get; set; } = 0.5f;
-
 	private Array<BossLilypad> _lilypads = [];
 	private RandomNumberGenerator _rng = new();
 	private readonly List<LilypadAttack> _ongoingAttacks = [];
@@ -43,8 +38,8 @@ public partial class LilypadArena : Node2D {
 
 		var lilypads = SelectRandomLilypads(_lilypads);
 		foreach (var lilypad in lilypads) {
-			lilypad.UnderwaterTime = _rng.ApplyRandomVariation(UnderwaterTime, UnderwaterTimeVariation);
-			lilypad.SinkSpeed = _rng.ApplyRandomVariation(SinkSpeed, SinkSpeedVariation);
+			lilypad.UnderwaterTime = _rng.ApplyRandomVariation(stats.UnderwaterTime, stats.UnderwaterTimeVariation);
+			lilypad.SinkSpeed = _rng.ApplyRandomVariation(stats.SinkSpeed, stats.SinkSpeedVariation);
 			lilypad.StartSinking();
 
 			if (attack is LilypadAttack i) {
