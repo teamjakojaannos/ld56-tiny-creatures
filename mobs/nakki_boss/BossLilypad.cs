@@ -10,6 +10,7 @@ namespace Jakojaannos.WisperingWoods;
 public partial class BossLilypad : Node2D {
 	[Export] public float UnderwaterTime { get; set; } = 1.5f;
 	[Export] public float SinkSpeed { get; set; } = 1.0f;
+	[Export] public float ShakeAnimationSpeed { get; set; } = 1.0f;
 
 
 	[Export]
@@ -35,9 +36,15 @@ public partial class BossLilypad : Node2D {
 	}
 	private Timer? _underwaterTimer;
 
+	private Timer ShakeTimer {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_shakeTimer);
+		set => this.SetExportProperty(ref _shakeTimer, value);
+	}
+	private Timer? _shakeTimer;
+
 
 	private Player? _player;
-	public bool IsUnderwater { get; private set; } = false;
+	private bool _isDoneShaking;
 	[Signal] public delegate void LilypadEmergedEventHandler(BossLilypad lilypad);
 
 
@@ -66,20 +73,50 @@ public partial class BossLilypad : Node2D {
 		UnderwaterTimer.Timeout += RiseUp;
 		AddChild(UnderwaterTimer);
 
+		ShakeTimer = new Timer {
+			Autostart = false,
+			OneShot = true,
+		};
+		ShakeTimer.Timeout += () => {
+			_isDoneShaking = true;
+		};
+		AddChild(ShakeTimer);
+
 		AnimationPlayer.AnimationFinished += (name) => {
 			if (name == "sink") {
 				SinkAnimationDone();
 			} else if (name == "rise") {
 				RiseAnimationDone();
+			} else if (name == "shake") {
+				ShakeAnimationDone();
 			}
 		};
 
 		SetSolid(false);
 	}
 
-	public void StartSinking() {
-		IsUnderwater = true;
-		AnimationPlayer.Play("sink", customSpeed: SinkSpeed);
+	public void StartSinking(
+		float underwaterTime,
+		float sinkSpeed,
+		float shakeTime,
+		float shakeAnimationSpeed
+	) {
+		UnderwaterTime = underwaterTime;
+		SinkSpeed = sinkSpeed;
+		ShakeAnimationSpeed = shakeAnimationSpeed;
+
+		_isDoneShaking = false;
+		ShakeTimer.Start(shakeTime);
+		AnimationPlayer.Play("shake", customSpeed: ShakeAnimationSpeed);
+	}
+
+	private void ShakeAnimationDone() {
+		if (_isDoneShaking) {
+			AnimationPlayer.Play("sink", customSpeed: SinkSpeed);
+			return;
+		}
+
+		AnimationPlayer.Play("shake", customSpeed: ShakeAnimationSpeed);
 	}
 
 	private void SinkAnimationDone() {
@@ -92,7 +129,6 @@ public partial class BossLilypad : Node2D {
 	}
 
 	private void RiseAnimationDone() {
-		IsUnderwater = false;
 		SetSolid(false);
 		EmitSignal(SignalName.LilypadEmerged, this);
 	}
@@ -101,8 +137,8 @@ public partial class BossLilypad : Node2D {
 		UnderwaterTimer.Stop();
 		AnimationPlayer.Stop();
 		AnimationPlayer.Play("RESET");
-		IsUnderwater = false;
 		SetSolid(false);
+		ShakeTimer.Stop();
 	}
 
 	private void DealDamage() {

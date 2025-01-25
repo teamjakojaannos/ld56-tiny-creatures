@@ -10,6 +10,8 @@ public record LilypadAttackStats(
 		float UnderwaterTimeVariation = 0.5f,
 		float SinkSpeed = 1.0f,
 		float SinkSpeedVariation = 0.5f,
+		float ShakeTime = 0.75f,
+		float ShakeTimeVariation = 0.5f,
 		int? AttackId = null
 	) {
 
