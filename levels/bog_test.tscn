@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://doaavktwaav52" path="res://mobs/nakki_v2/archetypes/nakki_dive_on_trigger.tscn" id="3_g5g6j"]
 [ext_resource type="PackedScene" uid="uid://cln17kxluf0oa" path="res://mobs/nakki_v2/archetypes/nakki_emerge_on_trigger.tscn" id="4_1ww58"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="7_vxuua"]
-[ext_resource type="PackedScene" uid="uid://c2umev6qdjism" path="res://mobs/nakki_boss/fight_director.tscn" id="8_frbou"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/FightDirector.cs" id="8_hk11w"]
 [ext_resource type="Script" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
 [ext_resource type="PackedScene" uid="uid://dx1rgdo7tcgiw" path="res://mobs/nakki_boss/nakki_boss.tscn" id="8_wcbjp"]
 [ext_resource type="PackedScene" uid="uid://1hvnb01k8tt3" path="res://mobs/nakki_boss/boss_lilypad.tscn" id="9_h6tgj"]
@@ -116,11 +116,10 @@ shape = SubResource("RectangleShape2D_bs7ua")
 [node name="BossArena" type="Node2D" parent="."]
 position = Vector2(1091, -110)
 
-[node name="FightDirector" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadAttack", "LilypadArena", "SweepAttack") instance=ExtResource("8_frbou")]
+[node name="FightDirector" type="Node" parent="BossArena" node_paths=PackedStringArray("Nakki", "LilypadArena")]
+script = ExtResource("8_hk11w")
 Nakki = NodePath("../MotherNäkki")
-LilypadAttack = NodePath("../MotherNäkki/NakkiLilypadAttack")
 LilypadArena = NodePath("../LilypadArena")
-SweepAttack = NodePath("../MotherNäkki/NakkiSweepAttackState")
 
 [node name="ColorRect" type="ColorRect" parent="BossArena"]
 offset_left = -278.0
@@ -135,7 +134,7 @@ curve = SubResource("Curve2D_kvgq2")
 DetectionGain = 0.0
 DetectionDecay = 100.0
 
-[node name="NakkiSweepAttackState" parent="BossArena/MotherNäkki" index="9" node_paths=PackedStringArray("SweepAttackContainer", "SweepAttackPositions")]
+[node name="EasyStage" parent="BossArena/MotherNäkki" index="8" node_paths=PackedStringArray("SweepAttackContainer", "SweepAttackPositions")]
 SweepAttackContainer = NodePath("../../SweepAttackContainer")
 SweepAttackPositions = [NodePath("../../SweepAttackPositions/Marker2D"), NodePath("../../SweepAttackPositions/Marker2D2"), NodePath("../../SweepAttackPositions/Marker2D3")]
 

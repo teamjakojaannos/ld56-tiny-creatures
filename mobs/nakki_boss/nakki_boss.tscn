@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx1rgdo7tcgiw"]
+[gd_scene load_steps=6 format=3 uid="uid://dx1rgdo7tcgiw"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_7tlj0"]
 [ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiEmergeOnTriggerState.cs" id="2_8m28h"]
 [ext_resource type="Script" path="res://mobs/nakki_boss/NakkiBossIdle.cs" id="3_j3hhp"]
-[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiLilypadAttack.cs" id="4_0wcte"]
-[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiSweepAttackState.cs" id="5_7ig4j"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/stages/EasyStage.cs" id="4_5ghso"]
 [ext_resource type="PackedScene" uid="uid://ccskr82gjkepb" path="res://mobs/nakki_boss/sweep_attack.tscn" id="6_uiu03"]
 
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_7tlj0")]
@@ -12,16 +11,12 @@ DefaultState = NodePath("NakkiEmergeOnTriggerState")
 
 [node name="NakkiEmergeOnTriggerState" type="Node" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge")]
 script = ExtResource("2_8m28h")
-EnterStateAfterEmerge = NodePath("../NakkiBossIdle")
+EnterStateAfterEmerge = NodePath("../EasyStage")
 
 [node name="NakkiBossIdle" type="Node" parent="." index="7"]
 script = ExtResource("3_j3hhp")
 
-[node name="NakkiLilypadAttack" type="Node" parent="." index="8" node_paths=PackedStringArray("IdleState")]
-script = ExtResource("4_0wcte")
-IdleState = NodePath("../NakkiBossIdle")
-
-[node name="NakkiSweepAttackState" type="Node" parent="." index="9" node_paths=PackedStringArray("IdleState")]
-script = ExtResource("5_7ig4j")
-IdleState = NodePath("../NakkiBossIdle")
+[node name="EasyStage" type="Node" parent="." index="8" node_paths=PackedStringArray("NextState")]
+script = ExtResource("4_5ghso")
+NextState = NodePath("../NakkiBossIdle")
 SweepAttackScene = ExtResource("6_uiu03")

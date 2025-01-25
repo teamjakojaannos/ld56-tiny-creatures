@@ -38,6 +38,7 @@ public partial class BossLilypad : Node2D {
 
 	private Player? _player;
 	public bool IsUnderwater { get; private set; } = false;
+	[Signal] public delegate void LilypadEmergedEventHandler(BossLilypad lilypad);
 
 
 	public override string[] _GetConfigurationWarnings() {
@@ -93,6 +94,7 @@ public partial class BossLilypad : Node2D {
 	private void RiseAnimationDone() {
 		IsUnderwater = false;
 		SetSolid(false);
+		EmitSignal(SignalName.LilypadEmerged, this);
 	}
 
 	public void ForceToSurface() {

@@ -7,8 +7,6 @@ namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class FightDirector : Node {
-	[Export] public float CooldownBetweenAttacks { get; set; } = 2.0f;
-
 	[Export]
 	[ExportGroup("Prewire")]
 	[MustSetInEditor]
@@ -20,35 +18,11 @@ public partial class FightDirector : Node {
 
 	[Export]
 	[MustSetInEditor]
-	public NakkiLilypadAttack LilypadAttack {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_lilypadAttack);
-		set => this.SetExportProperty(ref _lilypadAttack, value);
-	}
-	private NakkiLilypadAttack? _lilypadAttack;
-
-	[Export]
-	[MustSetInEditor]
 	public LilypadArena LilypadArena {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_lilypadArena);
 		set => this.SetExportProperty(ref _lilypadArena, value);
 	}
 	private LilypadArena? _lilypadArena;
-
-	[Export]
-	[MustSetInEditor]
-	public NakkiSweepAttackState SweepAttack {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_sweepAttack);
-		set => this.SetExportProperty(ref _sweepAttack, value);
-	}
-	private NakkiSweepAttackState? _sweepAttack;
-
-	[Export]
-	[MustSetInEditor]
-	public Timer CooldownTimer {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_cooldownTimer);
-		set => this.SetExportProperty(ref _cooldownTimer, value);
-	}
-	private Timer? _cooldownTimer;
 
 
 	public override string[] _GetConfigurationWarnings() {
@@ -63,55 +37,27 @@ public partial class FightDirector : Node {
 			return;
 		}
 
-		Nakki.LilypadAttackSignal += () => {
-			LilypadArena.SinkLilypads();
-		};
+		Nakki.LilypadAttackSignal += DoLilypadAttack;
+		LilypadArena.LilypadAttackCompleted += OnLilypadAttackCompleted;
 
 		this.Persistent().PlayerRespawned += Reset;
 	}
 
-	public override void _Process(double delta) {
-		if (Engine.IsEditorHint()) {
-			return;
-		}
+	private void DoLilypadAttack() {
+		var stats = Nakki.CurrentState is HasLilypadAttack lpAttack
+			? lpAttack.GetAttackStats()
+			: LilypadAttackStats.Default();
 
-		var isIdling = Nakki.CurrentState is NakkiBossIdle;
-		if (!isIdling) {
-			return;
-		}
+		LilypadArena.SinkLilypads(stats);
+	}
 
-		if (AreAttacksOnCooldown()) {
-			return;
-		}
-
-		var canUseLilypadAttack = LilypadAttack.IsStateReady(Nakki)
-				&& LilypadArena.AreAllLilypadsUp();
-
-		if (canUseLilypadAttack) {
-			Nakki.CurrentState = LilypadAttack;
-			StartCooldown();
-			return;
-		}
-
-		var canUseSweepAttack = SweepAttack.IsStateReady(Nakki);
-		if (canUseSweepAttack) {
-			Nakki.CurrentState = SweepAttack;
-			StartCooldown();
-			return;
+	private void OnLilypadAttackCompleted(int attackId) {
+		if (Nakki.CurrentState is HasLilypadAttack lpAttack) {
+			lpAttack.LilypadAttackWasCompleted(attackId);
 		}
 	}
 
 	private void Reset() {
 		LilypadArena.ResetLilypads();
-		CooldownTimer.Stop();
-	}
-
-	private bool AreAttacksOnCooldown() {
-		return !CooldownTimer.IsStopped();
-	}
-
-	private void StartCooldown() {
-		CooldownTimer.Stop();
-		CooldownTimer.Start(CooldownBetweenAttacks);
 	}
 }
