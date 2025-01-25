@@ -8,6 +8,9 @@ namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class SweepAttack : Node2D {
+	[Export] public float Speed { get; set; } = 50.0f;
+
+
 	[Export]
 	[ExportGroup("Prewire")]
 	[MustSetInEditor]
@@ -25,7 +28,18 @@ public partial class SweepAttack : Node2D {
 	}
 	private AnimationPlayer? _animationPlayer;
 
+	[Export]
+	[MustSetInEditor]
+	public PathFollow2D PathFollow {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_pathFollow);
+		set => this.SetExportProperty(ref _pathFollow, value);
+	}
+	private PathFollow2D? _pathFollow;
+
 	[Signal] public delegate void AttackDoneEventHandler();
+
+
+	private bool _isMoving = false;
 
 
 	public override string[] _GetConfigurationWarnings() {
@@ -43,20 +57,41 @@ public partial class SweepAttack : Node2D {
 
 		PlayerDetector.BodyEntered += OnBodyEnter;
 		AnimationPlayer.AnimationFinished += (name) => {
-			if (name == "attack") {
+			if (name == "disappear") {
 				EmitSignal(SignalName.AttackDone);
 				QueueFree();
 			}
 		};
 	}
 
+	public override void _Process(double delta) {
+		if (!_isMoving) {
+			return;
+		}
+
+		PathFollow.Progress += Speed * (float)delta;
+
+		if (PathFollow.ProgressRatio >= 1.0f) {
+			Disappear();
+		}
+	}
+
 	public void StartAttack() {
-		AnimationPlayer.Play("attack");
+		AnimationPlayer.Play("start_attack");
 	}
 
 	private void OnBodyEnter(Node2D node) {
 		if (node is Player) {
 			GD.Print("Player was hit by Näkki sweep attack!");
 		}
+	}
+
+	private void StartMoving() {
+		_isMoving = true;
+	}
+
+	private void Disappear() {
+		_isMoving = false;
+		AnimationPlayer.Play("disappear");
 	}
 }
