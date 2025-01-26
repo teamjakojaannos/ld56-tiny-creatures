@@ -103,8 +103,21 @@ public partial class SecondStage : NakkiBossStage {
 			return;
 		}
 
-		if (!_isDoingLilypadAttack) {
-			DoLilypadWaveAttack();
+		var attack = GetAvailableAttacks().PickRandom();
+		switch (attack) {
+			case Attacks.Lilypad: {
+					DoLilypadAttack();
+					return;
+				}
+			case Attacks.Sweep: {
+					DoSweepAttack();
+					return;
+				}
+			case Attacks.Wave: {
+					DoLilypadWaveAttack();
+					return;
+				}
+			default: break;
 		}
 	}
 
@@ -123,15 +136,14 @@ public partial class SecondStage : NakkiBossStage {
 	public override bool ShouldTickDetection() { return false; }
 
 	public override void NakkiAnimationFinished(NakkiV2 nakki, NakkiAnimation animation) {
-		/* If näkki is doing a lilypad-wave-attack, we can start a new attack as soon as
+		/* If näkki is doing a lilypad-attack, we can start a new attack as soon as
 			it finishes the animation for it, we don't need to wait for the lilypads to emerge.
 			In other words:
-				1) do animation for wave attack
-				2) näkki is done with wave animation, lilypads start sinking
-				3) näkki can do sweep attacks while wave is going on
+				1) do animation for lilypad attack
+				2) näkki is done with animation, lilypads start sinking
+				3) näkki can do sweep attacks while lilypads do their thing
 		*/
-		var isWaveOngoing = _waves.Count > 0;
-		if (animation == NakkiAnimation.LilypadAttack && isWaveOngoing) {
+		if (animation == NakkiAnimation.LilypadAttack) {
 			StartCooldown();
 		}
 	}
@@ -157,6 +169,42 @@ public partial class SecondStage : NakkiBossStage {
 		return _attackCount >= roll;
 	}
 
+	private void DoSweepAttack() {
+		_readyToAttack = false;
+		_attackCount += 1;
+
+		var sweep = SweepAttackScene.Instantiate<SweepAttack>();
+		sweep.AttackDone += StartCooldown;
+		sweep.Speed = HandSpeed;
+		var sweepPosition = SweepAttackPositions.PickRandom();
+		var position = sweepPosition.GlobalPosition - SweepAttackContainer.GlobalPosition;
+		sweep.Position = position;
+
+		SweepAttackContainer.AddChild(sweep);
+		sweep.StartAttack();
+	}
+
+	private void DoLilypadAttack() {
+		_readyToAttack = false;
+		_attackCount += 1;
+		_isDoingLilypadAttack = true;
+
+		var id = LilypadAttackStats.GenerateId();
+		var stats = new LilypadAttackStats {
+			UnderwaterTime = 1.5f,
+			UnderwaterTimeVariation = 0.5f,
+			SinkSpeed = 1.5f,
+			SinkSpeedVariation = 0.25f,
+			ShakeTime = 0.60f,
+			ShakeTimeVariation = 0.25f,
+			AttackId = id,
+			SelectionStrategy = new RandomSelection(),
+			PlayNakkiAnimation = true,
+		};
+
+		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
+	}
+
 	private void DoLilypadWaveAttack() {
 		_readyToAttack = false;
 		_attackCount += 1;
@@ -166,9 +214,9 @@ public partial class SecondStage : NakkiBossStage {
 		var id2 = LilypadAttackStats.GenerateId();
 		var id3 = LilypadAttackStats.GenerateId();
 
-		var firstWave = WaveStats(id1, "col_1", true);
-		var secondWave = WaveStats(id2, "col_2", false);
-		var thirdWave = WaveStats(id3, "col_3", false);
+		var firstWave = WaveStats(id1, "row_1", true);
+		var secondWave = WaveStats(id2, "row_2", false);
+		var thirdWave = WaveStats(id3, "row_3", false);
 
 		_waves.Add(id1, secondWave);
 		_waves.Add(id2, thirdWave);
@@ -190,8 +238,22 @@ public partial class SecondStage : NakkiBossStage {
 		};
 	}
 
+	private Array<Attacks> GetAvailableAttacks() {
+		var result = new Array<Attacks> {
+			Attacks.Sweep
+		};
+
+		if (!_isDoingLilypadAttack) {
+			result.Add(Attacks.Lilypad);
+			result.Add(Attacks.Wave);
+		}
+
+		return result;
+	}
+
 	private enum Attacks {
 		Lilypad,
 		Sweep,
+		Wave,
 	}
 }

@@ -50,8 +50,17 @@ public partial class LilypadArena : Node2D {
 			}
 		}
 
-		if (attack is LilypadAttack j && j.lilypads.Count > 0) {
-			_ongoingAttacks.Add(j);
+		if (attack is LilypadAttack j) {
+			if (j.lilypads.Count > 0) {
+				_ongoingAttacks.Add(j);
+			} else {
+				/* For some reason our selection didn't find any lilypads to sink 
+					-> give signal that this attack is now finished, otherwise the näkki
+					who started it will wait forever for the attack to finish
+				*/
+				GD.Print($"Warning, lilypad attack didn't find any lilypads to sink with selection: {stats.SelectionStrategy}");
+				EmitSignal(SignalName.LilypadAttackCompleted, j.id);
+			}
 		}
 	}
 
