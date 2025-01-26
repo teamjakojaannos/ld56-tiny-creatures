@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System.Linq;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
@@ -11,6 +12,7 @@ public partial class BossLilypad : Node2D {
 	[Export] public float UnderwaterTime { get; set; } = 1.5f;
 	[Export] public float SinkSpeed { get; set; } = 1.0f;
 	[Export] public float ShakeAnimationSpeed { get; set; } = 1.0f;
+	[Export] public Array<string> Tags { get; set; } = [];
 
 
 	[Export]

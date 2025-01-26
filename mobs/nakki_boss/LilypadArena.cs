@@ -36,7 +36,7 @@ public partial class LilypadArena : Node2D {
 		}
 
 
-		var lilypads = SelectRandomLilypads(_lilypads);
+		var lilypads = stats.SelectionStrategy.SelectLilypads(_lilypads);
 		foreach (var lilypad in lilypads) {
 			var underwaterTime = _rng.ApplyRandomVariation(stats.UnderwaterTime, stats.UnderwaterTimeVariation);
 			var sinkSpeed = _rng.ApplyRandomVariation(stats.SinkSpeed, stats.SinkSpeedVariation);
@@ -79,23 +79,5 @@ public partial class LilypadArena : Node2D {
 		foreach (var id in completedAttacks) {
 			EmitSignal(SignalName.LilypadAttackCompleted, id);
 		}
-	}
-
-	private static Array<BossLilypad> SelectRandomLilypads(Array<BossLilypad> all) {
-		var maxAmount = 5;
-		var list = new Array<BossLilypad>(all);
-		var result = new Array<BossLilypad>();
-
-		for (var i = 0; i < maxAmount; i++) {
-			if (list.Count == 0) {
-				break;
-			}
-
-			var item = list.PickRandom();
-			result.Add(item);
-			list.Remove(item);
-		}
-
-		return result;
 	}
 }

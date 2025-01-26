@@ -67,7 +67,16 @@ public partial class FightDirector : Node {
 
 	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
 		_pendingAttacks.Add(stats);
-		Nakki.PlayLilypadAttackAnimation();
+		if (stats.PlayNakkiAnimation) {
+			Nakki.PlayLilypadAttackAnimation();
+		} else {
+			/* Normally näkki sends out a signal when it's done with the attack animation.
+						animation_done_signal -> sink lilypads
+				However, if we skip the animation (like with wave attack's follow-up waves),
+				we can proceed directly to sinking them.
+			*/
+			SinkLilypads();
+		}
 	}
 
 	private void SinkLilypads() {
