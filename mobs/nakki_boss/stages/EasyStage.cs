@@ -1,6 +1,6 @@
 using Godot;
-using System.Linq;
 using Godot.Collections;
+using System.Linq;
 
 using Jakojaannos.WisperingWoods.Util.Editor;
 using Jakojaannos.WisperingWoods.Util;
@@ -9,7 +9,7 @@ namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 [GlobalClass]
-public partial class EasyStage : NakkiAiState, HasLilypadAttack {
+public partial class EasyStage : NakkiBossStage {
 	[Export] public float TimeBetweenAttacks { get; set; } = 5.0f;
 	[Export] public int MinAttacksBeforeNextState { get; set; } = 3;
 	[Export] public int MaxAttacksBeforeNextState { get; set; } = 6;
@@ -106,7 +106,7 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 		var attackToPlay = _rng.PickRandomUnchecked(possibleAttacks);
 		switch (attackToPlay) {
 			case Attacks.Lilypad: {
-					DoLilypadAttack(nakki);
+					DoLilypadAttack();
 					return;
 				}
 			case Attacks.Sweep: {
@@ -120,6 +120,7 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 	public override void EnterState(NakkiV2 nakki) {
 		_attackCount = 0;
 		_readyToAttack = true;
+		_waitingForAttackId = -1;
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
@@ -129,16 +130,10 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 	public override void DetectionLevelChanged(NakkiV2 nakki) { }
 	public override bool ShouldTickDetection() { return false; }
 
-	public void LilypadAttackWasCompleted(int attackId) {
+	public override void LilypadAttackWasCompleted(int attackId) {
 		if (attackId == _waitingForAttackId) {
 			StartCooldown();
 		}
-	}
-
-	public LilypadAttackStats GetAttackStats() {
-		var id = LilypadAttackStats.GenerateId();
-		_waitingForAttackId = id;
-		return new(AttackId: id);
 	}
 
 	private void StartCooldown() {
@@ -151,11 +146,14 @@ public partial class EasyStage : NakkiAiState, HasLilypadAttack {
 		return _attackCount >= roll;
 	}
 
-	private void DoLilypadAttack(NakkiV2 nakki) {
+	private void DoLilypadAttack() {
 		_readyToAttack = false;
 		_attackCount += 1;
 
-		nakki.PlayLilypadAttackAnimation();
+		var id = LilypadAttackStats.GenerateId();
+		_waitingForAttackId = id;
+		var stats = new LilypadAttackStats { AttackId = id };
+		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
 	}
 
 	private void DoSweepAttack() {

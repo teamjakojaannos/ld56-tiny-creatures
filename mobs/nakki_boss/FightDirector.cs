@@ -1,5 +1,6 @@
 using Godot;
 using System.Linq;
+using System.Collections.Generic;
 
 using Jakojaannos.WisperingWoods.Util.Editor;
 
@@ -33,6 +34,9 @@ public partial class FightDirector : Node {
 	private Node2D? _startPosition;
 
 
+	private readonly List<LilypadAttackStats> _pendingAttacks = [];
+
+
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? [])
 			.Union(this.CheckCommonConfigurationWarnings())
@@ -45,27 +49,43 @@ public partial class FightDirector : Node {
 			return;
 		}
 
-		Nakki.LilypadAttackSignal += DoLilypadAttack;
+		RegisterLilypadSignals();
+
+		Nakki.LilypadAttackSignal += SinkLilypads;
 		LilypadArena.LilypadAttackCompleted += OnLilypadAttackCompleted;
 
 		this.Persistent().PlayerRespawned += Reset;
 	}
 
-	private void DoLilypadAttack() {
-		var stats = Nakki.CurrentState is HasLilypadAttack lpAttack
-			? lpAttack.GetAttackStats()
-			: LilypadAttackStats.Default();
+	private void RegisterLilypadSignals() {
+		foreach (var node in Nakki.GetChildren()) {
+			if (node is NakkiBossStage bossStage) {
+				bossStage.LilypadAttackInitiated += LilypadAttackSignalGiven;
+			}
+		}
+	}
 
-		LilypadArena.SinkLilypads(stats);
+	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
+		_pendingAttacks.Add(stats);
+		Nakki.PlayLilypadAttackAnimation();
+	}
+
+	private void SinkLilypads() {
+		foreach (var stats in _pendingAttacks) {
+			LilypadArena.SinkLilypads(stats);
+		}
+
+		_pendingAttacks.Clear();
 	}
 
 	private void OnLilypadAttackCompleted(int attackId) {
-		if (Nakki.CurrentState is HasLilypadAttack lpAttack) {
-			lpAttack.LilypadAttackWasCompleted(attackId);
+		if (Nakki.CurrentState is NakkiBossStage bossStage) {
+			bossStage.LilypadAttackWasCompleted(attackId);
 		}
 	}
 
 	private void Reset() {
+		_pendingAttacks.Clear();
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
 		Nakki.TeleportToProgress(relative.X);
