@@ -157,39 +157,39 @@ MovementTarget = NodePath("../../NakkiMovementPoints/Stage2")
 position = Vector2(-76, 28)
 
 [node name="Lilypad" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
-Tags = ["col_1", "row_1"]
+Tags = ["col_1", "row_1", "stage_1"]
 
 [node name="Lilypad2" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(0, 26)
-Tags = ["col_1", "row_2"]
+Tags = ["col_1", "row_2", "stage_1"]
 
 [node name="Lilypad3" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(0, 52)
-Tags = ["col_1", "row_3"]
+Tags = ["col_1", "row_3", "stage_1"]
 
 [node name="Lilypad4" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(36, 0)
-Tags = ["col_2", "row_1"]
+Tags = ["col_2", "row_1", "stage_1"]
 
 [node name="Lilypad5" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(36, 26)
-Tags = ["col_2", "row_2"]
+Tags = ["col_2", "row_2", "stage_1"]
 
 [node name="Lilypad6" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(36, 52)
-Tags = ["col_2", "row_3"]
+Tags = ["col_2", "row_3", "stage_1"]
 
 [node name="Lilypad7" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(72, 0)
-Tags = ["col_3", "row_1"]
+Tags = ["col_3", "row_1", "stage_1"]
 
 [node name="Lilypad8" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(72, 26)
-Tags = ["col_3", "row_2"]
+Tags = ["col_3", "row_2", "stage_1"]
 
 [node name="Lilypad9" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
 position = Vector2(72, 52)
-Tags = ["col_3", "row_3"]
+Tags = ["col_3", "row_3", "stage_1"]
 
 [node name="Walls" type="StaticBody2D" parent="BossArena"]
 collision_layer = 2

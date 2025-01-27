@@ -189,14 +189,13 @@ public partial class SecondStage : NakkiBossStage {
 		_attackCount += 1;
 		_isDoingLilypadAttack = true;
 
-		var stats = new LilypadAttackStats {
+		var stats = new LilypadAttackStats(new RandomSelection(3, "stage_2")) {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.5f,
 			SinkSpeed = 1.5f,
 			SinkSpeedVariation = 0.25f,
 			ShakeTime = 0.60f,
 			ShakeTimeVariation = 0.25f,
-			SelectionStrategy = new RandomSelection(),
 			PlayNakkiAnimation = true,
 		};
 
@@ -219,14 +218,13 @@ public partial class SecondStage : NakkiBossStage {
 	}
 
 	private static LilypadAttackStats WaveStats(string tag, bool playNakkiAnimation) {
-		return new() {
+		return new(new SelectByTag(tag)) {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.1f,
 			SinkSpeed = 1.0f,
 			SinkSpeedVariation = 0.1f,
 			ShakeTime = 0.75f,
 			ShakeTimeVariation = 0.1f,
-			SelectionStrategy = new SelectByTag(tag),
 			PlayNakkiAnimation = playNakkiAnimation,
 		};
 	}

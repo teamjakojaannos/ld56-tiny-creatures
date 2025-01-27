@@ -1,9 +1,11 @@
 using Godot;
 using Godot.Collections;
 
+using System.Linq;
+
 namespace Jakojaannos.WisperingWoods;
 
-public partial class LilypadAttackStats : Resource {
+public partial class LilypadAttackStats(LilypadSelectionStrategy selectionStrategy) : Resource {
 	public float UnderwaterTime { get; set; } = 1.5f;
 	public float UnderwaterTimeVariation { get; set; } = 0.5f;
 	public float SinkSpeed { get; set; } = 1.0f;
@@ -11,7 +13,7 @@ public partial class LilypadAttackStats : Resource {
 	public float ShakeTime { get; set; } = 0.75f;
 	public float ShakeTimeVariation { get; set; } = 0.5f;
 	public int AttackId { get; set; } = GenerateId();
-	public LilypadSelectionStrategy SelectionStrategy { get; set; } = new RandomSelection();
+	public LilypadSelectionStrategy SelectionStrategy { get; set; } = selectionStrategy;
 	public bool PlayNakkiAnimation { get; set; } = true;
 
 
@@ -25,20 +27,22 @@ public abstract class LilypadSelectionStrategy {
 	public abstract Array<BossLilypad> SelectLilypads(Array<BossLilypad> all);
 }
 
-public class RandomSelection : LilypadSelectionStrategy {
+public class RandomSelection(int amount, string tag) : LilypadSelectionStrategy {
+	public readonly int Amount = amount;
+	public readonly string Tag = tag;
+
 	public override Array<BossLilypad> SelectLilypads(Array<BossLilypad> all) {
-		var maxAmount = 5;
-		var list = new Array<BossLilypad>(all);
+		var tagged = new Array<BossLilypad>(all.Where(lp => lp.Tags.Contains(Tag)));
 		var result = new Array<BossLilypad>();
 
-		for (var i = 0; i < maxAmount; i++) {
-			if (list.Count == 0) {
+		for (var i = 0; i < Amount; i++) {
+			if (tagged.Count == 0) {
 				break;
 			}
 
-			var item = list.PickRandom();
+			var item = tagged.PickRandom();
 			result.Add(item);
-			list.Remove(item);
+			tagged.Remove(item);
 		}
 
 		return result;
