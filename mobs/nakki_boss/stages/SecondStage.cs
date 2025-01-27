@@ -189,7 +189,6 @@ public partial class SecondStage : NakkiBossStage {
 		_attackCount += 1;
 		_isDoingLilypadAttack = true;
 
-		var id = LilypadAttackStats.GenerateId();
 		var stats = new LilypadAttackStats {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.5f,
@@ -197,7 +196,6 @@ public partial class SecondStage : NakkiBossStage {
 			SinkSpeedVariation = 0.25f,
 			ShakeTime = 0.60f,
 			ShakeTimeVariation = 0.25f,
-			AttackId = id,
 			SelectionStrategy = new RandomSelection(),
 			PlayNakkiAnimation = true,
 		};
@@ -210,21 +208,17 @@ public partial class SecondStage : NakkiBossStage {
 		_attackCount += 1;
 		_isDoingLilypadAttack = true;
 
-		var id1 = LilypadAttackStats.GenerateId();
-		var id2 = LilypadAttackStats.GenerateId();
-		var id3 = LilypadAttackStats.GenerateId();
+		var firstWave = WaveStats("row_1", true);
+		var secondWave = WaveStats("row_2", false);
+		var thirdWave = WaveStats("row_3", false);
 
-		var firstWave = WaveStats(id1, "row_1", true);
-		var secondWave = WaveStats(id2, "row_2", false);
-		var thirdWave = WaveStats(id3, "row_3", false);
-
-		_waves.Add(id1, secondWave);
-		_waves.Add(id2, thirdWave);
+		_waves.Add(firstWave.AttackId, secondWave);
+		_waves.Add(secondWave.AttackId, thirdWave);
 
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, firstWave);
 	}
 
-	private static LilypadAttackStats WaveStats(int id, string tag, bool playNakkiAnimation) {
+	private static LilypadAttackStats WaveStats(string tag, bool playNakkiAnimation) {
 		return new() {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.1f,
@@ -232,7 +226,6 @@ public partial class SecondStage : NakkiBossStage {
 			SinkSpeedVariation = 0.1f,
 			ShakeTime = 0.75f,
 			ShakeTimeVariation = 0.1f,
-			AttackId = id,
 			SelectionStrategy = new SelectByTag(tag),
 			PlayNakkiAnimation = playNakkiAnimation,
 		};

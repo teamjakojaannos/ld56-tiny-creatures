@@ -150,9 +150,8 @@ public partial class EasyStage : NakkiBossStage {
 		_readyToAttack = false;
 		_attackCount += 1;
 
-		var id = LilypadAttackStats.GenerateId();
-		_waitingForAttackId = id;
-		var stats = new LilypadAttackStats { AttackId = id };
+		var stats = new LilypadAttackStats();
+		_waitingForAttackId = stats.AttackId;
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
 	}
 

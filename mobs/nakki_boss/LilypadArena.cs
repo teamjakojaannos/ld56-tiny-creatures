@@ -30,10 +30,7 @@ public partial class LilypadArena : Node2D {
 
 
 	public void SinkLilypads(LilypadAttackStats stats) {
-		LilypadAttack? attack = null;
-		if (stats.AttackId is int id) {
-			attack = (id, []);
-		}
+		LilypadAttack attack = (stats.AttackId, []);
 
 
 		var lilypads = stats.SelectionStrategy.SelectLilypads(_lilypads);
@@ -45,22 +42,18 @@ public partial class LilypadArena : Node2D {
 
 			lilypad.StartSinking(underwaterTime, sinkSpeed, shakeTime, shakeSpeed);
 
-			if (attack is LilypadAttack i) {
-				i.lilypads.Add(lilypad);
-			}
+			attack.lilypads.Add(lilypad);
 		}
 
-		if (attack is LilypadAttack j) {
-			if (j.lilypads.Count > 0) {
-				_ongoingAttacks.Add(j);
-			} else {
-				/* For some reason our selection didn't find any lilypads to sink 
-					-> give signal that this attack is now finished, otherwise the näkki
-					who started it will wait forever for the attack to finish
-				*/
-				GD.Print($"Warning, lilypad attack didn't find any lilypads to sink with selection: {stats.SelectionStrategy}");
-				EmitSignal(SignalName.LilypadAttackCompleted, j.id);
-			}
+		if (attack.lilypads.Count > 0) {
+			_ongoingAttacks.Add(attack);
+		} else {
+			/* For some reason our selection didn't find any lilypads to sink
+				-> give signal that this attack is now finished, otherwise the näkki
+				who started it will wait forever for the attack to finish
+			*/
+			GD.Print($"Warning, lilypad attack didn't find any lilypads to sink with selection: {stats.SelectionStrategy}");
+			EmitSignal(SignalName.LilypadAttackCompleted, attack.id);
 		}
 	}
 

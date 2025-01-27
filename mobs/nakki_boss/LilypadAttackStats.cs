@@ -10,13 +10,9 @@ public partial class LilypadAttackStats : Resource {
 	public float SinkSpeedVariation { get; set; } = 0.5f;
 	public float ShakeTime { get; set; } = 0.75f;
 	public float ShakeTimeVariation { get; set; } = 0.5f;
-	public int? AttackId { get; set; } = null;
+	public int AttackId { get; set; } = GenerateId();
 	public LilypadSelectionStrategy SelectionStrategy { get; set; } = new RandomSelection();
 	public bool PlayNakkiAnimation { get; set; } = true;
-
-	public static LilypadAttackStats Default() {
-		return new();
-	}
 
 
 	private static int s_id = 0;
