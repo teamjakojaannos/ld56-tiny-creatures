@@ -165,6 +165,11 @@ public partial class SecondStage : NakkiBossStage {
 	}
 
 	private bool ShouldSwitchState() {
+		// don't switch in the middle of lilypad attack
+		if (_isDoingLilypadAttack) {
+			return false;
+		}
+
 		var roll = _rng.RandiRange(MinAttacksBeforeNextState, MaxAttacksBeforeNextState);
 		return _attackCount >= roll;
 	}
