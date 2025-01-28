@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Jakojaannos.WisperingWoods;
@@ -49,18 +50,43 @@ public class RandomSelection(int amount, string tag) : LilypadSelectionStrategy 
 	}
 }
 
-public class SelectByTag(string tag) : LilypadSelectionStrategy {
-	public readonly string Tag = tag;
+public class SelectByTag(SelectByTag.Mode mode, IEnumerable<string> tags) : LilypadSelectionStrategy {
+	public readonly Mode SelectionMode = mode;
+	public readonly HashSet<string> Tags = new(tags);
 
 	public override Array<BossLilypad> SelectLilypads(Array<BossLilypad> all) {
-		var result = new Array<BossLilypad>();
+		return new(all.Where(Passes));
+	}
 
-		foreach (var lp in all) {
-			if (lp.Tags.Contains(Tag)) {
-				result.Add(lp);
+	private bool Passes(BossLilypad lp) {
+		if (SelectionMode == Mode.HasAny) {
+			return HasAny(lp);
+		} else {
+			return HasAll(lp);
+		}
+	}
+
+	private bool HasAny(BossLilypad lp) {
+		foreach (var tag in Tags) {
+			if (lp.Tags.Contains(tag)) {
+				return true;
 			}
 		}
+		return false;
+	}
 
-		return result;
+	private bool HasAll(BossLilypad lp) {
+		foreach (var tag in Tags) {
+			if (!lp.Tags.Contains(tag)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+
+	public enum Mode {
+		HasAll,
+		HasAny,
 	}
 }

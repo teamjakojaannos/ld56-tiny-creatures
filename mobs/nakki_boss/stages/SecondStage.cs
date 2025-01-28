@@ -222,8 +222,8 @@ public partial class SecondStage : NakkiBossStage {
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, firstWave);
 	}
 
-	private static LilypadAttackStats WaveStats(string tag, bool playNakkiAnimation) {
-		return new(new SelectByTag(tag)) {
+	private static LilypadAttackStats WaveStats(string rowTag, bool playNakkiAnimation) {
+		return new(new SelectByTag(SelectByTag.Mode.HasAll, [rowTag, "stage_2"])) {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.1f,
 			SinkSpeed = 1.0f,
