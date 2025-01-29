@@ -35,6 +35,7 @@ public partial class FightDirector : Node {
 
 
 	private readonly List<LilypadAttackStats> _pendingAttacks = [];
+	private readonly List<Timer> _delayedAttacks = [];
 
 
 	public override string[] _GetConfigurationWarnings() {
@@ -66,6 +67,11 @@ public partial class FightDirector : Node {
 	}
 
 	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
+		if (stats.Delay > 0.0f) {
+			DelayedLilypadAttack(stats);
+			return;
+		}
+
 		_pendingAttacks.Add(stats);
 		if (stats.PlayNakkiAnimation) {
 			Nakki.PlayLilypadAttackAnimation();
@@ -93,7 +99,29 @@ public partial class FightDirector : Node {
 		}
 	}
 
+	private void DelayedLilypadAttack(LilypadAttackStats stats) {
+		var timer = new Timer() {
+			Autostart = true,
+			OneShot = true,
+			WaitTime = stats.Delay,
+		};
+
+		_delayedAttacks.Add(timer);
+
+		timer.Timeout += () => {
+			_delayedAttacks.Remove(timer);
+			timer.QueueFree();
+			LilypadArena.SinkLilypads(stats);
+		};
+		AddChild(timer);
+	}
+
 	private void Reset() {
+		foreach (var timer in _delayedAttacks) {
+			timer.Stop();
+			timer.QueueFree();
+		}
+		_delayedAttacks.Clear();
 		_pendingAttacks.Clear();
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;

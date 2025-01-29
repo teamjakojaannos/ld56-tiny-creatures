@@ -137,21 +137,22 @@ DetectionGain = 0.0
 DetectionDecay = 100.0
 
 [node name="EasyStage" parent="BossArena/MotherNäkki" index="8" node_paths=PackedStringArray("NextState", "SweepAttackContainer", "SweepAttackPositions")]
-NextState = NodePath("../NakkiBossMovementState")
+NextState = NodePath("../MoveToSecondStage")
 SweepAttackContainer = NodePath("../../SweepAttackContainer")
 SweepAttackPositions = [NodePath("../../SweepAttackPositions/Marker2D"), NodePath("../../SweepAttackPositions/Marker2D2"), NodePath("../../SweepAttackPositions/Marker2D3")]
 
-[node name="SecondStage" parent="BossArena/MotherNäkki" index="9" node_paths=PackedStringArray("NextState", "SweepAttackContainer", "SweepAttackPositions")]
+[node name="MoveToSecondStage" type="Node" parent="BossArena/MotherNäkki" node_paths=PackedStringArray("NextState", "MovementTarget")]
+script = ExtResource("10_uig1i")
+NextState = NodePath("../SecondStage")
+MovementTarget = NodePath("../../NakkiMovementPoints/Stage2")
+LilypadsToSink = ["col_1", "col_2", "col_3"]
+
+[node name="SecondStage" parent="BossArena/MotherNäkki" index="10" node_paths=PackedStringArray("NextState", "SweepAttackContainer", "SweepAttackPositions")]
 MinAttacksBeforeNextState = 5
 MaxAttacksBeforeNextState = 8
 NextState = NodePath("../NakkiBossIdle")
 SweepAttackContainer = NodePath("../../SweepAttackContainer")
 SweepAttackPositions = [NodePath("../../SweepAttackPositions/Marker2D4"), NodePath("../../SweepAttackPositions/Marker2D5"), NodePath("../../SweepAttackPositions/Marker2D6")]
-
-[node name="NakkiBossMovementState" type="Node" parent="BossArena/MotherNäkki" node_paths=PackedStringArray("NextState", "MovementTarget")]
-script = ExtResource("10_uig1i")
-NextState = NodePath("../SecondStage")
-MovementTarget = NodePath("../../NakkiMovementPoints/Stage2")
 
 [node name="LilypadArena" parent="BossArena" instance=ExtResource("10_ucfyn")]
 position = Vector2(-76, 28)
@@ -282,6 +283,6 @@ position = Vector2(104, 0)
 position = Vector2(-39, -27)
 
 [node name="Stage2" type="Marker2D" parent="BossArena/NakkiMovementPoints"]
-position = Vector2(51, -27)
+position = Vector2(68, -27)
 
 [editable path="BossArena/MotherNäkki"]

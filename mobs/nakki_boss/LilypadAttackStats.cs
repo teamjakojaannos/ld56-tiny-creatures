@@ -16,6 +16,7 @@ public partial class LilypadAttackStats(LilypadSelectionStrategy selectionStrate
 	public int AttackId { get; set; } = GenerateId();
 	public LilypadSelectionStrategy SelectionStrategy { get; set; } = selectionStrategy;
 	public bool PlayNakkiAnimation { get; set; } = true;
+	public float Delay { get; set; } = 0.0f;
 
 
 	private static int s_id = 0;
