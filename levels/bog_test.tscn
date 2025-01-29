@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://8lvqy3vv7876"]
+[gd_scene load_steps=31 format=3 uid="uid://8lvqy3vv7876"]
 
 [ext_resource type="PackedScene" uid="uid://d2t0ix0154bii" path="res://mobs/nakki_v2/archetypes/nakki_default.tscn" id="1_sovr5"]
 [ext_resource type="PackedScene" uid="uid://d0bvdnhtwhjen" path="res://mobs/nakki_v2/archetypes/instakill_nakki.tscn" id="2_57t8s"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://1hvnb01k8tt3" path="res://mobs/nakki_boss/boss_lilypad.tscn" id="9_h6tgj"]
 [ext_resource type="PackedScene" uid="uid://b4cbh5rl7pbi0" path="res://mobs/nakki_boss/lilypad_arena.tscn" id="10_ucfyn"]
 [ext_resource type="Script" path="res://mobs/nakki_boss/NakkiBossMovementState.cs" id="10_uig1i"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiEntranceTrigger.cs" id="13_dyi2s"]
+[ext_resource type="Script" path="res://mobs/nakki_boss/NakkiEntranceReset.cs" id="13_uin8e"]
 
 [sub_resource type="Curve2D" id="Curve2D_w0l2u"]
 _data = {
@@ -55,8 +57,26 @@ size = Vector2(400, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur1bv"]
 size = Vector2(10, 110)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhdqx"]
+size = Vector2(108, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otlla"]
+size = Vector2(108, 36)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8w5tt"]
-size = Vector2(31, 107)
+size = Vector2(32, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qkwj"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2di6"]
+size = Vector2(14, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1u1a"]
+size = Vector2(14, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04wjm"]
+size = Vector2(20, 26)
 
 [node name="BogTest" type="Node2D"]
 
@@ -238,32 +258,52 @@ position = Vector2(180, 52)
 Tags = ["col_6", "row_3", "stage_2"]
 SunkenByDefault = true
 
+[node name="Entrance1" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(-108, 26)
+Tags = ["entrance_1"]
+
+[node name="Entrance2" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(-72, 26)
+Tags = ["entrance_2"]
+
+[node name="Entrance3" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+position = Vector2(-36, 26)
+Tags = ["entrance_3"]
+
 [node name="Walls" type="StaticBody2D" parent="BossArena"]
 collision_layer = 2
 collision_mask = 0
 
 [node name="Top" type="CollisionShape2D" parent="BossArena/Walls"]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_cpqvo")
 
 [node name="Bottom" type="CollisionShape2D" parent="BossArena/Walls"]
-position = Vector2(0, 100)
+position = Vector2(0, 98)
 shape = SubResource("RectangleShape2D_cpqvo")
 
 [node name="Right" type="CollisionShape2D" parent="BossArena/Walls"]
-position = Vector2(195, 50)
+position = Vector2(127, 50)
 shape = SubResource("RectangleShape2D_ur1bv")
 
+[node name="Entrance" type="CollisionShape2D" parent="BossArena/Walls"]
+position = Vector2(-148, 23)
+shape = SubResource("RectangleShape2D_vhdqx")
+
+[node name="Entrance2" type="CollisionShape2D" parent="BossArena/Walls"]
+position = Vector2(-148, 85)
+shape = SubResource("RectangleShape2D_otlla")
+
 [node name="BossTrigger" type="Area2D" parent="BossArena" node_paths=PackedStringArray("NakkiToTrigger")]
-position = Vector2(-223, 62)
+position = Vector2(-74, 56)
+collision_layer = 0
+monitorable = false
 script = ExtResource("8_pjiqu")
 NakkiToTrigger = NodePath("../MotherNäkki")
 
-[node name="Sprite2D" type="Sprite2D" parent="BossArena/BossTrigger"]
-scale = Vector2(0.234375, 0.859375)
-texture = ExtResource("7_vxuua")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/BossTrigger"]
 shape = SubResource("RectangleShape2D_8w5tt")
+debug_color = Color(0.77031, 0.379488, 0.609039, 0.42)
 
 [node name="SweepAttackPositions" type="Node2D" parent="BossArena"]
 
@@ -294,5 +334,52 @@ position = Vector2(-39, -27)
 
 [node name="Stage2" type="Marker2D" parent="BossArena/NakkiMovementPoints"]
 position = Vector2(68, -27)
+
+[node name="EntranceTriggers" type="Node2D" parent="BossArena"]
+
+[node name="EntranceReset" type="Area2D" parent="BossArena/EntranceTriggers" node_paths=PackedStringArray("LilypadArena")]
+position = Vector2(-212, 54)
+collision_layer = 0
+monitorable = false
+script = ExtResource("13_uin8e")
+LilypadArena = NodePath("../../LilypadArena")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/EntranceTriggers/EntranceReset"]
+shape = SubResource("RectangleShape2D_1qkwj")
+debug_color = Color(0.833121, 0.390466, 5.77569e-07, 0.42)
+
+[node name="Entrance1" type="Area2D" parent="BossArena/EntranceTriggers" node_paths=PackedStringArray("LilypadToSink")]
+position = Vector2(-148, 54)
+collision_layer = 0
+monitorable = false
+script = ExtResource("13_dyi2s")
+LilypadToSink = NodePath("../../LilypadArena/Entrance1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/EntranceTriggers/Entrance1"]
+shape = SubResource("RectangleShape2D_h2di6")
+debug_color = Color(0.624608, 0.527626, 0.199997, 0.42)
+
+[node name="Entrance2" type="Area2D" parent="BossArena/EntranceTriggers" node_paths=PackedStringArray("LilypadToSink")]
+position = Vector2(-112, 54)
+collision_layer = 0
+monitorable = false
+script = ExtResource("13_dyi2s")
+LilypadToSink = NodePath("../../LilypadArena/Entrance2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/EntranceTriggers/Entrance2"]
+shape = SubResource("RectangleShape2D_q1u1a")
+debug_color = Color(0.623529, 0.529412, 0.2, 0.419608)
+
+[node name="Entrance3" type="Area2D" parent="BossArena/EntranceTriggers" node_paths=PackedStringArray("LilypadToSink")]
+position = Vector2(-76, 54)
+collision_layer = 0
+monitorable = false
+script = ExtResource("13_dyi2s")
+LilypadToSink = NodePath("../../LilypadArena/Entrance3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArena/EntranceTriggers/Entrance3"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_04wjm")
+debug_color = Color(0.623529, 0.529412, 0.2, 0.419608)
 
 [editable path="BossArena/MotherNäkki"]

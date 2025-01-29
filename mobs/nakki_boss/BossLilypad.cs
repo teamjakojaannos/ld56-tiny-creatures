@@ -57,6 +57,7 @@ public partial class BossLilypad : Node2D {
 
 	private Player? _player;
 	private bool _isDoneShaking;
+	public bool IsUnderwaterOrAboutToSink { get; private set; } = false;
 	[Signal] public delegate void LilypadEmergedEventHandler(BossLilypad lilypad);
 
 
@@ -111,6 +112,7 @@ public partial class BossLilypad : Node2D {
 		UnderwaterTimer.Stop();
 		AnimationPlayer.Stop();
 		ShakeTimer.Stop();
+		IsUnderwaterOrAboutToSink = SunkenByDefault;
 
 		if (SunkenByDefault) {
 			SetSolid(true);
@@ -137,7 +139,14 @@ public partial class BossLilypad : Node2D {
 
 		_isDoneShaking = false;
 		ShakeTimer.Start(shakeTime);
+		IsUnderwaterOrAboutToSink = true;
 		AnimationPlayer.Play("shake", customSpeed: ShakeAnimationSpeed);
+	}
+
+	public void SetSolidAndSink(float sinkSpeed) {
+		UnderwaterTime = 9999f;
+		SetSolid(true);
+		AnimationPlayer.Play("sink", customSpeed: sinkSpeed);
 	}
 
 	private void ShakeAnimationDone() {
@@ -167,6 +176,7 @@ public partial class BossLilypad : Node2D {
 	}
 
 	private void SetSolid(bool isSolid) {
+		IsUnderwaterOrAboutToSink = isSolid;
 		Blocker.SetDeferred(CollisionShape2D.PropertyName.Disabled, !isSolid);
 	}
 
