@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System.Linq;
+using System.Collections.Generic;
 
 using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
@@ -34,6 +35,8 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 	private Node2D? _movementTarget;
 
 	private RandomNumberGenerator _rng = new();
+	private bool _isDoneMoving;
+	private readonly HashSet<int> _waitingForAttacksToFinish = [];
 
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? [];
@@ -45,12 +48,21 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 
 
 	public override void AiUpdate(NakkiV2 nakki) {
-		if (nakki.HasReachedTarget()) {
+		if (!_isDoneMoving && nakki.HasReachedTarget()) {
+			_isDoneMoving = true;
+			nakki.ClearMovementTarget();
+		}
+
+		var areLilypadsDone = _waitingForAttacksToFinish.Count == 0;
+		if (_isDoneMoving && areLilypadsDone) {
 			nakki.CurrentState = NextState;
 		}
 	}
 
 	public override void EnterState(NakkiV2 nakki) {
+		_isDoneMoving = false;
+		_waitingForAttacksToFinish.Clear();
+
 		var relative = MovementTarget.GlobalPosition - nakki.GlobalPosition;
 		nakki.SetProgressTarget(relative.X);
 
@@ -64,6 +76,7 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 			var tag = LilypadsToRise[i];
 			var delay = _rng.ApplyRandomVariation(RiseDelay, RiseDelayVariation);
 			var stats = RiseUpStats(tag, i * delay);
+			_waitingForAttacksToFinish.Add(stats.AttackId);
 			EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
 		}
 	}
@@ -72,7 +85,10 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 		nakki.ClearMovementTarget();
 	}
 
-	public override void LilypadAttackWasCompleted(int attackId) { }
+	public override void LilypadAttackWasCompleted(int attackId) {
+		_waitingForAttacksToFinish.Remove(attackId);
+	}
+
 	public override void DetectionLevelChanged(NakkiV2 nakki) { }
 	public override bool ShouldTickDetection() { return false; }
 
