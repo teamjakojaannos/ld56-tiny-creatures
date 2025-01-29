@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Linq;
 
+using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
@@ -11,6 +12,9 @@ namespace Jakojaannos.WisperingWoods;
 public partial class NakkiBossMovementState : NakkiBossStage {
 	[Export] public Array<string> LilypadsToSink { get; set; } = [];
 	[Export] public float SinkDelay { get; set; } = 0.75f;
+	[Export] public Array<string> LilypadsToRise { get; set; } = [];
+	[Export] public float RiseDelay { get; set; } = 0.75f;
+	[Export] public float RiseDelayVariation { get; set; } = 0.2f;
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -29,6 +33,7 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 	}
 	private Node2D? _movementTarget;
 
+	private RandomNumberGenerator _rng = new();
 
 	public override string[] _GetConfigurationWarnings() {
 		var warnings = base._GetConfigurationWarnings() ?? [];
@@ -54,6 +59,13 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 			var stats = SinkStats(tag, i * SinkDelay);
 			EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
 		}
+
+		for (var i = 0; i < LilypadsToRise.Count; i++) {
+			var tag = LilypadsToRise[i];
+			var delay = _rng.ApplyRandomVariation(RiseDelay, RiseDelayVariation);
+			var stats = RiseUpStats(tag, i * delay);
+			EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
+		}
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
@@ -74,6 +86,14 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 			ShakeTimeVariation = 0.05f,
 			PlayNakkiAnimation = false,
 			Delay = delay,
+		};
+	}
+
+	private static LilypadAttackStats RiseUpStats(string tag, float delay) {
+		return new(new SelectByTag(SelectByTag.Mode.HasAny, [tag])) {
+			PlayNakkiAnimation = false,
+			Delay = delay,
+			RiseUpInsteadOfSink = true,
 		};
 	}
 }

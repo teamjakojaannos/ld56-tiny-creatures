@@ -17,6 +17,7 @@ public partial class LilypadAttackStats(LilypadSelectionStrategy selectionStrate
 	public LilypadSelectionStrategy SelectionStrategy { get; set; } = selectionStrategy;
 	public bool PlayNakkiAnimation { get; set; } = true;
 	public float Delay { get; set; } = 0.0f;
+	public bool RiseUpInsteadOfSink { get; set; } = false;
 
 
 	private static int s_id = 0;

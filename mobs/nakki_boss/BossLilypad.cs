@@ -14,6 +14,17 @@ public partial class BossLilypad : Node2D {
 	[Export] public float ShakeAnimationSpeed { get; set; } = 1.0f;
 	[Export] public Array<string> Tags { get; set; } = [];
 
+	[Export]
+	public bool SunkenByDefault {
+		get => _sunkenByDefault;
+		set {
+			_sunkenByDefault = value;
+			Visible = !SunkenByDefault;
+		}
+	}
+	private bool _sunkenByDefault = false;
+
+
 
 	[Export]
 	[ExportGroup("Prewire")]
@@ -94,7 +105,7 @@ public partial class BossLilypad : Node2D {
 			}
 		};
 
-		SetSolid(false);
+		Reset();
 	}
 
 	public void StartSinking(
@@ -126,7 +137,7 @@ public partial class BossLilypad : Node2D {
 		UnderwaterTimer.Start(UnderwaterTime);
 	}
 
-	private void RiseUp() {
+	public void RiseUp() {
 		AnimationPlayer.Play("rise");
 	}
 
@@ -135,12 +146,18 @@ public partial class BossLilypad : Node2D {
 		EmitSignal(SignalName.LilypadEmerged, this);
 	}
 
-	public void ForceToSurface() {
+	public void Reset() {
 		UnderwaterTimer.Stop();
 		AnimationPlayer.Stop();
-		AnimationPlayer.Play("RESET");
-		SetSolid(false);
 		ShakeTimer.Stop();
+
+		if (SunkenByDefault) {
+			SetSolid(true);
+			Visible = false;
+		} else {
+			Visible = true;
+			SetSolid(false);
+		}
 	}
 
 	private void DealDamage() {

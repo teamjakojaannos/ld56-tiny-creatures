@@ -40,7 +40,12 @@ public partial class LilypadArena : Node2D {
 			var shakeTime = _rng.ApplyRandomVariation(stats.ShakeTime, stats.ShakeTimeVariation);
 			var shakeSpeed = _rng.ApplyRandomVariation(1.0f, 0.25f);
 
-			lilypad.StartSinking(underwaterTime, sinkSpeed, shakeTime, shakeSpeed);
+
+			if (stats.RiseUpInsteadOfSink) {
+				lilypad.RiseUp();
+			} else {
+				lilypad.StartSinking(underwaterTime, sinkSpeed, shakeTime, shakeSpeed);
+			}
 
 			attack.lilypads.Add(lilypad);
 		}
@@ -61,7 +66,7 @@ public partial class LilypadArena : Node2D {
 		_ongoingAttacks.Clear();
 
 		foreach (var lp in _lilypads) {
-			lp.ForceToSurface();
+			lp.Reset();
 		}
 	}
 
