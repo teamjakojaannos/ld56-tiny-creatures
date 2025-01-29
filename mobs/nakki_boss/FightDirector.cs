@@ -34,7 +34,7 @@ public partial class FightDirector : Node {
 	private Node2D? _startPosition;
 
 
-	private readonly List<LilypadAttackStats> _pendingAttacks = [];
+	private readonly List<LilypadAttackStats> _attacksWaitingForNakkiSignal = [];
 	private readonly List<Timer> _delayedAttacks = [];
 
 
@@ -72,7 +72,7 @@ public partial class FightDirector : Node {
 			return;
 		}
 
-		_pendingAttacks.Add(stats);
+		_attacksWaitingForNakkiSignal.Add(stats);
 		if (stats.PlayNakkiAnimation) {
 			Nakki.PlayLilypadAttackAnimation();
 		} else {
@@ -86,11 +86,11 @@ public partial class FightDirector : Node {
 	}
 
 	private void SinkLilypads() {
-		foreach (var stats in _pendingAttacks) {
+		foreach (var stats in _attacksWaitingForNakkiSignal) {
 			LilypadArena.SinkLilypads(stats);
 		}
 
-		_pendingAttacks.Clear();
+		_attacksWaitingForNakkiSignal.Clear();
 	}
 
 	private void OnLilypadAttackCompleted(int attackId) {
@@ -122,7 +122,7 @@ public partial class FightDirector : Node {
 			timer.QueueFree();
 		}
 		_delayedAttacks.Clear();
-		_pendingAttacks.Clear();
+		_attacksWaitingForNakkiSignal.Clear();
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
 		Nakki.TeleportToProgress(relative.X);

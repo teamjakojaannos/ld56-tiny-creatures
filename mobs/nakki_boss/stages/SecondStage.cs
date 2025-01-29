@@ -61,7 +61,7 @@ public partial class SecondStage : NakkiBossStage {
 	private bool _readyToAttack = true;
 	private int _attackCount = 0;
 	private RandomNumberGenerator _rng = new();
-	private Dictionary<int, LilypadAttackStats> _waves = [];
+	private Dictionary<int, LilypadAttackStats> _waveStages = [];
 	private bool _isDoingLilypadAttack = false;
 
 
@@ -124,7 +124,7 @@ public partial class SecondStage : NakkiBossStage {
 	public override void EnterState(NakkiV2 nakki) {
 		_attackCount = 0;
 		_readyToAttack = true;
-		_waves.Clear();
+		_waveStages.Clear();
 		_isDoingLilypadAttack = false;
 	}
 
@@ -149,10 +149,10 @@ public partial class SecondStage : NakkiBossStage {
 	}
 
 	public override void LilypadAttackWasCompleted(int attackId) {
-		if (_waves.TryGetValue(attackId, out var nextAttack)) {
+		if (_waveStages.TryGetValue(attackId, out var nextAttack)) {
 			// lilypads from previous wave emerged -> start next wave
 			EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, nextAttack);
-			_waves.Remove(attackId);
+			_waveStages.Remove(attackId);
 		} else {
 			// we either finished the last wave, or a regular lilypad attack
 			_isDoingLilypadAttack = false;
@@ -216,8 +216,8 @@ public partial class SecondStage : NakkiBossStage {
 		var secondWave = WaveStats("row_2", false);
 		var thirdWave = WaveStats("row_3", false);
 
-		_waves.Add(firstWave.AttackId, secondWave);
-		_waves.Add(secondWave.AttackId, thirdWave);
+		_waveStages.Add(firstWave.AttackId, secondWave);
+		_waveStages.Add(secondWave.AttackId, thirdWave);
 
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, firstWave);
 	}

@@ -61,7 +61,7 @@ public partial class EasyStage : NakkiBossStage {
 	private bool _readyToAttack = true;
 	private int _attackCount = 0;
 	private RandomNumberGenerator _rng = new();
-	private int _waitingForAttackId = -1;
+	private int _waitingForAttackIdToFinish = -1;
 
 
 	public override string[] _GetConfigurationWarnings() {
@@ -120,7 +120,7 @@ public partial class EasyStage : NakkiBossStage {
 	public override void EnterState(NakkiV2 nakki) {
 		_attackCount = 0;
 		_readyToAttack = true;
-		_waitingForAttackId = -1;
+		_waitingForAttackIdToFinish = -1;
 	}
 
 	public override void ExitState(NakkiV2 nakki) {
@@ -131,7 +131,7 @@ public partial class EasyStage : NakkiBossStage {
 	public override bool ShouldTickDetection() { return false; }
 
 	public override void LilypadAttackWasCompleted(int attackId) {
-		if (attackId == _waitingForAttackId) {
+		if (attackId == _waitingForAttackIdToFinish) {
 			StartCooldown();
 		}
 	}
@@ -151,7 +151,7 @@ public partial class EasyStage : NakkiBossStage {
 		_attackCount += 1;
 
 		var stats = new LilypadAttackStats(new RandomSelection(5, "stage_1"));
-		_waitingForAttackId = stats.AttackId;
+		_waitingForAttackIdToFinish = stats.AttackId;
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
 	}
 
