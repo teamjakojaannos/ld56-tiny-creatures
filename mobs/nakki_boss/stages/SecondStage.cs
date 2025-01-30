@@ -16,14 +16,23 @@ public partial class SecondStage : NakkiBossStage {
 
 	[ExportGroup("SweepAttack")]
 	[Export] public float HandSpeed { get; set; } = 75.0f;
-	[Export(PropertyHint.Range, "0,1.0")]
-	public float DoSweepOnTopOfPlayerChance { get; set; } = 0.75f;
+	[Export(PropertyHint.Range, "0,1.0")] public float DoSweepOnTopOfPlayerChance { get; set; } = 0.75f;
 
 	[ExportGroup("LilypadAttack")]
 	[Export] public float UnderwaterTime { get; set; } = 1.5f;
-	[Export] public float UnderwaterTimeVariation { get; set; } = 0.5f;
-	[Export] public float SinkSpeed { get; set; } = 1.5f;
-	[Export] public float SinkSpeedVariation { get; set; } = 0.5f;
+	[Export(PropertyHint.Range, "0,1.0")] public float UnderwaterTimeVariation { get; set; } = 0.5f;
+	[Export] public float ShakeTime { get; set; } = 0.75f;
+	[Export(PropertyHint.Range, "0,1.0")] public float ShakeTimeVariation { get; set; } = 0.5f;
+	[Export] public float SinkAnimationSpeed { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0,1.0")] public float SinkAnimationSpeedVariation { get; set; } = 0.5f;
+
+	[ExportGroup("LilypadWaveAttack")]
+	[Export] public float WaveUnderwaterTime { get; set; } = 1.5f;
+	[Export(PropertyHint.Range, "0,1.0")] public float WaveUnderwaterTimeVariation { get; set; } = 0.5f;
+	[Export] public float WaveShakeTime { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0,1.0")] public float WaveShakeTimeVariation { get; set; } = 0.5f;
+	[Export] public float WaveSinkAnimationSpeed { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0,1.0")] public float WaveSinkAnimationSpeedVariation { get; set; } = 0.5f;
 
 
 	[Export]
@@ -214,12 +223,12 @@ public partial class SecondStage : NakkiBossStage {
 		_isDoingLilypadAttack = true;
 
 		var stats = new LilypadAttackStats(new RandomSelection(3, "stage_2")) {
-			UnderwaterTime = 1.5f,
-			UnderwaterTimeVariation = 0.5f,
-			SinkAnimationSpeed = 1.5f,
-			SinkAnimationSpeedVariation = 0.25f,
-			ShakeTime = 0.60f,
-			ShakeTimeVariation = 0.25f,
+			UnderwaterTime = UnderwaterTime,
+			UnderwaterTimeVariation = UnderwaterTimeVariation,
+			SinkAnimationSpeed = SinkAnimationSpeed,
+			SinkAnimationSpeedVariation = SinkAnimationSpeedVariation,
+			ShakeTime = ShakeTime,
+			ShakeTimeVariation = ShakeTimeVariation,
 			PlayNakkiAnimation = true,
 		};
 
@@ -241,14 +250,14 @@ public partial class SecondStage : NakkiBossStage {
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, firstWave);
 	}
 
-	private static LilypadAttackStats WaveStats(string rowTag, bool playNakkiAnimation) {
+	private LilypadAttackStats WaveStats(string rowTag, bool playNakkiAnimation) {
 		return new(new SelectByTag(SelectByTag.Mode.HasAll, [rowTag, "stage_2"])) {
-			UnderwaterTime = 1.5f,
-			UnderwaterTimeVariation = 0.1f,
-			SinkAnimationSpeed = 1.0f,
-			SinkAnimationSpeedVariation = 0.1f,
-			ShakeTime = 0.75f,
-			ShakeTimeVariation = 0.1f,
+			UnderwaterTime = WaveUnderwaterTime,
+			UnderwaterTimeVariation = WaveUnderwaterTimeVariation,
+			SinkAnimationSpeed = WaveSinkAnimationSpeed,
+			SinkAnimationSpeedVariation = WaveSinkAnimationSpeedVariation,
+			ShakeTime = WaveShakeTime,
+			ShakeTimeVariation = WaveShakeTimeVariation,
 			PlayNakkiAnimation = playNakkiAnimation,
 		};
 	}

@@ -16,14 +16,15 @@ public partial class EasyStage : NakkiBossStage {
 
 	[ExportGroup("SweepAttack")]
 	[Export] public float HandSpeed { get; set; } = 50.0f;
-	[Export(PropertyHint.Range, "0,1.0")]
-	public float DoSweepOnTopOfPlayerChance { get; set; } = 0.50f;
+	[Export(PropertyHint.Range, "0,1.0")] public float DoSweepOnTopOfPlayerChance { get; set; } = 0.50f;
 
 	[ExportGroup("LilypadAttack")]
 	[Export] public float UnderwaterTime { get; set; } = 1.5f;
-	[Export] public float UnderwaterTimeVariation { get; set; } = 0.5f;
-	[Export] public float SinkSpeed { get; set; } = 1.0f;
-	[Export] public float SinkSpeedVariation { get; set; } = 0.5f;
+	[Export(PropertyHint.Range, "0,1.0")] public float UnderwaterTimeVariation { get; set; } = 0.5f;
+	[Export] public float ShakeTime { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0,1.0")] public float ShakeTimeVariation { get; set; } = 0.5f;
+	[Export] public float SinkAnimationSpeed { get; set; } = 1.0f;
+	[Export(PropertyHint.Range, "0,1.0")] public float SinkAnimationSpeedVariation { get; set; } = 0.5f;
 
 
 	[Export]
@@ -152,7 +153,14 @@ public partial class EasyStage : NakkiBossStage {
 		_readyToAttack = false;
 		_attackCount += 1;
 
-		var stats = new LilypadAttackStats(new RandomSelection(5, "stage_1"));
+		var stats = new LilypadAttackStats(new RandomSelection(5, "stage_1")) {
+			UnderwaterTime = UnderwaterTime,
+			UnderwaterTimeVariation = UnderwaterTimeVariation,
+			SinkAnimationSpeed = SinkAnimationSpeed,
+			SinkAnimationSpeedVariation = SinkAnimationSpeedVariation,
+			ShakeTime = ShakeTime,
+			ShakeTimeVariation = ShakeTimeVariation,
+		};
 		_waitingForAttackIdToFinish = stats.AttackId;
 		EmitSignal(NakkiBossStage.SignalName.LilypadAttackInitiated, stats);
 	}
