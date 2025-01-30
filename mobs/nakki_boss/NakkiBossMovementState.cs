@@ -96,8 +96,8 @@ public partial class NakkiBossMovementState : NakkiBossStage {
 		return new(new SelectByTag(SelectByTag.Mode.HasAny, [tag])) {
 			UnderwaterTime = 99999f,
 			UnderwaterTimeVariation = 0.0f,
-			SinkSpeed = 1.0f,
-			SinkSpeedVariation = 0.05f,
+			SinkAnimationSpeed = 1.0f,
+			SinkAnimationSpeedVariation = 0.05f,
 			ShakeTime = 0.75f,
 			ShakeTimeVariation = 0.05f,
 			PlayNakkiAnimation = false,

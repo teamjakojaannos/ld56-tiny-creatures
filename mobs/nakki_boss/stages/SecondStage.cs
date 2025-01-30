@@ -216,8 +216,8 @@ public partial class SecondStage : NakkiBossStage {
 		var stats = new LilypadAttackStats(new RandomSelection(3, "stage_2")) {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.5f,
-			SinkSpeed = 1.5f,
-			SinkSpeedVariation = 0.25f,
+			SinkAnimationSpeed = 1.5f,
+			SinkAnimationSpeedVariation = 0.25f,
 			ShakeTime = 0.60f,
 			ShakeTimeVariation = 0.25f,
 			PlayNakkiAnimation = true,
@@ -245,8 +245,8 @@ public partial class SecondStage : NakkiBossStage {
 		return new(new SelectByTag(SelectByTag.Mode.HasAll, [rowTag, "stage_2"])) {
 			UnderwaterTime = 1.5f,
 			UnderwaterTimeVariation = 0.1f,
-			SinkSpeed = 1.0f,
-			SinkSpeedVariation = 0.1f,
+			SinkAnimationSpeed = 1.0f,
+			SinkAnimationSpeedVariation = 0.1f,
 			ShakeTime = 0.75f,
 			ShakeTimeVariation = 0.1f,
 			PlayNakkiAnimation = playNakkiAnimation,

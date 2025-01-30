@@ -36,7 +36,7 @@ public partial class LilypadArena : Node2D {
 		var lilypads = stats.SelectionStrategy.SelectLilypads(_lilypads);
 		foreach (var lilypad in lilypads) {
 			var underwaterTime = _rng.ApplyRandomVariation(stats.UnderwaterTime, stats.UnderwaterTimeVariation);
-			var sinkSpeed = _rng.ApplyRandomVariation(stats.SinkSpeed, stats.SinkSpeedVariation);
+			var sinkAnimationSpeed = _rng.ApplyRandomVariation(stats.SinkAnimationSpeed, stats.SinkAnimationSpeedVariation);
 			var shakeTime = _rng.ApplyRandomVariation(stats.ShakeTime, stats.ShakeTimeVariation);
 			var shakeSpeed = _rng.ApplyRandomVariation(1.0f, 0.25f);
 
@@ -44,7 +44,7 @@ public partial class LilypadArena : Node2D {
 			if (stats.RiseUpInsteadOfSink) {
 				lilypad.RiseUp();
 			} else {
-				lilypad.StartSinking(underwaterTime, sinkSpeed, shakeTime, shakeSpeed);
+				lilypad.StartSinking(underwaterTime, sinkAnimationSpeed, shakeTime, shakeSpeed);
 			}
 
 			attack.lilypads.Add(lilypad);
