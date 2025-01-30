@@ -2,6 +2,7 @@ using Godot;
 using Godot.Collections;
 using System.Linq;
 
+using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
@@ -12,6 +13,8 @@ public partial class SecondStage : NakkiBossStage {
 	[Export] public float TimeBetweenAttacks { get; set; } = 2.0f;
 	[Export] public int MinAttacksBeforeNextState { get; set; } = 3;
 	[Export] public int MaxAttacksBeforeNextState { get; set; } = 6;
+	[Export(PropertyHint.Range, "0,1.0")]
+	public float DoSweepOnTopOfPlayerChance { get; set; } = 0.75f;
 
 
 	[ExportGroup("SweepAttack")]
@@ -178,15 +181,32 @@ public partial class SecondStage : NakkiBossStage {
 		_readyToAttack = false;
 		_attackCount += 1;
 
+		var sweepPosition = _rng.DiceRoll(DoSweepOnTopOfPlayerChance)
+			? GetClosestPositionToPlayer()
+			: SweepAttackPositions.PickRandom();
+
 		var sweep = SweepAttackScene.Instantiate<SweepAttack>();
 		sweep.AttackDone += StartCooldown;
 		sweep.Speed = HandSpeed;
-		var sweepPosition = SweepAttackPositions.PickRandom();
 		var position = sweepPosition.GlobalPosition - SweepAttackContainer.GlobalPosition;
 		sweep.Position = position;
 
 		SweepAttackContainer.AddChild(sweep);
 		sweep.StartAttack();
+	}
+
+	private Node2D GetClosestPositionToPlayer() {
+		var playerPos = this.Persistent().Player.GlobalPosition;
+
+		var closest = SweepAttackPositions
+			.Select(node => {
+				var xDistanceFromPlayer = Mathf.Abs(node.GlobalPosition.X - playerPos.X);
+				return (xDistanceFromPlayer, node);
+			})
+			.MinBy(a => a.xDistanceFromPlayer)
+			.node;
+
+		return closest;
 	}
 
 	private void DoLilypadAttack() {

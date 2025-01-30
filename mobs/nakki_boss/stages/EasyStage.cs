@@ -13,6 +13,8 @@ public partial class EasyStage : NakkiBossStage {
 	[Export] public float TimeBetweenAttacks { get; set; } = 5.0f;
 	[Export] public int MinAttacksBeforeNextState { get; set; } = 3;
 	[Export] public int MaxAttacksBeforeNextState { get; set; } = 6;
+	[Export(PropertyHint.Range, "0,1.0")]
+	public float DoSweepOnTopOfPlayerChance { get; set; } = 0.50f;
 
 	[ExportGroup("SweepAttack")]
 	[Export] public float HandSpeed { get; set; } = 50.0f;
@@ -159,6 +161,10 @@ public partial class EasyStage : NakkiBossStage {
 		_readyToAttack = false;
 		_attackCount += 1;
 
+		var sweepPosition = _rng.DiceRoll(DoSweepOnTopOfPlayerChance)
+			? GetClosestPositionToPlayer()
+			: SweepAttackPositions.PickRandom();
+
 		var sweep = SweepAttackScene.Instantiate<SweepAttack>();
 		sweep.AttackDone += StartCooldown;
 		sweep.Speed = HandSpeed;
@@ -171,12 +177,25 @@ public partial class EasyStage : NakkiBossStage {
 			   attack pos = attack global pos - parent global pos
 			              = marker global pos - parent global pos
 		*/
-		var sweepPosition = SweepAttackPositions.PickRandom();
 		var position = sweepPosition.GlobalPosition - SweepAttackContainer.GlobalPosition;
 		sweep.Position = position;
 
 		SweepAttackContainer.AddChild(sweep);
 		sweep.StartAttack();
+	}
+
+	private Node2D GetClosestPositionToPlayer() {
+		var playerPos = this.Persistent().Player.GlobalPosition;
+
+		var closest = SweepAttackPositions
+			.Select(node => {
+				var xDistanceFromPlayer = Mathf.Abs(node.GlobalPosition.X - playerPos.X);
+				return (xDistanceFromPlayer, node);
+			})
+			.MinBy(a => a.xDistanceFromPlayer)
+			.node;
+
+		return closest;
 	}
 
 	private enum Attacks {
