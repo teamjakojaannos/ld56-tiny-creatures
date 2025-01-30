@@ -13,12 +13,11 @@ public partial class SecondStage : NakkiBossStage {
 	[Export] public float TimeBetweenAttacks { get; set; } = 2.0f;
 	[Export] public int MinAttacksBeforeNextState { get; set; } = 3;
 	[Export] public int MaxAttacksBeforeNextState { get; set; } = 6;
-	[Export(PropertyHint.Range, "0,1.0")]
-	public float DoSweepOnTopOfPlayerChance { get; set; } = 0.75f;
-
 
 	[ExportGroup("SweepAttack")]
 	[Export] public float HandSpeed { get; set; } = 75.0f;
+	[Export(PropertyHint.Range, "0,1.0")]
+	public float DoSweepOnTopOfPlayerChance { get; set; } = 0.75f;
 
 	[ExportGroup("LilypadAttack")]
 	[Export] public float UnderwaterTime { get; set; } = 1.5f;
