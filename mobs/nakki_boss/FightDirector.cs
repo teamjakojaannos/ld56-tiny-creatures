@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Jakojaannos.WisperingWoods.Util.Editor;
 using System.Threading.Tasks;
 using System;
+using Jakojaannos.WisperingWoods.Util;
 
 namespace Jakojaannos.WisperingWoods;
 
@@ -64,7 +65,7 @@ public partial class FightDirector : Node {
 	}
 
 	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
-		this.RunAsyncSignalHandler(ExecuteLilypadAttackAsync(stats));
+		ExecuteLilypadAttackAsync(stats).FireAndForget();
 	}
 
 	private async Task ExecuteLilypadAttackAsync(LilypadAttackStats stats) {
@@ -90,23 +91,5 @@ public partial class FightDirector : Node {
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
 		Nakki.TeleportToProgress(relative.X);
-	}
-}
-
-// FIXME: this should be Somewhere Else(TM)
-static class GodotObjectAsyncExtension {
-	public static void RunAsyncSignalHandler(this GodotObject _, Task task) {
-		async Task Wrapper() {
-			try {
-				await task;
-			} catch (TaskCanceledException) {
-				GD.PushWarning($"Async signal handler was cancelled.");
-			} catch (Exception e) {
-				GD.PushError($"Something unexpected interrupted an async signal handler {e.Message}!");
-			}
-		}
-
-		// NOTE: unsafely discards any unexpected exceptions raised during execution of the async task
-		var discard = Wrapper();
 	}
 }
