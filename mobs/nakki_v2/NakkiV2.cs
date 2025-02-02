@@ -1,5 +1,6 @@
 using Godot;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util.Editor;
@@ -349,11 +350,54 @@ public partial class NakkiV2 : Path2D {
 		AnimationPlayer.Play("lilypad_attack");
 	}
 
+	public async Task PlayLilypadAttackAnimationAsync() {
+		await AnimationPlayer.PlayAsync("lilypad_attack");
+	}
+
 	private void LilypadAttackAnimationDone() {
 		CurrentState.NakkiAnimationFinished(this, NakkiAnimation.LilypadAttack);
 	}
 
 	private void SinkLilypads() {
 		EmitSignal(SignalName.LilypadAttackSignal);
+	}
+}
+
+/// <summary>
+/// Async extension to AnimationPlayer to allow awaiting on the playing animation.
+/// </summary>
+static class AnimationPlayerAsyncExtension {
+	public static async Task PlayAsync(this AnimationPlayer animationPlayer, string animation) {
+		var completion = new TaskCompletionSource();
+
+		void OnFinished(StringName finished) {
+			if (animation == finished) {
+				completion.SetResult();
+			} else {
+				// Some other animation finished. This is unexpected, cancel the task.
+				completion.SetCanceled();
+			}
+		}
+
+		void OnAnimationChanged(StringName oldAnim, StringName newAnim) {
+			if (newAnim != animation) {
+				// Some other animation started. This is unexpected, cancel the task.
+				completion.SetCanceled();
+			}
+		}
+
+		animationPlayer.AnimationFinished += OnFinished;
+		animationPlayer.AnimationChanged += OnAnimationChanged;
+
+		animationPlayer.Play(animation);
+
+		try {
+			// Wait until the animation finishes or something unexpected happens
+			await completion.Task;
+		} finally {
+			// Clean up the temporary event handlers afterwards
+			animationPlayer.AnimationFinished -= OnFinished;
+			animationPlayer.AnimationChanged -= OnAnimationChanged;
+		}
 	}
 }

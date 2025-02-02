@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 
 using Jakojaannos.WisperingWoods.Util.Editor;
+using System.Threading.Tasks;
+using System;
 
 namespace Jakojaannos.WisperingWoods;
 
@@ -34,10 +36,6 @@ public partial class FightDirector : Node {
 	private Node2D? _startPosition;
 
 
-	private readonly List<LilypadAttackStats> _attacksWaitingForNakkiSignal = [];
-	private readonly List<Timer> _delayedAttacks = [];
-
-
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? [])
 			.Union(this.CheckCommonConfigurationWarnings())
@@ -52,7 +50,6 @@ public partial class FightDirector : Node {
 
 		RegisterLilypadSignals();
 
-		Nakki.LilypadAttackSignal += SinkLilypads;
 		LilypadArena.LilypadAttackCompleted += OnLilypadAttackCompleted;
 
 		this.Persistent().PlayerRespawned += Reset;
@@ -67,30 +64,20 @@ public partial class FightDirector : Node {
 	}
 
 	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
-		if (stats.Delay > 0.0f) {
-			DelayedLilypadAttack(stats);
-			return;
-		}
-
-		_attacksWaitingForNakkiSignal.Add(stats);
-		if (stats.PlayNakkiAnimation) {
-			Nakki.PlayLilypadAttackAnimation();
-		} else {
-			/* Normally näkki sends out a signal when it's done with the attack animation.
-						animation_done_signal -> sink lilypads
-				However, if we skip the animation (like with wave attack's follow-up waves),
-				we can proceed directly to sinking them.
-			*/
-			SinkLilypads();
-		}
+		this.RunAsyncSignalHandler(ExecuteLilypadAttackAsync(stats));
 	}
 
-	private void SinkLilypads() {
-		foreach (var stats in _attacksWaitingForNakkiSignal) {
-			LilypadArena.SinkLilypads(stats);
+	private async Task ExecuteLilypadAttackAsync(LilypadAttackStats stats) {
+		if (stats.Delay > 0.0f) {
+			// NOTE: Not Task.Delay() to make use of engine-time.
+			await ToSignal(GetTree().CreateTimer(stats.Delay), SceneTreeTimer.SignalName.Timeout);
 		}
 
-		_attacksWaitingForNakkiSignal.Clear();
+		if (stats.PlayNakkiAnimation) {
+			await Nakki.PlayLilypadAttackAnimationAsync();
+		}
+
+		LilypadArena.SinkLilypads(stats);
 	}
 
 	private void OnLilypadAttackCompleted(int attackId) {
@@ -99,32 +86,27 @@ public partial class FightDirector : Node {
 		}
 	}
 
-	private void DelayedLilypadAttack(LilypadAttackStats stats) {
-		var timer = new Timer() {
-			Autostart = true,
-			OneShot = true,
-			WaitTime = stats.Delay,
-		};
-
-		_delayedAttacks.Add(timer);
-
-		timer.Timeout += () => {
-			_delayedAttacks.Remove(timer);
-			timer.QueueFree();
-			LilypadArena.SinkLilypads(stats);
-		};
-		AddChild(timer);
-	}
-
 	private void Reset() {
-		foreach (var timer in _delayedAttacks) {
-			timer.Stop();
-			timer.QueueFree();
-		}
-		_delayedAttacks.Clear();
-		_attacksWaitingForNakkiSignal.Clear();
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
 		Nakki.TeleportToProgress(relative.X);
+	}
+}
+
+// FIXME: this should be Somewhere Else(TM)
+static class GodotObjectAsyncExtension {
+	public static void RunAsyncSignalHandler(this GodotObject _, Task task) {
+		async Task Wrapper() {
+			try {
+				await task;
+			} catch (TaskCanceledException) {
+				GD.PushWarning($"Async signal handler was cancelled.");
+			} catch (Exception e) {
+				GD.PushError($"Something unexpected interrupted an async signal handler {e.Message}!");
+			}
+		}
+
+		// NOTE: unsafely discards any unexpected exceptions raised during execution of the async task
+		var discard = Wrapper();
 	}
 }
