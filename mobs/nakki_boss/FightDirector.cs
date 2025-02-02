@@ -70,8 +70,7 @@ public partial class FightDirector : Node {
 
 	private async Task ExecuteLilypadAttackAsync(LilypadAttackStats stats) {
 		if (stats.Delay > 0.0f) {
-			// NOTE: Not Task.Delay() to make use of engine-time.
-			await ToSignal(GetTree().CreateTimer(stats.Delay), SceneTreeTimer.SignalName.Timeout);
+			await GetTree().CreateDelay(stats.Delay);
 		}
 
 		if (stats.PlayNakkiAnimation) {
