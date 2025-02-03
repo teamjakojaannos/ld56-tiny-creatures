@@ -1,6 +1,7 @@
 using Godot;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Jakojaannos.WisperingWoods.Util;
@@ -16,10 +17,14 @@ public static class GodotObjectAsyncExtension {
 	/// </summary>
 	/// <param name="task">The task to run</param>
 	/// <param name="isExpectedToCancel">Should any cancellations get logged as warnings or not.</param>
-	public static void FireAndForget(this Task task, bool isExpectedToCancel = true) {
+	public static void FireAndForget(this Task task, CancellationToken? cancellationToken = null, bool isExpectedToCancel = true) {
 		async Task Wrapper() {
 			try {
-				await task;
+				if (cancellationToken is CancellationToken token) {
+					await task.WaitOrCancel(token);
+				} else {
+					await task;
+				}
 			} catch (TaskCanceledException) {
 				if (!isExpectedToCancel) {
 					GD.PushWarning($"Async signal handler was cancelled.");
