@@ -1,5 +1,6 @@
 using Godot;
 
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -20,7 +21,7 @@ public static class AnimationPlayerAsyncExtension {
 	/// only if there are hudndreds or thousands of async animations finishing
 	/// during a frame.
 	/// </summary>
-	public static async Task PlayAsync(this AnimationPlayer animationPlayer, string animation) {
+	public static async Task PlayAsync(this AnimationPlayer animationPlayer, string animation, CancellationToken? ct = null) {
 		var cancelIfAnimationChanges = new TaskCompletionSource();
 
 		void OnCurrentAnimationChanged(string newAnim) {
@@ -39,14 +40,18 @@ public static class AnimationPlayerAsyncExtension {
 
 		try {
 			// Wait until the animation finishes or something unexpected happens
-			var completedTask = animationPlayer.PlayAsyncUnchecked(animation);
-			var finished = await Task.WhenAny(
+			await Task.WhenAny(
 				// Canceled if animation ever changes => throws OperationCanceledException
 				cancelIfAnimationChanges.Task,
-				// Finishes when any animation finishes. As animation change
-				// would cause the task to cancel, we know for sure this is the
-				// expected animation.
-				completedTask
+				// Canceled if a cancelation token is provided and the token is
+				// then explicitly canceled.
+				(ct ?? CancellationToken.None).CancelWhenCanceled(),
+
+				// If neither of above cancelations caused the `WhenAny` to
+				// throw, this finishes when any animation finishes. As any
+				// animation change would cause the task to cancel, we know for
+				// sure this is the expected animation finishing.
+				animationPlayer.PlayAsyncUnchecked(animation)
 			);
 		} finally {
 			// Clean up the temporary event handlers afterwards

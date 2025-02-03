@@ -37,7 +37,7 @@ public partial class FightDirector : Node {
 	}
 	private Node2D? _startPosition;
 
-	private CancellationTokenSource _lilypadAttackCancelationTokenSource = new();
+	private CancellationTokenSource _lilypadAttackCancelSource = new();
 
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? [])
@@ -67,18 +67,17 @@ public partial class FightDirector : Node {
 	}
 
 	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
-		var ct = _lilypadAttackCancelationTokenSource.Token;
-		ExecuteLilypadAttackAsync(stats, ct)
-			.FireAndForget(ct);
+		var ct = _lilypadAttackCancelSource.Token;
+		ExecuteLilypadAttackAsync(stats, ct).FireAndForget(ct);
 	}
 
-	private async Task ExecuteLilypadAttackAsync(LilypadAttackStats stats, CancellationToken cancellationToken) {
+	private async Task ExecuteLilypadAttackAsync(LilypadAttackStats stats, CancellationToken ct) {
 		if (stats.Delay > 0.0f) {
 			await GetTree().CreateDelay(stats.Delay);
 		}
 
 		if (stats.PlayNakkiAnimation) {
-			await Nakki.PlayLilypadAttackAnimationAsync().WaitOrCancel(cancellationToken);
+			await Nakki.PlayLilypadAttackAnimationAsync(ct).WaitOrCancel(ct);
 		}
 
 		LilypadArena.SinkLilypads(stats);
@@ -91,8 +90,8 @@ public partial class FightDirector : Node {
 	}
 
 	private void Reset() {
-		_lilypadAttackCancelationTokenSource.Cancel();
-		_lilypadAttackCancelationTokenSource = new();
+		_lilypadAttackCancelSource.Cancel();
+		_lilypadAttackCancelSource = new();
 
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
