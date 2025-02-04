@@ -70,7 +70,13 @@ public partial class Persistent : Node2D {
 			//        in the hierarchy, taking priority over the default editor
 			//        viewport.
 			if (GetViewport() is Window) {
-				QueueFree();
+				// NOTE:
+				// DO NOT FREE THE AUTOLOAD INSTANCE. That breaks the editor,
+				// as e.g. Editor Settings seem to assume autoload instances
+				// are never destroyed. Just removing the node from the tree is
+				// enough to fix camera in-editor, while allowing the editor to
+				// cling onto the instance.
+				GetParent().RemoveChild(this);
 			}
 			return;
 		}

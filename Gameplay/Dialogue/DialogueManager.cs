@@ -147,8 +147,10 @@ public partial class DialogueManager : Node {
 			// Workaround https://github.com/godotengine/godot/issues/71373
 			// TL;DR: we want configuration warnings, without an editor-global
 			//        instance.
+			//
+			// DO NOT FREE THE AUTOLOAD INSTANCE. See Persistent.cs for details
 			if (GetViewport() is Window) {
-				QueueFree();
+				GetParent().RemoveChild(this);
 			}
 			return;
 		}
