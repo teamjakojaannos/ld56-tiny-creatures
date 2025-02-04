@@ -55,4 +55,5 @@ public enum NakkiAnimation {
 	Dive,
 	EmergeFromWater,
 	Attack,
+	LilypadAttack,
 }
