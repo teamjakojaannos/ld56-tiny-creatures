@@ -111,6 +111,7 @@ public partial class BossLilypad : Node2D {
 	public void Reset() {
 		UnderwaterTimer.Stop();
 		AnimationPlayer.Stop();
+		AnimationPlayer.Play("RESET");
 		ShakeTimer.Stop();
 		IsUnderwaterOrAboutToSink = SunkenByDefault;
 

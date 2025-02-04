@@ -214,46 +214,55 @@ position = Vector2(72, 52)
 Tags = ["col_3", "row_3", "stage_1"]
 
 [node name="Lilypad10" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(108, 0)
 Tags = ["col_4", "row_1", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad11" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(108, 26)
 Tags = ["col_4", "row_2", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad12" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(108, 52)
 Tags = ["col_4", "row_3", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad13" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(144, 0)
 Tags = ["col_5", "row_1", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad14" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(144, 26)
 Tags = ["col_5", "row_2", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad15" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(144, 52)
 Tags = ["col_5", "row_3", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad16" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(180, 0)
 Tags = ["col_6", "row_1", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad17" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(180, 26)
 Tags = ["col_6", "row_2", "stage_2"]
 SunkenByDefault = true
 
 [node name="Lilypad18" parent="BossArena/LilypadArena" instance=ExtResource("9_h6tgj")]
+visible = false
 position = Vector2(180, 52)
 Tags = ["col_6", "row_3", "stage_2"]
 SunkenByDefault = true
