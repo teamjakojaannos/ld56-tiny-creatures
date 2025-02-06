@@ -103,7 +103,7 @@ public partial class BossLilypad : Node2D {
 		await ShakeFor(shakeDuration, shakeAnimationSpeed, ct);
 		ct.ThrowIfCancellationRequested();
 
-		await AnimationPlayer.PlayAsync("sink", ct /*, customSpeed: sinkAnimationSpeed */);
+		await AnimationPlayer.PlayAsync("sink", ct, customSpeed: sinkAnimationSpeed);
 		ct.ThrowIfCancellationRequested();
 		SetSolid(true);
 
@@ -124,7 +124,7 @@ public partial class BossLilypad : Node2D {
 			if (ct.IsCancellationRequested) {
 				return;
 			}
-			await AnimationPlayer.PlayAsync("shake", ct /*, customSpeed: shakeAnimationSpeed*/);
+			await AnimationPlayer.PlayAsync("shake", ct, customSpeed: shakeAnimationSpeed);
 		}
 	}
 

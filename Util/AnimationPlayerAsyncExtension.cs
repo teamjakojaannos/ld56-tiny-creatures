@@ -21,7 +21,7 @@ public static class AnimationPlayerAsyncExtension {
 	/// only if there are hudndreds or thousands of async animations finishing
 	/// during a frame.
 	/// </summary>
-	public static async Task PlayAsync(this AnimationPlayer animationPlayer, string animation, CancellationToken? ct = null) {
+	public static async Task PlayAsync(this AnimationPlayer animationPlayer, string animation, CancellationToken? ct = null, float customSpeed = 1.0f) {
 		var cancelIfAnimationChanges = new TaskCompletionSource();
 
 		void OnCurrentAnimationChanged(string newAnim) {
@@ -51,7 +51,7 @@ public static class AnimationPlayerAsyncExtension {
 				// throw, this finishes when any animation finishes. As any
 				// animation change would cause the task to cancel, we know for
 				// sure this is the expected animation finishing.
-				animationPlayer.PlayAsyncUnchecked(animation)
+				animationPlayer.PlayAsyncUnchecked(animation, customSpeed)
 			);
 		} finally {
 			// Clean up the temporary event handlers afterwards
@@ -73,9 +73,9 @@ public static class AnimationPlayerAsyncExtension {
 	/// meaningful amount of waiting occurred", this might do the trick with a
 	/// fraction of the performance impact.
 	/// </summary>
-	public static async Task PlayAsyncUnchecked(this AnimationPlayer animationPlayer, string animation) {
+	public static async Task PlayAsyncUnchecked(this AnimationPlayer animationPlayer, string animation, float customSpeed = 1.0f) {
 		var animationFinishedAwaiter = animationPlayer.ToSignal(animationPlayer, AnimationMixer.SignalName.AnimationFinished);
-		animationPlayer.Play(animation);
+		animationPlayer.Play(animation, customSpeed: customSpeed);
 		await animationFinishedAwaiter;
 	}
 }
