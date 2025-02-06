@@ -1,12 +1,9 @@
 using Godot;
 using System.Linq;
-using System.Collections.Generic;
-
-using Jakojaannos.WisperingWoods.Util.Editor;
-using System.Threading.Tasks;
-using System;
-using Jakojaannos.WisperingWoods.Util;
 using System.Threading;
+using System.Threading.Tasks;
+using Jakojaannos.WisperingWoods.Util;
+using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
 
@@ -53,8 +50,6 @@ public partial class FightDirector : Node {
 
 		RegisterLilypadSignals();
 
-		LilypadArena.LilypadAttackCompleted += OnLilypadAttackCompleted;
-
 		this.Persistent().PlayerRespawned += Reset;
 	}
 
@@ -80,12 +75,10 @@ public partial class FightDirector : Node {
 			await Nakki.PlayLilypadAttackAnimationAsync(ct).WaitOrCancel(ct);
 		}
 
-		LilypadArena.SinkLilypads(stats);
-	}
+		await LilypadArena.SinkLilypadsAsync(stats, ct);
 
-	private void OnLilypadAttackCompleted(int attackId) {
 		if (Nakki.CurrentState is NakkiBossStage bossStage) {
-			bossStage.LilypadAttackWasCompleted(attackId);
+			bossStage.LilypadAttackWasCompleted(stats.AttackId);
 		}
 	}
 

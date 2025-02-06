@@ -1,17 +1,17 @@
 using Godot;
 using Godot.Collections;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util.Editor;
+using Jakojaannos.WisperingWoods.Util;
+
+using CancellationToken = System.Threading.CancellationToken;
 
 namespace Jakojaannos.WisperingWoods;
 
 [Tool]
 public partial class BossLilypad : Node2D {
-	[Export] public float UnderwaterTime { get; set; } = 1.5f;
-	[Export] public float SinkAnimationSpeed { get; set; } = 1.0f;
-	[Export] public float ShakeAnimationSpeed { get; set; } = 1.0f;
 	[Export] public Array<string> Tags { get; set; } = [];
 
 	[Export]
@@ -42,23 +42,9 @@ public partial class BossLilypad : Node2D {
 	}
 	private CollisionShape2D? _blocker;
 
-	private Timer UnderwaterTimer {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_underwaterTimer);
-		set => this.SetExportProperty(ref _underwaterTimer, value);
-	}
-	private Timer? _underwaterTimer;
-
-	private Timer ShakeTimer {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_shakeTimer);
-		set => this.SetExportProperty(ref _shakeTimer, value);
-	}
-	private Timer? _shakeTimer;
-
 
 	private Player? _player;
-	private bool _isDoneShaking;
 	public bool IsUnderwaterOrAboutToSink { get; private set; } = false;
-	[Signal] public delegate void LilypadEmergedEventHandler(BossLilypad lilypad);
 
 
 	public override string[] _GetConfigurationWarnings() {
@@ -79,40 +65,12 @@ public partial class BossLilypad : Node2D {
 		playerDetector.BodyEntered += OnBodyEnter;
 		playerDetector.BodyExited += OnBodyExit;
 
-		UnderwaterTimer = new Timer {
-			Autostart = false,
-			OneShot = true,
-		};
-		UnderwaterTimer.Timeout += RiseUp;
-		AddChild(UnderwaterTimer);
-
-		ShakeTimer = new Timer {
-			Autostart = false,
-			OneShot = true,
-		};
-		ShakeTimer.Timeout += () => {
-			_isDoneShaking = true;
-		};
-		AddChild(ShakeTimer);
-
-		AnimationPlayer.AnimationFinished += (name) => {
-			if (name == "sink") {
-				SinkAnimationDone();
-			} else if (name == "rise") {
-				RiseAnimationDone();
-			} else if (name == "shake") {
-				ShakeAnimationDone();
-			}
-		};
-
 		Reset();
 	}
 
 	public void Reset() {
-		UnderwaterTimer.Stop();
 		AnimationPlayer.Stop();
 		AnimationPlayer.Play("RESET");
-		ShakeTimer.Stop();
 		IsUnderwaterOrAboutToSink = SunkenByDefault;
 
 		if (SunkenByDefault) {
@@ -124,49 +82,40 @@ public partial class BossLilypad : Node2D {
 		}
 	}
 
-	public void RiseUp() {
-		AnimationPlayer.Play("rise");
-	}
-
-	public void StartSinking(
-		float underwaterTime,
-		float sinkAnimationSpeed,
-		float shakeTime,
-		float shakeAnimationSpeed
-	) {
-		UnderwaterTime = underwaterTime;
-		SinkAnimationSpeed = sinkAnimationSpeed;
-		ShakeAnimationSpeed = shakeAnimationSpeed;
-
-		_isDoneShaking = false;
-		ShakeTimer.Start(shakeTime);
-		IsUnderwaterOrAboutToSink = true;
-		AnimationPlayer.Play("shake", customSpeed: ShakeAnimationSpeed);
+	public async Task RiseUpAsync(CancellationToken ct) {
+		await AnimationPlayer.PlayAsync("rise", ct);
+		SetSolid(false);
 	}
 
 	public void SetSolidAndSink(float sinkSpeed) {
-		UnderwaterTime = 9999f;
 		SetSolid(true);
 		AnimationPlayer.Play("sink", customSpeed: sinkSpeed);
 	}
 
-	private void ShakeAnimationDone() {
-		if (_isDoneShaking) {
-			AnimationPlayer.Play("sink", customSpeed: SinkAnimationSpeed);
-			return;
-		}
-
-		AnimationPlayer.Play("shake", customSpeed: ShakeAnimationSpeed);
-	}
-
-	private void SinkAnimationDone() {
+	public async Task SinkAndRiseUpAsync(
+		float underwaterTime,
+		float sinkAnimationSpeed,
+		float shakeDuration,
+		float shakeAnimationSpeed,
+		CancellationToken ct
+	) {
+		IsUnderwaterOrAboutToSink = true;
+		await ShakeFor(shakeDuration, shakeAnimationSpeed, ct);
+		await AnimationPlayer.PlayAsync("sink", ct /*, customSpeed: sinkAnimationSpeed */);
 		SetSolid(true);
-		UnderwaterTimer.Start(UnderwaterTime);
+		await GetTree().CreateDelay(underwaterTime);
+		await AnimationPlayer.PlayAsync("rise", ct);
+		SetSolid(false);
 	}
 
-	private void RiseAnimationDone() {
-		SetSolid(false);
-		EmitSignal(SignalName.LilypadEmerged, this);
+	private async Task ShakeFor(float time, float shakeAnimationSpeed, CancellationToken ct) {
+		var isDone = false;
+		GetTree().CreateTimer(time)
+			.Timeout += () => isDone = true;
+
+		while (!isDone) {
+			await AnimationPlayer.PlayAsync("shake", ct /*, customSpeed: shakeAnimationSpeed*/);
+		}
 	}
 
 	private void DealDamage() {
