@@ -114,6 +114,9 @@ public partial class BossLilypad : Node2D {
 			.Timeout += () => isDone = true;
 
 		while (!isDone) {
+			if (ct.IsCancellationRequested) {
+				return;
+			}
 			await AnimationPlayer.PlayAsync("shake", ct /*, customSpeed: shakeAnimationSpeed*/);
 		}
 	}
