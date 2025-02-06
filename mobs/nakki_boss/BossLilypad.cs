@@ -101,10 +101,17 @@ public partial class BossLilypad : Node2D {
 	) {
 		IsUnderwaterOrAboutToSink = true;
 		await ShakeFor(shakeDuration, shakeAnimationSpeed, ct);
+		ct.ThrowIfCancellationRequested();
+
 		await AnimationPlayer.PlayAsync("sink", ct /*, customSpeed: sinkAnimationSpeed */);
+		ct.ThrowIfCancellationRequested();
 		SetSolid(true);
+
 		await GetTree().CreateDelay(underwaterTime);
+		ct.ThrowIfCancellationRequested();
+
 		await AnimationPlayer.PlayAsync("rise", ct);
+		ct.ThrowIfCancellationRequested();
 		SetSolid(false);
 	}
 
