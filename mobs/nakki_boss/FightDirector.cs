@@ -1,7 +1,8 @@
 using Godot;
 using System.Linq;
-using System.Collections.Generic;
-
+using System.Threading;
+using System.Threading.Tasks;
+using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
@@ -33,10 +34,7 @@ public partial class FightDirector : Node {
 	}
 	private Node2D? _startPosition;
 
-
-	private readonly List<LilypadAttackStats> _attacksWaitingForNakkiSignal = [];
-	private readonly List<Timer> _delayedAttacks = [];
-
+	private CancellationTokenSource _lilypadAttackCancelSource = new();
 
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? [])
@@ -52,9 +50,6 @@ public partial class FightDirector : Node {
 
 		RegisterLilypadSignals();
 
-		Nakki.LilypadAttackSignal += SinkLilypads;
-		LilypadArena.LilypadAttackCompleted += OnLilypadAttackCompleted;
-
 		this.Persistent().PlayerRespawned += Reset;
 	}
 
@@ -67,62 +62,30 @@ public partial class FightDirector : Node {
 	}
 
 	private void LilypadAttackSignalGiven(LilypadAttackStats stats) {
+		var ct = _lilypadAttackCancelSource.Token;
+		ExecuteLilypadAttackAsync(stats, ct).FireAndForget(ct);
+	}
+
+	private async Task ExecuteLilypadAttackAsync(LilypadAttackStats stats, CancellationToken ct) {
 		if (stats.Delay > 0.0f) {
-			DelayedLilypadAttack(stats);
-			return;
+			await GetTree().CreateDelay(stats.Delay);
 		}
 
-		_attacksWaitingForNakkiSignal.Add(stats);
 		if (stats.PlayNakkiAnimation) {
-			Nakki.PlayLilypadAttackAnimation();
-		} else {
-			/* Normally näkki sends out a signal when it's done with the attack animation.
-						animation_done_signal -> sink lilypads
-				However, if we skip the animation (like with wave attack's follow-up waves),
-				we can proceed directly to sinking them.
-			*/
-			SinkLilypads();
-		}
-	}
-
-	private void SinkLilypads() {
-		foreach (var stats in _attacksWaitingForNakkiSignal) {
-			LilypadArena.SinkLilypads(stats);
+			await Nakki.PlayLilypadAttackAnimationAsync(ct).WaitOrCancel(ct);
 		}
 
-		_attacksWaitingForNakkiSignal.Clear();
-	}
+		await LilypadArena.SinkLilypadsAsync(stats, ct);
 
-	private void OnLilypadAttackCompleted(int attackId) {
 		if (Nakki.CurrentState is NakkiBossStage bossStage) {
-			bossStage.LilypadAttackWasCompleted(attackId);
+			bossStage.LilypadAttackWasCompleted(stats.AttackId);
 		}
-	}
-
-	private void DelayedLilypadAttack(LilypadAttackStats stats) {
-		var timer = new Timer() {
-			Autostart = true,
-			OneShot = true,
-			WaitTime = stats.Delay,
-		};
-
-		_delayedAttacks.Add(timer);
-
-		timer.Timeout += () => {
-			_delayedAttacks.Remove(timer);
-			timer.QueueFree();
-			LilypadArena.SinkLilypads(stats);
-		};
-		AddChild(timer);
 	}
 
 	private void Reset() {
-		foreach (var timer in _delayedAttacks) {
-			timer.Stop();
-			timer.QueueFree();
-		}
-		_delayedAttacks.Clear();
-		_attacksWaitingForNakkiSignal.Clear();
+		_lilypadAttackCancelSource.Cancel();
+		_lilypadAttackCancelSource = new();
+
 		LilypadArena.ResetLilypads();
 		var relative = StartPosition.GlobalPosition - Nakki.GlobalPosition;
 		Nakki.TeleportToProgress(relative.X);

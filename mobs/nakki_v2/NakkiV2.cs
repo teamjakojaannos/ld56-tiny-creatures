@@ -1,8 +1,12 @@
 using Godot;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
 using Jakojaannos.WisperingWoods.Util.Editor;
+using Jakojaannos.WisperingWoods.Util;
+
+using CancellationToken = System.Threading.CancellationToken;
 
 namespace Jakojaannos.WisperingWoods;
 
@@ -347,6 +351,10 @@ public partial class NakkiV2 : Path2D {
 
 	public void PlayLilypadAttackAnimation() {
 		AnimationPlayer.Play("lilypad_attack");
+	}
+
+	public async Task PlayLilypadAttackAnimationAsync(CancellationToken? ct = null) {
+		await AnimationPlayer.PlayAsync("lilypad_attack", ct);
 	}
 
 	private void LilypadAttackAnimationDone() {
