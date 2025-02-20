@@ -1,25 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://42n60kpfpaxa"]
+[gd_scene load_steps=5 format=3 uid="uid://42n60kpfpaxa"]
 
-[ext_resource type="PackedScene" uid="uid://d2y778kjd7vav" path="res://Characters/Player/player.tscn" id="1_54i1f"]
 [ext_resource type="Script" path="res://Persistent.cs" id="1_krudr"]
 [ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="2_phnra"]
 [ext_resource type="Script" path="res://Gameplay/PlayerInput/InteractionController.cs" id="2_u13ja"]
-[ext_resource type="PackedScene" uid="uid://bjx73xc8t74mp" path="res://Characters/Wisp/Wisp.tscn" id="5_n4g65"]
+[ext_resource type="PackedScene" uid="uid://b2lem4ynkotyx" path="res://Characters/Player/PlayerController.tscn" id="4_xal42"]
 
 [node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player")]
 editor_description = "Contents of this scene persist when the scene is switched. Any initial contents are always available when starting the game in any scene."
 y_sort_enabled = true
 script = ExtResource("1_krudr")
 Intro = NodePath("Intro")
-Player = NodePath("Player")
+Player = NodePath("PlayerController/Player")
 
-[node name="InteractionController" type="Node" parent="." node_paths=PackedStringArray("Wisp")]
+[node name="InteractionController" type="Node" parent="."]
 script = ExtResource("2_u13ja")
-Wisp = NodePath("../Wisp")
 
 [node name="Intro" parent="." instance=ExtResource("2_phnra")]
 
-[node name="Player" parent="." instance=ExtResource("1_54i1f")]
+[node name="PlayerController" parent="." instance=ExtResource("4_xal42")]
 
-[node name="Wisp" parent="." instance=ExtResource("5_n4g65")]
-position = Vector2(-51, -67)
+[editable path="PlayerController"]

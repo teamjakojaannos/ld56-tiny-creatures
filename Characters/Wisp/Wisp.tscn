@@ -1,14 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjx73xc8t74mp"]
+[gd_scene load_steps=7 format=3 uid="uid://bjx73xc8t74mp"]
 
 [ext_resource type="SpriteFrames" uid="uid://e4lcf5dy62ty" path="res://Characters/Wisp/WispSpriteFrames.tres" id="1_1ygce"]
 [ext_resource type="Script" path="res://Characters/Wisp/Wisp.cs" id="1_nv7b8"]
+
+[sub_resource type="Gradient" id="Gradient_yln5s"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.177083, 0.548611, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.649306, 0.649306, 0.649306, 1, 0.235735, 0.235735, 0.235735, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m5y8u"]
+gradient = SubResource("Gradient_yln5s")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_7omp7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.290909, 0.689091, 1)
+colors = PackedColorArray(0.83, 0.83, 0.83, 1, 0.649306, 0.649306, 0.649306, 1, 0.235735, 0.235735, 0.235735, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i31uh"]
+gradient = SubResource("Gradient_7omp7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
 
 [node name="Wisp" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_nv7b8")
 
+[node name="PointLight" type="PointLight2D" parent="."]
+position = Vector2(0, 1)
+color = Color(1, 0.856, 0.68, 1)
+energy = 0.7
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 2
+shadow_filter_smooth = 2.5
+shadow_item_cull_mask = 7
+texture = SubResource("GradientTexture2D_m5y8u")
+metadata/_edit_lock_ = true
+
+[node name="WispGlow" type="PointLight2D" parent="."]
+position = Vector2(0, -5)
+color = Color(0.17, 1, 1, 1)
+energy = 0.66
+shadow_color = Color(0, 0, 0, 0.72549)
+shadow_filter = 2
+shadow_filter_smooth = 3.7
+texture = SubResource("GradientTexture2D_i31uh")
+metadata/_edit_lock_ = true
+
+[node name="FakeBounceLight" type="PointLight2D" parent="."]
+scale = Vector2(0.75, 0.75)
+energy = 0.75
+range_item_cull_mask = 5
+shadow_color = Color(0, 0, 0, 0.72549)
+shadow_filter = 2
+shadow_filter_smooth = 3.7
+texture = SubResource("GradientTexture2D_m5y8u")
+metadata/_edit_lock_ = true
+
+[node name="FrontFaceHighlightThingamajig" type="PointLight2D" parent="."]
+scale = Vector2(0.75, 0.75)
+energy = 0.5
+range_item_cull_mask = 2
+shadow_color = Color(0, 0, 0, 0.72549)
+shadow_filter = 2
+shadow_filter_smooth = 3.7
+texture = SubResource("GradientTexture2D_m5y8u")
+metadata/_edit_lock_ = true
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.670689, 0.67069, 0.670689, 0.682353)
+light_mask = 5
 sprite_frames = ExtResource("1_1ygce")
 animation = &"idle"
+autoplay = "idle"
 frame_progress = 0.0344705
 offset = Vector2(0, -12)

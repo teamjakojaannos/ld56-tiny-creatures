@@ -310,7 +310,7 @@ public partial class Chaser : RigidBody2D {
 		}
 
 		var collider = lineOfSight.GetCollider();
-		return collider is Player;
+		return collider is PlayerCharacter;
 	}
 
 	enum SightConeSize {
@@ -325,7 +325,7 @@ public partial class Chaser : RigidBody2D {
 	public void ExitSightConeLarge(Node2D node) { SightConeExited(node, SightConeSize.Large); }
 
 	private void SightConeEntered(Node2D node, SightConeSize _) {
-		if (node is not Player player) {
+		if (node is not PlayerCharacter player) {
 			return;
 		}
 
@@ -333,7 +333,7 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	private void SightConeExited(Node2D node, SightConeSize _) {
-		if (node is not Player) {
+		if (node is not PlayerCharacter) {
 			return;
 		}
 
@@ -395,12 +395,12 @@ public partial class Chaser : RigidBody2D {
 	}
 
 	public void EnteredKillZone(Node2D node) {
-		if (node is Player player) {
+		if (node is PlayerCharacter player) {
 			AttackPlayer(player);
 		}
 	}
 
-	private void AttackPlayer(Player player) {
+	private void AttackPlayer(PlayerCharacter player) {
 		AttackSounds?.Play();
 		isAttacking = true;
 		player.SetSpriteVisible(false);
@@ -410,7 +410,7 @@ public partial class Chaser : RigidBody2D {
 
 	private void KillPlayer() {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			return;
 		}
 

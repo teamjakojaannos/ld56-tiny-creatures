@@ -218,7 +218,7 @@ public class AlertedState : BogMonsterAIState {
 
 	public static float? GetPlayerXPositionRelativeToMonster(BogMonster monster) {
 		var playerRef = monster.GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			return null;
 		}
 

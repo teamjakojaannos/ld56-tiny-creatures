@@ -84,7 +84,7 @@ public partial class Intro : Node2D {
 
 		Tilulii?.Play();
 
-		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 			this.MainCamera().PositionSmoothingEnabled = true;
 			this.MainCamera().PositionSmoothingSpeed = 2.5f;
 
@@ -112,7 +112,7 @@ public partial class Intro : Node2D {
 	}
 
 	private void ReleasePlayer() {
-		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 			GetTree().CreateTimer(0.25f).Timeout += () => {
 				player.SetMovementEnabled(true);
 			};
@@ -156,7 +156,7 @@ public partial class Intro : Node2D {
 		InitFadeIn();
 		AnimPlayer!.Play("fade_in");
 
-		if (this.Persistent().Player is Player player) {
+		if (this.Persistent().Player is PlayerCharacter player) {
 			player.Noppa!.VolumeDb = Mathf.LinearToDb(0.0f);
 			player.LieDown();
 			player.SetSpriteVisible(true);

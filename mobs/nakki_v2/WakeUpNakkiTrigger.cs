@@ -33,7 +33,7 @@ public partial class WakeUpNakkiTrigger : Area2D {
 	}
 
 	private void OnBodyEntered(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			NakkiToTrigger.PlayerEnteredTrigger();
 		}
 	}

@@ -56,11 +56,12 @@ public partial class StartsAtNode : Node {
 
 		parent.Reparent(target.GetParent() ?? target);
 		parent.GlobalPosition = target.GlobalPosition;
+		parent.ResetPhysicsInterpolation();
 
 		// FIXME: Player.cs should be able to handle this by subbing to a signal
-		if (parent is Player player) {
+		if (parent is PlayerCharacter player) {
 			player.Invulnerable = false;
-			player.EmitSignal(Player.SignalName.ReadyToGo);
+			player.EmitSignal(PlayerCharacter.SignalName.ReadyToGo);
 		}
 	}
 }

@@ -341,7 +341,7 @@ public partial class LevelTransition : Area2D {
 	}
 
 	private void OnPlayerExitedTrigger(Node2D body) {
-		if (body is not Player player) {
+		if (body is not PlayerCharacter player) {
 			return;
 		}
 

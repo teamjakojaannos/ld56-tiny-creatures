@@ -8,7 +8,7 @@ public partial class MusicArea : Area2D {
 
 	public override void _Ready() {
 		BodyEntered += (body) => {
-			if (body is not Player player) {
+			if (body is not PlayerCharacter player) {
 				return;
 			}
 

@@ -12,13 +12,13 @@ public partial class NakkiAttack : Node2D {
 		base._Ready();
 
 		DangerZone!.BodyEntered += (body) => {
-			if (body is Player player) {
+			if (body is PlayerCharacter player) {
 				IsPlayerInDanger = true;
 			}
 		};
 
 		DangerZone!.BodyExited += (body) => {
-			if (body is Player player) {
+			if (body is PlayerCharacter player) {
 				IsPlayerInDanger = false;
 			}
 		};

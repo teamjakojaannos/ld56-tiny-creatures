@@ -15,7 +15,7 @@ public partial class BogMonster : PathFollow2D {
 	[Export]
 	public PackedScene? WaterSplash;
 
-	private Player? player;
+	private PlayerCharacter? player;
 
 	public BogMonsterAIState ai = new MovementState(goingForward: true, 0.0f);
 
@@ -134,17 +134,17 @@ public partial class BogMonster : PathFollow2D {
 		}
 
 		var collider = lineOfSight.GetCollider();
-		return collider is Player;
+		return collider is PlayerCharacter;
 	}
 
 	public void SightConeEntered(Node2D node) {
-		if (node is Player player) {
+		if (node is PlayerCharacter player) {
 			this.player = player;
 		}
 	}
 
 	public void SightConeExited(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			player = null;
 		}
 	}
@@ -206,7 +206,7 @@ public partial class BogMonster : PathFollow2D {
 		}
 
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			return null;
 		}
 
@@ -243,7 +243,7 @@ public partial class BogMonster : PathFollow2D {
 	}
 
 	public void PlayAttackAnimation() {
-		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 			if (hand is not null) {
 				// HACK: scale instead of flipH to affect children, too
 				hand.Scale = player.GlobalPosition.X < GlobalPosition.X
@@ -269,7 +269,7 @@ public partial class BogMonster : PathFollow2D {
 
 	public void SyncHandLocation(float delta) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player || attack is null) {
+		if (playerRef is not PlayerCharacter player || attack is null) {
 			return;
 		}
 
@@ -278,13 +278,13 @@ public partial class BogMonster : PathFollow2D {
 	}
 
 	public void ApplySlow() {
-		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 			player.Slowed = true;
 		}
 	}
 
 	public void ClearSlow() {
-		if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 			player.Slowed = false;
 		}
 	}
@@ -297,7 +297,7 @@ public partial class BogMonster : PathFollow2D {
 
 	public void SyncFakePlayerLocationAndHideAndKillPlayer() {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			return;
 		}
 

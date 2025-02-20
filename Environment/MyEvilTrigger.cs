@@ -27,7 +27,7 @@ public partial class MyEvilTrigger : Area2D {
 	}
 
 	public void OnBodyEnter(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			StartSequence();
 		}
 	}

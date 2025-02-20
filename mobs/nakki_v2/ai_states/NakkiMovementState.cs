@@ -66,7 +66,7 @@ public partial class NakkiMovementState : NakkiAiState {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		var moveToPlayer = _rng.DiceRoll(MoveToPlayerChance);
 
-		if (moveToPlayer && playerRef is Player player) {
+		if (moveToPlayer && playerRef is PlayerCharacter player) {
 			var relative = nakki.GetPlayerXPositionRelative(player);
 			nakki.SetProgressTarget(relative);
 		} else {

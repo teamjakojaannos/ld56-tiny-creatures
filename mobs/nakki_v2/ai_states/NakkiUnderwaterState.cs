@@ -65,7 +65,7 @@ public partial class NakkiUnderwaterState : NakkiAiState {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
 		var pathLength = nakki.PathLength;
 
-		var emergeTo = (_rng.DiceRoll(EmergeAtPlayerChance) && playerRef is Player player)
+		var emergeTo = (_rng.DiceRoll(EmergeAtPlayerChance) && playerRef is PlayerCharacter player)
 				? nakki.GetPlayerXPositionRelative(player)
 				: _rng.RandfRange(0.0f, pathLength);
 

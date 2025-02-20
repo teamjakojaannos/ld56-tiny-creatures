@@ -41,7 +41,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 	public override void EnterState(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			return;
 		}
 
@@ -65,7 +65,7 @@ public partial class NakkiAttackState : NakkiAiState {
 
 	public override void ExitState(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is Player player) {
+		if (playerRef is PlayerCharacter player) {
 			player.Slowed = false;
 		}
 	}

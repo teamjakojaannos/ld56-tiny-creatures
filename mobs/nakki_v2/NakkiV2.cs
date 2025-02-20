@@ -111,7 +111,7 @@ public partial class NakkiV2 : Path2D {
 
 	public float DetectionLevel { get; set; } = 0.0f;
 	private float? _targetProgress;
-	private Player? _player;
+	private PlayerCharacter? _player;
 	private bool _isPlayerInDanger = false;
 	private bool _playerIsDead = false;
 
@@ -225,7 +225,7 @@ public partial class NakkiV2 : Path2D {
 		}
 
 		var collider = LineOfSight.GetCollider();
-		return collider is Player;
+		return collider is PlayerCharacter;
 	}
 
 	public bool HasReachedTarget() {
@@ -260,25 +260,25 @@ public partial class NakkiV2 : Path2D {
 	public float PathLength => Curve.GetBakedLength();
 
 	private void SightConeEntered(Node2D node) {
-		if (node is Player player) {
+		if (node is PlayerCharacter player) {
 			_player = player;
 		}
 	}
 
 	private void SightConeExited(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			_player = null;
 		}
 	}
 
 	private void DangerZoneEntered(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			_isPlayerInDanger = true;
 		}
 	}
 
 	private void DangerZoneExited(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			_isPlayerInDanger = false;
 		}
 	}
@@ -306,7 +306,7 @@ public partial class NakkiV2 : Path2D {
 		}
 
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			return;
 		}
 
@@ -334,7 +334,7 @@ public partial class NakkiV2 : Path2D {
 		CurrentState.NakkiAnimationFinished(this, NakkiAnimation.EmergeFromWater);
 	}
 
-	public float GetPlayerXPositionRelative(Player player) {
+	public float GetPlayerXPositionRelative(PlayerCharacter player) {
 		var playerPosition = player.GlobalPosition;
 		return playerPosition.X - GlobalPosition.X;
 	}

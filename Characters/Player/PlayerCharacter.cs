@@ -9,7 +9,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Characters.Player;
 
 [Tool]
-public partial class Player : CharacterBody2D {
+public partial class PlayerCharacter : CharacterBody2D {
 	[Signal]
 	public delegate void LightLevelChangedEventHandler(int newLightLevel);
 
@@ -152,30 +152,29 @@ public partial class Player : CharacterBody2D {
 			MovePlayer(delta);
 		}
 
+		// FIXME: get rid of this
 		if (WispTarget is not null) {
 			var distance = Wisp.GlobalPosition.DistanceTo(WispTarget.GlobalPosition);
 			Wisp.GlobalPosition =
 				Wisp.GlobalPosition.MoveToward(WispTarget.GlobalPosition, distance * 2.0f * delta);
-		} else {
-			var distance = Wisp.GlobalPosition.DistanceTo(WispFollowNode.GlobalPosition);
-			Wisp.GlobalPosition =
-				Wisp.GlobalPosition.MoveToward(WispFollowNode.GlobalPosition, distance * 5f * delta);
 		}
 	}
 
+	public Vector2 InputDirection { get; private set; }
+
 	private void MovePlayer(float delta) {
-		var direction = IsAllowedToMove
+		InputDirection = IsAllowedToMove
 						? Input.GetVector("left", "right", "up", "down")
 						: Vector2.Zero;
 
 		var modifier = Slowed ? 0.5f : 1.0f;
-		if (direction.LengthSquared() > 0.001f) {
-			Velocity = direction * Speed * modifier;
-			animationDirection = direction.X < 0.0
+		if (InputDirection.LengthSquared() > 0.001f) {
+			Velocity = InputDirection * Speed * modifier;
+			animationDirection = InputDirection.X < 0.0
 				? "Left"
-				: direction.X > 0.0
+				: InputDirection.X > 0.0
 				? "Right"
-				: direction.Y < 0.0
+				: InputDirection.Y < 0.0
 				? "Up"
 				: "Down";
 
@@ -194,12 +193,7 @@ public partial class Player : CharacterBody2D {
 			Animation?.Play($"Idle{animationDirection}");
 		}
 
-		var wispPosition = Wisp.GlobalPosition;
 		MoveAndSlide();
-
-		// HACK: Cancel out wisp movement to emulate top-level movement.
-		//       Can't use TopLevel=true as that breaks Y-sort.
-		Wisp.GlobalPosition = wispPosition;
 	}
 
 	public void SetSpriteVisible(bool visible) {

@@ -12,7 +12,7 @@ public partial class DialogueTrigger : Area2D {
 		}
 
 		BodyEntered += (body) => {
-			if (body is not Player player) {
+			if (body is not PlayerCharacter player) {
 				return;
 			}
 

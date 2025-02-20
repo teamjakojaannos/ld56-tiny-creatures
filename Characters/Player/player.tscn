@@ -1,10 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=32 format=3 uid="uid://d2y778kjd7vav"]
 
-[ext_resource type="Script" path="res://Characters/Player/Player.cs" id="1_cn8o3"]
+[ext_resource type="Script" path="res://Characters/Player/PlayerCharacter.cs" id="1_cn8o3"]
 [ext_resource type="Script" path="res://Gameplay/StartsAtNode.cs" id="2_6ksxn"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="3_88t4b"]
 [ext_resource type="AudioStream" uid="uid://cdlv0clfgfav" path="res://random_sfx/askel1.ogg" id="4_50csx"]
-[ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="4_62syh"]
 [ext_resource type="AudioStream" uid="uid://dtktpkf5x1rgd" path="res://random_sfx/vesikuolema.ogg" id="4_eao0h"]
 [ext_resource type="AudioStream" uid="uid://x482eds70blo" path="res://random_sfx/askel2.ogg" id="5_065tq"]
 [ext_resource type="AudioStream" uid="uid://0cs7fbkti0v6" path="res://random_sfx/askel3.ogg" id="6_8m8n3"]
@@ -628,31 +627,7 @@ _data = {
 "pan_camera_up": SubResource("Animation_c1cke")
 }
 
-[sub_resource type="Gradient" id="Gradient_yln5s"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.177083, 0.548611, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.649306, 0.649306, 0.649306, 1, 0.235735, 0.235735, 0.235735, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_k821t"]
-gradient = SubResource("Gradient_yln5s")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_7omp7"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.290909, 0.689091, 1)
-colors = PackedColorArray(0.83, 0.83, 0.83, 1, 0.649306, 0.649306, 0.649306, 1, 0.235735, 0.235735, 0.235735, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_67s2t"]
-gradient = SubResource("Gradient_7omp7")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "Shadow", "WispFollowNode", "Wisp", "Noppa") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "Shadow", "Noppa") groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 3
 motion_mode = 1
@@ -665,8 +640,6 @@ Footsteps = NodePath("Footsteps/Normal")
 FootstepsWet = NodePath("Footsteps/Wet")
 FootstepsTimer = NodePath("FootstepTimer")
 Shadow = NodePath("Sprite2D")
-WispFollowNode = NodePath("SpiritTarget/Spirit")
-Wisp = NodePath("SpiritTarget/SpiritVisuals")
 Noppa = NodePath("Ded")
 
 [node name="StartsAtNode" type="Node" parent="."]
@@ -689,78 +662,6 @@ shape = SubResource("RectangleShape2D_v1bly")
 libraries = {
 "": SubResource("AnimationLibrary_duy3k")
 }
-
-[node name="SpiritTarget" type="Marker2D" parent="."]
-y_sort_enabled = true
-position = Vector2(0, -24)
-
-[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="SpiritTarget"]
-scale = Vector2(0.7, 0.7)
-node_a = NodePath("../Spirit")
-node_b = NodePath("../..")
-length = 24.0
-rest_length = 16.0
-
-[node name="SpiritVisuals" type="Node2D" parent="SpiritTarget"]
-y_sort_enabled = true
-
-[node name="PointLight" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
-position = Vector2(0, 1)
-color = Color(1, 0.856, 0.68, 1)
-energy = 0.7
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_filter = 2
-shadow_filter_smooth = 2.5
-shadow_item_cull_mask = 7
-texture = SubResource("GradientTexture2D_k821t")
-metadata/_edit_lock_ = true
-
-[node name="WispGlow" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
-position = Vector2(0, -5)
-color = Color(0.17, 1, 1, 1)
-energy = 0.66
-shadow_color = Color(0, 0, 0, 0.72549)
-shadow_filter = 2
-shadow_filter_smooth = 3.7
-texture = SubResource("GradientTexture2D_67s2t")
-metadata/_edit_lock_ = true
-
-[node name="FakeBounceLight" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
-scale = Vector2(0.75, 0.75)
-energy = 0.75
-range_item_cull_mask = 5
-shadow_color = Color(0, 0, 0, 0.72549)
-shadow_filter = 2
-shadow_filter_smooth = 3.7
-texture = SubResource("GradientTexture2D_k821t")
-
-[node name="FrontFaceHighlightThingamajig" type="PointLight2D" parent="SpiritTarget/SpiritVisuals"]
-scale = Vector2(0.75, 0.75)
-energy = 0.5
-range_item_cull_mask = 2
-shadow_color = Color(0, 0, 0, 0.72549)
-shadow_filter = 2
-shadow_filter_smooth = 3.7
-texture = SubResource("GradientTexture2D_k821t")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpiritTarget/SpiritVisuals"]
-modulate = Color(0.670689, 0.67069, 0.670689, 0.682353)
-light_mask = 5
-y_sort_enabled = true
-texture_filter = 1
-sprite_frames = ExtResource("4_62syh")
-autoplay = "default"
-frame_progress = 0.229417
-offset = Vector2(0, -12)
-metadata/_edit_lock_ = true
-
-[node name="Spirit" type="RigidBody2D" parent="SpiritTarget"]
-top_level = true
-position = Vector2(0, -24)
-gravity_scale = 0.0
-lock_rotation = true
-linear_damp = 2.0
 
 [node name="Ded" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_eao0h")

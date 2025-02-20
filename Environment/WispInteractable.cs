@@ -31,7 +31,7 @@ public partial class WispInteractable : Area2D {
 			_done = value;
 			if (_done) {
 				isWispInteracting = false;
-				if (GetTree().GetFirstNodeInGroup("Player") is Player player) {
+				if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 					player.WispTarget = null;
 				}
 				wisp = null;
@@ -93,14 +93,14 @@ public partial class WispInteractable : Area2D {
 					return;
 				}
 
-				if (body is Player player) {
+				if (body is PlayerCharacter player) {
 					player.WispTarget = Target;
 					wisp = player.Wisp;
 				}
 			};
 
 			BodyExited += (body) => {
-				if (body is Player player) {
+				if (body is PlayerCharacter player) {
 					if (isWispInteracting) {
 						GetTree().CreateTimer(1.0f).Timeout += () => {
 							isWispInteracting = false;

@@ -16,7 +16,7 @@ public partial class DestroyKiviTrigger : Area2D {
 	public AudioStreamPlayer? sfx;
 
 	public void HandleBodyEntered(Node2D node) {
-		if (node is Player) {
+		if (node is PlayerCharacter) {
 			if (isDestroyed) {
 				return;
 			}

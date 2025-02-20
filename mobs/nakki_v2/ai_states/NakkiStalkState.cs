@@ -51,7 +51,7 @@ public partial class NakkiStalkState : NakkiAiState {
 
 	public override void AiUpdate(NakkiV2 nakki) {
 		var playerRef = GetTree().GetFirstNodeInGroup("Player");
-		if (playerRef is not Player player) {
+		if (playerRef is not PlayerCharacter player) {
 			nakki.CurrentState = IdleState;
 			return;
 		}

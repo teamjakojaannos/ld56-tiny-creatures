@@ -40,7 +40,7 @@ public partial class RequireLineOfSightToPlayer : BTNode {
 		}
 
 		var collider = LineOfSightRay.GetCollider();
-		return collider is Player
+		return collider is PlayerCharacter
 			? StatusCode.Success
 			: StatusCode.Failure;
 	}

@@ -37,12 +37,12 @@ public partial class RequirePlayerInArea : BTNode {
 		}
 
 		Area.BodyEntered += (body) => {
-			if (body is Player player) {
+			if (body is PlayerCharacter player) {
 				_isPlayerInTrigger = true;
 			}
 		};
 		Area.BodyExited += (body) => {
-			if (body is Player player) {
+			if (body is PlayerCharacter player) {
 				_isPlayerInTrigger = false;
 			}
 		};

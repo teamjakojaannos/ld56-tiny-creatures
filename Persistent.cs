@@ -33,11 +33,11 @@ public partial class Persistent : Node2D {
 
 	[Export]
 	[MustSetInEditor]
-	public Player Player {
+	public PlayerCharacter Player {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_player);
 		set => this.SetExportProperty(ref _player, value);
 	}
-	private Player? _player;
+	private PlayerCharacter? _player;
 
 	[Export]
 	public int SavedCount { get; internal set; } = 0;
