@@ -12,8 +12,9 @@ script = ExtResource("1_krudr")
 Intro = NodePath("Intro")
 Player = NodePath("PlayerController/Player")
 
-[node name="InteractionController" type="Node" parent="."]
+[node name="InteractionController" type="Node" parent="." node_paths=PackedStringArray("Wisp")]
 script = ExtResource("2_u13ja")
+Wisp = NodePath("../PlayerController/Wisp")
 
 [node name="Intro" parent="." instance=ExtResource("2_phnra")]
 

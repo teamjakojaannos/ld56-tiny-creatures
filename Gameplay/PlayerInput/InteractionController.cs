@@ -115,9 +115,11 @@ public partial class InteractionController : Node {
 
 	internal void TrackPointOfInterest(IWispPointOfInterest poi) {
 		_pointsOfInterest.Add(poi);
+		GD.Print("TRACKING");
 	}
 
 	internal void UntrackPointOfInterest(IWispPointOfInterest poi) {
 		_pointsOfInterest.Remove(poi);
+		GD.Print("UNTRACKING");
 	}
 }

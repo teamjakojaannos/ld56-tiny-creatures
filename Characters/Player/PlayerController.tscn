@@ -8,11 +8,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_5lhcn"]
 radius = 3.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0jq7g"]
-radius = 3.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0p60i"]
 radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_281sf"]
+radius = 3.0
 
 [node name="PlayerController" type="Node2D"]
 
@@ -31,41 +31,25 @@ target = NodePath("../Player")
 shape = SubResource("CircleShape2D_5lhcn")
 debug_color = Color(0, 0.645559, 0.257418, 0.42)
 
-[node name="WispArmMiddle" type="RigidBody2D" parent="."]
-position = Vector2(0, 30)
-collision_layer = 0
-collision_mask = 0
-linear_damp = 0.5
-
-[node name="Shape" type="CollisionShape2D" parent="WispArmMiddle"]
-shape = SubResource("CircleShape2D_0jq7g")
-debug_color = Color(0, 0.645559, 0.257418, 0.42)
-
-[node name="WispTargetPosition" type="RigidBody2D" parent="." node_paths=PackedStringArray("parts")]
+[node name="WispTargetPosition" type="RigidBody2D" parent="."]
 position = Vector2(0, 56)
 collision_layer = 0
 collision_mask = 0
-linear_damp = 1.0
+linear_damp = 2.0
 script = ExtResource("3_shd57")
-parts = [NodePath("../WispArm1"), NodePath("../WispArm2")]
 
 [node name="Shape" type="CollisionShape2D" parent="WispTargetPosition"]
 shape = SubResource("CircleShape2D_0p60i")
 debug_color = Color(0, 0.645559, 0.257418, 0.42)
 
-[node name="WispArm1" type="DampedSpringJoint2D" parent="."]
-node_a = NodePath("../PlayerFollower")
-node_b = NodePath("../WispArmMiddle")
-bias = 0.9
-length = 30.0
-stiffness = 50.0
-
-[node name="WispArm2" type="DampedSpringJoint2D" parent="."]
-position = Vector2(0, 30)
-node_a = NodePath("../WispArmMiddle")
-node_b = NodePath("../WispTargetPosition")
-length = 25.0
-stiffness = 50.0
-
 [node name="Wisp" parent="." instance=ExtResource("2_bksb5")]
 position = Vector2(0, 56)
+
+[node name="DbgArmTargetPos" type="StaticBody2D" parent="."]
+position = Vector2(58, -34)
+collision_layer = 0
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="DbgArmTargetPos"]
+shape = SubResource("CircleShape2D_281sf")
+debug_color = Color(0.794013, 0.000176544, 0.698602, 0.42)
