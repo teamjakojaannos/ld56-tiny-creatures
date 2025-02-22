@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjx73xc8t74mp"]
+[gd_scene load_steps=8 format=3 uid="uid://bjx73xc8t74mp"]
 
 [ext_resource type="SpriteFrames" uid="uid://e4lcf5dy62ty" path="res://Characters/Wisp/WispSpriteFrames.tres" id="1_1ygce"]
-[ext_resource type="Script" uid="uid://d2j6xa4346ucc" path="res://Characters/Wisp/Wisp.cs" id="1_nv7b8"]
+[ext_resource type="Script" uid="uid://cbmn3cdx6jauw" path="res://Characters/Wisp/WispCharacter.cs" id="1_4tdks"]
 
 [sub_resource type="Gradient" id="Gradient_yln5s"]
 interpolation_mode = 2
@@ -27,9 +27,16 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="Wisp" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ql1ed"]
+radius = 6.0
+
+[node name="Wisp" type="RigidBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_nv7b8")
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+linear_damp = 2.0
+script = ExtResource("1_4tdks")
 
 [node name="PointLight" type="PointLight2D" parent="."]
 position = Vector2(0, 1)
@@ -81,3 +88,6 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.0344705
 offset = Vector2(0, -12)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ql1ed")

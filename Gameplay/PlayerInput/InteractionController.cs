@@ -25,7 +25,7 @@ public partial class InteractionController : Node {
 	public float InteractHoldTimeSeconds { get; set; } = 2.0f;
 
 	[Export]
-	public Wisp? Wisp { get; set; }
+	public WispCharacter? Wisp { get; set; }
 
 	public IWispPointOfInterest? CurrentPointOfInterest { get; private set; }
 
@@ -39,7 +39,7 @@ public partial class InteractionController : Node {
 	}
 
 	public async Task TryInteractWith(IWispPointOfInterest target) {
-		if (/* Wisp is null */ Wisp is not Wisp wisp) {
+		if (/* Wisp is null */ Wisp is not WispCharacter wisp) {
 			return;
 		}
 

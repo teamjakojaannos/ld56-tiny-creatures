@@ -1,55 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2lem4ynkotyx"]
+[gd_scene load_steps=5 format=3 uid="uid://b2lem4ynkotyx"]
 
 [ext_resource type="PackedScene" uid="uid://d2y778kjd7vav" path="res://Characters/Player/player.tscn" id="1_4w0ar"]
-[ext_resource type="Script" uid="uid://ib3ab4jl7v27" path="res://Util/ClonePosition.gd" id="2_4n2fj"]
 [ext_resource type="PackedScene" uid="uid://bjx73xc8t74mp" path="res://Characters/Wisp/Wisp.tscn" id="2_bksb5"]
-[ext_resource type="Script" uid="uid://cmwt48lojb6rd" path="res://Characters/Player/WispTarget.gd" id="3_shd57"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_5lhcn"]
-radius = 3.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0p60i"]
-radius = 5.0
+[ext_resource type="Script" uid="uid://dbn2rmusd23ft" path="res://Characters/Player/WispTargetPosition.cs" id="3_b6f3j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_281sf"]
 radius = 3.0
 
 [node name="PlayerController" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("WispFollowNode", "Wisp") instance=ExtResource("1_4w0ar")]
-WispFollowNode = NodePath("../WispTargetPosition")
+[node name="Player" parent="." node_paths=PackedStringArray("Wisp") instance=ExtResource("1_4w0ar")]
 Wisp = NodePath("../Wisp")
 
-[node name="PlayerFollower" type="StaticBody2D" parent="." node_paths=PackedStringArray("target")]
-editor_description = "While CharacterController2D is a PhysicsBody2D, it magnificently breaks all the other physics nodes (e.g. Joints)"
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("2_4n2fj")
-target = NodePath("../Player")
-
-[node name="Shape" type="CollisionShape2D" parent="PlayerFollower"]
-shape = SubResource("CircleShape2D_5lhcn")
-debug_color = Color(0, 0.645559, 0.257418, 0.42)
-
-[node name="WispTargetPosition" type="RigidBody2D" parent="."]
+[node name="Wisp" parent="." node_paths=PackedStringArray("Player", "FollowPosition") instance=ExtResource("2_bksb5")]
 position = Vector2(0, 56)
-collision_layer = 0
-collision_mask = 0
-linear_damp = 2.0
-script = ExtResource("3_shd57")
+Player = NodePath("../Player")
+FollowPosition = NodePath("../WispTargetPosition")
 
-[node name="Shape" type="CollisionShape2D" parent="WispTargetPosition"]
-shape = SubResource("CircleShape2D_0p60i")
-debug_color = Color(0, 0.645559, 0.257418, 0.42)
-
-[node name="Wisp" parent="." instance=ExtResource("2_bksb5")]
-position = Vector2(0, 56)
-
-[node name="DbgArmTargetPos" type="StaticBody2D" parent="."]
+[node name="WispTargetPosition" type="StaticBody2D" parent="." node_paths=PackedStringArray("Player", "DebugShape")]
 position = Vector2(58, -34)
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("3_b6f3j")
+Player = NodePath("../Player")
+DebugShape = NodePath("Shape")
 
-[node name="Shape" type="CollisionShape2D" parent="DbgArmTargetPos"]
+[node name="Shape" type="CollisionShape2D" parent="WispTargetPosition"]
 shape = SubResource("CircleShape2D_281sf")
 debug_color = Color(0.794013, 0.000176544, 0.698602, 0.42)

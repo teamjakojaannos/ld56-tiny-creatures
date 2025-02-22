@@ -59,14 +59,6 @@ public partial class PlayerCharacter : CharacterBody2D {
 
 	[Export]
 	[MustSetInEditor]
-	public Node2D WispFollowNode {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_wispFollowNode);
-		set => this.SetExportProperty(ref _wispFollowNode, value);
-	}
-	private Node2D? _wispFollowNode;
-
-	[Export]
-	[MustSetInEditor]
 	public Node2D Wisp {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_wisp);
 		set => this.SetExportProperty(ref _wisp, value);

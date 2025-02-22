@@ -40,6 +40,14 @@ public partial class Persistent : Node2D {
 	private PlayerCharacter? _player;
 
 	[Export]
+	[MustSetInEditor]
+	public Node2D PlayerController {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_playerController);
+		set => this.SetExportProperty(ref _playerController, value);
+	}
+	private Node2D? _playerController;
+
+	[Export]
 	public int SavedCount { get; internal set; } = 0;
 
 	[Signal]

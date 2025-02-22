@@ -122,7 +122,7 @@ uniform float TimeOffsetHorizontal = 0.25;
 uniform float TimeScale = 0.25;
 uniform float HorizontalScrollSpeed = -0.10000000149012;
 uniform float TimeOffsetVertical = 0.25;
-uniform float VerticalScrollSpeed = 1;
+uniform float VerticalScrollSpeed = 1.0;
 uniform sampler2D NoiseTexture : hint_default_transparent;
 
 

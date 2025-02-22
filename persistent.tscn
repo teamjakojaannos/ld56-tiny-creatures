@@ -5,12 +5,13 @@
 [ext_resource type="Script" uid="uid://c0r23am1ytr7w" path="res://Gameplay/PlayerInput/InteractionController.cs" id="2_u13ja"]
 [ext_resource type="PackedScene" uid="uid://b2lem4ynkotyx" path="res://Characters/Player/PlayerController.tscn" id="4_xal42"]
 
-[node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player")]
+[node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player", "PlayerController")]
 editor_description = "Contents of this scene persist when the scene is switched. Any initial contents are always available when starting the game in any scene."
 y_sort_enabled = true
 script = ExtResource("1_krudr")
 Intro = NodePath("Intro")
 Player = NodePath("PlayerController/Player")
+PlayerController = NodePath("PlayerController")
 
 [node name="InteractionController" type="Node" parent="." node_paths=PackedStringArray("Wisp")]
 script = ExtResource("2_u13ja")
