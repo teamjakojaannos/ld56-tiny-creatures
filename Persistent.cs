@@ -1,9 +1,11 @@
 using System.Linq;
+using System.Threading.Tasks;
 
 using Godot;
 using Godot.Collections;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
@@ -23,16 +25,8 @@ public partial class Persistent : Node2D {
 	}
 
 	[Export]
+	[MustSetInEditor]
 	[ExportGroup("Prewire")]
-	[MustSetInEditor]
-	public Intro Intro {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_intro);
-		set => this.SetExportProperty(ref _intro, value);
-	}
-	public Intro? _intro;
-
-	[Export]
-	[MustSetInEditor]
 	public PlayerCharacter Player {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_player);
 		set => this.SetExportProperty(ref _player, value);
@@ -86,30 +80,6 @@ public partial class Persistent : Node2D {
 			}
 			return;
 		}
-
-		var playIntro = false;
-		foreach (var child in GetTree().Root.GetChildren()) {
-			playIntro |= child.IsInGroup("PlayIntro");
-		}
-
-		if (playIntro) {
-			Intro.InitFadeIn();
-			Player.ReadyToGo += StartIntro;
-		} else {
-			Intro.ScreenFader?.Hide();
-			Intro.Hide();
-		}
-	}
-
-	private void StartIntro() {
-		Player.ReadyToGo -= StartIntro;
-
-		Intro.GetParentOrNull<Node2D>()?.RemoveChild(Intro);
-		Player.GetParentOrNull<Node2D>()?.AddChild(Intro);
-		Intro.GlobalPosition = Player.GlobalPosition;
-
-		Player.SetupForIntro(Intro.WispInitialLocation!);
-		Intro.Play();
 	}
 
 	public void ResetPlayerToHub() {
@@ -117,13 +87,13 @@ public partial class Persistent : Node2D {
 			.GetNodesInGroup("HubSpawn")
 			.PickRandom();
 
-		Intro.FadeToBlack();
+		//Intro.FadeToBlack();
 		Player.IsInCinematic = true;
 		Player.SetMovementEnabled(false);
 
 		GetTree().CreateTimer(2.5f).Timeout += () => {
 			Player.TeleportTo(spawnpoint);
-			Intro.FadeInAfterDeath();
+			//Intro.FadeInAfterDeath();
 		};
 	}
 }

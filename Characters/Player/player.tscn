@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="14_2fnqg"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="16_x8taj"]
 [ext_resource type="Script" uid="uid://c1wlnahgeegam" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="17_8koe4"]
-[ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://camera/camera.tscn" id="17_j406h"]
+[ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://Cinematic/Camera.tscn" id="17_j406h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
 size = Vector2(11, 4)
@@ -644,7 +644,7 @@ Noppa = NodePath("Ded")
 
 [node name="StartsAtNode" type="Node" parent="."]
 script = ExtResource("2_6ksxn")
-SpawnpointGroups = [&"IntroPlayerSpawn", &"PlayerSpawn"]
+SpawnpointGroups = Array[StringName]([&"IntroPlayerSpawn", &"PlayerSpawn"])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -660,7 +660,7 @@ shape = SubResource("RectangleShape2D_v1bly")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_duy3k")
+&"": SubResource("AnimationLibrary_duy3k")
 }
 
 [node name="Ded" type="AudioStreamPlayer" parent="."]

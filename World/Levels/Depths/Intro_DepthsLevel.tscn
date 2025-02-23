@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://clw851i0574cu"]
+
+[ext_resource type="PackedScene" uid="uid://fnpk5ogqjvrp" path="res://World/Levels/Depths/DepthsLevel.tscn" id="1_3f1gi"]
+[ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="2_iu4k6"]
+
+[node name="IntroDepthsLevel" type="Node2D"]
+
+[node name="Depths" parent="." instance=ExtResource("1_3f1gi")]
+
+[node name="Intro" parent="." instance=ExtResource("2_iu4k6")]
+position = Vector2(-192, 0)

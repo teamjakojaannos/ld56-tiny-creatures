@@ -1,10 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://b2uu7btegjbbx"]
+[gd_scene load_steps=32 format=3 uid="uid://b2uu7btegjbbx"]
 
-[ext_resource type="Script" uid="uid://yau8t7ijwfu" path="res://cinematic/intro/Intro.cs" id="1_1tsoc"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="2_3rkv6"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="2_5nu1f"]
+[ext_resource type="Script" uid="uid://bqttah22wv7hd" path="res://Cinematic/Intro/Intro.gd" id="1_udox3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="2_gbttp"]
-[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="3_e6ywg"]
 [ext_resource type="AudioStream" uid="uid://btqwfh2qajfp5" path="res://cinematic/bip1.ogg" id="5_t3d2a"]
 [ext_resource type="AudioStream" uid="uid://cklwljchbv4xl" path="res://cinematic/bip2.ogg" id="6_mrwub"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="6_qrwc5"]
@@ -13,103 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="9_vviyx"]
 [ext_resource type="AudioStream" uid="uid://cmcv86kvp32ul" path="res://cinematic/randomaani.ogg" id="9_y4k7t"]
 [ext_resource type="AudioStream" uid="uid://3kxovh4nqxxy" path="res://cinematic/bip3.ogg" id="10_3pcu4"]
-
-[sub_resource type="Resource" id="Resource_xhku5"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_5nu1f")
-IsInteractive = false
-Lines = Array[String](["Hey you! Wake up!", "Let me out!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_lp3n1"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_3rkv6")
-IsInteractive = false
-Lines = Array[String](["...I think I can still get up"])
-Next = SubResource("Resource_xhku5")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_ro227"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_3rkv6")
-IsInteractive = false
-Lines = Array[String](["That was a pretty harsh fall..."])
-Next = SubResource("Resource_lp3n1")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_418lw"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_3rkv6")
-IsInteractive = false
-Lines = Array[String](["Ouch... I think I got my antenna on a twist"])
-Next = SubResource("Resource_ro227")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_m0v20"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_3rkv6")
-IsInteractive = false
-Lines = Array[String](["Alright then.", "But you need to tell me what is going on!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_krue5"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_5nu1f")
-IsInteractive = false
-Lines = Array[String](["There's time to chat later! We need to get out of the forest!", "So quit your yapping and let me out!"])
-Next = SubResource("Resource_m0v20")
-ScreenShakeAmount = 15.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_wgum8"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_3rkv6")
-IsInteractive = false
-Lines = Array[String](["Oh! You're... a wisp!?", "I have never seen one before... I thought they were just legends...", "But why are you trapped?"])
-Next = SubResource("Resource_krue5")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_18v5q"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_5nu1f")
-IsInteractive = false
-Lines = Array[String](["Yes! I will explain everything.", "Just let's get out of here first! My home is not far from here", "Time to go!"])
-ScreenShakeAmount = 15.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_qoafp"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_3rkv6")
-IsInteractive = false
-Lines = Array[String](["You're welcome.", "Now care to explain what is going on here?"])
-Next = SubResource("Resource_18v5q")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="Resource" id="Resource_ok3o0"]
-script = ExtResource("3_e6ywg")
-Character = ExtResource("2_5nu1f")
-IsInteractive = false
-Lines = Array[String](["Finally! I was tired of being trapped in that tiny lantern!"])
-Next = SubResource("Resource_qoafp")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[ext_resource type="Script" uid="uid://s7kasy78nr47" path="res://Gameplay/Dialogue/Dialogue.cs" id="11_rseni"]
+[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="12_wpc58"]
+[ext_resource type="Script" uid="uid://bvjeuxa34061l" path="res://Gameplay/Dialogue/DialogueLine.cs" id="12_wxmdh"]
+[ext_resource type="Script" uid="uid://bqlj0m8d1nyo4" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="13_jwx4i"]
 
 [sub_resource type="Animation" id="Animation_jiuna"]
 resource_name = "01_stand_up"
@@ -645,21 +549,31 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="Intro" type="Node2D" node_paths=PackedStringArray("AnimPlayer", "WispInitialLocation", "Tilulii", "Beep", "ScreenFader")]
+[sub_resource type="Resource" id="Resource_oj6k6"]
+script = ExtResource("13_jwx4i")
+Text = "That was a pretty harsh fall..."
+Speaker = ExtResource("12_wpc58")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_tkd80"]
+script = ExtResource("13_jwx4i")
+Text = "Ouch... I think I got my antenna on a twist"
+Speaker = ExtResource("12_wpc58")
+Side = 0
+
+[sub_resource type="Resource" id="Resource_yuugq"]
+script = ExtResource("13_jwx4i")
+Text = "...I think I can still get up"
+Speaker = ExtResource("12_wpc58")
+Side = 0
+
+[node name="Intro" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_1tsoc")
-InitialDialogue = SubResource("Resource_418lw")
-IntroDialogue = SubResource("Resource_wgum8")
-CageOpenDialogue = SubResource("Resource_ok3o0")
-AnimPlayer = NodePath("AnimationPlayer")
-WispInitialLocation = NodePath("SpiritLantern/WispInitialLocation")
-Tilulii = NodePath("Tilulii")
-Beep = NodePath("Beep")
-ScreenFader = NodePath("CanvasLayer")
+script = ExtResource("1_udox3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_b7b0w")
+&"": SubResource("AnimationLibrary_b7b0w")
 }
 
 [node name="SpiritLantern" type="Node2D" parent="."]
@@ -761,3 +675,7 @@ stream = ExtResource("9_y4k7t")
 volume_db = -15.0
 pitch_scale = 6.7
 bus = &"SFX"
+
+[node name="InitialDialogue" type="Node" parent="."]
+script = ExtResource("11_rseni")
+Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_oj6k6"), SubResource("Resource_tkd80"), SubResource("Resource_yuugq")])

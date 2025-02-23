@@ -2,6 +2,7 @@ using System;
 
 using Godot;
 
+using Jakojaannos.WisperingWoods.Cinematic;
 using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 public partial class Dialogue : CanvasLayer {

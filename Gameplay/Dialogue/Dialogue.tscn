@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3qquxamaxbfl"]
+[gd_scene load_steps=32 format=3 uid="uid://d3qquxamaxbfl"]
 
 [ext_resource type="Script" uid="uid://s7kasy78nr47" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
 [ext_resource type="Script" uid="uid://jnt4rlhbqeyv" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://vijr54a7lsk1" path="res://Gameplay/Dialogue/UI/DialogueUI.cs" id="2_klg46"]
 [ext_resource type="Script" uid="uid://b4f2dcwbr72qp" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
 [ext_resource type="PackedScene" uid="uid://b6k7f3ni73i17" path="res://Gameplay/Dialogue/UI/DialogueUITextLine.tscn" id="3_4sdnn"]
+[ext_resource type="Script" uid="uid://bvjeuxa34061l" path="res://Gameplay/Dialogue/DialogueLine.cs" id="3_s7jca"]
 [ext_resource type="Script" uid="uid://bqlj0m8d1nyo4" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="5_8btbo"]
 [ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="6_61mji"]
@@ -386,15 +387,15 @@ DialogueUI = NodePath("UI")
 
 [node name="Preview" type="Node" parent="."]
 script = ExtResource("1_fsicn")
-Lines = [SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag"), SubResource("Resource_lcxp5")]
+Lines = Array[ExtResource("3_s7jca")]([SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag"), SubResource("Resource_lcxp5")])
 
 [node name="AnotherBranch" type="Node" parent="Preview"]
 script = ExtResource("1_fsicn")
-Lines = [SubResource("Resource_yd4xi")]
+Lines = Array[ExtResource("3_s7jca")]([SubResource("Resource_yd4xi")])
 
 [node name="SomeBranch" type="Node" parent="Preview"]
 script = ExtResource("1_fsicn")
-Lines = [SubResource("Resource_15204")]
+Lines = Array[ExtResource("3_s7jca")]([SubResource("Resource_15204")])
 
 [node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("DialogueLines", "Animation")]
 visible = false
@@ -407,7 +408,7 @@ Animation = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_dqeli")
+&"": SubResource("AnimationLibrary_dqeli")
 }
 
 [node name="UIRoot" type="Control" parent="UI"]
@@ -423,6 +424,7 @@ grow_vertical = 2
 [node name="BackgroundSmoke" type="Control" parent="UI/UIRoot"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

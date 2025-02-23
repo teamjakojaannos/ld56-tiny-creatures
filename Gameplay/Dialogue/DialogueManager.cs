@@ -13,11 +13,12 @@ namespace Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 public static class DialogueNodeExtension {
 	private static DialogueManager? s_instance;
 	public static DialogueManager DialogueManager(this Node node) {
-		return s_instance ??= node.GetTree().Root.GetNode<DialogueManager>("/root/DialogueManager");
+		return s_instance ??= node.GetTree().Root.GetNode<DialogueManager>("/root/DialogueMan");
 	}
 }
 
 [Tool]
+[GlobalClass]
 public partial class DialogueManager : Node {
 	[Export]
 	public Dialogue? ActiveDialogue { get; set; }

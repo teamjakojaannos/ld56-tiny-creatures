@@ -72,12 +72,12 @@ public partial class WispInteractableDialogueTrigger : Node2D {
 			var parent = GetParent<WispInteractable>();
 			if (SetStateAfterDialogueEnd == "viineri" && parent is not null && parent.isWispInteracting) {
 				if (GetTree().GetFirstNodeInGroup("ViineriTpTarget") is Node2D win) {
-					this.Persistent().Intro!.FadeToBlack();
+					//this.Persistent().Intro!.FadeToBlack();
 					this.Jukebox().SwitchTrack(Jukebox.MuzakTrack.Credits);
 
 					GetTree().CreateTimer(3.0f).Timeout += () => {
 						this.Persistent().Player.TeleportTo(win);
-						this.Persistent().Intro.FadeInAfterWin();
+						//this.Persistent().Intro.FadeInAfterWin();
 						this.Persistent().Player.IsInCinematic = false;
 					};
 				}

@@ -2,6 +2,7 @@ using Godot;
 
 using Jakojaannos.WisperingWoods;
 using Jakojaannos.WisperingWoods.Characters.Player;
+using Jakojaannos.WisperingWoods.Cinematic;
 
 [Tool]
 public partial class Intro : Node2D {
