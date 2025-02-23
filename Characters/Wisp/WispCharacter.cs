@@ -31,8 +31,14 @@ public partial class WispCharacter : RigidBody2D {
 	}
 	private WispTargetPosition? _followPosition;
 
+	public Vector2? InteractTargetPosition => _goToTarget;
+
 	private TaskCompletionSource _goToTask = new();
 	private Vector2? _goToTarget;
+
+	public override string[] _GetConfigurationWarnings() {
+		return [.. this.CheckCommonConfigurationWarnings(base._GetConfigurationWarnings())];
+	}
 
 	public async Task GoTo(Vector2 target) {
 		_goToTarget = target;

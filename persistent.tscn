@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://42n60kpfpaxa"]
+[gd_scene load_steps=4 format=3 uid="uid://42n60kpfpaxa"]
 
 [ext_resource type="Script" uid="uid://7rtcwy0wvlts" path="res://Persistent.cs" id="1_krudr"]
 [ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="2_phnra"]
-[ext_resource type="Script" uid="uid://c0r23am1ytr7w" path="res://Gameplay/PlayerInput/InteractionController.cs" id="2_u13ja"]
 [ext_resource type="PackedScene" uid="uid://b2lem4ynkotyx" path="res://Characters/Player/PlayerController.tscn" id="4_xal42"]
 
 [node name="Persistent" type="Node2D" node_paths=PackedStringArray("Intro", "Player", "PlayerController")]
@@ -13,12 +12,6 @@ Intro = NodePath("Intro")
 Player = NodePath("PlayerController/Player")
 PlayerController = NodePath("PlayerController")
 
-[node name="InteractionController" type="Node" parent="." node_paths=PackedStringArray("Wisp")]
-script = ExtResource("2_u13ja")
-Wisp = NodePath("../PlayerController/Wisp")
-
 [node name="Intro" parent="." instance=ExtResource("2_phnra")]
 
 [node name="PlayerController" parent="." instance=ExtResource("4_xal42")]
-
-[editable path="PlayerController"]

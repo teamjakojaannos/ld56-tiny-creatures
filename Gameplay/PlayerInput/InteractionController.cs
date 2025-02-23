@@ -15,7 +15,7 @@ public static class InteractionControllerExt {
 	private static InteractionController? s_instance;
 
 	public static InteractionController InteractionController(this Node node) {
-		return s_instance ??= node.Persistent().GetNode<InteractionController>("InteractionController");
+		return s_instance ??= node.Persistent().PlayerController.GetNode<InteractionController>("InteractionController");
 	}
 }
 
@@ -25,7 +25,12 @@ public partial class InteractionController : Node {
 	public float InteractHoldTimeSeconds { get; set; } = 2.0f;
 
 	[Export]
-	public WispCharacter? Wisp { get; set; }
+	[MustSetInEditor]
+	public WispCharacter Wisp {
+		get => this.GetNotNullExportPropertyWithNullableBackingField(_wisp);
+		set => this.SetExportProperty(ref _wisp, value);
+	}
+	private WispCharacter? _wisp;
 
 	public IWispPointOfInterest? CurrentPointOfInterest { get; private set; }
 
@@ -33,6 +38,12 @@ public partial class InteractionController : Node {
 	private ulong _mousePressTimestamp;
 
 	private readonly List<IWispPointOfInterest> _pointsOfInterest = [];
+
+	[Signal]
+	public delegate void InteractionFinishedEventHandler();
+
+	[Signal]
+	public delegate void InspectionFinishedEventHandler();
 
 	public override string[] _GetConfigurationWarnings() {
 		return [.. this.CheckCommonConfigurationWarnings(base._GetConfigurationWarnings())];
@@ -66,9 +77,11 @@ public partial class InteractionController : Node {
 			if (target is IWispPointOfInterest.IInteractable interactable && mouseHeldTime >= InteractHoldTimeSeconds) {
 				GD.Print("INTERACTING");
 				await wisp.Interact(interactable);
+				EmitSignal(SignalName.InteractionFinished);
 			} else if (target is IWispPointOfInterest.IInspectable inspectable) {
 				GD.Print("INSPECTING");
 				await wisp.Inspect(inspectable);
+				EmitSignal(SignalName.InspectionFinished);
 			} else {
 				GD.PrintErr($"Unexpected POI type: {target.GetType().FullName}");
 			}

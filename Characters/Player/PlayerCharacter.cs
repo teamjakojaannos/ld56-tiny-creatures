@@ -93,6 +93,9 @@ public partial class PlayerCharacter : CharacterBody2D {
 	[Signal]
 	public delegate void ReadyToGoEventHandler();
 
+	[Signal]
+	public delegate void TeleportedEventHandler();
+
 	public bool Invulnerable { get; set; } = true;
 
 	public override void _Ready() {
@@ -124,6 +127,8 @@ public partial class PlayerCharacter : CharacterBody2D {
 		GlobalPosition = target.GlobalPosition;
 
 		Invulnerable = false;
+		ResetPhysicsInterpolation();
+		EmitSignal(SignalName.Teleported);
 		EmitSignal(SignalName.ReadyToGo);
 	}
 

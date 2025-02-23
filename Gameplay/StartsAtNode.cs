@@ -54,14 +54,13 @@ public partial class StartsAtNode : Node {
 			throw new InvalidOperationException("Tried spawning at a non-existent/deleted node!");
 		}
 
-		parent.Reparent(target.GetParent() ?? target);
-		parent.GlobalPosition = target.GlobalPosition;
-		parent.ResetPhysicsInterpolation();
-
 		// FIXME: Player.cs should be able to handle this by subbing to a signal
 		if (parent is PlayerCharacter player) {
-			player.Invulnerable = false;
-			player.EmitSignal(PlayerCharacter.SignalName.ReadyToGo);
+			player.TeleportTo(target);
+		} else {
+			parent.Reparent(target.GetParent() ?? target);
+			parent.GlobalPosition = target.GlobalPosition;
+			parent.ResetPhysicsInterpolation();
 		}
 	}
 }

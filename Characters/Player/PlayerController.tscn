@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2lem4ynkotyx"]
+[gd_scene load_steps=7 format=3 uid="uid://b2lem4ynkotyx"]
 
 [ext_resource type="PackedScene" uid="uid://d2y778kjd7vav" path="res://Characters/Player/player.tscn" id="1_4w0ar"]
+[ext_resource type="Script" uid="uid://dbsyn8ah1l4c3" path="res://Characters/Player/PlayerController.gd" id="1_hubqw"]
+[ext_resource type="Script" uid="uid://c0r23am1ytr7w" path="res://Gameplay/PlayerInput/InteractionController.cs" id="1_nikjb"]
 [ext_resource type="PackedScene" uid="uid://bjx73xc8t74mp" path="res://Characters/Wisp/Wisp.tscn" id="2_bksb5"]
 [ext_resource type="Script" uid="uid://dbn2rmusd23ft" path="res://Characters/Player/WispTargetPosition.cs" id="3_b6f3j"]
 
@@ -8,6 +10,11 @@
 radius = 3.0
 
 [node name="PlayerController" type="Node2D"]
+script = ExtResource("1_hubqw")
+
+[node name="InteractionController" type="Node" parent="." node_paths=PackedStringArray("Wisp")]
+script = ExtResource("1_nikjb")
+Wisp = NodePath("../Wisp")
 
 [node name="Player" parent="." node_paths=PackedStringArray("Wisp") instance=ExtResource("1_4w0ar")]
 Wisp = NodePath("../Wisp")
@@ -17,12 +24,13 @@ position = Vector2(0, 56)
 Player = NodePath("../Player")
 FollowPosition = NodePath("../WispTargetPosition")
 
-[node name="WispTargetPosition" type="StaticBody2D" parent="." node_paths=PackedStringArray("Player", "DebugShape")]
+[node name="WispTargetPosition" type="StaticBody2D" parent="." node_paths=PackedStringArray("Player", "Wisp", "DebugShape")]
 position = Vector2(58, -34)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("3_b6f3j")
 Player = NodePath("../Player")
+Wisp = NodePath("../Wisp")
 DebugShape = NodePath("Shape")
 
 [node name="Shape" type="CollisionShape2D" parent="WispTargetPosition"]
