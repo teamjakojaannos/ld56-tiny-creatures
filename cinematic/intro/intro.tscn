@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2uu7btegjbbx"]
+[gd_scene load_steps=48 format=3 uid="uid://b2uu7btegjbbx"]
 
 [ext_resource type="Script" uid="uid://bqttah22wv7hd" path="res://Cinematic/Intro/Intro.gd" id="1_udox3"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="2_gbttp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="12_wpc58"]
 [ext_resource type="Script" uid="uid://bvjeuxa34061l" path="res://Gameplay/Dialogue/DialogueLine.cs" id="12_wxmdh"]
 [ext_resource type="Script" uid="uid://bqlj0m8d1nyo4" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="13_jwx4i"]
+[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="13_ssx7r"]
 
 [sub_resource type="Animation" id="Animation_jiuna"]
 resource_name = "01_stand_up"
@@ -549,16 +550,30 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="Resource" id="Resource_oj6k6"]
+[sub_resource type="Resource" id="Resource_ssx7r"]
 script = ExtResource("13_jwx4i")
 Text = "That was a pretty harsh fall..."
 Speaker = ExtResource("12_wpc58")
 Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_tkd80"]
+[sub_resource type="Resource" id="Resource_sfm6u"]
 script = ExtResource("13_jwx4i")
 Text = "Ouch... I think I got my antenna on a twist"
 Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_oj6k6"]
+script = ExtResource("13_jwx4i")
+Text = "Hey you! Wake up!"
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+
+[sub_resource type="Resource" id="Resource_tkd80"]
+script = ExtResource("13_jwx4i")
+Text = "Let me out!"
+Speaker = ExtResource("13_ssx7r")
 Side = 0
 
 [sub_resource type="Resource" id="Resource_yuugq"]
@@ -566,6 +581,97 @@ script = ExtResource("13_jwx4i")
 Text = "...I think I can still get up"
 Speaker = ExtResource("12_wpc58")
 Side = 0
+
+[sub_resource type="Resource" id="Resource_qf70f"]
+script = ExtResource("13_jwx4i")
+Text = "Oh! You're... a wisp!?"
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_hls6p"]
+script = ExtResource("13_jwx4i")
+Text = "I have never seen one before... I thought they were just legends..."
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_t75j2"]
+script = ExtResource("13_jwx4i")
+Text = "But why are you trapped?"
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_0u452"]
+script = ExtResource("13_jwx4i")
+Text = "There's time to chat later! We need to get out of the caves!"
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_txwlq"]
+script = ExtResource("13_jwx4i")
+Text = "So quit your yapping and let me out!"
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_tp8fb"]
+script = ExtResource("13_jwx4i")
+Text = "Alright then."
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_4qmgo"]
+script = ExtResource("13_jwx4i")
+Text = "But you need to tell me what is going on!"
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_quf53"]
+script = ExtResource("13_jwx4i")
+Text = "Finally! I was tired of being trapped in that tiny lantern!"
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_3574r"]
+script = ExtResource("13_jwx4i")
+Text = "You're welcome."
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_1gdt3"]
+script = ExtResource("13_jwx4i")
+Text = "Now care to explain what is going on here?"
+Speaker = ExtResource("12_wpc58")
+Side = 0
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_5537l"]
+script = ExtResource("13_jwx4i")
+Text = "Yes! I will explain everything."
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_utps2"]
+script = ExtResource("13_jwx4i")
+Text = "Just let's get out of here first! My home is not far from here."
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_cgco5"]
+script = ExtResource("13_jwx4i")
+Text = "Time to go!"
+Speaker = ExtResource("13_ssx7r")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
 [node name="Intro" type="Node2D"]
 y_sort_enabled = true
@@ -678,4 +784,17 @@ bus = &"SFX"
 
 [node name="InitialDialogue" type="Node" parent="."]
 script = ExtResource("11_rseni")
+Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_ssx7r"), SubResource("Resource_sfm6u")])
+
+[node name="WispDemandsHelpDialogue" type="Node" parent="."]
+script = ExtResource("11_rseni")
 Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_oj6k6"), SubResource("Resource_tkd80"), SubResource("Resource_yuugq")])
+
+[node name="PlayerPromisesToHelpDialogue" type="Node" parent="."]
+script = ExtResource("11_rseni")
+Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_qf70f"), SubResource("Resource_hls6p"), SubResource("Resource_t75j2"), SubResource("Resource_0u452"), SubResource("Resource_txwlq"), SubResource("Resource_tp8fb"), SubResource("Resource_4qmgo")])
+
+[node name="WispReleasedDialogue" type="Node" parent="."]
+script = ExtResource("11_rseni")
+Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_quf53"), SubResource("Resource_3574r"), SubResource("Resource_1gdt3"), SubResource("Resource_5537l"), SubResource("Resource_utps2"), SubResource("Resource_cgco5")])
+metadata/_custom_type_script = "uid://s7kasy78nr47"

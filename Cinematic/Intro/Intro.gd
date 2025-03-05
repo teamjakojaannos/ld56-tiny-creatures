@@ -21,19 +21,34 @@ func Play() -> void:
 	DialogueMan.ActiveDialogue = $InitialDialogue
 	DialogueMan.StartDialogue()
 	await DialogueMan.DialogueFinished
-	
-	$AnimationPlayer.play("01_stand_up")
-	await $AnimationPlayer.animation_finished
+
+	# Dramatic pause, or sth
+	# FIXME: do something to emphasize wisp
+	# 1. make camera zoomed in at the start
+	# 2. zoom out camera / pan wisp into view
+	# etc.
+	await get_tree().create_timer(1.0).timeout
 
 	DialogueMan.ActiveDialogue = $WispDemandsHelpDialogue
 	DialogueMan.StartDialogue()
 	await DialogueMan.DialogueFinished
 
+	$AnimationPlayer.play("01_stand_up")
+	await $AnimationPlayer.animation_finished
+
+	DialogueMan.ActiveDialogue = $PlayerPromisesToHelpDialogue
+	DialogueMan.StartDialogue()
+	await DialogueMan.DialogueFinished
+
 	$AnimationPlayer.play("02_walk_to_lantern")
 	await $AnimationPlayer.animation_finished
-	
+
 	$AnimationPlayer.play("03_open_lantern")
 	await $AnimationPlayer.animation_finished
+
+	DialogueMan.ActiveDialogue = $WispReleasedDialogue
+	DialogueMan.StartDialogue()
+	await DialogueMan.DialogueFinished
 
 #public void Play() {
 #		ScreenFader!.Visible = true;

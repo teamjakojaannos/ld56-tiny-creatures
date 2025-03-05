@@ -64,6 +64,8 @@ public partial class DialogueUI : CanvasLayer {
 
 	public bool IsFinished => !Visible;
 
+	public bool IsAboutToFinish => Animation.CurrentAnimation == "FinishDialogue";
+
 	[Signal]
 	public delegate void ClosedEventHandler();
 

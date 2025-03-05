@@ -191,6 +191,9 @@ public partial class DialogueManager : Node {
 
 	public void FinishDialogue() {
 		DialogueUI.FinishDialogue();
+		GetTree().CreateTimer(1.5f).Timeout += () => {
+			EmitSignal(SignalName.DialogueFinished);
+		};
 	}
 
 	private void ShowFirstLine() {
@@ -199,7 +202,7 @@ public partial class DialogueManager : Node {
 	}
 
 	public void NextLine(int optionIndex) {
-		if (DialogueUI.IsFinished || ActiveDialogue is null) {
+		if (DialogueUI.IsAboutToFinish || DialogueUI.IsFinished || ActiveDialogue is null) {
 			return;
 		}
 
