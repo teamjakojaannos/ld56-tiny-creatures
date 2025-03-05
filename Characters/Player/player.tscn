@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=3 uid="uid://d2y778kjd7vav"]
 
-[ext_resource type="Script" path="res://Characters/Player/PlayerCharacter.cs" id="1_cn8o3"]
-[ext_resource type="Script" path="res://Gameplay/StartsAtNode.cs" id="2_6ksxn"]
+[ext_resource type="Script" uid="uid://dax8o20yvtlsp" path="res://Characters/Player/PlayerCharacter.cs" id="1_cn8o3"]
+[ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_6ksxn"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="3_88t4b"]
 [ext_resource type="AudioStream" uid="uid://cdlv0clfgfav" path="res://random_sfx/askel1.ogg" id="4_50csx"]
 [ext_resource type="AudioStream" uid="uid://dtktpkf5x1rgd" path="res://random_sfx/vesikuolema.ogg" id="4_eao0h"]
@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bym5d2fik0ct" path="res://random_sfx/stepwater4.ogg" id="13_swq0c"]
 [ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="14_2fnqg"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="16_x8taj"]
-[ext_resource type="Script" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="17_8koe4"]
+[ext_resource type="Script" uid="uid://c1wlnahgeegam" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="17_8koe4"]
 [ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://camera/camera.tscn" id="17_j406h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
@@ -613,18 +613,18 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_duy3k"]
 _data = {
-"Die": SubResource("Animation_lc08d"),
-"GetTheFuckUp": SubResource("Animation_w6158"),
-"IdleDown": SubResource("Animation_j73ac"),
-"IdleLeft": SubResource("Animation_pwqys"),
-"IdleRight": SubResource("Animation_xembw"),
-"IdleUp": SubResource("Animation_0epor"),
-"RESET": SubResource("Animation_jtxx1"),
-"WalkDown": SubResource("Animation_blpkv"),
-"WalkLeft": SubResource("Animation_vlrac"),
-"WalkRight": SubResource("Animation_xqpf5"),
-"WalkUp": SubResource("Animation_7l4qu"),
-"pan_camera_up": SubResource("Animation_c1cke")
+&"Die": SubResource("Animation_lc08d"),
+&"GetTheFuckUp": SubResource("Animation_w6158"),
+&"IdleDown": SubResource("Animation_j73ac"),
+&"IdleLeft": SubResource("Animation_pwqys"),
+&"IdleRight": SubResource("Animation_xembw"),
+&"IdleUp": SubResource("Animation_0epor"),
+&"RESET": SubResource("Animation_jtxx1"),
+&"WalkDown": SubResource("Animation_blpkv"),
+&"WalkLeft": SubResource("Animation_vlrac"),
+&"WalkRight": SubResource("Animation_xqpf5"),
+&"WalkUp": SubResource("Animation_7l4qu"),
+&"pan_camera_up": SubResource("Animation_c1cke")
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "Shadow", "Noppa") groups=["Player"]]

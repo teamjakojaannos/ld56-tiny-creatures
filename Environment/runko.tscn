@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dq300dobm3iu7"]
 
 [ext_resource type="Texture2D" uid="uid://dvwihgssadpiy" path="res://Environment/onttorunko.png" id="1_85wrv"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_42wqv"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_42wqv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_phhxb"]
 animations = [{

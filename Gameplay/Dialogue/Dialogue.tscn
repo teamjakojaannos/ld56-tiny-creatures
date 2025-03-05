@@ -1,16 +1,16 @@
 [gd_scene load_steps=31 format=3 uid="uid://d3qquxamaxbfl"]
 
-[ext_resource type="Script" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
+[ext_resource type="Script" uid="uid://s7kasy78nr47" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
+[ext_resource type="Script" uid="uid://jnt4rlhbqeyv" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
 [ext_resource type="Shader" uid="uid://h4c1uiqf7bbi" path="res://Gameplay/Dialogue/UI/DialogueBackground.tres" id="2_4ko57"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUI.cs" id="2_klg46"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
+[ext_resource type="Script" uid="uid://vijr54a7lsk1" path="res://Gameplay/Dialogue/UI/DialogueUI.cs" id="2_klg46"]
+[ext_resource type="Script" uid="uid://b4f2dcwbr72qp" path="res://Gameplay/Dialogue/UI/BackgroundSmoke.cs" id="2_kmp7t"]
 [ext_resource type="PackedScene" uid="uid://b6k7f3ni73i17" path="res://Gameplay/Dialogue/UI/DialogueUITextLine.tscn" id="3_4sdnn"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
+[ext_resource type="Script" uid="uid://bqlj0m8d1nyo4" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="4_d1t7j"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="5_8btbo"]
 [ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="6_61mji"]
-[ext_resource type="Script" path="res://Gameplay/Dialogue/DialogueChoiceLine.cs" id="6_lfg4c"]
-[ext_resource type="Script" path="res://UI/PositionAnimator.cs" id="7_32f4m"]
+[ext_resource type="Script" uid="uid://dpyu0pat7t10h" path="res://Gameplay/Dialogue/DialogueChoiceLine.cs" id="6_lfg4c"]
+[ext_resource type="Script" uid="uid://dfi3k6j0r5enh" path="res://UI/PositionAnimator.cs" id="7_32f4m"]
 [ext_resource type="PackedScene" uid="uid://dt5b1ny7gald6" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLine.tscn" id="8_urtq6"]
 
 [sub_resource type="Resource" id="Resource_sbein"]
@@ -333,9 +333,9 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqeli"]
 _data = {
-"FinishDialogue": SubResource("Animation_iqg36"),
-"RESET": SubResource("Animation_vj67m"),
-"StartDialogue": SubResource("Animation_xrldd")
+&"FinishDialogue": SubResource("Animation_iqg36"),
+&"RESET": SubResource("Animation_vj67m"),
+&"StartDialogue": SubResource("Animation_xrldd")
 }
 
 [sub_resource type="Gradient" id="Gradient_v0gls"]

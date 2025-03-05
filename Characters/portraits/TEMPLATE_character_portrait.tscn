@@ -121,9 +121,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_es6j6"]
 _data = {
-"RESET": SubResource("Animation_jmyve"),
-"enter_left": SubResource("Animation_0j4sj"),
-"enter_right": SubResource("Animation_6655w")
+&"RESET": SubResource("Animation_jmyve"),
+&"enter_left": SubResource("Animation_0j4sj"),
+&"enter_right": SubResource("Animation_6655w")
 }
 
 [node name="Container" type="VBoxContainer"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://pk3tc6o4spst"]
 
-[ext_resource type="Script" path="res://mobs/Chaser.cs" id="1_sj5s6"]
+[ext_resource type="Script" uid="uid://b2gnaqelen8p2" path="res://mobs/Chaser.cs" id="1_sj5s6"]
 [ext_resource type="Texture2D" uid="uid://bgqidrl2t46ak" path="res://mobs/markoidleB.png" id="2_i5kib"]
 [ext_resource type="Texture2D" uid="uid://bbx7wlsvjntr5" path="res://mobs/markoidle-sheet.png" id="2_onfjk"]
 [ext_resource type="Texture2D" uid="uid://4ytqvcbxd8x4" path="res://mobs/markowalkB.png" id="3_h8c1e"]
@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cf7a5jq2ec6u4" path="res://mobs/markoattac.png" id="6_0x6f6"]
 [ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://mobs/player_in_trouble.png" id="7_p7lna"]
 [ext_resource type="Texture2D" uid="uid://ctacdgnwmqtbh" path="res://mobs/marko_kasi.png" id="8_4k2m5"]
-[ext_resource type="Script" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="9_l3s1e"]
+[ext_resource type="Script" uid="uid://c1wlnahgeegam" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="9_l3s1e"]
 [ext_resource type="AudioStream" uid="uid://bdaw5eoepaqbj" path="res://mobs/morko/isoaskel1.ogg" id="10_xhd7h"]
 [ext_resource type="AudioStream" uid="uid://bf6b7018ta06l" path="res://mobs/morko/isoaskel2.ogg" id="11_ueypv"]
 [ext_resource type="AudioStream" uid="uid://ciu5m6wgbhk4q" path="res://mobs/morko/morokolli1.ogg" id="12_5i00f"]
-[ext_resource type="Script" path="res://Audio/RandomAudioStreamPlayer.cs" id="12_bgnlq"]
+[ext_resource type="Script" uid="uid://ccwtpdwcvmji3" path="res://Audio/RandomAudioStreamPlayer.cs" id="12_bgnlq"]
 [ext_resource type="AudioStream" uid="uid://c3jk0h6p1llhj" path="res://mobs/morko/morokolli2.ogg" id="13_qrnb0"]
 [ext_resource type="AudioStream" uid="uid://t5l8ey31r463" path="res://mobs/morko/morokolli3.ogg" id="14_51dqm"]
 
@@ -445,12 +445,12 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2dxh4"]
 _data = {
-"IdleBack": SubResource("Animation_7peuc"),
-"IdleFront": SubResource("Animation_d02tt"),
-"RESET": SubResource("Animation_1xe1f"),
-"WalkBack": SubResource("Animation_bq7qe"),
-"WalkFront": SubResource("Animation_0kcay"),
-"attack": SubResource("Animation_cp5as")
+&"IdleBack": SubResource("Animation_7peuc"),
+&"IdleFront": SubResource("Animation_d02tt"),
+&"RESET": SubResource("Animation_1xe1f"),
+&"WalkBack": SubResource("Animation_bq7qe"),
+&"WalkFront": SubResource("Animation_0kcay"),
+&"attack": SubResource("Animation_cp5as")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nl403"]

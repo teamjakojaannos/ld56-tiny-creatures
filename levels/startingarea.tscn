@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="1_oj8qh"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
-[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="2_fhp40"]
+[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="2_fhp40"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="3_402q5"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="3_tanrn"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="4_abnch"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="4_c3boq"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_cqeun"]
-[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_pqvmj"]
+[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="5_pqvmj"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="6_01lmh"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="7_2d1eo"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="8_naa27"]
@@ -30,7 +30,7 @@ radius = 52.0096
 script = ExtResource("5_pqvmj")
 Character = ExtResource("4_abnch")
 IsInteractive = false
-Lines = ["What happened to hurrying out of here..."]
+Lines = Array[String](["What happened to hurrying out of here..."])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -39,7 +39,7 @@ SideOverride = 0
 script = ExtResource("5_pqvmj")
 Character = ExtResource("3_402q5")
 IsInteractive = false
-Lines = ["Booooooo! Look at how scary I am!"]
+Lines = Array[String](["Booooooo! Look at how scary I am!"])
 Next = SubResource("Resource_87rtj")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0

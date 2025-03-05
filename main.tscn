@@ -1,9 +1,9 @@
 [gd_scene load_steps=27 format=3 uid="uid://6abkwwyeqfa8"]
 
-[ext_resource type="Script" path="res://hidden_in_editor.gd" id="1_8kue4"]
-[ext_resource type="Script" path="res://dialogue/DialogueTrigger.cs" id="3_0le5u"]
+[ext_resource type="Script" uid="uid://ben7tsyxrttyu" path="res://hidden_in_editor.gd" id="1_8kue4"]
+[ext_resource type="Script" uid="uid://c33yot0flrp8v" path="res://dialogue/DialogueTrigger.cs" id="3_0le5u"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="3_ucvm7"]
-[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="4_k8x3u"]
+[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="4_k8x3u"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="4_r571r"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="5_jbuev"]
 [ext_resource type="PackedScene" uid="uid://cpvb5hh4sr8br" path="res://Environment/GameplayRoina/wisp_interactable_spirit_lantern.tscn" id="7_1778r"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b8xsos5uydwdu" path="res://mobs/molli.png" id="10_sf5ih"]
 [ext_resource type="Texture2D" uid="uid://55bmdywmmaob" path="res://mobs/whyisthishere.png" id="11_rg7h3"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="12_col43"]
-[ext_resource type="Script" path="res://music/MusicArea.cs" id="12_txexs"]
+[ext_resource type="Script" uid="uid://cy5xa07uerw22" path="res://music/MusicArea.cs" id="12_txexs"]
 
 [sub_resource type="Gradient" id="Gradient_jl0fw"]
 offsets = PackedFloat32Array(0, 0.221885, 1)
@@ -33,7 +33,7 @@ noise = SubResource("FastNoiseLite_ajjet")
 script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
-Lines = ["Oispa kaljaa"]
+Lines = Array[String](["Oispa kaljaa"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -42,7 +42,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
-Lines = ["No niinpä tietenkin...", "Olisihan se pitänyt arvata."]
+Lines = Array[String](["No niinpä tietenkin...", "Olisihan se pitänyt arvata."])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -51,7 +51,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("4_r571r")
 IsInteractive = true
-Lines = ["Kyllä", "Ei", "6-pack karhua ja sassiin"]
+Lines = Array[String](["Kyllä", "Ei", "6-pack karhua ja sassiin"])
 Next3 = SubResource("Resource_3c2cv")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -61,7 +61,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
-Lines = ["Mutta jääkö se yhteen?"]
+Lines = Array[String](["Mutta jääkö se yhteen?"])
 Next = SubResource("Resource_nv8uc")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -71,7 +71,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
-Lines = ["Rahka-Saruman ebin :--DDd"]
+Lines = Array[String](["Rahka-Saruman ebin :--DDd"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -80,7 +80,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("4_r571r")
 IsInteractive = true
-Lines = ["Olutta?? Tällaisessa tilanteessa?", "No ehkä... yksi....", "Ehrmannia?? LITRAN PURKEISSA!?!!?!?"]
+Lines = Array[String](["Olutta?? Tällaisessa tilanteessa?", "No ehkä... yksi....", "Ehrmannia?? LITRAN PURKEISSA!?!!?!?"])
 Next = SubResource("Resource_bl586")
 Next2 = SubResource("Resource_08axp")
 Next3 = SubResource("Resource_lo4vp")
@@ -92,7 +92,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("5_jbuev")
 IsInteractive = false
-Lines = ["Onko kalia tehtaalla?? Antakkee!!"]
+Lines = Array[String](["Onko kalia tehtaalla?? Antakkee!!"])
 Next = SubResource("Resource_oj62y")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -102,7 +102,7 @@ SideOverride = 0
 script = ExtResource("4_k8x3u")
 Character = ExtResource("4_r571r")
 IsInteractive = false
-Lines = ["A quick brown fox jumps over a lazy dog.", "Or something."]
+Lines = Array[String](["A quick brown fox jumps over a lazy dog.", "Or something."])
 Next = SubResource("Resource_1bju7")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0

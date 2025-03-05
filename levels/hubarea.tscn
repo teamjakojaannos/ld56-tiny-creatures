@@ -12,17 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="12_bjl3q"]
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
-[ext_resource type="Script" path="res://levels/hubarea/HupiVispila.cs" id="12_lkge0"]
+[ext_resource type="Script" uid="uid://bngbbhivm7ixj" path="res://levels/hubarea/HupiVispila.cs" id="12_lkge0"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="12_p0n0e"]
-[ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="14_ntq3p"]
-[ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="15_t7bcq"]
+[ext_resource type="Script" uid="uid://cvhpmu7f7be08" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="14_ntq3p"]
+[ext_resource type="Script" uid="uid://cuqtmwortpn0m" path="res://Environment/WispInteractable.cs" id="15_t7bcq"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="16_qg4uk"]
-[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="17_sqd7e"]
+[ext_resource type="Script" uid="uid://bnv2cmyotauj2" path="res://Environment/WispInteractableAnimatedProp.cs" id="17_sqd7e"]
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="17_xsia8"]
-[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="18_xn54u"]
+[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="18_xn54u"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="19_3jhl5"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="20_whttt"]
-[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="21_dpr77"]
+[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="21_dpr77"]
 [ext_resource type="PackedScene" uid="uid://c37akv2ma8ael" path="res://Environment/water_fall_thing.tscn" id="23_cspl0"]
 [ext_resource type="PackedScene" uid="uid://b40kecv7ytk0c" path="res://Environment/fern.tscn" id="24_wympi"]
 [ext_resource type="Texture2D" uid="uid://dhxhdqbmbd08l" path="res://Environment/joki1.png" id="25_gl4a6"]
@@ -38,7 +38,7 @@ radius = 62.0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = false
-Lines = ["...Maybe."]
+Lines = Array[String](["...Maybe."])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -47,7 +47,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["I'm not quite sure! But doesn't he look a bit like you?"]
+Lines = Array[String](["I'm not quite sure! But doesn't he look a bit like you?"])
 Next = SubResource("Resource_31hsm")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -57,7 +57,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = false
-Lines = ["...Who is this guy anyway?"]
+Lines = Array[String](["...Who is this guy anyway?"])
 Next = SubResource("Resource_yhm2x")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -67,7 +67,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Look at me! I'm a statue!"]
+Lines = Array[String](["Look at me! I'm a statue!"])
 Next = SubResource("Resource_0hvjq")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -77,7 +77,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["We did! We saved all my friends!"]
+Lines = Array[String](["We did! We saved all my friends!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -436,16 +436,16 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7vlr5"]
 _data = {
-"RESET": SubResource("Animation_6ieeh"),
-"out": SubResource("Animation_2mg1j"),
-"out_hupialue": SubResource("Animation_kgfnr")
+&"RESET": SubResource("Animation_6ieeh"),
+&"out": SubResource("Animation_2mg1j"),
+&"out_hupialue": SubResource("Animation_kgfnr")
 }
 
 [sub_resource type="Resource" id="Resource_7gj5o"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Thank you!"]
+Lines = Array[String](["Thank you!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -454,7 +454,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["No!! Don't leave me here!!"]
+Lines = Array[String](["No!! Don't leave me here!!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -463,7 +463,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = true
-Lines = ["Yes", "No"]
+Lines = Array[String](["Yes", "No"])
 Next = SubResource("Resource_7gj5o")
 Next2 = SubResource("Resource_gn1c6")
 ScreenShakeAmount = 0.0
@@ -474,7 +474,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Free the wisp?"]
+Lines = Array[String](["Free the wisp?"])
 Next = SubResource("Resource_o41ml")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -488,7 +488,7 @@ height = 312.0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Thank you!", "We should start our search from the big forest in the northwest."]
+Lines = Array[String](["Thank you!", "We should start our search from the big forest in the northwest."])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -497,7 +497,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = false
-Lines = ["...I will help you. But I need to be back home at eight!"]
+Lines = Array[String](["...I will help you. But I need to be back home at eight!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -506,7 +506,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Well, good luck finding back home alone then."]
+Lines = Array[String](["Well, good luck finding back home alone then."])
 Next = SubResource("Resource_54j8p")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -516,7 +516,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = true
-Lines = ["Okay then. I will help you find your friends, and you help me get home.", "Nah. Not my problem."]
+Lines = Array[String](["Okay then. I will help you find your friends, and you help me get home.", "Nah. Not my problem."])
 Next = SubResource("Resource_t6g3j")
 Next2 = SubResource("Resource_j06b5")
 ScreenShakeAmount = 0.0
@@ -527,7 +527,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Listen! I really need your help!", "I have seven friends who need saving..."]
+Lines = Array[String](["Listen! I really need your help!", "I have seven friends who need saving..."])
 Next = SubResource("Resource_nwg6l")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -537,7 +537,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = false
-Lines = ["That's rough. But I need to get home.", "I have D&D at eight."]
+Lines = Array[String](["That's rough. But I need to get home.", "I have D&D at eight."])
 Next = SubResource("Resource_5svob")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -547,7 +547,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["We are in my home! The spirit realm!", "But recently something terrible happened...", "Monster came to the realm... and they trapped me and my friends!"]
+Lines = Array[String](["We are in my home! The spirit realm!", "But recently something terrible happened...", "Monster came to the realm... and they trapped me and my friends!"])
 Next = SubResource("Resource_b2qdn")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -557,7 +557,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
 IsInteractive = false
-Lines = ["Alright, so what is going on?", "Where am I? And why were you trapped in a lantern?"]
+Lines = Array[String](["Alright, so what is going on?", "Where am I? And why were you trapped in a lantern?"])
 Next = SubResource("Resource_ypkp1")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -567,7 +567,7 @@ SideOverride = 0
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
 IsInteractive = false
-Lines = ["Phew! We got to my little home all safe and sound!"]
+Lines = Array[String](["Phew! We got to my little home all safe and sound!"])
 Next = SubResource("Resource_n3qsu")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0

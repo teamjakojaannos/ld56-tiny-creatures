@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://b4m5y670nh0g5"]
 
 [ext_resource type="Texture2D" uid="uid://ddrmx4mfcgwnw" path="res://Environment/hautakivi.png" id="1_2dvux"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_fv32j"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_fv32j"]
 [ext_resource type="Texture2D" uid="uid://cijyv6npyku76" path="res://Environment/levee_hautakivi.png" id="3_a6ahn"]
 [ext_resource type="Texture2D" uid="uid://c8tt3nygubrag" path="res://Environment/pienet_hautakivet.png" id="4_m6wf3"]
 [ext_resource type="Texture2D" uid="uid://dtg0vfln8poep" path="res://Environment/pitka_hautakivi.png" id="5_mc262"]

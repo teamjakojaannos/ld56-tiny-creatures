@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2lem4ynkotyx"]
 
 [ext_resource type="PackedScene" uid="uid://d2y778kjd7vav" path="res://Characters/Player/player.tscn" id="1_4w0ar"]
-[ext_resource type="Script" path="res://Util/ClonePosition.gd" id="2_4n2fj"]
+[ext_resource type="Script" uid="uid://ib3ab4jl7v27" path="res://Util/ClonePosition.gd" id="2_4n2fj"]
 [ext_resource type="PackedScene" uid="uid://bjx73xc8t74mp" path="res://Characters/Wisp/Wisp.tscn" id="2_bksb5"]
-[ext_resource type="Script" path="res://Characters/Player/WispTarget.gd" id="3_shd57"]
+[ext_resource type="Script" uid="uid://cmwt48lojb6rd" path="res://Characters/Player/WispTarget.gd" id="3_shd57"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5lhcn"]
 radius = 3.0

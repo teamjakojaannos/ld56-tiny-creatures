@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_vm5ug"]
 [ext_resource type="PackedScene" uid="uid://baf4p3kgidl8v" path="res://Environment/GameplayRoina/spirit_lantern.tscn" id="2_j5xvj"]
-[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_b4gqi"]
-[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_fetng"]
+[ext_resource type="Script" uid="uid://bnv2cmyotauj2" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_b4gqi"]
+[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_fetng"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="5_1vkvc"]
-[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="5_r5eyy"]
+[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="5_r5eyy"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="6_223ci"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_24e3g"]
@@ -27,31 +27,39 @@ fill_to = Vector2(0.5, 0)
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
 IsInteractive = false
-Lines = ["Yayyy!!"]
+Lines = Array[String](["Yayyy!!"])
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_gn1c6"]
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
 IsInteractive = false
-Lines = ["No!! Don't leave me here!!"]
+Lines = Array[String](["No!! Don't leave me here!!"])
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_o41ml"]
 script = ExtResource("5_r5eyy")
 Character = ExtResource("6_223ci")
 IsInteractive = true
-Lines = ["Yes", "No"]
+Lines = Array[String](["Yes", "No"])
 Next = SubResource("Resource_7gj5o")
 Next2 = SubResource("Resource_gn1c6")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_kxuv5"]
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
 IsInteractive = false
-Lines = ["Release the spirit?"]
+Lines = Array[String](["Release the spirit?"])
 Next = SubResource("Resource_o41ml")
+ScreenShakeAmount = 0.0
+ScreenShakeFade = 30.0
 SideOverride = 0
 
 [node name="WispInteractable" instance=ExtResource("1_vm5ug")]

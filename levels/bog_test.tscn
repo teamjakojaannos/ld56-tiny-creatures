@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://doaavktwaav52" path="res://mobs/nakki_v2/archetypes/nakki_dive_on_trigger.tscn" id="3_g5g6j"]
 [ext_resource type="PackedScene" uid="uid://cln17kxluf0oa" path="res://mobs/nakki_v2/archetypes/nakki_emerge_on_trigger.tscn" id="4_1ww58"]
 [ext_resource type="Texture2D" uid="uid://k8d0k5f2b6oo" path="res://icon.svg" id="7_vxuua"]
-[ext_resource type="Script" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
+[ext_resource type="Script" uid="uid://dd27nurrgrky" path="res://mobs/nakki_v2/WakeUpNakkiTrigger.cs" id="8_pjiqu"]
 
 [sub_resource type="Curve2D" id="Curve2D_w0l2u"]
 _data = {

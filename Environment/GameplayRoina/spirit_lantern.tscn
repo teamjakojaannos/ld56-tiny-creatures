@@ -349,9 +349,9 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gpuue"]
 _data = {
-"RESET": SubResource("Animation_ry0a6"),
-"out": SubResource("Animation_q1nnn"),
-"out_hupialue": SubResource("Animation_wb2r0")
+&"RESET": SubResource("Animation_ry0a6"),
+&"out": SubResource("Animation_q1nnn"),
+&"out_hupialue": SubResource("Animation_wb2r0")
 }
 
 [node name="SpiritLantern" type="Node2D"]

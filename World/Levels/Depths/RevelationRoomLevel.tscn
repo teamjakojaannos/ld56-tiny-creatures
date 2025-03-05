@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6acfywjuyune"]
 
 [ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_yarlr"]
-[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_s4axt"]
+[ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_s4axt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qn62l"]
 size = Vector2(32, 128)

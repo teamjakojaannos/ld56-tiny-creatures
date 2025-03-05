@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_yfok4"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_6f77w"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="3_nar2a"]
-[ext_resource type="PackedScene" path="res://Environment/runko.tscn" id="5_tj2ar"]
+[ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_tj2ar"]
 [ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="6_hhum4"]
 [ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="7_5k2xx"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="8_xkn2t"]
@@ -13,30 +13,30 @@
 [ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="13_lug5l"]
 [ext_resource type="PackedScene" uid="uid://ddydax43gghjj" path="res://Environment/spooky_tree.tscn" id="14_nvxan"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="15_4m3yo"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_2.tscn" id="15_lorar"]
+[ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="15_lorar"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="16_u8hyu"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="16_wbc7m"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="16_wbc7m"]
+[ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="17_rapc4"]
-[ext_resource type="PackedScene" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
+[ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
 [ext_resource type="Texture2D" uid="uid://ticgxfbkpce8" path="res://Environment/slab3.png" id="18_c8wf1"]
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_etteb"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="19_jmbxi"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_3da3i"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="20_8l740"]
-[ext_resource type="Script" path="res://Environment/WispInteractableDialogueTrigger.cs" id="21_m7ic5"]
+[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="21_m7ic5"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="22_sxeog"]
-[ext_resource type="Script" path="res://dialogue/DialogueTree.cs" id="23_406oo"]
+[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="23_406oo"]
 [ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="23_lcdbd"]
-[ext_resource type="Script" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="24_fxq4l"]
-[ext_resource type="Script" path="res://Environment/WispInteractable.cs" id="25_myprq"]
+[ext_resource type="Script" uid="uid://cvhpmu7f7be08" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="24_fxq4l"]
+[ext_resource type="Script" uid="uid://cuqtmwortpn0m" path="res://Environment/WispInteractable.cs" id="25_myprq"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="26_0bxoq"]
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="27_ddgh6"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="28_m25tt"]
-[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="29_ohwp4"]
-[ext_resource type="PackedScene" path="res://Characters/npc_crow.tscn" id="31_8avri"]
+[ext_resource type="Script" uid="uid://bnv2cmyotauj2" path="res://Environment/WispInteractableAnimatedProp.cs" id="29_ohwp4"]
+[ext_resource type="PackedScene" uid="uid://cektsywqa3k5v" path="res://Characters/npc_crow.tscn" id="31_8avri"]
 [ext_resource type="Resource" uid="uid://bjgdriipgp3ew" path="res://Characters/character_crow.tres" id="32_nb42a"]
-[ext_resource type="PackedScene" path="res://Environment/puska.tscn" id="34_jlyps"]
+[ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="34_jlyps"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="38_82gr2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nq4ku"]
@@ -47,7 +47,7 @@ radius = 78.0256
 script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
-Lines = ["This is a dangerous forest! We have to be careful."]
+Lines = Array[String](["This is a dangerous forest! We have to be careful."])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -56,7 +56,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("22_sxeog")
 IsInteractive = false
-Lines = ["Why are there skulls impaled on sticks!?"]
+Lines = Array[String](["Why are there skulls impaled on sticks!?"])
 Next = SubResource("Resource_ylqht")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -418,16 +418,16 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7vlr5"]
 _data = {
-"RESET": SubResource("Animation_6ieeh"),
-"out": SubResource("Animation_2mg1j"),
-"out_hupialue": SubResource("Animation_kgfnr")
+&"RESET": SubResource("Animation_6ieeh"),
+&"out": SubResource("Animation_2mg1j"),
+&"out_hupialue": SubResource("Animation_kgfnr")
 }
 
 [sub_resource type="Resource" id="Resource_7gj5o"]
 script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
-Lines = ["Thank you!"]
+Lines = Array[String](["Thank you!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -436,7 +436,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
-Lines = ["No!! Don't leave me here!!"]
+Lines = Array[String](["No!! Don't leave me here!!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -445,7 +445,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("22_sxeog")
 IsInteractive = true
-Lines = ["Yes", "No"]
+Lines = Array[String](["Yes", "No"])
 Next = SubResource("Resource_7gj5o")
 Next2 = SubResource("Resource_gn1c6")
 ScreenShakeAmount = 0.0
@@ -456,7 +456,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
-Lines = ["Free the wisp?"]
+Lines = Array[String](["Free the wisp?"])
 Next = SubResource("Resource_v1a5f")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -470,7 +470,7 @@ radius = 46.0109
 script = ExtResource("23_406oo")
 Character = ExtResource("32_nb42a")
 IsInteractive = false
-Lines = ["I saw a wisp locked in a lantern! Strange, huh"]
+Lines = Array[String](["I saw a wisp locked in a lantern! Strange, huh"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -479,7 +479,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("32_nb42a")
 IsInteractive = false
-Lines = ["Well, you should stay here with me then, bud. The monster can't get here!"]
+Lines = Array[String](["Well, you should stay here with me then, bud. The monster can't get here!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0
@@ -488,7 +488,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("22_sxeog")
 IsInteractive = true
-Lines = ["Looking for wisps", "Trying to run away from the monster"]
+Lines = Array[String](["Looking for wisps", "Trying to run away from the monster"])
 Next = SubResource("Resource_rd8gs")
 Next2 = SubResource("Resource_clfvr")
 ScreenShakeAmount = 0.0
@@ -499,7 +499,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("32_nb42a")
 IsInteractive = false
-Lines = ["What ya doin here bud?"]
+Lines = Array[String](["What ya doin here bud?"])
 Next = SubResource("Resource_q0gxb")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -509,7 +509,7 @@ SideOverride = 0
 script = ExtResource("23_406oo")
 Character = ExtResource("32_nb42a")
 IsInteractive = false
-Lines = ["Caw Caw!"]
+Lines = Array[String](["Caw Caw!"])
 Next = SubResource("Resource_5dg6w")
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
@@ -864,9 +864,9 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gpuue"]
 _data = {
-"RESET": SubResource("Animation_ry0a6"),
-"out": SubResource("Animation_q1nnn"),
-"out_hupialue": SubResource("Animation_wb2r0")
+&"RESET": SubResource("Animation_ry0a6"),
+&"out": SubResource("Animation_q1nnn"),
+&"out_hupialue": SubResource("Animation_wb2r0")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s1m1x"]
@@ -936,7 +936,7 @@ radius = 92.0217
 script = ExtResource("23_406oo")
 Character = ExtResource("23_lcdbd")
 IsInteractive = false
-Lines = ["I think some of my friends are still in the woods! Let's go back!"]
+Lines = Array[String](["I think some of my friends are still in the woods! Let's go back!"])
 ScreenShakeAmount = 0.0
 ScreenShakeFade = 30.0
 SideOverride = 0

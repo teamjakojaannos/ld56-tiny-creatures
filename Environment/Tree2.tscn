@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5ecjvg27kdtr"]
 
 [ext_resource type="Texture2D" uid="uid://dnip4a7gxtaxk" path="res://Environment/Minjanpuu2.png" id="1_akp2o"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_bkxw2"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_bkxw2"]
 [ext_resource type="Texture2D" uid="uid://7vwxtdhm67ao" path="res://Environment/shadowpatch.png" id="3_0k38u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p0cl4"]

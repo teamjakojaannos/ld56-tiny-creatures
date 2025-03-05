@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjx73xc8t74mp"]
 
 [ext_resource type="SpriteFrames" uid="uid://e4lcf5dy62ty" path="res://Characters/Wisp/WispSpriteFrames.tres" id="1_1ygce"]
-[ext_resource type="Script" path="res://Characters/Wisp/Wisp.cs" id="1_nv7b8"]
+[ext_resource type="Script" uid="uid://d2j6xa4346ucc" path="res://Characters/Wisp/Wisp.cs" id="1_nv7b8"]
 
 [sub_resource type="Gradient" id="Gradient_yln5s"]
 interpolation_mode = 2

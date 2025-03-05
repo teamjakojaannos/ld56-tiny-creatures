@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://hthnt1vcknxx"]
 
-[ext_resource type="Script" path="res://dialogue/Dialogue.cs" id="1_e7iml"]
+[ext_resource type="Script" uid="uid://dppqmh57wuuxo" path="res://dialogue/Dialogue.cs" id="1_e7iml"]
 [ext_resource type="PackedScene" uid="uid://ylwci2dowuy7" path="res://dialogue/row.tscn" id="1_h21uh"]
 [ext_resource type="PackedScene" uid="uid://b20ibux777wdy" path="res://dialogue/interactive_row.tscn" id="3_ib14a"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_ly15r"]
@@ -146,9 +146,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75w22"]
 _data = {
-"RESET": SubResource("Animation_r0oxh"),
-"close": SubResource("Animation_sk340"),
-"open": SubResource("Animation_ajvrg")
+&"RESET": SubResource("Animation_r0oxh"),
+&"close": SubResource("Animation_sk340"),
+&"open": SubResource("Animation_ajvrg")
 }
 
 [node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("DialogueList")]

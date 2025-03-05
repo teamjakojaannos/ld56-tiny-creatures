@@ -50,8 +50,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fyvm0"]
 _data = {
-"RESET": SubResource("Animation_n7t8s"),
-"spawn": SubResource("Animation_d2m0m")
+&"RESET": SubResource("Animation_n7t8s"),
+&"spawn": SubResource("Animation_d2m0m")
 }
 
 [node name="WaterSplash" type="Node2D"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://msnb3307oquv"]
 
 [ext_resource type="Texture2D" uid="uid://chc5dyvdkfob4" path="res://Environment/IsopuuIso.png" id="1_8tiqo"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_onxvc"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_onxvc"]
 [ext_resource type="Texture2D" uid="uid://b2ljby7qpfc2c" path="res://Environment/IsopuuPieni.png" id="3_mchym"]
 [ext_resource type="Texture2D" uid="uid://bltq7cr2yubdt" path="res://Environment/Massaily_takamehta.png" id="4_dxmg6"]
 

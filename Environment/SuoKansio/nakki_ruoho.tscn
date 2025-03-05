@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ekfgg6vmxihr"]
 
 [ext_resource type="Texture2D" uid="uid://bufuvm2lggxq3" path="res://Environment/SuoKansio/suonakki_pieni.png" id="1_0t8vu"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_e4y4g"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_e4y4g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rup72"]
 animations = [{

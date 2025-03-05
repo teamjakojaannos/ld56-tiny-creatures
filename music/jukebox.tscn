@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ccfpbd6r6ek72"]
 
 [ext_resource type="AudioStream" uid="uid://bes13ryernvjn" path="res://music/pornhubimusa.ogg" id="1_a553t"]
-[ext_resource type="Script" path="res://music/Jukebox.cs" id="1_kqeya"]
+[ext_resource type="Script" uid="uid://bl2cqf5qjnf4i" path="res://music/Jukebox.cs" id="1_kqeya"]
 [ext_resource type="AudioStream" uid="uid://ck0ul4q2cf13y" path="res://music/metsamusa.ogg" id="2_4a1vx"]
 [ext_resource type="AudioStream" uid="uid://dvsmqj05ptpdo" path="res://music/suomusiikkiV2.ogg" id="3_i10xf"]
 [ext_resource type="AudioStream" uid="uid://cd8asm3qotxca" path="res://music/velhopsykoosi.ogg" id="5_hb858"]

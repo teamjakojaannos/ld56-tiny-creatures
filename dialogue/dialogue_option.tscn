@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://8iybuks6ooby"]
 
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="1_3d6se"]
-[ext_resource type="Script" path="res://dialogue/DialogueOption.cs" id="2_oat3g"]
+[ext_resource type="Script" uid="uid://b3gjoktyqcmkc" path="res://dialogue/DialogueOption.cs" id="2_oat3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2reyo"]
 resource_local_to_scene = true

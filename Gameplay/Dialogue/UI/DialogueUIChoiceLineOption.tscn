@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu1ir7cvjn2l2"]
 
-[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLineOption.cs" id="1_4fhjm"]
+[ext_resource type="Script" uid="uid://cn6fu5euqavw" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLineOption.cs" id="1_4fhjm"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="3_00i41"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tfu1d"]

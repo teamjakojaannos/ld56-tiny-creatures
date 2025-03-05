@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bqrla80ph8o16"]
 
-[ext_resource type="Script" path="res://World/Level.cs" id="1_g2q8n"]
-[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_0gsd7"]
+[ext_resource type="Script" uid="uid://cpd7fbssvtqsm" path="res://World/Level.cs" id="1_g2q8n"]
+[ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_0gsd7"]
 [ext_resource type="PackedScene" uid="uid://cf0ylpk4p1e12" path="res://Gameplay/Creatures/Chaser/Chaser.tscn" id="3_8agvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hrps"]

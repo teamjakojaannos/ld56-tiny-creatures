@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cg8aih00qes3h"]
 
-[ext_resource type="Script" path="res://World/Level.cs" id="1_kslyn"]
+[ext_resource type="Script" uid="uid://cpd7fbssvtqsm" path="res://World/Level.cs" id="1_kslyn"]
 
 [node name="TemplateLevel" type="Node2D"]
 y_sort_enabled = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cundomcxptp7c"]
 
 [ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_i2y8a"]
-[ext_resource type="Script" path="res://World/LevelTransition.cs" id="2_3ftgs"]
+[ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_3ftgs"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_215ur"]
 [ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="4_085sw"]
 

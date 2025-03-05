@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ylwci2dowuy7"]
 
-[ext_resource type="Script" path="res://dialogue/DialogueRow.cs" id="1_o2yu2"]
+[ext_resource type="Script" uid="uid://bv7b7k3ex2qcy" path="res://dialogue/DialogueRow.cs" id="1_o2yu2"]
 [ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="2_6tghr"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_8cx57"]
 [ext_resource type="AudioStream" uid="uid://b2uxf54supp74" path="res://dialogue/puhe1.ogg" id="4_ewmgn"]

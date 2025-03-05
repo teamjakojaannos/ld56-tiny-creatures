@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dt5b1ny7gald6"]
 
-[ext_resource type="Script" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLine.cs" id="1_r4p8d"]
+[ext_resource type="Script" uid="uid://cggu4mmfpu6db" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLine.cs" id="1_r4p8d"]
 [ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="2_k16ub"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="3_shay1"]
 [ext_resource type="PackedScene" uid="uid://cu1ir7cvjn2l2" path="res://Gameplay/Dialogue/UI/DialogueUIChoiceLineOption.tscn" id="4_5btkh"]
-[ext_resource type="Script" path="res://UI/PositionAnimator.cs" id="4_cyp7r"]
+[ext_resource type="Script" uid="uid://dfi3k6j0r5enh" path="res://UI/PositionAnimator.cs" id="4_cyp7r"]
 [ext_resource type="AudioStream" uid="uid://b2uxf54supp74" path="res://dialogue/puhe1.ogg" id="5_d33bj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n8p5x"]
@@ -92,8 +92,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7bm30"]
 _data = {
-"Added": SubResource("Animation_80455"),
-"RESET": SubResource("Animation_rlppr")
+&"Added": SubResource("Animation_80455"),
+&"RESET": SubResource("Animation_rlppr")
 }
 
 [node name="Line" type="HBoxContainer" node_paths=PackedStringArray("OptionsContainer", "Animation", "Portrait", "CharacterNameLabel", "PortraitContainer", "PositionAnimator", "Layout")]

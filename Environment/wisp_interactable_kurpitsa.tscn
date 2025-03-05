@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_37dk6"]
 [ext_resource type="PackedScene" uid="uid://d1d0oklccd27c" path="res://Environment/kurpitsa_lyhty.tscn" id="2_gd20f"]
-[ext_resource type="Script" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_os33n"]
+[ext_resource type="Script" uid="uid://bnv2cmyotauj2" path="res://Environment/WispInteractableAnimatedProp.cs" id="3_os33n"]
 
 [node name="WispInteractableKurpitsa" instance=ExtResource("1_37dk6")]
 GoalDistance = 8.0

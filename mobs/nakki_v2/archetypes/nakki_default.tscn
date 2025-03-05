@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://d2t0ix0154bii"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_rptid"]
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiIdleState.cs" id="2_ynyiy"]
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiMovementState.cs" id="3_6bclu"]
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiUnderwaterState.cs" id="4_nbli3"]
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiStalkState.cs" id="5_vjygf"]
-[ext_resource type="Script" path="res://mobs/nakki_v2/ai_states/NakkiAttackState.cs" id="6_ij3x4"]
+[ext_resource type="Script" uid="uid://brnhxlgej5b1s" path="res://mobs/nakki_v2/ai_states/NakkiIdleState.cs" id="2_ynyiy"]
+[ext_resource type="Script" uid="uid://dmbov7oo4attv" path="res://mobs/nakki_v2/ai_states/NakkiMovementState.cs" id="3_6bclu"]
+[ext_resource type="Script" uid="uid://c7o25d8lmb1ch" path="res://mobs/nakki_v2/ai_states/NakkiUnderwaterState.cs" id="4_nbli3"]
+[ext_resource type="Script" uid="uid://bby0hkm20ubj1" path="res://mobs/nakki_v2/ai_states/NakkiStalkState.cs" id="5_vjygf"]
+[ext_resource type="Script" uid="uid://dmbmyv8carnkm" path="res://mobs/nakki_v2/ai_states/NakkiAttackState.cs" id="6_ij3x4"]
 [ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="7_w8aiv"]
 
 [node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_rptid")]

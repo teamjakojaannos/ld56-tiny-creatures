@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cd8qrla1d18g8"]
 
-[ext_resource type="Script" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
+[ext_resource type="Script" uid="uid://chml1pydo7hg0" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_88m0x"]
 [ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="3_bvjim"]
 [ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://mobs/kasianimaatio-sheet-top.png" id="4_3k7wb"]
@@ -615,11 +615,11 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h630f"]
 _data = {
-"RESET": SubResource("Animation_j5smc"),
-"emerge_from_water": SubResource("Animation_yvu2k"),
-"finish_attack": SubResource("Animation_qtp1m"),
-"go_underwater": SubResource("Animation_dfyof"),
-"start_attack": SubResource("Animation_ygnl6")
+&"RESET": SubResource("Animation_j5smc"),
+&"emerge_from_water": SubResource("Animation_yvu2k"),
+&"finish_attack": SubResource("Animation_qtp1m"),
+&"go_underwater": SubResource("Animation_dfyof"),
+&"start_attack": SubResource("Animation_ygnl6")
 }
 
 [node name="Näkki" type="Path2D" node_paths=PackedStringArray("NakkiEntity", "Sightcone", "LineOfSight", "AnimationPlayer", "Attack", "DangerZone", "FakePlayer", "Hand", "AttackTimer")]

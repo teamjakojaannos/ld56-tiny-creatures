@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BogMonsterStats" load_steps=2 format=3 uid="uid://clyis4j0lhx0d"]
 
-[ext_resource type="Script" path="res://mobs/BogMonsterStats.cs" id="1_us665"]
+[ext_resource type="Script" uid="uid://brdes8yg3h2dy" path="res://mobs/BogMonsterStats.cs" id="1_us665"]
 
 [resource]
 script = ExtResource("1_us665")

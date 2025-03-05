@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bh8qgyrljfj0p" path="res://Environment/vinhapuu.png" id="1_7lte1"]
 [ext_resource type="Texture2D" uid="uid://dnip4a7gxtaxk" path="res://Environment/Minjanpuu2.png" id="1_pgmue"]
-[ext_resource type="Script" path="res://Environment/fake_light_mask.gd" id="2_kfqf0"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_kfqf0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p0cl4"]
 animations = [{

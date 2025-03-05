@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GameCharacter" load_steps=3 format=3 uid="uid://c24lq4s6ae0f"]
 
-[ext_resource type="Script" path="res://Characters/GameCharacter.cs" id="1_6f2hb"]
+[ext_resource type="Script" uid="uid://dif8wkbcoroba" path="res://Characters/GameCharacter.cs" id="1_6f2hb"]
 [ext_resource type="Texture2D" uid="uid://bqab431ashybk" path="res://dialogue/portraits/etanapappaportrait.png" id="1_ae4wi"]
 
 [resource]

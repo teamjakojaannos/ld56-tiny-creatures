@@ -135,8 +135,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5hlp4"]
 _data = {
-"RESET": SubResource("Animation_b0sdn"),
-"default": SubResource("Animation_8wdl7")
+&"RESET": SubResource("Animation_b0sdn"),
+&"default": SubResource("Animation_8wdl7")
 }
 
 [node name="KurpitsaLyhty" type="Node2D"]
