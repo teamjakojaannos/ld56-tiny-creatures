@@ -1,15 +1,23 @@
 @tool
+class_name ScreenFader
 extends CanvasLayer
 
-@onready var FadeColor = get_node("FadeColor")
-
-@export_range(0.0, 1.0) var FadeProgress: float = 0.0:
+@export_range(0.0, 1.0) var fade_progress: float = 0.0:
 	get:
-		return FadeProgress
+		return fade_progress
 	set(value):
-		FadeProgress = clamp(value, 0.0, 1.0)
+		fade_progress = clamp(value, 0.0, 1.0)
 
-		if FadeColor != null:
-			FadeColor.visible = FadeProgress > 0.0
-			FadeColor.color.a = FadeProgress
-		
+		if _overlay != null:
+			_overlay.visible = fade_progress > 0.0
+			_overlay.color.a = fade_progress
+
+var _overlay: ColorRect
+
+
+func _ready() -> void:
+	_overlay = ColorRect.new()
+	_overlay.color = Color.BLACK
+	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT, false)
+
+	add_child(_overlay, false, Node.INTERNAL_MODE_FRONT)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://ci0aqjkrdselq"]
+[gd_scene load_steps=84 format=3 uid="uid://ci0aqjkrdselq"]
 
 [ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://Characters/Player/PlayerRiseUP.png" id="1_5hheu"]
 [ext_resource type="Texture2D" uid="uid://jg2vb53mabqb" path="res://Characters/Player/idlebugback.png" id="1_iw3y8"]
@@ -857,7 +857,6 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_wtpyt"]
 resource_name = "IdleProne"
 length = 0.001
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -929,16 +928,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-tracks/6/type = "animation"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../BaseAnimations")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"clips": PackedStringArray("[stop]"),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="Animation" id="Animation_l3wb0"]
@@ -1404,6 +1393,68 @@ tracks/4/keys = {
 "values": [Vector2(0.4, 0.3)]
 }
 
+[sub_resource type="Animation" id="Animation_66gcg"]
+resource_name = "OpenCage"
+length = 1.2
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("OpenCage"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -22.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.3)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vvj5j"]
 _data = {
 &"GetUp": SubResource("Animation_wdp36"),
@@ -1412,6 +1463,7 @@ _data = {
 &"IdleProne": SubResource("Animation_wtpyt"),
 &"IdleRight": SubResource("Animation_l3wb0"),
 &"IdleUp": SubResource("Animation_sunvu"),
+&"OpenCage": SubResource("Animation_66gcg"),
 &"RESET": SubResource("Animation_s4lbh"),
 &"WalkDown": SubResource("Animation_6phsv"),
 &"WalkLeft": SubResource("Animation_bv67w"),
