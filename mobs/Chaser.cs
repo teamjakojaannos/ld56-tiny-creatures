@@ -403,8 +403,8 @@ public partial class Chaser : RigidBody2D {
 	private void AttackPlayer(PlayerCharacter player) {
 		AttackSounds?.Play();
 		isAttacking = true;
-		player.SetSpriteVisible(false);
-		player.SetMovementEnabled(false);
+		player.SpriteVisible = false;
+		player.MovementEnabled = false;
 		AnimPlayer!.Play("attack");
 	}
 

@@ -301,8 +301,8 @@ public partial class BogMonster : PathFollow2D {
 			return;
 		}
 
-		player.SetSpriteVisible(false);
-		player.SetMovementEnabled(false);
+		player.SpriteVisible = false;
+		player.MovementEnabled = false;
 		SyncHandLocation(1.0f);
 		fakePlayer!.Visible = true;
 

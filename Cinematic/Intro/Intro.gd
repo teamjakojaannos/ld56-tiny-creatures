@@ -1,21 +1,33 @@
 extends Node2D
 
-@onready var MainCamera: CameraControl = get_tree().get_first_node_in_group("MainCamera")
+@onready var main_camera: CameraControl = get_tree().get_first_node_in_group("MainCamera")
+@onready var control_rig: PlayerController = Persistent.PlayerController
+@onready var player: PlayerCharacter = Persistent.PlayerController.player
+@onready var wisp: WispCharacter = Persistent.PlayerController.wisp
 
 func _ready() -> void:
-	print("Intro delay")
-	await get_tree().create_timer(2.0).timeout
+	_setup_scene_for_intro();
 
-	print("Intro start")
+	await get_tree().create_timer(2.0).timeout
 	Play()
 
+func _setup_scene_for_intro():
+	player.SpriteVisible = false
+	player.MovementEnabled = false
+
+	var wisp_initial_position: Node2D = $SpiritLantern/WispInitialLocation
+	wisp.TeleportTo(wisp_initial_position.global_position, true)
+
+	$AnimationPlayer.play("RESET")
+
+	main_camera.SetFullyObscured()
+
 func Play() -> void:
-	MainCamera.SetFullyObscured()
-	MainCamera.FadeToVisible()
-	await MainCamera.FadeFinished
+	main_camera.FadeToVisible()
+	await main_camera.FadeFinished
 
 	# FIXME: separate h/v shake and apply shake downwards to indicate the fall
-	MainCamera.ApplyCameraShake(30.0, 30.0)
+	main_camera.ApplyCameraShake(30.0, 30.0)
 	await get_tree().create_timer(1.0).timeout
 
 	DialogueMan.ActiveDialogue = $InitialDialogue
@@ -46,9 +58,27 @@ func Play() -> void:
 	$AnimationPlayer.play("03_open_lantern")
 	await $AnimationPlayer.animation_finished
 
+	await _wisp_flies_loop_of_joy_around_the_player()
+
 	DialogueMan.ActiveDialogue = $WispReleasedDialogue
 	DialogueMan.StartDialogue()
 	await DialogueMan.DialogueFinished
+
+	$PlayerSprite.visible = false
+	player.SpriteVisible = true
+	player.MovementEnabled = true
+
+func _wisp_flies_loop_of_joy_around_the_player():
+	# FIXME: this is really lazy, must be some better way to do the victory loop-da-loop?
+	await get_tree().create_timer(0.1).timeout
+	wisp.Release()
+	wisp.GoToSync(player.global_position + Vector2.DOWN * 32.0)
+	await get_tree().create_timer(0.25).timeout
+	wisp.GoToSync(player.global_position + Vector2.LEFT * 72.0)
+	await get_tree().create_timer(0.25).timeout
+	wisp.GoToSync(player.global_position + Vector2.UP * 64.0)
+	await get_tree().create_timer(0.125).timeout
+	wisp.Release()
 
 #public void Play() {
 #		ScreenFader!.Visible = true;
@@ -57,7 +87,7 @@ func Play() -> void:
 #		GetTree().CreateTimer(2.0f).Timeout += () => {
 #			dialogue.DialogueFinished += InitialDialogueFinished;
 #
-#			this.MainCamera().ApplyCameraShake(30.0f, 30.0f);
+#			this.main_camera().ApplyCameraShake(30.0f, 30.0f);
 #			dialogue.StartDialogue(InitialDialogue!);
 #		};
 #	}
@@ -96,8 +126,8 @@ func Play() -> void:
 #		Tilulii?.Play();
 #
 #		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
-#			this.MainCamera().PositionSmoothingEnabled = true;
-#			this.MainCamera().PositionSmoothingSpeed = 2.5f;
+#			this.main_camera().PositionSmoothingEnabled = true;
+#			this.main_camera().PositionSmoothingSpeed = 2.5f;
 #
 #			player.WispTarget = null;
 #			if (player.Wisp is RigidBody2D rigidBody) {
@@ -129,12 +159,12 @@ func Play() -> void:
 #			};
 #
 #			GetTree().CreateTimer(2.0f).Timeout += () => {
-#				this.MainCamera().PositionSmoothingSpeed = 10.0f;
+#				this.main_camera().PositionSmoothingSpeed = 10.0f;
 #
 #				GetTree().CreateTimer(1.0f).Timeout += () => {
-#					this.MainCamera().PositionSmoothingEnabled = false;
-#					this.MainCamera().Offset = Vector2.Zero;
-#					this.MainCamera().Position = Vector2.Zero;
+#					this.main_camera().PositionSmoothingEnabled = false;
+#					this.main_camera().Offset = Vector2.Zero;
+#					this.main_camera().Position = Vector2.Zero;
 #				};
 #			};
 #		}

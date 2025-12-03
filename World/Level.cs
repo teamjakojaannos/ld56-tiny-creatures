@@ -8,7 +8,7 @@ namespace Jakojaannos.WisperingWoods.World;
 [Tool]
 [GlobalClass]
 public partial class Level : Node2D {
-	public IEnumerable<LevelTransition> GetLevelTransitions() {
+	public virtual IEnumerable<LevelTransition> GetLevelTransitions() {
 		return this.RecursiveFindAdjacentLevels();
 	}
 }

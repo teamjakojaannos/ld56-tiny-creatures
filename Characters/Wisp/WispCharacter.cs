@@ -10,6 +10,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Characters.Wisp;
 
 [Tool]
+[GlobalClass]
 public partial class WispCharacter : RigidBody2D {
 	[Export]
 	public float MaxVelocity { get; set; } = 500.0f;
@@ -45,6 +46,22 @@ public partial class WispCharacter : RigidBody2D {
 		_goToTask = new();
 
 		await _goToTask.Task;
+	}
+
+	public void GoToSync(Vector2 target) {
+		_goToTarget = target;
+	}
+
+	public void TeleportTo(Vector2 target, bool lockOn = false) {
+		GlobalPosition = target;
+
+		if (lockOn) {
+			_goToTarget = target;
+		}
+	}
+
+	public void Release() {
+		_goToTarget = null;
 	}
 
 	public async Task Inspect(IWispPointOfInterest.IInspectable target) {

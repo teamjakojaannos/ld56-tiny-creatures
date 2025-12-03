@@ -99,7 +99,7 @@ public partial class Intro : Node2D {
 			player.Wisp.GlobalPosition = wispLocation;
 
 			playerSprite.Hide();
-			player.SetSpriteVisible(true);
+			player.SpriteVisible = true;
 		}
 		GetTree().CreateTimer(2.0f).Timeout += () => {
 			dialogue.StartDialogue(CageOpenDialogue!);
@@ -115,7 +115,7 @@ public partial class Intro : Node2D {
 	private void ReleasePlayer() {
 		if (GetTree().GetFirstNodeInGroup("Player") is PlayerCharacter player) {
 			GetTree().CreateTimer(0.25f).Timeout += () => {
-				player.SetMovementEnabled(true);
+				player.MovementEnabled = true;
 			};
 
 			GetTree().CreateTimer(2.0f).Timeout += () => {
@@ -147,7 +147,7 @@ public partial class Intro : Node2D {
 		AnimPlayer!.Play("fade_in");
 
 		var player = this.Persistent().Player;
-		player.SetSpriteVisible(true);
+		player.SpriteVisible = true;
 		GetTree().CreateTimer(2.5f).Timeout += () => {
 			player.GetUp();
 		};
@@ -160,7 +160,7 @@ public partial class Intro : Node2D {
 		if (this.Persistent().Player is PlayerCharacter player) {
 			player.Noppa!.VolumeDb = Mathf.LinearToDb(0.0f);
 			player.LieDown();
-			player.SetSpriteVisible(true);
+			player.SpriteVisible = true;
 			GetTree().CreateTimer(2.5f).Timeout += () => {
 				player.GetUp();
 			};

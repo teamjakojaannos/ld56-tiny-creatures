@@ -1,11 +1,9 @@
 using System.Linq;
-using System.Threading.Tasks;
 
 using Godot;
 using Godot.Collections;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
-using Jakojaannos.WisperingWoods.Util;
 using Jakojaannos.WisperingWoods.Util.Editor;
 
 namespace Jakojaannos.WisperingWoods;
@@ -19,6 +17,7 @@ public static class PersistentExt {
 }
 
 [Tool]
+[GlobalClass]
 public partial class Persistent : Node2D {
 	public static Persistent Instance(Node node) {
 		return node.GetTree().Root.GetNode<Persistent>("Persistent");
@@ -89,7 +88,7 @@ public partial class Persistent : Node2D {
 
 		//Intro.FadeToBlack();
 		Player.IsInCinematic = true;
-		Player.SetMovementEnabled(false);
+		Player.MovementEnabled = false;
 
 		GetTree().CreateTimer(2.5f).Timeout += () => {
 			Player.TeleportTo(spawnpoint);

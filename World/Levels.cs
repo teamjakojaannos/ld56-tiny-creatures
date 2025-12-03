@@ -49,7 +49,7 @@ public partial class Levels : Node2D {
 		player.ResetPhysicsInterpolation();
 
 		if (_currentScene is null) {
-			throw new NotImplementedException("TODO: hijack the initial scene");
+			throw new InvalidOperationException("Cannot transition to a level without initial level being set first!");
 		}
 
 		// FIXME: this might be too naive for 1-way transitions

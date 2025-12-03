@@ -159,6 +159,7 @@ public partial class LevelLoader : Node2D {
 			EntranceNodePath = entranceNodePath;
 			TransitionNode = transitionNode;
 
+			// NOTE: might sometimes print "Invalid Task ID" errors, but those seem to be false-positive.
 			var loaded = ResourceLoader.LoadThreadedGet(path);
 			if (loaded is not PackedScene scene) {
 				throw new InvalidOperationException("Loaded level resource is not a scene!");

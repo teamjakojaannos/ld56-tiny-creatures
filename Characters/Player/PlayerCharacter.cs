@@ -9,6 +9,7 @@ using Jakojaannos.WisperingWoods.Util.Editor;
 namespace Jakojaannos.WisperingWoods.Characters.Player;
 
 [Tool]
+[GlobalClass]
 public partial class PlayerCharacter : CharacterBody2D {
 	[Signal]
 	public delegate void LightLevelChangedEventHandler(int newLightLevel);
@@ -79,6 +80,26 @@ public partial class PlayerCharacter : CharacterBody2D {
 	}
 
 	private AnimatedSprite2D? playerSprite;
+
+	public bool SpriteVisible {
+		get => playerSprite?.Visible ?? false;
+		set {
+			if (Shadow is not null) Shadow.Visible = value;
+
+			if (playerSprite is not null) {
+				playerSprite.Visible = value;
+
+				// HACK: avoid having flipped sprite in respawn anim
+				playerSprite!.FlipH = false;
+			}
+
+		}
+	}
+
+	public bool MovementEnabled {
+		get => !frozen;
+		set => frozen = !value;
+	}
 
 	public int lightLevel = 2;
 	private const int lightLevelMin = 1;
@@ -193,18 +214,6 @@ public partial class PlayerCharacter : CharacterBody2D {
 		MoveAndSlide();
 	}
 
-	public void SetSpriteVisible(bool visible) {
-		playerSprite!.Visible = visible;
-		Shadow!.Visible = visible;
-
-		// HACK: avoid having flipped sprite in respawn anim
-		playerSprite!.FlipH = false;
-	}
-
-	public void SetMovementEnabled(bool enabled) {
-		frozen = !enabled;
-	}
-
 	public void Die() {
 		if (Invulnerable) {
 			return;
@@ -222,11 +231,10 @@ public partial class PlayerCharacter : CharacterBody2D {
 		this.Jukebox().StopChase();
 	}
 
-	public void SetupForIntro(Node2D wispLocation) {
-		SetSpriteVisible(false);
-		SetMovementEnabled(false);
-		WispTarget = wispLocation;
-		Wisp.GlobalPosition = wispLocation.GlobalPosition;
+	[Obsolete("Separation of concerns: should live in intro instead")]
+	public void SetupForIntro() {
+		SpriteVisible = false;
+		MovementEnabled = false;
 	}
 
 	public override void _Input(InputEvent inputEvent) {
@@ -268,7 +276,7 @@ public partial class PlayerCharacter : CharacterBody2D {
 
 		Animation!.Play($"Idle{animationDirection}");
 
-		SetMovementEnabled(true);
+		MovementEnabled = true;
 		IsInCinematic = false;
 
 		this.Persistent().EmitSignal(Persistent.SignalName.PlayerRespawned);

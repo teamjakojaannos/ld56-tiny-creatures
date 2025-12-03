@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://fnpk5ogqjvrp"]
+[gd_scene load_steps=9 format=3 uid="uid://fnpk5ogqjvrp"]
 
 [ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_seqar"]
 [ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_1wgm1"]
 [ext_resource type="Script" uid="uid://devcwhhlbxygk" path="res://Gameplay/InspectText.cs" id="3_inaco"]
+[ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="4_dpejj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gi833"]
 size = Vector2(32, 128)
@@ -48,7 +49,7 @@ ExitDirection = 4.71239
 shape = SubResource("RectangleShape2D_m1o3k")
 
 [node name="PlayerStart" type="Marker2D" parent="." index="1" groups=["IntroPlayerSpawn", "PlayerSpawn"]]
-position = Vector2(-192, 0)
+position = Vector2(-108, 0)
 
 [node name="Floor" type="ColorRect" parent="." index="2"]
 z_index = -1
@@ -84,3 +85,6 @@ script = ExtResource("3_inaco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D" index="1"]
 shape = SubResource("CircleShape2D_3xg2q")
+
+[node name="Intro" parent="." index="6" instance=ExtResource("4_dpejj")]
+position = Vector2(-192, 0)

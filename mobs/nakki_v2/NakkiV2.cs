@@ -310,8 +310,8 @@ public partial class NakkiV2 : Path2D {
 			return;
 		}
 
-		player.SetSpriteVisible(false);
-		player.SetMovementEnabled(false);
+		player.SpriteVisible = false;
+		player.MovementEnabled = false;
 		FakePlayer.Visible = true;
 
 		player.Die();
