@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Wispering Woods"
-run/main_scene="uid://dqmcerhi4wqpl"
+run/main_scene="uid://djmieukfgkmx2"
 config/features=PackedStringArray("4.5", "C#", "Mobile")
 config/icon="res://icon.svg"
 
@@ -34,7 +34,6 @@ project/assembly_name="Jakojaannos.WisperingWoods"
 
 [editor]
 
-naming/default_signal_callback_name="_on_{NodeName}_{signal_name}"
 naming/script_name_casing=2
 
 [editor_plugins]
@@ -45,7 +44,6 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/GDQuest_
 
 PlayerSpawn="Marks the node as a valid position for player to spawn in."
 Player=""
-PlayIntro=""
 navmesh=""
 IntroPlayerSpawn=""
 MainCamera=""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene load_steps=79 format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -29,7 +29,15 @@
 [ext_resource type="Texture2D" uid="uid://ce08wererd3rf" path="res://Environment/pienirunko.png" id="26_g2r7u"]
 [ext_resource type="PackedScene" uid="uid://ekfgg6vmxihr" path="res://Environment/SuoKansio/nakki_ruoho.tscn" id="27_7pay1"]
 [ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="28_eaaws"]
-[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="31_wynok"]
+[ext_resource type="Script" uid="uid://db84q0o2plx4a" path="res://gameplay/touch_trigger.gd" id="31_3sf1f"]
+[ext_resource type="Script" uid="uid://de8kgrv34786f" path="res://levels/hubarea/enter_hub_trigger.gd" id="31_hxati"]
+[ext_resource type="Script" uid="uid://s7kasy78nr47" path="res://Gameplay/Dialogue/Dialogue.cs" id="32_312y0"]
+[ext_resource type="Script" uid="uid://bvjeuxa34061l" path="res://Gameplay/Dialogue/DialogueLine.cs" id="33_fgaf1"]
+[ext_resource type="Script" uid="uid://bqlj0m8d1nyo4" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="34_hxati"]
+[ext_resource type="Script" uid="uid://dpyu0pat7t10h" path="res://Gameplay/Dialogue/DialogueChoiceLine.cs" id="35_fgaf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6djx"]
+size = Vector2(134.5, 299.375)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
 radius = 62.0
@@ -37,53 +45,30 @@ radius = 62.0
 [sub_resource type="Resource" id="Resource_31hsm"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
-IsInteractive = false
 Lines = Array[String](["...Maybe."])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_yhm2x"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
-IsInteractive = false
 Lines = Array[String](["I'm not quite sure! But doesn't he look a bit like you?"])
 Next = SubResource("Resource_31hsm")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_0hvjq"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("20_whttt")
-IsInteractive = false
 Lines = Array[String](["...Who is this guy anyway?"])
 Next = SubResource("Resource_yhm2x")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_ri0jq"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
-IsInteractive = false
 Lines = Array[String](["Look at me! I'm a statue!"])
 Next = SubResource("Resource_0hvjq")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_lars4"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
-IsInteractive = false
 Lines = Array[String](["We did! We saved all my friends!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t6djx"]
-size = Vector2(134.5, 299.375)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ss1vx"]
 radius = 319.0
@@ -444,20 +429,12 @@ _data = {
 [sub_resource type="Resource" id="Resource_7gj5o"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
-IsInteractive = false
 Lines = Array[String](["Thank you!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_gn1c6"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
-IsInteractive = false
 Lines = Array[String](["No!! Don't leave me here!!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_o41ml"]
 script = ExtResource("21_dpr77")
@@ -466,112 +443,125 @@ IsInteractive = true
 Lines = Array[String](["Yes", "No"])
 Next = SubResource("Resource_7gj5o")
 Next2 = SubResource("Resource_gn1c6")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_kxuv5"]
 script = ExtResource("21_dpr77")
 Character = ExtResource("19_3jhl5")
-IsInteractive = false
 Lines = Array[String](["Free the wisp?"])
 Next = SubResource("Resource_o41ml")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aywjs"]
-radius = 93.0
-height = 312.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21kqm"]
+size = Vector2(350, 50)
 
-[sub_resource type="Resource" id="Resource_t6g3j"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-IsInteractive = false
-Lines = Array[String](["Thank you!", "We should start our search from the big forest in the northwest."])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_ub0mf"]
+script = ExtResource("34_hxati")
+Text = "Phew! We got to my little home all safe and sound!"
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_54j8p"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-IsInteractive = false
-Lines = Array[String](["...I will help you. But I need to be back home at eight!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_udqp3"]
+script = ExtResource("34_hxati")
+Text = "Alright, so what is going on?"
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_j06b5"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-IsInteractive = false
-Lines = Array[String](["Well, good luck finding back home alone then."])
-Next = SubResource("Resource_54j8p")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_312y0"]
+script = ExtResource("34_hxati")
+Text = "Where am I? And why were you trapped in a lantern?"
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_nwg6l"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-IsInteractive = true
-Lines = Array[String](["Okay then. I will help you find your friends, and you help me get home.", "Nah. Not my problem."])
-Next = SubResource("Resource_t6g3j")
-Next2 = SubResource("Resource_j06b5")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_fgaf1"]
+script = ExtResource("34_hxati")
+Text = "We are in my home! The spirit realm!"
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_5svob"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-IsInteractive = false
-Lines = Array[String](["Listen! I really need your help!", "I have seven friends who need saving..."])
-Next = SubResource("Resource_nwg6l")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_hxati"]
+script = ExtResource("34_hxati")
+Text = "But recently something terrible happened..."
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_b2qdn"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-IsInteractive = false
-Lines = Array[String](["That's rough. But I need to get home.", "I have D&D at eight."])
-Next = SubResource("Resource_5svob")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_5xqg4"]
+script = ExtResource("34_hxati")
+Text = "Monster came to the realm... and they trapped me and my friends!"
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_ypkp1"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-IsInteractive = false
-Lines = Array[String](["We are in my home! The spirit realm!", "But recently something terrible happened...", "Monster came to the realm... and they trapped me and my friends!"])
-Next = SubResource("Resource_b2qdn")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_evu7c"]
+script = ExtResource("34_hxati")
+Text = "That's rough. But I need to get home."
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_n3qsu"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-IsInteractive = false
-Lines = Array[String](["Alright, so what is going on?", "Where am I? And why were you trapped in a lantern?"])
-Next = SubResource("Resource_ypkp1")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_4jxvc"]
+script = ExtResource("34_hxati")
+Text = "I have D&D at eight."
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[sub_resource type="Resource" id="Resource_l6th5"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-IsInteractive = false
-Lines = Array[String](["Phew! We got to my little home all safe and sound!"])
-Next = SubResource("Resource_n3qsu")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
+[sub_resource type="Resource" id="Resource_mvu87"]
+script = ExtResource("34_hxati")
+Text = "Listen! I really need your help!"
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_4xu06"]
+script = ExtResource("34_hxati")
+Text = "I have seven friends who need saving..."
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_ofbsl"]
+script = ExtResource("35_fgaf1")
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://dpyu0pat7t10h"
+
+[sub_resource type="Resource" id="Resource_4tskk"]
+script = ExtResource("34_hxati")
+Text = "Okay then. I will help you find your friends, and you help me get home."
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_43prs"]
+script = ExtResource("34_hxati")
+Text = "Thank you!"
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_qqe1s"]
+script = ExtResource("34_hxati")
+Text = "We should start our search from the big forest in the northwest."
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_oxv2l"]
+script = ExtResource("34_hxati")
+Text = "Nah. Not my problem."
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_28oon"]
+script = ExtResource("34_hxati")
+Text = "Well, good luck finding back home alone then."
+Speaker = ExtResource("19_3jhl5")
+Side = 1
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
+
+[sub_resource type="Resource" id="Resource_7rkd0"]
+script = ExtResource("34_hxati")
+Text = "...I will help you. But I need to be back home at eight!"
+Speaker = ExtResource("20_whttt")
+metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
 [node name="Hubarea" type="Node2D"]
 y_sort_enabled = true
@@ -583,131 +573,137 @@ y_sort_enabled = true
 y_sort_enabled = true
 position = Vector2(70, 173)
 
-[node name="Tree10" parent="." instance=ExtResource("1_diaiq")]
+[node name="LevelProps" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree10" parent="LevelProps" instance=ExtResource("1_diaiq")]
 position = Vector2(-74, 3)
 
-[node name="Tree11" parent="." instance=ExtResource("1_diaiq")]
+[node name="Tree11" parent="LevelProps" instance=ExtResource("1_diaiq")]
 position = Vector2(-362, 248)
 
-[node name="Tree12" parent="." instance=ExtResource("1_diaiq")]
+[node name="Tree12" parent="LevelProps" instance=ExtResource("1_diaiq")]
 position = Vector2(-362, 248)
 
-[node name="Tree75" parent="." instance=ExtResource("1_diaiq")]
+[node name="Tree75" parent="LevelProps" instance=ExtResource("1_diaiq")]
 position = Vector2(227, -107)
-scale = Vector2(-1, 1)
+rotation = 3.1415927
+scale = Vector2(1, -1)
 
-[node name="Tree76" parent="." instance=ExtResource("1_diaiq")]
+[node name="Tree76" parent="LevelProps" instance=ExtResource("1_diaiq")]
 position = Vector2(-203, 191)
 
-[node name="Tree74" parent="." instance=ExtResource("1_diaiq")]
+[node name="Tree74" parent="LevelProps" instance=ExtResource("1_diaiq")]
 position = Vector2(147.5, 132)
-scale = Vector2(-1, 1)
+rotation = 3.1415927
+scale = Vector2(1, -1)
 
-[node name="Tree77" parent="." instance=ExtResource("1_diaiq")]
+[node name="Tree77" parent="LevelProps" instance=ExtResource("1_diaiq")]
 z_index = 1
 position = Vector2(53, -181)
-scale = Vector2(-1, 1)
+rotation = 3.1415927
+scale = Vector2(1, -1)
 
-[node name="BigStone3" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone3" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(-116, 21)
 
-[node name="BigStone10" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone10" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(57, -104)
 
-[node name="BigStone4" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone4" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(177.5, 145)
 
-[node name="BigStone11" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone11" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(198, -225)
 
-[node name="BigStone6" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone6" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(285, -102)
 
-[node name="BigStone5" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone5" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(128, -10)
 
-[node name="BigStone7" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone7" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(369, 41)
 
-[node name="BigStone8" parent="." instance=ExtResource("2_5esea")]
+[node name="BigStone8" parent="LevelProps" instance=ExtResource("2_5esea")]
 position = Vector2(262, -6)
 
-[node name="Stones5" type="Sprite2D" parent="."]
+[node name="Stones5" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(96.5, 178.5)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones13" type="Sprite2D" parent="."]
+[node name="Stones13" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(323, -87)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones10" type="Sprite2D" parent="."]
+[node name="Stones10" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(160, -3)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones18" type="Sprite2D" parent="."]
+[node name="Stones18" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(255, -294)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones16" type="Sprite2D" parent="."]
+[node name="Stones16" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(-152, 159)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones6" type="Sprite2D" parent="."]
+[node name="Stones6" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(-30.5, 99.5)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones7" type="Sprite2D" parent="."]
+[node name="Stones7" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(55, 142)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones8" type="Sprite2D" parent="."]
+[node name="Stones8" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(113, 114)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones12" type="Sprite2D" parent="."]
+[node name="Stones12" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(263, 81)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones15" type="Sprite2D" parent="."]
+[node name="Stones15" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(281, 20)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones11" type="Sprite2D" parent="."]
+[node name="Stones11" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(72, -49)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones17" type="Sprite2D" parent="."]
+[node name="Stones17" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(268, -141)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones19" type="Sprite2D" parent="."]
+[node name="Stones19" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(276, -267)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones14" type="Sprite2D" parent="."]
+[node name="Stones14" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(323, -64)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones9" type="Sprite2D" parent="."]
+[node name="Stones9" type="Sprite2D" parent="LevelProps"]
 texture_filter = 1
 position = Vector2(-135, 42)
 texture = ExtResource("4_mnowf")
 
-[node name="BGimage4" type="Sprite2D" parent="."]
+[node name="BGimage4" type="Sprite2D" parent="LevelProps"]
 z_index = -4
 texture_filter = 3
 position = Vector2(-5, 84)
@@ -715,7 +711,7 @@ scale = Vector2(0.853316, 0.685643)
 texture = ExtResource("6_32jsp")
 metadata/_edit_lock_ = true
 
-[node name="BGtreees2" type="Sprite2D" parent="."]
+[node name="BGtreees2" type="Sprite2D" parent="LevelProps"]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(307, 315)
@@ -725,7 +721,7 @@ centered = false
 offset = Vector2(-199.45, -121.3)
 flip_h = true
 
-[node name="BGtreees4" type="Sprite2D" parent="."]
+[node name="BGtreees4" type="Sprite2D" parent="LevelProps"]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(-245, 326)
@@ -734,7 +730,7 @@ texture = ExtResource("7_cy7vp")
 centered = false
 offset = Vector2(-199.45, -121.3)
 
-[node name="BGtreees5" type="Sprite2D" parent="."]
+[node name="BGtreees5" type="Sprite2D" parent="LevelProps"]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(-197, 387)
@@ -743,7 +739,7 @@ texture = ExtResource("7_cy7vp")
 centered = false
 offset = Vector2(-199.45, -121.3)
 
-[node name="BGtreees3" type="Sprite2D" parent="."]
+[node name="BGtreees3" type="Sprite2D" parent="LevelProps"]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(222, 379)
@@ -753,133 +749,285 @@ centered = false
 offset = Vector2(-199.45, -121.3)
 flip_h = true
 
-[node name="Grass" type="Node2D" parent="."]
+[node name="Grass" type="Node2D" parent="LevelProps"]
 z_index = -2
 
-[node name="Grass24" type="Sprite2D" parent="Grass"]
+[node name="Grass24" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(2.5, 126.5)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass33" type="Sprite2D" parent="Grass"]
+[node name="Grass33" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(84, -67)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass41" type="Sprite2D" parent="Grass"]
+[node name="Grass41" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-61, 4)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass34" type="Sprite2D" parent="Grass"]
+[node name="Grass34" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(157.5, 133)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass60" type="Sprite2D" parent="Grass"]
+[node name="Grass60" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(157.5, 133)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass59" type="Sprite2D" parent="Grass"]
+[node name="Grass59" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-192, 189)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass39" type="Sprite2D" parent="Grass"]
+[node name="Grass39" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(38, 24)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass35" type="Sprite2D" parent="Grass"]
+[node name="Grass35" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-151, 181)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass63" type="Sprite2D" parent="Grass"]
+[node name="Grass63" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(118.5, 128)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass26" type="Sprite2D" parent="Grass"]
+[node name="Grass26" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-22, -7)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass28" type="Sprite2D" parent="Grass"]
+[node name="Grass28" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-61, -14)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass27" type="Sprite2D" parent="Grass"]
+[node name="Grass27" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(45.5, 108.5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass37" type="Sprite2D" parent="Grass"]
+[node name="Grass37" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-144, 207)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass36" type="Sprite2D" parent="Grass"]
+[node name="Grass36" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-47.5, 134.5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass38" type="Sprite2D" parent="Grass"]
+[node name="Grass38" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(59.5, 156.5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass64" type="Sprite2D" parent="Grass"]
+[node name="Grass64" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(153.5, 156)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass62" type="Sprite2D" parent="Grass"]
+[node name="Grass62" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-33, -25)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass65" type="Sprite2D" parent="Grass"]
+[node name="Grass65" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(93, -33)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass40" type="Sprite2D" parent="Grass"]
+[node name="Grass40" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-60, 52)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass31" type="Sprite2D" parent="Grass"]
+[node name="Grass31" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(41, -5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass32" type="Sprite2D" parent="Grass"]
+[node name="Grass32" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-31, 63)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass42" type="Sprite2D" parent="Grass"]
+[node name="Grass42" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(60, 58)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass30" type="Sprite2D" parent="Grass"]
+[node name="Grass30" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-2, 39)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass61" type="Sprite2D" parent="Grass"]
+[node name="Grass61" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(35, 177)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass66" type="Sprite2D" parent="Grass"]
+[node name="Grass66" type="Sprite2D" parent="LevelProps/Grass"]
 texture_filter = 1
 position = Vector2(-84, 80)
 texture = ExtResource("9_kgfcd")
+
+[node name="Left Blocker" type="StaticBody2D" parent="LevelProps"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelProps/Left Blocker"]
+position = Vector2(-275.75, 191.313)
+shape = SubResource("RectangleShape2D_t6djx")
+
+[node name="TheWall" parent="LevelProps" instance=ExtResource("12_i73y1")]
+position = Vector2(-98, -139)
+metadata/_edit_lock_ = true
+
+[node name="TheWall4" parent="LevelProps" instance=ExtResource("12_i73y1")]
+position = Vector2(-269, 147)
+
+[node name="TheWall2" parent="LevelProps" instance=ExtResource("12_i73y1")]
+position = Vector2(92, -140)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="WaterFallThing" parent="LevelProps" instance=ExtResource("23_cspl0")]
+position = Vector2(157, -63)
+metadata/_edit_lock_ = true
+
+[node name="Fern" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(79, -108)
+
+[node name="Fern2" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(216, -102)
+
+[node name="Fern3" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(243, -98)
+
+[node name="Fern4" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(45, 6)
+
+[node name="Fern5" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(189, 135)
+
+[node name="Fern13" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(-64, 9)
+
+[node name="Fern12" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(288, 81)
+
+[node name="Fern14" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(272, 9)
+
+[node name="Fern6" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(-236, 175)
+
+[node name="Fern7" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(-100, 96)
+
+[node name="Fern8" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(116, 234)
+
+[node name="Fern9" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(-115, -107)
+
+[node name="Fern10" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(141, -26)
+
+[node name="Fern11" parent="LevelProps" instance=ExtResource("24_wympi")]
+position = Vector2(205, -3)
+
+[node name="Pienirunko" type="Sprite2D" parent="LevelProps"]
+texture_filter = 1
+position = Vector2(219, -478)
+scale = Vector2(1.4697, 1.21212)
+texture = ExtResource("26_g2r7u")
+centered = false
+offset = Vector2(-32.55, -8.69)
+flip_h = true
+
+[node name="Joki1" type="Sprite2D" parent="LevelProps"]
+z_index = -1
+texture_filter = 1
+position = Vector2(371, -341)
+texture = ExtResource("25_gl4a6")
+metadata/_edit_lock_ = true
+
+[node name="AreaColliders" type="StaticBody2D" parent="LevelProps"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelProps/AreaColliders"]
+polygon = PackedVector2Array(182, -469, 168, -447, 213, -342, 181, -310, 209, -239, 231, -223, 192, -165, 213, 14, 262, 57, 373, 97, 424, 99, 496, 130, 549, 118, 602, 87, 643, 95, 647, 64, 582, 44, 473, 73, 377, 60, 310, 13, 310, -22, 289, -76, 231, -128, 244, -177, 264, -213, 255, -258, 219, -296, 218, -311, 250, -324, 249, -362, 229, -427, 247, -451)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="LevelProps/AreaColliders"]
+polygon = PackedVector2Array(213, -814, 259, -815, 255, -788, 271, -767, 257, -708, 165, -667, 139, -629, 146, -576, 199, -544, 234, -531, 250, -484, 251, -471, 195, -482, 184, -510, 131, -546, 100, -574, 87, -624, 98, -652, 142, -682, 226, -737, 226, -765, 212, -788)
+
+[node name="NakkiRuoho" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(250, -258)
+
+[node name="NakkiRuoho13" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(288, -68)
+
+[node name="NakkiRuoho15" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(361, 52)
+
+[node name="NakkiRuoho19" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(422, 75)
+
+[node name="NakkiRuoho21" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(496, 70)
+
+[node name="NakkiRuoho25" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(461, 97)
+
+[node name="NakkiRuoho16" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(304, -22)
+
+[node name="NakkiRuoho6" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(183, -438)
+
+[node name="NakkiRuoho10" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(149, -575)
+
+[node name="NakkiRuoho8" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(184, -510)
+
+[node name="NakkiRuoho4" parent="LevelProps" instance=ExtResource("27_7pay1")]
+position = Vector2(200, -261)
+
+[node name="NakkiRuoho2" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(236, -264)
+
+[node name="NakkiRuoho12" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(271, -72)
+
+[node name="NakkiRuoho14" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(331, 44)
+
+[node name="NakkiRuoho17" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(370, 92)
+
+[node name="NakkiRuoho18" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(443, 81)
+
+[node name="NakkiRuoho5" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(226, -396)
+
+[node name="NakkiRuoho9" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(139, -582)
+
+[node name="NakkiRuoho11" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(107, -634)
+
+[node name="NakkiRuoho7" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(169, -518)
+
+[node name="NakkiRuoho3" parent="LevelProps" instance=ExtResource("28_eaaws")]
+position = Vector2(207, -325)
 
 [node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
@@ -906,24 +1054,6 @@ SetStateAfterDialogueEnd = "viineri"
 
 [node name="Hautakivirykelmä" parent="." instance=ExtResource("11_321uu")]
 position = Vector2(3, 13)
-
-[node name="TheWall" parent="." instance=ExtResource("12_i73y1")]
-position = Vector2(-98, -139)
-metadata/_edit_lock_ = true
-
-[node name="TheWall4" parent="." instance=ExtResource("12_i73y1")]
-position = Vector2(-269, 147)
-
-[node name="TheWall2" parent="." instance=ExtResource("12_i73y1")]
-position = Vector2(92, -140)
-rotation = 3.14159
-scale = Vector2(1, -1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-275.75, 191.313)
-shape = SubResource("RectangleShape2D_t6djx")
 
 [node name="MuzakTrigger" parent="." instance=ExtResource("12_p0n0e")]
 visible = false
@@ -1171,7 +1301,7 @@ offset = Vector2(-7, -20)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpiritLantern/WispInteractable/SpiritLantern"]
 libraries = {
-"": SubResource("AnimationLibrary_7vlr5")
+&"": SubResource("AnimationLibrary_7vlr5")
 }
 autoplay = "RESET"
 
@@ -1186,163 +1316,46 @@ DialogueTrigger = "Yes"
 script = ExtResource("18_xn54u")
 DialogueTree = SubResource("Resource_kxuv5")
 
-[node name="WaterFallThing" parent="." instance=ExtResource("23_cspl0")]
-position = Vector2(157, -63)
-metadata/_edit_lock_ = true
-
-[node name="Fern" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(79, -108)
-
-[node name="Fern2" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(216, -102)
-
-[node name="Fern3" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(243, -98)
-
-[node name="Fern4" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(45, 6)
-
-[node name="Fern5" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(189, 135)
-
-[node name="Fern13" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(-64, 9)
-
-[node name="Fern12" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(288, 81)
-
-[node name="Fern14" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(272, 9)
-
-[node name="Fern6" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(-236, 175)
-
-[node name="Fern7" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(-100, 96)
-
-[node name="Fern8" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(116, 234)
-
-[node name="Fern9" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(-115, -107)
-
-[node name="Fern10" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(141, -26)
-
-[node name="Fern11" parent="." instance=ExtResource("24_wympi")]
-position = Vector2(205, -3)
-
-[node name="Pienirunko" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(219, -478)
-scale = Vector2(1.4697, 1.21212)
-texture = ExtResource("26_g2r7u")
-centered = false
-offset = Vector2(-32.55, -8.69)
-flip_h = true
-
-[node name="Joki1" type="Sprite2D" parent="."]
-z_index = -1
-texture_filter = 1
-position = Vector2(371, -341)
-texture = ExtResource("25_gl4a6")
-metadata/_edit_lock_ = true
-
-[node name="AreaColliders" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaColliders"]
-visible = false
-polygon = PackedVector2Array(182, -469, 168, -447, 213, -342, 181, -310, 209, -239, 231, -223, 192, -165, 213, 14, 262, 57, 373, 97, 424, 99, 496, 130, 549, 118, 602, 87, 643, 95, 647, 64, 582, 44, 473, 73, 377, 60, 310, 13, 310, -22, 289, -76, 231, -128, 244, -177, 264, -213, 255, -258, 219, -296, 218, -311, 250, -324, 249, -362, 229, -427, 247, -451)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="AreaColliders"]
-visible = false
-polygon = PackedVector2Array(213, -814, 259, -815, 255, -788, 271, -767, 257, -708, 165, -667, 139, -629, 146, -576, 199, -544, 234, -531, 250, -484, 251, -471, 195, -482, 184, -510, 131, -546, 100, -574, 87, -624, 98, -652, 142, -682, 226, -737, 226, -765, 212, -788)
-
-[node name="NakkiRuoho" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(250, -258)
-
-[node name="NakkiRuoho13" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(288, -68)
-
-[node name="NakkiRuoho15" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(361, 52)
-
-[node name="NakkiRuoho19" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(422, 75)
-
-[node name="NakkiRuoho21" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(496, 70)
-
-[node name="NakkiRuoho25" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(461, 97)
-
-[node name="NakkiRuoho16" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(304, -22)
-
-[node name="NakkiRuoho6" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(183, -438)
-
-[node name="NakkiRuoho10" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(149, -575)
-
-[node name="NakkiRuoho8" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(184, -510)
-
-[node name="NakkiRuoho4" parent="." instance=ExtResource("27_7pay1")]
-position = Vector2(200, -261)
-
-[node name="NakkiRuoho2" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(236, -264)
-
-[node name="NakkiRuoho12" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(271, -72)
-
-[node name="NakkiRuoho14" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(331, 44)
-
-[node name="NakkiRuoho17" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(370, 92)
-
-[node name="NakkiRuoho18" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(443, 81)
-
-[node name="NakkiRuoho5" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(226, -396)
-
-[node name="NakkiRuoho9" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(139, -582)
-
-[node name="NakkiRuoho11" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(107, -634)
-
-[node name="NakkiRuoho7" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(169, -518)
-
-[node name="NakkiRuoho3" parent="." instance=ExtResource("28_eaaws")]
-position = Vector2(207, -325)
-
 [node name="LoreDumpTrigger" type="Node2D" parent="."]
 
-[node name="WispInteractable" parent="LoreDumpTrigger" instance=ExtResource("31_wynok")]
-position = Vector2(19, 248)
-OneShot = true
+[node name="EnterHubTrigger" type="Area2D" parent="LoreDumpTrigger"]
+position = Vector2(10, 253)
+collision_layer = 0
+script = ExtResource("31_hxati")
 
-[node name="Trigger" parent="LoreDumpTrigger/WispInteractable" index="0"]
-position = Vector2(-4, 32)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_aywjs")
-metadata/_edit_lock_ = true
+[node name="Shape" type="CollisionShape2D" parent="LoreDumpTrigger/EnterHubTrigger"]
+shape = SubResource("RectangleShape2D_21kqm")
+debug_color = Color(0, 0.64213544, 0.32803938, 0.41960785)
 
-[node name="Target" parent="LoreDumpTrigger/WispInteractable" index="1"]
-position = Vector2(-54, -41)
+[node name="WispPosition" type="Marker2D" parent="LoreDumpTrigger/EnterHubTrigger"]
+position = Vector2(-45, -66)
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="LoreDumpTrigger/WispInteractable"]
-script = ExtResource("18_xn54u")
-DialogueTree = SubResource("Resource_l6th5")
+[node name="TouchTrigger" type="Node" parent="LoreDumpTrigger/EnterHubTrigger"]
+script = ExtResource("31_3sf1f")
+one_shot = true
+metadata/_custom_type_script = "uid://db84q0o2plx4a"
+
+[node name="Dialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger"]
+script = ExtResource("32_312y0")
+Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_ub0mf"), SubResource("Resource_udqp3"), SubResource("Resource_312y0"), SubResource("Resource_fgaf1"), SubResource("Resource_hxati"), SubResource("Resource_5xqg4"), SubResource("Resource_evu7c"), SubResource("Resource_4jxvc"), SubResource("Resource_mvu87"), SubResource("Resource_4xu06"), SubResource("Resource_ofbsl")])
+metadata/_custom_type_script = "uid://s7kasy78nr47"
+
+[node name="HelpWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue"]
+script = ExtResource("32_312y0")
+Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_4tskk"), SubResource("Resource_43prs"), SubResource("Resource_qqe1s")])
+metadata/_custom_type_script = "uid://s7kasy78nr47"
+
+[node name="IgnoreWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue"]
+script = ExtResource("32_312y0")
+Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_oxv2l"), SubResource("Resource_28oon"), SubResource("Resource_7rkd0")])
+metadata/_custom_type_script = "uid://s7kasy78nr47"
+
+[connection signal="body_entered" from="LoreDumpTrigger/EnterHubTrigger" to="LoreDumpTrigger/EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="LoreDumpTrigger/EnterHubTrigger" to="LoreDumpTrigger/EnterHubTrigger/TouchTrigger" method="_on_body_exited"]
+[connection signal="fire" from="LoreDumpTrigger/EnterHubTrigger/TouchTrigger" to="LoreDumpTrigger/EnterHubTrigger" method="_on_touch_trigger_fire"]
 
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]
 [editable path="Jösses_Win"]
 [editable path="Jösses_Win/JesusStatue"]
 [editable path="MuzakTrigger"]
-[editable path="LoreDumpTrigger/WispInteractable"]

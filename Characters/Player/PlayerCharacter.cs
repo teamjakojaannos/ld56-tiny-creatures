@@ -119,6 +119,18 @@ public partial class PlayerCharacter : CharacterBody2D {
 
 	public bool Invulnerable { get; set; } = true;
 
+	private uint? _collisionLayer;
+	private uint? _collisionMask;
+
+	public override void _EnterTree() {
+		_collisionLayer ??= CollisionLayer;
+		_collisionMask ??= CollisionMask;
+
+		if (!Engine.IsEditorHint()) {
+			DisableCollision();
+		}
+	}
+
 	public override void _Ready() {
 		if (Engine.IsEditorHint()) {
 			return;
@@ -151,6 +163,20 @@ public partial class PlayerCharacter : CharacterBody2D {
 		ResetPhysicsInterpolation();
 		EmitSignal(SignalName.Teleported);
 		EmitSignal(SignalName.ReadyToGo);
+
+		if (!Engine.IsEditorHint()) {
+			RestoreCollision();
+		}
+	}
+
+	private void RestoreCollision() {
+		CollisionLayer = _collisionLayer!.Value;
+		CollisionMask = _collisionMask!.Value;
+	}
+
+	private void DisableCollision() {
+		CollisionLayer = 0;
+		CollisionMask = 0;
 	}
 
 	private string animationDirection = "Down";

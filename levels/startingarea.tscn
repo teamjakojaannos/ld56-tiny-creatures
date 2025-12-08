@@ -29,21 +29,13 @@ radius = 52.0096
 [sub_resource type="Resource" id="Resource_87rtj"]
 script = ExtResource("5_pqvmj")
 Character = ExtResource("4_abnch")
-IsInteractive = false
 Lines = Array[String](["What happened to hurrying out of here..."])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_2ifow"]
 script = ExtResource("5_pqvmj")
 Character = ExtResource("3_402q5")
-IsInteractive = false
 Lines = Array[String](["Booooooo! Look at how scary I am!"])
 Next = SubResource("Resource_87rtj")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk46w"]
 size = Vector2(448, 72)
@@ -984,6 +976,7 @@ texture = ExtResource("16_4hpj2")
 metadata/_edit_lock_ = true
 
 [node name="AreaColliders" type="StaticBody2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaColliders"]
 position = Vector2(-365, -360)

@@ -12,7 +12,7 @@
 offsets = PackedFloat32Array(0, 0.584307, 0.797997, 1)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.0569451, 0, 0, 0, 0.445743, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_o4ujf"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ns3m1"]
 gradient = SubResource("Gradient_qf1tv")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -67,21 +67,13 @@ height = 326.0
 [sub_resource type="Resource" id="Resource_4fi54"]
 script = ExtResource("7_8kbal")
 Character = ExtResource("6_rg573")
-IsInteractive = false
 Lines = Array[String](["Can I go home now!?"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_fhb77"]
 script = ExtResource("7_8kbal")
 Character = ExtResource("5_7bcto")
-IsInteractive = false
 Lines = Array[String](["Game by Toilari, Noodle, Ennea, Lassi, Minjaux, Mäyräkissa and Alex", "Thank you for playing <3"])
 Next = SubResource("Resource_4fi54")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [node name="Juuri" type="Node2D"]
 y_sort_enabled = true
@@ -99,11 +91,12 @@ color = Color(0.254902, 0.384314, 0.164706, 1)
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
+texture_filter = 2
 offset_left = -2519.0
 offset_top = -2555.0
 offset_right = 2555.0
 offset_bottom = 2519.0
-texture = SubResource("GradientTexture2D_o4ujf")
+texture = SubResource("GradientTexture2D_ns3m1")
 metadata/_edit_lock_ = true
 
 [node name="Boundaries" type="StaticBody2D" parent="."]

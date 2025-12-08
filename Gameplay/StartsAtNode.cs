@@ -13,6 +13,9 @@ namespace Jakojaannos.WisperingWoods.Gameplay;
 [RequireParent(typeof(Node2D))]
 public partial class StartsAtNode : Node {
 	[Export]
+	public bool ShouldWaitForInitialScene = true;
+
+	[Export]
 	public Node2D? Spawnpoint { get; set; }
 
 	[Export]
@@ -23,11 +26,28 @@ public partial class StartsAtNode : Node {
 		return [.. this.CheckCommonConfigurationWarnings(base._GetConfigurationWarnings())];
 	}
 
-	public override void _Ready() {
+	public override void _EnterTree() {
 		if (Engine.IsEditorHint()) {
 			return;
 		}
 
+		if (ShouldWaitForInitialScene) {
+			var levelManager = GetTree().Root.GetNodeOrNull("LevelManager");
+			levelManager.Connect(
+				"initial_scene_ready",
+				Callable.From(FindSpawnAndTeleport),
+				(uint)ConnectFlags.OneShot
+			);
+		} else {
+			Connect(
+				SignalName.Ready,
+				Callable.From(FindSpawnAndTeleport),
+				(uint)ConnectFlags.OneShot
+			);
+		}
+	}
+
+	private void FindSpawnAndTeleport() {
 		if (Spawnpoint is not null) {
 			CallDeferred(MethodName.TeleportToSpawn, Spawnpoint);
 			return;
@@ -45,7 +65,7 @@ public partial class StartsAtNode : Node {
 			}
 		}
 
-		GD.PrintErr("No spawns available");
+		GD.PrintErr($"No spawns available for \"{GetPath()}\"");
 	}
 
 	private void TeleportToSpawn(Node2D target) {

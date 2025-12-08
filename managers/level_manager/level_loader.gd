@@ -1,17 +1,18 @@
 class_name LevelLoader
 extends Node2D
 
+var _key: String
 
-func _init(mgr: LevelManager, key: String, scene: Node):
-	name = key
 
-	if get_parent():
-		reparent(mgr)
-	else:
-		mgr.add_child(self, true)
+func _init(key: String, scene: Node):
+	_key = key
 
 	if scene:
 		if scene.get_parent() is Node:
 			scene.reparent(self)
 		else:
-			self.add_child(scene, true)
+			add_child(scene, true)
+
+
+func get_linked_levels() -> Array[LevelLink]:
+	return []

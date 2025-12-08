@@ -1,6 +1,5 @@
-[gd_scene load_steps=28 format=3 uid="uid://dqmcerhi4wqpl"]
+[gd_scene load_steps=27 format=3 uid="uid://dqmcerhi4wqpl"]
 
-[ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="1_c002t"]
 [ext_resource type="Script" uid="uid://ben7tsyxrttyu" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
 [ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://Environment/gradient.png" id="2_uyh0o"]
@@ -78,11 +77,8 @@ size = Vector2(20, 50.3268)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v13c3"]
 size = Vector2(20, 214.5)
 
-[node name="World" type="Node2D" groups=["PlayIntro"]]
+[node name="World" type="Node2D"]
 y_sort_enabled = true
-
-[node name="Intro" parent="." instance=ExtResource("1_c002t")]
-position = Vector2(-1097, 68)
 
 [node name="PlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
@@ -210,7 +206,7 @@ offset_right = -495.0
 offset_bottom = -85.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
 
-[node name="Node2D" parent="." instance=ExtResource("2_q4msv")]
+[node name="BigForest" parent="." instance=ExtResource("2_q4msv")]
 position = Vector2(-514, -513)
 metadata/_edit_lock_ = true
 

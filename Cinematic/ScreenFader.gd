@@ -15,9 +15,13 @@ extends CanvasLayer
 var _overlay: ColorRect
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
+	if _overlay:
+		return
+
 	_overlay = ColorRect.new()
 	_overlay.color = Color.BLACK
+	_overlay.color.a = 0
 	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT, false)
 
 	add_child(_overlay, false, Node.INTERNAL_MODE_FRONT)

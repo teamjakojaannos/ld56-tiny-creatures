@@ -55,6 +55,7 @@ y_sort_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 y_sort_enabled = true
+collision_layer = 2
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="StaticBody2D"]
 y_sort_enabled = true
