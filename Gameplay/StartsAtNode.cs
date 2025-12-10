@@ -66,6 +66,10 @@ public partial class StartsAtNode : Node {
 		}
 
 		GD.PrintErr($"No spawns available for \"{GetPath()}\"");
+		var parent = GetParentOrNull<PlayerCharacter>();
+		if (parent is PlayerCharacter player) {
+			player.RestoreCollision();
+		}
 	}
 
 	private void TeleportToSpawn(Node2D target) {

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjx73xc8t74mp"]
+[gd_scene load_steps=11 format=3 uid="uid://bjx73xc8t74mp"]
 
 [ext_resource type="Script" uid="uid://kyyhfnfxiqis" path="res://characters/wisp/wisp.gd" id="1_8q3ut"]
 [ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_2mpa2"]
 [ext_resource type="SpriteFrames" uid="uid://btv5f3lthbf47" path="res://characters/wisp/wisp.sprite_frames.tres" id="3_ngo84"]
+[ext_resource type="PackedScene" uid="uid://ysee08ttrir6" path="res://gameplay/remark/remark_bubble.tscn" id="4_tia6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ql1ed"]
 radius = 6.0
@@ -30,6 +31,9 @@ gradient = SubResource("Gradient_7omp7")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tia6w"]
+light_mode = 1
 
 [node name="Wisp" type="RigidBody2D"]
 collision_layer = 0
@@ -101,3 +105,16 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.0344705
 offset = Vector2(0, -12)
+
+[node name="RemarkPosition" type="RemoteTransform2D" parent="."]
+position = Vector2(4, -10)
+remote_path = NodePath("../UnshadedLayer/RemarkBubble")
+
+[node name="UnshadedLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="RemarkBubble" parent="UnshadedLayer" instance=ExtResource("4_tia6w")]
+visible = false
+material = SubResource("CanvasItemMaterial_tia6w")
+position = Vector2(4, -10)

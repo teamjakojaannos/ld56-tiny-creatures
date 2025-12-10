@@ -19,7 +19,6 @@ Wisp = NodePath("../Wisp")
 [node name="WispFollowTarget" type="Node2D" parent="Player"]
 position = Vector2(58, -34)
 script = ExtResource("4_77eeu")
-draw_debug = true
 metadata/_custom_type_script = "uid://c3il8pjsf0t3w"
 
 [node name="Wisp" parent="." node_paths=PackedStringArray("follow_target", "player") instance=ExtResource("2_bksb5")]

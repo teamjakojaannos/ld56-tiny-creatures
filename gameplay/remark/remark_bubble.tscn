@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://ysee08ttrir6"]
+
+[ext_resource type="Script" uid="uid://dnhxf64mia0tc" path="res://gameplay/remark/remark_bubble.gd" id="1_83dpj"]
+[ext_resource type="Texture2D" uid="uid://c3nvyq6bxy3ld" path="res://gameplay/remark/speech_bubble.png" id="1_tra27"]
+[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_xfc7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_83dpj"]
+font = ExtResource("2_xfc7s")
+font_size = 8
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_k43bv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_83dpj"]
+resource_name = "show_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_odhgb"]
+_data = {
+&"RESET": SubResource("Animation_k43bv"),
+&"show_up": SubResource("Animation_83dpj")
+}
+
+[node name="RemarkBubble" type="Node2D"]
+script = ExtResource("1_83dpj")
+
+[node name="UI" type="Control" parent="."]
+z_index = 3
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 2
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Container" type="MarginContainer" parent="UI"]
+custom_minimum_size = Vector2(25, 23)
+layout_mode = 0
+offset_top = -23.0
+offset_right = 25.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(0, 23)
+
+[node name="Control" type="Control" parent="UI/Container"]
+layout_mode = 2
+
+[node name="Background" type="NinePatchRect" parent="UI/Container/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tra27")
+patch_margin_left = 10
+patch_margin_top = 5
+patch_margin_right = 7
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="UI/Container/MarginContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_83dpj")
+visible_characters_behavior = 1
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_odhgb")
+}

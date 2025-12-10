@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d2y778kjd7vav"]
+[gd_scene load_steps=34 format=3 uid="uid://d2y778kjd7vav"]
 
 [ext_resource type="Script" uid="uid://dax8o20yvtlsp" path="res://Characters/Player/PlayerCharacter.cs" id="1_cn8o3"]
 [ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_6ksxn"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="16_x8taj"]
 [ext_resource type="Script" uid="uid://c1wlnahgeegam" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="17_8koe4"]
 [ext_resource type="PackedScene" uid="uid://cpkecrim8p1lx" path="res://Cinematic/Camera.tscn" id="17_j406h"]
+[ext_resource type="PackedScene" uid="uid://ysee08ttrir6" path="res://gameplay/remark/remark_bubble.tscn" id="18_blwrb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1bly"]
 size = Vector2(11, 4)
@@ -627,6 +628,9 @@ _data = {
 &"pan_camera_up": SubResource("Animation_c1cke")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_blwrb"]
+light_mode = 1
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("Animation", "Footsteps", "FootstepsWet", "FootstepsTimer", "Shadow", "Noppa") groups=["Player"]]
 y_sort_enabled = true
 collision_mask = 3
@@ -747,3 +751,18 @@ bus = &"SFX"
 
 [node name="Camera" parent="." instance=ExtResource("17_j406h")]
 zoom = 2.0
+
+[node name="RemarkPosition" type="RemoteTransform2D" parent="."]
+position = Vector2(8, -33)
+remote_path = NodePath("../UnshadedLayer/RemarkBubble")
+update_rotation = false
+update_scale = false
+
+[node name="UnshadedLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="RemarkBubble" parent="UnshadedLayer" instance=ExtResource("18_blwrb")]
+visible = false
+material = SubResource("CanvasItemMaterial_blwrb")
+position = Vector2(8, -33)

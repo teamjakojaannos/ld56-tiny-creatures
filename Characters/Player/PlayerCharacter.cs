@@ -169,7 +169,7 @@ public partial class PlayerCharacter : CharacterBody2D {
 		}
 	}
 
-	private void RestoreCollision() {
+	internal void RestoreCollision() {
 		CollisionLayer = _collisionLayer!.Value;
 		CollisionMask = _collisionMask!.Value;
 	}

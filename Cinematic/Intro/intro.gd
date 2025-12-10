@@ -3,7 +3,7 @@ extends Node2D
 @onready var main_camera: CameraManager = get_tree().get_first_node_in_group("MainCamera")
 @onready var control_rig: PlayerController = Persistent.PlayerController
 @onready var player: PlayerCharacter = Persistent.PlayerController.player
-@onready var wisp: WispCharacter = Persistent.PlayerController.wisp
+@onready var wisp: Wisp = Persistent.PlayerController.wisp
 @onready var animations: AnimationPlayer = $AnimationPlayer
 
 

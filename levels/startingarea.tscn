@@ -1,16 +1,12 @@
-[gd_scene load_steps=40 format=3 uid="uid://cqnpbajdyitec"]
+[gd_scene load_steps=45 format=3 uid="uid://cqnpbajdyitec"]
 
-[ext_resource type="PackedScene" uid="uid://vmxujk0vr6jd" path="res://Environment/wisp_interactable_kurpitsa.tscn" id="1_oj8qh"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
-[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="2_fhp40"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="3_402q5"]
+[ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://Environment/pumpkin.png" id="2_tl8e4"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="3_tanrn"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="4_abnch"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="4_c3boq"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_cqeun"]
-[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="5_pqvmj"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="6_01lmh"]
-[ext_resource type="Script" uid="uid://cvyegqu1qydw4" path="res://gameplay/wisp_attractor.gd" id="6_snoqo"]
+[ext_resource type="Script" uid="uid://cvyegqu1qydw4" path="res://gameplay/wisp_poi.gd" id="6_snoqo"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="7_2d1eo"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="8_naa27"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_m5587"]
@@ -22,29 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://msnb3307oquv" path="res://Environment/puu_entrance.tscn" id="15_3aa4f"]
 [ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="16_4hpj2"]
 [ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="17_g8vca"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_782fh"]
-resource_local_to_scene = true
-radius = 52.0096
-
-[sub_resource type="Resource" id="Resource_87rtj"]
-script = ExtResource("5_pqvmj")
-Character = ExtResource("4_abnch")
-Lines = Array[String](["What happened to hurrying out of here..."])
-
-[sub_resource type="Resource" id="Resource_2ifow"]
-script = ExtResource("5_pqvmj")
-Character = ExtResource("3_402q5")
-Lines = Array[String](["Booooooo! Look at how scary I am!"])
-Next = SubResource("Resource_87rtj")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_61nev"]
-resource_local_to_scene = true
-radius = 68.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_snoqo"]
-resource_local_to_scene = true
-radius = 119.01681
+[ext_resource type="Script" uid="uid://bsbke7al56ksm" path="res://gameplay/props/jack_o_lantern.gd" id="18_4ptxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk46w"]
 size = Vector2(448, 72)
@@ -82,38 +56,153 @@ size = Vector2(176.215, 435.374)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bekmy"]
 size = Vector2(124.107, 171.138)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_61nev"]
+resource_local_to_scene = true
+radius = 68.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_snoqo"]
+resource_local_to_scene = true
+radius = 149.0302
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsobr"]
+size = Vector2(18, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acp5i"]
+atlas = ExtResource("2_tl8e4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_208q3"]
+atlas = ExtResource("2_tl8e4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjoio"]
+atlas = ExtResource("2_tl8e4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os1x5"]
+atlas = ExtResource("2_tl8e4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qm78g"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_acp5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_208q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjoio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os1x5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_r62qr"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wygyp"]
+gradient = SubResource("Gradient_r62qr")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_b0sdn"]
+resource_name = "RESET"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8wdl7"]
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.5, 1.0, 0.5, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5hlp4"]
+_data = {
+&"RESET": SubResource("Animation_b0sdn"),
+&"default": SubResource("Animation_8wdl7")
+}
+
 [node name="Startingarea" type="Node2D"]
 y_sort_enabled = true
-
-[node name="WispInteractableKurpitsa" parent="." instance=ExtResource("1_oj8qh")]
-position = Vector2(53, 32)
-
-[node name="Trigger" parent="WispInteractableKurpitsa" index="0"]
-shape = SubResource("CircleShape2D_782fh")
-
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="WispInteractableKurpitsa"]
-script = ExtResource("2_fhp40")
-DialogueTree = SubResource("Resource_2ifow")
-OneShot = true
-
-[node name="WispPOI" type="Area2D" parent="."]
-position = Vector2(53, 32)
-collision_layer = 0
-
-[node name="Shape" type="CollisionShape2D" parent="WispPOI"]
-shape = SubResource("CircleShape2D_61nev")
-debug_color = Color(0.65882355, 0.31764707, 1, 0.2784314)
-
-[node name="Target" type="Marker2D" parent="WispPOI"]
-position = Vector2(0, -6)
-
-[node name="WispAttractor" type="Area2D" parent="WispPOI"]
-collision_layer = 0
-script = ExtResource("6_snoqo")
-
-[node name="Shape" type="CollisionShape2D" parent="WispPOI/WispAttractor"]
-shape = SubResource("CircleShape2D_snoqo")
-debug_color = Color(0.5529412, 0.56078434, 0, 0.14901961)
 
 [node name="LevelProps" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1119,5 +1208,70 @@ position = Vector2(-158, 175)
 [node name="Puska9" parent="LevelProps" instance=ExtResource("17_g8vca")]
 position = Vector2(-37, 277)
 
-[editable path="WispInteractableKurpitsa"]
-[editable path="WispInteractableKurpitsa/KurpitsaLyhty"]
+[node name="WispPOI_Jack-o-Lantern" type="Area2D" parent="." node_paths=PackedStringArray("wisp_target")]
+position = Vector2(53, 32)
+collision_layer = 0
+script = ExtResource("6_snoqo")
+wisp_target = NodePath("Target")
+metadata/_custom_type_script = "uid://cvyegqu1qydw4"
+
+[node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern"]
+position = Vector2(-1, 29)
+shape = SubResource("CircleShape2D_61nev")
+debug_color = Color(0.65882355, 0.31764707, 1, 0.2784314)
+
+[node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern"]
+position = Vector2(0, -8)
+
+[node name="WispPOI_WhatIsThis" type="Area2D" parent="WispPOI_Jack-o-Lantern" node_paths=PackedStringArray("wisp_target")]
+collision_layer = 0
+script = ExtResource("6_snoqo")
+wisp_target = NodePath("Target")
+metadata/_custom_type_script = "uid://cvyegqu1qydw4"
+
+[node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis"]
+shape = SubResource("CircleShape2D_snoqo")
+debug_color = Color(0.5529412, 0.56078434, 0, 0.14901961)
+
+[node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis"]
+position = Vector2(32, -2)
+
+[node name="Jack-o-Lantern" type="Node2D" parent="WispPOI_Jack-o-Lantern"]
+y_sort_enabled = true
+script = ExtResource("18_4ptxt")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern"]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_qsobr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D"]
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_qm78g")
+centered = false
+offset = Vector2(-15.805, -28.87)
+
+[node name="PointLight2D" type="PointLight2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern"]
+position = Vector2(0, -10)
+color = Color(0.691066, 0, 0.0651753, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_wygyp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern"]
+libraries = {
+&"": SubResource("AnimationLibrary_5hlp4")
+}
+
+[connection signal="activate" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern/Jack-o-Lantern" method="_on_activate"]
+[connection signal="body_entered" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern" method="_on_body_entered"]
+[connection signal="body_exited" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern" method="_on_body_exited"]
+[connection signal="deactivate" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern/Jack-o-Lantern" method="_on_deactivate"]
+[connection signal="player_entered" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern" method="_on_player_entered"]
+[connection signal="player_exited" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern" method="_on_player_exited"]
+[connection signal="body_entered" from="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" to="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" method="_on_body_entered"]
+[connection signal="body_exited" from="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" to="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" method="_on_body_exited"]
+[connection signal="player_entered" from="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" to="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" method="_on_player_entered"]
+[connection signal="player_exited" from="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" to="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" method="_on_player_exited"]
