@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2lem4ynkotyx"]
+
+[ext_resource type="PackedScene" uid="uid://d2y778kjd7vav" path="res://Characters/Player/player.tscn" id="1_4w0ar"]
+[ext_resource type="Script" uid="uid://dbsyn8ah1l4c3" path="res://characters/player/player_controller.gd" id="1_hubqw"]
+[ext_resource type="Script" uid="uid://c0r23am1ytr7w" path="res://Gameplay/PlayerInput/InteractionController.cs" id="1_nikjb"]
+[ext_resource type="PackedScene" uid="uid://bjx73xc8t74mp" path="res://characters/wisp/wisp.tscn" id="2_bksb5"]
+[ext_resource type="Script" uid="uid://c3il8pjsf0t3w" path="res://characters/wisp/wisp_follow_target.gd" id="4_77eeu"]
+
+[node name="PlayerController" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_hubqw")
+
+[node name="InteractionController" type="Node" parent="."]
+script = ExtResource("1_nikjb")
+
+[node name="Player" parent="." node_paths=PackedStringArray("Wisp") instance=ExtResource("1_4w0ar")]
+Wisp = NodePath("../Wisp")
+
+[node name="WispFollowTarget" type="Node2D" parent="Player"]
+position = Vector2(58, -34)
+script = ExtResource("4_77eeu")
+draw_debug = true
+metadata/_custom_type_script = "uid://c3il8pjsf0t3w"
+
+[node name="Wisp" parent="." node_paths=PackedStringArray("follow_target", "player") instance=ExtResource("2_bksb5")]
+y_sort_enabled = true
+position = Vector2(0, 56)
+follow_target = NodePath("../Player/WispFollowTarget")
+player = NodePath("../Player")
+
+[connection signal="InspectionFinished" from="InteractionController" to="." method="_on_InteractionController_inspection_finished"]
+[connection signal="InteractionFinished" from="InteractionController" to="." method="_on_InteractionController_interaction_finished"]
+[connection signal="Teleported" from="Player" to="." method="_on_Player_teleported"]

@@ -746,4 +746,4 @@ max_polyphony = 2
 bus = &"SFX"
 
 [node name="Camera" parent="." instance=ExtResource("17_j406h")]
-zoom = 3.0
+zoom = 2.0

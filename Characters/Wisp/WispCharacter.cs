@@ -11,6 +11,7 @@ namespace Jakojaannos.WisperingWoods.Characters.Wisp;
 
 [Tool]
 [GlobalClass]
+[System.Obsolete("rewritten in gdscript, around just for reference for rewrite")]
 public partial class WispCharacter : RigidBody2D {
 	[Export]
 	public float MaxVelocity { get; set; } = 500.0f;
@@ -23,14 +24,6 @@ public partial class WispCharacter : RigidBody2D {
 		set => this.SetExportProperty(ref _player, value);
 	}
 	private PlayerCharacter? _player;
-
-	[Export]
-	[MustSetInEditor]
-	public WispTargetPosition FollowPosition {
-		get => this.GetNotNullExportPropertyWithNullableBackingField(_followPosition);
-		set => this.SetExportProperty(ref _followPosition, value);
-	}
-	private WispTargetPosition? _followPosition;
 
 	public Vector2? InteractTargetPosition => _goToTarget;
 
@@ -94,7 +87,7 @@ public partial class WispCharacter : RigidBody2D {
 			return;
 		}
 
-		ApplyMovementForces();
+		//ApplyMovementForces();
 
 		if (_goToTarget is Vector2 target) {
 			if (!_goToTask.Task.IsCompleted) {
@@ -106,31 +99,5 @@ public partial class WispCharacter : RigidBody2D {
 				}
 			}
 		}
-	}
-
-	public Vector2 WispTargetGlobalPosition => _goToTarget ?? FollowPosition.GlobalPosition;
-
-	private void ApplyMovementForces() {
-		var isPlayerMoving = !Player.InputDirection.IsZeroApprox();
-		if (isPlayerMoving) {
-			LinearDamp = 1.5f;
-		} else {
-			LinearDamp = 2.0f;
-		}
-
-		var targetPosition = WispTargetGlobalPosition;
-
-		var distanceSq = GlobalPosition.DistanceSquaredTo(targetPosition);
-		var distanceRatio = distanceSq / FollowPosition.FollowDistance;
-		var force = 10.0f * distanceRatio;
-
-		var direction = GlobalPosition.DirectionTo(targetPosition);
-
-		ApplyCentralForce(direction * force);
-		FollowPosition.DebugRadius = Mathf.Sqrt(force);
-	}
-
-	public override void _IntegrateForces(PhysicsDirectBodyState2D state) {
-		state.LinearVelocity = state.LinearVelocity.LimitLength(MaxVelocity);
 	}
 }

@@ -144,6 +144,7 @@ dbg_kill={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Line of sight"
+2d_physics/layer_4="Layer 4"
 
 [physics]
 
