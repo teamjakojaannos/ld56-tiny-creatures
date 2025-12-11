@@ -5,8 +5,12 @@ func _on_touch_trigger_fire(_cause: Node2D) -> void:
 	DialogueMan.ActiveDialogue = $Dialogue
 	DialogueMan.StartDialogue()
 
-	var wisp: Wisp = Persistent.PlayerController.wisp
-	wisp.go_to($WispPosition.global_position)
+	var pc: PlayerController = Persistent.PlayerController
+	var wisp: Wisp = pc.wisp
+	var player: PlayerCharacter = pc.player
+	wisp.go_to($WispPosition.global_position, true)
+	player.MovementEnabled = false
 
 	await DialogueMan.DialogueFinished
-	wisp.Release()
+	wisp.clear_go_to_target()
+	player.MovementEnabled = true

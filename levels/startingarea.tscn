@@ -58,11 +58,11 @@ size = Vector2(124.107, 171.138)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61nev"]
 resource_local_to_scene = true
-radius = 68.0
+radius = 70.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_snoqo"]
-resource_local_to_scene = true
-radius = 149.0302
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ptxt"]
+radius = 132.05713
+height = 342.00134
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsobr"]
 size = Vector2(18, 5)
@@ -421,7 +421,7 @@ position = Vector2(-208, 208)
 position = Vector2(-205, 30)
 
 [node name="Tree108" parent="LevelProps" instance=ExtResource("3_tanrn")]
-position = Vector2(-142, 52)
+position = Vector2(-158, 65)
 
 [node name="Tree107" parent="LevelProps" instance=ExtResource("3_tanrn")]
 position = Vector2(-88, -54)
@@ -563,6 +563,7 @@ position = Vector2(575, -24)
 
 [node name="Node2D14" parent="LevelProps" instance=ExtResource("5_cqeun")]
 position = Vector2(332, -53)
+scale = Vector2(-1, 1)
 
 [node name="Node2D8" parent="LevelProps" instance=ExtResource("5_cqeun")]
 position = Vector2(123, 215)
@@ -581,6 +582,7 @@ position = Vector2(-207, 108)
 
 [node name="Node2D5" parent="LevelProps" instance=ExtResource("5_cqeun")]
 position = Vector2(-304, -11)
+scale = Vector2(-1, 1)
 
 [node name="Node2D2" parent="LevelProps" instance=ExtResource("5_cqeun")]
 position = Vector2(-487, -213)
@@ -634,7 +636,7 @@ position = Vector2(-364, 24)
 position = Vector2(-10, 7)
 
 [node name="Sieni32" parent="LevelProps" instance=ExtResource("7_2d1eo")]
-position = Vector2(-131, 62)
+position = Vector2(-147, 75)
 
 [node name="Sieni24" parent="LevelProps" instance=ExtResource("7_2d1eo")]
 position = Vector2(439, 194)
@@ -1216,9 +1218,10 @@ wisp_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cvyegqu1qydw4"
 
 [node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern"]
-position = Vector2(-1, 29)
+position = Vector2(7, 37)
 shape = SubResource("CircleShape2D_61nev")
 debug_color = Color(0.65882355, 0.31764707, 1, 0.2784314)
+metadata/_edit_lock_ = true
 
 [node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern"]
 position = Vector2(0, -8)
@@ -1230,11 +1233,14 @@ wisp_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cvyegqu1qydw4"
 
 [node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis"]
-shape = SubResource("CircleShape2D_snoqo")
+position = Vector2(-43, 14)
+rotation = -0.9503483
+shape = SubResource("CapsuleShape2D_4ptxt")
 debug_color = Color(0.5529412, 0.56078434, 0, 0.14901961)
+metadata/_edit_lock_ = true
 
 [node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis"]
-position = Vector2(32, -2)
+position = Vector2(-26, -4)
 
 [node name="Jack-o-Lantern" type="Node2D" parent="WispPOI_Jack-o-Lantern"]
 y_sort_enabled = true
