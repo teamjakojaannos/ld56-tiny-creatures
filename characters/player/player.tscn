@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://pni5mmab3ipw"]
+[gd_scene load_steps=19 format=3 uid="uid://pni5mmab3ipw"]
 
 [ext_resource type="Script" uid="uid://jnjbe520h5bv" path="res://characters/player/player.gd" id="1_508ok"]
 [ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_xxgcw"]
@@ -15,10 +15,14 @@
 [ext_resource type="AudioStream" uid="uid://bym5d2fik0ct" path="res://random_sfx/stepwater4.ogg" id="9_gqopd"]
 [ext_resource type="AudioStream" uid="uid://cplk3komsjo0g" path="res://random_sfx/askel5.ogg" id="10_fpo3a"]
 [ext_resource type="AudioStream" uid="uid://cjwvwbjhpdsld" path="res://random_sfx/stepwater5.ogg" id="10_icpky"]
+[ext_resource type="PackedScene" uid="uid://ysee08ttrir6" path="res://gameplay/remark/remark_bubble.tscn" id="16_8l73k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_exd8k"]
 radius = 2.0
 height = 13.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aqrcq"]
+light_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_508ok")
@@ -37,7 +41,6 @@ shape = SubResource("CapsuleShape2D_exd8k")
 
 [node name="Sprite" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_exd8k")]
 player = NodePath("..")
-prone_facing = 3
 
 [node name="Footsteps" type="Node2D" parent="." node_paths=PackedStringArray("sounds")]
 script = ExtResource("4_5dc8e")
@@ -132,6 +135,21 @@ volume_db = -15.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
+
+[node name="RemarkPosition" type="RemoteTransform2D" parent="."]
+position = Vector2(8, -33)
+remote_path = NodePath("../UnshadedLayer/RemarkBubble")
+update_rotation = false
+update_scale = false
+
+[node name="UnshadedLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="RemarkBubble" parent="UnshadedLayer" instance=ExtResource("16_8l73k")]
+visible = false
+material = SubResource("CanvasItemMaterial_aqrcq")
+position = Vector2(8, -33)
 
 [connection signal="moving_start" from="." to="Footsteps" method="_on_player_moving_start"]
 [connection signal="moving_stop" from="." to="Footsteps" method="_on_player_moving_stop"]

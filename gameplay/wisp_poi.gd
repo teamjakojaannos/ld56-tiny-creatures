@@ -19,7 +19,7 @@ func _ready() -> void:
 	Signals.try_connect(player_exited, _on_player_exited)
 
 
-func _on_player_entered(_player: PlayerCharacter, wisp: Wisp) -> void:
+func _on_player_entered(_player: Player, wisp: Wisp) -> void:
 	_is_player_inside = true
 
 	await wisp.go_to(wisp_target.global_position, true)
@@ -29,7 +29,7 @@ func _on_player_entered(_player: PlayerCharacter, wisp: Wisp) -> void:
 		activate.emit()
 
 
-func _on_player_exited(_player: PlayerCharacter, wisp: Wisp) -> void:
+func _on_player_exited(_player: Player, wisp: Wisp) -> void:
 	_is_player_inside = false
 	wisp.clear_go_to_target()
 

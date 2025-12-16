@@ -154,6 +154,8 @@ public partial class DialogueManager : Node {
 				GetParent().RemoveChild(this);
 			}
 			return;
+		} else {
+			ActiveDialogue = null;
 		}
 	}
 

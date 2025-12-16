@@ -2,8 +2,8 @@
 class_name PlayerTriggerArea2D
 extends Area2D
 
-signal player_entered(player: PlayerCharacter, wisp: Wisp)
-signal player_exited(player: PlayerCharacter, wisp: Wisp)
+signal player_entered(player: Player, wisp: Wisp)
+signal player_exited(player: Player, wisp: Wisp)
 
 
 func _ready() -> void:
@@ -12,16 +12,16 @@ func _ready() -> void:
 
 
 func _on_body_entered(node: Node2D) -> void:
-	if node is not PlayerCharacter or Engine.is_editor_hint():
+	if node is not Player or Engine.is_editor_hint():
 		return
 
-	var wisp: Wisp = node.Wisp
+	var wisp: Wisp = Persistent.PlayerController.wisp
 	player_entered.emit(node, wisp)
 
 
 func _on_body_exited(node: Node2D) -> void:
-	if node is not PlayerCharacter or Engine.is_editor_hint():
+	if node is not Player or Engine.is_editor_hint():
 		return
 
-	var wisp: Wisp = node.Wisp
+	var wisp: Wisp = Persistent.PlayerController.wisp
 	player_exited.emit(node, wisp)
