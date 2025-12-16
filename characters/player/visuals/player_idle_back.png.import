@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0ccrgb82b3lp"
-path="res://.godot/imported/Bugwalkside.png-cde6c0b424b93f22a894acfcbca26718.ctex"
+uid="uid://jg2vb53mabqb"
+path="res://.godot/imported/player_idle_back.png-ccc0436acf4422d5f17ed7e4ae2eb063.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Player/Bugwalkside.png"
-dest_files=["res://.godot/imported/Bugwalkside.png-cde6c0b424b93f22a894acfcbca26718.ctex"]
+source_file="res://characters/player/visuals/player_idle_back.png"
+dest_files=["res://.godot/imported/player_idle_back.png-ccc0436acf4422d5f17ed7e4ae2eb063.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

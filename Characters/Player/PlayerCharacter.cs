@@ -11,9 +11,6 @@ namespace Jakojaannos.WisperingWoods.Characters.Player;
 [Tool]
 [GlobalClass]
 public partial class PlayerCharacter : CharacterBody2D {
-	[Signal]
-	public delegate void LightLevelChangedEventHandler(int newLightLevel);
-
 	[Export]
 	public float Speed = 300.0f;
 
@@ -101,10 +98,6 @@ public partial class PlayerCharacter : CharacterBody2D {
 		set => frozen = !value;
 	}
 
-	public int lightLevel = 2;
-	private const int lightLevelMin = 1;
-	private const int lightLevelMax = 3;
-
 	public override string[] _GetConfigurationWarnings() {
 		return (base._GetConfigurationWarnings() ?? Array.Empty<string>())
 			.Union(this.CheckCommonConfigurationWarnings())
@@ -185,22 +178,10 @@ public partial class PlayerCharacter : CharacterBody2D {
 			return;
 		}
 
-		if (Input.IsActionJustPressed("dbg_kill")) {
-			Die();
-			return;
-		}
-
 		var delta = (float)_delta;
 
 		if (!IsInCinematic) {
 			MovePlayer(delta);
-		}
-
-		// FIXME: get rid of this
-		if (WispTarget is not null) {
-			var distance = Wisp.GlobalPosition.DistanceTo(WispTarget.GlobalPosition);
-			Wisp.GlobalPosition =
-				Wisp.GlobalPosition.MoveToward(WispTarget.GlobalPosition, distance * 2.0f * delta);
 		}
 	}
 
@@ -261,25 +242,6 @@ public partial class PlayerCharacter : CharacterBody2D {
 	public void SetupForIntro() {
 		SpriteVisible = false;
 		MovementEnabled = false;
-	}
-
-	public override void _Input(InputEvent inputEvent) {
-		if (inputEvent.IsActionPressed("light_level_up")) {
-			//addLightLevel(+1);
-			return;
-		}
-
-		if (inputEvent.IsActionPressed("light_level_down")) {
-			//addLightLevel(-1);
-			return;
-		}
-	}
-
-	private void AddLightLevel(int amount) {
-		lightLevel += amount;
-		lightLevel = Mathf.Clamp(lightLevel, lightLevelMin, lightLevelMax);
-
-		EmitSignal(SignalName.LightLevelChanged, lightLevel);
 	}
 
 	public void LieDown() {

@@ -10,6 +10,9 @@ extends Node2D
 		draw_debug = value
 		queue_redraw()
 
+var controller: MovementController:
+	get:
+		return null if not player else player.controller
 var debug_radius: float = 10.0:
 	get:
 		return debug_radius
@@ -18,14 +21,14 @@ var debug_radius: float = 10.0:
 		queue_redraw()
 var _target_offset: Vector2 = Vector2.RIGHT * follow_distance
 
-@onready var player: PlayerCharacter = get_parent()
+@onready var player: Player = get_parent()
 
 
 func _physics_process(delta: float) -> void:
-	if Engine.is_editor_hint():
+	if not controller or Engine.is_editor_hint():
 		return
 
-	var input_dir: Vector2 = player.InputDirection
+	var input_dir := controller.input_direction
 	if not input_dir.is_zero_approx():
 		_target_offset = input_dir * follow_distance
 
@@ -45,8 +48,9 @@ func _draw() -> void:
 
 
 func _get_configuration_warnings() -> PackedStringArray:
-	if get_parent() is not PlayerCharacter:
-		return ["Must be placed as a child of a PlayerCharacter!"]
+	var errors: PackedStringArray = []
+	if get_parent() is not Player:
+		errors.append("Must be placed as a child of a Player!")
 
 	return []
 

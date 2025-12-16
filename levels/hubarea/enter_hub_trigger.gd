@@ -7,7 +7,7 @@ func _on_touch_trigger_fire(_cause: Node2D) -> void:
 
 	var pc: PlayerController = Persistent.PlayerController
 	var wisp: Wisp = pc.wisp
-	var player: PlayerCharacter = pc.player
+	var player: Player = pc.player
 	wisp.go_to($WispPosition.global_position, true)
 	player.MovementEnabled = false
 

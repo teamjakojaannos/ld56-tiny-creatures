@@ -1,14 +1,15 @@
-[gd_scene load_steps=84 format=3 uid="uid://ci0aqjkrdselq"]
+[gd_scene load_steps=103 format=3 uid="uid://ci0aqjkrdselq"]
 
-[ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://Characters/Player/PlayerRiseUP.png" id="1_5hheu"]
-[ext_resource type="Texture2D" uid="uid://jg2vb53mabqb" path="res://Characters/Player/idlebugback.png" id="1_iw3y8"]
-[ext_resource type="Texture2D" uid="uid://b702m0uxy7s5a" path="res://Characters/Player/PlayerIdleFront.png" id="1_nnfey"]
-[ext_resource type="Texture2D" uid="uid://6i2p27gnt5og" path="res://Characters/Player/idlebugSide.png" id="2_iw3y8"]
+[ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://characters/player/visuals/player_side_stand_up.png" id="1_5hheu"]
+[ext_resource type="Texture2D" uid="uid://jg2vb53mabqb" path="res://characters/player/visuals/player_idle_back.png" id="1_iw3y8"]
+[ext_resource type="Script" uid="uid://d4kistsm6yyd6" path="res://characters/player/player_sprite.gd" id="1_jhbka"]
+[ext_resource type="Texture2D" uid="uid://b702m0uxy7s5a" path="res://characters/player/visuals/player_front_idle.png" id="1_nnfey"]
+[ext_resource type="Texture2D" uid="uid://6i2p27gnt5og" path="res://characters/player/visuals/player_idle_side.png" id="2_iw3y8"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="2_skais"]
-[ext_resource type="Texture2D" uid="uid://df7iw1y0i025q" path="res://Characters/Player/bugwalkback.png" id="4_gso4n"]
-[ext_resource type="Texture2D" uid="uid://b3hw04ijrmoqo" path="res://Characters/Player/BugOpenCage.png" id="5_jhbka"]
-[ext_resource type="Texture2D" uid="uid://ce7j6gj4747hm" path="res://Characters/Player/bugwalkfrong.png" id="5_u3nc2"]
-[ext_resource type="Texture2D" uid="uid://c0ccrgb82b3lp" path="res://Characters/Player/Bugwalkside.png" id="6_5hheu"]
+[ext_resource type="Texture2D" uid="uid://df7iw1y0i025q" path="res://characters/player/visuals/player_walk_back.png" id="4_gso4n"]
+[ext_resource type="Texture2D" uid="uid://b3hw04ijrmoqo" path="res://characters/player/visuals/player_side_open_cage.png" id="5_jhbka"]
+[ext_resource type="Texture2D" uid="uid://ce7j6gj4747hm" path="res://characters/player/visuals/player_walk_front.png" id="5_u3nc2"]
+[ext_resource type="Texture2D" uid="uid://c0ccrgb82b3lp" path="res://characters/player/visuals/player_walk_side.png" id="6_5hheu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgod6"]
 atlas = ExtResource("1_5hheu")
@@ -403,6 +404,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_vvj5j"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["IdleFront"]
+}
+
 [sub_resource type="Animation" id="Animation_2nkkv"]
 length = 1.6
 tracks/0/type = "value"
@@ -541,34 +570,6 @@ tracks/1/keys = {
 "values": ["OpenCage"]
 }
 
-[sub_resource type="Animation" id="Animation_vvj5j"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["IdleFront"]
-}
-
 [sub_resource type="Animation" id="Animation_jhbka"]
 length = 1.6
 loop_mode = 1
@@ -672,7 +673,7 @@ length = 1.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:flip_h")
+tracks/0/path = NodePath("Sprite:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -684,7 +685,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:offset")
+tracks/1/path = NodePath("Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -696,7 +697,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Shadow:offset")
+tracks/2/path = NodePath("Shadow:offset")
 tracks/2/interp = 0
 tracks/2/loop_wrap = false
 tracks/2/keys = {
@@ -708,7 +709,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:scale")
+tracks/3/path = NodePath("Shadow:scale")
 tracks/3/interp = 0
 tracks/3/loop_wrap = false
 tracks/3/keys = {
@@ -720,7 +721,7 @@ tracks/3/keys = {
 tracks/4/type = "animation"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../BaseAnimations")
+tracks/4/path = NodePath("Sprite/BaseAnimations")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -735,7 +736,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -745,7 +746,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -757,7 +758,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -769,7 +770,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -781,7 +782,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -798,7 +799,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -808,7 +809,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -820,7 +821,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -832,7 +833,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -844,7 +845,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -860,7 +861,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:flip_h")
+tracks/0/path = NodePath("Sprite:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -872,7 +873,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:offset")
+tracks/1/path = NodePath("Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -884,7 +885,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Shadow:offset")
+tracks/2/path = NodePath("Shadow:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -896,7 +897,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:scale")
+tracks/3/path = NodePath("Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -908,7 +909,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath(".:animation")
+tracks/4/path = NodePath("Sprite:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -920,7 +921,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath(".:frame")
+tracks/5/path = NodePath("Sprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -937,7 +938,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -947,7 +948,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -959,7 +960,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -971,7 +972,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -983,7 +984,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1000,7 +1001,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1010,7 +1011,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1022,7 +1023,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1034,7 +1035,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1046,7 +1047,69 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_66gcg"]
+resource_name = "OpenCage"
+length = 1.2
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/BaseAnimations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("OpenCage"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -22.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shadow:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1061,7 +1124,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:flip_h")
+tracks/0/path = NodePath("Sprite:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1073,7 +1136,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:offset")
+tracks/1/path = NodePath("Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1085,7 +1148,7 @@ tracks/1/keys = {
 tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../BaseAnimations")
+tracks/2/path = NodePath("Sprite/BaseAnimations")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1095,7 +1158,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:scale")
+tracks/3/path = NodePath("Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1107,7 +1170,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:offset")
+tracks/4/path = NodePath("Shadow:offset")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1119,26 +1182,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath(".:animation")
+tracks/5/path = NodePath("Sprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"IdleFront"]
+"values": [1]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".:frame")
+tracks/6/path = NodePath("Sprite:animation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [&"IdleFront"]
 }
 
 [sub_resource type="Animation" id="Animation_6phsv"]
@@ -1148,7 +1211,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1158,7 +1221,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1170,7 +1233,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1182,7 +1245,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1194,7 +1257,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1211,7 +1274,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1221,7 +1284,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1233,7 +1296,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1245,7 +1308,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1257,7 +1320,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1274,7 +1337,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1284,7 +1347,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1296,7 +1359,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1308,7 +1371,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1320,7 +1383,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1337,7 +1400,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
+tracks/0/path = NodePath("Sprite/BaseAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1347,7 +1410,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
+tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1359,7 +1422,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
+tracks/2/path = NodePath("Sprite:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1371,7 +1434,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
+tracks/3/path = NodePath("Shadow:offset")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1383,69 +1446,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.4, 0.3)]
-}
-
-[sub_resource type="Animation" id="Animation_66gcg"]
-resource_name = "OpenCage"
-length = 1.2
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../BaseAnimations")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("OpenCage"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -22.5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Shadow:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -2)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Shadow:scale")
+tracks/4/path = NodePath("Shadow:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1471,13 +1472,85 @@ _data = {
 &"WalkUp": SubResource("Animation_ok0l2")
 }
 
-[node name="PlayerSprite" type="Node2D"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jhbka"]
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m6vtm"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m7x75"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bv67w"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s4lbh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m27su"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vvj5j"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6phsv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ok0l2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f8vie"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sunvu"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l3wb0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_si43w"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2nkkv"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o7dwb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wtpyt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wdp36"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_66gcg"]
+states/Down/node = SubResource("AnimationNodeStateMachine_jhbka")
+states/Down/position = Vector2(561, 198)
+states/Left/node = SubResource("AnimationNodeStateMachine_m6vtm")
+states/Left/position = Vector2(457, 100)
+states/Right/node = SubResource("AnimationNodeStateMachine_m7x75")
+states/Right/position = Vector2(674, 100)
+states/Start/position = Vector2(289, 198)
+states/Up/node = SubResource("AnimationNodeStateMachine_bv67w")
+states/Up/position = Vector2(561, 0)
+transitions = ["Left", "Up", SubResource("AnimationNodeStateMachineTransition_s4lbh"), "Up", "Left", SubResource("AnimationNodeStateMachineTransition_m27su"), "Left", "Right", SubResource("AnimationNodeStateMachineTransition_vvj5j"), "Right", "Left", SubResource("AnimationNodeStateMachineTransition_6phsv"), "Right", "Up", SubResource("AnimationNodeStateMachineTransition_ok0l2"), "Up", "Right", SubResource("AnimationNodeStateMachineTransition_f8vie"), "Right", "Down", SubResource("AnimationNodeStateMachineTransition_sunvu"), "Down", "Right", SubResource("AnimationNodeStateMachineTransition_l3wb0"), "Left", "Down", SubResource("AnimationNodeStateMachineTransition_si43w"), "Down", "Left", SubResource("AnimationNodeStateMachineTransition_2nkkv"), "Down", "Up", SubResource("AnimationNodeStateMachineTransition_o7dwb"), "Up", "Down", SubResource("AnimationNodeStateMachineTransition_wtpyt"), "Start", "Down", SubResource("AnimationNodeStateMachineTransition_wdp36")]
+graph_offset = Vector2(-167, -106)
+
+[node name="PlayerSprite" type="Node2D"]
+script = ExtResource("1_jhbka")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_u3nc2")
 animation = &"IdleFront"
 frame = 1
 offset = Vector2(0, -22.5)
+
+[node name="BaseAnimations" type="AnimationPlayer" parent="Sprite"]
+editor_description = "Base animations, imported from the AnimatedSprite2D.
+
+SHOULD NOT BE EDITED BY HAND. Re-importing is OK.
+
+Drive these with Animation Playback Tracks from other AnimationPlayer(s)."
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_bv67w")
+}
 
 [node name="Shadow" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -1488,22 +1561,14 @@ region_enabled = true
 region_rect = Rect2(0, 21, 45, 24)
 region_filter_clip_enabled = true
 
-[node name="BaseAnimations" type="AnimationPlayer" parent="."]
-editor_description = "Base animations, imported from the AnimatedSprite2D.
-
-SHOULD NOT BE EDITED BY HAND. Re-importing is OK.
-
-Drive these with Animation Playback Tracks from other AnimationPlayer(s)."
-root_node = NodePath("../PlayerSprite")
-libraries = {
-&"": SubResource("AnimationLibrary_bv67w")
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Animations" type="AnimationPlayer" parent="."]
 deterministic = true
-root_node = NodePath("../PlayerSprite")
 callback_mode_method = 1
 callback_mode_discrete = 0
 libraries = {
 &"": SubResource("AnimationLibrary_vvj5j")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_66gcg")
+anim_player = NodePath("../Animations")

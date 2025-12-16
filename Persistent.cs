@@ -26,11 +26,11 @@ public partial class Persistent : Node2D {
 	[Export]
 	[MustSetInEditor]
 	[ExportGroup("Prewire")]
-	public PlayerCharacter Player {
+	public Node2D Player {
 		get => this.GetNotNullExportPropertyWithNullableBackingField(_player);
 		set => this.SetExportProperty(ref _player, value);
 	}
-	private PlayerCharacter? _player;
+	private Node2D? _player;
 
 	[Export]
 	[MustSetInEditor]
@@ -87,12 +87,13 @@ public partial class Persistent : Node2D {
 			.PickRandom();
 
 		//Intro.FadeToBlack();
-		Player.IsInCinematic = true;
-		Player.MovementEnabled = false;
+		//Player.IsInCinematic = true;
+		//Player.MovementEnabled = false;
 
 		GetTree().CreateTimer(2.5f).Timeout += () => {
-			Player.TeleportTo(spawnpoint);
+			//Player.TeleportTo(spawnpoint);
 			//Intro.FadeInAfterDeath();
+			Player.Call("teleport", spawnpoint);
 		};
 	}
 }

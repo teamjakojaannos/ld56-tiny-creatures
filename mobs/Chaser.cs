@@ -101,9 +101,7 @@ public partial class Chaser : RigidBody2D {
 
 		Callable.From(ActorSetup).CallDeferred();
 
-		var player = this.Persistent().Player;
-		player.LightLevelChanged += PlayerLightLevelChanged;
-		ActivateSightCone(player.lightLevel);
+		ActivateSightCone(2);
 
 		this.Persistent().PlayerRespawned += () => {
 			isAttacking = false;
