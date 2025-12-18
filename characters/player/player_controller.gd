@@ -4,6 +4,7 @@ extends Node2D
 @onready var wisp_target: WispFollowTarget = $Player/WispFollowTarget
 @onready var player: Player = $Player
 @onready var wisp: Wisp = $Wisp
+@onready var movement: MovementController = $MovementController
 
 
 func _on_player_teleported() -> void:

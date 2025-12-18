@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://pni5mmab3ipw"]
+[gd_scene load_steps=18 format=3 uid="uid://pni5mmab3ipw"]
 
 [ext_resource type="Script" uid="uid://jnjbe520h5bv" path="res://characters/player/player.gd" id="1_508ok"]
-[ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_xxgcw"]
 [ext_resource type="PackedScene" uid="uid://n10q1k4kknng" path="res://characters/player/visuals/player_rig.tscn" id="3_exd8k"]
 [ext_resource type="Script" uid="uid://dj4tnwvhjgbab" path="res://sounds/footsteps.gd" id="4_5dc8e"]
 [ext_resource type="Script" uid="uid://cqhp8hojevrdp" path="res://sounds/random_sound_player_2d.gd" id="5_ixbpm"]
@@ -25,14 +24,10 @@ height = 13.0
 light_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
 script = ExtResource("1_508ok")
 move_speed = 100.0
 metadata/_custom_type_script = "uid://jnjbe520h5bv"
-
-[node name="StartsAtNode" type="Node" parent="."]
-script = ExtResource("2_xxgcw")
-SpawnpointGroups = Array[StringName]([&"IntroPlayerSpawn", &"PlayerSpawn"])
-metadata/_custom_type_script = "uid://dw3a5r4lxgnwa"
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)

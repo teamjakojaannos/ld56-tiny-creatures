@@ -21,6 +21,8 @@ var move_speed_modifier: float:
 	get:
 		return 0.5 if is_slowed else 1.0
 
+@onready var rig: PlayerSprite = $Sprite
+
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -43,12 +45,10 @@ func _physics_process(delta: float) -> void:
 			facing = Facing.Direction.DOWN
 
 
-# FIXME: should be in a separate DebugController as child of PlayerController
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("dbg_kill"):
-		die()
-
-
+## Teleport player to a given node. Player is reparented to be a sibling of the
+## target node.
+##
+## Used for e.g. teleporting player back to hub after death.
 func teleport(to: Node2D) -> void:
 	if not to.is_inside_tree() or to.is_queued_for_deletion():
 		assert(false, "Teleport target \"%s\" isn't a valid node in tree." % to)
@@ -74,10 +74,11 @@ func die(force: bool = false) -> void:
 	if is_dead:
 		return
 
-	# Cannot die if invulnerable, but actually no.
+	# Cannot die if invulnerable, unless someone *really* wants to kill you.
 	if is_invulnerable and not force:
 		return
 
+	is_dead = true
 	dead.emit()
 
 

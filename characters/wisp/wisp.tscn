@@ -36,6 +36,7 @@ fill_to = Vector2(1, 0.5)
 light_mode = 1
 
 [node name="Wisp" type="RigidBody2D"]
+y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
@@ -47,7 +48,7 @@ shape = SubResource("CircleShape2D_ql1ed")
 
 [node name="StartsAtNode" type="Node" parent="."]
 script = ExtResource("2_2mpa2")
-SpawnpointGroups = Array[StringName]([&"IntroWispSpawn", &"PlayerStart"])
+SpawnpointGroups = Array[StringName]([&"IntroWispSpawn", &"WorldPlayerStart", &"PlayerStart"])
 metadata/_custom_type_script = "uid://dw3a5r4lxgnwa"
 
 [node name="WispVisuals" type="Node2D" parent="."]

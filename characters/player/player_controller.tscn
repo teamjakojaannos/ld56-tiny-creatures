@@ -1,16 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2lem4ynkotyx"]
+[gd_scene load_steps=10 format=3 uid="uid://b2lem4ynkotyx"]
 
 [ext_resource type="Script" uid="uid://dbsyn8ah1l4c3" path="res://characters/player/player_controller.gd" id="1_hubqw"]
 [ext_resource type="Script" uid="uid://c0r23am1ytr7w" path="res://Gameplay/PlayerInput/InteractionController.cs" id="1_nikjb"]
 [ext_resource type="PackedScene" uid="uid://bjx73xc8t74mp" path="res://characters/wisp/wisp.tscn" id="2_bksb5"]
 [ext_resource type="Script" uid="uid://bon0diatk0pop" path="res://characters/player/movement_controller.gd" id="2_vi3hp"]
 [ext_resource type="Script" uid="uid://c3il8pjsf0t3w" path="res://characters/wisp/wisp_follow_target.gd" id="4_77eeu"]
+[ext_resource type="Script" uid="uid://co28hwq7cnp4j" path="res://characters/player/debug_controller.gd" id="4_b7ahd"]
 [ext_resource type="PackedScene" uid="uid://pni5mmab3ipw" path="res://characters/player/player.tscn" id="4_s5eq7"]
 [ext_resource type="PackedScene" uid="uid://dndpqcsyrj7s7" path="res://gameplay/camera_manager.tscn" id="5_b6b08"]
+[ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="7_b6b08"]
 
 [node name="PlayerController" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_hubqw")
+
+[node name="DebugController" type="Node" parent="."]
+script = ExtResource("4_b7ahd")
+metadata/_custom_type_script = "uid://co28hwq7cnp4j"
 
 [node name="MovementController" type="Node" parent="."]
 script = ExtResource("2_vi3hp")
@@ -22,6 +28,11 @@ script = ExtResource("1_nikjb")
 [node name="Player" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("4_s5eq7")]
 collision_mask = 2
 controller = NodePath("../MovementController")
+
+[node name="StartsAtNode" type="Node" parent="Player"]
+script = ExtResource("7_b6b08")
+SpawnpointGroups = Array[StringName]([&"IntroPlayerSpawn", &"WorldPlayerSpawn", &"PlayerSpawn"])
+metadata/_custom_type_script = "uid://dw3a5r4lxgnwa"
 
 [node name="MainCamera" parent="Player" instance=ExtResource("5_b6b08")]
 zoom = 2.0

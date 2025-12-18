@@ -3,6 +3,7 @@ class_name Wisp
 extends RigidBody2D
 
 signal target_reached
+signal teleported
 
 @export var target_radius: float = 5.0
 @export var max_velocity: float = 250.0
@@ -63,6 +64,17 @@ func unlock_target() -> void:
 
 func say(text: String, duration: float = 2.0) -> void:
 	await remark.show_remark(text, duration)
+
+
+func teleport(target: Node2D, stay: bool = false) -> void:
+	var pos := target.global_position
+	global_position = pos
+	reset_physics_interpolation()
+
+	if stay:
+		_go_to_target = pos
+
+	teleported.emit()
 
 
 func _check_go_to_target_status() -> void:

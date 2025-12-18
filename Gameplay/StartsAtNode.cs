@@ -73,18 +73,15 @@ public partial class StartsAtNode : Node {
 	}
 
 	private void TeleportToSpawn(Node2D target) {
-		var parent = GetParent<Node2D>();
+		var nodeToTeleport = GetParent<Node2D>();
 		if (!target.IsInsideTree() || target.IsQueuedForDeletion()) {
 			throw new InvalidOperationException("Tried spawning at a non-existent/deleted node!");
 		}
 
-		// FIXME: Player.cs should be able to handle this by subbing to a signal
-		if (parent is PlayerCharacter player) {
-			player.TeleportTo(target);
-		} else {
-			parent.Reparent(target.GetParent() ?? target);
-			parent.GlobalPosition = target.GlobalPosition;
-			parent.ResetPhysicsInterpolation();
-		}
+		nodeToTeleport.GetParent().RemoveChild(nodeToTeleport);
+		target.AddSibling(nodeToTeleport, forceReadableName: true);
+
+		nodeToTeleport.GlobalPosition = target.GlobalPosition;
+		nodeToTeleport.ResetPhysicsInterpolation();
 	}
 }

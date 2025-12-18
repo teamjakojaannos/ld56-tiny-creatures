@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://b2uu7btegjbbx"]
+[gd_scene load_steps=43 format=3 uid="uid://b2uu7btegjbbx"]
 
 [ext_resource type="Script" uid="uid://bqttah22wv7hd" path="res://Cinematic/Intro/intro.gd" id="1_udox3"]
-[ext_resource type="PackedScene" uid="uid://ci0aqjkrdselq" path="res://Characters/Player/PlayerSprite.tscn" id="4_nj2iw"]
+[ext_resource type="PackedScene" uid="uid://pni5mmab3ipw" path="res://characters/player/player.tscn" id="4_wxmdh"]
+[ext_resource type="Script" uid="uid://docy2nqsx8p56" path="res://editor/remove_in_game.gd" id="5_ssx7r"]
 [ext_resource type="AudioStream" uid="uid://btqwfh2qajfp5" path="res://cinematic/bip1.ogg" id="5_t3d2a"]
 [ext_resource type="AudioStream" uid="uid://cklwljchbv4xl" path="res://cinematic/bip2.ogg" id="6_mrwub"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="6_qrwc5"]
@@ -18,100 +19,68 @@
 resource_name = "01_stand_up"
 length = 2.4
 step = 0.0333
-tracks/0/type = "animation"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite/AnimationPlayer")
+tracks/0/path = NodePath("Player/Sprite:is_prone")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"clips": PackedStringArray("GetUp", "IdleRight"),
-"times": PackedFloat32Array(0, 1.5)
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite/PlayerSprite:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.16666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"GetUp", &"IdleSide"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerSprite/PlayerSprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 0]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_aw6ao"]
 resource_name = "02_walk_to_lantern"
 length = 2.4
 step = 0.05
-tracks/0/type = "animation"
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite/AnimationPlayer")
+tracks/0/path = NodePath("Player:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"clips": PackedStringArray("WalkRight", "IdleRight"),
-"times": PackedFloat32Array(0, 1.75)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprite:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 86, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1.45)
 }
-tracks/2/type = "bezier"
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.45)
+}
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerSprite:position:y")
+tracks/2/path = NodePath("Player/Sprite:is_prone")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0, 2, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1.45)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprite/PlayerSprite:animation")
+tracks/3/path = NodePath("Player/Sprite:is_moving")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.75),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.001, 1.45),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"IdleSide"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprite/PlayerSprite:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1.75),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_5412a"]
@@ -154,121 +123,99 @@ tracks/2/keys = {
 "update": 1,
 "values": [&"idle_closed", &"idle_open"]
 }
-tracks/3/type = "animation"
+tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("PlayerSprite/AnimationPlayer")
+tracks/3/path = NodePath("Player:position:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"clips": PackedStringArray("[stop]"),
-"times": PackedFloat32Array(0)
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("PlayerSprite/PlayerSprite:animation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"OpenCage"]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("PlayerSprite/PlayerSprite:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.75, 0.8, 0.9, 0.95, 1, 1.0999999, 1.3000001, 1.3500001, 1.45, 1.5, 1.55, 1.7, 1.85, 2.5500002, 2.65, 2.7500002, 2.8500001),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 2, 2, 3, 4, 5]
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("PlayerSprite:position:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(86, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/7/type = "bezier"
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Player:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player/Sprite:open_lantern")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player/Sprite:is_in_intro")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprite:position:y")
+tracks/7/path = NodePath("Saranat:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Saranat:playing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(2.55, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Beep:playing")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Beep:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Beep2:playing")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Beep2:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
 "times": PackedFloat32Array(0.74999994, 0.9499999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, true]
 }
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("Beep3:playing")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Beep3:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
 "times": PackedFloat32Array(1.3, 1.5, 1.6999998),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, true, true]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("PlayerSprite/AnimationPlayer:speed_scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_tcrjc"]
@@ -322,34 +269,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/4/type = "value"
+tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Beep:playing")
+tracks/4/path = NodePath("Player:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
-tracks/5/type = "value"
+tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Beep2:playing")
+tracks/5/path = NodePath("Player:position:x")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Beep3:playing")
+tracks/6/path = NodePath("Player/Sprite:is_prone")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -358,73 +303,101 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/7/type = "animation"
+tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprite/AnimationPlayer")
+tracks/7/path = NodePath("Player/Sprite:is_moving")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"clips": PackedStringArray("IdleProne"),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerSprite/PlayerSprite:animation")
+tracks/8/path = NodePath("Player/Sprite:action_facing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"GetUp"]
+"values": [1]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerSprite/PlayerSprite:frame")
+tracks/9/path = NodePath("Player/Sprite:facing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
-tracks/10/type = "bezier"
+tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerSprite:position:y")
+tracks/10/path = NodePath("Player/Sprite:open_lantern")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(2, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
-tracks/11/type = "bezier"
+tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("PlayerSprite:position:x")
+tracks/11/path = NodePath("Player/Sprite:is_in_intro")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("PlayerSprite/AnimationPlayer:speed_scale")
+tracks/12/path = NodePath("Beep:playing")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Beep2:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Beep3:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b7b0w"]
@@ -597,10 +570,10 @@ metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 [node name="Intro" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_udox3")
+skip_intro = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 deterministic = true
-callback_mode_process = 0
 callback_mode_method = 1
 libraries = {
 &"": SubResource("AnimationLibrary_b7b0w")
@@ -608,7 +581,7 @@ libraries = {
 
 [node name="SpiritLantern" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(108, 0)
+position = Vector2(108, -2)
 
 [node name="Base" type="Sprite2D" parent="SpiritLantern"]
 y_sort_enabled = true
@@ -631,28 +604,37 @@ region_rect = Rect2(30, 23, 8, 18)
 [node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern"]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(-1, 4)
+position = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_kwh76")
 animation = &"idle_closed"
-offset = Vector2(-6, -20)
+offset = Vector2(-6, -17)
 
 [node name="WispInitialLocation" type="Marker2D" parent="SpiritLantern" groups=["IntroWispSpawn"]]
 y_sort_enabled = true
 position = Vector2(0, -4)
 
-[node name="PlayerSprite" parent="." instance=ExtResource("4_nj2iw")]
-y_sort_enabled = true
-position = Vector2(0, 2)
-
-[node name="PlayerSprite" parent="PlayerSprite" index="0"]
+[node name="IntroPlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
 
-[node name="Shadow" parent="PlayerSprite" index="1"]
-z_index = -1
+[node name="Player" parent="." instance=ExtResource("4_wxmdh")]
+editor_description = "Preview instance of the player. Has RemoveInGame -component to remove it once the scene is loaded in-game."
 
-[node name="BaseAnimations" parent="PlayerSprite" index="2"]
-callback_mode_process = 0
-callback_mode_method = 1
+[node name="Sprite" parent="Player" index="1"]
+facing = 1
+is_in_intro = true
+
+[node name="Footsteps" parent="Player" index="2" node_paths=PackedStringArray("sounds")]
+sounds = {
+0: NodePath("Grass"),
+1: NodePath("Wet")
+}
+
+[node name="RemarkBubble" parent="Player/UnshadedLayer" index="0"]
+position = Vector2(94, -33)
+
+[node name="EditorOnly" type="Node" parent="Player"]
+script = ExtResource("5_ssx7r")
+metadata/_custom_type_script = "uid://docy2nqsx8p56"
 
 [node name="Tilulii" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_y4k7t")
@@ -697,4 +679,4 @@ script = ExtResource("11_rseni")
 Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_quf53"), SubResource("Resource_3574r"), SubResource("Resource_1gdt3"), SubResource("Resource_5537l"), SubResource("Resource_utps2"), SubResource("Resource_cgco5")])
 metadata/_custom_type_script = "uid://s7kasy78nr47"
 
-[editable path="PlayerSprite"]
+[editable path="Player"]
