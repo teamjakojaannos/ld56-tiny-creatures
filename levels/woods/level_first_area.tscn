@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqrla80ph8o16"]
+[gd_scene format=3 uid="uid://bqrla80ph8o16"]
 
 [ext_resource type="Script" uid="uid://cpd7fbssvtqsm" path="res://World/Level.cs" id="1_g2q8n"]
 [ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_0gsd7"]
@@ -18,50 +18,50 @@ colors = PackedColorArray(0.317647, 0.211765, 0.109804, 1, 0.388235, 0.333333, 0
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7gdib"]
 gradient = SubResource("Gradient_umv8a")
 
-[node name="FirstArea" type="Node2D"]
+[node name="FirstArea" type="Node2D" unique_id=648148407]
 y_sort_enabled = true
 script = ExtResource("1_g2q8n")
 metadata/_edit_lock_ = true
 
-[node name="Functional" type="Node2D" parent="."]
+[node name="Functional" type="Node2D" parent="." unique_id=584223283]
 metadata/_edit_lock_ = true
 
-[node name="EntranceRight" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
+[node name="EntranceRight" type="Marker2D" parent="Functional" unique_id=524764892 groups=["LevelEntrance"]]
 position = Vector2(128, 0)
 
-[node name="LevelTransition" type="Area2D" parent="Functional"]
+[node name="LevelTransition" type="Area2D" parent="Functional" unique_id=533674965]
 position = Vector2(128, 0)
 script = ExtResource("2_0gsd7")
 OtherScene = "res://levels/woods/level_second_area.tscn"
 _entranceNodePath = "./Functional/EntranceLeft"
 
-[node name="Trigger" type="CollisionShape2D" parent="Functional/LevelTransition"]
+[node name="Trigger" type="CollisionShape2D" parent="Functional/LevelTransition" unique_id=1296864665]
 shape = SubResource("RectangleShape2D_5hrps")
 
-[node name="PlayerStart" type="Marker2D" parent="Functional" groups=["PlayerSpawn"]]
+[node name="PlayerStart" type="Marker2D" parent="Functional" unique_id=767210064 groups=["PlayerSpawn"]]
 position = Vector2(-184, 0)
 
-[node name="RoamTargets" type="Node2D" parent="Functional" groups=["MarkoMarkersRoot"]]
+[node name="RoamTargets" type="Node2D" parent="Functional" unique_id=667072412 groups=["MarkoMarkersRoot"]]
 
-[node name="1" type="Marker2D" parent="Functional/RoamTargets"]
+[node name="1" type="Marker2D" parent="Functional/RoamTargets" unique_id=623539323]
 position = Vector2(-454, -84)
 
-[node name="2" type="Marker2D" parent="Functional/RoamTargets"]
+[node name="2" type="Marker2D" parent="Functional/RoamTargets" unique_id=38657963]
 position = Vector2(-449, 91)
 
-[node name="3" type="Marker2D" parent="Functional/RoamTargets"]
+[node name="3" type="Marker2D" parent="Functional/RoamTargets" unique_id=2125057412]
 position = Vector2(52, -82)
 
-[node name="4" type="Marker2D" parent="Functional/RoamTargets"]
+[node name="4" type="Marker2D" parent="Functional/RoamTargets" unique_id=1465747311]
 position = Vector2(62, 93)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Functional"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Functional" unique_id=1988871149]
 navigation_polygon = SubResource("NavigationPolygon_dvh01")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=200068381]
 y_sort_enabled = true
 
-[node name="ColorRect" type="ColorRect" parent="World"]
+[node name="ColorRect" type="ColorRect" parent="World" unique_id=152162399]
 z_index = -3
 offset_left = -512.0
 offset_top = -128.0
@@ -69,7 +69,7 @@ offset_right = 64.0
 offset_bottom = 128.0
 color = Color(0.317647, 0.211765, 0.109804, 1)
 
-[node name="ColorRect2" type="TextureRect" parent="World"]
+[node name="ColorRect2" type="TextureRect" parent="World" unique_id=1372438352]
 z_index = -3
 offset_left = 64.0
 offset_top = -128.0
@@ -77,5 +77,5 @@ offset_right = 128.0
 offset_bottom = 128.0
 texture = SubResource("GradientTexture2D_7gdib")
 
-[node name="Chaser" parent="." instance=ExtResource("3_8agvb")]
+[node name="Chaser" parent="." unique_id=1344448223 instance=ExtResource("3_8agvb")]
 position = Vector2(-378.962, -12.0124)

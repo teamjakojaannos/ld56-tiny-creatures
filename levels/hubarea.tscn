@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://c3kraya2m5ti6"]
+[gd_scene format=3 uid="uid://c3kraya2m5ti6"]
 
 [ext_resource type="PackedScene" uid="uid://t6dprtco4mad" path="res://Environment/Tree3.tscn" id="1_diaiq"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="2_5esea"]
@@ -563,147 +563,147 @@ Text = "...I will help you. But I need to be back home at eight!"
 Speaker = ExtResource("20_whttt")
 metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[node name="Hubarea" type="Node2D"]
+[node name="Hubarea" type="Node2D" unique_id=86923502]
 y_sort_enabled = true
 
-[node name="Spawnpoints" type="Node2D" parent="."]
+[node name="Spawnpoints" type="Node2D" parent="." unique_id=1484979289]
 y_sort_enabled = true
 
-[node name="HubSpawn" type="Marker2D" parent="Spawnpoints" groups=["HubSpawn", "PlayerSpawn"]]
+[node name="HubSpawn" type="Marker2D" parent="Spawnpoints" unique_id=156084536 groups=["HubSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
 position = Vector2(70, 173)
 
-[node name="LevelProps" type="Node2D" parent="."]
+[node name="LevelProps" type="Node2D" parent="." unique_id=1054619193]
 y_sort_enabled = true
 
-[node name="Tree10" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree10" parent="LevelProps" unique_id=389032788 instance=ExtResource("1_diaiq")]
 position = Vector2(-74, 3)
 
-[node name="Tree11" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree11" parent="LevelProps" unique_id=1877534089 instance=ExtResource("1_diaiq")]
 position = Vector2(-362, 248)
 
-[node name="Tree12" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree12" parent="LevelProps" unique_id=647987222 instance=ExtResource("1_diaiq")]
 position = Vector2(-362, 248)
 
-[node name="Tree75" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree75" parent="LevelProps" unique_id=2016356204 instance=ExtResource("1_diaiq")]
 position = Vector2(227, -107)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 
-[node name="Tree76" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree76" parent="LevelProps" unique_id=1905101402 instance=ExtResource("1_diaiq")]
 position = Vector2(-203, 191)
 
-[node name="Tree74" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree74" parent="LevelProps" unique_id=2085703283 instance=ExtResource("1_diaiq")]
 position = Vector2(147.5, 132)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 
-[node name="Tree77" parent="LevelProps" instance=ExtResource("1_diaiq")]
+[node name="Tree77" parent="LevelProps" unique_id=1864358898 instance=ExtResource("1_diaiq")]
 z_index = 1
 position = Vector2(53, -181)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 
-[node name="BigStone3" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone3" parent="LevelProps" unique_id=1233178878 instance=ExtResource("2_5esea")]
 position = Vector2(-116, 21)
 
-[node name="BigStone10" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone10" parent="LevelProps" unique_id=2051786604 instance=ExtResource("2_5esea")]
 position = Vector2(57, -104)
 
-[node name="BigStone4" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone4" parent="LevelProps" unique_id=812156889 instance=ExtResource("2_5esea")]
 position = Vector2(177.5, 145)
 
-[node name="BigStone11" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone11" parent="LevelProps" unique_id=1761427943 instance=ExtResource("2_5esea")]
 position = Vector2(198, -225)
 
-[node name="BigStone6" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone6" parent="LevelProps" unique_id=1227518385 instance=ExtResource("2_5esea")]
 position = Vector2(285, -102)
 
-[node name="BigStone5" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone5" parent="LevelProps" unique_id=1383652490 instance=ExtResource("2_5esea")]
 position = Vector2(128, -10)
 
-[node name="BigStone7" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone7" parent="LevelProps" unique_id=1780527695 instance=ExtResource("2_5esea")]
 position = Vector2(369, 41)
 
-[node name="BigStone8" parent="LevelProps" instance=ExtResource("2_5esea")]
+[node name="BigStone8" parent="LevelProps" unique_id=1331137658 instance=ExtResource("2_5esea")]
 position = Vector2(262, -6)
 
-[node name="Stones5" type="Sprite2D" parent="LevelProps"]
+[node name="Stones5" type="Sprite2D" parent="LevelProps" unique_id=452416981]
 texture_filter = 1
 position = Vector2(96.5, 178.5)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones13" type="Sprite2D" parent="LevelProps"]
+[node name="Stones13" type="Sprite2D" parent="LevelProps" unique_id=1094702759]
 texture_filter = 1
 position = Vector2(323, -87)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones10" type="Sprite2D" parent="LevelProps"]
+[node name="Stones10" type="Sprite2D" parent="LevelProps" unique_id=2004559973]
 texture_filter = 1
 position = Vector2(160, -3)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones18" type="Sprite2D" parent="LevelProps"]
+[node name="Stones18" type="Sprite2D" parent="LevelProps" unique_id=237541262]
 texture_filter = 1
 position = Vector2(255, -294)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones16" type="Sprite2D" parent="LevelProps"]
+[node name="Stones16" type="Sprite2D" parent="LevelProps" unique_id=649119698]
 texture_filter = 1
 position = Vector2(-152, 159)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones6" type="Sprite2D" parent="LevelProps"]
+[node name="Stones6" type="Sprite2D" parent="LevelProps" unique_id=431611960]
 texture_filter = 1
 position = Vector2(-30.5, 99.5)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones7" type="Sprite2D" parent="LevelProps"]
+[node name="Stones7" type="Sprite2D" parent="LevelProps" unique_id=1638241604]
 texture_filter = 1
 position = Vector2(55, 142)
 texture = ExtResource("3_r8doi")
 
-[node name="Stones8" type="Sprite2D" parent="LevelProps"]
+[node name="Stones8" type="Sprite2D" parent="LevelProps" unique_id=61335146]
 texture_filter = 1
 position = Vector2(113, 114)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones12" type="Sprite2D" parent="LevelProps"]
+[node name="Stones12" type="Sprite2D" parent="LevelProps" unique_id=1106917263]
 texture_filter = 1
 position = Vector2(263, 81)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones15" type="Sprite2D" parent="LevelProps"]
+[node name="Stones15" type="Sprite2D" parent="LevelProps" unique_id=1005694992]
 texture_filter = 1
 position = Vector2(281, 20)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones11" type="Sprite2D" parent="LevelProps"]
+[node name="Stones11" type="Sprite2D" parent="LevelProps" unique_id=722703862]
 texture_filter = 1
 position = Vector2(72, -49)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones17" type="Sprite2D" parent="LevelProps"]
+[node name="Stones17" type="Sprite2D" parent="LevelProps" unique_id=1425954982]
 texture_filter = 1
 position = Vector2(268, -141)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones19" type="Sprite2D" parent="LevelProps"]
+[node name="Stones19" type="Sprite2D" parent="LevelProps" unique_id=908192382]
 texture_filter = 1
 position = Vector2(276, -267)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones14" type="Sprite2D" parent="LevelProps"]
+[node name="Stones14" type="Sprite2D" parent="LevelProps" unique_id=1894735635]
 texture_filter = 1
 position = Vector2(323, -64)
 texture = ExtResource("4_mnowf")
 
-[node name="Stones9" type="Sprite2D" parent="LevelProps"]
+[node name="Stones9" type="Sprite2D" parent="LevelProps" unique_id=797360984]
 texture_filter = 1
 position = Vector2(-135, 42)
 texture = ExtResource("4_mnowf")
 
-[node name="BGimage4" type="Sprite2D" parent="LevelProps"]
+[node name="BGimage4" type="Sprite2D" parent="LevelProps" unique_id=1490326338]
 z_index = -4
 texture_filter = 3
 position = Vector2(-5, 84)
@@ -711,7 +711,7 @@ scale = Vector2(0.853316, 0.685643)
 texture = ExtResource("6_32jsp")
 metadata/_edit_lock_ = true
 
-[node name="BGtreees2" type="Sprite2D" parent="LevelProps"]
+[node name="BGtreees2" type="Sprite2D" parent="LevelProps" unique_id=418125131]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(307, 315)
@@ -721,7 +721,7 @@ centered = false
 offset = Vector2(-199.45, -121.3)
 flip_h = true
 
-[node name="BGtreees4" type="Sprite2D" parent="LevelProps"]
+[node name="BGtreees4" type="Sprite2D" parent="LevelProps" unique_id=1733776589]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(-245, 326)
@@ -730,7 +730,7 @@ texture = ExtResource("7_cy7vp")
 centered = false
 offset = Vector2(-199.45, -121.3)
 
-[node name="BGtreees5" type="Sprite2D" parent="LevelProps"]
+[node name="BGtreees5" type="Sprite2D" parent="LevelProps" unique_id=1047081597]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(-197, 387)
@@ -739,7 +739,7 @@ texture = ExtResource("7_cy7vp")
 centered = false
 offset = Vector2(-199.45, -121.3)
 
-[node name="BGtreees3" type="Sprite2D" parent="LevelProps"]
+[node name="BGtreees3" type="Sprite2D" parent="LevelProps" unique_id=1752625410]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(222, 379)
@@ -749,199 +749,199 @@ centered = false
 offset = Vector2(-199.45, -121.3)
 flip_h = true
 
-[node name="Grass" type="Node2D" parent="LevelProps"]
+[node name="Grass" type="Node2D" parent="LevelProps" unique_id=1301121995]
 z_index = -2
 
-[node name="Grass24" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass24" type="Sprite2D" parent="LevelProps/Grass" unique_id=184728114]
 texture_filter = 1
 position = Vector2(2.5, 126.5)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass33" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass33" type="Sprite2D" parent="LevelProps/Grass" unique_id=1125175522]
 texture_filter = 1
 position = Vector2(84, -67)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass41" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass41" type="Sprite2D" parent="LevelProps/Grass" unique_id=822703878]
 texture_filter = 1
 position = Vector2(-61, 4)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass34" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass34" type="Sprite2D" parent="LevelProps/Grass" unique_id=912937624]
 texture_filter = 1
 position = Vector2(157.5, 133)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass60" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass60" type="Sprite2D" parent="LevelProps/Grass" unique_id=92217186]
 texture_filter = 1
 position = Vector2(157.5, 133)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass59" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass59" type="Sprite2D" parent="LevelProps/Grass" unique_id=1308881292]
 texture_filter = 1
 position = Vector2(-192, 189)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass39" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass39" type="Sprite2D" parent="LevelProps/Grass" unique_id=565103795]
 texture_filter = 1
 position = Vector2(38, 24)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass35" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass35" type="Sprite2D" parent="LevelProps/Grass" unique_id=1754592510]
 texture_filter = 1
 position = Vector2(-151, 181)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass63" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass63" type="Sprite2D" parent="LevelProps/Grass" unique_id=926823122]
 texture_filter = 1
 position = Vector2(118.5, 128)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass26" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass26" type="Sprite2D" parent="LevelProps/Grass" unique_id=804410719]
 texture_filter = 1
 position = Vector2(-22, -7)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass28" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass28" type="Sprite2D" parent="LevelProps/Grass" unique_id=22625217]
 texture_filter = 1
 position = Vector2(-61, -14)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass27" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass27" type="Sprite2D" parent="LevelProps/Grass" unique_id=2029695280]
 texture_filter = 1
 position = Vector2(45.5, 108.5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass37" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass37" type="Sprite2D" parent="LevelProps/Grass" unique_id=421829999]
 texture_filter = 1
 position = Vector2(-144, 207)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass36" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass36" type="Sprite2D" parent="LevelProps/Grass" unique_id=1137466495]
 texture_filter = 1
 position = Vector2(-47.5, 134.5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass38" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass38" type="Sprite2D" parent="LevelProps/Grass" unique_id=947612254]
 texture_filter = 1
 position = Vector2(59.5, 156.5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass64" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass64" type="Sprite2D" parent="LevelProps/Grass" unique_id=1054864118]
 texture_filter = 1
 position = Vector2(153.5, 156)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass62" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass62" type="Sprite2D" parent="LevelProps/Grass" unique_id=1889919272]
 texture_filter = 1
 position = Vector2(-33, -25)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass65" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass65" type="Sprite2D" parent="LevelProps/Grass" unique_id=18391585]
 texture_filter = 1
 position = Vector2(93, -33)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass40" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass40" type="Sprite2D" parent="LevelProps/Grass" unique_id=936985795]
 texture_filter = 1
 position = Vector2(-60, 52)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass31" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass31" type="Sprite2D" parent="LevelProps/Grass" unique_id=1058956076]
 texture_filter = 1
 position = Vector2(41, -5)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass32" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass32" type="Sprite2D" parent="LevelProps/Grass" unique_id=2059893787]
 texture_filter = 1
 position = Vector2(-31, 63)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass42" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass42" type="Sprite2D" parent="LevelProps/Grass" unique_id=1501023244]
 texture_filter = 1
 position = Vector2(60, 58)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass30" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass30" type="Sprite2D" parent="LevelProps/Grass" unique_id=561508637]
 texture_filter = 1
 position = Vector2(-2, 39)
 texture = ExtResource("8_xi6nj")
 
-[node name="Grass61" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass61" type="Sprite2D" parent="LevelProps/Grass" unique_id=464981894]
 texture_filter = 1
 position = Vector2(35, 177)
 texture = ExtResource("9_kgfcd")
 
-[node name="Grass66" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass66" type="Sprite2D" parent="LevelProps/Grass" unique_id=1223204197]
 texture_filter = 1
 position = Vector2(-84, 80)
 texture = ExtResource("9_kgfcd")
 
-[node name="Left Blocker" type="StaticBody2D" parent="LevelProps"]
+[node name="Left Blocker" type="StaticBody2D" parent="LevelProps" unique_id=77030797]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelProps/Left Blocker"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelProps/Left Blocker" unique_id=1658985393]
 position = Vector2(-275.75, 191.313)
 shape = SubResource("RectangleShape2D_t6djx")
 
-[node name="TheWall" parent="LevelProps" instance=ExtResource("12_i73y1")]
+[node name="TheWall" parent="LevelProps" unique_id=379652499 instance=ExtResource("12_i73y1")]
 position = Vector2(-98, -139)
 metadata/_edit_lock_ = true
 
-[node name="TheWall4" parent="LevelProps" instance=ExtResource("12_i73y1")]
+[node name="TheWall4" parent="LevelProps" unique_id=1119710726 instance=ExtResource("12_i73y1")]
 position = Vector2(-269, 147)
 
-[node name="TheWall2" parent="LevelProps" instance=ExtResource("12_i73y1")]
+[node name="TheWall2" parent="LevelProps" unique_id=215994387 instance=ExtResource("12_i73y1")]
 position = Vector2(92, -140)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="WaterFallThing" parent="LevelProps" instance=ExtResource("23_cspl0")]
+[node name="WaterFallThing" parent="LevelProps" unique_id=1689334807 instance=ExtResource("23_cspl0")]
 position = Vector2(157, -63)
 metadata/_edit_lock_ = true
 
-[node name="Fern" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern" parent="LevelProps" unique_id=1896952591 instance=ExtResource("24_wympi")]
 position = Vector2(79, -108)
 
-[node name="Fern2" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern2" parent="LevelProps" unique_id=1419631306 instance=ExtResource("24_wympi")]
 position = Vector2(216, -102)
 
-[node name="Fern3" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern3" parent="LevelProps" unique_id=783341653 instance=ExtResource("24_wympi")]
 position = Vector2(243, -98)
 
-[node name="Fern4" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern4" parent="LevelProps" unique_id=819571921 instance=ExtResource("24_wympi")]
 position = Vector2(45, 6)
 
-[node name="Fern5" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern5" parent="LevelProps" unique_id=882013842 instance=ExtResource("24_wympi")]
 position = Vector2(189, 135)
 
-[node name="Fern13" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern13" parent="LevelProps" unique_id=1330978287 instance=ExtResource("24_wympi")]
 position = Vector2(-64, 9)
 
-[node name="Fern12" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern12" parent="LevelProps" unique_id=2041853448 instance=ExtResource("24_wympi")]
 position = Vector2(288, 81)
 
-[node name="Fern14" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern14" parent="LevelProps" unique_id=1844664687 instance=ExtResource("24_wympi")]
 position = Vector2(272, 9)
 
-[node name="Fern6" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern6" parent="LevelProps" unique_id=262101401 instance=ExtResource("24_wympi")]
 position = Vector2(-236, 175)
 
-[node name="Fern7" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern7" parent="LevelProps" unique_id=1012708070 instance=ExtResource("24_wympi")]
 position = Vector2(-100, 96)
 
-[node name="Fern8" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern8" parent="LevelProps" unique_id=1770040597 instance=ExtResource("24_wympi")]
 position = Vector2(116, 234)
 
-[node name="Fern9" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern9" parent="LevelProps" unique_id=1606977446 instance=ExtResource("24_wympi")]
 position = Vector2(-115, -107)
 
-[node name="Fern10" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern10" parent="LevelProps" unique_id=1776964556 instance=ExtResource("24_wympi")]
 position = Vector2(141, -26)
 
-[node name="Fern11" parent="LevelProps" instance=ExtResource("24_wympi")]
+[node name="Fern11" parent="LevelProps" unique_id=227994020 instance=ExtResource("24_wympi")]
 position = Vector2(205, -3)
 
-[node name="Pienirunko" type="Sprite2D" parent="LevelProps"]
+[node name="Pienirunko" type="Sprite2D" parent="LevelProps" unique_id=1315943784]
 texture_filter = 1
 position = Vector2(219, -478)
 scale = Vector2(1.4697, 1.21212)
@@ -950,112 +950,112 @@ centered = false
 offset = Vector2(-32.55, -8.69)
 flip_h = true
 
-[node name="Joki1" type="Sprite2D" parent="LevelProps"]
+[node name="Joki1" type="Sprite2D" parent="LevelProps" unique_id=1883112838]
 z_index = -1
 texture_filter = 1
 position = Vector2(371, -341)
 texture = ExtResource("25_gl4a6")
 metadata/_edit_lock_ = true
 
-[node name="AreaColliders" type="StaticBody2D" parent="LevelProps"]
+[node name="AreaColliders" type="StaticBody2D" parent="LevelProps" unique_id=817042183]
 visible = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LevelProps/AreaColliders" unique_id=906205145]
 polygon = PackedVector2Array(182, -469, 168, -447, 213, -342, 181, -310, 209, -239, 231, -223, 192, -165, 213, 14, 262, 57, 373, 97, 424, 99, 496, 130, 549, 118, 602, 87, 643, 95, 647, 64, 582, 44, 473, 73, 377, 60, 310, 13, 310, -22, 289, -76, 231, -128, 244, -177, 264, -213, 255, -258, 219, -296, 218, -311, 250, -324, 249, -362, 229, -427, 247, -451)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="LevelProps/AreaColliders" unique_id=431813249]
 polygon = PackedVector2Array(213, -814, 259, -815, 255, -788, 271, -767, 257, -708, 165, -667, 139, -629, 146, -576, 199, -544, 234, -531, 250, -484, 251, -471, 195, -482, 184, -510, 131, -546, 100, -574, 87, -624, 98, -652, 142, -682, 226, -737, 226, -765, 212, -788)
 
-[node name="NakkiRuoho" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho" parent="LevelProps" unique_id=244391133 instance=ExtResource("27_7pay1")]
 position = Vector2(250, -258)
 
-[node name="NakkiRuoho13" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho13" parent="LevelProps" unique_id=1142465008 instance=ExtResource("27_7pay1")]
 position = Vector2(288, -68)
 
-[node name="NakkiRuoho15" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho15" parent="LevelProps" unique_id=536348452 instance=ExtResource("27_7pay1")]
 position = Vector2(361, 52)
 
-[node name="NakkiRuoho19" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho19" parent="LevelProps" unique_id=720683150 instance=ExtResource("27_7pay1")]
 position = Vector2(422, 75)
 
-[node name="NakkiRuoho21" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho21" parent="LevelProps" unique_id=1031448501 instance=ExtResource("27_7pay1")]
 position = Vector2(496, 70)
 
-[node name="NakkiRuoho25" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho25" parent="LevelProps" unique_id=1397301016 instance=ExtResource("27_7pay1")]
 position = Vector2(461, 97)
 
-[node name="NakkiRuoho16" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho16" parent="LevelProps" unique_id=1439991898 instance=ExtResource("27_7pay1")]
 position = Vector2(304, -22)
 
-[node name="NakkiRuoho6" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho6" parent="LevelProps" unique_id=146404934 instance=ExtResource("27_7pay1")]
 position = Vector2(183, -438)
 
-[node name="NakkiRuoho10" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho10" parent="LevelProps" unique_id=614179533 instance=ExtResource("27_7pay1")]
 position = Vector2(149, -575)
 
-[node name="NakkiRuoho8" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho8" parent="LevelProps" unique_id=1544052566 instance=ExtResource("27_7pay1")]
 position = Vector2(184, -510)
 
-[node name="NakkiRuoho4" parent="LevelProps" instance=ExtResource("27_7pay1")]
+[node name="NakkiRuoho4" parent="LevelProps" unique_id=2123212816 instance=ExtResource("27_7pay1")]
 position = Vector2(200, -261)
 
-[node name="NakkiRuoho2" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho2" parent="LevelProps" unique_id=483613333 instance=ExtResource("28_eaaws")]
 position = Vector2(236, -264)
 
-[node name="NakkiRuoho12" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho12" parent="LevelProps" unique_id=1710089464 instance=ExtResource("28_eaaws")]
 position = Vector2(271, -72)
 
-[node name="NakkiRuoho14" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho14" parent="LevelProps" unique_id=1363728835 instance=ExtResource("28_eaaws")]
 position = Vector2(331, 44)
 
-[node name="NakkiRuoho17" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho17" parent="LevelProps" unique_id=759609057 instance=ExtResource("28_eaaws")]
 position = Vector2(370, 92)
 
-[node name="NakkiRuoho18" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho18" parent="LevelProps" unique_id=480969123 instance=ExtResource("28_eaaws")]
 position = Vector2(443, 81)
 
-[node name="NakkiRuoho5" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho5" parent="LevelProps" unique_id=1152006914 instance=ExtResource("28_eaaws")]
 position = Vector2(226, -396)
 
-[node name="NakkiRuoho9" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho9" parent="LevelProps" unique_id=1011223324 instance=ExtResource("28_eaaws")]
 position = Vector2(139, -582)
 
-[node name="NakkiRuoho11" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho11" parent="LevelProps" unique_id=527855240 instance=ExtResource("28_eaaws")]
 position = Vector2(107, -634)
 
-[node name="NakkiRuoho7" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho7" parent="LevelProps" unique_id=2135824215 instance=ExtResource("28_eaaws")]
 position = Vector2(169, -518)
 
-[node name="NakkiRuoho3" parent="LevelProps" instance=ExtResource("28_eaaws")]
+[node name="NakkiRuoho3" parent="LevelProps" unique_id=1242731711 instance=ExtResource("28_eaaws")]
 position = Vector2(207, -325)
 
-[node name="Jösses" parent="." instance=ExtResource("10_lsb5y")]
+[node name="Jösses" parent="." unique_id=811168965 instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
 
-[node name="Trigger" parent="Jösses" index="0"]
+[node name="Trigger" parent="Jösses" index="0" unique_id=1478185290]
 shape = SubResource("CircleShape2D_nyqg1")
 
-[node name="WispInteractableDialogueTrigger" parent="Jösses" index="4"]
+[node name="WispInteractableDialogueTrigger" parent="Jösses" index="4" unique_id=1752275537]
 DialogueTree = SubResource("Resource_ri0jq")
 OneShot = true
 
-[node name="Jösses_Win" parent="." instance=ExtResource("10_lsb5y")]
+[node name="Jösses_Win" parent="." unique_id=1032007136 instance=ExtResource("10_lsb5y")]
 position = Vector2(4.5, 106.5)
 RequireNumberOfWispsGreaterThan = 6
 RequireNumberOfWispsLessThan = 10
 
-[node name="Trigger" parent="Jösses_Win" index="0"]
+[node name="Trigger" parent="Jösses_Win" index="0" unique_id=1478185290]
 shape = SubResource("CircleShape2D_nyqg1")
 
-[node name="WispInteractableDialogueTrigger" parent="Jösses_Win" index="4"]
+[node name="WispInteractableDialogueTrigger" parent="Jösses_Win" index="4" unique_id=1752275537]
 DialogueTree = SubResource("Resource_lars4")
 OneShot = true
 SetStateAfterDialogueEnd = "viineri"
 
-[node name="Hautakivirykelmä" parent="." instance=ExtResource("11_321uu")]
+[node name="Hautakivirykelmä" parent="." unique_id=759226067 instance=ExtResource("11_321uu")]
 position = Vector2(3, 13)
 
-[node name="MuzakTrigger" parent="." instance=ExtResource("12_p0n0e")]
+[node name="MuzakTrigger" parent="." unique_id=204526649 instance=ExtResource("12_p0n0e")]
 visible = false
 position = Vector2(10, 121)
 Music = 1
@@ -1065,20 +1065,20 @@ visible = false
 position = Vector2(0, 34)
 shape = SubResource("CircleShape2D_ss1vx")
 
-[node name="Vispilät" type="Node2D" parent="."]
+[node name="Vispilät" type="Node2D" parent="." unique_id=959843111]
 editor_description = "Onkos tämä jotain... Vispilänkauppaa
 
 heheheahahaahahahaahahohohoheoheiiehiehiehaihiah"
 y_sort_enabled = true
 
-[node name="Vispilä (hupialue)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (hupialue)" type="Node2D" parent="Vispilät" unique_id=1630080121]
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(-53, 19)
 script = ExtResource("12_lkge0")
 Location = "hupialue"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (hupialue)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (hupialue)" unique_id=47317540]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1087,21 +1087,21 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (hupialue)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (hupialue)" unique_id=1311625232]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä (metsä_south)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (metsä_south)" type="Node2D" parent="Vispilät" unique_id=1338603654]
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(-30, -7)
 script = ExtResource("12_lkge0")
 Location = "metsä_south"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (metsä_south)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (metsä_south)" unique_id=33746866]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1110,21 +1110,21 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (metsä_south)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (metsä_south)" unique_id=503950343]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä (pulu)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (pulu)" type="Node2D" parent="Vispilät" unique_id=1893317643]
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(3, -44)
 script = ExtResource("12_lkge0")
 Location = "pulu"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (pulu)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (pulu)" unique_id=991729269]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1133,21 +1133,21 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (pulu)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (pulu)" unique_id=1940330180]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä (metsä)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (metsä)" type="Node2D" parent="Vispilät" unique_id=886784058]
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(30, -3)
 script = ExtResource("12_lkge0")
 Location = "metsä"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (metsä)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (metsä)" unique_id=189539759]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1156,21 +1156,21 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (metsä)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (metsä)" unique_id=551970151]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä (kantolyhty)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (kantolyhty)" type="Node2D" parent="Vispilät" unique_id=31897555]
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(58, 14)
 script = ExtResource("12_lkge0")
 Location = "kantolyhty"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (kantolyhty)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (kantolyhty)" unique_id=1156661520]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1179,14 +1179,14 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (kantolyhty)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (kantolyhty)" unique_id=502233365]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä (suo_etelä)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (suo_etelä)" type="Node2D" parent="Vispilät" unique_id=1965807821]
 modulate = Color(0, 1, 0.55, 1)
 z_index = 2
 y_sort_enabled = true
@@ -1194,7 +1194,7 @@ position = Vector2(-21, 63)
 script = ExtResource("12_lkge0")
 Location = "suo_etelä"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suo_etelä)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suo_etelä)" unique_id=543381612]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1203,14 +1203,14 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (suo_etelä)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (suo_etelä)" unique_id=2131984606]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Vispilä (suosaari)" type="Node2D" parent="Vispilät"]
+[node name="Vispilä (suosaari)" type="Node2D" parent="Vispilät" unique_id=1111140590]
 modulate = Color(0, 1, 0.55, 1)
 z_index = 2
 y_sort_enabled = true
@@ -1218,7 +1218,7 @@ position = Vector2(30, 64)
 script = ExtResource("12_lkge0")
 Location = "suosaari"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suosaari)"]
+[node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suosaari)" unique_id=1605091096]
 z_index = 10
 y_sort_enabled = true
 texture_filter = 1
@@ -1227,39 +1227,39 @@ autoplay = "default"
 frame_progress = 0.0103735
 offset = Vector2(0, -12)
 
-[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (suosaari)"]
+[node name="Light" type="PointLight2D" parent="Vispilät/Vispilä (suosaari)" unique_id=617124476]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="SpiritLantern" type="Node2D" parent="." node_paths=PackedStringArray("AnimPlayer")]
+[node name="SpiritLantern" type="Node2D" parent="." unique_id=1293728636 node_paths=PackedStringArray("AnimPlayer")]
 position = Vector2(-140, 30)
 script = ExtResource("14_ntq3p")
 AnimPlayer = NodePath("WispInteractable/SpiritLantern/AnimationPlayer")
 AnimName = "out_hupialue"
 
-[node name="WispInteractable" type="Area2D" parent="SpiritLantern" node_paths=PackedStringArray("Target")]
+[node name="WispInteractable" type="Area2D" parent="SpiritLantern" unique_id=225130077 node_paths=PackedStringArray("Target")]
 y_sort_enabled = true
 script = ExtResource("15_t7bcq")
 Target = NodePath("Target")
 
-[node name="Trigger" type="CollisionShape2D" parent="SpiritLantern/WispInteractable"]
+[node name="Trigger" type="CollisionShape2D" parent="SpiritLantern/WispInteractable" unique_id=1079443703]
 shape = SubResource("CircleShape2D_bw1ej")
 debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="Target" type="Marker2D" parent="SpiritLantern/WispInteractable"]
+[node name="Target" type="Marker2D" parent="SpiritLantern/WispInteractable" unique_id=859279212]
 position = Vector2(-22, -22)
 
-[node name="SpiritLantern" type="Node2D" parent="SpiritLantern/WispInteractable"]
+[node name="SpiritLantern" type="Node2D" parent="SpiritLantern/WispInteractable" unique_id=465472071]
 
-[node name="Base" type="Sprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern"]
+[node name="Base" type="Sprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=627345944]
 texture_filter = 1
 texture = ExtResource("16_qg4uk")
 offset = Vector2(-7, -20)
 
-[node name="BackWall" type="Sprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern"]
+[node name="BackWall" type="Sprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=771221038]
 visible = false
 modulate = Color(0.51, 0.51, 0.51, 1)
 texture_filter = 1
@@ -1269,14 +1269,14 @@ offset = Vector2(-7, -20)
 region_enabled = true
 region_rect = Rect2(30, 23, 8, 18)
 
-[node name="SpiritPath" type="Path2D" parent="SpiritLantern/WispInteractable/SpiritLantern"]
+[node name="SpiritPath" type="Path2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=1299684697]
 position = Vector2(0, -4)
 curve = SubResource("Curve2D_ht8rr")
 
-[node name="Spirit" type="PathFollow2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath"]
+[node name="Spirit" type="PathFollow2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath" unique_id=1648205471]
 rotates = false
 
-[node name="Sprite" type="AnimatedSprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath/Spirit"]
+[node name="Sprite" type="AnimatedSprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath/Spirit" unique_id=276728545]
 modulate = Color(0, 1, 0.55, 1)
 texture_filter = 1
 sprite_frames = ExtResource("12_bjl3q")
@@ -1285,67 +1285,65 @@ frame_progress = 0.984137
 offset = Vector2(0, -12)
 metadata/_edit_lock_ = true
 
-[node name="Light" type="PointLight2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath/Spirit"]
+[node name="Light" type="PointLight2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath/Spirit" unique_id=600958416]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern"]
+[node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=1393926185]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kwh76")
 animation = &"idle_closed"
 autoplay = "idle_closed"
 offset = Vector2(-7, -20)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpiritLantern/WispInteractable/SpiritLantern"]
-libraries = {
-&"": SubResource("AnimationLibrary_7vlr5")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=208291487]
+libraries/ = SubResource("AnimationLibrary_7vlr5")
+autoplay = &"RESET"
 
-[node name="WispInteractableAnimatedProp" type="Node2D" parent="SpiritLantern/WispInteractable" node_paths=PackedStringArray("AnimPlayer")]
+[node name="WispInteractableAnimatedProp" type="Node2D" parent="SpiritLantern/WispInteractable" unique_id=1112890453 node_paths=PackedStringArray("AnimPlayer")]
 script = ExtResource("17_sqd7e")
 AnimPlayer = NodePath("../SpiritLantern/AnimationPlayer")
 Animation = "out_hupialue"
 RequireDialogue = true
 DialogueTrigger = "Yes"
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="SpiritLantern/WispInteractable"]
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="SpiritLantern/WispInteractable" unique_id=2108568414]
 script = ExtResource("18_xn54u")
 DialogueTree = SubResource("Resource_kxuv5")
 
-[node name="LoreDumpTrigger" type="Node2D" parent="."]
+[node name="LoreDumpTrigger" type="Node2D" parent="." unique_id=1196388412]
 
-[node name="EnterHubTrigger" type="Area2D" parent="LoreDumpTrigger"]
+[node name="EnterHubTrigger" type="Area2D" parent="LoreDumpTrigger" unique_id=1473409925]
 position = Vector2(10, 253)
 collision_layer = 0
 script = ExtResource("31_hxati")
 
-[node name="Shape" type="CollisionShape2D" parent="LoreDumpTrigger/EnterHubTrigger"]
+[node name="Shape" type="CollisionShape2D" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=585984606]
 shape = SubResource("RectangleShape2D_21kqm")
 debug_color = Color(0, 0.64213544, 0.32803938, 0.41960785)
 
-[node name="WispPosition" type="Marker2D" parent="LoreDumpTrigger/EnterHubTrigger"]
+[node name="WispPosition" type="Marker2D" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=630321352]
 position = Vector2(-45, -66)
 
-[node name="TouchTrigger" type="Node" parent="LoreDumpTrigger/EnterHubTrigger"]
+[node name="TouchTrigger" type="Node" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=1889397543]
 script = ExtResource("31_3sf1f")
 one_shot = true
 metadata/_custom_type_script = "uid://db84q0o2plx4a"
 
-[node name="Dialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger"]
+[node name="Dialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=1767521476]
 script = ExtResource("32_312y0")
 Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_ub0mf"), SubResource("Resource_udqp3"), SubResource("Resource_312y0"), SubResource("Resource_fgaf1"), SubResource("Resource_hxati"), SubResource("Resource_5xqg4"), SubResource("Resource_evu7c"), SubResource("Resource_4jxvc"), SubResource("Resource_mvu87"), SubResource("Resource_4xu06"), SubResource("Resource_ofbsl")])
 metadata/_custom_type_script = "uid://s7kasy78nr47"
 
-[node name="HelpWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue"]
+[node name="HelpWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue" unique_id=931101382]
 script = ExtResource("32_312y0")
 Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_4tskk"), SubResource("Resource_43prs"), SubResource("Resource_qqe1s")])
 metadata/_custom_type_script = "uid://s7kasy78nr47"
 
-[node name="IgnoreWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue"]
+[node name="IgnoreWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue" unique_id=1947511293]
 script = ExtResource("32_312y0")
 Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_oxv2l"), SubResource("Resource_28oon"), SubResource("Resource_7rkd0")])
 metadata/_custom_type_script = "uid://s7kasy78nr47"

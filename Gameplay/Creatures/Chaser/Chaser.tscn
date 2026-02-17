@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cf0ylpk4p1e12"]
+[gd_scene format=3 uid="uid://cf0ylpk4p1e12"]
 
 [ext_resource type="Script" uid="uid://c6guymnrj3qd3" path="res://Gameplay/Creatures/Chaser/Chaser.cs" id="1_rurs3"]
 [ext_resource type="Script" uid="uid://c1wlnahgeegam" path="res://Audio/RandomAudioStreamPlayer2D.cs" id="2_lqprn"]
@@ -188,7 +188,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Chaser" type="CharacterBody2D" node_paths=PackedStringArray("Behaviour", "Footsteps", "FootstepsTimer", "AttackSounds")]
+[node name="Chaser" type="CharacterBody2D" unique_id=1008331248 node_paths=PackedStringArray("Behaviour", "Footsteps", "FootstepsTimer", "AttackSounds")]
 motion_mode = 1
 script = ExtResource("1_rurs3")
 Behaviour = NodePath("Behaviour")
@@ -196,94 +196,95 @@ Footsteps = NodePath("Footsteps")
 FootstepsTimer = NodePath("Footsteps/Timer")
 AttackSounds = NodePath("AttackSounds")
 
-[node name="LineOfSight" type="RayCast2D" parent="."]
+[node name="LineOfSight" type="RayCast2D" parent="." unique_id=915113441]
 enabled = false
 collision_mask = 5
 collide_with_areas = true
 
-[node name="SightCone" type="Area2D" parent="."]
+[node name="SightCone" type="Area2D" parent="." unique_id=1952515220]
 z_index = 1
 
-[node name="Shape" type="CollisionPolygon2D" parent="SightCone"]
+[node name="Shape" type="CollisionPolygon2D" parent="SightCone" unique_id=1132106086]
 scale = Vector2(100, 256)
 polygon = PackedVector2Array(0, 0, 1, -1, -1, -1)
 
-[node name="Collider" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1400029999]
 shape = SubResource("RectangleShape2D_j7s4q")
 
-[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." unique_id=415583050]
 
-[node name="Behaviour" type="Node" parent="." node_paths=PackedStringArray("Root", "State")]
+[node name="Behaviour" type="Node" parent="." unique_id=459047064 node_paths=PackedStringArray("Root", "State")]
 script = ExtResource("9_b17cn")
 Root = NodePath("Root")
 State = NodePath("AIState")
 
-[node name="AIState" type="Node" parent="Behaviour"]
+[node name="AIState" type="Node" parent="Behaviour" unique_id=396494760]
 script = ExtResource("10_7gebo")
+State = Dictionary[StringName, Variant]({})
 
-[node name="Root" type="Node" parent="Behaviour"]
+[node name="Root" type="Node" parent="Behaviour" unique_id=1868668541]
 script = ExtResource("4_u34cn")
 
-[node name="ChaseOrSeek" type="Node" parent="Behaviour/Root"]
+[node name="ChaseOrSeek" type="Node" parent="Behaviour/Root" unique_id=1141867252]
 script = ExtResource("4_u34cn")
 
-[node name="Chase" type="Node" parent="Behaviour/Root/ChaseOrSeek"]
+[node name="Chase" type="Node" parent="Behaviour/Root/ChaseOrSeek" unique_id=603874765]
 script = ExtResource("11_rwrtc")
 
-[node name="RequirePlayerInArea" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" node_paths=PackedStringArray("Area")]
+[node name="RequirePlayerInArea" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" unique_id=1746273969 node_paths=PackedStringArray("Area")]
 script = ExtResource("6_vsm8v")
 Area = NodePath("../../../../../SightCone")
 
-[node name="RequireLineOfSightToPlayer" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" node_paths=PackedStringArray("LineOfSightRay")]
+[node name="RequireLineOfSightToPlayer" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" unique_id=627515427 node_paths=PackedStringArray("LineOfSightRay")]
 script = ExtResource("7_ibqkq")
 LineOfSightRay = NodePath("../../../../../LineOfSight")
 
-[node name="SetPlayerPositionAsMoveTarget" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase"]
+[node name="SetPlayerPositionAsMoveTarget" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" unique_id=1669543254]
 script = ExtResource("8_cybou")
 
-[node name="FaceTarget" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" node_paths=PackedStringArray("Actor", "SightRoot")]
+[node name="FaceTarget" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" unique_id=16188062 node_paths=PackedStringArray("Actor", "SightRoot")]
 script = ExtResource("6_eed8w")
 SucceedImmediately = true
 Actor = NodePath("../../../../..")
 SightRoot = NodePath("../../../../../SightCone")
 
-[node name="MoveTo" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" node_paths=PackedStringArray("NavigationAgent", "Actor")]
+[node name="MoveTo" type="Node" parent="Behaviour/Root/ChaseOrSeek/Chase" unique_id=609427738 node_paths=PackedStringArray("NavigationAgent", "Actor")]
 script = ExtResource("7_gtmsv")
 Speed = 80.0
 NavigationAgent = NodePath("../../../../../NavigationAgent")
 Actor = NodePath("../../../../..")
 
-[node name="Seek" type="Node" parent="Behaviour/Root/ChaseOrSeek"]
+[node name="Seek" type="Node" parent="Behaviour/Root/ChaseOrSeek" unique_id=1254084552]
 script = ExtResource("11_rwrtc")
 
-[node name="MoveTo" type="Node" parent="Behaviour/Root/ChaseOrSeek/Seek" node_paths=PackedStringArray("NavigationAgent", "Actor")]
+[node name="MoveTo" type="Node" parent="Behaviour/Root/ChaseOrSeek/Seek" unique_id=1348280578 node_paths=PackedStringArray("NavigationAgent", "Actor")]
 script = ExtResource("7_gtmsv")
 Speed = 40.0
 NavigationAgent = NodePath("../../../../../NavigationAgent")
 Actor = NodePath("../../../../..")
 TargetState = &"lastKnownTarget"
 
-[node name="Roam" type="Node" parent="Behaviour/Root"]
+[node name="Roam" type="Node" parent="Behaviour/Root" unique_id=2139123303]
 script = ExtResource("11_rwrtc")
 
-[node name="FindRandomNavigablePoint" type="Node" parent="Behaviour/Root/Roam"]
+[node name="FindRandomNavigablePoint" type="Node" parent="Behaviour/Root/Roam" unique_id=268614451]
 script = ExtResource("5_73tm1")
 
-[node name="FaceTarget" type="Node" parent="Behaviour/Root/Roam" node_paths=PackedStringArray("Actor", "SightRoot")]
+[node name="FaceTarget" type="Node" parent="Behaviour/Root/Roam" unique_id=376457996 node_paths=PackedStringArray("Actor", "SightRoot")]
 script = ExtResource("6_eed8w")
 Actor = NodePath("../../../..")
 SightRoot = NodePath("../../../../SightCone")
 
-[node name="MoveTo" type="Node" parent="Behaviour/Root/Roam" node_paths=PackedStringArray("NavigationAgent", "Actor")]
+[node name="MoveTo" type="Node" parent="Behaviour/Root/Roam" unique_id=1480928926 node_paths=PackedStringArray("NavigationAgent", "Actor")]
 script = ExtResource("7_gtmsv")
 Speed = 40.0
 NavigationAgent = NodePath("../../../../NavigationAgent")
 Actor = NodePath("../../../..")
 
-[node name="Footsteps" type="Node2D" parent="."]
+[node name="Footsteps" type="Node2D" parent="." unique_id=1002076439]
 script = ExtResource("2_lqprn")
 
-[node name="Isoaskel1" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel1" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=429308740]
 position = Vector2(-1, -1)
 stream = ExtResource("3_dcsri")
 volume_db = -5.0
@@ -291,7 +292,7 @@ pitch_scale = 0.75
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Isoaskel2" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel2" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=1789380475]
 position = Vector2(-1, -1)
 stream = ExtResource("4_cup8q")
 volume_db = -5.0
@@ -299,42 +300,42 @@ pitch_scale = 0.75
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Isoaskel3" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel3" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=1644870012]
 position = Vector2(-1, -1)
 stream = ExtResource("3_dcsri")
 volume_db = -5.0
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Isoaskel4" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel4" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=729218778]
 position = Vector2(-1, -1)
 stream = ExtResource("4_cup8q")
 volume_db = -5.0
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Timer" type="Timer" parent="Footsteps"]
+[node name="Timer" type="Timer" parent="Footsteps" unique_id=2035548912]
 wait_time = 0.8
 
-[node name="AttackSounds" type="Node2D" parent="."]
+[node name="AttackSounds" type="Node2D" parent="." unique_id=2062050559]
 script = ExtResource("5_7u7vj")
 
-[node name="Morokolli1" type="AudioStreamPlayer" parent="AttackSounds"]
+[node name="Morokolli1" type="AudioStreamPlayer" parent="AttackSounds" unique_id=924604864]
 stream = ExtResource("6_rdwjh")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Morokolli2" type="AudioStreamPlayer" parent="AttackSounds"]
+[node name="Morokolli2" type="AudioStreamPlayer" parent="AttackSounds" unique_id=1108817840]
 stream = ExtResource("7_f43d2")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Morokolli3" type="AudioStreamPlayer" parent="AttackSounds"]
+[node name="Morokolli3" type="AudioStreamPlayer" parent="AttackSounds" unique_id=1111937147]
 stream = ExtResource("8_ue1bn")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1132002432]
 texture_filter = 1
 position = Vector2(0, -43.5)
 sprite_frames = SubResource("SpriteFrames_o76qe")

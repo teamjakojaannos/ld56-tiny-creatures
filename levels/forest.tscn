@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dj0li25q75lcv"]
+[gd_scene format=3 uid="uid://dj0li25q75lcv"]
 
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="1_wvf0p"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_ni4s8"]
@@ -15,49 +15,49 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navmesh"
 agent_radius = 50.0
 
-[node name="Forest" type="Node2D"]
+[node name="Forest" type="Node2D" unique_id=651643234]
 
-[node name="PlayerSpawn" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1964615159 groups=["PlayerSpawn"]]
 
-[node name="Tree1" parent="." instance=ExtResource("1_wvf0p")]
+[node name="Tree1" parent="." unique_id=1074207100 instance=ExtResource("1_wvf0p")]
 position = Vector2(129, -68)
 
-[node name="Tree2" parent="." instance=ExtResource("2_ni4s8")]
+[node name="Tree2" parent="." unique_id=659213522 instance=ExtResource("2_ni4s8")]
 position = Vector2(-137, -37)
 
-[node name="Tree3" parent="." instance=ExtResource("3_q2adk")]
+[node name="Tree3" parent="." unique_id=245761599 instance=ExtResource("3_q2adk")]
 position = Vector2(-135, 132)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=2097479856]
 navigation_polygon = SubResource("NavigationPolygon_m4dhd")
 
-[node name="Chaser" parent="NavigationRegion2D" instance=ExtResource("4_on0ma")]
+[node name="Chaser" parent="NavigationRegion2D" unique_id=2039747636 instance=ExtResource("4_on0ma")]
 position = Vector2(359.168, 182.863)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1085440534]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=375300409]
 polygon = PackedVector2Array(141, 149, 225, 27, 297, 49, 207, 179)
 
-[node name="Marko" type="Node2D" parent="." groups=["MarkoMarkersRoot"]]
+[node name="Marko" type="Node2D" parent="." unique_id=733983866 groups=["MarkoMarkersRoot"]]
 
-[node name="Marker2D" type="Marker2D" parent="Marko"]
+[node name="Marker2D" type="Marker2D" parent="Marko" unique_id=1783646875]
 position = Vector2(56.832, 74.1367)
 
-[node name="Marker2D2" type="Marker2D" parent="Marko"]
+[node name="Marker2D2" type="Marker2D" parent="Marko" unique_id=1489722644]
 position = Vector2(521.749, -41.181)
 
-[node name="Marker2D3" type="Marker2D" parent="Marko"]
+[node name="Marker2D3" type="Marker2D" parent="Marko" unique_id=1363757762]
 position = Vector2(-55.9023, 284.456)
 
-[node name="Marker2D4" type="Marker2D" parent="Marko"]
+[node name="Marker2D4" type="Marker2D" parent="Marko" unique_id=1120082882]
 position = Vector2(598.203, 202.339)
 
-[node name="DestroyKiviTrigger" parent="." node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("5_whj01")]
+[node name="DestroyKiviTrigger" parent="." unique_id=279469589 node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("5_whj01")]
 position = Vector2(48.2192, 297.425)
 objectToDestroy = NodePath("../BogRock")
 
-[node name="BogRock" parent="." instance=ExtResource("6_jpbjq")]
+[node name="BogRock" parent="." unique_id=689191467 instance=ExtResource("6_jpbjq")]
 position = Vector2(-102, 274)

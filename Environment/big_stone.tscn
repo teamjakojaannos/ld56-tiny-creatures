@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqq2ugabdph4k"]
+[gd_scene format=3 uid="uid://cqq2ugabdph4k"]
 
 [ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://Environment/kiviaki_kiinnostaa.png" id="1_mwvla"]
 
@@ -16,19 +16,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vugce"]
 size = Vector2(34, 6)
 
-[node name="BigStone" type="Node2D"]
+[node name="BigStone" type="Node2D" unique_id=1570757855]
 y_sort_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1812393362]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=156068375]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_30qud")
 centered = false
 offset = Vector2(-17.675, -18.665)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2049274232]
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_vugce")

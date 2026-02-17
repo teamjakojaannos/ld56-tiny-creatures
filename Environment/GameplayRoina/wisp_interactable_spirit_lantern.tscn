@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpvb5hh4sr8br"]
+[gd_scene format=3 uid="uid://cpvb5hh4sr8br"]
 
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="1_vm5ug"]
 [ext_resource type="PackedScene" uid="uid://baf4p3kgidl8v" path="res://Environment/GameplayRoina/spirit_lantern.tscn" id="2_j5xvj"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="5_r5eyy"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="6_223ci"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_24e3g"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_wil4y"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -26,20 +26,12 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="Resource" id="Resource_7gj5o"]
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
-IsInteractive = false
 Lines = Array[String](["Yayyy!!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_gn1c6"]
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
-IsInteractive = false
 Lines = Array[String](["No!! Don't leave me here!!"])
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_o41ml"]
 script = ExtResource("5_r5eyy")
@@ -48,41 +40,34 @@ IsInteractive = true
 Lines = Array[String](["Yes", "No"])
 Next = SubResource("Resource_7gj5o")
 Next2 = SubResource("Resource_gn1c6")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
 [sub_resource type="Resource" id="Resource_kxuv5"]
 script = ExtResource("5_r5eyy")
 Character = ExtResource("5_1vkvc")
-IsInteractive = false
 Lines = Array[String](["Release the spirit?"])
 Next = SubResource("Resource_o41ml")
-ScreenShakeAmount = 0.0
-ScreenShakeFade = 30.0
-SideOverride = 0
 
-[node name="WispInteractable" instance=ExtResource("1_vm5ug")]
+[node name="WispInteractable" unique_id=611313151 instance=ExtResource("1_vm5ug")]
 
-[node name="Trigger" parent="." index="0"]
-shape = SubResource("CircleShape2D_24e3g")
+[node name="Trigger" parent="." index="0" unique_id=1478185290]
+shape = SubResource("CircleShape2D_wil4y")
 
-[node name="Target" parent="." index="1"]
+[node name="Target" parent="." index="1" unique_id=439795568]
 position = Vector2(-22, -22)
 
-[node name="SpiritLantern" parent="." index="2" instance=ExtResource("2_j5xvj")]
+[node name="SpiritLantern" parent="." index="2" unique_id=310737621 instance=ExtResource("2_j5xvj")]
 
-[node name="Light" parent="SpiritLantern/SpiritPath/Spirit" index="1"]
+[node name="Light" parent="SpiritLantern/SpiritPath/Spirit" parent_id_path=PackedInt32Array(310737621, 813589511) index="1" unique_id=1810354365]
 texture = SubResource("GradientTexture2D_hcffb")
 
-[node name="WispInteractableAnimatedProp" type="Node2D" parent="." index="3" node_paths=PackedStringArray("AnimPlayer")]
+[node name="WispInteractableAnimatedProp" type="Node2D" parent="." index="3" unique_id=926329874 node_paths=PackedStringArray("AnimPlayer")]
 script = ExtResource("3_b4gqi")
 AnimPlayer = NodePath("../SpiritLantern/AnimationPlayer")
 Animation = "out"
 RequireDialogue = true
 DialogueTrigger = "Yes"
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="." index="4"]
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="." index="4" unique_id=178082652]
 script = ExtResource("4_fetng")
 DialogueTree = SubResource("Resource_kxuv5")
 

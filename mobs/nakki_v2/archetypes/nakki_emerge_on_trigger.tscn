@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cln17kxluf0oa"]
+[gd_scene format=3 uid="uid://cln17kxluf0oa"]
 
 [ext_resource type="PackedScene" uid="uid://cd8qrla1d18g8" path="res://mobs/nakki_v2/nakki_v2.tscn" id="1_42m1v"]
 [ext_resource type="Script" uid="uid://d10dwis42qihb" path="res://mobs/nakki_v2/ai_states/NakkiEmergeOnTriggerState.cs" id="2_sfyvo"]
@@ -8,34 +8,34 @@
 [ext_resource type="PackedScene" uid="uid://dx5xfep76dve6" path="res://mobs/nakki/water_splash.tscn" id="6_1m2lb"]
 [ext_resource type="Script" uid="uid://bby0hkm20ubj1" path="res://mobs/nakki_v2/ai_states/NakkiStalkState.cs" id="6_ackgs"]
 
-[node name="Näkki" node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_42m1v")]
-DefaultState = NodePath("EmergeOnTrigger")
+[node name="Näkki" unique_id=1026306899 node_paths=PackedStringArray("DefaultState") instance=ExtResource("1_42m1v")]
 DetectionGain = 400.0
+DefaultState = NodePath("EmergeOnTrigger")
 
-[node name="EmergeOnTrigger" type="Node" parent="." index="6" node_paths=PackedStringArray("EnterStateAfterEmerge")]
+[node name="EmergeOnTrigger" type="Node" parent="." index="6" unique_id=218204650 node_paths=PackedStringArray("EnterStateAfterEmerge")]
 script = ExtResource("2_sfyvo")
 EnterStateAfterEmerge = NodePath("../Idle")
 
-[node name="Idle" type="Node" parent="." index="7" node_paths=PackedStringArray("StalkState", "AttackState", "PickOneOfTheseStatesWhenDoneIdling")]
+[node name="Idle" type="Node" parent="." index="7" unique_id=1673003263 node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneIdling", "StalkState", "AttackState")]
 script = ExtResource("3_btw80")
+PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
 StalkState = NodePath("../Stalk")
 AttackState = NodePath("../AttackState")
-PickOneOfTheseStatesWhenDoneIdling = [NodePath("../Dive"), NodePath("."), NodePath("../EmergeOnTrigger")]
 
-[node name="Dive" type="Node" parent="." index="8" node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving")]
+[node name="Dive" type="Node" parent="." index="8" unique_id=67873517 node_paths=PackedStringArray("PickOneOfTheseStatesWhenDoneDiving")]
 script = ExtResource("4_plyok")
 PickOneOfTheseStatesWhenDoneDiving = [NodePath("../Idle")]
 
-[node name="AttackState" type="Node" parent="." index="9" node_paths=PackedStringArray("DiveState")]
+[node name="AttackState" type="Node" parent="." index="9" unique_id=388837041 node_paths=PackedStringArray("DiveState")]
 script = ExtResource("5_pctna")
-WaterSplash = ExtResource("6_1m2lb")
-DiveState = NodePath("../Dive")
 AttackTime = 0.5
 AnimationSpeed = 3.0
+WaterSplash = ExtResource("6_1m2lb")
+DiveState = NodePath("../Dive")
 
-[node name="Stalk" type="Node" parent="." index="10" node_paths=PackedStringArray("IdleState", "AttackState", "DiveState")]
+[node name="Stalk" type="Node" parent="." index="10" unique_id=1741047229 node_paths=PackedStringArray("IdleState", "AttackState", "DiveState")]
 script = ExtResource("6_ackgs")
+StalkThreshold = 200.0
 IdleState = NodePath("../Idle")
 AttackState = NodePath("../AttackState")
 DiveState = NodePath("../Dive")
-StalkThreshold = 200.0

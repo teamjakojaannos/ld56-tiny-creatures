@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ylwci2dowuy7"]
+[gd_scene format=3 uid="uid://ylwci2dowuy7"]
 
 [ext_resource type="Script" uid="uid://bv7b7k3ex2qcy" path="res://dialogue/DialogueRow.cs" id="1_o2yu2"]
 [ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="2_6tghr"]
@@ -8,7 +8,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_12rh4"]
 font = ExtResource("2_8cx57")
 
-[node name="Container" type="HBoxContainer" node_paths=PackedStringArray("TextContent", "PortraitFrame", "PortraitFrameWrapper", "Container", "TextScrollTimer", "SpeakingSfx")]
+[node name="Container" type="HBoxContainer" unique_id=379226806 node_paths=PackedStringArray("TextContent", "PortraitFrame", "PortraitFrameWrapper", "Container", "TextScrollTimer", "SpeakingSfx")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 83.0
@@ -22,22 +22,21 @@ Container = NodePath(".")
 TextScrollTimer = NodePath("TextScrollTimer")
 SpeakingSfx = NodePath("SpeakingSfx")
 
-[node name="TextScrollTimer" type="Timer" parent="."]
+[node name="TextScrollTimer" type="Timer" parent="." unique_id=1035300025]
 wait_time = 0.05
 
-[node name="SpeakingSfx" type="AudioStreamPlayer" parent="."]
+[node name="SpeakingSfx" type="AudioStreamPlayer" parent="." unique_id=2017916911]
 stream = ExtResource("4_ewmgn")
 bus = &"SFX"
 
-[node name="PortraitFrameWrapper" type="Control" parent="."]
+[node name="PortraitFrameWrapper" type="Control" parent="." unique_id=706964472]
 custom_minimum_size = Vector2(76, 83)
 layout_mode = 2
 
-[node name="PortraitFrame" parent="PortraitFrameWrapper" instance=ExtResource("2_6tghr")]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
+[node name="PortraitFrame" parent="PortraitFrameWrapper" unique_id=2115815867 instance=ExtResource("2_6tghr")]
+layout_mode = 0
 
-[node name="TextContent" type="Label" parent="."]
+[node name="TextContent" type="Label" parent="." unique_id=2117984397]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "A quick brown fox jumps over a lazy dog."

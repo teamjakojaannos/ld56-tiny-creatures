@@ -1,8 +1,8 @@
-[gd_scene load_steps=43 format=3 uid="uid://b2uu7btegjbbx"]
+[gd_scene format=3 uid="uid://b2uu7btegjbbx"]
 
 [ext_resource type="Script" uid="uid://bqttah22wv7hd" path="res://Cinematic/Intro/intro.gd" id="1_udox3"]
 [ext_resource type="PackedScene" uid="uid://pni5mmab3ipw" path="res://characters/player/player.tscn" id="4_wxmdh"]
-[ext_resource type="Script" uid="uid://docy2nqsx8p56" path="res://editor/remove_in_game.gd" id="5_ssx7r"]
+[ext_resource type="Script" uid="uid://docy2nqsx8p56" path="res://editor/editor_only.gd" id="5_ssx7r"]
 [ext_resource type="AudioStream" uid="uid://btqwfh2qajfp5" path="res://cinematic/bip1.ogg" id="5_t3d2a"]
 [ext_resource type="AudioStream" uid="uid://cklwljchbv4xl" path="res://cinematic/bip2.ogg" id="6_mrwub"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="6_qrwc5"]
@@ -567,30 +567,28 @@ Speaker = ExtResource("13_ssx7r")
 Side = 1
 metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
-[node name="Intro" type="Node2D"]
+[node name="Intro" type="Node2D" unique_id=816950193]
 y_sort_enabled = true
 script = ExtResource("1_udox3")
 skip_intro = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=432032304]
 deterministic = true
 callback_mode_method = 1
-libraries = {
-&"": SubResource("AnimationLibrary_b7b0w")
-}
+libraries/ = SubResource("AnimationLibrary_b7b0w")
 
-[node name="SpiritLantern" type="Node2D" parent="."]
+[node name="SpiritLantern" type="Node2D" parent="." unique_id=368858158]
 y_sort_enabled = true
 position = Vector2(108, -2)
 
-[node name="Base" type="Sprite2D" parent="SpiritLantern"]
+[node name="Base" type="Sprite2D" parent="SpiritLantern" unique_id=630817994]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -1)
 texture = ExtResource("6_qrwc5")
 offset = Vector2(-7, -15)
 
-[node name="BackWall" type="Sprite2D" parent="SpiritLantern"]
+[node name="BackWall" type="Sprite2D" parent="SpiritLantern" unique_id=2129454692]
 visible = false
 modulate = Color(0.51, 0.51, 0.51, 1)
 y_sort_enabled = true
@@ -601,7 +599,7 @@ offset = Vector2(-7, -5)
 region_enabled = true
 region_rect = Rect2(30, 23, 8, 18)
 
-[node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern"]
+[node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern" unique_id=1102220985]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(-1, 1)
@@ -609,72 +607,69 @@ sprite_frames = SubResource("SpriteFrames_kwh76")
 animation = &"idle_closed"
 offset = Vector2(-6, -17)
 
-[node name="WispInitialLocation" type="Marker2D" parent="SpiritLantern" groups=["IntroWispSpawn"]]
+[node name="WispInitialLocation" type="Marker2D" parent="SpiritLantern" unique_id=361858250 groups=["IntroWispSpawn"]]
 y_sort_enabled = true
 position = Vector2(0, -4)
 
-[node name="IntroPlayerStart" type="Marker2D" parent="." groups=["IntroPlayerSpawn", "PlayerSpawn"]]
+[node name="IntroPlayerStart" type="Marker2D" parent="." unique_id=2096032460 groups=["IntroPlayerSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("4_wxmdh")]
+[node name="Player" parent="." unique_id=818490005 instance=ExtResource("4_wxmdh")]
 editor_description = "Preview instance of the player. Has RemoveInGame -component to remove it once the scene is loaded in-game."
 
-[node name="Sprite" parent="Player" index="1"]
+[node name="Sprite" parent="Player" index="1" unique_id=680853062]
 facing = 1
 is_in_intro = true
 
-[node name="Footsteps" parent="Player" index="2" node_paths=PackedStringArray("sounds")]
+[node name="Footsteps" parent="Player" index="2" unique_id=259638661 node_paths=PackedStringArray("sounds")]
 sounds = {
 0: NodePath("Grass"),
 1: NodePath("Wet")
 }
 
-[node name="RemarkBubble" parent="Player/UnshadedLayer" index="0"]
-position = Vector2(94, -33)
-
-[node name="EditorOnly" type="Node" parent="Player"]
+[node name="EditorOnly" type="Node" parent="Player" unique_id=430536205]
 script = ExtResource("5_ssx7r")
 metadata/_custom_type_script = "uid://docy2nqsx8p56"
 
-[node name="Tilulii" type="AudioStreamPlayer" parent="."]
+[node name="Tilulii" type="AudioStreamPlayer" parent="." unique_id=767826728]
 stream = ExtResource("9_y4k7t")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Beep" type="AudioStreamPlayer" parent="."]
+[node name="Beep" type="AudioStreamPlayer" parent="." unique_id=1396213476]
 stream = ExtResource("5_t3d2a")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Beep2" type="AudioStreamPlayer" parent="."]
+[node name="Beep2" type="AudioStreamPlayer" parent="." unique_id=2077920623]
 stream = ExtResource("6_mrwub")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Beep3" type="AudioStreamPlayer" parent="."]
+[node name="Beep3" type="AudioStreamPlayer" parent="." unique_id=659116023]
 stream = ExtResource("10_3pcu4")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Saranat" type="AudioStreamPlayer" parent="."]
+[node name="Saranat" type="AudioStreamPlayer" parent="." unique_id=1623798837]
 stream = ExtResource("9_y4k7t")
 volume_db = -15.0
 pitch_scale = 6.7
 bus = &"SFX"
 
-[node name="InitialDialogue" type="Node" parent="."]
+[node name="InitialDialogue" type="Node" parent="." unique_id=143124218]
 script = ExtResource("11_rseni")
 Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_ssx7r"), SubResource("Resource_sfm6u")])
 
-[node name="WispDemandsHelpDialogue" type="Node" parent="."]
+[node name="WispDemandsHelpDialogue" type="Node" parent="." unique_id=252923579]
 script = ExtResource("11_rseni")
 Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_oj6k6"), SubResource("Resource_tkd80"), SubResource("Resource_yuugq")])
 
-[node name="PlayerPromisesToHelpDialogue" type="Node" parent="."]
+[node name="PlayerPromisesToHelpDialogue" type="Node" parent="." unique_id=2038876724]
 script = ExtResource("11_rseni")
 Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_qf70f"), SubResource("Resource_hls6p"), SubResource("Resource_t75j2"), SubResource("Resource_0u452"), SubResource("Resource_txwlq"), SubResource("Resource_tp8fb"), SubResource("Resource_4qmgo")])
 
-[node name="WispReleasedDialogue" type="Node" parent="."]
+[node name="WispReleasedDialogue" type="Node" parent="." unique_id=1227679330]
 script = ExtResource("11_rseni")
 Lines = Array[ExtResource("12_wxmdh")]([SubResource("Resource_quf53"), SubResource("Resource_3574r"), SubResource("Resource_1gdt3"), SubResource("Resource_5537l"), SubResource("Resource_utps2"), SubResource("Resource_cgco5")])
 metadata/_custom_type_script = "uid://s7kasy78nr47"

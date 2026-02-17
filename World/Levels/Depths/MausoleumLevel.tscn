@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bigbwhuiayxoh"]
+[gd_scene format=3 uid="uid://bigbwhuiayxoh"]
 
 [ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_2kvuv"]
 [ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_wnoem"]
@@ -6,18 +6,18 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioruo"]
 size = Vector2(32, 64)
 
-[node name="Mausoleum" instance=ExtResource("1_2kvuv")]
+[node name="Mausoleum" unique_id=1677563853 instance=ExtResource("1_2kvuv")]
 
-[node name="ToDepths" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+[node name="ToDepths" type="Area2D" parent="Transitions" parent_id_path=PackedInt32Array(351070118) index="0" unique_id=2064593910 groups=["LevelEntrance"]]
 position = Vector2(192, 0)
 script = ExtResource("2_wnoem")
 OtherScene = "res://World/Levels/Depths/DepthsLevel.tscn"
 _entranceNodePath = "./Transitions/ToMausoleum"
 
-[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDepths" index="0"]
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDepths" index="0" unique_id=1423409762]
 shape = SubResource("RectangleShape2D_ioruo")
 
-[node name="Floor" type="ColorRect" parent="." index="1"]
+[node name="Floor" type="ColorRect" parent="." index="1" unique_id=52772126]
 z_index = -1
 offset_left = -128.0
 offset_top = -128.0
@@ -25,7 +25,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.23, 0.216928, 0.2047, 1)
 
-[node name="Floor2" type="ColorRect" parent="." index="2"]
+[node name="Floor2" type="ColorRect" parent="." index="2" unique_id=1946140017]
 z_index = -1
 offset_left = 128.0
 offset_top = -32.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjx73xc8t74mp"]
+[gd_scene format=3 uid="uid://bjx73xc8t74mp"]
 
 [ext_resource type="Script" uid="uid://kyyhfnfxiqis" path="res://characters/wisp/wisp.gd" id="1_8q3ut"]
 [ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_2mpa2"]
@@ -35,7 +35,7 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tia6w"]
 light_mode = 1
 
-[node name="Wisp" type="RigidBody2D"]
+[node name="Wisp" type="RigidBody2D" unique_id=299714060]
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
@@ -43,18 +43,18 @@ gravity_scale = 0.0
 linear_damp = 2.0
 script = ExtResource("1_8q3ut")
 
-[node name="Shape" type="CollisionShape2D" parent="."]
+[node name="Shape" type="CollisionShape2D" parent="." unique_id=259751983]
 shape = SubResource("CircleShape2D_ql1ed")
 
-[node name="StartsAtNode" type="Node" parent="."]
+[node name="StartsAtNode" type="Node" parent="." unique_id=1640497147]
 script = ExtResource("2_2mpa2")
 SpawnpointGroups = Array[StringName]([&"IntroWispSpawn", &"WorldPlayerStart", &"PlayerStart"])
 metadata/_custom_type_script = "uid://dw3a5r4lxgnwa"
 
-[node name="WispVisuals" type="Node2D" parent="."]
+[node name="WispVisuals" type="Node2D" parent="." unique_id=1034236945]
 y_sort_enabled = true
 
-[node name="PointLight" type="PointLight2D" parent="WispVisuals"]
+[node name="PointLight" type="PointLight2D" parent="WispVisuals" unique_id=832804524]
 position = Vector2(0, 1)
 color = Color(1, 0.856, 0.68, 1)
 energy = 0.7
@@ -66,7 +66,7 @@ shadow_item_cull_mask = 7
 texture = SubResource("GradientTexture2D_8q3ut")
 metadata/_edit_lock_ = true
 
-[node name="WispGlow" type="PointLight2D" parent="WispVisuals"]
+[node name="WispGlow" type="PointLight2D" parent="WispVisuals" unique_id=957571116]
 position = Vector2(0, -5)
 color = Color(0.17, 1, 1, 1)
 energy = 0.66
@@ -76,7 +76,7 @@ shadow_filter_smooth = 3.7
 texture = SubResource("GradientTexture2D_dvyt8")
 metadata/_edit_lock_ = true
 
-[node name="FakeBounceLight" type="PointLight2D" parent="WispVisuals"]
+[node name="FakeBounceLight" type="PointLight2D" parent="WispVisuals" unique_id=1683608367]
 scale = Vector2(0.75, 0.75)
 energy = 0.75
 range_item_cull_mask = 5
@@ -86,7 +86,7 @@ shadow_filter_smooth = 3.7
 texture = SubResource("GradientTexture2D_8q3ut")
 metadata/_edit_lock_ = true
 
-[node name="FrontFaceHighlightThingamajig" type="PointLight2D" parent="WispVisuals"]
+[node name="FrontFaceHighlightThingamajig" type="PointLight2D" parent="WispVisuals" unique_id=1460047857]
 scale = Vector2(0.75, 0.75)
 energy = 0.5
 range_item_cull_mask = 2
@@ -96,7 +96,7 @@ shadow_filter_smooth = 3.7
 texture = SubResource("GradientTexture2D_8q3ut")
 metadata/_edit_lock_ = true
 
-[node name="Sprite" type="AnimatedSprite2D" parent="WispVisuals"]
+[node name="Sprite" type="AnimatedSprite2D" parent="WispVisuals" unique_id=710814074]
 modulate = Color(0.670689, 0.67069, 0.670689, 0.682353)
 light_mask = 5
 y_sort_enabled = true
@@ -107,15 +107,15 @@ autoplay = "idle"
 frame_progress = 0.0344705
 offset = Vector2(0, -12)
 
-[node name="RemarkPosition" type="RemoteTransform2D" parent="."]
+[node name="RemarkPosition" type="RemoteTransform2D" parent="." unique_id=1893333752]
 position = Vector2(4, -10)
 remote_path = NodePath("../UnshadedLayer/RemarkBubble")
 
-[node name="UnshadedLayer" type="CanvasLayer" parent="."]
+[node name="UnshadedLayer" type="CanvasLayer" parent="." unique_id=317238859]
 layer = 2
 follow_viewport_enabled = true
 
-[node name="RemarkBubble" parent="UnshadedLayer" instance=ExtResource("4_tia6w")]
+[node name="RemarkBubble" parent="UnshadedLayer" unique_id=732411380 instance=ExtResource("4_tia6w")]
 visible = false
 material = SubResource("CanvasItemMaterial_tia6w")
 position = Vector2(4, -10)

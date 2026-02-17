@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=3 uid="uid://n10q1k4kknng"]
+[gd_scene format=3 uid="uid://n10q1k4kknng"]
 
 [ext_resource type="Script" uid="uid://d4kistsm6yyd6" path="res://characters/player/player_sprite.gd" id="1_n5h4s"]
 [ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://characters/player/visuals/player_side_stand_up.png" id="2_dq2sc"]
@@ -1679,16 +1679,16 @@ states/up/position = Vector2(561, 0)
 transitions = ["left", "up", SubResource("AnimationNodeStateMachineTransition_s4lbh"), "up", "left", SubResource("AnimationNodeStateMachineTransition_m27su"), "left", "right", SubResource("AnimationNodeStateMachineTransition_vvj5j"), "right", "left", SubResource("AnimationNodeStateMachineTransition_6phsv"), "right", "up", SubResource("AnimationNodeStateMachineTransition_ok0l2"), "up", "right", SubResource("AnimationNodeStateMachineTransition_f8vie"), "right", "down", SubResource("AnimationNodeStateMachineTransition_sunvu"), "down", "right", SubResource("AnimationNodeStateMachineTransition_l3wb0"), "left", "down", SubResource("AnimationNodeStateMachineTransition_si43w"), "down", "left", SubResource("AnimationNodeStateMachineTransition_2nkkv"), "down", "up", SubResource("AnimationNodeStateMachineTransition_o7dwb"), "up", "down", SubResource("AnimationNodeStateMachineTransition_wtpyt"), "Start", "down", SubResource("AnimationNodeStateMachineTransition_wdp36"), "prone", "get_up", SubResource("AnimationNodeStateMachineTransition_vixj4"), "get_up", "right", SubResource("AnimationNodeStateMachineTransition_v7mfa"), "open_lantern", "right", SubResource("AnimationNodeStateMachineTransition_ixw5w")]
 graph_offset = Vector2(69, -1)
 
-[node name="SpriteRig" type="Node2D"]
+[node name="SpriteRig" type="Node2D" unique_id=1084364185]
 y_sort_enabled = true
 script = ExtResource("1_n5h4s")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2091558194]
 sprite_frames = SubResource("SpriteFrames_tjdc1")
 animation = &"idle_down"
 offset = Vector2(0, -22.5)
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=2017549982]
 show_behind_parent = true
 scale = Vector2(0.4, 0.3)
 texture = ExtResource("3_h16v2")
@@ -1697,14 +1697,12 @@ region_enabled = true
 region_rect = Rect2(0, 21, 45, 24)
 region_filter_clip_enabled = true
 
-[node name="Animations" type="AnimationPlayer" parent="."]
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=344453399]
 deterministic = true
 root_node = NodePath("../Sprite")
-libraries = {
-&"": SubResource("AnimationLibrary_ptaye")
-}
+libraries/ = SubResource("AnimationLibrary_ptaye")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1495217420]
 root_node = NodePath("../Sprite")
 tree_root = SubResource("AnimationNodeStateMachine_66gcg")
 advance_expression_base_node = NodePath("..")

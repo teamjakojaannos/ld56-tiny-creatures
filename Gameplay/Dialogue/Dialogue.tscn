@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3qquxamaxbfl"]
+[gd_scene format=3 uid="uid://d3qquxamaxbfl"]
 
 [ext_resource type="Script" uid="uid://s7kasy78nr47" path="res://Gameplay/Dialogue/Dialogue.cs" id="1_fsicn"]
 [ext_resource type="Script" uid="uid://jnt4rlhbqeyv" path="res://Gameplay/Dialogue/DialogueManager.cs" id="1_tttv6"]
@@ -375,24 +375,24 @@ shader_parameter/TimeOffsetVertical = 0.0
 shader_parameter/VerticalScrollSpeed = 0.25
 shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_tag5s")
 
-[node name="Dialogue" type="Node" node_paths=PackedStringArray("ActiveDialogue", "DialogueUI")]
+[node name="Dialogue" type="Node" unique_id=1362784561 node_paths=PackedStringArray("ActiveDialogue", "DialogueUI")]
 script = ExtResource("1_tttv6")
 ActiveDialogue = NodePath("Preview")
 DialogueUI = NodePath("UI")
 
-[node name="Preview" type="Node" parent="."]
+[node name="Preview" type="Node" parent="." unique_id=143674382]
 script = ExtResource("1_fsicn")
 Lines = Array[ExtResource("3_s7jca")]([SubResource("Resource_sbein"), SubResource("Resource_h0f25"), SubResource("Resource_5cuke"), SubResource("Resource_6wwag"), SubResource("Resource_lcxp5")])
 
-[node name="AnotherBranch" type="Node" parent="Preview"]
+[node name="AnotherBranch" type="Node" parent="Preview" unique_id=1144838449]
 script = ExtResource("1_fsicn")
 Lines = Array[ExtResource("3_s7jca")]([SubResource("Resource_yd4xi")])
 
-[node name="SomeBranch" type="Node" parent="Preview"]
+[node name="SomeBranch" type="Node" parent="Preview" unique_id=524505938]
 script = ExtResource("1_fsicn")
 Lines = Array[ExtResource("3_s7jca")]([SubResource("Resource_15204")])
 
-[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("DialogueLines", "Animation")]
+[node name="UI" type="CanvasLayer" parent="." unique_id=921695225 node_paths=PackedStringArray("DialogueLines", "Animation")]
 visible = false
 script = ExtResource("2_klg46")
 DialogueLines = NodePath("UIRoot/Lines")
@@ -400,13 +400,11 @@ DialogueTextLineTemplate = ExtResource("3_4sdnn")
 DialogueChoiceLineTemplate = ExtResource("8_urtq6")
 Animation = NodePath("AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI" unique_id=723831885]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_dqeli")
-}
+libraries/ = SubResource("AnimationLibrary_dqeli")
 
-[node name="UIRoot" type="Control" parent="UI"]
+[node name="UIRoot" type="Control" parent="UI" unique_id=434039171]
 editor_description = "Exists just because Canvas Layer nodes don't have \"Clip Contents\""
 clip_contents = true
 layout_mode = 3
@@ -416,7 +414,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundSmoke" type="Control" parent="UI/UIRoot"]
+[node name="BackgroundSmoke" type="Control" parent="UI/UIRoot" unique_id=215944887]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -426,7 +424,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_kmp7t")
 
-[node name="Layer1" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke"]
+[node name="Layer1" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke" unique_id=305099463]
 material = SubResource("ShaderMaterial_8bjrs")
 layout_mode = 1
 anchors_preset = -1
@@ -436,7 +434,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Layer2" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke"]
+[node name="Layer2" type="ColorRect" parent="UI/UIRoot/BackgroundSmoke" unique_id=194326098]
 material = SubResource("ShaderMaterial_kl6cq")
 layout_mode = 1
 anchors_preset = -1
@@ -446,13 +444,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BackgroundPosition" type="Node" parent="UI/UIRoot/BackgroundSmoke" node_paths=PackedStringArray("AnimatedControl", "UseSizeOf")]
+[node name="BackgroundPosition" type="Node" parent="UI/UIRoot/BackgroundSmoke" unique_id=705922998 node_paths=PackedStringArray("AnimatedControl", "UseSizeOf")]
 script = ExtResource("7_32f4m")
 AnimatedControl = NodePath("..")
 UseSizeOf = NodePath("../Layer1")
 ScrollDirection = 1
 
-[node name="Lines" type="VBoxContainer" parent="UI/UIRoot"]
+[node name="Lines" type="VBoxContainer" parent="UI/UIRoot" unique_id=514678316]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -463,7 +461,7 @@ offset_top = -83.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="LinesPosition" type="Node" parent="UI/UIRoot/Lines" node_paths=PackedStringArray("AnimatedControl")]
+[node name="LinesPosition" type="Node" parent="UI/UIRoot/Lines" unique_id=1219683801 node_paths=PackedStringArray("AnimatedControl")]
 script = ExtResource("7_32f4m")
 AnimatedControl = NodePath("..")
 Offset = 0.975

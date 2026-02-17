@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dva0mxjbjqfxy"]
+[gd_scene format=3 uid="uid://dva0mxjbjqfxy"]
 
 [ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="1_roa8q"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_7ke3r"]
@@ -126,12 +126,12 @@ _data = {
 &"enter_right": SubResource("Animation_6655w")
 }
 
-[node name="Container" type="VBoxContainer"]
+[node name="Container" type="VBoxContainer" unique_id=1947341075]
 modulate = Color(1, 1, 1, 0)
 offset_right = 76.0
 offset_bottom = 83.0
 
-[node name="PortraitFrame" type="ColorRect" parent="."]
+[node name="PortraitFrame" type="ColorRect" parent="." unique_id=235719415]
 clip_children = 2
 custom_minimum_size = Vector2(64, 64)
 layout_direction = 2
@@ -140,7 +140,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.237539, 0.237539, 0.237539, 1)
 
-[node name="Character" type="TextureRect" parent="PortraitFrame"]
+[node name="Character" type="TextureRect" parent="PortraitFrame" unique_id=1769276380]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -150,13 +150,11 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_roa8q")
 
-[node name="Name" type="Label" parent="."]
+[node name="Name" type="Label" parent="." unique_id=855410712]
 layout_mode = 2
 text = "Kuka Aku"
 label_settings = SubResource("LabelSettings_j80jm")
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_es6j6")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1973649614]
+libraries/ = SubResource("AnimationLibrary_es6j6")

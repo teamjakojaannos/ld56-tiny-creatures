@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c287axru5rdlt"]
+[gd_scene format=3 uid="uid://c287axru5rdlt"]
 
 [ext_resource type="Texture2D" uid="uid://jhhjkmm48j4e" path="res://Environment/ryhmahauta_handsomeDogs.png" id="1_rjp0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnucs"]
 size = Vector2(311, 10)
 
-[node name="Ryhmähauta" type="Node2D"]
+[node name="Ryhmähauta" type="Node2D" unique_id=580057349]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=739252299]
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=882604373]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(-1, 0)
@@ -17,7 +17,7 @@ texture = ExtResource("1_rjp0a")
 centered = false
 offset = Vector2(-163.955, -79.01)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2006240949]
 visible = false
 position = Vector2(-7.5, -5)
 shape = SubResource("RectangleShape2D_dnucs")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://82edj5sbubfj"]
+[gd_scene format=3 uid="uid://82edj5sbubfj"]
 
 [ext_resource type="Texture2D" uid="uid://byyt6gntc3yw1" path="res://Characters/etana.png" id="1_oa4gf"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="2_rl3u0"]
@@ -17,32 +17,32 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5gve"]
 size = Vector2(25, 5.5)
 
-[node name="NpcSnail" type="Node2D"]
+[node name="NpcSnail" type="Node2D" unique_id=2124497465]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=886316508]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=221827906]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_q614x")
 centered = false
 offset = Vector2(-20.89, -35.88)
 
-[node name="Shadow" type="Sprite2D" parent="StaticBody2D"]
+[node name="Shadow" type="Sprite2D" parent="StaticBody2D" unique_id=382722916]
 z_index = -1
 texture_filter = 1
 position = Vector2(-4, -2)
 scale = Vector2(0.933333, 0.194444)
 texture = ExtResource("2_rl3u0")
 
-[node name="Shadow2" type="Sprite2D" parent="StaticBody2D"]
+[node name="Shadow2" type="Sprite2D" parent="StaticBody2D" unique_id=552622355]
 z_index = -1
 texture_filter = 1
 position = Vector2(-4, -2)
 scale = Vector2(0.933333, 0.194444)
 texture = ExtResource("2_rl3u0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=439178935]
 visible = false
 position = Vector2(-3, -3.25)
 shape = SubResource("RectangleShape2D_m5gve")

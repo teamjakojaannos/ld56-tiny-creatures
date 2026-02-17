@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cqnpbajdyitec"]
+[gd_scene format=3 uid="uid://cqnpbajdyitec"]
 
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
 [ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://Environment/pumpkin.png" id="2_tl8e4"]
@@ -201,894 +201,894 @@ _data = {
 &"default": SubResource("Animation_8wdl7")
 }
 
-[node name="Startingarea" type="Node2D"]
+[node name="Startingarea" type="Node2D" unique_id=570076121]
 y_sort_enabled = true
 
-[node name="LevelProps" type="Node2D" parent="."]
+[node name="LevelProps" type="Node2D" parent="." unique_id=1506435992]
 y_sort_enabled = true
 
-[node name="Tree12" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree12" parent="LevelProps" unique_id=1603281814 instance=ExtResource("2_7y7d8")]
 position = Vector2(-121, -207)
 
-[node name="Tree28" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree28" parent="LevelProps" unique_id=325932520 instance=ExtResource("2_7y7d8")]
 position = Vector2(-533, -100)
 
-[node name="Tree14" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree14" parent="LevelProps" unique_id=1079770741 instance=ExtResource("2_7y7d8")]
 position = Vector2(-251, -236)
 
-[node name="Tree44" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree44" parent="LevelProps" unique_id=893791308 instance=ExtResource("2_7y7d8")]
 position = Vector2(-160, -197)
 
-[node name="Tree46" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree46" parent="LevelProps" unique_id=1940359614 instance=ExtResource("2_7y7d8")]
 position = Vector2(-277, -206)
 
-[node name="Tree69" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree69" parent="LevelProps" unique_id=1377164303 instance=ExtResource("2_7y7d8")]
 position = Vector2(-55, -100)
 
-[node name="Tree84" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree84" parent="LevelProps" unique_id=1712387656 instance=ExtResource("2_7y7d8")]
 position = Vector2(34, -169)
 
-[node name="Tree72" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree72" parent="LevelProps" unique_id=738399128 instance=ExtResource("2_7y7d8")]
 position = Vector2(-47, -176)
 
-[node name="Tree65" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree65" parent="LevelProps" unique_id=1631174572 instance=ExtResource("2_7y7d8")]
 position = Vector2(-568, -280)
 
-[node name="Tree29" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree29" parent="LevelProps" unique_id=1753863947 instance=ExtResource("2_7y7d8")]
 position = Vector2(-468, -48)
 
-[node name="Tree37" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree37" parent="LevelProps" unique_id=545705123 instance=ExtResource("2_7y7d8")]
 position = Vector2(-394, 25)
 
-[node name="Tree78" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree78" parent="LevelProps" unique_id=1614900037 instance=ExtResource("2_7y7d8")]
 position = Vector2(-259, 66)
 
-[node name="Tree82" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree82" parent="LevelProps" unique_id=1433386602 instance=ExtResource("2_7y7d8")]
 position = Vector2(-165, 141)
 
-[node name="Tree109" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree109" parent="LevelProps" unique_id=1891597834 instance=ExtResource("2_7y7d8")]
 position = Vector2(-78, 210)
 
-[node name="Tree85" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree85" parent="LevelProps" unique_id=297310854 instance=ExtResource("2_7y7d8")]
 position = Vector2(18, -87)
 
-[node name="Tree89" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree89" parent="LevelProps" unique_id=245793105 instance=ExtResource("2_7y7d8")]
 position = Vector2(350, -77)
 
-[node name="Tree93" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree93" parent="LevelProps" unique_id=1876494156 instance=ExtResource("2_7y7d8")]
 position = Vector2(279, 237)
 
-[node name="Tree91" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree91" parent="LevelProps" unique_id=1191258824 instance=ExtResource("2_7y7d8")]
 position = Vector2(90, 18)
 
-[node name="Tree96" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree96" parent="LevelProps" unique_id=201174081 instance=ExtResource("2_7y7d8")]
 position = Vector2(140, -43)
 
-[node name="Tree87" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree87" parent="LevelProps" unique_id=203727977 instance=ExtResource("2_7y7d8")]
 position = Vector2(98, 206)
 
-[node name="Tree104" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree104" parent="LevelProps" unique_id=340268260 instance=ExtResource("2_7y7d8")]
 position = Vector2(440, 155)
 
-[node name="Tree81" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree81" parent="LevelProps" unique_id=488780873 instance=ExtResource("2_7y7d8")]
 position = Vector2(-336, 131)
 
-[node name="Tree26" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree26" parent="LevelProps" unique_id=2145692870 instance=ExtResource("2_7y7d8")]
 position = Vector2(-303, -260)
 
-[node name="Tree19" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree19" parent="LevelProps" unique_id=1055220730 instance=ExtResource("2_7y7d8")]
 position = Vector2(-376, -237)
 
-[node name="Tree43" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree43" parent="LevelProps" unique_id=991314648 instance=ExtResource("2_7y7d8")]
 position = Vector2(-457, -269)
 
-[node name="Tree25" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree25" parent="LevelProps" unique_id=727834438 instance=ExtResource("2_7y7d8")]
 position = Vector2(-505, -167)
 
-[node name="Tree22" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree22" parent="LevelProps" unique_id=1913495560 instance=ExtResource("2_7y7d8")]
 position = Vector2(-443, -195)
 
-[node name="Tree42" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree42" parent="LevelProps" unique_id=1079313601 instance=ExtResource("2_7y7d8")]
 position = Vector2(-502, -241)
 
-[node name="Tree47" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree47" parent="LevelProps" unique_id=145960625 instance=ExtResource("2_7y7d8")]
 position = Vector2(-566, -216)
 
-[node name="Tree17" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree17" parent="LevelProps" unique_id=1852664133 instance=ExtResource("3_tanrn")]
 position = Vector2(-337, -217)
 
-[node name="Tree24" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree24" parent="LevelProps" unique_id=1395028339 instance=ExtResource("3_tanrn")]
 position = Vector2(-477, -233)
 
-[node name="Tree33" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree33" parent="LevelProps" unique_id=911094235 instance=ExtResource("3_tanrn")]
 position = Vector2(-477, -233)
 
-[node name="Tree50" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree50" parent="LevelProps" unique_id=53689575 instance=ExtResource("3_tanrn")]
 position = Vector2(-541, -262)
 
-[node name="Tree51" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree51" parent="LevelProps" unique_id=980655872 instance=ExtResource("3_tanrn")]
 position = Vector2(-498, -283)
 
-[node name="Tree41" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree41" parent="LevelProps" unique_id=119070283 instance=ExtResource("3_tanrn")]
 position = Vector2(-538, -211)
 
-[node name="Tree23" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree23" parent="LevelProps" unique_id=1277668906 instance=ExtResource("3_tanrn")]
 position = Vector2(-421, -254)
 
-[node name="Tree34" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree34" parent="LevelProps" unique_id=1863684669 instance=ExtResource("3_tanrn")]
 position = Vector2(-560, -160)
 
-[node name="Tree56" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree56" parent="LevelProps" unique_id=1742188601 instance=ExtResource("3_tanrn")]
 position = Vector2(-572, -4)
 
-[node name="Tree70" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree70" parent="LevelProps" unique_id=1528982560 instance=ExtResource("3_tanrn")]
 position = Vector2(-88, -168)
 
-[node name="Tree15" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree15" parent="LevelProps" unique_id=746944920 instance=ExtResource("3_tanrn")]
 position = Vector2(-176, -248)
 
-[node name="Tree68" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree68" parent="LevelProps" unique_id=745642806 instance=ExtResource("3_tanrn")]
 position = Vector2(-166, -150)
 
-[node name="Tree74" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree74" parent="LevelProps" unique_id=459300956 instance=ExtResource("3_tanrn")]
 position = Vector2(-215, -220)
 
-[node name="Tree27" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree27" parent="LevelProps" unique_id=1066596916 instance=ExtResource("3_tanrn")]
 position = Vector2(-485, -115)
 
-[node name="Tree30" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree30" parent="LevelProps" unique_id=1382203323 instance=ExtResource("3_tanrn")]
 position = Vector2(-523, -22)
 
-[node name="Tree39" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree39" parent="LevelProps" unique_id=793163892 instance=ExtResource("3_tanrn")]
 position = Vector2(-523, -22)
 
-[node name="Tree40" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree40" parent="LevelProps" unique_id=1048688834 instance=ExtResource("3_tanrn")]
 position = Vector2(-558, -90)
 
-[node name="Tree147" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree147" parent="LevelProps" unique_id=951037362 instance=ExtResource("2_7y7d8")]
 position = Vector2(-409, -293)
 
-[node name="Tree148" parent="LevelProps" instance=ExtResource("2_7y7d8")]
+[node name="Tree148" parent="LevelProps" unique_id=2019580148 instance=ExtResource("2_7y7d8")]
 position = Vector2(-286, -290)
 
-[node name="Tree154" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree154" parent="LevelProps" unique_id=193978267 instance=ExtResource("3_tanrn")]
 position = Vector2(-474, -306)
 
-[node name="Tree170" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree170" parent="LevelProps" unique_id=385697354 instance=ExtResource("3_tanrn")]
 position = Vector2(-228, -291)
 
-[node name="Tree157" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree157" parent="LevelProps" unique_id=1568461016 instance=ExtResource("3_tanrn")]
 position = Vector2(-341, -283)
 
-[node name="Tree158" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree158" parent="LevelProps" unique_id=551035578 instance=ExtResource("3_tanrn")]
 position = Vector2(-384, -280)
 
-[node name="Tree159" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree159" parent="LevelProps" unique_id=148608921 instance=ExtResource("3_tanrn")]
 position = Vector2(-425, -267)
 
-[node name="Tree32" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree32" parent="LevelProps" unique_id=467376991 instance=ExtResource("3_tanrn")]
 position = Vector2(-437, -4)
 
-[node name="Tree36" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree36" parent="LevelProps" unique_id=167720155 instance=ExtResource("3_tanrn")]
 position = Vector2(-357, -9)
 
-[node name="Tree80" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree80" parent="LevelProps" unique_id=771536457 instance=ExtResource("3_tanrn")]
 position = Vector2(-377, 97)
 
-[node name="Tree143" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree143" parent="LevelProps" unique_id=1682285404 instance=ExtResource("3_tanrn")]
 position = Vector2(-255, 148)
 
-[node name="Tree45" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree45" parent="LevelProps" unique_id=94386503 instance=ExtResource("3_tanrn")]
 position = Vector2(-301, -29)
 
-[node name="Tree79" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree79" parent="LevelProps" unique_id=584632115 instance=ExtResource("3_tanrn")]
 position = Vector2(-323, 55)
 
-[node name="Tree73" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree73" parent="LevelProps" unique_id=269479155 instance=ExtResource("3_tanrn")]
 position = Vector2(-291, 113)
 
-[node name="Tree18" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree18" parent="LevelProps" unique_id=1000620678 instance=ExtResource("3_tanrn")]
 position = Vector2(-233, -173)
 
-[node name="Tree71" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree71" parent="LevelProps" unique_id=1403764434 instance=ExtResource("3_tanrn")]
 position = Vector2(-11, -150)
 
-[node name="Tree76" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree76" parent="LevelProps" unique_id=760440962 instance=ExtResource("3_tanrn")]
 position = Vector2(-15, -41)
 
-[node name="Tree97" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree97" parent="LevelProps" unique_id=2097413086 instance=ExtResource("3_tanrn")]
 position = Vector2(165, -4)
 
-[node name="Tree100" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree100" parent="LevelProps" unique_id=570391294 instance=ExtResource("3_tanrn")]
 position = Vector2(285, -160)
 
-[node name="Tree101" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree101" parent="LevelProps" unique_id=831033949 instance=ExtResource("3_tanrn")]
 position = Vector2(263, -211)
 
-[node name="Tree102" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree102" parent="LevelProps" unique_id=2047747294 instance=ExtResource("3_tanrn")]
 position = Vector2(338, -192)
 
-[node name="Tree92" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree92" parent="LevelProps" unique_id=177049173 instance=ExtResource("3_tanrn")]
 position = Vector2(75, -50)
 
-[node name="Tree77" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree77" parent="LevelProps" unique_id=940918087 instance=ExtResource("3_tanrn")]
 position = Vector2(-145, 226)
 
-[node name="Tree99" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree99" parent="LevelProps" unique_id=302124274 instance=ExtResource("3_tanrn")]
 position = Vector2(-208, 208)
 
-[node name="Tree98" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree98" parent="LevelProps" unique_id=194498062 instance=ExtResource("3_tanrn")]
 position = Vector2(-205, 30)
 
-[node name="Tree108" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree108" parent="LevelProps" unique_id=623398418 instance=ExtResource("3_tanrn")]
 position = Vector2(-158, 65)
 
-[node name="Tree107" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree107" parent="LevelProps" unique_id=1717285566 instance=ExtResource("3_tanrn")]
 position = Vector2(-88, -54)
 
-[node name="Tree83" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree83" parent="LevelProps" unique_id=1986754243 instance=ExtResource("3_tanrn")]
 position = Vector2(9, 245)
 
-[node name="Tree110" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree110" parent="LevelProps" unique_id=263353411 instance=ExtResource("3_tanrn")]
 position = Vector2(-75, 266)
 
-[node name="Tree90" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree90" parent="LevelProps" unique_id=785468935 instance=ExtResource("3_tanrn")]
 position = Vector2(136, -95)
 
-[node name="Tree86" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree86" parent="LevelProps" unique_id=1499588879 instance=ExtResource("3_tanrn")]
 position = Vector2(169, 235)
 
-[node name="Tree95" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree95" parent="LevelProps" unique_id=1598731477 instance=ExtResource("3_tanrn")]
 position = Vector2(27, 11)
 
-[node name="Tree88" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree88" parent="LevelProps" unique_id=1254093853 instance=ExtResource("3_tanrn")]
 position = Vector2(236, 262)
 
-[node name="Tree94" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree94" parent="LevelProps" unique_id=331619239 instance=ExtResource("3_tanrn")]
 position = Vector2(222, 202)
 
-[node name="Tree105" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree105" parent="LevelProps" unique_id=947685684 instance=ExtResource("3_tanrn")]
 position = Vector2(390, 189)
 
-[node name="Tree106" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree106" parent="LevelProps" unique_id=628917270 instance=ExtResource("3_tanrn")]
 position = Vector2(315, 131)
 
-[node name="Tree111" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree111" parent="LevelProps" unique_id=1032452632 instance=ExtResource("3_tanrn")]
 position = Vector2(464, 93)
 
-[node name="Tree103" parent="LevelProps" instance=ExtResource("3_tanrn")]
+[node name="Tree103" parent="LevelProps" unique_id=1465330779 instance=ExtResource("3_tanrn")]
 position = Vector2(561, 50)
 
-[node name="TreePile1" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile1" parent="LevelProps" unique_id=1060561601 instance=ExtResource("4_c3boq")]
 position = Vector2(-431, 60)
 
-[node name="TreePile4" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile4" parent="LevelProps" unique_id=581637604 instance=ExtResource("4_c3boq")]
 position = Vector2(-580, 60)
 
-[node name="TreePile9" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile9" parent="LevelProps" unique_id=1752521022 instance=ExtResource("4_c3boq")]
 position = Vector2(-491, 187)
 
-[node name="TreePile10" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile10" parent="LevelProps" unique_id=413294938 instance=ExtResource("4_c3boq")]
 position = Vector2(-377, 208)
 
-[node name="TreePile11" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile11" parent="LevelProps" unique_id=1135686875 instance=ExtResource("4_c3boq")]
 position = Vector2(-245, 217)
 
-[node name="TreePile12" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile12" parent="LevelProps" unique_id=2095437231 instance=ExtResource("4_c3boq")]
 position = Vector2(-166, 320)
 
-[node name="TreePile16" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile16" parent="LevelProps" unique_id=2001935578 instance=ExtResource("4_c3boq")]
 position = Vector2(-311, 342)
 
-[node name="TreePile13" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile13" parent="LevelProps" unique_id=346246910 instance=ExtResource("4_c3boq")]
 position = Vector2(-50, 350)
 
-[node name="TreePile14" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile14" parent="LevelProps" unique_id=1040405689 instance=ExtResource("4_c3boq")]
 position = Vector2(86, 319)
 
-[node name="TreePile15" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile15" parent="LevelProps" unique_id=456822528 instance=ExtResource("4_c3boq")]
 position = Vector2(224, 341)
 
-[node name="TreePile17" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile17" parent="LevelProps" unique_id=607091612 instance=ExtResource("4_c3boq")]
 position = Vector2(364, 279)
 
-[node name="TreePile18" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile18" parent="LevelProps" unique_id=333450073 instance=ExtResource("4_c3boq")]
 position = Vector2(382, 393)
 
-[node name="TreePile19" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile19" parent="LevelProps" unique_id=604149275 instance=ExtResource("4_c3boq")]
 position = Vector2(516, 263)
 
-[node name="TreePile25" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile25" parent="LevelProps" unique_id=1693669698 instance=ExtResource("4_c3boq")]
 position = Vector2(667, 255)
 
-[node name="TreePile20" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile20" parent="LevelProps" unique_id=184023498 instance=ExtResource("4_c3boq")]
 position = Vector2(552, 135)
 
-[node name="TreePile26" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile26" parent="LevelProps" unique_id=1684339830 instance=ExtResource("4_c3boq")]
 position = Vector2(710, 156)
 
-[node name="TreePile21" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile21" parent="LevelProps" unique_id=1319221780 instance=ExtResource("4_c3boq")]
 position = Vector2(669, 51)
 
-[node name="TreePile27" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile27" parent="LevelProps" unique_id=963821566 instance=ExtResource("4_c3boq")]
 position = Vector2(705, -43)
 
-[node name="TreePile29" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile29" parent="LevelProps" unique_id=1595550967 instance=ExtResource("4_c3boq")]
 position = Vector2(623, -114)
 
-[node name="TreePile30" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile30" parent="LevelProps" unique_id=2113105936 instance=ExtResource("4_c3boq")]
 position = Vector2(810, 72)
 
-[node name="TreePile22" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile22" parent="LevelProps" unique_id=1605495267 instance=ExtResource("4_c3boq")]
 position = Vector2(252, -93)
 
-[node name="TreePile28" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile28" parent="LevelProps" unique_id=308661194 instance=ExtResource("4_c3boq")]
 position = Vector2(264, -178)
 
-[node name="TreePile23" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile23" parent="LevelProps" unique_id=264479114 instance=ExtResource("4_c3boq")]
 position = Vector2(121, -165)
 
-[node name="TreePile5" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile5" parent="LevelProps" unique_id=1804371398 instance=ExtResource("4_c3boq")]
 position = Vector2(-544, -324)
 
-[node name="TreePile6" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile6" parent="LevelProps" unique_id=1224103010 instance=ExtResource("4_c3boq")]
 position = Vector2(-397, -347)
 
-[node name="TreePile7" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile7" parent="LevelProps" unique_id=1645701211 instance=ExtResource("4_c3boq")]
 position = Vector2(-234, -353)
 
-[node name="TreePile8" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile8" parent="LevelProps" unique_id=347846727 instance=ExtResource("4_c3boq")]
 position = Vector2(-73, -285)
 
-[node name="TreePile32" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile32" parent="LevelProps" unique_id=999238349 instance=ExtResource("4_c3boq")]
 position = Vector2(54, -287)
 
-[node name="TreePile2" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile2" parent="LevelProps" unique_id=691832645 instance=ExtResource("4_c3boq")]
 position = Vector2(-562, -78)
 
-[node name="TreePile3" parent="LevelProps" instance=ExtResource("4_c3boq")]
+[node name="TreePile3" parent="LevelProps" unique_id=468499349 instance=ExtResource("4_c3boq")]
 position = Vector2(-560, -199)
 
-[node name="Node2D" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D" parent="LevelProps" unique_id=1223679607 instance=ExtResource("5_cqeun")]
 position = Vector2(-394, -225)
 
-[node name="Node2D4" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D4" parent="LevelProps" unique_id=2097565256 instance=ExtResource("5_cqeun")]
 position = Vector2(-128, -137)
 
-[node name="Node2D6" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D6" parent="LevelProps" unique_id=303931043 instance=ExtResource("5_cqeun")]
 position = Vector2(432, 176)
 
-[node name="Node2D13" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D13" parent="LevelProps" unique_id=1781977422 instance=ExtResource("5_cqeun")]
 position = Vector2(575, -24)
 
-[node name="Node2D14" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D14" parent="LevelProps" unique_id=205415510 instance=ExtResource("5_cqeun")]
 position = Vector2(332, -53)
 scale = Vector2(-1, 1)
 
-[node name="Node2D8" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D8" parent="LevelProps" unique_id=741959790 instance=ExtResource("5_cqeun")]
 position = Vector2(123, 215)
 
-[node name="Node2D11" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D11" parent="LevelProps" unique_id=1269894813 instance=ExtResource("5_cqeun")]
 position = Vector2(54, -128)
 
-[node name="Node2D12" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D12" parent="LevelProps" unique_id=190981871 instance=ExtResource("5_cqeun")]
 position = Vector2(-6, -6)
 
-[node name="Node2D9" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D9" parent="LevelProps" unique_id=1879526571 instance=ExtResource("5_cqeun")]
 position = Vector2(-131, 243)
 
-[node name="Node2D10" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D10" parent="LevelProps" unique_id=753526694 instance=ExtResource("5_cqeun")]
 position = Vector2(-207, 108)
 
-[node name="Node2D5" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D5" parent="LevelProps" unique_id=1795816834 instance=ExtResource("5_cqeun")]
 position = Vector2(-304, -11)
 scale = Vector2(-1, 1)
 
-[node name="Node2D2" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D2" parent="LevelProps" unique_id=2031155266 instance=ExtResource("5_cqeun")]
 position = Vector2(-487, -213)
 
-[node name="Node2D3" parent="LevelProps" instance=ExtResource("5_cqeun")]
+[node name="Node2D3" parent="LevelProps" unique_id=1894634124 instance=ExtResource("5_cqeun")]
 position = Vector2(-522, -131)
 
-[node name="Sieni1" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni1" parent="LevelProps" unique_id=420970676 instance=ExtResource("6_01lmh")]
 position = Vector2(-329, -201)
 
-[node name="Sieni9" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni9" parent="LevelProps" unique_id=1755313246 instance=ExtResource("6_01lmh")]
 position = Vector2(-114, -132)
 
-[node name="Sieni21" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni21" parent="LevelProps" unique_id=1977055251 instance=ExtResource("6_01lmh")]
 position = Vector2(-44, -37)
 
-[node name="Sieni33" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni33" parent="LevelProps" unique_id=2145498241 instance=ExtResource("6_01lmh")]
 position = Vector2(-218, 121)
 
-[node name="Sieni26" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni26" parent="LevelProps" unique_id=2087995421 instance=ExtResource("6_01lmh")]
 position = Vector2(74, -15)
 
-[node name="Sieni8" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni8" parent="LevelProps" unique_id=1842116363 instance=ExtResource("6_01lmh")]
 position = Vector2(-217, -165)
 
-[node name="Sieni15" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni15" parent="LevelProps" unique_id=438367210 instance=ExtResource("6_01lmh")]
 position = Vector2(587, -12)
 
-[node name="Sieni28" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni28" parent="LevelProps" unique_id=373099674 instance=ExtResource("6_01lmh")]
 position = Vector2(277, -22)
 
-[node name="Sieni23" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni23" parent="LevelProps" unique_id=889591704 instance=ExtResource("6_01lmh")]
 position = Vector2(118, -91)
 
-[node name="Sieni17" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni17" parent="LevelProps" unique_id=1131585602 instance=ExtResource("6_01lmh")]
 position = Vector2(60, -4)
 
-[node name="Sieni31" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni31" parent="LevelProps" unique_id=738934109 instance=ExtResource("6_01lmh")]
 position = Vector2(-171, 230)
 
-[node name="Sieni5" parent="LevelProps" instance=ExtResource("6_01lmh")]
+[node name="Sieni5" parent="LevelProps" unique_id=1009082223 instance=ExtResource("6_01lmh")]
 position = Vector2(-399, -250)
 
-[node name="Sieni13" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni13" parent="LevelProps" unique_id=1718161582 instance=ExtResource("7_2d1eo")]
 position = Vector2(-27, -118)
 
-[node name="Sieni12" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni12" parent="LevelProps" unique_id=1837981917 instance=ExtResource("7_2d1eo")]
 position = Vector2(-364, 24)
 
-[node name="Sieni18" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni18" parent="LevelProps" unique_id=1621401677 instance=ExtResource("7_2d1eo")]
 position = Vector2(-10, 7)
 
-[node name="Sieni32" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni32" parent="LevelProps" unique_id=198957421 instance=ExtResource("7_2d1eo")]
 position = Vector2(-147, 75)
 
-[node name="Sieni24" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni24" parent="LevelProps" unique_id=1285982299 instance=ExtResource("7_2d1eo")]
 position = Vector2(439, 194)
 
-[node name="Sieni19" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni19" parent="LevelProps" unique_id=482288529 instance=ExtResource("7_2d1eo")]
 position = Vector2(295, 135)
 
-[node name="Sieni25" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni25" parent="LevelProps" unique_id=1772565023 instance=ExtResource("7_2d1eo")]
 position = Vector2(145, 5)
 
-[node name="Sieni30" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni30" parent="LevelProps" unique_id=1252037930 instance=ExtResource("7_2d1eo")]
 position = Vector2(337, -41)
 
-[node name="Sieni29" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni29" parent="LevelProps" unique_id=1610437563 instance=ExtResource("7_2d1eo")]
 position = Vector2(560, -130)
 
-[node name="Sieni6" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni6" parent="LevelProps" unique_id=1010581420 instance=ExtResource("7_2d1eo")]
 position = Vector2(-462, -23)
 
-[node name="Sieni7" parent="LevelProps" instance=ExtResource("7_2d1eo")]
+[node name="Sieni7" parent="LevelProps" unique_id=152754129 instance=ExtResource("7_2d1eo")]
 position = Vector2(-547, -59)
 
-[node name="Sieni10" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni10" parent="LevelProps" unique_id=856113865 instance=ExtResource("8_naa27")]
 position = Vector2(-140, -186)
 
-[node name="Sieni27" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni27" parent="LevelProps" unique_id=1340296039 instance=ExtResource("8_naa27")]
 position = Vector2(204, -11)
 
-[node name="Sieni22" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni22" parent="LevelProps" unique_id=617361069 instance=ExtResource("8_naa27")]
 position = Vector2(28, -63)
 
-[node name="Sieni4" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni4" parent="LevelProps" unique_id=225031130 instance=ExtResource("8_naa27")]
 position = Vector2(-449, -126)
 
-[node name="Sieni11" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni11" parent="LevelProps" unique_id=741487039 instance=ExtResource("8_naa27")]
 position = Vector2(-399, -66)
 
-[node name="Sieni14" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni14" parent="LevelProps" unique_id=2089329982 instance=ExtResource("8_naa27")]
 position = Vector2(-421, 44)
 
-[node name="Sieni16" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni16" parent="LevelProps" unique_id=1914164388 instance=ExtResource("8_naa27")]
 position = Vector2(108, 237)
 
-[node name="Sieni20" parent="LevelProps" instance=ExtResource("8_naa27")]
+[node name="Sieni20" parent="LevelProps" unique_id=1707303356 instance=ExtResource("8_naa27")]
 position = Vector2(582, 62)
 
-[node name="BigStone" parent="LevelProps" instance=ExtResource("9_m5587")]
+[node name="BigStone" parent="LevelProps" unique_id=497783652 instance=ExtResource("9_m5587")]
 position = Vector2(-263, -187)
 
-[node name="BigStone2" parent="LevelProps" instance=ExtResource("9_m5587")]
+[node name="BigStone2" parent="LevelProps" unique_id=1143268244 instance=ExtResource("9_m5587")]
 position = Vector2(-437, -76)
 
-[node name="BigStone5" parent="LevelProps" instance=ExtResource("9_m5587")]
+[node name="BigStone5" parent="LevelProps" unique_id=1121720256 instance=ExtResource("9_m5587")]
 position = Vector2(-231, 42)
 
-[node name="BigStone6" parent="LevelProps" instance=ExtResource("9_m5587")]
+[node name="BigStone6" parent="LevelProps" unique_id=1156276219 instance=ExtResource("9_m5587")]
 position = Vector2(11, 266)
 
-[node name="BigStone7" parent="LevelProps" instance=ExtResource("9_m5587")]
+[node name="BigStone7" parent="LevelProps" unique_id=1990478864 instance=ExtResource("9_m5587")]
 position = Vector2(366, 214)
 
-[node name="Stones10" type="Sprite2D" parent="LevelProps"]
+[node name="Stones10" type="Sprite2D" parent="LevelProps" unique_id=1432570687]
 texture_filter = 1
 position = Vector2(-293, -225)
 texture = ExtResource("10_8ld2n")
 
-[node name="Stones16" type="Sprite2D" parent="LevelProps"]
+[node name="Stones16" type="Sprite2D" parent="LevelProps" unique_id=1920995965]
 texture_filter = 1
 position = Vector2(-312, -155)
 texture = ExtResource("10_8ld2n")
 
-[node name="Stones23" type="Sprite2D" parent="LevelProps"]
+[node name="Stones23" type="Sprite2D" parent="LevelProps" unique_id=1323304247]
 texture_filter = 1
 position = Vector2(-189, 52)
 texture = ExtResource("10_8ld2n")
 
-[node name="Stones18" type="Sprite2D" parent="LevelProps"]
+[node name="Stones18" type="Sprite2D" parent="LevelProps" unique_id=1554986753]
 texture_filter = 1
 position = Vector2(325, 159)
 texture = ExtResource("10_8ld2n")
 
-[node name="Stones25" type="Sprite2D" parent="LevelProps"]
+[node name="Stones25" type="Sprite2D" parent="LevelProps" unique_id=1365159981]
 texture_filter = 1
 position = Vector2(197, 14)
 texture = ExtResource("10_8ld2n")
 
-[node name="Stones11" type="Sprite2D" parent="LevelProps"]
+[node name="Stones11" type="Sprite2D" parent="LevelProps" unique_id=987226196]
 texture_filter = 1
 position = Vector2(-514, -95)
 texture = ExtResource("10_8ld2n")
 
-[node name="Stones14" type="Sprite2D" parent="LevelProps"]
+[node name="Stones14" type="Sprite2D" parent="LevelProps" unique_id=1301299382]
 texture_filter = 1
 position = Vector2(-498, -61)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones13" type="Sprite2D" parent="LevelProps"]
+[node name="Stones13" type="Sprite2D" parent="LevelProps" unique_id=676671050]
 texture_filter = 1
 position = Vector2(-196, -196)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones19" type="Sprite2D" parent="LevelProps"]
+[node name="Stones19" type="Sprite2D" parent="LevelProps" unique_id=1128645255]
 texture_filter = 1
 position = Vector2(60, -102)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones17" type="Sprite2D" parent="LevelProps"]
+[node name="Stones17" type="Sprite2D" parent="LevelProps" unique_id=1879719358]
 texture_filter = 1
 position = Vector2(76, 218)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones22" type="Sprite2D" parent="LevelProps"]
+[node name="Stones22" type="Sprite2D" parent="LevelProps" unique_id=912091842]
 texture_filter = 1
 position = Vector2(-106, 188)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones24" type="Sprite2D" parent="LevelProps"]
+[node name="Stones24" type="Sprite2D" parent="LevelProps" unique_id=419962890]
 texture_filter = 1
 position = Vector2(18, 165)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones21" type="Sprite2D" parent="LevelProps"]
+[node name="Stones21" type="Sprite2D" parent="LevelProps" unique_id=2059231893]
 texture_filter = 1
 position = Vector2(-203, 219)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones20" type="Sprite2D" parent="LevelProps"]
+[node name="Stones20" type="Sprite2D" parent="LevelProps" unique_id=343110536]
 texture_filter = 1
 position = Vector2(194, -114)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones15" type="Sprite2D" parent="LevelProps"]
+[node name="Stones15" type="Sprite2D" parent="LevelProps" unique_id=1980618431]
 texture_filter = 1
 position = Vector2(-327, -53)
 texture = ExtResource("11_t3v3c")
 
-[node name="Stones12" type="Sprite2D" parent="LevelProps"]
+[node name="Stones12" type="Sprite2D" parent="LevelProps" unique_id=178648694]
 texture_filter = 1
 position = Vector2(-477, -196)
 texture = ExtResource("11_t3v3c")
 
-[node name="Grass" type="Node2D" parent="LevelProps"]
+[node name="Grass" type="Node2D" parent="LevelProps" unique_id=958104481]
 z_index = -2
 
-[node name="Grass44" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass44" type="Sprite2D" parent="LevelProps/Grass" unique_id=1842816564]
 texture_filter = 1
 position = Vector2(-412, -105)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass47" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass47" type="Sprite2D" parent="LevelProps/Grass" unique_id=1593984913]
 texture_filter = 1
 position = Vector2(-232, -56)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass48" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass48" type="Sprite2D" parent="LevelProps/Grass" unique_id=1256806576]
 texture_filter = 1
 position = Vector2(-24, 52)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass67" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass67" type="Sprite2D" parent="LevelProps/Grass" unique_id=1468946018]
 texture_filter = 1
 position = Vector2(-109, -14)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass49" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass49" type="Sprite2D" parent="LevelProps/Grass" unique_id=1752861093]
 texture_filter = 1
 position = Vector2(-154, -86)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass50" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass50" type="Sprite2D" parent="LevelProps/Grass" unique_id=1367143241]
 texture_filter = 1
 position = Vector2(-154, -50)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass101" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass101" type="Sprite2D" parent="LevelProps/Grass" unique_id=268836699]
 texture_filter = 1
 position = Vector2(178, 46)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass73" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass73" type="Sprite2D" parent="LevelProps/Grass" unique_id=1152034437]
 texture_filter = 1
 position = Vector2(87, 56)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass90" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass90" type="Sprite2D" parent="LevelProps/Grass" unique_id=1007709267]
 texture_filter = 1
 position = Vector2(164, -71)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass92" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass92" type="Sprite2D" parent="LevelProps/Grass" unique_id=35417870]
 texture_filter = 1
 position = Vector2(403, 16)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass89" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass89" type="Sprite2D" parent="LevelProps/Grass" unique_id=1533967565]
 texture_filter = 1
 position = Vector2(330, 51)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass105" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass105" type="Sprite2D" parent="LevelProps/Grass" unique_id=793083036]
 texture_filter = 1
 position = Vector2(427, -31)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass108" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass108" type="Sprite2D" parent="LevelProps/Grass" unique_id=1689732175]
 texture_filter = 1
 position = Vector2(442, -12)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass107" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass107" type="Sprite2D" parent="LevelProps/Grass" unique_id=1663644390]
 texture_filter = 1
 position = Vector2(456, -39)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass74" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass74" type="Sprite2D" parent="LevelProps/Grass" unique_id=1879635708]
 texture_filter = 1
 position = Vector2(12, 79)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass81" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass81" type="Sprite2D" parent="LevelProps/Grass" unique_id=1693488988]
 texture_filter = 1
 position = Vector2(56, 100)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass98" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass98" type="Sprite2D" parent="LevelProps/Grass" unique_id=927926944]
 texture_filter = 1
 position = Vector2(154, 119)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass86" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass86" type="Sprite2D" parent="LevelProps/Grass" unique_id=2084454473]
 texture_filter = 1
 position = Vector2(-12, 200)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass88" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass88" type="Sprite2D" parent="LevelProps/Grass" unique_id=2067097403]
 texture_filter = 1
 position = Vector2(-41, 189)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass78" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass78" type="Sprite2D" parent="LevelProps/Grass" unique_id=129512228]
 texture_filter = 1
 position = Vector2(23, 65)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass79" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass79" type="Sprite2D" parent="LevelProps/Grass" unique_id=1290692412]
 texture_filter = 1
 position = Vector2(-87, 128)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass46" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass46" type="Sprite2D" parent="LevelProps/Grass" unique_id=103977763]
 texture_filter = 1
 position = Vector2(-424, -167)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass45" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass45" type="Sprite2D" parent="LevelProps/Grass" unique_id=1821329798]
 texture_filter = 1
 position = Vector2(-295, -112)
 texture = ExtResource("12_yhk3p")
 
-[node name="Grass43" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass43" type="Sprite2D" parent="LevelProps/Grass" unique_id=886308136]
 texture_filter = 1
 position = Vector2(-298, -136)
 texture = ExtResource("13_leamw")
 
-[node name="Grass53" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass53" type="Sprite2D" parent="LevelProps/Grass" unique_id=1190394067]
 texture_filter = 1
 position = Vector2(-124, -175)
 texture = ExtResource("13_leamw")
 
-[node name="Grass55" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass55" type="Sprite2D" parent="LevelProps/Grass" unique_id=1496114998]
 texture_filter = 1
 position = Vector2(-199, -35)
 texture = ExtResource("13_leamw")
 
-[node name="Grass58" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass58" type="Sprite2D" parent="LevelProps/Grass" unique_id=201890169]
 texture_filter = 1
 position = Vector2(-126, -34)
 texture = ExtResource("13_leamw")
 
-[node name="Grass80" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass80" type="Sprite2D" parent="LevelProps/Grass" unique_id=200214875]
 texture_filter = 1
 position = Vector2(-117, 95)
 texture = ExtResource("13_leamw")
 
-[node name="Grass72" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass72" type="Sprite2D" parent="LevelProps/Grass" unique_id=1916930583]
 texture_filter = 1
 position = Vector2(-57, 22)
 texture = ExtResource("13_leamw")
 
-[node name="Grass71" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass71" type="Sprite2D" parent="LevelProps/Grass" unique_id=15583538]
 texture_filter = 1
 position = Vector2(124, 40)
 texture = ExtResource("13_leamw")
 
-[node name="Grass75" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass75" type="Sprite2D" parent="LevelProps/Grass" unique_id=204105873]
 texture_filter = 1
 position = Vector2(101, 83)
 texture = ExtResource("13_leamw")
 
-[node name="Grass85" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass85" type="Sprite2D" parent="LevelProps/Grass" unique_id=351170660]
 texture_filter = 1
 position = Vector2(-202, 73)
 texture = ExtResource("13_leamw")
 
-[node name="Grass84" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass84" type="Sprite2D" parent="LevelProps/Grass" unique_id=881776385]
 texture_filter = 1
 position = Vector2(-88, 70)
 texture = ExtResource("13_leamw")
 
-[node name="Grass97" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass97" type="Sprite2D" parent="LevelProps/Grass" unique_id=482631539]
 texture_filter = 1
 position = Vector2(-106, 11)
 texture = ExtResource("13_leamw")
 
-[node name="Grass82" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass82" type="Sprite2D" parent="LevelProps/Grass" unique_id=1933089229]
 texture_filter = 1
 position = Vector2(-70, 163)
 texture = ExtResource("13_leamw")
 
-[node name="Grass83" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass83" type="Sprite2D" parent="LevelProps/Grass" unique_id=644451925]
 texture_filter = 1
 position = Vector2(37, 131)
 texture = ExtResource("13_leamw")
 
-[node name="Grass87" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass87" type="Sprite2D" parent="LevelProps/Grass" unique_id=1336293028]
 texture_filter = 1
 position = Vector2(-54, 226)
 texture = ExtResource("13_leamw")
 
-[node name="Grass69" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass69" type="Sprite2D" parent="LevelProps/Grass" unique_id=268187886]
 texture_filter = 1
 position = Vector2(-58, -23)
 texture = ExtResource("13_leamw")
 
-[node name="Grass95" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass95" type="Sprite2D" parent="LevelProps/Grass" unique_id=198396234]
 texture_filter = 1
 position = Vector2(207, 67)
 texture = ExtResource("13_leamw")
 
-[node name="Grass100" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass100" type="Sprite2D" parent="LevelProps/Grass" unique_id=1296649319]
 texture_filter = 1
 position = Vector2(278, 19)
 texture = ExtResource("13_leamw")
 
-[node name="Grass99" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass99" type="Sprite2D" parent="LevelProps/Grass" unique_id=2048612672]
 texture_filter = 1
 position = Vector2(161, 77)
 texture = ExtResource("13_leamw")
 
-[node name="Grass103" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass103" type="Sprite2D" parent="LevelProps/Grass" unique_id=328629445]
 texture_filter = 1
 position = Vector2(260, 39)
 texture = ExtResource("13_leamw")
 
-[node name="Grass94" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass94" type="Sprite2D" parent="LevelProps/Grass" unique_id=283636850]
 texture_filter = 1
 position = Vector2(321, 22)
 texture = ExtResource("13_leamw")
 
-[node name="Grass93" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass93" type="Sprite2D" parent="LevelProps/Grass" unique_id=633919642]
 texture_filter = 1
 position = Vector2(399, -56)
 texture = ExtResource("13_leamw")
 
-[node name="Grass96" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass96" type="Sprite2D" parent="LevelProps/Grass" unique_id=1522327832]
 texture_filter = 1
 position = Vector2(475, -124)
 texture = ExtResource("13_leamw")
 
-[node name="Grass106" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass106" type="Sprite2D" parent="LevelProps/Grass" unique_id=1634439986]
 texture_filter = 1
 position = Vector2(426, -91)
 texture = ExtResource("13_leamw")
 
-[node name="Grass110" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass110" type="Sprite2D" parent="LevelProps/Grass" unique_id=473362309]
 texture_filter = 1
 position = Vector2(500, -19)
 texture = ExtResource("13_leamw")
 
-[node name="Grass111" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass111" type="Sprite2D" parent="LevelProps/Grass" unique_id=1365996372]
 texture_filter = 1
 position = Vector2(378, -8)
 texture = ExtResource("13_leamw")
 
-[node name="Grass109" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass109" type="Sprite2D" parent="LevelProps/Grass" unique_id=2105692951]
 texture_filter = 1
 position = Vector2(569, -116)
 texture = ExtResource("13_leamw")
 
-[node name="Grass91" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass91" type="Sprite2D" parent="LevelProps/Grass" unique_id=259144236]
 texture_filter = 1
 position = Vector2(164, -29)
 texture = ExtResource("13_leamw")
 
-[node name="Grass65" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass65" type="Sprite2D" parent="LevelProps/Grass" unique_id=638868929]
 texture_filter = 1
 position = Vector2(-411, 74)
 texture = ExtResource("13_leamw")
 
-[node name="Grass57" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass57" type="Sprite2D" parent="LevelProps/Grass" unique_id=986585754]
 texture_filter = 1
 position = Vector2(-248, -16)
 texture = ExtResource("13_leamw")
 
-[node name="Grass52" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass52" type="Sprite2D" parent="LevelProps/Grass" unique_id=1888186273]
 texture_filter = 1
 position = Vector2(-247, -156)
 texture = ExtResource("13_leamw")
 
-[node name="Grass51" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass51" type="Sprite2D" parent="LevelProps/Grass" unique_id=922422511]
 texture_filter = 1
 position = Vector2(-319, -92)
 texture = ExtResource("13_leamw")
 
-[node name="Grass54" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass54" type="Sprite2D" parent="LevelProps/Grass" unique_id=1398873280]
 texture_filter = 1
 position = Vector2(-379, -206)
 texture = ExtResource("13_leamw")
 
-[node name="Grass41" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass41" type="Sprite2D" parent="LevelProps/Grass" unique_id=597090033]
 texture_filter = 1
 position = Vector2(-365, -141)
 texture = ExtResource("14_i12ag")
 
-[node name="Grass42" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass42" type="Sprite2D" parent="LevelProps/Grass" unique_id=1198281037]
 texture_filter = 1
 position = Vector2(-213, -91)
 texture = ExtResource("14_i12ag")
 metadata/_edit_lock_ = true
 
-[node name="Grass66" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass66" type="Sprite2D" parent="LevelProps/Grass" unique_id=1761021173]
 texture_filter = 1
 position = Vector2(38, 34)
 texture = ExtResource("14_i12ag")
 metadata/_edit_lock_ = true
 
-[node name="Grass104" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass104" type="Sprite2D" parent="LevelProps/Grass" unique_id=1843576741]
 texture_filter = 1
 position = Vector2(474, -74)
 texture = ExtResource("14_i12ag")
 
-[node name="Grass77" type="Sprite2D" parent="LevelProps/Grass"]
+[node name="Grass77" type="Sprite2D" parent="LevelProps/Grass" unique_id=1860735729]
 texture_filter = 1
 position = Vector2(-35, 106)
 texture = ExtResource("14_i12ag")
 metadata/_edit_lock_ = true
 
-[node name="PuuEntrance" parent="LevelProps" instance=ExtResource("15_3aa4f")]
+[node name="PuuEntrance" parent="LevelProps" unique_id=1738778387 instance=ExtResource("15_3aa4f")]
 position = Vector2(453, -125)
 metadata/_edit_lock_ = true
 
-[node name="BGimage" type="Sprite2D" parent="LevelProps"]
+[node name="BGimage" type="Sprite2D" parent="LevelProps" unique_id=1097049621]
 light_mask = 3
 z_index = -3
 texture_filter = 3
@@ -1097,179 +1097,177 @@ scale = Vector2(38.6667, 22.5333)
 texture = ExtResource("16_4hpj2")
 metadata/_edit_lock_ = true
 
-[node name="AreaColliders" type="StaticBody2D" parent="LevelProps"]
+[node name="AreaColliders" type="StaticBody2D" parent="LevelProps" unique_id=1577250750]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=178266292]
 position = Vector2(-365, -360)
 shape = SubResource("RectangleShape2D_nk46w")
 
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1316616701]
 position = Vector2(-54.9074, -287.38)
 rotation = 0.387463
 shape = SubResource("RectangleShape2D_r8qtg")
 
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1645819303]
 position = Vector2(269.358, -186.521)
 shape = SubResource("RectangleShape2D_u0rt3")
 
-[node name="CollisionShape2D11" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1307760257]
 position = Vector2(571.19, -187.772)
 shape = SubResource("RectangleShape2D_pt7of")
 
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=696514031]
 position = Vector2(718.595, -242.886)
 shape = SubResource("RectangleShape2D_r3rf1")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1623894020]
 position = Vector2(-557.5, -166.5)
 shape = SubResource("RectangleShape2D_omfh6")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1360491727]
 position = Vector2(-536, 116)
 rotation = -0.181514
 shape = SubResource("RectangleShape2D_7jycl")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1904543352]
 position = Vector2(-374, 320)
 rotation = -2.39634
 shape = SubResource("RectangleShape2D_awexq")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=76626700]
 position = Vector2(167.281, 415)
 shape = SubResource("RectangleShape2D_pmwln")
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1595355499]
 position = Vector2(719.785, 148.219)
 shape = SubResource("RectangleShape2D_bh6h4")
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=2060039120]
 position = Vector2(635, 302)
 rotation = -2.43473
 shape = SubResource("RectangleShape2D_bmhng")
 
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="LevelProps/AreaColliders"]
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="LevelProps/AreaColliders" unique_id=1983064641]
 position = Vector2(692, -168)
 rotation = -0.811578
 shape = SubResource("RectangleShape2D_bekmy")
 
-[node name="Puska" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska" parent="LevelProps" unique_id=522444128 instance=ExtResource("17_g8vca")]
 position = Vector2(-312, -238)
 
-[node name="Puska2" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska2" parent="LevelProps" unique_id=1089140728 instance=ExtResource("17_g8vca")]
 position = Vector2(-191, -224)
 
-[node name="Puska3" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska3" parent="LevelProps" unique_id=1698022309 instance=ExtResource("17_g8vca")]
 position = Vector2(-67, -158)
 
-[node name="Puska4" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska4" parent="LevelProps" unique_id=1732356546 instance=ExtResource("17_g8vca")]
 position = Vector2(37, -143)
 
-[node name="Puska5" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska5" parent="LevelProps" unique_id=1545370726 instance=ExtResource("17_g8vca")]
 position = Vector2(56, -15)
 
-[node name="Puska15" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska15" parent="LevelProps" unique_id=1761113093 instance=ExtResource("17_g8vca")]
 position = Vector2(197, 246)
 
-[node name="Puska16" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska16" parent="LevelProps" unique_id=37322536 instance=ExtResource("17_g8vca")]
 position = Vector2(411, 204)
 
-[node name="Puska17" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska17" parent="LevelProps" unique_id=1195791489 instance=ExtResource("17_g8vca")]
 position = Vector2(469, 121)
 
-[node name="Puska18" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska18" parent="LevelProps" unique_id=1429252984 instance=ExtResource("17_g8vca")]
 position = Vector2(628, 143)
 
-[node name="Puska19" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska19" parent="LevelProps" unique_id=1076575029 instance=ExtResource("17_g8vca")]
 position = Vector2(265, -43)
 
-[node name="Puska10" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska10" parent="LevelProps" unique_id=774774452 instance=ExtResource("17_g8vca")]
 position = Vector2(41, -90)
 
-[node name="Puska11" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska11" parent="LevelProps" unique_id=2037333521 instance=ExtResource("17_g8vca")]
 position = Vector2(108, -53)
 
-[node name="Puska12" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska12" parent="LevelProps" unique_id=335104750 instance=ExtResource("17_g8vca")]
 position = Vector2(379, -88)
 
-[node name="Puska14" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska14" parent="LevelProps" unique_id=439975794 instance=ExtResource("17_g8vca")]
 position = Vector2(379, -88)
 
-[node name="Puska13" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska13" parent="LevelProps" unique_id=1507401554 instance=ExtResource("17_g8vca")]
 position = Vector2(347, -149)
 
-[node name="Puska6" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska6" parent="LevelProps" unique_id=717867734 instance=ExtResource("17_g8vca")]
 position = Vector2(-284, 13)
 
-[node name="Puska7" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska7" parent="LevelProps" unique_id=774901742 instance=ExtResource("17_g8vca")]
 position = Vector2(-304, 130)
 
-[node name="Puska8" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska8" parent="LevelProps" unique_id=413524255 instance=ExtResource("17_g8vca")]
 position = Vector2(-158, 175)
 
-[node name="Puska9" parent="LevelProps" instance=ExtResource("17_g8vca")]
+[node name="Puska9" parent="LevelProps" unique_id=62000518 instance=ExtResource("17_g8vca")]
 position = Vector2(-37, 277)
 
-[node name="WispPOI_Jack-o-Lantern" type="Area2D" parent="." node_paths=PackedStringArray("wisp_target")]
+[node name="WispPOI_Jack-o-Lantern" type="Area2D" parent="." unique_id=151748949 node_paths=PackedStringArray("wisp_target")]
 position = Vector2(53, 32)
 collision_layer = 0
 script = ExtResource("6_snoqo")
 wisp_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cvyegqu1qydw4"
 
-[node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern"]
+[node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern" unique_id=1688457559]
 position = Vector2(7, 37)
 shape = SubResource("CircleShape2D_61nev")
 debug_color = Color(0.65882355, 0.31764707, 1, 0.2784314)
 metadata/_edit_lock_ = true
 
-[node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern"]
+[node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern" unique_id=658169589]
 position = Vector2(0, -8)
 
-[node name="WispPOI_WhatIsThis" type="Area2D" parent="WispPOI_Jack-o-Lantern" node_paths=PackedStringArray("wisp_target")]
+[node name="WispPOI_WhatIsThis" type="Area2D" parent="WispPOI_Jack-o-Lantern" unique_id=220994320 node_paths=PackedStringArray("wisp_target")]
 collision_layer = 0
 script = ExtResource("6_snoqo")
 wisp_target = NodePath("Target")
 metadata/_custom_type_script = "uid://cvyegqu1qydw4"
 
-[node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis"]
+[node name="Shape" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" unique_id=710368254]
 position = Vector2(-43, 14)
 rotation = -0.9503483
 shape = SubResource("CapsuleShape2D_4ptxt")
 debug_color = Color(0.5529412, 0.56078434, 0, 0.14901961)
 metadata/_edit_lock_ = true
 
-[node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis"]
+[node name="Target" type="Marker2D" parent="WispPOI_Jack-o-Lantern/WispPOI_WhatIsThis" unique_id=1001266525]
 position = Vector2(-26, -4)
 
-[node name="Jack-o-Lantern" type="Node2D" parent="WispPOI_Jack-o-Lantern"]
+[node name="Jack-o-Lantern" type="Node2D" parent="WispPOI_Jack-o-Lantern" unique_id=139403039]
 y_sort_enabled = true
 script = ExtResource("18_4ptxt")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern"]
+[node name="StaticBody2D" type="StaticBody2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern" unique_id=614802979]
 y_sort_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D" unique_id=422269408]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_qsobr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D" unique_id=595151566]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qm78g")
 centered = false
 offset = Vector2(-15.805, -28.87)
 
-[node name="PointLight2D" type="PointLight2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern"]
+[node name="PointLight2D" type="PointLight2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern" unique_id=537887312]
 position = Vector2(0, -10)
 color = Color(0.691066, 0, 0.0651753, 1)
 energy = 0.0
 texture = SubResource("GradientTexture2D_wygyp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern"]
-libraries = {
-&"": SubResource("AnimationLibrary_5hlp4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern" unique_id=865085548]
+libraries/ = SubResource("AnimationLibrary_5hlp4")
 
 [connection signal="activate" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern/Jack-o-Lantern" method="_on_activate"]
 [connection signal="body_entered" from="WispPOI_Jack-o-Lantern" to="WispPOI_Jack-o-Lantern" method="_on_body_entered"]

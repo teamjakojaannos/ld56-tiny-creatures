@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dixywuqdau81y"]
+[gd_scene format=3 uid="uid://dixywuqdau81y"]
 
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="1_sd77c"]
 [ext_resource type="PackedScene" uid="uid://0bej41ibbv6e" path="res://Environment/bog_rock.tscn" id="2_y0lh8"]
@@ -24,29 +24,29 @@ _data = {
 }
 point_count = 2
 
-[node name="Bog" type="Node2D"]
+[node name="Bog" type="Node2D" unique_id=1450390566]
 
-[node name="PlayerSpawn" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1360620705 groups=["PlayerSpawn"]]
 
-[node name="Border" type="StaticBody2D" parent="."]
+[node name="Border" type="StaticBody2D" parent="." unique_id=658774201]
 collision_layer = 2
 collision_mask = 0
 
-[node name="Bottom" type="CollisionShape2D" parent="Border"]
+[node name="Bottom" type="CollisionShape2D" parent="Border" unique_id=1086042749]
 shape = SubResource("WorldBoundaryShape2D_vr34f")
 
-[node name="Left" type="CollisionShape2D" parent="Border"]
+[node name="Left" type="CollisionShape2D" parent="Border" unique_id=590241890]
 shape = SubResource("WorldBoundaryShape2D_haulv")
 
-[node name="Top" type="CollisionShape2D" parent="Border"]
+[node name="Top" type="CollisionShape2D" parent="Border" unique_id=1233740069]
 shape = SubResource("WorldBoundaryShape2D_8e8uv")
 
-[node name="Right" type="CollisionShape2D" parent="Border"]
+[node name="Right" type="CollisionShape2D" parent="Border" unique_id=1867444916]
 shape = SubResource("WorldBoundaryShape2D_jdmuq")
 
-[node name="BogMonster" parent="." instance=ExtResource("1_sd77c")]
+[node name="BogMonster" parent="." unique_id=425816170 instance=ExtResource("1_sd77c")]
 position = Vector2(150, -129)
 curve = SubResource("Curve2D_011ts")
 
-[node name="BogRock" parent="." instance=ExtResource("2_y0lh8")]
+[node name="BogRock" parent="." unique_id=1820602973 instance=ExtResource("2_y0lh8")]
 position = Vector2(190, -41)

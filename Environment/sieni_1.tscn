@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgc05m6sm8gve"]
+[gd_scene format=3 uid="uid://dgc05m6sm8gve"]
 
 [ext_resource type="Texture2D" uid="uid://c0o4uvy8jjlm7" path="res://Environment/Haperot.png" id="1_5o7f3"]
 
@@ -13,10 +13,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Sieni1" type="Node2D"]
+[node name="Sieni1" type="Node2D" unique_id=1243399123]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1337420450]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_42p5s")

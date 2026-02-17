@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://demks0smgy37a"]
+
+[ext_resource type="Script" uid="uid://obqnalqqxmbe" path="res://gameplay/dialogue/dialogue_ui.gd" id="1_t0wjt"]
+[ext_resource type="Shader" uid="uid://dk40upygk6i7i" path="res://gameplay/dialogue/background_smoke.vshader.tres" id="2_0iydt"]
+[ext_resource type="NoiseTexture3D" uid="uid://cguqcmrr27038" path="res://gameplay/dialogue/noise_texture_3d.tres" id="3_upbta"]
+[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="4_mhygu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_upbta"]
+shader = ExtResource("2_0iydt")
+shader_parameter/Noise3D = ExtResource("3_upbta")
+
+[node name="DialogueUi" type="Control" unique_id=1956708307]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0wjt")
+
+[node name="ClipMask" type="ColorRect" parent="." unique_id=1226697503]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ClipMask" unique_id=1156920455]
+material = SubResource("ShaderMaterial_upbta")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_mhygu")

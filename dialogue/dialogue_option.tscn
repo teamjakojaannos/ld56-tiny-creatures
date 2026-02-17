@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://8iybuks6ooby"]
+[gd_scene format=3 uid="uid://8iybuks6ooby"]
 
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="1_3d6se"]
 [ext_resource type="Script" uid="uid://b3gjoktyqcmkc" path="res://dialogue/DialogueOption.cs" id="2_oat3g"]
@@ -7,7 +7,7 @@
 resource_local_to_scene = true
 font = ExtResource("1_3d6se")
 
-[node name="Option" type="HBoxContainer" node_paths=PackedStringArray("SelectionIndicator", "OptionIndexLabel", "TextContentLabel")]
+[node name="Option" type="HBoxContainer" unique_id=1906977238 node_paths=PackedStringArray("SelectionIndicator", "OptionIndexLabel", "TextContentLabel")]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/separation = 8
@@ -17,20 +17,20 @@ OptionIndexLabel = NodePath("OptionIndex")
 TextContentLabel = NodePath("TextContent")
 LabelSettings = SubResource("LabelSettings_2reyo")
 
-[node name="SelectionIndicator" type="Label" parent="."]
+[node name="SelectionIndicator" type="Label" parent="." unique_id=1501534640]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 mouse_filter = 1
 text = ">"
 label_settings = SubResource("LabelSettings_2reyo")
 
-[node name="OptionIndex" type="Label" parent="."]
+[node name="OptionIndex" type="Label" parent="." unique_id=111058582]
 layout_mode = 2
 mouse_filter = 1
 text = "1:"
 label_settings = SubResource("LabelSettings_2reyo")
 
-[node name="TextContent" type="Label" parent="."]
+[node name="TextContent" type="Label" parent="." unique_id=1474606813]
 layout_mode = 2
 mouse_filter = 1
 text = "Olutta?? Tällaisessa tilanteessa?"

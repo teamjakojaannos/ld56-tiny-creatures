@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://lqgrfvh7c3b0"]
+[gd_scene format=3 uid="uid://lqgrfvh7c3b0"]
 
 [ext_resource type="Script" uid="uid://cupsisa6427jy" path="res://mobs/BogMonster.cs" id="1_80vso"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_sf537"]
@@ -363,6 +363,47 @@ tracks/8/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_n7kaw"]
+resource_name = "go_underwater"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"GoUnderwaterAnimationDone"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.90735e-06, 1.90735e-06), Vector2(0, 5)]
+}
+
 [sub_resource type="Animation" id="Animation_r7x2t"]
 resource_name = "start_attack"
 length = 0.7
@@ -513,47 +554,6 @@ tracks/11/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_n7kaw"]
-resource_name = "go_underwater"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"GoUnderwaterAnimationDone"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.90735e-06, 1.90735e-06), Vector2(0, 5)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpi5j"]
 _data = {
 &"RESET": SubResource("Animation_m8ex1"),
@@ -624,46 +624,44 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="BogMonster" type="Path2D"]
+[node name="BogMonster" type="Path2D" unique_id=2042745625]
 
-[node name="BogMonsterEntity" type="PathFollow2D" parent="."]
+[node name="BogMonsterEntity" type="PathFollow2D" parent="." unique_id=1947887033]
 rotates = false
 loop = false
 script = ExtResource("1_80vso")
 WaterSplash = ExtResource("2_sgc4p")
 Stats = ExtResource("3_ht117")
 
-[node name="Sprite2D" type="Sprite2D" parent="BogMonsterEntity"]
+[node name="Sprite2D" type="Sprite2D" parent="BogMonsterEntity" unique_id=35020633]
 texture_filter = 1
 position = Vector2(1.90735e-06, 1.90735e-06)
 texture = ExtResource("2_sf537")
 
-[node name="SightCone" type="Area2D" parent="BogMonsterEntity"]
+[node name="SightCone" type="Area2D" parent="BogMonsterEntity" unique_id=1349965467]
 collision_layer = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BogMonsterEntity/SightCone"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BogMonsterEntity/SightCone" unique_id=219593219]
 polygon = PackedVector2Array(0, 0, -100, 250, 100, 250)
 
-[node name="LineOfSight" type="RayCast2D" parent="BogMonsterEntity"]
+[node name="LineOfSight" type="RayCast2D" parent="BogMonsterEntity" unique_id=258625266]
 enabled = false
 collision_mask = 5
 collide_with_areas = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BogMonsterEntity"]
-libraries = {
-&"": SubResource("AnimationLibrary_fpi5j")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BogMonsterEntity" unique_id=1335156890]
+libraries/ = SubResource("AnimationLibrary_fpi5j")
 
-[node name="UnderwaterCooldown" type="Timer" parent="BogMonsterEntity"]
+[node name="UnderwaterCooldown" type="Timer" parent="BogMonsterEntity" unique_id=1640617420]
 wait_time = 10.0
 one_shot = true
 
-[node name="Attack" type="Node2D" parent="BogMonsterEntity" node_paths=PackedStringArray("DangerZone")]
+[node name="Attack" type="Node2D" parent="BogMonsterEntity" unique_id=1283356941 node_paths=PackedStringArray("DangerZone")]
 position = Vector2(-100, 100)
 script = ExtResource("3_iy0he")
 DangerZone = NodePath("DangerZone/DangerZone")
 
-[node name="DangerZone" type="ColorRect" parent="BogMonsterEntity/Attack"]
+[node name="DangerZone" type="ColorRect" parent="BogMonsterEntity/Attack" unique_id=1048020198]
 visible = false
 offset_left = -20.0
 offset_top = -17.0
@@ -671,27 +669,27 @@ offset_right = 20.0
 offset_bottom = 17.0
 color = Color(1, 0, 0, 0.356863)
 
-[node name="DangerZone" type="Area2D" parent="BogMonsterEntity/Attack/DangerZone"]
+[node name="DangerZone" type="Area2D" parent="BogMonsterEntity/Attack/DangerZone" unique_id=1054413793]
 position = Vector2(20, 17)
 collision_layer = 0
 
-[node name="Collider" type="CollisionShape2D" parent="BogMonsterEntity/Attack/DangerZone/DangerZone"]
+[node name="Collider" type="CollisionShape2D" parent="BogMonsterEntity/Attack/DangerZone/DangerZone" unique_id=1791275375]
 shape = SubResource("CircleShape2D_tmwsw")
 debug_color = Color(0.984372, 0, 0.344192, 0.42)
 
-[node name="Hand" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack"]
+[node name="Hand" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack" unique_id=1015659245]
 visible = false
 texture_filter = 1
 position = Vector2(-12, -41)
 sprite_frames = SubResource("SpriteFrames_2jsts")
 
-[node name="HandTopLayer" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack/Hand"]
+[node name="HandTopLayer" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack/Hand" unique_id=2135160202]
 visible = false
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4elgh")
 
-[node name="FakePlayer" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack"]
+[node name="FakePlayer" type="AnimatedSprite2D" parent="BogMonsterEntity/Attack" unique_id=2011569056]
 visible = false
 texture_filter = 1
 sprite_frames = ExtResource("3_pwbfi")
@@ -699,10 +697,10 @@ animation = &"IdleUp"
 centered = false
 offset = Vector2(-16, -45)
 
-[node name="AttackTimer" type="Timer" parent="BogMonsterEntity"]
+[node name="AttackTimer" type="Timer" parent="BogMonsterEntity" unique_id=1107511433]
 one_shot = true
 
-[node name="Nakkiattack" type="AudioStreamPlayer2D" parent="BogMonsterEntity"]
+[node name="Nakkiattack" type="AudioStreamPlayer2D" parent="BogMonsterEntity" unique_id=382990636]
 stream = ExtResource("9_7uf8j")
 volume_db = -15.0
 max_distance = 300.0

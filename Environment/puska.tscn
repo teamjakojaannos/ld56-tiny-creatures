@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn0l286a1r8i7"]
+[gd_scene format=3 uid="uid://dn0l286a1r8i7"]
 
 [ext_resource type="Texture2D" uid="uid://brikweq5sq6v4" path="res://Environment/bushka.png" id="1_kk3tj"]
 
@@ -13,9 +13,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Puska" type="Node2D"]
+[node name="Puska" type="Node2D" unique_id=1545549552]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=278061890]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_336cu")
 centered = false

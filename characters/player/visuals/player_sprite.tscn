@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://d7ymayswq1e7"]
+[gd_scene format=3 uid="uid://d7ymayswq1e7"]
 
 [ext_resource type="Texture2D" uid="uid://burgeb2ni3dv8" path="res://characters/player/visuals/player_side_stand_up.png" id="1_cswrg"]
 [ext_resource type="Texture2D" uid="uid://jg2vb53mabqb" path="res://characters/player/visuals/player_idle_back.png" id="2_7wuyh"]
@@ -402,34 +402,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_vvj5j"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["IdleFront"]
-}
-
 [sub_resource type="Animation" id="Animation_2nkkv"]
 length = 1.6
 tracks/0/type = "value"
@@ -568,6 +540,34 @@ tracks/1/keys = {
 "values": ["OpenCage"]
 }
 
+[sub_resource type="Animation" id="Animation_vvj5j"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["IdleFront"]
+}
+
 [sub_resource type="Animation" id="Animation_jhbka"]
 length = 1.6
 loop_mode = 1
@@ -665,19 +665,16 @@ _data = {
 &"WalkSide": SubResource("Animation_m7x75")
 }
 
-[node name="Sprite" type="AnimatedSprite2D"]
+[node name="Sprite" type="AnimatedSprite2D" unique_id=214659381]
 sprite_frames = SubResource("SpriteFrames_u3nc2")
 animation = &"IdleFront"
-frame = 1
 offset = Vector2(0, -22.5)
 
-[node name="BaseAnimations" type="AnimationPlayer" parent="."]
+[node name="BaseAnimations" type="AnimationPlayer" parent="." unique_id=411352576]
 editor_description = "Base animations, imported from the AnimatedSprite2D.
 
 SHOULD NOT BE EDITED BY HAND. Re-importing is OK.
 
 Drive these with Animation Playback Tracks from other AnimationPlayer(s)."
 deterministic = true
-libraries = {
-&"": SubResource("AnimationLibrary_bv67w")
-}
+libraries/ = SubResource("AnimationLibrary_bv67w")

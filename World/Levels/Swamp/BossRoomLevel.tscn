@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cundomcxptp7c"]
+[gd_scene format=3 uid="uid://cundomcxptp7c"]
 
 [ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_i2y8a"]
 [ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_3ftgs"]
@@ -11,28 +11,28 @@ size = Vector2(32, 112)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umsjk"]
 size = Vector2(32, 112)
 
-[node name="TemplateLevel" instance=ExtResource("1_i2y8a")]
+[node name="TemplateLevel" unique_id=1955510114 instance=ExtResource("1_i2y8a")]
 
-[node name="ToSwamp" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+[node name="ToSwamp" type="Area2D" parent="Transitions" parent_id_path=PackedInt32Array(351070118) index="0" unique_id=429590332 groups=["LevelEntrance"]]
 position = Vector2(-128, 0)
 script = ExtResource("2_3ftgs")
 OtherScene = "res://World/Levels/Swamp/SwampLevel.tscn"
 _entranceNodePath = "./Transitions/ToBoss"
 ExitDirection = 3.14159
 
-[node name="Shape" type="CollisionShape2D" parent="Transitions/ToSwamp" index="0"]
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToSwamp" index="0" unique_id=270420316]
 shape = SubResource("RectangleShape2D_8wahi")
 
-[node name="ToHaven" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+[node name="ToHaven" type="Area2D" parent="Transitions" parent_id_path=PackedInt32Array(351070118) index="1" unique_id=243247863 groups=["LevelEntrance"]]
 position = Vector2(128, 0)
 script = ExtResource("2_3ftgs")
 OtherScene = "res://World/Levels/Swamp/HavenLevel.tscn"
 _entranceNodePath = "./Transitions/ToBoss"
 
-[node name="Shape" type="CollisionShape2D" parent="Transitions/ToHaven" index="0"]
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToHaven" index="0" unique_id=734292983]
 shape = SubResource("RectangleShape2D_umsjk")
 
-[node name="Floor" type="ColorRect" parent="." index="1"]
+[node name="Floor" type="ColorRect" parent="." index="1" unique_id=1360812856]
 z_index = -1
 offset_left = -128.0
 offset_top = -56.0
@@ -40,19 +40,19 @@ offset_right = 128.0
 offset_bottom = 56.0
 color = Color(0.13308, 0.18, 0.1188, 1)
 
-[node name="Nakken" type="Sprite2D" parent="." index="2"]
+[node name="Nakken" type="Sprite2D" parent="." index="2" unique_id=849037104]
 y_sort_enabled = true
 position = Vector2(-1, -79)
 texture = ExtResource("2_215ur")
 
-[node name="Kasianimaatio-sheet" type="Sprite2D" parent="." index="3"]
+[node name="Kasianimaatio-sheet" type="Sprite2D" parent="." index="3" unique_id=184057468]
 y_sort_enabled = true
 position = Vector2(55, -79)
 texture = ExtResource("4_085sw")
 region_enabled = true
 region_rect = Rect2(11, 0, 41, 50)
 
-[node name="Kasianimaatio-sheet2" type="Sprite2D" parent="." index="4"]
+[node name="Kasianimaatio-sheet2" type="Sprite2D" parent="." index="4" unique_id=1751182408]
 y_sort_enabled = true
 position = Vector2(-57, -79)
 texture = ExtResource("4_085sw")

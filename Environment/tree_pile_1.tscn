@@ -1,33 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://nqeqabuij5vq"]
+[gd_scene format=3 uid="uid://nqeqabuij5vq"]
 
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_64oya"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_pk8gs"]
 
-[node name="TreePile1" type="Node2D"]
+[node name="TreePile1" type="Node2D" unique_id=810817043]
 y_sort_enabled = true
 
-[node name="Tree2" parent="." instance=ExtResource("1_64oya")]
+[node name="Tree2" parent="." unique_id=1013796327 instance=ExtResource("1_64oya")]
 position = Vector2(52, 0)
 
-[node name="Tree8" parent="." instance=ExtResource("1_64oya")]
+[node name="Tree8" parent="." unique_id=1345476563 instance=ExtResource("1_64oya")]
 position = Vector2(50, 70)
 
-[node name="Tree10" parent="." instance=ExtResource("1_64oya")]
+[node name="Tree10" parent="." unique_id=294798342 instance=ExtResource("1_64oya")]
 position = Vector2(-28, -20)
 
-[node name="Tree9" parent="." instance=ExtResource("1_64oya")]
+[node name="Tree9" parent="." unique_id=1812026936 instance=ExtResource("1_64oya")]
 position = Vector2(-50, 55)
 
-[node name="Tree4" parent="." instance=ExtResource("1_64oya")]
+[node name="Tree4" parent="." unique_id=534340101 instance=ExtResource("1_64oya")]
 position = Vector2(-4, 42)
 
-[node name="Tree1" parent="." instance=ExtResource("2_pk8gs")]
+[node name="Tree1" parent="." unique_id=1477457997 instance=ExtResource("2_pk8gs")]
 position = Vector2(39, 31)
 
-[node name="Tree5" parent="." instance=ExtResource("2_pk8gs")]
+[node name="Tree5" parent="." unique_id=642587958 instance=ExtResource("2_pk8gs")]
 position = Vector2(-13, 72)
 
-[node name="Tree3" parent="." instance=ExtResource("2_pk8gs")]
+[node name="Tree3" parent="." unique_id=498481254 instance=ExtResource("2_pk8gs")]
 
-[node name="Tree6" parent="." instance=ExtResource("2_pk8gs")]
+[node name="Tree6" parent="." unique_id=1107445840 instance=ExtResource("2_pk8gs")]
 position = Vector2(-47, 16)

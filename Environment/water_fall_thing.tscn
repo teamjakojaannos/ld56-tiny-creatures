@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c37akv2ma8ael"]
+[gd_scene format=3 uid="uid://c37akv2ma8ael"]
 
 [ext_resource type="Texture2D" uid="uid://bwnvniky1c655" path="res://Environment/putous-sheet.png" id="1_ew2km"]
 
@@ -28,13 +28,13 @@ animations = [{
 radius = 46.0
 height = 192.0
 
-[node name="WaterFallThing" type="Node2D"]
+[node name="WaterFallThing" type="Node2D" unique_id=1577864964]
 y_sort_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1686365546]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1726461349]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_pw64a")
@@ -43,7 +43,7 @@ frame_progress = 0.586619
 centered = false
 offset = Vector2(-97.99, -158.005)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=85369983]
 visible = false
 position = Vector2(9, -14)
 rotation = 1.5708

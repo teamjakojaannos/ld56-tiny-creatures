@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwh4istt5yco0"]
+[gd_scene format=3 uid="uid://cwh4istt5yco0"]
 
 [ext_resource type="Script" uid="uid://cpd7fbssvtqsm" path="res://World/Level.cs" id="1_n8vgx"]
 [ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="2_8hq3g"]
@@ -13,35 +13,35 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dr8yi"]
 size = Vector2(64, 256)
 
-[node name="SecondArea" type="Node2D"]
+[node name="SecondArea" type="Node2D" unique_id=751199121]
 y_sort_enabled = true
 script = ExtResource("1_n8vgx")
 metadata/_edit_lock_ = true
 
-[node name="Functional" type="Node2D" parent="."]
+[node name="Functional" type="Node2D" parent="." unique_id=2133121027]
 metadata/_edit_lock_ = true
 
-[node name="EntranceLeft" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
+[node name="EntranceLeft" type="Marker2D" parent="Functional" unique_id=1632624466 groups=["LevelEntrance"]]
 position = Vector2(-288, 0)
 
-[node name="EntranceRight" type="Marker2D" parent="Functional" groups=["LevelEntrance"]]
+[node name="EntranceRight" type="Marker2D" parent="Functional" unique_id=235110440 groups=["LevelEntrance"]]
 position = Vector2(288, 0)
 
-[node name="LevelTransition" type="Area2D" parent="Functional"]
+[node name="LevelTransition" type="Area2D" parent="Functional" unique_id=1791590101]
 position = Vector2(-288, 0)
 script = ExtResource("2_880sm")
 OtherScene = "res://levels/woods/level_first_area.tscn"
-_entranceNodePath = NodePath("./Functional/EntranceRight")
+_entranceNodePath = "./Functional/EntranceRight"
 ExitDirection = 3.14159
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Functional/LevelTransition"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Functional/LevelTransition" unique_id=275092369]
 shape = SubResource("RectangleShape2D_dr8yi")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1584467947]
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="ColorRect" type="ColorRect" parent="World"]
+[node name="ColorRect" type="ColorRect" parent="World" unique_id=735581614]
 z_index = -3
 offset_left = -288.0
 offset_top = -128.0
@@ -49,35 +49,35 @@ offset_right = 288.0
 offset_bottom = 128.0
 color = Color(0.389118, 0.334633, 0.179289, 1)
 
-[node name="SmallPtach1" type="Sprite2D" parent="World"]
+[node name="SmallPtach1" type="Sprite2D" parent="World" unique_id=1647614531]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(-200, 8)
 texture = ExtResource("4_hi7a2")
 
-[node name="BigPatch1b" type="Sprite2D" parent="World"]
+[node name="BigPatch1b" type="Sprite2D" parent="World" unique_id=2175051]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(-128, 16)
 texture = ExtResource("5_wj245")
 
-[node name="Tree1" parent="World" instance=ExtResource("4_5v6hf")]
+[node name="Tree1" parent="World" unique_id=181479849 instance=ExtResource("4_5v6hf")]
 position = Vector2(-216, -120)
 
-[node name="Tree2" parent="World" instance=ExtResource("4_5v6hf")]
+[node name="Tree2" parent="World" unique_id=1572916456 instance=ExtResource("4_5v6hf")]
 position = Vector2(-240, 120)
 
-[node name="TreePile1" parent="World" instance=ExtResource("5_kusee")]
+[node name="TreePile1" parent="World" unique_id=817767725 instance=ExtResource("5_kusee")]
 position = Vector2(-120, -152)
 
-[node name="Tree3" parent="World" instance=ExtResource("6_goygm")]
+[node name="Tree3" parent="World" unique_id=658989298 instance=ExtResource("6_goygm")]
 position = Vector2(-192, 136)
 
-[node name="Chantarell" type="Sprite2D" parent="World"]
+[node name="Chantarell" type="Sprite2D" parent="World" unique_id=829337255]
 position = Vector2(-256, -112)
 texture = ExtResource("2_8hq3g")
 
-[node name="MediumPatch1" type="Sprite2D" parent="World"]
+[node name="MediumPatch1" type="Sprite2D" parent="World" unique_id=729783265]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(-176, -24)

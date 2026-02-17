@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pni5mmab3ipw"]
+[gd_scene format=3 uid="uid://pni5mmab3ipw"]
 
 [ext_resource type="Script" uid="uid://jnjbe520h5bv" path="res://characters/player/player.gd" id="1_508ok"]
 [ext_resource type="PackedScene" uid="uid://n10q1k4kknng" path="res://characters/player/visuals/player_rig.tscn" id="3_exd8k"]
@@ -23,21 +23,21 @@ height = 13.0
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aqrcq"]
 light_mode = 1
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1643329307 groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_508ok")
 move_speed = 100.0
 metadata/_custom_type_script = "uid://jnjbe520h5bv"
 
-[node name="Collider" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=39810092]
 position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_exd8k")
 
-[node name="Sprite" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_exd8k")]
+[node name="Sprite" parent="." unique_id=680853062 node_paths=PackedStringArray("player") instance=ExtResource("3_exd8k")]
 player = NodePath("..")
 
-[node name="Footsteps" type="Node2D" parent="." node_paths=PackedStringArray("sounds")]
+[node name="Footsteps" type="Node2D" parent="." unique_id=259638661 node_paths=PackedStringArray("sounds")]
 script = ExtResource("4_5dc8e")
 sounds = {
 0: NodePath("Grass"),
@@ -46,102 +46,102 @@ sounds = {
 metadata/_custom_type_script = "uid://dj4tnwvhjgbab"
 metadata/_edit_group_ = true
 
-[node name="FootstepTimer" type="Timer" parent="Footsteps"]
+[node name="FootstepTimer" type="Timer" parent="Footsteps" unique_id=1398429655]
 wait_time = 0.4
 
-[node name="Grass" type="Node2D" parent="Footsteps"]
+[node name="Grass" type="Node2D" parent="Footsteps" unique_id=311292525]
 script = ExtResource("5_ixbpm")
 metadata/_custom_type_script = "uid://cqhp8hojevrdp"
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="1" type="AudioStreamPlayer2D" parent="Footsteps/Grass"]
+[node name="1" type="AudioStreamPlayer2D" parent="Footsteps/Grass" unique_id=74570671]
 stream = ExtResource("6_58jvb")
 volume_db = -10.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="2" type="AudioStreamPlayer2D" parent="Footsteps/Grass"]
+[node name="2" type="AudioStreamPlayer2D" parent="Footsteps/Grass" unique_id=680539307]
 stream = ExtResource("7_8l73k")
 volume_db = -10.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="3" type="AudioStreamPlayer2D" parent="Footsteps/Grass"]
+[node name="3" type="AudioStreamPlayer2D" parent="Footsteps/Grass" unique_id=471413749]
 stream = ExtResource("8_aqrcq")
 volume_db = -10.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="4" type="AudioStreamPlayer2D" parent="Footsteps/Grass"]
+[node name="4" type="AudioStreamPlayer2D" parent="Footsteps/Grass" unique_id=1295580253]
 stream = ExtResource("9_d2agh")
 volume_db = -10.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="5" type="AudioStreamPlayer2D" parent="Footsteps/Grass"]
+[node name="5" type="AudioStreamPlayer2D" parent="Footsteps/Grass" unique_id=1948095483]
 stream = ExtResource("10_fpo3a")
 volume_db = -10.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="Wet" type="Node2D" parent="Footsteps"]
+[node name="Wet" type="Node2D" parent="Footsteps" unique_id=2014479079]
 script = ExtResource("5_ixbpm")
 metadata/_custom_type_script = "uid://cqhp8hojevrdp"
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="1" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+[node name="1" type="AudioStreamPlayer2D" parent="Footsteps/Wet" unique_id=895336654]
 stream = ExtResource("6_x5dtk")
 volume_db = -15.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="2" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+[node name="2" type="AudioStreamPlayer2D" parent="Footsteps/Wet" unique_id=905757184]
 stream = ExtResource("7_3t07l")
 volume_db = -15.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="3" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+[node name="3" type="AudioStreamPlayer2D" parent="Footsteps/Wet" unique_id=1633500489]
 stream = ExtResource("8_on558")
 volume_db = -15.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="4" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+[node name="4" type="AudioStreamPlayer2D" parent="Footsteps/Wet" unique_id=295595327]
 stream = ExtResource("9_gqopd")
 volume_db = -15.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="5" type="AudioStreamPlayer2D" parent="Footsteps/Wet"]
+[node name="5" type="AudioStreamPlayer2D" parent="Footsteps/Wet" unique_id=398583453]
 stream = ExtResource("10_icpky")
 volume_db = -15.0
 max_polyphony = 2
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="RemarkPosition" type="RemoteTransform2D" parent="."]
+[node name="RemarkPosition" type="RemoteTransform2D" parent="." unique_id=610214068]
 position = Vector2(8, -33)
 remote_path = NodePath("../UnshadedLayer/RemarkBubble")
 update_rotation = false
 update_scale = false
 
-[node name="UnshadedLayer" type="CanvasLayer" parent="."]
+[node name="UnshadedLayer" type="CanvasLayer" parent="." unique_id=425052316]
 layer = 2
 follow_viewport_enabled = true
 
-[node name="RemarkBubble" parent="UnshadedLayer" instance=ExtResource("16_8l73k")]
+[node name="RemarkBubble" parent="UnshadedLayer" unique_id=1626558611 instance=ExtResource("16_8l73k")]
 visible = false
 material = SubResource("CanvasItemMaterial_aqrcq")
 position = Vector2(8, -33)

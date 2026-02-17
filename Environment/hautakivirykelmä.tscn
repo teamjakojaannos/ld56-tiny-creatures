@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4m5y670nh0g5"]
+[gd_scene format=3 uid="uid://b4m5y670nh0g5"]
 
 [ext_resource type="Texture2D" uid="uid://ddrmx4mfcgwnw" path="res://Environment/hautakivi.png" id="1_2dvux"]
 [ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_fv32j"]
@@ -79,13 +79,13 @@ b = Vector2(15, 7)
 a = Vector2(-9, -9)
 b = Vector2(19, 1)
 
-[node name="Hautakivirykelmä" type="Node2D"]
+[node name="Hautakivirykelmä" type="Node2D" unique_id=1553559250]
 y_sort_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2120142808]
 y_sort_enabled = true
 
-[node name="Kivi1" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="Kivi1" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=183756573]
 y_sort_enabled = true
 texture_filter = 3
 position = Vector2(-31, 8)
@@ -94,7 +94,7 @@ centered = false
 offset = Vector2(-17.195, -30.89)
 script = ExtResource("2_fv32j")
 
-[node name="Kivi2" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="Kivi2" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=549093793]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(54, 21)
@@ -103,7 +103,7 @@ centered = false
 offset = Vector2(-13.515, -24.4)
 script = ExtResource("2_fv32j")
 
-[node name="Kivi3" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="Kivi3" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=440861192]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(28, 3)
@@ -112,7 +112,7 @@ centered = false
 offset = Vector2(-10.06, -21.775)
 script = ExtResource("2_fv32j")
 
-[node name="Kivi4" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="Kivi4" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1887725447]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rrtak")
@@ -120,7 +120,7 @@ centered = false
 offset = Vector2(-13.26, -56.695)
 script = ExtResource("2_fv32j")
 
-[node name="Kivi5" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="Kivi5" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1190557606]
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(-56, 21)
@@ -129,22 +129,22 @@ centered = false
 offset = Vector2(-11.715, -23.295)
 script = ExtResource("2_fv32j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1949586744]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_1op0f")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=2067870051]
 position = Vector2(-25, 13)
 shape = SubResource("SegmentShape2D_u0f2o")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1327034357]
 position = Vector2(-62, 19)
 shape = SubResource("SegmentShape2D_3jbx2")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=481483217]
 position = Vector2(20, -2)
 shape = SubResource("SegmentShape2D_3elrn")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D" unique_id=421109659]
 position = Vector2(50, 22)
 shape = SubResource("SegmentShape2D_g2jkp")

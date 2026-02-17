@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://djmieukfgkmx2"]
+[gd_scene format=3 uid="uid://djmieukfgkmx2"]
 
 [ext_resource type="PackedScene" uid="uid://dqmcerhi4wqpl" path="res://levels/world.tscn" id="1_0ps2v"]
 [ext_resource type="PackedScene" uid="uid://b2uu7btegjbbx" path="res://cinematic/intro/intro.tscn" id="2_g5s7c"]
 
-[node name="World" instance=ExtResource("1_0ps2v")]
+[node name="World" unique_id=91498801 instance=ExtResource("1_0ps2v")]
 
-[node name="Intro" parent="." index="0" instance=ExtResource("2_g5s7c")]
+[node name="Intro" parent="." index="0" unique_id=106749247 instance=ExtResource("2_g5s7c")]
 position = Vector2(-1097, 68)
 
 [editable path="MuzakTrigger"]

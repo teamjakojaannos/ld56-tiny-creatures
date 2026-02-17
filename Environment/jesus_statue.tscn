@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8md5xlmkgeog"]
+[gd_scene format=3 uid="uid://8md5xlmkgeog"]
 
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_p2wk0"]
 [ext_resource type="Texture2D" uid="uid://dmvtd7g7w28x6" path="res://Environment/yojeesus.png" id="1_s4p8w"]
@@ -134,13 +134,13 @@ _data = {
 &"default": SubResource("Animation_02haq")
 }
 
-[node name="JesusStatue" type="Node2D"]
+[node name="JesusStatue" type="Node2D" unique_id=1631844623]
 y_sort_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=980789218]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1712995131]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_yrnq2")
@@ -148,11 +148,9 @@ animation = &"WispInsideStatue"
 offset = Vector2(0, -42.855)
 script = ExtResource("3_n7be2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1312157960]
 position = Vector2(-0.5, -12)
 shape = SubResource("RectangleShape2D_5ele0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_jwd0h")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=745727184]
+libraries/ = SubResource("AnimationLibrary_jwd0h")

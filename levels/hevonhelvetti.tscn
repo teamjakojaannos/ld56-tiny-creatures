@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bmvi58d0isrru"]
+[gd_scene format=3 uid="uid://bmvi58d0isrru"]
 
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_2ysck"]
 [ext_resource type="PackedScene" uid="uid://c287axru5rdlt" path="res://Environment/ryhmähauta.tscn" id="2_1vlf7"]
@@ -75,14 +75,14 @@ Character = ExtResource("5_7bcto")
 Lines = Array[String](["Game by Toilari, Noodle, Ennea, Lassi, Minjaux, Mäyräkissa and Alex", "Thank you for playing <3"])
 Next = SubResource("Resource_4fi54")
 
-[node name="Juuri" type="Node2D"]
+[node name="Juuri" type="Node2D" unique_id=343790784]
 y_sort_enabled = true
 
-[node name="Background" type="Node2D" parent="."]
+[node name="Background" type="Node2D" parent="." unique_id=2094462585]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1071380539]
 offset_left = -3530.0
 offset_top = -2651.0
 offset_right = 3431.0
@@ -90,7 +90,7 @@ offset_bottom = 2760.0
 color = Color(0.254902, 0.384314, 0.164706, 1)
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=597829402]
 texture_filter = 2
 offset_left = -2519.0
 offset_top = -2555.0
@@ -99,30 +99,30 @@ offset_bottom = 2519.0
 texture = SubResource("GradientTexture2D_ns3m1")
 metadata/_edit_lock_ = true
 
-[node name="Boundaries" type="StaticBody2D" parent="."]
+[node name="Boundaries" type="StaticBody2D" parent="." unique_id=1098517154]
 
-[node name="Left" type="CollisionShape2D" parent="Boundaries"]
+[node name="Left" type="CollisionShape2D" parent="Boundaries" unique_id=780389093]
 position = Vector2(-1391, -5)
 shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="Left2" type="CollisionShape2D" parent="Boundaries"]
+[node name="Left2" type="CollisionShape2D" parent="Boundaries" unique_id=1939403334]
 position = Vector2(1314, -5)
 shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="Left3" type="CollisionShape2D" parent="Boundaries"]
+[node name="Left3" type="CollisionShape2D" parent="Boundaries" unique_id=25342540]
 position = Vector2(-44, 1374)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="Left4" type="CollisionShape2D" parent="Boundaries"]
+[node name="Left4" type="CollisionShape2D" parent="Boundaries" unique_id=433693041]
 position = Vector2(-41, -1394)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="StaticProps" type="Node2D" parent="."]
+[node name="StaticProps" type="Node2D" parent="." unique_id=323229421]
 y_sort_enabled = true
 
-[node name="Jeesus" type="AnimatedSprite2D" parent="StaticProps"]
+[node name="Jeesus" type="AnimatedSprite2D" parent="StaticProps" unique_id=1727530937]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4c0er")
@@ -130,32 +130,32 @@ autoplay = "default"
 frame_progress = 0.374799
 offset = Vector2(0, -45)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticProps"]
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticProps" unique_id=1819234593]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticProps/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticProps/StaticBody2D" unique_id=1496885451]
 position = Vector2(-0.5, -12)
 shape = SubResource("RectangleShape2D_djy3h")
 
-[node name="Functional" type="Node2D" parent="."]
+[node name="Functional" type="Node2D" parent="." unique_id=367899924]
 y_sort_enabled = true
 
-[node name="WinTpTarget" type="Marker2D" parent="Functional" groups=["PlayerSpawn", "ViineriTpTarget"]]
+[node name="WinTpTarget" type="Marker2D" parent="Functional" unique_id=1182710826 groups=["PlayerSpawn", "ViineriTpTarget"]]
 y_sort_enabled = true
 position = Vector2(0, 63)
 
-[node name="Ryhmähauta" parent="." instance=ExtResource("2_1vlf7")]
+[node name="Ryhmähauta" parent="." unique_id=1731836453 instance=ExtResource("2_1vlf7")]
 position = Vector2(1, -93)
 
-[node name="WispInteractable" parent="Ryhmähauta" instance=ExtResource("3_q5w04")]
+[node name="WispInteractable" parent="Ryhmähauta" unique_id=150551529 instance=ExtResource("3_q5w04")]
 
-[node name="Trigger" parent="Ryhmähauta/WispInteractable" index="0"]
+[node name="Trigger" parent="Ryhmähauta/WispInteractable" index="0" unique_id=1478185290]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3u3cn")
 
-[node name="Target" parent="Ryhmähauta/WispInteractable" index="1"]
+[node name="Target" parent="Ryhmähauta/WispInteractable" index="1" unique_id=439795568]
 position = Vector2(-1, -62)
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="Ryhmähauta/WispInteractable"]
+[node name="WispInteractableDialogueTrigger" type="Node2D" parent="Ryhmähauta/WispInteractable" unique_id=1349076379]
 script = ExtResource("4_d57h3")
 DialogueTree = SubResource("Resource_fhb77")
 

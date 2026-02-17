@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg8aih00qes3h"]
+[gd_scene format=3 uid="uid://cg8aih00qes3h"]
 
 [ext_resource type="Script" uid="uid://cpd7fbssvtqsm" path="res://World/Level.cs" id="1_kslyn"]
 
-[node name="TemplateLevel" type="Node2D"]
+[node name="TemplateLevel" type="Node2D" unique_id=704788159]
 y_sort_enabled = true
 script = ExtResource("1_kslyn")
 
-[node name="Transitions" type="Node2D" parent="."]
+[node name="Transitions" type="Node2D" parent="." unique_id=351070118]

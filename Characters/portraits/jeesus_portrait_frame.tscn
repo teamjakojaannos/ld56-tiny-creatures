@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://q6pq6h04st66"]
+[gd_scene format=3 uid="uid://q6pq6h04st66"]
 
 [ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="1_uuxxg"]
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="2_2nk6p"]
@@ -32,14 +32,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Container" instance=ExtResource("1_uuxxg")]
-offset_left = 0.5
-offset_right = 76.5
+[node name="Container" unique_id=447780844 instance=ExtResource("1_uuxxg")]
 
 [node name="Character" parent="PortraitFrame" index="0"]
 visible = false
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PortraitFrame" index="1"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PortraitFrame" index="1" unique_id=1993616635]
 texture_filter = 1
 position = Vector2(32.5, 88)
 scale = Vector2(1.90179, 1.90179)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6acfywjuyune"]
+[gd_scene format=3 uid="uid://6acfywjuyune"]
 
 [ext_resource type="PackedScene" uid="uid://cg8aih00qes3h" path="res://World/Levels/TEMPLATE_Level.tscn" id="1_yarlr"]
 [ext_resource type="Script" uid="uid://dq6tovke138kf" path="res://World/LevelTransition.cs" id="2_s4axt"]
@@ -9,29 +9,29 @@ size = Vector2(32, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmo1c"]
 size = Vector2(128, 32)
 
-[node name="Revelation" instance=ExtResource("1_yarlr")]
+[node name="Revelation" unique_id=1728405728 instance=ExtResource("1_yarlr")]
 
-[node name="ToVictory" type="Area2D" parent="Transitions" index="0" groups=["LevelEntrance"]]
+[node name="ToVictory" type="Area2D" parent="Transitions" parent_id_path=PackedInt32Array(351070118) index="0" unique_id=1457327820 groups=["LevelEntrance"]]
 position = Vector2(-192, 0)
 script = ExtResource("2_s4axt")
 OtherScene = "res://World/Levels/Depths/VictoryRoomLevel.tscn"
 _entranceNodePath = "./Transitions/ToRevelation"
 ExitDirection = 3.14159
 
-[node name="Shape" type="CollisionShape2D" parent="Transitions/ToVictory" index="0"]
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToVictory" index="0" unique_id=181779485]
 shape = SubResource("RectangleShape2D_qn62l")
 
-[node name="ToDepths" type="Area2D" parent="Transitions" index="1" groups=["LevelEntrance"]]
+[node name="ToDepths" type="Area2D" parent="Transitions" parent_id_path=PackedInt32Array(351070118) index="1" unique_id=431676503 groups=["LevelEntrance"]]
 position = Vector2(0, 192)
 script = ExtResource("2_s4axt")
 OtherScene = "res://World/Levels/Depths/DepthsLevel.tscn"
 _entranceNodePath = "./Transitions/ToRevelation"
 ExitDirection = 1.5708
 
-[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDepths" index="0"]
+[node name="Shape" type="CollisionShape2D" parent="Transitions/ToDepths" index="0" unique_id=1243567172]
 shape = SubResource("RectangleShape2D_fmo1c")
 
-[node name="Floor" type="ColorRect" parent="." index="1"]
+[node name="Floor" type="ColorRect" parent="." index="1" unique_id=138916964]
 z_index = -1
 offset_left = -128.0
 offset_top = -128.0
@@ -39,7 +39,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.23, 0.216928, 0.2047, 1)
 
-[node name="Floor2" type="ColorRect" parent="." index="2"]
+[node name="Floor2" type="ColorRect" parent="." index="2" unique_id=637429398]
 z_index = -1
 offset_left = -64.0
 offset_top = 128.0
@@ -47,7 +47,7 @@ offset_right = 64.0
 offset_bottom = 192.0
 color = Color(0.23, 0.216928, 0.2047, 1)
 
-[node name="Floor3" type="ColorRect" parent="." index="3"]
+[node name="Floor3" type="ColorRect" parent="." index="3" unique_id=948107175]
 z_index = -1
 offset_left = -192.0
 offset_top = -64.0

@@ -1,23 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://b20ibux777wdy"]
+[gd_scene format=3 uid="uid://b20ibux777wdy"]
 
 [ext_resource type="Script" uid="uid://ct0dvckplgd8m" path="res://dialogue/InteractiveDialogueRow.cs" id="1_eubn3"]
 [ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="2_atl8r"]
 [ext_resource type="PackedScene" uid="uid://8iybuks6ooby" path="res://dialogue/dialogue_option.tscn" id="4_fctui"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="4_vw23s"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_rgp7t"]
+[sub_resource type="LabelSettings" id="LabelSettings_h0svw"]
 resource_local_to_scene = true
 font = ExtResource("4_vw23s")
 
-[sub_resource type="LabelSettings" id="LabelSettings_g84gn"]
+[sub_resource type="LabelSettings" id="LabelSettings_1vjyo"]
 resource_local_to_scene = true
 font = ExtResource("4_vw23s")
 
-[sub_resource type="LabelSettings" id="LabelSettings_p6txx"]
+[sub_resource type="LabelSettings" id="LabelSettings_4450f"]
 resource_local_to_scene = true
 font = ExtResource("4_vw23s")
 
-[node name="InteractiveRow" type="HBoxContainer" node_paths=PackedStringArray("Options", "PortraitFrame", "PortraitFrameWrapper", "Container")]
+[node name="InteractiveRow" type="HBoxContainer" unique_id=393754189 node_paths=PackedStringArray("Options", "PortraitFrame", "PortraitFrameWrapper", "Container")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 65.0
@@ -29,26 +29,26 @@ PortraitFrame = NodePath("PortraitFrame")
 PortraitFrameWrapper = NodePath(".")
 Container = NodePath(".")
 
-[node name="PortraitFrame" parent="." instance=ExtResource("2_atl8r")]
+[node name="PortraitFrame" parent="." unique_id=1782865512 instance=ExtResource("2_atl8r")]
 layout_mode = 2
 
-[node name="AnimationPlayer" parent="PortraitFrame" index="2"]
-autoplay = "enter_left"
+[node name="AnimationPlayer" parent="PortraitFrame" index="2" unique_id=1973649614]
+autoplay = &"enter_left"
 
-[node name="Options" type="VBoxContainer" parent="."]
+[node name="Options" type="VBoxContainer" parent="." unique_id=556605221]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Option1" parent="Options" instance=ExtResource("4_fctui")]
+[node name="Option1" parent="Options" unique_id=1352912072 instance=ExtResource("4_fctui")]
 layout_mode = 2
-LabelSettings = SubResource("LabelSettings_rgp7t")
+LabelSettings = SubResource("LabelSettings_h0svw")
 
-[node name="Option2" parent="Options" instance=ExtResource("4_fctui")]
+[node name="Option2" parent="Options" unique_id=731295991 instance=ExtResource("4_fctui")]
 layout_mode = 2
-LabelSettings = SubResource("LabelSettings_g84gn")
+LabelSettings = SubResource("LabelSettings_1vjyo")
 
-[node name="Option3" parent="Options" instance=ExtResource("4_fctui")]
+[node name="Option3" parent="Options" unique_id=924553454 instance=ExtResource("4_fctui")]
 layout_mode = 2
-LabelSettings = SubResource("LabelSettings_p6txx")
+LabelSettings = SubResource("LabelSettings_4450f")
 
 [editable path="PortraitFrame"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b40kecv7ytk0c"]
+[gd_scene format=3 uid="uid://b40kecv7ytk0c"]
 
 [ext_resource type="Texture2D" uid="uid://cnblfpddo1km7" path="res://Environment/Saniainen.png" id="1_4n3p5"]
 
@@ -13,9 +13,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Fern" type="Node2D"]
+[node name="Fern" type="Node2D" unique_id=420417566]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=852672003]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_icqfh")

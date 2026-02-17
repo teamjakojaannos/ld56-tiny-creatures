@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1d0oklccd27c"]
+[gd_scene format=3 uid="uid://d1d0oklccd27c"]
 
 [ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://Environment/pumpkin.png" id="1_4gbqx"]
 
@@ -139,30 +139,28 @@ _data = {
 &"default": SubResource("Animation_8wdl7")
 }
 
-[node name="KurpitsaLyhty" type="Node2D"]
+[node name="KurpitsaLyhty" type="Node2D" unique_id=391932134]
 y_sort_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=740473135]
 y_sort_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=177624636]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_qsobr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1518319365]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qm78g")
 centered = false
 offset = Vector2(-15.805, -28.87)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1800543081]
 position = Vector2(0, -10)
 color = Color(0.691066, 0, 0.0651753, 1)
 energy = 0.0
 texture = SubResource("GradientTexture2D_wygyp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_5hlp4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=443908294]
+libraries/ = SubResource("AnimationLibrary_5hlp4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://baf4p3kgidl8v"]
+[gd_scene format=3 uid="uid://baf4p3kgidl8v"]
 
 [ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="1_2urqj"]
 [ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="2_iaprk"]
@@ -354,14 +354,14 @@ _data = {
 &"out_hupialue": SubResource("Animation_wb2r0")
 }
 
-[node name="SpiritLantern" type="Node2D"]
+[node name="SpiritLantern" type="Node2D" unique_id=1459749626]
 
-[node name="Base" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="." unique_id=2023021905]
 texture_filter = 1
 texture = ExtResource("2_iaprk")
 offset = Vector2(-7, -20)
 
-[node name="BackWall" type="Sprite2D" parent="."]
+[node name="BackWall" type="Sprite2D" parent="." unique_id=999391986]
 visible = false
 modulate = Color(0.51, 0.51, 0.51, 1)
 texture_filter = 1
@@ -371,14 +371,14 @@ offset = Vector2(-7, -20)
 region_enabled = true
 region_rect = Rect2(30, 23, 8, 18)
 
-[node name="SpiritPath" type="Path2D" parent="."]
+[node name="SpiritPath" type="Path2D" parent="." unique_id=959446704]
 position = Vector2(0, -4)
 curve = SubResource("Curve2D_sjoxl")
 
-[node name="Spirit" type="PathFollow2D" parent="SpiritPath"]
+[node name="Spirit" type="PathFollow2D" parent="SpiritPath" unique_id=813589511]
 rotates = false
 
-[node name="Sprite" type="AnimatedSprite2D" parent="SpiritPath/Spirit"]
+[node name="Sprite" type="AnimatedSprite2D" parent="SpiritPath/Spirit" unique_id=474759947]
 modulate = Color(0, 1, 0.55, 1)
 texture_filter = 1
 sprite_frames = ExtResource("2_rmcfs")
@@ -387,21 +387,19 @@ frame_progress = 0.984137
 offset = Vector2(0, -12)
 metadata/_edit_lock_ = true
 
-[node name="Light" type="PointLight2D" parent="SpiritPath/Spirit"]
+[node name="Light" type="PointLight2D" parent="SpiritPath/Spirit" unique_id=1810354365]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_nvjin")
 
-[node name="Lantern" type="AnimatedSprite2D" parent="."]
+[node name="Lantern" type="AnimatedSprite2D" parent="." unique_id=174450590]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_04asd")
 animation = &"idle_closed"
 autoplay = "idle_closed"
 offset = Vector2(-7, -20)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_gpuue")
-}
-autoplay = "RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2090446314]
+libraries/ = SubResource("AnimationLibrary_gpuue")
+autoplay = &"RESET"

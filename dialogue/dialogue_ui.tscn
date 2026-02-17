@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://hthnt1vcknxx"]
+[gd_scene format=3 uid="uid://hthnt1vcknxx"]
 
 [ext_resource type="Script" uid="uid://dppqmh57wuuxo" path="res://dialogue/Dialogue.cs" id="1_e7iml"]
 [ext_resource type="PackedScene" uid="uid://ylwci2dowuy7" path="res://dialogue/row.tscn" id="1_h21uh"]
@@ -151,7 +151,7 @@ _data = {
 &"open": SubResource("Animation_ajvrg")
 }
 
-[node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("DialogueList")]
+[node name="DialogueUI" type="CanvasLayer" unique_id=1136981644 node_paths=PackedStringArray("DialogueList")]
 layer = 2
 script = ExtResource("1_e7iml")
 OpacityOffsetPerRow = 0.33
@@ -160,7 +160,7 @@ InteractiveDialogueRow = ExtResource("3_ib14a")
 InteractiveDialogueRowOption = ExtResource("4_ly15r")
 DialogueList = NodePath("DialogueContainer/DialogueList")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1356375566]
 anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 1.0
@@ -169,7 +169,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_bbcn0")
 
-[node name="DialogueContainer" type="Control" parent="."]
+[node name="DialogueContainer" type="Control" parent="." unique_id=1757128054]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,7 +177,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogueList" type="VBoxContainer" parent="DialogueContainer"]
+[node name="DialogueList" type="VBoxContainer" parent="DialogueContainer" unique_id=1805721731]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -191,17 +191,15 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
 
-[node name="Row" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
+[node name="Row" parent="DialogueContainer/DialogueList" unique_id=2135372648 instance=ExtResource("1_h21uh")]
 layout_mode = 2
 
-[node name="Row2" parent="DialogueContainer/DialogueList" instance=ExtResource("1_h21uh")]
+[node name="Row2" parent="DialogueContainer/DialogueList" unique_id=126534576 instance=ExtResource("1_h21uh")]
 layout_mode = 2
 
-[node name="InteractiveRow" parent="DialogueContainer/DialogueList" instance=ExtResource("3_ib14a")]
+[node name="InteractiveRow" parent="DialogueContainer/DialogueList" unique_id=719478244 instance=ExtResource("3_ib14a")]
 layout_direction = 2
 layout_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_75w22")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1106319136]
+libraries/ = SubResource("AnimationLibrary_75w22")

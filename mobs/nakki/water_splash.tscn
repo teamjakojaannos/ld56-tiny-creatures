@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx5xfep76dve6"]
+[gd_scene format=3 uid="uid://dx5xfep76dve6"]
 
 [ext_resource type="AudioStream" uid="uid://d7ythkgypxe3" path="res://mobs/nakki/stepwater5.ogg" id="1_m8vc0"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="2_iysyv"]
@@ -54,21 +54,19 @@ _data = {
 &"spawn": SubResource("Animation_d2m0m")
 }
 
-[node name="WaterSplash" type="Node2D"]
+[node name="WaterSplash" type="Node2D" unique_id=662041270]
 
-[node name="Stepwater5" type="AudioStreamPlayer" parent="."]
+[node name="Stepwater5" type="AudioStreamPlayer" parent="." unique_id=1574035877]
 stream = ExtResource("1_m8vc0")
 autoplay = true
 bus = &"SFX"
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1873797452]
 modulate = Color(0.096, 0.3424, 0.8, 0.576471)
 z_index = -1
 scale = Vector2(0.75, 0.664474)
 texture = ExtResource("2_iysyv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_fyvm0")
-}
-autoplay = "spawn"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=52742428]
+libraries/ = SubResource("AnimationLibrary_fyvm0")
+autoplay = &"spawn"

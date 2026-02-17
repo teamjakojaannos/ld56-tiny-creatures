@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://0dq7nmfcpdtd"]
+[gd_scene format=3 uid="uid://0dq7nmfcpdtd"]
 
 [ext_resource type="Texture2D" uid="uid://dwdbx53xa4rdt" path="res://Environment/The_Wall.png" id="1_gil63"]
 [ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="2_nuyuc"]
@@ -20,24 +20,24 @@ size = Vector2(152.875, 47.3416)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h80iq"]
 size = Vector2(159, 178)
 
-[node name="TheWall" type="Node2D"]
+[node name="TheWall" type="Node2D" unique_id=1628200966]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=564149320]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=840285317]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_2w1is")
 centered = false
 offset = Vector2(-87.195, -228.72)
 script = ExtResource("2_nuyuc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=279337403]
 visible = false
 position = Vector2(-6, 3)
 rotation = -0.314159
 shape = SubResource("RectangleShape2D_ox5cv")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1673580933]
 visible = false
 position = Vector2(-3, -89)
 shape = SubResource("RectangleShape2D_h80iq")

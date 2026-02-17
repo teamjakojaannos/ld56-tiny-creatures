@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8foef0ggh6i5"]
+[gd_scene format=3 uid="uid://c8foef0ggh6i5"]
 
 [ext_resource type="Texture2D" uid="uid://bdq24yqlpo8lb" path="res://Environment/SuoKansio/ryhmahauta.png" id="1_d0cv3"]
 
@@ -13,11 +13,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CreepyStatue" type="Node2D"]
+[node name="CreepyStatue" type="Node2D" unique_id=2123854645]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1380126818]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1253636610]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ghmpg")
 offset = Vector2(0, -37.24)

@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="BogMonsterStats" load_steps=2 format=3 uid="uid://cu2rxvl4dhjsk"]
+[gd_resource type="Resource" script_class="BogMonsterStats" format=3 uid="uid://cu2rxvl4dhjsk"]
 
 [ext_resource type="Script" uid="uid://brdes8yg3h2dy" path="res://mobs/BogMonsterStats.cs" id="1_ft57b"]
 
 [resource]
 script = ExtResource("1_ft57b")
-speed = 45.0
 detectionGain = 400.0
 detectionDecay = 400.0
 moveTime = 0.0
@@ -17,9 +16,7 @@ minIdleTime = 4.0
 maxIdleTime = 10.0
 emergeAtPlayerChance = 0.0
 emergeAtSameLocationChance = 1.0
-alertTime = 7.5
 alertThreshold = 200.0
-attackThreshold = 100.0
 attackTime = 0.1
 attackAnimationSpeed = 5.0
 emergeAnimationSpeed = 2.5

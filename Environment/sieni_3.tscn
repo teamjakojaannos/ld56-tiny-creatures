@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw70hen0ks6o0"]
+[gd_scene format=3 uid="uid://bw70hen0ks6o0"]
 
 [ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="1_oilue"]
 
@@ -13,10 +13,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Sieni1" type="Node2D"]
+[node name="Sieni1" type="Node2D" unique_id=64318780]
 y_sort_enabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1527058235]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_42p5s")

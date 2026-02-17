@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://t6dprtco4mad"]
+[gd_scene format=3 uid="uid://t6dprtco4mad"]
 
 [ext_resource type="Texture2D" uid="uid://bh8qgyrljfj0p" path="res://Environment/vinhapuu.png" id="1_7lte1"]
 [ext_resource type="Texture2D" uid="uid://dnip4a7gxtaxk" path="res://Environment/Minjanpuu2.png" id="1_pgmue"]
@@ -27,15 +27,15 @@ size = Vector2(14, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68h7p"]
 size = Vector2(11, 13)
 
-[node name="Tree2" type="Node2D"]
+[node name="Tree2" type="Node2D" unique_id=653417875]
 y_sort_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1149463559]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=310284492]
 light_mask = 3
 y_sort_enabled = true
 texture_filter = 1
@@ -43,19 +43,19 @@ sprite_frames = SubResource("SpriteFrames_p0cl4")
 offset = Vector2(11.43, -49.345)
 script = ExtResource("2_kfqf0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=176940104]
 position = Vector2(2.75, -10)
 shape = SubResource("RectangleShape2D_dwgnx")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1741539035]
 position = Vector2(-3, 1.5)
 shape = SubResource("RectangleShape2D_33ep8")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1498701798]
 position = Vector2(22.5, 1.5)
 shape = SubResource("RectangleShape2D_68h7p")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." groups=["navmesh"]]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=547860559 groups=["navmesh"]]
 visible = false
 vertices = PackedVector2Array(-25, 0, 0, -23, 37, 0, 0, 18)
 affect_navigation_mesh = true

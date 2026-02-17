@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://pk3tc6o4spst"]
+[gd_scene format=3 uid="uid://pk3tc6o4spst"]
 
 [ext_resource type="Script" uid="uid://b2gnaqelen8p2" path="res://mobs/Chaser.cs" id="1_sj5s6"]
 [ext_resource type="Texture2D" uid="uid://bgqidrl2t46ak" path="res://mobs/markoidleB.png" id="2_i5kib"]
@@ -456,7 +456,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_nl403"]
 radius = 20.0
 
-[node name="Chaser" type="RigidBody2D" node_paths=PackedStringArray("AnimPlayer", "Sprite", "Footsteps", "FootstepsTimer", "AttackSounds")]
+[node name="Chaser" type="RigidBody2D" unique_id=1631555327 node_paths=PackedStringArray("AnimPlayer", "Sprite", "Footsteps", "FootstepsTimer", "AttackSounds")]
 lock_rotation = true
 script = ExtResource("1_sj5s6")
 AnimPlayer = NodePath("AnimationPlayer")
@@ -465,90 +465,88 @@ Footsteps = NodePath("Footsteps")
 FootstepsTimer = NodePath("FootstepTimer")
 AttackSounds = NodePath("AttackSounds")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=355269437]
 texture_filter = 1
 position = Vector2(0, -43.5)
 sprite_frames = SubResource("SpriteFrames_q4b4n")
 animation = &"IdleFront"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1221906271]
 shape = SubResource("RectangleShape2D_34f4t")
 
-[node name="SightCone" type="Node2D" parent="."]
+[node name="SightCone" type="Node2D" parent="." unique_id=993722187]
 
-[node name="SightConeLarge" type="Area2D" parent="SightCone"]
+[node name="SightConeLarge" type="Area2D" parent="SightCone" unique_id=944366798]
 visible = false
 collision_layer = 0
 monitoring = false
 
-[node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeLarge"]
+[node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeLarge" unique_id=1367539130]
 polygon = PackedVector2Array(0, 0, -225, -270, 0, -320, 225, -270)
 
-[node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeLarge"]
+[node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeLarge" unique_id=1634687448]
 shape = SubResource("CircleShape2D_a3q8h")
 debug_color = Color(1, 0, 0, 0.156863)
 
-[node name="SightConeMedium" type="Area2D" parent="SightCone"]
+[node name="SightConeMedium" type="Area2D" parent="SightCone" unique_id=707840606]
 visible = false
 collision_layer = 0
 monitoring = false
 
-[node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeMedium"]
+[node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeMedium" unique_id=765383807]
 polygon = PackedVector2Array(0, 0, -160, -200, 0, -230, 160, -200)
 
-[node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeMedium"]
+[node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeMedium" unique_id=167365790]
 shape = SubResource("CircleShape2D_33tce")
 debug_color = Color(1, 0.4, 0, 0.156863)
 
-[node name="SightConeSmall" type="Area2D" parent="SightCone"]
+[node name="SightConeSmall" type="Area2D" parent="SightCone" unique_id=570126367]
 collision_layer = 0
 
-[node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeSmall"]
+[node name="Cone" type="CollisionPolygon2D" parent="SightCone/SightConeSmall" unique_id=1071882081]
 polygon = PackedVector2Array(0, 0, -115, -150, 0, -170, 115, -150)
 
-[node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeSmall"]
+[node name="Circle" type="CollisionShape2D" parent="SightCone/SightConeSmall" unique_id=804867567]
 shape = SubResource("CircleShape2D_x7ap5")
 debug_color = Color(1, 0.788235, 0, 0.156863)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_2dxh4")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1906932658]
+libraries/ = SubResource("AnimationLibrary_2dxh4")
 
-[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." unique_id=658078463]
 
-[node name="LineOfSight" type="RayCast2D" parent="."]
+[node name="LineOfSight" type="RayCast2D" parent="." unique_id=422745870]
 enabled = false
 collision_mask = 5
 collide_with_areas = true
 
-[node name="KillZone" type="Area2D" parent="."]
+[node name="KillZone" type="Area2D" parent="." unique_id=1206840831]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=1403510895]
 shape = SubResource("CircleShape2D_nl403")
 debug_color = Color(0.302195, 0.513027, 0.251491, 0.42)
 
-[node name="FakePlayer" type="Sprite2D" parent="."]
+[node name="FakePlayer" type="Sprite2D" parent="." unique_id=1180119610]
 visible = false
 texture_filter = 1
 texture = ExtResource("7_p7lna")
 centered = false
 offset = Vector2(-16, -45)
 
-[node name="HandOverlay" type="Sprite2D" parent="."]
+[node name="HandOverlay" type="Sprite2D" parent="." unique_id=344820321]
 visible = false
 texture_filter = 1
 position = Vector2(0, -43.5)
 texture = ExtResource("8_4k2m5")
 
-[node name="FootstepTimer" type="Timer" parent="."]
+[node name="FootstepTimer" type="Timer" parent="." unique_id=614297991]
 wait_time = 0.8
 
-[node name="Footsteps" type="Node2D" parent="."]
+[node name="Footsteps" type="Node2D" parent="." unique_id=1470071553]
 script = ExtResource("9_l3s1e")
 
-[node name="Isoaskel1" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel1" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=818612274]
 position = Vector2(-1, -1)
 stream = ExtResource("10_xhd7h")
 volume_db = -5.0
@@ -556,7 +554,7 @@ pitch_scale = 0.75
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Isoaskel2" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel2" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=420323715]
 position = Vector2(-1, -1)
 stream = ExtResource("11_ueypv")
 volume_db = -5.0
@@ -564,34 +562,34 @@ pitch_scale = 0.75
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Isoaskel3" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel3" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=1059785720]
 position = Vector2(-1, -1)
 stream = ExtResource("10_xhd7h")
 volume_db = -5.0
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="Isoaskel4" type="AudioStreamPlayer2D" parent="Footsteps"]
+[node name="Isoaskel4" type="AudioStreamPlayer2D" parent="Footsteps" unique_id=115450861]
 position = Vector2(-1, -1)
 stream = ExtResource("11_ueypv")
 volume_db = -5.0
 max_distance = 500.0
 bus = &"SFX"
 
-[node name="AttackSounds" type="Node2D" parent="."]
+[node name="AttackSounds" type="Node2D" parent="." unique_id=1254094994]
 script = ExtResource("12_bgnlq")
 
-[node name="Morokolli1" type="AudioStreamPlayer" parent="AttackSounds"]
+[node name="Morokolli1" type="AudioStreamPlayer" parent="AttackSounds" unique_id=1477239024]
 stream = ExtResource("12_5i00f")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Morokolli2" type="AudioStreamPlayer" parent="AttackSounds"]
+[node name="Morokolli2" type="AudioStreamPlayer" parent="AttackSounds" unique_id=1794520465]
 stream = ExtResource("13_qrnb0")
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Morokolli3" type="AudioStreamPlayer" parent="AttackSounds"]
+[node name="Morokolli3" type="AudioStreamPlayer" parent="AttackSounds" unique_id=95668384]
 stream = ExtResource("14_51dqm")
 volume_db = -5.0
 bus = &"SFX"
