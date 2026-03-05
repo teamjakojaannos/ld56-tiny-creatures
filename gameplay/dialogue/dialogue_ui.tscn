@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://demks0smgy37a"]
 
 [ext_resource type="Script" uid="uid://obqnalqqxmbe" path="res://gameplay/dialogue/dialogue_ui.gd" id="1_t0wjt"]
-[ext_resource type="Shader" uid="uid://dk40upygk6i7i" path="res://gameplay/dialogue/background_smoke.vshader.tres" id="2_0iydt"]
-[ext_resource type="NoiseTexture3D" uid="uid://cguqcmrr27038" path="res://gameplay/dialogue/noise_texture_3d.tres" id="3_upbta"]
-[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="4_mhygu"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_upbta"]
-shader = ExtResource("2_0iydt")
-shader_parameter/Noise3D = ExtResource("3_upbta")
+[ext_resource type="PackedScene" uid="uid://bpfy5bg2adoy1" path="res://gameplay/dialogue/smoke_layer.tscn" id="2_0iydt"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="3_upbta"]
+[ext_resource type="PackedScene" uid="uid://cp0nqrlg42f6s" path="res://gameplay/dialogue/dialogue_row.tscn" id="3_y53kq"]
+[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="5_3k6gk"]
 
 [node name="DialogueUi" type="Control" unique_id=1956708307]
 layout_mode = 3
@@ -18,23 +15,86 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t0wjt")
 
-[node name="ClipMask" type="ColorRect" parent="." unique_id=1226697503]
-clip_children = 1
+[node name="SmokeLayer" parent="." unique_id=740308385 instance=ExtResource("2_0iydt")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="ClipMask" unique_id=1156920455]
-material = SubResource("ShaderMaterial_upbta")
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1393062673]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 1.0
+anchor_right = 0.95
 anchor_bottom = 1.0
-offset_top = -252.0
-offset_bottom = 252.0
+offset_top = -202.0
 grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_mhygu")
+grow_vertical = 0
+alignment = 1
+
+[node name="PortraitsLeft" type="VBoxContainer" parent="HBoxContainer" unique_id=743072263]
+layout_mode = 2
+
+[node name="1" type="TextureRect" parent="HBoxContainer/PortraitsLeft" unique_id=2034969560]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_upbta")
+
+[node name="2" type="TextureRect" parent="HBoxContainer/PortraitsLeft" unique_id=1518891100]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_upbta")
+
+[node name="3" type="TextureRect" parent="HBoxContainer/PortraitsLeft" unique_id=1731322613]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_upbta")
+
+[node name="Entries" type="VBoxContainer" parent="HBoxContainer" unique_id=1778809978]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DialogueRow" parent="HBoxContainer/Entries" unique_id=1876986010 instance=ExtResource("3_y53kq")]
+layout_mode = 2
+text = "Just some placeholder text here <3"
+
+[node name="DialogueRow2" parent="HBoxContainer/Entries" unique_id=2056345858 instance=ExtResource("3_y53kq")]
+layout_mode = 2
+side = 1
+text = "Another entry.
+...but it is multiline! :o
+...with much longer lines than the previous placeholder, holy shit!"
+
+[node name="DialogueRow3" parent="HBoxContainer/Entries" unique_id=901916790 instance=ExtResource("3_y53kq")]
+layout_mode = 2
+side = 1
+text = "The above line has same speaker as this, so the above line should
+have its portrait hidden when this line is visible."
+
+[node name="PortraitsRight" type="VBoxContainer" parent="HBoxContainer" unique_id=1703967302]
+layout_mode = 2
+
+[node name="1" type="TextureRect" parent="HBoxContainer/PortraitsRight" unique_id=1975320631]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_3k6gk")
+
+[node name="2" type="TextureRect" parent="HBoxContainer/PortraitsRight" unique_id=350603799]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_3k6gk")
+
+[node name="3" type="TextureRect" parent="HBoxContainer/PortraitsRight" unique_id=1394587882]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_3k6gk")
+
+[node name="Label" type="Label" parent="." unique_id=987160992]
+layout_mode = 0
+offset_left = 254.0
+offset_top = 146.0
+offset_right = 931.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "TODO: the layout is fucked and wont work with the animations.
+- separate the portraits to VBoxContainers or something
+- portraits stay still IFF new entry has same speaker as the previous one
+- portraits move with the line IFF new entry has different speaker than the previous one"
