@@ -6,6 +6,7 @@ extends Resource
 enum Speaker {
 	PLAYER,
 	CROW,
+	NULL,
 }
 enum Side {
 	LEFT,
@@ -14,4 +15,4 @@ enum Side {
 
 @export var speaker: Speaker
 @export var side: DialogueLineNew.Side = Side.LEFT
-@export var text: String = "Just some placeholder text <3"
+@export var text: String = ""

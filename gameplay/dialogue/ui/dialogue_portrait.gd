@@ -11,7 +11,19 @@ signal offset_changed
 		anim_offset = value
 		offset_changed.emit()
 
+var speaker: DialogueLineNew.Speaker
 var _shift_tween: Tween
+
+
+func yeet(delay: float) -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_parallel(false)
+	tween.tween_interval(delay)
+	tween.set_parallel(true)
+	tween.tween_property(self, "anim_offset", 640.0, 0.0)
+	tween.tween_property(self, "color", Color.TRANSPARENT, 1.0)
 
 
 func shift_up(delay: float = 0.0) -> void:
@@ -25,7 +37,7 @@ func shift_up(delay: float = 0.0) -> void:
 	_shift_tween.set_trans(Tween.TRANS_CUBIC)
 	_shift_tween.set_parallel(false)
 	_shift_tween.tween_interval(delay)
-	_shift_tween.tween_property(self, "anim_offset", 64.0, 0.0)
+	_shift_tween.tween_property(self, "anim_offset", anim_offset, 0.0)
 	_shift_tween.set_parallel(true)
 	_shift_tween.tween_property(self, "anim_offset", 0.0, 1.0)
 

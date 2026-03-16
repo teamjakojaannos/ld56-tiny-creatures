@@ -8,6 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_luxc1"]
 script = ExtResource("4_luxc1")
+text = "Just some placeholder text <3"
 metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
 
 [sub_resource type="Resource" id="Resource_kyeac"]
@@ -27,11 +28,28 @@ script = ExtResource("4_luxc1")
 text = "Second line of dialogue from the player."
 metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
 
+[sub_resource type="Resource" id="Resource_3k6gk"]
+script = ExtResource("4_luxc1")
+text = "Third line. This is where positioning the portrait gets real hard."
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
+[sub_resource type="Resource" id="Resource_y53kq"]
+script = ExtResource("4_luxc1")
+speaker = 1
+side = 1
+text = "Second to last"
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
 [sub_resource type="Resource" id="Resource_xeeav"]
 script = ExtResource("4_luxc1")
 speaker = 1
 side = 1
 text = "Final line."
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
+[sub_resource type="Resource" id="Resource_xxmrc"]
+script = ExtResource("4_luxc1")
+text = "Ha! I lied, this is the last one"
 metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
 
 [node name="DialogueUi" type="Control" unique_id=1956708307]
@@ -57,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 16
 script = ExtResource("3_luxc1")
-debug_dialogue_lines = Array[ExtResource("4_luxc1")]([SubResource("Resource_luxc1"), SubResource("Resource_kyeac"), SubResource("Resource_co11b"), SubResource("Resource_l75tq"), SubResource("Resource_xeeav")])
+debug_dialogue_lines = Array[ExtResource("4_luxc1")]([SubResource("Resource_luxc1"), SubResource("Resource_kyeac"), SubResource("Resource_co11b"), SubResource("Resource_l75tq"), SubResource("Resource_3k6gk"), SubResource("Resource_y53kq"), SubResource("Resource_xeeav"), SubResource("Resource_xxmrc")])
 metadata/_custom_type_script = "uid://wkvnr8mtsfut"
 
 [node name="PortraitsLeft" type="Container" parent="DialogueRowContainer" unique_id=1256354411]

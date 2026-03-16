@@ -35,6 +35,17 @@ func _ready() -> void:
 	get_node("Text").visible_characters = 0
 
 
+func yeet(delay: float) -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_parallel(false)
+	tween.tween_interval(delay)
+	tween.set_parallel(true)
+	tween.tween_property(self, "anim_offset", -640.0, 1.0)
+	tween.tween_property(self, "color", Color.TRANSPARENT, 1.0)
+
+
 func scroll_text(line_text: String = "") -> void:
 	if line_text.length() > 0:
 		text = line_text
