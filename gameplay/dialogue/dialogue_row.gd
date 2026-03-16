@@ -76,7 +76,6 @@ func shift_up(delay: float = 0.0) -> void:
 func _reset() -> void:
 	if _shift_tween and _shift_tween.is_valid():
 		_shift_tween.stop()
-		_shift_tween.free()
 
 	_shift_tween = null
 

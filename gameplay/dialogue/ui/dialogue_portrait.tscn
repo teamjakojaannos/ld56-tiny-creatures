@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://di32ud1oobxw8"]
+
+[ext_resource type="Script" uid="uid://c01p2w2nmtebh" path="res://gameplay/dialogue/ui/dialogue_portrait.gd" id="1_t51dg"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="2_3koqa"]
+
+[node name="DialoguePortrait" type="MarginContainer" unique_id=1714545402]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 64.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_t51dg")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=1429562748]
+layout_mode = 2
+texture = ExtResource("2_3koqa")

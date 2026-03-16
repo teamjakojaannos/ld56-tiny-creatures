@@ -60,8 +60,12 @@ script = ExtResource("3_luxc1")
 debug_dialogue_lines = Array[ExtResource("4_luxc1")]([SubResource("Resource_luxc1"), SubResource("Resource_kyeac"), SubResource("Resource_co11b"), SubResource("Resource_l75tq"), SubResource("Resource_xeeav")])
 metadata/_custom_type_script = "uid://wkvnr8mtsfut"
 
-[node name="PortraitsLeft" type="VBoxContainer" parent="DialogueRowContainer" unique_id=743072263]
+[node name="PortraitsLeft" type="Container" parent="DialogueRowContainer" unique_id=1256354411]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("6_luxc1")
+metadata/_custom_type_script = "uid://fad6y5s4nolo"
 
 [node name="Entries" type="Container" parent="DialogueRowContainer" unique_id=1275745987]
 layout_mode = 2
@@ -69,22 +73,11 @@ size_flags_horizontal = 3
 script = ExtResource("6_luxc1")
 metadata/_custom_type_script = "uid://fad6y5s4nolo"
 
-[node name="PortraitsRight" type="VBoxContainer" parent="DialogueRowContainer" unique_id=1703967302]
+[node name="PortraitsRight" type="Container" parent="DialogueRowContainer" unique_id=1947442326]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1393062673]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 1.0
-anchor_right = 0.95
-anchor_bottom = 1.0
-offset_top = -202.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 1
-script = ExtResource("3_luxc1")
-line_prefab = null
+script = ExtResource("6_luxc1")
+metadata/_custom_type_script = "uid://fad6y5s4nolo"
 
 [node name="Label" type="Label" parent="." unique_id=987160992]
 layout_mode = 0
