@@ -2,9 +2,37 @@
 
 [ext_resource type="Script" uid="uid://obqnalqqxmbe" path="res://gameplay/dialogue/dialogue_ui.gd" id="1_t0wjt"]
 [ext_resource type="PackedScene" uid="uid://bpfy5bg2adoy1" path="res://gameplay/dialogue/smoke_layer.tscn" id="2_0iydt"]
-[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="3_upbta"]
-[ext_resource type="PackedScene" uid="uid://cp0nqrlg42f6s" path="res://gameplay/dialogue/dialogue_row.tscn" id="3_y53kq"]
-[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="5_3k6gk"]
+[ext_resource type="Script" uid="uid://wkvnr8mtsfut" path="res://gameplay/dialogue/dialogue_row_container.gd" id="3_luxc1"]
+[ext_resource type="Script" uid="uid://dfs1cf8w0lmty" path="res://gameplay/dialogue/ui/dialogue_line_new.gd" id="4_luxc1"]
+[ext_resource type="Script" uid="uid://fad6y5s4nolo" path="res://gameplay/dialogue/ui/dialogue_vbox_container.gd" id="6_luxc1"]
+
+[sub_resource type="Resource" id="Resource_luxc1"]
+script = ExtResource("4_luxc1")
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
+[sub_resource type="Resource" id="Resource_kyeac"]
+script = ExtResource("4_luxc1")
+speaker = 1
+side = 1
+text = "Whoa! Another character is speaking."
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
+[sub_resource type="Resource" id="Resource_co11b"]
+script = ExtResource("4_luxc1")
+text = "Another dialogue line."
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
+[sub_resource type="Resource" id="Resource_l75tq"]
+script = ExtResource("4_luxc1")
+text = "Second line of dialogue from the player."
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
+
+[sub_resource type="Resource" id="Resource_xeeav"]
+script = ExtResource("4_luxc1")
+speaker = 1
+side = 1
+text = "Final line."
+metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
 
 [node name="DialogueUi" type="Control" unique_id=1956708307]
 layout_mode = 3
@@ -18,6 +46,32 @@ script = ExtResource("1_t0wjt")
 [node name="SmokeLayer" parent="." unique_id=740308385 instance=ExtResource("2_0iydt")]
 layout_mode = 1
 
+[node name="DialogueRowContainer" type="HBoxContainer" parent="." unique_id=1466319863]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 1.0
+anchor_right = 0.95
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+script = ExtResource("3_luxc1")
+debug_dialogue_lines = Array[ExtResource("4_luxc1")]([SubResource("Resource_luxc1"), SubResource("Resource_kyeac"), SubResource("Resource_co11b"), SubResource("Resource_l75tq"), SubResource("Resource_xeeav")])
+metadata/_custom_type_script = "uid://wkvnr8mtsfut"
+
+[node name="PortraitsLeft" type="VBoxContainer" parent="DialogueRowContainer" unique_id=743072263]
+layout_mode = 2
+
+[node name="Entries" type="Container" parent="DialogueRowContainer" unique_id=1275745987]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("6_luxc1")
+metadata/_custom_type_script = "uid://fad6y5s4nolo"
+
+[node name="PortraitsRight" type="VBoxContainer" parent="DialogueRowContainer" unique_id=1703967302]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1393062673]
 layout_mode = 1
 anchors_preset = -1
@@ -29,63 +83,8 @@ offset_top = -202.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
-
-[node name="PortraitsLeft" type="VBoxContainer" parent="HBoxContainer" unique_id=743072263]
-layout_mode = 2
-
-[node name="1" type="TextureRect" parent="HBoxContainer/PortraitsLeft" unique_id=2034969560]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("3_upbta")
-
-[node name="2" type="TextureRect" parent="HBoxContainer/PortraitsLeft" unique_id=1518891100]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("3_upbta")
-
-[node name="3" type="TextureRect" parent="HBoxContainer/PortraitsLeft" unique_id=1731322613]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("3_upbta")
-
-[node name="Entries" type="VBoxContainer" parent="HBoxContainer" unique_id=1778809978]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="DialogueRow" parent="HBoxContainer/Entries" unique_id=1876986010 instance=ExtResource("3_y53kq")]
-layout_mode = 2
-text = "Just some placeholder text here <3"
-
-[node name="DialogueRow2" parent="HBoxContainer/Entries" unique_id=2056345858 instance=ExtResource("3_y53kq")]
-layout_mode = 2
-side = 1
-text = "Another entry.
-...but it is multiline! :o
-...with much longer lines than the previous placeholder, holy shit!"
-
-[node name="DialogueRow3" parent="HBoxContainer/Entries" unique_id=901916790 instance=ExtResource("3_y53kq")]
-layout_mode = 2
-side = 1
-text = "The above line has same speaker as this, so the above line should
-have its portrait hidden when this line is visible."
-
-[node name="PortraitsRight" type="VBoxContainer" parent="HBoxContainer" unique_id=1703967302]
-layout_mode = 2
-
-[node name="1" type="TextureRect" parent="HBoxContainer/PortraitsRight" unique_id=1975320631]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("5_3k6gk")
-
-[node name="2" type="TextureRect" parent="HBoxContainer/PortraitsRight" unique_id=350603799]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("5_3k6gk")
-
-[node name="3" type="TextureRect" parent="HBoxContainer/PortraitsRight" unique_id=1394587882]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("5_3k6gk")
+script = ExtResource("3_luxc1")
+line_prefab = null
 
 [node name="Label" type="Label" parent="." unique_id=987160992]
 layout_mode = 0
@@ -97,4 +96,4 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "TODO: the layout is fucked and wont work with the animations.
 - separate the portraits to VBoxContainers or something
 - portraits stay still IFF new entry has same speaker as the previous one
-- portraits move with the line IFF new entry has different speaker than the previous one"
+- bottom most portraits move with the line IFF new entry has different speaker than the previous one"
