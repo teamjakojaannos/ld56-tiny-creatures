@@ -12,7 +12,6 @@ input_name = "uv"
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_gbo4u"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lv1wb"]
-output_port_for_preview = 0
 default_input_values = [0, 0.0, 1, 4.0]
 operator = 5
 
@@ -47,7 +46,6 @@ default_input_values = [0, 0.0, 1, 1.0]
 operator = 2
 
 [sub_resource type="VisualShaderNodeTexture3D" id="VisualShaderNodeTexture3D_sund7"]
-output_port_for_preview = 0
 expanded_output_ports = [0]
 source = 1
 texture = ExtResource("1_lv1wb")

@@ -11,6 +11,7 @@ var text: String = "Just some placeholder text <3":
 
 		if value and _label and _label.visible_characters != -1:
 			_label.visible_characters = value.length()
+var _is_skipped: bool = false
 
 @onready var _label: Label = $Text
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 
 func set_text(line_text: String) -> void:
 	text = line_text
+	$Text.visible_characters = 0
 
 
 func scroll_text() -> void:
@@ -31,8 +33,7 @@ func scroll_text() -> void:
 	# if a call to _reset occurs during that window (e.g. button-smashing)
 	# visible_characters is first set to string length in _reset and almost
 	# immediately after to zero here. Bail out if that is about to happen.
-	var is_already_skipped: bool = _label.visible_characters == letter_count
-	if is_already_skipped:
+	if _is_skipped:
 		return
 
 	_label.visible_characters = 0
@@ -47,3 +48,4 @@ func _reset() -> void:
 
 	var letter_count = _label.text.length()
 	_label.visible_characters = letter_count
+	_is_skipped = true

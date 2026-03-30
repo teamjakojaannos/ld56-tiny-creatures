@@ -54,6 +54,7 @@ text = "Ha! I lied, this is the last one"
 metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
 
 [node name="DialogueUi" type="Control" unique_id=1956708307]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,12 +75,14 @@ grow_vertical = 2
 [node name="SmokeLayer" parent="SmokeLayers" unique_id=740308385 instance=ExtResource("2_0iydt")]
 layout_mode = 1
 anchors_preset = -1
-offset_top = 64.0
-offset_bottom = 64.0
+anchor_top = 1.0
 
 [node name="SmokeLayer2" parent="SmokeLayers" unique_id=895873886 instance=ExtResource("2_0iydt")]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 1.0
+offset_top = 64.0
+offset_bottom = 64.0
 noise_texture = ExtResource("4_co11b")
 scroll_time_scale_h = 0.05
 scroll_time_scale_v = 0.075

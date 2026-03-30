@@ -8,9 +8,9 @@ extends HBoxContainer
 
 @export_group("Debug controls")
 @export_tool_button("Next line")
-var debug_next_button = _debug_next
+var debug_next_button = debug_next
 @export_tool_button("Reset")
-var debug_reset_button = _debug_reset
+var debug_reset_button = debug_reset
 var _cooldown: bool = false
 var _cooldown2: bool = false
 var _previous_line: DialogueLineNew
@@ -20,7 +20,19 @@ var _previous_line: DialogueLineNew
 @onready var portrait_container_right: Control = $PortraitsRight
 
 
-func _debug_reset() -> void:
+func debug_next() -> bool:
+	var idx = line_container.get_child_count()
+	if idx >= debug_dialogue_lines.size():
+		_end_of_dialogue()
+		return true
+
+	var next_line = debug_dialogue_lines[idx]
+	await _append_line(next_line)
+
+	return false
+
+
+func debug_reset() -> void:
 	_cooldown = false
 	_cooldown2 = false
 
@@ -34,16 +46,6 @@ func _debug_reset() -> void:
 		child.queue_free()
 
 	_previous_line = null
-
-
-func _debug_next() -> void:
-	var idx = line_container.get_child_count()
-	if idx >= debug_dialogue_lines.size():
-		_end_of_dialogue()
-		return
-
-	var next_line = debug_dialogue_lines[idx]
-	_append_line(next_line)
 
 
 func _end_of_dialogue() -> void:
