@@ -34,16 +34,29 @@ func _debug_reset() -> void:
 func _debug_next() -> void:
 	var idx = line_container.get_child_count()
 	if idx >= debug_dialogue_lines.size():
-		var delay = 0.0
-		for child_idx in line_container.get_child_count():
-			line_container.get_child(child_idx).yeet(delay)
-			portrait_container_left.get_child(child_idx).yeet(delay)
-			portrait_container_right.get_child(child_idx).yeet(delay)
-			delay += 0.1
+		_end_of_dialogue()
 		return
 
 	var next_line = debug_dialogue_lines[idx]
 	_append_line(next_line)
+
+
+func _end_of_dialogue() -> void:
+	var total_lines := line_container.get_child_count()
+	var delay := 0.0
+	for child_idx in line_container.get_child_count():
+		# Only delay the last 4 lines as rest are already invisible.
+		# Otherwise the end animation speed would depend on the number of
+		# lines in the dialogue.
+		if child_idx >= total_lines - 4:
+			line_container.get_child(child_idx).yeet(delay)
+			portrait_container_left.get_child(child_idx).yeet(delay)
+			portrait_container_right.get_child(child_idx).yeet(delay)
+			delay += 0.1
+		else:
+			line_container.get_child(child_idx).queue_free()
+			portrait_container_left.get_child(child_idx).queue_free()
+			portrait_container_right.get_child(child_idx).queue_free()
 
 
 func _append_line(line: DialogueLineNew) -> void:
@@ -87,20 +100,27 @@ func _append_line(line: DialogueLineNew) -> void:
 	for child in portrait_container_right.get_children():
 		child.anim_offset = 64.0
 
-	var delay = 0.0
+	var total_lines := line_container.get_child_count()
+	var delay := 0.0
+	var child_idx := 0
 	for child in line_container.get_children():
 		child.shift_up.call_deferred(delay)
-		delay += 0.1
+		delay += 0.1 if child_idx >= total_lines - 4 else 0.0
+		child_idx += 1
 
 	delay = 0.0
+	child_idx = 0
 	for child in portrait_container_left.get_children():
 		child.shift_up.call_deferred(delay)
-		delay += 0.125
+		delay += 0.125 if child_idx >= total_lines - 4 else 0.0
+		child_idx += 1
 
 	delay = 0.0
+	child_idx = 0
 	for child in portrait_container_right.get_children():
 		child.shift_up.call_deferred(delay)
-		delay += 0.125
+		delay += 0.125 if child_idx >= total_lines - 4 else 0.0
+		child_idx += 1
 
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(delay + 0.25).timeout
 	dialogue_row.scroll_text.call_deferred(line.text)

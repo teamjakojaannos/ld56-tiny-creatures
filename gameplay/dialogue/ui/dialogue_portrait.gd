@@ -15,15 +15,15 @@ var speaker: DialogueLineNew.Speaker
 var _shift_tween: Tween
 
 
-func yeet(delay: float) -> void:
+func yeet(delay: float, max_lines_visible: int = 4) -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.set_parallel(false)
 	tween.tween_interval(delay)
 	tween.set_parallel(true)
-	tween.tween_property(self, "anim_offset", 640.0, 0.0)
-	tween.tween_property(self, "color", Color.TRANSPARENT, 1.0)
+	tween.tween_property(self, "anim_offset", max_lines_visible * -64.0, 1.25)
+	tween.tween_property(self, "modulate", Color.TRANSPARENT, 1.0)
 
 
 func shift_up(delay: float = 0.0) -> void:
