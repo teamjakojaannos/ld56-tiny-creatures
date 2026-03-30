@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_0ldqh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_upbta"]
+resource_local_to_scene = true
 shader = ExtResource("1_ja5da")
 shader_parameter/noise_texture = ExtResource("2_fxha7")
 
@@ -17,9 +18,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fxha7")
+noise_texture = ExtResource("2_fxha7")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=881035581]
 material = SubResource("ShaderMaterial_upbta")
+instance_shader_parameters/scroll_time_scale_h = 0.0
+instance_shader_parameters/scroll_time_scale_v = 0.1
+instance_shader_parameters/scroll_time_scale_z = 1.0
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

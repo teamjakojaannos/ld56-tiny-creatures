@@ -27,7 +27,9 @@ func _slide_in_smoke() -> void:
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_parallel(true)
 
+	var delay := 0.0
 	for smoke_layer in _smoke_layers.get_children():
 		tween.tween_property(smoke_layer, "anchor_top", 0.0, 2.0)
+		delay += 1.0
 
 	await tween.finished
