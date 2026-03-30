@@ -11,6 +11,8 @@ extends HBoxContainer
 var debug_next_button = _debug_next
 @export_tool_button("Reset")
 var debug_reset_button = _debug_reset
+var _cooldown: bool = false
+var _cooldown2: bool = false
 var _previous_line: DialogueLineNew
 
 @onready var line_container: DialogueVBoxContainer = $Entries
@@ -19,6 +21,9 @@ var _previous_line: DialogueLineNew
 
 
 func _debug_reset() -> void:
+	_cooldown = false
+	_cooldown2 = false
+
 	for child in line_container.get_children():
 		child.queue_free()
 
@@ -42,6 +47,7 @@ func _debug_next() -> void:
 
 
 func _end_of_dialogue() -> void:
+	_cooldown2 = true
 	var total_lines := line_container.get_child_count()
 	var delay := 0.0
 	for child_idx in line_container.get_child_count():
@@ -49,17 +55,34 @@ func _end_of_dialogue() -> void:
 		# Otherwise the end animation speed would depend on the number of
 		# lines in the dialogue.
 		if child_idx >= total_lines - 4:
-			line_container.get_child(child_idx).yeet(delay)
-			portrait_container_left.get_child(child_idx).yeet(delay)
-			portrait_container_right.get_child(child_idx).yeet(delay)
+			line_container.get_child(child_idx).yeet(delay, 1.0)
+			portrait_container_left.get_child(child_idx).yeet(delay, 1.25)
+			portrait_container_right.get_child(child_idx).yeet(delay, 1.25)
 			delay += 0.1
 		else:
 			line_container.get_child(child_idx).queue_free()
 			portrait_container_left.get_child(child_idx).queue_free()
 			portrait_container_right.get_child(child_idx).queue_free()
 
+	var t := 1.25 + delay
+	get_tree().create_timer(t).timeout.connect(
+		func():
+			_cooldown2 = false
+			for child in line_container.get_children():
+				child.queue_free()
+			for child in portrait_container_left.get_children():
+				child.queue_free()
+			for child in portrait_container_right.get_children():
+				child.queue_free()
+	)
+
 
 func _append_line(line: DialogueLineNew) -> void:
+	if _cooldown or _cooldown2:
+		return
+	_cooldown = true
+	get_tree().create_timer(0.25).timeout.connect(func(): _cooldown = false)
+
 	var dialogue_row: DialogueRow = line_prefab.instantiate()
 
 	var portrait_left: DialoguePortrait = portrait_prefab.instantiate()
@@ -82,6 +105,7 @@ func _append_line(line: DialogueLineNew) -> void:
 		portrait_left.modulate = Color.TRANSPARENT
 
 	line_container.add_child(dialogue_row)
+	dialogue_row.set_text(line.text)
 	dialogue_row.offset_changed.connect(line_container.queue_sort)
 
 	portrait_container_left.add_child(portrait_left)
@@ -123,4 +147,5 @@ func _append_line(line: DialogueLineNew) -> void:
 		child_idx += 1
 
 	await get_tree().create_timer(delay + 0.25).timeout
-	dialogue_row.scroll_text.call_deferred(line.text)
+	if is_instance_valid(dialogue_row):
+		dialogue_row.scroll_text.call_deferred()

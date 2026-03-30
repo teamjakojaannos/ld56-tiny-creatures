@@ -24,7 +24,7 @@ operator = 5
 input_name = "time"
 
 [sub_resource type="VisualShaderNodeTexture3DParameter" id="VisualShaderNodeTexture3DParameter_pk42q"]
-parameter_name = "Noise3D"
+parameter_name = "noise_texture"
 texture_repeat = 1
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_gms2j"]
@@ -69,7 +69,7 @@ expanded_output_ports = [0]
 [resource]
 mode = 1
 flags/light_only = false
-preview_params/Noise3D = "Resource(\"uid://cguqcmrr27038\", \"res://gameplay/dialogue/noise_texture_3d.tres\")"
+preview_params/noise_texture = "Resource(\"uid://cguqcmrr27038\", \"res://gameplay/dialogue/noise_texture_3d.tres\")"
 nodes/fragment/0/position = Vector2(1440, -220)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_4n3hb")
 nodes/fragment/2/position = Vector2(-1900, -440)
@@ -88,7 +88,7 @@ nodes/fragment/29/position = Vector2(-940, -660)
 nodes/fragment/30/node = SubResource("VisualShaderNodeInput_j8ppq")
 nodes/fragment/30/position = Vector2(-1860, -680)
 nodes/fragment/31/node = SubResource("VisualShaderNodeTexture3DParameter_pk42q")
-nodes/fragment/31/position = Vector2(-180, -20)
+nodes/fragment/31/position = Vector2(-200, -40)
 nodes/fragment/32/node = SubResource("VisualShaderNodeFloatOp_gms2j")
 nodes/fragment/32/position = Vector2(-1500, -820)
 nodes/fragment/36/node = SubResource("VisualShaderNodeInput_r63kd")

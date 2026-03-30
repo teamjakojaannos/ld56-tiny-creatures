@@ -1,0 +1,16 @@
+[gd_resource type="NoiseTexture3D" format=3 uid="uid://cifwtx24wj3cf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y8wyx"]
+noise_type = 0
+offset = Vector3(512, 128, 64)
+fractal_type = 2
+domain_warp_enabled = true
+
+[resource]
+width = 512
+height = 512
+depth = 32
+noise = SubResource("FastNoiseLite_y8wyx")
+seamless = true
+normalize = false
+seamless_blend_skirt = 1.0

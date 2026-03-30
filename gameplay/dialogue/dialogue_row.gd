@@ -1,15 +1,6 @@
 @tool
 class_name DialogueRow
-extends MarginContainer
-
-signal offset_changed
-
-@export var anim_offset: float = 0.0:
-	get:
-		return anim_offset
-	set(value):
-		anim_offset = value
-		offset_changed.emit()
+extends DialogueComponent
 
 @export_multiline("no_wrap")
 var text: String = "Just some placeholder text <3":
@@ -20,37 +11,30 @@ var text: String = "Just some placeholder text <3":
 
 		if value and _label and _label.visible_characters != -1:
 			_label.visible_characters = value.length()
-@export_tool_button("Scroll text")
-var debug_scroll_action = scroll_text
-@export_tool_button("Shift up")
-var debug_shift_up_action = shift_up
-@export_tool_button("Reset")
-var reset = _reset
-var _shift_tween: Tween
 
 @onready var _label: Label = $Text
 
 
 func _ready() -> void:
-	get_node("Text").visible_characters = 0
+	$Text.visible_characters = 0
 
 
-func yeet(delay: float, max_lines_visible: int = 4) -> void:
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.set_parallel(false)
-	tween.tween_interval(delay)
-	tween.set_parallel(true)
-	tween.tween_property(self, "anim_offset", max_lines_visible * -64.0, 1.0)
-	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.75)
+func set_text(line_text: String) -> void:
+	text = line_text
 
 
-func scroll_text(line_text: String = "") -> void:
-	if line_text.length() > 0:
-		text = line_text
-
+func scroll_text() -> void:
 	var letter_count = _label.text.length()
+
+	# HACK: Safeguard against button-smashing through dialogue.
+	# The shift up animation adds a short delay between the scroll starting, and
+	# if a call to _reset occurs during that window (e.g. button-smashing)
+	# visible_characters is first set to string length in _reset and almost
+	# immediately after to zero here. Bail out if that is about to happen.
+	var is_already_skipped: bool = _label.visible_characters == letter_count
+	if is_already_skipped:
+		return
+
 	_label.visible_characters = 0
 
 	while _label.visible_characters < letter_count:
@@ -58,36 +42,8 @@ func scroll_text(line_text: String = "") -> void:
 		await get_tree().create_timer(0.05).timeout
 
 
-func shift_up(delay: float = 0.0) -> void:
-	if _shift_tween:
-		_reset()
-
-	anim_offset = 64.0
-
-	_shift_tween = create_tween()
-	_shift_tween.set_ease(Tween.EASE_IN_OUT)
-	_shift_tween.set_trans(Tween.TRANS_CUBIC)
-	_shift_tween.set_parallel(false)
-	_shift_tween.tween_interval(delay)
-	_shift_tween.tween_property(self, "anim_offset", 64.0, 0.0)
-	_shift_tween.set_parallel(true)
-	_shift_tween.tween_property(self, "anim_offset", 0.0, 1.0)
-
-	var child_idx: int = get_parent().get_children().find(self)
-	var color_idx: int = min(4, get_parent().get_child_count() - (child_idx + 1))
-	var alpha := 1.0 - (color_idx / 4.0)
-
-	var color := self.modulate
-	color.a = alpha
-	_shift_tween.tween_property(self, "modulate", color, 0.75)
-
-	await _shift_tween.finished
-
-
 func _reset() -> void:
-	if _shift_tween and _shift_tween.is_valid():
-		_shift_tween.stop()
+	super._reset()
 
-	_shift_tween = null
-
-	anim_offset = 0.0
+	var letter_count = _label.text.length()
+	_label.visible_characters = letter_count

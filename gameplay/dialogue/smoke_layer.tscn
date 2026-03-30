@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://bpfy5bg2adoy1"]
 
+[ext_resource type="Script" uid="uid://cnvfmnooob285" path="res://gameplay/dialogue/smoke_layer.gd" id="1_fxha7"]
 [ext_resource type="Shader" uid="uid://dk40upygk6i7i" path="res://gameplay/dialogue/background_smoke.vshader.tres" id="1_ja5da"]
 [ext_resource type="NoiseTexture3D" uid="uid://cguqcmrr27038" path="res://gameplay/dialogue/noise_texture_3d.tres" id="2_fxha7"]
 [ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_0ldqh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_upbta"]
 shader = ExtResource("1_ja5da")
-shader_parameter/Noise3D = ExtResource("2_fxha7")
+shader_parameter/noise_texture = ExtResource("2_fxha7")
 
 [node name="ClipMask" type="ColorRect" unique_id=740308385]
 clip_children = 1
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fxha7")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=881035581]
 material = SubResource("ShaderMaterial_upbta")
