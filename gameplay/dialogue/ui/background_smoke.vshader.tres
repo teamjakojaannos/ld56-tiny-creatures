@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" format=3 uid="uid://dk40upygk6i7i"]
 
-[ext_resource type="NoiseTexture3D" uid="uid://cguqcmrr27038" path="res://gameplay/dialogue/noise_texture_3d.tres" id="1_lv1wb"]
+[ext_resource type="NoiseTexture3D" uid="uid://cguqcmrr27038" path="res://gameplay/dialogue/ui/noise_texture_3d.tres" id="1_lv1wb"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_4n3hb"]
 output_port_for_preview = 0

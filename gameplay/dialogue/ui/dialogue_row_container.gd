@@ -126,6 +126,8 @@ func _append_line(line: DialogueLineNew) -> void:
 	for child in portrait_container_right.get_children():
 		child.anim_offset = 64.0
 
+	dialogue_row.anim_offset = 64.0 + 9.0
+
 	var total_lines := line_container.get_child_count()
 	var delay := 0.0
 	var child_idx := 0
@@ -137,14 +139,16 @@ func _append_line(line: DialogueLineNew) -> void:
 	delay = 0.0
 	child_idx = 0
 	for child in portrait_container_left.get_children():
-		child.shift_up.call_deferred(delay)
+		var offset = (64.0 + 9.0) if child_idx == total_lines - 1 else 64.0
+		child.shift_up.call_deferred(delay, offset)
 		delay += 0.125 if child_idx >= total_lines - 4 else 0.0
 		child_idx += 1
 
 	delay = 0.0
 	child_idx = 0
 	for child in portrait_container_right.get_children():
-		child.shift_up.call_deferred(delay)
+		var offset = (64.0 + 9.0) if child_idx == total_lines - 1 else 64.0
+		child.shift_up.call_deferred(delay, offset)
 		delay += 0.125 if child_idx >= total_lines - 4 else 0.0
 		child_idx += 1
 

@@ -30,11 +30,11 @@ func yeet(delay: float, duration: float = 1.0, max_lines: int = 4) -> void:
 	tween.tween_property(self, "modulate", Color.TRANSPARENT, color_duration)
 
 
-func shift_up(delay: float = 0.0) -> void:
+func shift_up(delay: float = 0.0, offset: float = 64.0) -> void:
 	if _shift_tween:
 		_reset()
 
-	anim_offset = 64.0
+	anim_offset = offset
 
 	_shift_tween = create_tween()
 	_shift_tween.set_ease(Tween.EASE_IN_OUT)

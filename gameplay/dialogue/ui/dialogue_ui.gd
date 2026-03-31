@@ -42,13 +42,11 @@ func _slide_in_smoke() -> void:
 		return
 
 	var pos_tween := create_tween()
-	pos_tween = create_tween()
 	pos_tween.set_ease(Tween.EASE_IN_OUT)
 	pos_tween.set_trans(Tween.TRANS_QUAD)
 	pos_tween.set_parallel(true)
 
 	var mod_tween := create_tween()
-	pos_tween = create_tween()
 	pos_tween.set_ease(Tween.EASE_IN_OUT)
 	pos_tween.set_trans(Tween.TRANS_QUAD)
 	pos_tween.set_parallel(true)
@@ -72,7 +70,6 @@ func _slide_out_smoke() -> void:
 		return
 
 	var tween := create_tween()
-	tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_parallel(true)

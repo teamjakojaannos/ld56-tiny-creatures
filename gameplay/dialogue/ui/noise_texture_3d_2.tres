@@ -2,13 +2,14 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_y8wyx"]
 noise_type = 0
+frequency = 0.02
 offset = Vector3(512, 128, 64)
 fractal_type = 2
 domain_warp_enabled = true
 
 [resource]
-width = 512
-height = 512
+width = 256
+height = 256
 depth = 32
 noise = SubResource("FastNoiseLite_y8wyx")
 seamless = true

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cp0nqrlg42f6s"]
 
-[ext_resource type="Script" uid="uid://di73cur08rvwc" path="res://gameplay/dialogue/dialogue_row.gd" id="1_b3r8y"]
+[ext_resource type="Script" uid="uid://di73cur08rvwc" path="res://gameplay/dialogue/ui/dialogue_row.gd" id="1_b3r8y"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="4_o238g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3k6gk"]

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://demks0smgy37a"]
 
-[ext_resource type="Script" uid="uid://obqnalqqxmbe" path="res://gameplay/dialogue/dialogue_ui.gd" id="1_t0wjt"]
-[ext_resource type="PackedScene" uid="uid://bpfy5bg2adoy1" path="res://gameplay/dialogue/smoke_layer.tscn" id="2_0iydt"]
-[ext_resource type="Script" uid="uid://wkvnr8mtsfut" path="res://gameplay/dialogue/dialogue_row_container.gd" id="3_luxc1"]
-[ext_resource type="NoiseTexture3D" uid="uid://cifwtx24wj3cf" path="res://gameplay/dialogue/noise_texture_3d_2.tres" id="4_co11b"]
+[ext_resource type="Script" uid="uid://obqnalqqxmbe" path="res://gameplay/dialogue/ui/dialogue_ui.gd" id="1_t0wjt"]
+[ext_resource type="PackedScene" uid="uid://bpfy5bg2adoy1" path="res://gameplay/dialogue/ui/smoke_layer.tscn" id="2_0iydt"]
+[ext_resource type="Script" uid="uid://wkvnr8mtsfut" path="res://gameplay/dialogue/ui/dialogue_row_container.gd" id="3_luxc1"]
+[ext_resource type="NoiseTexture3D" uid="uid://cifwtx24wj3cf" path="res://gameplay/dialogue/ui/noise_texture_3d_2.tres" id="4_co11b"]
 [ext_resource type="Script" uid="uid://dfs1cf8w0lmty" path="res://gameplay/dialogue/ui/dialogue_line_new.gd" id="4_luxc1"]
 [ext_resource type="Script" uid="uid://fad6y5s4nolo" path="res://gameplay/dialogue/ui/dialogue_vbox_container.gd" id="6_luxc1"]
 
@@ -73,11 +73,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SmokeLayer" parent="SmokeLayers" unique_id=740308385 instance=ExtResource("2_0iydt")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
+scroll_time_scale_v = 0.08
+scroll_time_scale_z = 0.5
 
 [node name="SmokeLayer2" parent="SmokeLayers" unique_id=895873886 instance=ExtResource("2_0iydt")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -86,7 +90,7 @@ offset_bottom = 64.0
 noise_texture = ExtResource("4_co11b")
 scroll_time_scale_h = 0.05
 scroll_time_scale_v = 0.075
-scroll_time_scale_z = 0.33
+scroll_time_scale_z = 0.1
 
 [node name="DialogueRowContainer" type="HBoxContainer" parent="." unique_id=1466319863]
 layout_mode = 1
@@ -95,6 +99,7 @@ anchor_left = 0.05
 anchor_top = 1.0
 anchor_right = 0.95
 anchor_bottom = 1.0
+offset_top = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 16
