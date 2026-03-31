@@ -98,7 +98,7 @@ public partial class BogMonster : PathFollow2D {
 			UpdateDetection(delta);
 		}
 
-		if (animationPlayer != null && animationPlayer.IsPlaying() && animationPlayer.CurrentAnimation == "attack") {
+		if (animationPlayer != null && animationPlayer.IsPlaying() && animationPlayer.Get("current_animation").AsString() == "attack") {
 			SyncHandLocation(1.0f * delta);
 		}
 	}
