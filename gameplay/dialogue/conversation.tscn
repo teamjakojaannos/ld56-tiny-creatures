@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cmsp0cu1vn6g8"]
+
+[ext_resource type="PackedScene" uid="uid://demks0smgy37a" path="res://gameplay/dialogue/ui/dialogue_ui.tscn" id="1_bjo46"]
+[ext_resource type="Script" uid="uid://bq75metace7hw" path="res://gameplay/dialogue/conversation.gd" id="1_wf7t2"]
+
+[node name="Conversation" type="CanvasLayer" unique_id=1149296576]
+layer = 2
+script = ExtResource("1_wf7t2")
+
+[node name="UI" parent="." unique_id=1956708307 instance=ExtResource("1_bjo46")]

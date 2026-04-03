@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://p8he4nqcn2cy"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_1fgli"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_d8ht0"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_kylio"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="3_kqkij"]
+
+[sub_resource type="Resource" id="Resource_r1ej7"]
+script = ExtResource("2_d8ht0")
+text = "That was a pretty harsh fall...
+Ouch... I think I got my antenna on a twist"
+speaker = ExtResource("3_kqkij")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_kylio")
+lines = Array[ExtResource("1_1fgli")]([SubResource("Resource_r1ej7")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

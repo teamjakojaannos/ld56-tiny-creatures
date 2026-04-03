@@ -8,8 +8,8 @@ fractal_type = 2
 domain_warp_enabled = true
 
 [resource]
-width = 256
-height = 256
+width = 128
+height = 128
 depth = 32
 noise = SubResource("FastNoiseLite_y8wyx")
 seamless = true

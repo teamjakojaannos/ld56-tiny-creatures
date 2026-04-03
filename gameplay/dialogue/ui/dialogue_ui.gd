@@ -1,40 +1,68 @@
 @tool
+class_name DialogueUINew
 extends Control
+
+signal input_progress
+
+@export var debug_dialogue_lines: Array[DialogueLine2] = []
 
 @export_group("Debug controls")
 @export_tool_button("Next line")
 var debug_next_button = _debug_next
 @export_tool_button("Reset")
-var debug_reset_button = _debug_reset
+var debug_reset_button = reset
 var _is_smoke_visible: bool = false
 var _is_in_transition: bool = false
+var _debug_idx := 0
 
 @onready var _smoke_layers: Control = $SmokeLayers
+@onready var _line_container: DialogueRowContainer = $DialogueRowContainer
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("gui_accept"):
+		if _line_container.is_playing_animation:
+			return
+
+		input_progress.emit()
+
+
+func end_dialogue() -> void:
+	_line_container.end_dialogue()
+
+	_is_in_transition = true
+	await _slide_out_smoke()
+	_is_in_transition = false
+
+
+func show_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Side) -> void:
+	if not _is_smoke_visible:
+		_is_in_transition = true
+		await _slide_in_smoke()
+		_is_in_transition = false
+
+	_line_container.next(text, speaker, side)
+
+
+func reset() -> void:
+	for smoke_layer in _smoke_layers.get_children():
+		smoke_layer.anchor_top = 1.0
+		smoke_layer.anchor_bottom = 1.0
+
+	_line_container.reset()
+	_is_smoke_visible = false
 
 
 func _debug_next() -> void:
 	if _is_in_transition:
 		return
 
-	if not _is_smoke_visible:
-		_is_in_transition = true
-		await _slide_in_smoke()
-		_is_in_transition = false
+	if _debug_idx >= debug_dialogue_lines.size():
+		end_dialogue()
+		return
 
-	var did_end = await $DialogueRowContainer.debug_next()
-	if did_end:
-		_is_in_transition = true
-		await _slide_out_smoke()
-		_is_in_transition = false
-
-
-func _debug_reset() -> void:
-	for smoke_layer in _smoke_layers.get_children():
-		smoke_layer.anchor_top = 1.0
-		smoke_layer.anchor_bottom = 1.0
-
-	$DialogueRowContainer.debug_reset()
-	_is_smoke_visible = false
+	var line = debug_dialogue_lines[_debug_idx]
+	show_line(line.text, line.speaker, line.side)
 
 
 func _slide_in_smoke() -> void:

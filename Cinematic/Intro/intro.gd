@@ -2,6 +2,11 @@ extends Node2D
 
 @export var skip_intro: bool = false
 
+var _conv_01_initial: DialogueConversation = preload("uid://p8he4nqcn2cy")
+var _conv_02_demands_help: DialogueConversation = preload("uid://sabahfm0papb")
+var _conv_03_promise_to_help: DialogueConversation = preload("uid://bptgiby1p80cl")
+var _conv_04_released: DialogueConversation = preload("uid://b7c02gqssw0vk")
+
 @onready var main_camera: CameraManager = get_tree().get_first_node_in_group("MainCamera")
 @onready var player_controller: PlayerController = Persistent.PlayerController
 @onready var player: Player = Persistent.PlayerController.player
@@ -39,9 +44,10 @@ func play() -> void:
 	if not skip_intro:
 		await _wait(1.0)
 
-		DialogueMan.ActiveDialogue = $InitialDialogue
-		DialogueMan.StartDialogue()
-		await DialogueMan.DialogueFinished
+		print("Foo?")
+		Conversation.begin(_conv_01_initial)
+		await Conversation.finished
+		print("bar?")
 
 		# Dramatic pause, or sth
 		# FIXME: do something to emphasize wisp
@@ -50,15 +56,13 @@ func play() -> void:
 		# etc.
 		await _wait(1.0)
 
-		DialogueMan.ActiveDialogue = $WispDemandsHelpDialogue
-		DialogueMan.StartDialogue()
-		await DialogueMan.DialogueFinished
+		Conversation.begin(_conv_02_demands_help)
+		await Conversation.finished
 
 		await _play_step("01_stand_up")
 
-		DialogueMan.ActiveDialogue = $PlayerPromisesToHelpDialogue
-		DialogueMan.StartDialogue()
-		await DialogueMan.DialogueFinished
+		Conversation.begin(_conv_03_promise_to_help)
+		await Conversation.finished
 
 		await _play_step("02_walk_to_lantern")
 		await _play_step("03_open_lantern")
@@ -74,10 +78,8 @@ func play() -> void:
 	await _wisp_flies_loop_of_joy_around_the_player()
 
 	if not skip_intro:
-		DialogueMan.ActiveDialogue = $WispReleasedDialogue
-		DialogueMan.StartDialogue()
-		await DialogueMan.DialogueFinished
-		DialogueMan.ActiveDialogue = null
+		Conversation.begin(_conv_04_released)
+		await Conversation.finished
 
 	player_controller.movement.is_allowed = true
 

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://sabahfm0papb"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_hgwrc"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_lvatg"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_t0n7v"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="3_yt11f"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="4_vs0h7"]
+
+[sub_resource type="Resource" id="Resource_gbaks"]
+script = ExtResource("2_t0n7v")
+text = "Hey you! Wake up!
+Let me out!"
+side = 1
+speaker = ExtResource("3_yt11f")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_nvyk5"]
+script = ExtResource("2_t0n7v")
+text = "...I think I can still get up"
+speaker = ExtResource("4_vs0h7")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_lvatg")
+lines = Array[ExtResource("1_hgwrc")]([SubResource("Resource_gbaks"), SubResource("Resource_nvyk5")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

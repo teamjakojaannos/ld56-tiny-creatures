@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://bptgiby1p80cl"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_vqcda"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_8k0rq"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_q32xe"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="3_abt2k"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="4_i50rk"]
+
+[sub_resource type="Resource" id="Resource_dxiow"]
+script = ExtResource("2_q32xe")
+text = "Oh! You're... a wisp!?
+I have never seen one before... I thought they were just legends...
+But why are you trapped?"
+speaker = ExtResource("3_abt2k")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_m5o4x"]
+script = ExtResource("2_q32xe")
+text = "There's time to chat later! We need to get out of the forest!
+So quit your yapping and let me out!"
+side = 1
+speaker = ExtResource("4_i50rk")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_w3qts"]
+script = ExtResource("2_q32xe")
+text = "Alright then.
+But you need to tell me what is going on!"
+speaker = ExtResource("3_abt2k")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_8k0rq")
+lines = Array[ExtResource("1_vqcda")]([SubResource("Resource_dxiow"), SubResource("Resource_m5o4x"), SubResource("Resource_w3qts")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

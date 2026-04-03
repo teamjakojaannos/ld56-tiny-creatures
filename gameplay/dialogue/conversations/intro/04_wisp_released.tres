@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://b7c02gqssw0vk"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_ao5u1"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_k7r6e"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_yv8t0"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="3_y02ob"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="4_ipdqk"]
+
+[sub_resource type="Resource" id="Resource_eg1qy"]
+script = ExtResource("2_yv8t0")
+text = "Finally! I was tired of being trapped in that tiny lantern!
+"
+side = 1
+speaker = ExtResource("3_y02ob")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_n6cur"]
+script = ExtResource("2_yv8t0")
+text = "You're welcome.
+Now care to explain what is going on here?"
+speaker = ExtResource("4_ipdqk")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_8ve0u"]
+script = ExtResource("2_yv8t0")
+text = "Yes! I will explain everything.
+Just let's get out of here first! My home is not far from here.
+Time to go!"
+side = 1
+speaker = ExtResource("3_y02ob")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_qdwyx"]
+script = ExtResource("2_yv8t0")
+text = "..."
+speaker = ExtResource("4_ipdqk")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_k7r6e")
+lines = Array[ExtResource("1_ao5u1")]([SubResource("Resource_eg1qy"), SubResource("Resource_n6cur"), SubResource("Resource_8ve0u"), SubResource("Resource_qdwyx")])
+metadata/_custom_type_script = "uid://jfout84hb58v"
