@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://3fglap2dnhau"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_a6d1x"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_jgeyv"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_k08mv"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="3_21bgm"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="4_0kh40"]
+
+[sub_resource type="Resource" id="Resource_mdmcv"]
+script = ExtResource("2_jgeyv")
+text = "Nah. Not my problem."
+speaker = ExtResource("3_21bgm")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_q6jam"]
+script = ExtResource("2_jgeyv")
+text = "Well, good luck finding back home alone then."
+side = 1
+speaker = ExtResource("4_0kh40")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_pobyd"]
+script = ExtResource("2_jgeyv")
+text = "...I will help you. But I need to be back home at eight!"
+speaker = ExtResource("3_21bgm")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_k08mv")
+lines = Array[ExtResource("1_a6d1x")]([SubResource("Resource_mdmcv"), SubResource("Resource_q6jam"), SubResource("Resource_pobyd")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

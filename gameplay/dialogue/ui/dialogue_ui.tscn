@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="3_w8trw"]
 [ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="4_5gfm2"]
 [ext_resource type="NoiseTexture3D" uid="uid://cifwtx24wj3cf" path="res://gameplay/dialogue/ui/noise_texture_3d_2.tres" id="4_co11b"]
-[ext_resource type="Script" uid="uid://dfs1cf8w0lmty" path="res://gameplay/dialogue/ui/dialogue_line_new.gd" id="4_luxc1"]
 [ext_resource type="Resource" uid="uid://c37874ru7764v" path="res://gameplay/dialogue/speakers/crow.tres" id="5_fcvby"]
 [ext_resource type="Script" uid="uid://di73cur08rvwc" path="res://gameplay/dialogue/ui/dialogue_row.gd" id="6_04hn2"]
 [ext_resource type="Script" uid="uid://fad6y5s4nolo" path="res://gameplay/dialogue/ui/dialogue_vbox_container.gd" id="6_luxc1"]
@@ -54,52 +53,6 @@ text = "Ha! I lied, this is the last one"
 speaker = ExtResource("4_5gfm2")
 metadata/_custom_type_script = "uid://v41h3cet8my1"
 
-[sub_resource type="Resource" id="Resource_luxc1"]
-script = ExtResource("4_luxc1")
-text = "Just some placeholder text <3"
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_kyeac"]
-script = ExtResource("4_luxc1")
-speaker = 1
-side = 1
-text = "Whoa! Another character is speaking."
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_co11b"]
-script = ExtResource("4_luxc1")
-text = "Another dialogue line."
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_l75tq"]
-script = ExtResource("4_luxc1")
-text = "Second line of dialogue from the player."
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_3k6gk"]
-script = ExtResource("4_luxc1")
-text = "Third line. This is where positioning the portrait gets real hard."
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_y53kq"]
-script = ExtResource("4_luxc1")
-speaker = 1
-side = 1
-text = "Second to last"
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_xeeav"]
-script = ExtResource("4_luxc1")
-speaker = 1
-side = 1
-text = "Final line."
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
-[sub_resource type="Resource" id="Resource_xxmrc"]
-script = ExtResource("4_luxc1")
-text = "Ha! I lied, this is the last one"
-metadata/_custom_type_script = "uid://dfs1cf8w0lmty"
-
 [sub_resource type="LabelSettings" id="LabelSettings_3k6gk"]
 font = ExtResource("7_gp6jo")
 
@@ -141,12 +94,14 @@ grow_vertical = 2
 [node name="SmokeLayer" parent="SmokeLayers" unique_id=740308385 instance=ExtResource("2_0iydt")]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 1.0
 scroll_time_scale_v = 0.08
 scroll_time_scale_z = 0.5
 
 [node name="SmokeLayer2" parent="SmokeLayers" unique_id=895873886 instance=ExtResource("2_0iydt")]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 1.0
 offset_top = 64.0
 offset_bottom = 64.0
 noise_texture = ExtResource("4_co11b")
@@ -166,7 +121,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 16
 script = ExtResource("3_luxc1")
-debug_dialogue_lines = Array[ExtResource("4_luxc1")]([SubResource("Resource_luxc1"), SubResource("Resource_kyeac"), SubResource("Resource_co11b"), SubResource("Resource_l75tq"), SubResource("Resource_3k6gk"), SubResource("Resource_y53kq"), SubResource("Resource_xeeav"), SubResource("Resource_xxmrc")])
 line_prefab = SubResource("PackedScene_rjxgi")
 metadata/_custom_type_script = "uid://wkvnr8mtsfut"
 

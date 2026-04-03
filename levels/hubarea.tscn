@@ -31,10 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="28_eaaws"]
 [ext_resource type="Script" uid="uid://db84q0o2plx4a" path="res://gameplay/touch_trigger.gd" id="31_3sf1f"]
 [ext_resource type="Script" uid="uid://de8kgrv34786f" path="res://levels/hubarea/enter_hub_trigger.gd" id="31_hxati"]
-[ext_resource type="Script" uid="uid://s7kasy78nr47" path="res://Gameplay/Dialogue/Dialogue.cs" id="32_312y0"]
-[ext_resource type="Script" uid="uid://bvjeuxa34061l" path="res://Gameplay/Dialogue/DialogueLine.cs" id="33_fgaf1"]
-[ext_resource type="Script" uid="uid://bqlj0m8d1nyo4" path="res://Gameplay/Dialogue/DialogueTextLine.cs" id="34_hxati"]
-[ext_resource type="Script" uid="uid://dpyu0pat7t10h" path="res://Gameplay/Dialogue/DialogueChoiceLine.cs" id="35_fgaf1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6djx"]
 size = Vector2(134.5, 299.375)
@@ -452,116 +448,6 @@ Next = SubResource("Resource_o41ml")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21kqm"]
 size = Vector2(350, 50)
-
-[sub_resource type="Resource" id="Resource_ub0mf"]
-script = ExtResource("34_hxati")
-Text = "Phew! We got to my little home all safe and sound!"
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_udqp3"]
-script = ExtResource("34_hxati")
-Text = "Alright, so what is going on?"
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_312y0"]
-script = ExtResource("34_hxati")
-Text = "Where am I? And why were you trapped in a lantern?"
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_fgaf1"]
-script = ExtResource("34_hxati")
-Text = "We are in my home! The spirit realm!"
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_hxati"]
-script = ExtResource("34_hxati")
-Text = "But recently something terrible happened..."
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_5xqg4"]
-script = ExtResource("34_hxati")
-Text = "Monster came to the realm... and they trapped me and my friends!"
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_evu7c"]
-script = ExtResource("34_hxati")
-Text = "That's rough. But I need to get home."
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_4jxvc"]
-script = ExtResource("34_hxati")
-Text = "I have D&D at eight."
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_mvu87"]
-script = ExtResource("34_hxati")
-Text = "Listen! I really need your help!"
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_4xu06"]
-script = ExtResource("34_hxati")
-Text = "I have seven friends who need saving..."
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_ofbsl"]
-script = ExtResource("35_fgaf1")
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://dpyu0pat7t10h"
-
-[sub_resource type="Resource" id="Resource_4tskk"]
-script = ExtResource("34_hxati")
-Text = "Okay then. I will help you find your friends, and you help me get home."
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_43prs"]
-script = ExtResource("34_hxati")
-Text = "Thank you!"
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_qqe1s"]
-script = ExtResource("34_hxati")
-Text = "We should start our search from the big forest in the northwest."
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_oxv2l"]
-script = ExtResource("34_hxati")
-Text = "Nah. Not my problem."
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_28oon"]
-script = ExtResource("34_hxati")
-Text = "Well, good luck finding back home alone then."
-Speaker = ExtResource("19_3jhl5")
-Side = 1
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
-
-[sub_resource type="Resource" id="Resource_7rkd0"]
-script = ExtResource("34_hxati")
-Text = "...I will help you. But I need to be back home at eight!"
-Speaker = ExtResource("20_whttt")
-metadata/_custom_type_script = "uid://bqlj0m8d1nyo4"
 
 [node name="Hubarea" type="Node2D" unique_id=86923502]
 y_sort_enabled = true
@@ -1060,7 +946,7 @@ visible = false
 position = Vector2(10, 121)
 Music = 1
 
-[node name="CollisionShape2D" parent="MuzakTrigger" index="0"]
+[node name="CollisionShape2D" parent="MuzakTrigger" index="0" unique_id=81006674]
 visible = false
 position = Vector2(0, 34)
 shape = SubResource("CircleShape2D_ss1vx")
@@ -1314,43 +1200,26 @@ DialogueTrigger = "Yes"
 script = ExtResource("18_xn54u")
 DialogueTree = SubResource("Resource_kxuv5")
 
-[node name="LoreDumpTrigger" type="Node2D" parent="." unique_id=1196388412]
-
-[node name="EnterHubTrigger" type="Area2D" parent="LoreDumpTrigger" unique_id=1473409925]
+[node name="EnterHubTrigger" type="Area2D" parent="." unique_id=1473409925]
 position = Vector2(10, 253)
 collision_layer = 0
 script = ExtResource("31_hxati")
 
-[node name="Shape" type="CollisionShape2D" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=585984606]
+[node name="Shape" type="CollisionShape2D" parent="EnterHubTrigger" unique_id=585984606]
 shape = SubResource("RectangleShape2D_21kqm")
 debug_color = Color(0, 0.64213544, 0.32803938, 0.41960785)
 
-[node name="WispPosition" type="Marker2D" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=630321352]
+[node name="WispPosition" type="Marker2D" parent="EnterHubTrigger" unique_id=630321352]
 position = Vector2(-45, -66)
 
-[node name="TouchTrigger" type="Node" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=1889397543]
+[node name="TouchTrigger" type="Node" parent="EnterHubTrigger" unique_id=1889397543]
 script = ExtResource("31_3sf1f")
 one_shot = true
 metadata/_custom_type_script = "uid://db84q0o2plx4a"
 
-[node name="Dialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger" unique_id=1767521476]
-script = ExtResource("32_312y0")
-Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_ub0mf"), SubResource("Resource_udqp3"), SubResource("Resource_312y0"), SubResource("Resource_fgaf1"), SubResource("Resource_hxati"), SubResource("Resource_5xqg4"), SubResource("Resource_evu7c"), SubResource("Resource_4jxvc"), SubResource("Resource_mvu87"), SubResource("Resource_4xu06"), SubResource("Resource_ofbsl")])
-metadata/_custom_type_script = "uid://s7kasy78nr47"
-
-[node name="HelpWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue" unique_id=931101382]
-script = ExtResource("32_312y0")
-Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_4tskk"), SubResource("Resource_43prs"), SubResource("Resource_qqe1s")])
-metadata/_custom_type_script = "uid://s7kasy78nr47"
-
-[node name="IgnoreWispDialogue" type="Node" parent="LoreDumpTrigger/EnterHubTrigger/Dialogue" unique_id=1947511293]
-script = ExtResource("32_312y0")
-Lines = Array[ExtResource("33_fgaf1")]([SubResource("Resource_oxv2l"), SubResource("Resource_28oon"), SubResource("Resource_7rkd0")])
-metadata/_custom_type_script = "uid://s7kasy78nr47"
-
-[connection signal="body_entered" from="LoreDumpTrigger/EnterHubTrigger" to="LoreDumpTrigger/EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
-[connection signal="body_exited" from="LoreDumpTrigger/EnterHubTrigger" to="LoreDumpTrigger/EnterHubTrigger/TouchTrigger" method="_on_body_exited"]
-[connection signal="fire" from="LoreDumpTrigger/EnterHubTrigger/TouchTrigger" to="LoreDumpTrigger/EnterHubTrigger" method="_on_touch_trigger_fire"]
+[connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_exited"]
+[connection signal="fire" from="EnterHubTrigger/TouchTrigger" to="EnterHubTrigger" method="_on_touch_trigger_fire"]
 
 [editable path="Jösses"]
 [editable path="Jösses/JesusStatue"]

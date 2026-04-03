@@ -236,7 +236,7 @@ metadata/_edit_lock_ = true
 visible = false
 position = Vector2(116, -679)
 
-[node name="CollisionShape2D" parent="MuzakTrigger" index="0"]
+[node name="CollisionShape2D" parent="MuzakTrigger" index="0" unique_id=81006674]
 position = Vector2(-94.5746, -19.2407)
 rotation = -0.696469
 shape = SubResource("RectangleShape2D_vohu8")
@@ -247,7 +247,7 @@ visible = false
 position = Vector2(305, -881)
 Music = 3
 
-[node name="CollisionShape2D" parent="MuzakTrigger2" index="0"]
+[node name="CollisionShape2D" parent="MuzakTrigger2" index="0" unique_id=81006674]
 shape = SubResource("CircleShape2D_cegll")
 debug_color = Color(0.876866, 0.252168, 0.589213, 0.42)
 
@@ -256,7 +256,7 @@ visible = false
 position = Vector2(1117, -418)
 Music = 2
 
-[node name="CollisionShape2D" parent="MuzakTrigger3" index="0"]
+[node name="CollisionShape2D" parent="MuzakTrigger3" index="0" unique_id=81006674]
 position = Vector2(67.8562, -26.1995)
 rotation = 0.0967079
 shape = SubResource("RectangleShape2D_s2jur")
@@ -267,7 +267,7 @@ visible = false
 position = Vector2(-661, 478)
 collision_layer = 0
 
-[node name="CollisionShape2D" parent="MuzakTrigger (starting area)" index="0"]
+[node name="CollisionShape2D" parent="MuzakTrigger (starting area)" index="0" unique_id=81006674]
 position = Vector2(16, -173.5)
 rotation = 0.372051
 shape = SubResource("RectangleShape2D_7di6y")

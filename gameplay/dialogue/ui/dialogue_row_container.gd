@@ -2,7 +2,6 @@
 class_name DialogueRowContainer
 extends HBoxContainer
 
-@export var debug_dialogue_lines: Array[DialogueLineNew]
 @export var line_prefab: PackedScene = preload("uid://cp0nqrlg42f6s")
 @export var portrait_prefab: PackedScene = preload("uid://di32ud1oobxw8")
 

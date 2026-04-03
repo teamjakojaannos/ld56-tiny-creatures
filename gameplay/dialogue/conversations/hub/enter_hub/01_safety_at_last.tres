@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://c7t1gwrllo38q"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_jp3o5"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_4k7ou"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_xa4nl"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="3_q6bg0"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="4_sysit"]
+[ext_resource type="Resource" uid="uid://cbakmbpw6gscq" path="res://gameplay/dialogue/conversations/hub/enter_hub/02a_agree_to_help.tres" id="5_hwvr4"]
+[ext_resource type="Script" uid="uid://bgo60blfy1ww6" path="res://gameplay/dialogue/dialogue_choice_line.gd" id="5_q6bg0"]
+[ext_resource type="Resource" uid="uid://3fglap2dnhau" path="res://gameplay/dialogue/conversations/hub/enter_hub/02b_ignore_wisp.tres" id="6_qkr7e"]
+
+[sub_resource type="Resource" id="Resource_hwvr4"]
+script = ExtResource("2_xa4nl")
+text = "Phew! We got to my little home all safe and sound!"
+side = 1
+speaker = ExtResource("3_q6bg0")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_qkr7e"]
+script = ExtResource("2_xa4nl")
+text = "Alright, so what is going on?
+Where am I? And why were you trapped in a lantern?"
+speaker = ExtResource("4_sysit")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_c6arx"]
+script = ExtResource("2_xa4nl")
+text = "We are in my home! The spirit realm!
+But recently something terrible happened...
+A monster came to the realm... and they trapped me and my friends!"
+side = 1
+speaker = ExtResource("3_q6bg0")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_dknuq"]
+script = ExtResource("2_xa4nl")
+text = "That's tough. But I need to get home.
+I have D&D at eight."
+speaker = ExtResource("4_sysit")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_ndpfi"]
+script = ExtResource("2_xa4nl")
+text = "Listen! I really need your help!
+I have seven friends who need saving..."
+side = 1
+speaker = ExtResource("3_q6bg0")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_sysit"]
+script = ExtResource("5_q6bg0")
+choice_text_a = "Agree to help"
+choice_branch_a = ExtResource("5_hwvr4")
+choice_text_b = "Refuse"
+choice_branch_b = ExtResource("6_qkr7e")
+speaker = ExtResource("4_sysit")
+metadata/_custom_type_script = "uid://bgo60blfy1ww6"
+
+[resource]
+script = ExtResource("2_4k7ou")
+lines = Array[ExtResource("1_jp3o5")]([SubResource("Resource_hwvr4"), SubResource("Resource_qkr7e"), SubResource("Resource_c6arx"), SubResource("Resource_dknuq"), SubResource("Resource_ndpfi"), SubResource("Resource_sysit")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

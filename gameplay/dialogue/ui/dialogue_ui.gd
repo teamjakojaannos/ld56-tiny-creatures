@@ -7,13 +7,14 @@ signal input_progress
 @export var debug_dialogue_lines: Array[DialogueLine2] = []
 
 @export_group("Debug controls")
+@export_tool_button("Start")
+var debug_start_button = _debug_start
 @export_tool_button("Next line")
 var debug_next_button = _debug_next
 @export_tool_button("Reset")
 var debug_reset_button = reset
 var _is_smoke_visible: bool = false
 var _is_in_transition: bool = false
-var _debug_idx := 0
 
 @onready var _smoke_layers: Control = $SmokeLayers
 @onready var _line_container: DialogueRowContainer = $DialogueRowContainer
@@ -53,16 +54,12 @@ func reset() -> void:
 	_is_smoke_visible = false
 
 
+func _debug_start() -> void:
+	preload("uid://bq75metace7hw").show_lines(self, debug_dialogue_lines)
+
+
 func _debug_next() -> void:
-	if _is_in_transition:
-		return
-
-	if _debug_idx >= debug_dialogue_lines.size():
-		end_dialogue()
-		return
-
-	var line = debug_dialogue_lines[_debug_idx]
-	show_line(line.text, line.speaker, line.side)
+	input_progress.emit()
 
 
 func _slide_in_smoke() -> void:
