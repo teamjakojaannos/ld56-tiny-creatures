@@ -2,6 +2,8 @@ extends Node
 
 signal finished
 
+var is_in_conversation: bool
+
 @onready var _ui: DialogueUINew = $UI
 
 
@@ -26,5 +28,11 @@ func _ready() -> void:
 
 
 func begin(conversation: DialogueConversation) -> void:
-	show_lines(_ui, conversation.lines)
+	if is_in_conversation:
+		printerr("Tried to start another conversation while already in conversation!")
+		return
+
+	is_in_conversation = true
+	await show_lines(_ui, conversation.lines)
+	is_in_conversation = false
 	finished.emit()

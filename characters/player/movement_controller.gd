@@ -17,7 +17,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_input_direction = Vector2.ZERO
 
-	if DialogueMan.ActiveDialogue != null or not is_allowed:
+	if DialogueMan.ActiveDialogue != null or not is_allowed or Conversation.is_in_conversation:
 		return
 
 	_input_direction = Input.get_vector("left", "right", "up", "down")
