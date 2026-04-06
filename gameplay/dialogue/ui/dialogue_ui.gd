@@ -108,5 +108,6 @@ func _slide_out_smoke() -> void:
 		tween.tween_property(smoke_layer, "modulate", Color.TRANSPARENT, 0.5 + delay)
 		delay += 0.25
 
-	await tween.finished
+	# HACK: don't wait for tween to make the fade-out-to-gameplay smoother
+	await get_tree().create_timer(0.33 + delay).timeout
 	_is_smoke_visible = true

@@ -42,7 +42,7 @@ func play() -> void:
 	await main_camera.fade_finished
 
 	if not skip_intro:
-		await _wait(1.0)
+		await _wait(0.5)
 
 		print("Foo?")
 		Conversation.begin(_conv_01_initial)
