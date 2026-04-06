@@ -46,11 +46,11 @@ func show_lines(
 			option_chosen.emit(choice)
 
 			var branch: DialogueConversation
-			if choice == 1:
+			if choice == 0:
 				branch = line.choice_branch_a
-			elif choice == 2:
+			elif choice == 1:
 				branch = line.choice_branch_b
-			if choice == 3:
+			if choice == 2:
 				branch = line.choice_branch_c
 
 			if branch != null:

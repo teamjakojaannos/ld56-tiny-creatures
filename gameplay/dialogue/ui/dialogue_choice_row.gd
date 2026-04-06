@@ -30,7 +30,7 @@ func set_options(a: String, b: String, c: String) -> void:
 
 
 func highlight_option(option: int) -> void:
-	option = clamp(option, 0, max_option)
+	option = clampi(option, 0, max_option)
 	highlighted_option = option
 
 	for child_idx in 3:
