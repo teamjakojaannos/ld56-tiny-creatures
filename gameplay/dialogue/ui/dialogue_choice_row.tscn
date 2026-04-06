@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://cwtj7o7amvxjl"]
+
+[ext_resource type="Script" uid="uid://qu7de3klyvrs" path="res://gameplay/dialogue/ui/dialogue_choice_row.gd" id="1_eddmn"]
+[ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_m27ja"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3k6gk"]
+font = ExtResource("2_m27ja")
+
+[node name="DialogueChoiceRow" type="MarginContainer" unique_id=1876986010]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_eddmn")
+metadata/_custom_type_script = "uid://dnhj00yke02hu"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1436861518]
+layout_mode = 2
+
+[node name="Indicator" type="VBoxContainer" parent="HBoxContainer" unique_id=219913155]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="A" type="Label" parent="HBoxContainer/Indicator" unique_id=49633538]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="B" type="Label" parent="HBoxContainer/Indicator" unique_id=1652200247]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="C" type="Label" parent="HBoxContainer/Indicator" unique_id=744649464]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="Numbers" type="VBoxContainer" parent="HBoxContainer" unique_id=522089554]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="A" type="Label" parent="HBoxContainer/Numbers" unique_id=1353242426]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="B" type="Label" parent="HBoxContainer/Numbers" unique_id=848959684]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="C" type="Label" parent="HBoxContainer/Numbers" unique_id=68050771]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="Options" type="VBoxContainer" parent="HBoxContainer" unique_id=773040572]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="A" type="Label" parent="HBoxContainer/Options" unique_id=287223165]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Option A"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="B" type="Label" parent="HBoxContainer/Options" unique_id=402911028]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Option B"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1
+
+[node name="C" type="Label" parent="HBoxContainer/Options" unique_id=513742598]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Option C"
+label_settings = SubResource("LabelSettings_3k6gk")
+vertical_alignment = 1
+max_lines_visible = 1

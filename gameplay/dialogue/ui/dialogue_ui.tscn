@@ -92,6 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SmokeLayer" parent="SmokeLayers" unique_id=740308385 instance=ExtResource("2_0iydt")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -99,6 +100,7 @@ scroll_time_scale_v = 0.08
 scroll_time_scale_z = 0.5
 
 [node name="SmokeLayer2" parent="SmokeLayers" unique_id=895873886 instance=ExtResource("2_0iydt")]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0

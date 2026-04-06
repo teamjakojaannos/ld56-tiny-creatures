@@ -3,6 +3,7 @@ class_name DialogueUINew
 extends Control
 
 signal input_progress
+signal option_chosen
 
 @export var debug_dialogue_lines: Array[DialogueLine2] = []
 
@@ -13,6 +14,7 @@ var debug_start_button = _debug_start
 var debug_next_button = _debug_next
 @export_tool_button("Reset")
 var debug_reset_button = reset
+var last_chosen_option: int = -1
 var _is_smoke_visible: bool = false
 var _is_in_transition: bool = false
 
@@ -21,11 +23,32 @@ var _is_in_transition: bool = false
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("gui_accept"):
-		if _line_container.is_playing_animation:
-			return
+	if _line_container.is_playing_animation:
+		return
 
-		input_progress.emit()
+	if not _is_smoke_visible or _is_in_transition:
+		return
+
+	var choice: DialogueChoiceRow = _line_container.active_choice
+	if choice == null:
+		# Regular text line
+		if event.is_action_pressed("gui_accept"):
+			input_progress.emit()
+		return
+
+	var option := choice.highlighted_option
+	if event.is_action_pressed("gui_up"):
+		option = max(0, option - 1)
+	elif event.is_action_pressed("gui_down"):
+		option = min(choice.max_option, option + 1)
+	elif event.is_action_pressed("gui_accept"):
+		last_chosen_option = option
+		option_chosen.emit()
+		return
+
+	var changed: bool = option != choice.highlighted_option
+	if changed:
+		choice.highlight_option(option)
 
 
 func end_dialogue() -> void:
@@ -36,13 +59,32 @@ func end_dialogue() -> void:
 	_is_in_transition = false
 
 
-func show_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Side) -> void:
+func show_line(
+		text: String,
+		speaker: DialogueSpeaker,
+		side: DialogueLine2.Side,
+) -> void:
 	if not _is_smoke_visible:
 		_is_in_transition = true
 		await _slide_in_smoke()
 		_is_in_transition = false
 
 	_line_container.next(text, speaker, side)
+
+
+func show_choice(
+		speaker: DialogueSpeaker,
+		side: DialogueLine2.Side,
+		a: String,
+		b: String,
+		c: String,
+) -> void:
+	if not _is_smoke_visible:
+		_is_in_transition = true
+		await _slide_in_smoke()
+		_is_in_transition = false
+
+	_line_container.next_choice(speaker, side, a, b, c)
 
 
 func reset() -> void:
@@ -55,7 +97,7 @@ func reset() -> void:
 
 
 func _debug_start() -> void:
-	preload("uid://bq75metace7hw").show_lines(self, debug_dialogue_lines)
+	Conversation.show_lines(self, debug_dialogue_lines)
 
 
 func _debug_next() -> void:

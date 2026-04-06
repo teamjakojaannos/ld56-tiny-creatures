@@ -3,11 +3,23 @@ class_name DialogueRowContainer
 extends HBoxContainer
 
 @export var line_prefab: PackedScene = preload("uid://cp0nqrlg42f6s")
+@export var choice_line_prefab: PackedScene = preload("uid://cwtj7o7amvxjl")
 @export var portrait_prefab: PackedScene = preload("uid://di32ud1oobxw8")
 
 var is_playing_animation: bool:
 	get:
 		return _cooldown or _cooldown2
+var active_choice: DialogueChoiceRow:
+	get:
+		var count := line_container.get_child_count()
+		if count == 0:
+			return null
+
+		var last_child = line_container.get_child(count - 1)
+		if last_child is not DialogueChoiceRow:
+			return null
+
+		return last_child
 var _cooldown: bool = false
 var _cooldown2: bool = false
 var _previous_speaker: DialogueSpeaker
@@ -17,8 +29,22 @@ var _previous_speaker: DialogueSpeaker
 @onready var portrait_container_right: Control = $PortraitsRight
 
 
-func next(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Side) -> void:
+func next(
+		text: String,
+		speaker: DialogueSpeaker,
+		side: DialogueLine2.Side,
+) -> void:
 	await _append_line(text, speaker, side)
+
+
+func next_choice(
+		speaker: DialogueSpeaker,
+		side: DialogueLine2.Side,
+		a: String,
+		b: String,
+		c: String,
+) -> void:
+	_append_choice(speaker, side, a, b, c)
 
 
 func reset() -> void:
@@ -68,6 +94,19 @@ func end_dialogue() -> void:
 	)
 
 
+func _append_choice(
+		speaker: DialogueSpeaker,
+		side: DialogueLine2.Side,
+		a: String,
+		b: String,
+		c: String,
+) -> void:
+	var choice: DialogueChoiceRow = choice_line_prefab.instantiate()
+	choice.set_options.call_deferred(a, b, c)
+
+	_append_component(choice, speaker, side)
+
+
 func _append_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Side) -> void:
 	if _cooldown or _cooldown2:
 		return
@@ -75,20 +114,30 @@ func _append_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Si
 	get_tree().create_timer(0.25).timeout.connect(func(): _cooldown = false)
 
 	var dialogue_row: DialogueRow = line_prefab.instantiate()
+	dialogue_row.set_text.call_deferred(text)
+
+	_append_component(dialogue_row, speaker, side)
+
+	# HACK: just wait a moment so that text is on screen when scroll starts
+	await get_tree().create_timer(0.33).timeout
+	if is_instance_valid(dialogue_row):
+		dialogue_row.scroll_text.call_deferred()
+
+
+func _append_component(
+		dialogue_row: DialogueComponent,
+		speaker: DialogueSpeaker,
+		side: DialogueLine2.Side,
+) -> void:
 	var portrait_left: DialoguePortrait = portrait_prefab.instantiate()
 	var portrait_right: DialoguePortrait = portrait_prefab.instantiate()
 
 	var is_chain := _previous_speaker and _previous_speaker == speaker
 	_previous_speaker = speaker
 
-	var is_empty = text.length() == 0
-
-	if is_chain or is_empty:
+	if is_chain:
 		portrait_right.modulate = Color.TRANSPARENT
 		portrait_left.modulate = Color.TRANSPARENT
-
-		if is_empty:
-			dialogue_row.modulate = Color.TRANSPARENT
 	elif side == DialogueLine2.Side.LEFT:
 		portrait_right.modulate = Color.TRANSPARENT
 	elif side == DialogueLine2.Side.RIGHT:
@@ -101,7 +150,6 @@ func _append_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Si
 	portrait_left.offset_changed.connect(portrait_container_left.queue_sort)
 	portrait_right.offset_changed.connect(portrait_container_right.queue_sort)
 
-	dialogue_row.set_text(text)
 	portrait_left.speaker = speaker
 	portrait_right.speaker = speaker
 
@@ -117,8 +165,3 @@ func _append_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Si
 			child.shift_up.call_deferred(delay, offset)
 			delay += delay_add if child_idx >= total_lines - 4 else 0.0
 			child_idx += 1
-
-	# HACK: just wait a moment so that text is on screen when scroll starts
-	await get_tree().create_timer(0.33).timeout
-	if is_instance_valid(dialogue_row):
-		dialogue_row.scroll_text.call_deferred()
