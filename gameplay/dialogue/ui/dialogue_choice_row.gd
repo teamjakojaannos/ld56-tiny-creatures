@@ -15,6 +15,8 @@ var max_option: int = 2
 @onready var option_a: Label = $HBoxContainer/Options/A
 @onready var option_b: Label = $HBoxContainer/Options/B
 @onready var option_c: Label = $HBoxContainer/Options/C
+@onready var number_c: Label = $HBoxContainer/Numbers/C
+@onready var indicator_c: Label = $HBoxContainer/Numbers/C
 
 
 func _ready() -> void:
@@ -26,7 +28,16 @@ func set_options(a: String, b: String, c: String) -> void:
 	option_b.text = b
 	option_c.text = c
 
-	max_option = 1 if c.is_empty() else 2
+	if c.is_empty():
+		max_option = 1
+		option_c.hide()
+		number_c.hide()
+		indicator_c.hide()
+	else:
+		max_option = 2
+		option_c.show()
+		number_c.show()
+		indicator_c.show()
 
 
 func highlight_option(option: int) -> void:

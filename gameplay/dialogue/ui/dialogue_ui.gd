@@ -2,53 +2,14 @@
 class_name DialogueUINew
 extends Control
 
-signal input_progress
-signal option_chosen
-
-@export var debug_dialogue_lines: Array[DialogueLine2] = []
-
-@export_group("Debug controls")
-@export_tool_button("Start")
-var debug_start_button = _debug_start
-@export_tool_button("Next line")
-var debug_next_button = _debug_next
-@export_tool_button("Reset")
-var debug_reset_button = reset
-var last_chosen_option: int = -1
+var is_in_transition: bool:
+	get:
+		return _is_in_transition or _line_container.is_playing_animation
 var _is_smoke_visible: bool = false
 var _is_in_transition: bool = false
 
 @onready var _smoke_layers: Control = $SmokeLayers
 @onready var _line_container: DialogueRowContainer = $DialogueRowContainer
-
-
-func _input(event: InputEvent) -> void:
-	if _line_container.is_playing_animation:
-		return
-
-	if not _is_smoke_visible or _is_in_transition:
-		return
-
-	var choice: DialogueChoiceRow = _line_container.active_choice
-	if choice == null:
-		# Regular text line
-		if event.is_action_pressed("gui_accept"):
-			input_progress.emit()
-		return
-
-	var option := choice.highlighted_option
-	if event.is_action_pressed("gui_up"):
-		option = max(0, option - 1)
-	elif event.is_action_pressed("gui_down"):
-		option = min(choice.max_option, option + 1)
-	elif event.is_action_pressed("gui_accept"):
-		last_chosen_option = option
-		option_chosen.emit()
-		return
-
-	var changed: bool = option != choice.highlighted_option
-	if changed:
-		choice.highlight_option(option)
 
 
 func end_dialogue() -> void:
@@ -87,6 +48,10 @@ func show_choice(
 	_line_container.next_choice(speaker, side, a, b, c)
 
 
+func highlight_option(option: int) -> void:
+	_line_container.highlight_option(option)
+
+
 func reset() -> void:
 	for smoke_layer in _smoke_layers.get_children():
 		smoke_layer.anchor_top = 1.0
@@ -94,14 +59,6 @@ func reset() -> void:
 
 	_line_container.reset()
 	_is_smoke_visible = false
-
-
-func _debug_start() -> void:
-	Conversation.show_lines(self, debug_dialogue_lines)
-
-
-func _debug_next() -> void:
-	input_progress.emit()
 
 
 func _slide_in_smoke() -> void:

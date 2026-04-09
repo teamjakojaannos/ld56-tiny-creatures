@@ -2,56 +2,11 @@
 
 [ext_resource type="Script" uid="uid://obqnalqqxmbe" path="res://gameplay/dialogue/ui/dialogue_ui.gd" id="1_t0wjt"]
 [ext_resource type="PackedScene" uid="uid://bpfy5bg2adoy1" path="res://gameplay/dialogue/ui/smoke_layer.tscn" id="2_0iydt"]
-[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="2_m5w6k"]
 [ext_resource type="Script" uid="uid://wkvnr8mtsfut" path="res://gameplay/dialogue/ui/dialogue_row_container.gd" id="3_luxc1"]
-[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="3_w8trw"]
-[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="4_5gfm2"]
 [ext_resource type="NoiseTexture3D" uid="uid://cifwtx24wj3cf" path="res://gameplay/dialogue/ui/noise_texture_3d_2.tres" id="4_co11b"]
-[ext_resource type="Resource" uid="uid://c37874ru7764v" path="res://gameplay/dialogue/speakers/crow.tres" id="5_fcvby"]
 [ext_resource type="Script" uid="uid://di73cur08rvwc" path="res://gameplay/dialogue/ui/dialogue_row.gd" id="6_04hn2"]
 [ext_resource type="Script" uid="uid://fad6y5s4nolo" path="res://gameplay/dialogue/ui/dialogue_vbox_container.gd" id="6_luxc1"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="7_gp6jo"]
-
-[sub_resource type="Resource" id="Resource_3xxcj"]
-script = ExtResource("3_w8trw")
-text = "Just some placeholder text <3"
-speaker = ExtResource("4_5gfm2")
-metadata/_custom_type_script = "uid://v41h3cet8my1"
-
-[sub_resource type="Resource" id="Resource_msl75"]
-script = ExtResource("3_w8trw")
-text = "Whoa! Another character is speaking."
-side = 1
-speaker = ExtResource("5_fcvby")
-metadata/_custom_type_script = "uid://v41h3cet8my1"
-
-[sub_resource type="Resource" id="Resource_55d0l"]
-script = ExtResource("3_w8trw")
-text = "Another dialogue line.
-Second line of dialogue from the player.
-"
-speaker = ExtResource("4_5gfm2")
-metadata/_custom_type_script = "uid://v41h3cet8my1"
-
-[sub_resource type="Resource" id="Resource_8tnwk"]
-script = ExtResource("3_w8trw")
-text = "Third line. This is where positioning the portrait gets real hard."
-speaker = ExtResource("4_5gfm2")
-metadata/_custom_type_script = "uid://v41h3cet8my1"
-
-[sub_resource type="Resource" id="Resource_jjus2"]
-script = ExtResource("3_w8trw")
-text = "Second to last
-Final line."
-side = 1
-speaker = ExtResource("5_fcvby")
-metadata/_custom_type_script = "uid://v41h3cet8my1"
-
-[sub_resource type="Resource" id="Resource_i8fn0"]
-script = ExtResource("3_w8trw")
-text = "Ha! I lied, this is the last one"
-speaker = ExtResource("4_5gfm2")
-metadata/_custom_type_script = "uid://v41h3cet8my1"
 
 [sub_resource type="LabelSettings" id="LabelSettings_3k6gk"]
 font = ExtResource("7_gp6jo")
@@ -80,7 +35,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t0wjt")
-debug_dialogue_lines = Array[ExtResource("2_m5w6k")]([SubResource("Resource_3xxcj"), SubResource("Resource_msl75"), SubResource("Resource_55d0l"), SubResource("Resource_8tnwk"), SubResource("Resource_jjus2"), SubResource("Resource_i8fn0")])
 
 [node name="SmokeLayers" type="Control" parent="." unique_id=1809694097]
 clip_contents = true

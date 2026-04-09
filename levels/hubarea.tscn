@@ -1206,6 +1206,7 @@ collision_layer = 0
 script = ExtResource("31_hxati")
 
 [node name="Shape" type="CollisionShape2D" parent="EnterHubTrigger" unique_id=585984606]
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_21kqm")
 debug_color = Color(0, 0.64213544, 0.32803938, 0.41960785)
 

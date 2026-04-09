@@ -2,9 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://demks0smgy37a" path="res://gameplay/dialogue/ui/dialogue_ui.tscn" id="1_bjo46"]
 [ext_resource type="Script" uid="uid://bq75metace7hw" path="res://gameplay/dialogue/conversation.gd" id="1_wf7t2"]
+[ext_resource type="Resource" uid="uid://cv0c1kp0bip7w" path="res://gameplay/dialogue/conversations/debug/debug_dialogue_branchless.tres" id="4_kwb8s"]
+[ext_resource type="Script" uid="uid://vh04onn730w5" path="res://gameplay/dialogue/conversation_controller.gd" id="8_4m81k"]
 
 [node name="Conversation" type="CanvasLayer" unique_id=1149296576]
 layer = 2
 script = ExtResource("1_wf7t2")
 
 [node name="UI" parent="." unique_id=1956708307 instance=ExtResource("1_bjo46")]
+
+[node name="Controller" type="Node" parent="." unique_id=788379014]
+script = ExtResource("8_4m81k")
+debug_conversation = ExtResource("4_kwb8s")
+metadata/_custom_type_script = "uid://vh04onn730w5"

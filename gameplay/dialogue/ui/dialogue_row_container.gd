@@ -29,6 +29,12 @@ var _previous_speaker: DialogueSpeaker
 @onready var portrait_container_right: Control = $PortraitsRight
 
 
+func highlight_option(option: int) -> void:
+	var choice := active_choice
+	if is_instance_valid(choice):
+		choice.highlight_option(option)
+
+
 func next(
 		text: String,
 		speaker: DialogueSpeaker,

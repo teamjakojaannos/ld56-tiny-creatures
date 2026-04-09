@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://cv0c1kp0bip7w"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_tll07"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_cdbli"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="3_i5pxe"]
+[ext_resource type="Resource" uid="uid://c37874ru7764v" path="res://gameplay/dialogue/speakers/crow.tres" id="4_wjw73"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="5_q4ibd"]
+
+[sub_resource type="Resource" id="Resource_3xxcj"]
+script = ExtResource("2_cdbli")
+text = "Just some placeholder text <3"
+speaker = ExtResource("3_i5pxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_msl75"]
+script = ExtResource("2_cdbli")
+text = "Whoa! Another character is speaking."
+side = 1
+speaker = ExtResource("4_wjw73")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_55d0l"]
+script = ExtResource("2_cdbli")
+text = "Another dialogue line.
+Second line of dialogue from the player.
+"
+speaker = ExtResource("3_i5pxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_8tnwk"]
+script = ExtResource("2_cdbli")
+text = "Third line. This is where positioning the portrait gets real hard."
+speaker = ExtResource("3_i5pxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_jjus2"]
+script = ExtResource("2_cdbli")
+text = "Second to last
+Final line."
+side = 1
+speaker = ExtResource("4_wjw73")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_i8fn0"]
+script = ExtResource("2_cdbli")
+text = "Ha! I lied, this is the last one"
+speaker = ExtResource("3_i5pxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("5_q4ibd")
+lines = Array[ExtResource("1_tll07")]([SubResource("Resource_3xxcj"), SubResource("Resource_msl75"), SubResource("Resource_55d0l"), SubResource("Resource_8tnwk"), SubResource("Resource_jjus2"), SubResource("Resource_i8fn0")])
+metadata/_custom_type_script = "uid://jfout84hb58v"
