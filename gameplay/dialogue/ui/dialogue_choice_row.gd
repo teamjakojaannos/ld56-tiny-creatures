@@ -16,7 +16,7 @@ var max_option: int = 2
 @onready var option_b: Label = $HBoxContainer/Options/B
 @onready var option_c: Label = $HBoxContainer/Options/C
 @onready var number_c: Label = $HBoxContainer/Numbers/C
-@onready var indicator_c: Label = $HBoxContainer/Numbers/C
+@onready var indicator_c: Label = $HBoxContainer/Indicator/C
 
 
 func _ready() -> void:

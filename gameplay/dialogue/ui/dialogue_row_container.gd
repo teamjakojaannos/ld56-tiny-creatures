@@ -167,7 +167,7 @@ func _append_component(
 
 		for child in container.get_children():
 			var is_new_portrait: bool = child == portrait_left or child == portrait_right
-			var offset := (64.0 + 9.0) if is_new_portrait else 64.0
+			var offset := (64.0 + 16.0) if is_new_portrait else 64.0
 			child.shift_up.call_deferred(delay, offset)
 			delay += delay_add if child_idx >= total_lines - 4 else 0.0
 			child_idx += 1
