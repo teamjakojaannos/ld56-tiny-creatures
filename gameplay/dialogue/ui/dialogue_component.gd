@@ -10,6 +10,12 @@ signal offset_changed
 	set(value):
 		anim_offset = value
 		offset_changed.emit()
+@export var offset_x: float = 0.0:
+	get:
+		return offset_x
+	set(value):
+		offset_x = value
+		offset_changed.emit()
 
 var _shift_tween: Tween
 

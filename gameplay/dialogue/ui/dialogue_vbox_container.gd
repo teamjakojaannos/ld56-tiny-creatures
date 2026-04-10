@@ -17,7 +17,10 @@ func _notification(n):
 			total_height += 64.0
 
 		for child in get_children():
-			var pos := Vector2(0.0, position.y - total_height + child.anim_offset)
+			if child is not DialogueComponent:
+				continue
+
+			var pos := Vector2(child.offset_x, position.y - total_height + child.anim_offset)
 			var s := Vector2(self.size.x, 64.0)
 			child.position = pos
 			child.size = s

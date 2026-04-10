@@ -7,6 +7,7 @@
 
 [node name="Intro" parent="." index="0" unique_id=106749247 instance=ExtResource("2_g5s7c")]
 position = Vector2(-1097, 68)
+skip_intro = false
 
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]

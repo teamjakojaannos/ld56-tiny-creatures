@@ -121,6 +121,8 @@ func _append_line(text: String, speaker: DialogueSpeaker, side: DialogueLine2.Si
 
 	var dialogue_row: DialogueRow = line_prefab.instantiate()
 	dialogue_row.set_text.call_deferred(text)
+	var offset_x = 64.0 if side == DialogueLine2.Side.RIGHT else 0.0
+	dialogue_row.set_deferred("offset_x", offset_x)
 
 	_append_component(dialogue_row, speaker, side)
 
