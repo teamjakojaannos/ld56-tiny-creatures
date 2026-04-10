@@ -44,10 +44,8 @@ func play() -> void:
 	if not skip_intro:
 		await _wait(0.5)
 
-		print("Foo?")
 		Conversation.begin(_conv_01_initial)
 		await Conversation.finished
-		print("bar?")
 
 		# Dramatic pause, or sth
 		# FIXME: do something to emphasize wisp

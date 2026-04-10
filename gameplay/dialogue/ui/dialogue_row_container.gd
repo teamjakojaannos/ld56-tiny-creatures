@@ -139,6 +139,11 @@ func _append_component(
 ) -> void:
 	var portrait_left: DialoguePortrait = portrait_prefab.instantiate()
 	var portrait_right: DialoguePortrait = portrait_prefab.instantiate()
+	portrait_left.facing = Facing.Horizontal.RIGHT
+	portrait_right.facing = Facing.Horizontal.LEFT
+
+	portrait_left.speaker = speaker
+	portrait_right.speaker = speaker
 
 	var is_chain := _previous_speaker and _previous_speaker == speaker
 	_previous_speaker = speaker
