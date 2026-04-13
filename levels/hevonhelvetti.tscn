@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://bmvi58d0isrru"]
 
 [ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://gameplay/props/hub/WispInsideStatue.png" id="1_2ysck"]
-[ext_resource type="PackedScene" uid="uid://c287axru5rdlt" path="res://Environment/ryhmähauta.tscn" id="2_1vlf7"]
-[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="3_q5w04"]
-[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_d57h3"]
-[ext_resource type="Resource" uid="uid://dl7jjb2uygwtc" path="res://Characters/character_jesse.tres" id="5_7bcto"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="6_rg573"]
-[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="7_8kbal"]
+[ext_resource type="Script" uid="uid://bialmulp3e758" path="res://gameplay/props/victory_area/credits_graves.gd" id="2_ci1sm"]
+[ext_resource type="Texture2D" uid="uid://jhhjkmm48j4e" path="res://environment/victory_area/ryhmahauta_handsomeDogs.png" id="3_ys41d"]
+[ext_resource type="Script" uid="uid://bpqskmnis7fey" path="res://gameplay/wisp_position.gd" id="9_ys41d"]
 
 [sub_resource type="Gradient" id="Gradient_qf1tv"]
 offsets = PackedFloat32Array(0, 0.584307, 0.797997, 1)
@@ -61,19 +58,11 @@ animations = [{
 size = Vector2(43, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3u3cn"]
-radius = 30.0
-height = 326.0
+radius = 41.0
+height = 334.0
 
-[sub_resource type="Resource" id="Resource_4fi54"]
-script = ExtResource("7_8kbal")
-Character = ExtResource("6_rg573")
-Lines = Array[String](["Can I go home now!?"])
-
-[sub_resource type="Resource" id="Resource_fhb77"]
-script = ExtResource("7_8kbal")
-Character = ExtResource("5_7bcto")
-Lines = Array[String](["Game by Toilari, Noodle, Ennea, Lassi, Minjaux, Mäyräkissa and Alex", "Thank you for playing <3"])
-Next = SubResource("Resource_4fi54")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnucs"]
+size = Vector2(311, 10)
 
 [node name="Juuri" type="Node2D" unique_id=343790784]
 y_sort_enabled = true
@@ -119,20 +108,21 @@ position = Vector2(-41, -1394)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ttp52")
 
-[node name="StaticProps" type="Node2D" parent="." unique_id=323229421]
+[node name="Statue" type="Node2D" parent="." unique_id=323229421]
 y_sort_enabled = true
 
-[node name="Jeesus" type="AnimatedSprite2D" parent="StaticProps" unique_id=1727530937]
+[node name="Sprite" type="AnimatedSprite2D" parent="Statue" unique_id=1727530937]
 y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4c0er")
 autoplay = "default"
-frame_progress = 0.374799
+frame_progress = 0.7883615
 offset = Vector2(0, -45)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticProps" unique_id=1819234593]
+[node name="Collider" type="StaticBody2D" parent="Statue" unique_id=1819234593]
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticProps/StaticBody2D" unique_id=1496885451]
+[node name="Shape" type="CollisionShape2D" parent="Statue/Collider" unique_id=1496885451]
 position = Vector2(-0.5, -12)
 shape = SubResource("RectangleShape2D_djy3h")
 
@@ -143,20 +133,37 @@ y_sort_enabled = true
 y_sort_enabled = true
 position = Vector2(0, 63)
 
-[node name="Ryhmähauta" parent="." unique_id=1731836453 instance=ExtResource("2_1vlf7")]
+[node name="CreditsGraves" type="Area2D" parent="." unique_id=1419537944]
 position = Vector2(1, -93)
+script = ExtResource("2_ci1sm")
+metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
-[node name="WispInteractable" parent="Ryhmähauta" unique_id=150551529 instance=ExtResource("3_q5w04")]
+[node name="WispPosition" type="Marker2D" parent="CreditsGraves" unique_id=1808597465 node_paths=PackedStringArray("trigger")]
+position = Vector2(-1, -62)
+script = ExtResource("9_ys41d")
+trigger = NodePath("..")
+metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
-[node name="Trigger" parent="Ryhmähauta/WispInteractable" index="0" unique_id=1478185290]
+[node name="Trigger" type="CollisionShape2D" parent="CreditsGraves" unique_id=1181981036]
+position = Vector2(0, 17)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3u3cn")
+debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="Target" parent="Ryhmähauta/WispInteractable" index="1" unique_id=439795568]
-position = Vector2(-1, -62)
+[node name="Sprite" type="Sprite2D" parent="CreditsGraves" unique_id=882604373]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-1, 0)
+texture = ExtResource("3_ys41d")
+centered = false
+offset = Vector2(-163.955, -79.01)
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="Ryhmähauta/WispInteractable" unique_id=1349076379]
-script = ExtResource("4_d57h3")
-DialogueTree = SubResource("Resource_fhb77")
+[node name="Collider" type="StaticBody2D" parent="CreditsGraves" unique_id=739252299]
+collision_layer = 2
 
-[editable path="Ryhmähauta/WispInteractable"]
+[node name="Shape" type="CollisionShape2D" parent="CreditsGraves/Collider" unique_id=2006240949]
+position = Vector2(-7.5, -5)
+shape = SubResource("RectangleShape2D_dnucs")
+
+[connection signal="body_entered" from="CreditsGraves" to="CreditsGraves" method="_on_body_entered"]
+[connection signal="body_exited" from="CreditsGraves" to="CreditsGraves" method="_on_body_exited"]

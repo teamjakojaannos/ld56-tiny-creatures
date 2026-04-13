@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://cp418hflorxlq"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_vv02f"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_6pkjr"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_xwljb"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="3_dhikm"]
+
+[sub_resource type="Resource" id="Resource_07sqc"]
+script = ExtResource("2_xwljb")
+text = "We have to keep searching for my friends!
+Some are still missing..."
+side = 1
+speaker = ExtResource("3_dhikm")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_6pkjr")
+lines = Array[ExtResource("1_vv02f")]([SubResource("Resource_07sqc")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

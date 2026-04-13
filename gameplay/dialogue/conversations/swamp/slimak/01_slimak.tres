@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://ceco6qt4lw75w"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_shqr2"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_eug73"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_xc2rv"]
+[ext_resource type="Resource" uid="uid://cudenmb53j0je" path="res://gameplay/dialogue/speakers/slimak.tres" id="3_3gwxe"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="4_3gwxe"]
+[ext_resource type="Script" uid="uid://bgo60blfy1ww6" path="res://gameplay/dialogue/dialogue_choice_line.gd" id="5_4cnko"]
+
+[sub_resource type="Resource" id="Resource_4cnko"]
+script = ExtResource("2_xc2rv")
+text = "Be careful, there’s many, many - anyway.
+I used to be a rapper you know...
+Until I took a, what was it again?
+Anyway, I got sick beats yo!
+Wanna hear ‘em?"
+side = 1
+speaker = ExtResource("3_3gwxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_by7ga"]
+script = ExtResource("2_xc2rv")
+text = "Go ahead"
+speaker = ExtResource("4_3gwxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_x8vsl"]
+script = ExtResource("2_xc2rv")
+text = "My name is MC. MC Simlak.
+Or was it Slimak?
+Anyway. You’re in the swamp,
+you boutta get - uhh, crunked.
+The monster’s got a big stick, yo.
+...
+So, you like it?"
+side = 1
+speaker = ExtResource("3_3gwxe")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_6etst"]
+script = ExtResource("5_4cnko")
+choice_text_a = "It's great"
+choice_text_b = "Thanks, I hate it"
+speaker = ExtResource("4_3gwxe")
+metadata/_custom_type_script = "uid://bgo60blfy1ww6"
+
+[resource]
+script = ExtResource("2_eug73")
+lines = Array[ExtResource("1_shqr2")]([SubResource("Resource_4cnko"), SubResource("Resource_by7ga"), SubResource("Resource_x8vsl"), SubResource("Resource_6etst")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

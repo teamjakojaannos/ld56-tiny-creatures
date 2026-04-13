@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://bq1k3nkdqjtx0"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_ob8xj"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_2y56b"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_gw7ln"]
+
+[sub_resource type="Resource" id="Resource_k8g8v"]
+script = ExtResource("2_2y56b")
+text = "Game by...
+ritinä (toilari), Noodle, Ennea, Lassi,
+Minjaux, Mäyräkissa and Alex
+...
+Thank you for playing! <3"
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_gw7ln")
+lines = Array[ExtResource("1_ob8xj")]([SubResource("Resource_k8g8v")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

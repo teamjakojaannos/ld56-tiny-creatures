@@ -12,10 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_40s0t"]
 [ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="13_lug5l"]
 [ext_resource type="PackedScene" uid="uid://ddydax43gghjj" path="res://Environment/spooky_tree.tscn" id="14_nvxan"]
-[ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="15_4m3yo"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="15_lorar"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://environment/rocks/slab1.png" id="16_u8hyu"]
-[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="16_wbc7m"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
 [ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://environment/rocks/slab2.png" id="17_rapc4"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
@@ -23,14 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://environment/rocks/slab4.png" id="19_etteb"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="19_jmbxi"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://environment/rocks/slab5.png" id="20_3da3i"]
-[ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="20_8l740"]
-[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="21_m7ic5"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="22_sxeog"]
-[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="23_406oo"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="23_lcdbd"]
+[ext_resource type="Script" uid="uid://t6lj2hn6mue7" path="res://gameplay/props/forest/skull_stick.gd" id="23_toat2"]
+[ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://gameplay/props/forest/jokuhassuproppi_idk.png" id="24_7y1kb"]
 [ext_resource type="PackedScene" uid="uid://cektsywqa3k5v" path="res://Characters/npc_crow.tscn" id="31_8avri"]
 [ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="34_jlyps"]
 [ext_resource type="Script" uid="uid://db84q0o2plx4a" path="res://gameplay/touch_trigger.gd" id="37_7y1kb"]
+[ext_resource type="Script" uid="uid://fuxvwo4nad6i" path="res://gameplay/props/forest/entering_swamp_too_soon.gd" id="37_hvsfi"]
 [ext_resource type="Script" uid="uid://c1601w316622d" path="res://gameplay/start_conversation.gd" id="37_hwnev"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="38_82gr2"]
 [ext_resource type="Resource" uid="uid://hleqsy3eme27" path="res://gameplay/dialogue/conversations/forest/crow/01_meet_crow.tres" id="38_ibgb3"]
@@ -42,16 +38,14 @@
 resource_local_to_scene = true
 radius = 78.0256
 
-[sub_resource type="Resource" id="Resource_ylqht"]
-script = ExtResource("23_406oo")
-Character = ExtResource("23_lcdbd")
-Lines = Array[String](["This is a dangerous forest! We have to be careful."])
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axo0v"]
+size = Vector2(11, 3)
 
-[sub_resource type="Resource" id="Resource_f05ty"]
-script = ExtResource("23_406oo")
-Character = ExtResource("22_sxeog")
-Lines = Array[String](["Why are there skulls impaled on sticks!?"])
-Next = SubResource("Resource_ylqht")
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_24ir1"]
+polygon = PackedVector2Array(-3, 2, -1, 2, -1, 0, -3, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gn8c1"]
+polygon = PackedVector2Array(-4, 1, -3, 1, -3, 0, -4, 0)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbf2w"]
 vertices = PackedVector2Array(-909.07, 86, -923, 86, -923, 72, -907.562, 72, -1311, 26, -1333.61, 26, -1333.51, 25.5078, -1229, 6.57812, -1229, 34.5, -1255, 34.5, -1311, 44, -1277, 44, -1255, 46, -1277, 46, -433, -153, -454, -153, -454, -154, -433, -154, -532, -159, -537, -159, -537, -169, -532, -169, -706, -183, -717, -183, -717, -214, -706, -214, -842, -217, -855, -217, -855, -231, -842, -231, -680, -242, -686, -242, -686, -253, -680, -253, -742, -481, -764, -481, -764, -493, -742, -493, -830, -35, -613, -47, -548, -47, -548, -15, -707, -24, -548, 45, -547, 38, -547, 53, -317, -30, -317, 27, -341, 27, -359, 10, -359, -50, -321, -84, -552, -278, -540, -269, -566, -269, -615, -276, -1010, -422.391, -977, -454.562, -977, -443, -433.281, 273.5, -481.977, 218, -444, 218, -391, 235, -391, 273.5, -540, -303, -552, -338, -252, -428, -232.633, -428, -215.922, -389, -233, -389, -252, -427, -1006, 282, -1006, 330.461, -1064, 319.008, -1064, 286, -1018, 265, -604, 53, -605, 47, -626, -15, -626, 45, -670, 47, -707, 36, -1246.95, 234, -1351.34, 180.078, -1351.71, 176, -1290, 176, -1270, 186, -672, -126, -613, -106, -830, -94, -694, -124, -604, 85.2734, -605, 85.2188, -856, 55, -856, 72.4297, -867, 71.8672, -867, 12, -670, 81.8984, -672, 81.7969, -672, 62, -962, -150, -946, -132, -946, -72, -1105, -79, -1105, -138, -1023, -181, -776, -533, -772, -533, -772, -531, -829, -531, -699, -421, -699, -477, -664, -477, -640, -472, -636, -432, -630, -338, -664, -478, -640, -478, -636, -472, -606, -432, -606, -416, -466, -388, -528, -416, -528, -417, -471, -417, -388, -388, -471, -476, -398, -476, -360, -443, -398, -477, -360, -477, -330, -443, -330, -427, -233, -355, -259, -355, -259, -338, -289, -338, -289, -340, -323, -340, -323, -358, -388, -358, -466, -328, -388, -328, -388, -324, -414, -324, -414, -283, -441, -283, -441, -285, -475, -285, -475, -303, -566, -256, -581, -256, -581, -258, -615, -258, -725, -313, -725, -273, -745, -273, -745, -282, -747, -282, -747, -340, -812, -340, -812, -282, -822, -282, -822, -291, -900, -291, -900, -248, -933, -248, -966, -292, -933, -209, -945, -209, -945, -241, -962, -181, -897, -150, -897, -188, -877, -188, -877, -158, -812, -158, -812, -189, -795, -189, -795, -174, -759, -174, -759, -124, -694, -142, -672, -142, -594, -126, -594, -127, -562, -127, -562, -106, -868, -132, -868, -94, -895, -72, -895, -35, -945, 12, -548, -99, -503, -99, -503, -93, -425, -93, -425, -100, -399, -100, -399, -84, -267.867, -62.1328, -321, -85, -264, -85, -213.68, -70.3125, -264, -140, -254, -140, -254, -124, -428, -50, -428, -70, -493, -11, -437, -11, -437, 10, -482, 38, -482, 97, -341, 86, -336, 86, -336, 133, -383, 143, -480, 117, -297, 133, -297, 191, -305, 191, -305, 143, -312, 251, -297, 251, -297, 252, -326, 252, -326, 235, -312, 203, -383, 203, -444, 158, -480, 158, -558, 117, -558, 130, -559.203, 130, -574.109, 113, -526, 113, -526, 97, -737, 62, -737, 75, -757, 75, -757, 73, -791, 73, -791, 55, -785, 36, -945, 68, -988, 68, -1040, 47, -1084, 20.5, -1120, -48, -988, 102, -1014, 102, -1014, 122, -1056, 122, -1040, 107, -1056, 181, -1010, 181, -1010, 202, -1018, 206, -1109, 193, -980, 202, -980, 206, -979, 265, -979, 282, -1112, 286, -1112, 254, -1158, 254, -1158, 252, -1192, 252, -1192, 234, -1174, 193, -1290, 175, -1270, 175, -1192, 186, -1192, 150.5, -1174, 150.5, -1109, 149.5, -1086, 149.5, -1086, 107, -1084, 47, -1130, 20.5, -1130, 18.5, -1120, 12, -1164, 18.5, -1164, 12, -1164, -143, -1164, -176, -1121, -176, -1023, -291, -1023, -292, -966, -351, -971, -351, -971, -362, -964, -362, -964, -421, -1010, -421, -899, -443, -899, -444, -867, -444, -867, -402, -842, -503, -847, -503, -847, -514, -840, -514, -802, -540, -802, -541, -776, -541, -840, -540, -829, -472, -842, -462, -789, -462, -777, -472, -777, -421, -789, -402, -199.82, -124, -199.43, -120.891, -274.68, -30, -493, -70, -785, -24, -1121, -227.742, -1093.79, -291, -1023, -241, -1170, -138, -647, -313, -630, -278, -647, -276, -1194, -143, -1192.44, -48, -1170, -79)
@@ -61,7 +55,7 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navmesh"
 agent_radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_toat2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_myhnb"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -74,7 +68,7 @@ point_count = 8
 [sub_resource type="CircleShape2D" id="CircleShape2D_ibgb3"]
 radius = 46.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7y1kb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qokuh"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -84,7 +78,7 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hwnev"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0hnh"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -94,7 +88,7 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xv5wd"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ns6m"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -155,14 +149,9 @@ size = Vector2(38.9823, 359.417)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00op0"]
 size = Vector2(191.67, 810.256)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j7kq0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_toat2"]
 resource_local_to_scene = true
 radius = 92.0217
-
-[sub_resource type="Resource" id="Resource_o5mxn"]
-script = ExtResource("23_406oo")
-Character = ExtResource("23_lcdbd")
-Lines = Array[String](["I think some of my friends are still in the woods! Let's go back!"])
 
 [node name="BigForest" type="Node2D" unique_id=1158962184]
 y_sort_enabled = true
@@ -2475,26 +2464,38 @@ position = Vector2(-1054, -177)
 position = Vector2(-1088, -615)
 metadata/_edit_lock_ = true
 
-[node name="JokuHassuKalloKeppi" parent="." unique_id=677092608 instance=ExtResource("15_4m3yo")]
+[node name="SkullStick" type="Area2D" parent="." unique_id=1834922474]
+y_sort_enabled = true
 position = Vector2(-193, -97)
+script = ExtResource("23_toat2")
+metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
-[node name="AnimatedSprite2D" parent="JokuHassuKalloKeppi/StaticBody2D" parent_id_path=PackedInt32Array(677092608, 701918756) index="1" unique_id=1511705619]
-script = ExtResource("16_wbc7m")
-
-[node name="WispInteractable2" parent="JokuHassuKalloKeppi" unique_id=824687855 instance=ExtResource("20_8l740")]
-position = Vector2(-1, -1)
-OneShot = true
-
-[node name="Trigger" parent="JokuHassuKalloKeppi/WispInteractable2" index="0" unique_id=1478185290]
-position = Vector2(-3, 3)
+[node name="Trigger" type="CollisionShape2D" parent="SkullStick" unique_id=1493752786]
+position = Vector2(4, 26)
 shape = SubResource("CircleShape2D_hvsfi")
+debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="Target" parent="JokuHassuKalloKeppi/WispInteractable2" index="1" unique_id=439795568]
-position = Vector2(18, -28)
+[node name="Sprite" type="Sprite2D" parent="SkullStick" unique_id=1514478308]
+y_sort_enabled = true
+texture = ExtResource("24_7y1kb")
+offset = Vector2(-1, -25)
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="JokuHassuKalloKeppi/WispInteractable2" unique_id=2069647261]
-script = ExtResource("21_m7ic5")
-DialogueTree = SubResource("Resource_f05ty")
+[node name="Collider" type="StaticBody2D" parent="SkullStick" unique_id=1145966221]
+
+[node name="Shape" type="CollisionShape2D" parent="SkullStick/Collider" unique_id=1747992933]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_axo0v")
+
+[node name="LightOccluderLeft" type="LightOccluder2D" parent="SkullStick" unique_id=30486974]
+position = Vector2(-1, 0)
+occluder = SubResource("OccluderPolygon2D_24ir1")
+occluder_light_mask = 4
+
+[node name="LightOccluderRight" type="LightOccluder2D" parent="SkullStick" unique_id=1612996322]
+light_mask = 0
+position = Vector2(6, 0)
+occluder = SubResource("OccluderPolygon2D_gn8c1")
+occluder_light_mask = 4
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1695564654]
 z_index = -2
@@ -2514,7 +2515,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-1085, -624)
 
 [node name="Trigger" parent="SpiritLantern (kantolyhty)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_toat2")
+shape = SubResource("CircleShape2D_myhnb")
 
 [node name="SpiritPath" parent="SpiritLantern (kantolyhty)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_o8i5l")
@@ -2597,7 +2598,7 @@ location = "metsä_south"
 
 [node name="Trigger" parent="SpiritLantern (metsä_south)" index="1" unique_id=480170960]
 position = Vector2(-1, -6)
-shape = SubResource("CircleShape2D_7y1kb")
+shape = SubResource("CircleShape2D_qokuh")
 
 [node name="SpiritPath" parent="SpiritLantern (metsä_south)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_5s5rr")
@@ -2608,7 +2609,7 @@ location = "pulu"
 
 [node name="Trigger" parent="SpiritLantern (pulu)" index="1" unique_id=480170960]
 position = Vector2(-7, 2)
-shape = SubResource("CircleShape2D_hwnev")
+shape = SubResource("CircleShape2D_u0hnh")
 
 [node name="SpiritPath" parent="SpiritLantern (pulu)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_18km7")
@@ -2619,7 +2620,7 @@ location = "metsä"
 
 [node name="Trigger" parent="SpiritLantern (metsä)" index="1" unique_id=480170960]
 position = Vector2(3, -7)
-shape = SubResource("CircleShape2D_xv5wd")
+shape = SubResource("CircleShape2D_6ns6m")
 
 [node name="SpiritPath" parent="SpiritLantern (metsä)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_j7kq0")
@@ -2713,19 +2714,24 @@ rotation = 0.716817
 shape = SubResource("RectangleShape2D_00op0")
 debug_color = Color(0.988467, 0, 0.30166, 0.42)
 
-[node name="SuoDialogiTriggeri" type="Node2D" parent="." unique_id=1337528491]
+[node name="EnteringSwampTooSoon" type="Area2D" parent="." unique_id=850479931]
 position = Vector2(458, -360)
+script = ExtResource("37_hvsfi")
+metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
-[node name="WispInteractable" parent="SuoDialogiTriggeri" unique_id=1083143336 instance=ExtResource("20_8l740")]
-RequireNumberOfWispsLessThan = 5
+[node name="Trigger" type="CollisionShape2D" parent="EnteringSwampTooSoon" unique_id=1415634543]
+shape = SubResource("CircleShape2D_toat2")
+debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="Trigger" parent="SuoDialogiTriggeri/WispInteractable" index="0" unique_id=1478185290]
-shape = SubResource("CircleShape2D_j7kq0")
+[node name="WispPosition" type="Marker2D" parent="EnteringSwampTooSoon" unique_id=1013751830 node_paths=PackedStringArray("trigger")]
+position = Vector2(0, -6)
+script = ExtResource("39_hwnev")
+trigger = NodePath("..")
+metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="SuoDialogiTriggeri/WispInteractable" unique_id=566350473]
-script = ExtResource("21_m7ic5")
-DialogueTree = SubResource("Resource_o5mxn")
-
+[connection signal="body_entered" from="SkullStick" to="SkullStick" method="_on_body_entered"]
+[connection signal="body_exited" from="SkullStick" to="SkullStick" method="_on_body_exited"]
+[connection signal="player_entered" from="SkullStick" to="SkullStick" method="_on_player_entered"]
 [connection signal="body_entered" from="NPC_crow/Trigger" to="NPC_crow/Trigger" method="_on_body_entered"]
 [connection signal="body_entered" from="NPC_crow/Trigger" to="NPC_crow/Trigger/TouchTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="NPC_crow/Trigger" to="NPC_crow/Trigger" method="_on_body_exited"]
@@ -2733,12 +2739,14 @@ DialogueTree = SubResource("Resource_o5mxn")
 [connection signal="player_entered" from="NPC_crow/Trigger" to="NPC_crow/Trigger/WispPosition" method="_on_player_entered"]
 [connection signal="player_exited" from="NPC_crow/Trigger" to="NPC_crow/Trigger/WispPosition" method="_on_player_exited"]
 [connection signal="fire" from="NPC_crow/Trigger/TouchTrigger" to="NPC_crow/Trigger/Conversation" method="start"]
+[connection signal="body_entered" from="EnteringSwampTooSoon" to="EnteringSwampTooSoon" method="_on_body_entered"]
+[connection signal="body_exited" from="EnteringSwampTooSoon" to="EnteringSwampTooSoon" method="_on_body_exited"]
+[connection signal="player_entered" from="EnteringSwampTooSoon" to="EnteringSwampTooSoon" method="_on_player_entered"]
+[connection signal="player_entered" from="EnteringSwampTooSoon" to="EnteringSwampTooSoon/WispPosition" method="_on_player_entered"]
+[connection signal="player_exited" from="EnteringSwampTooSoon" to="EnteringSwampTooSoon/WispPosition" method="_on_player_exited"]
 
-[editable path="JokuHassuKalloKeppi"]
-[editable path="JokuHassuKalloKeppi/WispInteractable2"]
 [editable path="SpiritLantern (kantolyhty)"]
 [editable path="SpiritLantern (metsä_south)"]
 [editable path="SpiritLantern (pulu)"]
 [editable path="SpiritLantern (metsä)"]
 [editable path="MuzakTrigger"]
-[editable path="SuoDialogiTriggeri/WispInteractable"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://dwwin08c5olh1"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_x5i5t"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_6jgbb"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_7l0e5"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="3_h56kr"]
+
+[sub_resource type="Resource" id="Resource_e3b7b"]
+script = ExtResource("2_6jgbb")
+text = "I think...
+Some of my friends are still in the woods!
+Let's go back!"
+side = 1
+speaker = ExtResource("3_h56kr")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_7l0e5")
+lines = Array[ExtResource("1_x5i5t")]([SubResource("Resource_e3b7b")])
+metadata/_custom_type_script = "uid://jfout84hb58v"
