@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="DialogueSpeaker" format=3 uid="uid://c37874ru7764v"]
 
 [ext_resource type="Script" uid="uid://was7aq04ye0" path="res://gameplay/dialogue/dialogue_speaker.gd" id="1_i6naf"]
-[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://dialogue/portraits/harakkaportrait.png" id="2_av5xg"]
+[ext_resource type="Texture2D" uid="uid://clbts22m1gtui" path="res://gameplay/dialogue/speakers/harakkaportrait.png" id="2_av5xg"]
 
 [resource]
 script = ExtResource("1_i6naf")

@@ -34,6 +34,7 @@ var is_in_transition: bool:
 var _active_conversation: Array[DialogueLine2] = []
 var _line_idx: int = 0
 
+@onready var scroll_sfx: AudioStreamPlayer = $ScrollSfx
 @onready var _ui: DialogueUINew = $UI
 
 
@@ -48,6 +49,8 @@ func _ready() -> void:
 
 
 func reset() -> void:
+	scroll_sfx.stop()
+
 	current_option = 0
 	max_option = 2
 

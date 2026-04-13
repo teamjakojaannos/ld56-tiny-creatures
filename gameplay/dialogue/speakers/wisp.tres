@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="DialogueSpeaker" format=3 uid="uid://n75b83asan86"]
 
 [ext_resource type="Script" uid="uid://was7aq04ye0" path="res://gameplay/dialogue/dialogue_speaker.gd" id="1_1uich"]
-[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="2_q6ipw"]
+[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://gameplay/dialogue/speakers/wisp_Portrait2.png" id="2_q6ipw"]
 
 [resource]
 script = ExtResource("1_1uich")

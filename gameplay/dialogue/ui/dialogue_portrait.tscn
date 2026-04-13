@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://di32ud1oobxw8"]
 
 [ext_resource type="Script" uid="uid://c01p2w2nmtebh" path="res://gameplay/dialogue/ui/dialogue_portrait.gd" id="1_t51dg"]
-[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://dialogue/portraits/player_portrait.png" id="2_3koqa"]
+[ext_resource type="Texture2D" uid="uid://d1rmimef34ha7" path="res://gameplay/dialogue/speakers/player_portrait.png" id="2_3koqa"]
 
 [node name="DialoguePortrait" type="MarginContainer" unique_id=1714545402]
 custom_minimum_size = Vector2(64, 64)

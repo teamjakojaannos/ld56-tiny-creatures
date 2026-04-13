@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqab431ashybk"
-path="res://.godot/imported/etanapappaportrait.png-321de0c66db05e9fc24573e02ea254cd.ctex"
+uid="uid://b17o3twqxstck"
+path="res://.godot/imported/wisp_Portrait2.png-aa11a75c7671720f77e2f512bd9b0dd8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue/portraits/etanapappaportrait.png"
-dest_files=["res://.godot/imported/etanapappaportrait.png-321de0c66db05e9fc24573e02ea254cd.ctex"]
+source_file="res://gameplay/dialogue/speakers/wisp_Portrait2.png"
+dest_files=["res://.godot/imported/wisp_Portrait2.png-aa11a75c7671720f77e2f512bd9b0dd8.ctex"]
 
 [params]
 

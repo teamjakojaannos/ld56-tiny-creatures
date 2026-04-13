@@ -8,6 +8,8 @@
 [node name="Intro" parent="." index="0" unique_id=106749247 instance=ExtResource("2_g5s7c")]
 position = Vector2(-1097, 68)
 
+[connection signal="player_entered" from="SwampShortcutTrigger" to="SwampShortcutTrigger" method="_on_player_entered"]
+
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]
 [editable path="MuzakTrigger3"]

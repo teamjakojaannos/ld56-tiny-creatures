@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dva0mxjbjqfxy"]
 
-[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://dialogue/portraits/wisp_Portrait2.png" id="1_roa8q"]
+[ext_resource type="Texture2D" uid="uid://b17o3twqxstck" path="res://gameplay/dialogue/speakers/wisp_Portrait2.png" id="1_roa8q"]
 [ext_resource type="FontFile" uid="uid://b1fn2ohqk5gyo" path="res://fonts/Pixel NES.otf" id="2_7ke3r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_j80jm"]

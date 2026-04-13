@@ -38,9 +38,12 @@ func scroll_text() -> void:
 
 	_label.visible_characters = 0
 
+	Conversation.scroll_sfx.play()
 	while _label.visible_characters < letter_count:
 		_label.visible_characters += 1
 		await get_tree().create_timer(0.05).timeout
+
+	Conversation.scroll_sfx.stop()
 
 
 func _reset() -> void:

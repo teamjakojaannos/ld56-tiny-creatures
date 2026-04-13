@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Persistent="*res://persistent.tscn"
-Dialogue="*res://dialogue/dialogue_ui.tscn"
 Jukebox="*res://music/jukebox.tscn"
 LevelManager="*res://managers/level_manager.gd"
 Conversation="*uid://cmsp0cu1vn6g8"

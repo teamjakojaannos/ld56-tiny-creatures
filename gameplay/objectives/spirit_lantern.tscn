@@ -10,12 +10,6 @@
 resource_local_to_scene = true
 radius = 46.0435
 
-[sub_resource type="Curve2D" id="Curve2D_ht8rr"]
-_data = {
-"points": PackedVector2Array(27.3827, -18.0567, -27.3827, 18.0567, 0, 0, 2.18268, 18.652, -2.18268, -18.652, -44, -18, -44.0504, -5.35748, 44.0504, 5.35748, 1, -78, -44.4472, 1.19055, 44.4472, -1.19055, 87, -7)
-}
-point_count = 4
-
 [sub_resource type="Gradient" id="Gradient_rmp88"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.276119, 0.490672, 1)
@@ -26,6 +20,12 @@ gradient = SubResource("Gradient_rmp88")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_ht8rr"]
+_data = {
+"points": PackedVector2Array(27.3827, -18.0567, -27.3827, 18.0567, 0, 0, 2.18268, 18.652, -2.18268, -18.652, -44, -18, -44.0504, -5.35748, 44.0504, 5.35748, 1, -78, -44.4472, 1.19055, 44.4472, -1.19055, 87, -7)
+}
+point_count = 4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
 atlas = ExtResource("4_jsrph")
@@ -92,7 +92,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../SpiritPath/Spirit/Sprite:modulate")
+tracks/1/path = NodePath("../SpiritSprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -104,7 +104,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../SpiritPath/Spirit/Light:energy")
+tracks/2/path = NodePath("../SpiritSprite/Light:energy")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -193,7 +193,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../SpiritPath/Spirit/Sprite:modulate")
+tracks/1/path = NodePath("../SpiritSprite:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -205,7 +205,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../SpiritPath/Spirit/Light:energy")
+tracks/2/path = NodePath("../SpiritSprite/Light:energy")
 tracks/2/interp = 2
 tracks/2/loop_wrap = false
 tracks/2/keys = {
@@ -270,7 +270,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../SpiritPath/Spirit/Sprite:modulate")
+tracks/1/path = NodePath("../SpiritSprite:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -282,7 +282,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../SpiritPath/Spirit/Light:energy")
+tracks/2/path = NodePath("../SpiritSprite/Light:energy")
 tracks/2/interp = 2
 tracks/2/loop_wrap = false
 tracks/2/keys = {
@@ -375,50 +375,58 @@ metadata/_custom_type_script = "uid://bpqskmnis7fey"
 shape = SubResource("CircleShape2D_bw1ej")
 debug_color = Color(0.4198896, 0.5862334, 0.40510133, 0.41960785)
 
-[node name="SpiritPath" type="Path2D" parent="." unique_id=664202222]
-z_index = 1
-position = Vector2(0, -4)
-curve = SubResource("Curve2D_ht8rr")
-
-[node name="Spirit" type="PathFollow2D" parent="SpiritPath" unique_id=903405522]
-rotates = false
-
-[node name="Sprite" type="AnimatedSprite2D" parent="SpiritPath/Spirit" unique_id=578360163]
+[node name="SpiritSprite" type="AnimatedSprite2D" parent="." unique_id=578360163]
 modulate = Color(0, 1, 0.55, 1)
+y_sort_enabled = true
 texture_filter = 1
+position = Vector2(0, -4)
 sprite_frames = ExtResource("5_66sfh")
 autoplay = "default"
 frame_progress = 0.984137
 offset = Vector2(0, -12)
-metadata/_edit_lock_ = true
 
-[node name="Light" type="PointLight2D" parent="SpiritPath/Spirit" unique_id=1473443064]
+[node name="Light" type="PointLight2D" parent="SpiritSprite" unique_id=1473443064]
 position = Vector2(1, -7)
 scale = Vector2(2.9375, 2.9375)
 color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
+[node name="SpiritPath" type="Path2D" parent="." unique_id=664202222]
+z_index = 1
+position = Vector2(0, -4)
+curve = SubResource("Curve2D_ht8rr")
+
+[node name="Spirit" type="PathFollow2D" parent="SpiritPath" unique_id=903405522]
+y_sort_enabled = true
+rotates = false
+
+[node name="SpiritPosition" type="RemoteTransform2D" parent="SpiritPath/Spirit" unique_id=695599100]
+remote_path = NodePath("../../../SpiritSprite")
+
 [node name="SpiritLantern" type="Node2D" parent="." unique_id=92528228]
 y_sort_enabled = true
 
 [node name="Base" type="Sprite2D" parent="SpiritLantern" unique_id=2052720509]
+y_sort_enabled = true
 texture_filter = 1
+position = Vector2(0, -5)
 texture = ExtResource("3_7m81c")
-offset = Vector2(-7, -20)
+offset = Vector2(-7, -15)
 
 [node name="BackWall" type="Sprite2D" parent="SpiritLantern" unique_id=1085909100]
 visible = false
 modulate = Color(0.51, 0.51, 0.51, 1)
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(2, 7)
+position = Vector2(-5, -8)
 texture = ExtResource("4_jsrph")
-offset = Vector2(-7, -20)
+offset = Vector2(0, -5)
 region_enabled = true
 region_rect = Rect2(30, 23, 8, 18)
 
 [node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern" unique_id=1614184715]
-z_index = 2
+y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_kwh76")
 animation = &"idle_closed"

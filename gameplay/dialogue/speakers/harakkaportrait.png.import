@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1rmimef34ha7"
-path="res://.godot/imported/player_portrait.png-a17a3fc0f612919c3b49f21f3ebc9170.ctex"
+uid="uid://clbts22m1gtui"
+path="res://.godot/imported/harakkaportrait.png-99435f6e272c9bfbfcef7a0c3b3c118d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogue/portraits/player_portrait.png"
-dest_files=["res://.godot/imported/player_portrait.png-a17a3fc0f612919c3b49f21f3ebc9170.ctex"]
+source_file="res://gameplay/dialogue/speakers/harakkaportrait.png"
+dest_files=["res://.godot/imported/harakkaportrait.png-99435f6e272c9bfbfcef7a0c3b3c118d.ctex"]
 
 [params]
 

@@ -116,7 +116,7 @@ y_sort_enabled = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_4c0er")
 autoplay = "default"
-frame_progress = 0.7883615
+frame_progress = 0.5349939
 offset = Vector2(0, -45)
 
 [node name="Collider" type="StaticBody2D" parent="Statue" unique_id=1819234593]

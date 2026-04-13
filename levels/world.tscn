@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
 [ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
+[ext_resource type="Script" uid="uid://3g3r5wdu47jg" path="res://gameplay/props/forest/swamp_shortcut_trigger.gd" id="9_54i5j"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_i1ql1"]
-[ext_resource type="PackedScene" uid="uid://bfkpkt3kv6jsq" path="res://Environment/destroy_kivi_trigger.tscn" id="10_ifdrj"]
-[ext_resource type="Script" uid="uid://dif8wkbcoroba" path="res://Characters/GameCharacter.cs" id="12_k446b"]
-[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="13_1fx1h"]
+[ext_resource type="Script" uid="uid://cxxfk8oudgcrs" path="res://gameplay/player_trigger_area_2d.gd" id="10_oxfhy"]
+[ext_resource type="AudioStream" uid="uid://p615o3bijnql" path="res://random_sfx/kivipamahtaa.ogg" id="10_wrd2w"]
 [ext_resource type="PackedScene" uid="uid://bmvi58d0isrru" path="res://levels/hevonhelvetti.tscn" id="14_kfeaf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cgugi"]
@@ -61,15 +61,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.521368)
 fill_to = Vector2(0.901709, 0.106838)
 
-[sub_resource type="Resource" id="Resource_vq5mp"]
-script = ExtResource("12_k446b")
-Name = "Rock"
-DefaultDialogueSide = 1
-
-[sub_resource type="Resource" id="Resource_4ugy4"]
-script = ExtResource("13_1fx1h")
-Character = SubResource("Resource_vq5mp")
-Lines = Array[String](["Aight imma head out"])
+[sub_resource type="CircleShape2D" id="CircleShape2D_j8lqr"]
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je08u"]
 size = Vector2(20, 50.3268)
@@ -305,28 +298,40 @@ offset_bottom = 939.0
 rotation = -0.654552
 texture = SubResource("GradientTexture2D_7iv8n")
 
-[node name="BigStone" parent="." unique_id=1367767762 instance=ExtResource("9_i1ql1")]
-position = Vector2(-267, -514)
+[node name="SwampShortcutTrigger" type="Area2D" parent="." unique_id=278580772]
+position = Vector2(-266, -561)
+script = ExtResource("9_54i5j")
+metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
+
+[node name="Shape" type="CollisionShape2D" parent="SwampShortcutTrigger" unique_id=2118412463]
+shape = SubResource("CircleShape2D_j8lqr")
+
+[node name="Kivipamahtaa" type="AudioStreamPlayer" parent="SwampShortcutTrigger" unique_id=906107058]
+stream = ExtResource("10_wrd2w")
+bus = &"SFX"
+
+[node name="BigStone" parent="SwampShortcutTrigger" unique_id=1367767762 instance=ExtResource("9_i1ql1")]
+position = Vector2(-1, 47)
 scale = Vector2(1.265, 1.265)
 
-[node name="DestroyKiviTrigger" parent="." unique_id=1318235417 node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("10_ifdrj")]
-position = Vector2(-266, -578)
-objectToDestroy = NodePath("../BigStone")
-DialogueTree = SubResource("Resource_4ugy4")
+[node name="SwampToHubShortcutTrigger" type="Area2D" parent="." unique_id=212832138]
+position = Vector2(165, -252)
+script = ExtResource("10_oxfhy")
+metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
-[node name="BigStone2" parent="." unique_id=1607195487 instance=ExtResource("9_i1ql1")]
-position = Vector2(128, -246)
+[node name="Shape" type="CollisionShape2D" parent="SwampToHubShortcutTrigger" unique_id=635003849]
+position = Vector2(36, 15)
+shape = SubResource("CircleShape2D_j8lqr")
+
+[node name="BigStone2" parent="SwampToHubShortcutTrigger" unique_id=1607195487 instance=ExtResource("9_i1ql1")]
+position = Vector2(-33, 2)
 scale = Vector2(1.53, 1.53)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="BigStone2" unique_id=249736827]
+[node name="StaticBody2D2" type="StaticBody2D" parent="SwampToHubShortcutTrigger/BigStone2" unique_id=249736827]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigStone2/StaticBody2D2" unique_id=39644690]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwampToHubShortcutTrigger/BigStone2/StaticBody2D2" unique_id=39644690]
 position = Vector2(0.653595, -2.94116)
 shape = SubResource("RectangleShape2D_je08u")
-
-[node name="DestroyKiviTrigger2" parent="." unique_id=1057792722 node_paths=PackedStringArray("objectToDestroy") instance=ExtResource("10_ifdrj")]
-position = Vector2(201, -237)
-objectToDestroy = NodePath("../BigStone2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1970311744]
 
@@ -336,6 +341,11 @@ shape = SubResource("RectangleShape2D_v13c3")
 
 [node name="Juuri" parent="." unique_id=1729270206 instance=ExtResource("14_kfeaf")]
 position = Vector2(-5, -6817)
+
+[connection signal="body_entered" from="SwampShortcutTrigger" to="SwampShortcutTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="SwampShortcutTrigger" to="SwampShortcutTrigger" method="_on_body_exited"]
+[connection signal="body_entered" from="SwampToHubShortcutTrigger" to="SwampToHubShortcutTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="SwampToHubShortcutTrigger" to="SwampToHubShortcutTrigger" method="_on_body_exited"]
 
 [editable path="MuzakTrigger"]
 [editable path="MuzakTrigger2"]
