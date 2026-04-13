@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c287axru5rdlt"]
 
-[ext_resource type="Texture2D" uid="uid://jhhjkmm48j4e" path="res://Environment/ryhmahauta_handsomeDogs.png" id="1_rjp0a"]
+[ext_resource type="Texture2D" uid="uid://jhhjkmm48j4e" path="res://environment/victory_area/ryhmahauta_handsomeDogs.png" id="1_rjp0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnucs"]
 size = Vector2(311, 10)

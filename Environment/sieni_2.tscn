@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cua1u4d3r83qd"]
 
-[ext_resource type="Texture2D" uid="uid://qas0ddgp3xkg" path="res://Environment/myrgysieni.png" id="1_06mh7"]
+[ext_resource type="Texture2D" uid="uid://qas0ddgp3xkg" path="res://environment/forest/myrgysieni.png" id="1_06mh7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_42p5s"]
 animations = [{

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0bej41ibbv6e"]
 
-[ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://Environment/kiviaki_kiinnostaa.png" id="1_o87j8"]
+[ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://environment/rocks/kiviaki_kiinnostaa.png" id="1_o87j8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwyer"]
 size = Vector2(36, 20)

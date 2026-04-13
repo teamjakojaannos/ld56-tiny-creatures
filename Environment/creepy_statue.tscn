@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8foef0ggh6i5"]
 
-[ext_resource type="Texture2D" uid="uid://bdq24yqlpo8lb" path="res://Environment/SuoKansio/ryhmahauta.png" id="1_d0cv3"]
+[ext_resource type="Texture2D" uid="uid://bdq24yqlpo8lb" path="res://environment/swamp/ryhmahauta.png" id="1_d0cv3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ghmpg"]
 animations = [{

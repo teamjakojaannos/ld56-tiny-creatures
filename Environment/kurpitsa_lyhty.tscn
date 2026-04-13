@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1d0oklccd27c"]
 
-[ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://Environment/pumpkin.png" id="1_4gbqx"]
+[ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://gameplay/props/start_forest/pumpkin.png" id="1_4gbqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsobr"]
 size = Vector2(18, 5)

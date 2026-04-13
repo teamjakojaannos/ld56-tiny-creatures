@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cqnpbajdyitec"]
 
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="2_7y7d8"]
-[ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://Environment/pumpkin.png" id="2_tl8e4"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="3_tanrn"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="4_c3boq"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_cqeun"]
@@ -10,15 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="7_2d1eo"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="8_naa27"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_m5587"]
-[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="10_8ld2n"]
-[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="11_t3v3c"]
-[ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="12_yhk3p"]
-[ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="13_leamw"]
-[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="14_i12ag"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://environment/rocks/kivirykelma_1.png" id="10_8ld2n"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://environment/rocks/kivirykelma_2_.png" id="11_t3v3c"]
+[ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://environment/background/medium_patch_1.png" id="12_yhk3p"]
+[ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://environment/background/small_ptach1.png" id="13_leamw"]
+[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://environment/background/big_patch_1b.png" id="14_i12ag"]
 [ext_resource type="PackedScene" uid="uid://msnb3307oquv" path="res://Environment/puu_entrance.tscn" id="15_3aa4f"]
-[ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="16_4hpj2"]
+[ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://environment/background/background_color.png" id="16_4hpj2"]
 [ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="17_g8vca"]
 [ext_resource type="Script" uid="uid://bsbke7al56ksm" path="res://gameplay/props/start_forest/jack_o_lantern.gd" id="18_4ptxt"]
+[ext_resource type="SpriteFrames" uid="uid://b65xsddtvqnp3" path="res://gameplay/props/start_forest/pumpkin_frames.tres" id="19_4ptxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk46w"]
 size = Vector2(448, 72)
@@ -66,42 +66,6 @@ height = 342.00134
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsobr"]
 size = Vector2(18, 5)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_acp5i"]
-atlas = ExtResource("2_tl8e4")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_208q3"]
-atlas = ExtResource("2_tl8e4")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjoio"]
-atlas = ExtResource("2_tl8e4")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_os1x5"]
-atlas = ExtResource("2_tl8e4")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qm78g"]
-animations = [{
-"frames": [{
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_acp5i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_208q3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjoio")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_os1x5")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="Gradient" id="Gradient_r62qr"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -1256,7 +1220,7 @@ shape = SubResource("RectangleShape2D_qsobr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WispPOI_Jack-o-Lantern/Jack-o-Lantern/StaticBody2D" unique_id=595151566]
 y_sort_enabled = true
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_qm78g")
+sprite_frames = ExtResource("19_4ptxt")
 centered = false
 offset = Vector2(-15.805, -28.87)
 

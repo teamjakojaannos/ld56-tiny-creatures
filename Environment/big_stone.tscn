@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqq2ugabdph4k"]
 
-[ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://Environment/kiviaki_kiinnostaa.png" id="1_mwvla"]
+[ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://environment/rocks/kiviaki_kiinnostaa.png" id="1_mwvla"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_30qud"]
 animations = [{

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgc05m6sm8gve"]
 
-[ext_resource type="Texture2D" uid="uid://c0o4uvy8jjlm7" path="res://Environment/Haperot.png" id="1_5o7f3"]
+[ext_resource type="Texture2D" uid="uid://c0o4uvy8jjlm7" path="res://environment/forest/Haperot.png" id="1_5o7f3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_42p5s"]
 animations = [{

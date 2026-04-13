@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ddydax43gghjj"]
 
-[ext_resource type="Texture2D" uid="uid://cc5jo4l3c33ae" path="res://Environment/Spoopypuu.png" id="1_xqkpx"]
-[ext_resource type="Texture2D" uid="uid://theltytynjv3" path="res://Environment/Spoopypuu_takaseina.png" id="2_jinrd"]
+[ext_resource type="Texture2D" uid="uid://cc5jo4l3c33ae" path="res://environment/forest/Spoopypuu.png" id="1_xqkpx"]
+[ext_resource type="Texture2D" uid="uid://theltytynjv3" path="res://environment/forest/Spoopypuu_takaseina.png" id="2_jinrd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5k0v3"]
 animations = [{

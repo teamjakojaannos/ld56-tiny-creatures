@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b40kecv7ytk0c"]
 
-[ext_resource type="Texture2D" uid="uid://cnblfpddo1km7" path="res://Environment/Saniainen.png" id="1_4n3p5"]
+[ext_resource type="Texture2D" uid="uid://cnblfpddo1km7" path="res://environment/hub/Saniainen.png" id="1_4n3p5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_icqfh"]
 animations = [{

@@ -1,35 +1,35 @@
 [gd_scene format=3 uid="uid://coeua2ueyu3oa"]
 
-[ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://Environment/SuoKansio/lilypad_flower.png" id="1_6phio"]
-[ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://Environment/SuoKansio/isoruohoB.png" id="1_hchss"]
-[ext_resource type="Texture2D" uid="uid://bt83nh2lq0my1" path="res://Environment/SuoKansio/water_lilypad_large.png" id="2_g37ua"]
-[ext_resource type="Texture2D" uid="uid://ciwu3odidxyfv" path="res://Environment/SuoKansio/mediumruhot.png" id="2_j5o8c"]
+[ext_resource type="Texture2D" uid="uid://dt0uschqxd1jm" path="res://environment/swamp/lilypad_flower.png" id="1_6phio"]
+[ext_resource type="Texture2D" uid="uid://bjdvhe71ueugs" path="res://environment/background/isoruohoB.png" id="1_hchss"]
+[ext_resource type="Texture2D" uid="uid://bt83nh2lq0my1" path="res://environment/swamp/water_lilypad_large.png" id="2_g37ua"]
+[ext_resource type="Texture2D" uid="uid://ciwu3odidxyfv" path="res://environment/background/mediumruhot.png" id="2_j5o8c"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="3_3120c"]
-[ext_resource type="Texture2D" uid="uid://b6ntkl8xww46x" path="res://Environment/SuoKansio/water_lilypad_large_dark.png" id="3_vddgl"]
+[ext_resource type="Texture2D" uid="uid://b6ntkl8xww46x" path="res://environment/swamp/water_lilypad_large_dark.png" id="3_vddgl"]
 [ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="4_4mut1"]
-[ext_resource type="Texture2D" uid="uid://bsxajghkiveb3" path="res://Environment/SuoKansio/water_lilypad_mid.png" id="4_ahhpc"]
+[ext_resource type="Texture2D" uid="uid://bsxajghkiveb3" path="res://environment/swamp/water_lilypad_mid.png" id="4_ahhpc"]
 [ext_resource type="PackedScene" uid="uid://ekfgg6vmxihr" path="res://Environment/SuoKansio/nakki_ruoho.tscn" id="5_o5nv0"]
-[ext_resource type="Texture2D" uid="uid://cv56dojciqcmq" path="res://Environment/SuoKansio/water_lilypad_mid_dark.png" id="5_u5ltr"]
-[ext_resource type="Texture2D" uid="uid://depc7mg3ky371" path="res://Environment/SuoKansio/water_lilypad_mid_flipped.png" id="6_vj12l"]
-[ext_resource type="Texture2D" uid="uid://y5o62ukodkxt" path="res://Environment/SuoKansio/water_lilypad_particle.png" id="7_pmb8t"]
-[ext_resource type="Texture2D" uid="uid://mhuajex5v4nr" path="res://Environment/SuoKansio/water_lilypad_small_dark.png" id="8_euet1"]
-[ext_resource type="Texture2D" uid="uid://ciux3dk7b58s0" path="res://Environment/SuoKansio/water_lilypad_small_dark_2.png" id="9_kkapl"]
-[ext_resource type="Texture2D" uid="uid://8mo44mtddlbu" path="res://Environment/SuoKansio/lilypad_underwater.png" id="10_j3dcw"]
-[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="10_yk16f"]
-[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="11_uvf0w"]
-[ext_resource type="Texture2D" uid="uid://dmus760dgghf2" path="res://Environment/SuoKansio/isoruohoT.png" id="13_3sq64"]
-[ext_resource type="Texture2D" uid="uid://8j7lf1aufu4q" path="res://Environment/SuoKansio/mediumruhob.png" id="14_6fw4u"]
-[ext_resource type="Texture2D" uid="uid://cb74wxd24gfx4" path="res://Environment/SuoKansio/pieniruohob.png" id="15_5s4u7"]
-[ext_resource type="Texture2D" uid="uid://ticgxfbkpce8" path="res://Environment/slab3.png" id="18_v5qky"]
+[ext_resource type="Texture2D" uid="uid://cv56dojciqcmq" path="res://environment/swamp/water_lilypad_mid_dark.png" id="5_u5ltr"]
+[ext_resource type="Texture2D" uid="uid://depc7mg3ky371" path="res://environment/swamp/water_lilypad_mid_flipped.png" id="6_vj12l"]
+[ext_resource type="Texture2D" uid="uid://y5o62ukodkxt" path="res://environment/swamp/water_lilypad_particle.png" id="7_pmb8t"]
+[ext_resource type="Texture2D" uid="uid://mhuajex5v4nr" path="res://environment/swamp/water_lilypad_small_dark.png" id="8_euet1"]
+[ext_resource type="Texture2D" uid="uid://ciux3dk7b58s0" path="res://environment/swamp/water_lilypad_small_dark_2.png" id="9_kkapl"]
+[ext_resource type="Texture2D" uid="uid://8mo44mtddlbu" path="res://environment/swamp/lilypad_underwater.png" id="10_j3dcw"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://environment/rocks/kivirykelma_1.png" id="10_yk16f"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://environment/rocks/kivirykelma_2_.png" id="11_uvf0w"]
+[ext_resource type="Texture2D" uid="uid://dmus760dgghf2" path="res://environment/background/isoruohoT.png" id="13_3sq64"]
+[ext_resource type="Texture2D" uid="uid://8j7lf1aufu4q" path="res://environment/background/mediumruhob.png" id="14_6fw4u"]
+[ext_resource type="Texture2D" uid="uid://cb74wxd24gfx4" path="res://environment/background/pieniruohob.png" id="15_5s4u7"]
+[ext_resource type="Texture2D" uid="uid://ticgxfbkpce8" path="res://environment/rocks/slab3.png" id="18_v5qky"]
 [ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="19_4vkq6"]
-[ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_lwecq"]
+[ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://environment/rocks/slab4.png" id="19_lwecq"]
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="20_0b7li"]
-[ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_wrs7f"]
+[ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://environment/rocks/slab5.png" id="20_wrs7f"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="21_b1c6j"]
-[ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="21_yvdlx"]
+[ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://environment/rocks/slab1.png" id="21_yvdlx"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="22_kbwl0"]
-[ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="22_sibwg"]
-[ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://Environment/SuoKansio/pieniruohot.png" id="23_30oyg"]
+[ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://environment/rocks/slab2.png" id="22_sibwg"]
+[ext_resource type="Texture2D" uid="uid://c4vstsyhluewd" path="res://environment/background/pieniruohot.png" id="23_30oyg"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="30_3ktkp"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="31_6mesy"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="31_xvd85"]
@@ -72,7 +72,7 @@ size = Vector2(142.5, 151)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfowt"]
 size = Vector2(248.25, 151)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ub25o"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_crlco"]
 resource_local_to_scene = true
 radius = 56.0089
 
@@ -112,7 +112,7 @@ Character = ExtResource("37_exxl1")
 Lines = Array[String](["Be careful, there’s many, many - anyway.", "I used to be a rapper you know, until I took a, what was it again?", "Anyway, I got sick beats yo, wanna hear ‘em?"])
 Next = SubResource("Resource_7ii0p")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lara4"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7ybm"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -123,7 +123,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iht3d"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_j2828"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -157,7 +157,7 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g1x41"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_axpkq"]
 resource_local_to_scene = true
 radius = 46.0109
 
@@ -178,7 +178,7 @@ Character = ExtResource("40_v1suw")
 Lines = Array[String](["HEY! Watch out!"])
 Next = SubResource("Resource_wcqjg")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3tq6l"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_csc8o"]
 resource_local_to_scene = true
 radius = 46.0109
 
@@ -233,7 +233,7 @@ point_count = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_nkknn"]
 radius = 43.1716
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ybwp6"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aeeyx"]
 resource_local_to_scene = true
 radius = 60.0
 
@@ -5053,7 +5053,7 @@ scale = Vector2(-1, 1)
 
 [node name="Trigger" parent="NpcSnail/WispInteractable" index="0" unique_id=1478185290]
 visible = false
-shape = SubResource("CircleShape2D_ub25o")
+shape = SubResource("CircleShape2D_crlco")
 
 [node name="Target" parent="NpcSnail/WispInteractable" index="1" unique_id=439795568]
 position = Vector2(-18, -29)
@@ -5068,7 +5068,7 @@ location = "suosaari"
 
 [node name="Trigger" parent="SpiritLantern (suosaari)" index="1" unique_id=480170960]
 position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_lara4")
+shape = SubResource("CircleShape2D_t7ybm")
 
 [node name="SpiritPath" parent="SpiritLantern (suosaari)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
@@ -5078,7 +5078,7 @@ position = Vector2(546, 4)
 location = "suo_etelä"
 
 [node name="Trigger" parent="SpiritLantern (suo_etelä)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_iht3d")
+shape = SubResource("CircleShape2D_j2828")
 
 [node name="SpiritPath" parent="SpiritLantern (suo_etelä)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
@@ -5141,7 +5141,7 @@ GoalDistance = 64.0
 OneShot = true
 
 [node name="Trigger" parent="WispInteractable" index="0" unique_id=1478185290]
-shape = SubResource("CircleShape2D_g1x41")
+shape = SubResource("CircleShape2D_axpkq")
 
 [node name="Target" parent="WispInteractable" index="1" unique_id=439795568]
 position = Vector2(75.6866, -42.3263)
@@ -5162,7 +5162,7 @@ position = Vector2(1538, -300)
 
 [node name="Trigger" parent="CreepyStatue/WispInteractable" index="0" unique_id=1478185290]
 position = Vector2(1, 15)
-shape = SubResource("CircleShape2D_3tq6l")
+shape = SubResource("CircleShape2D_csc8o")
 
 [node name="Target" parent="CreepyStatue/WispInteractable" index="1" unique_id=439795568]
 position = Vector2(-27, -62)
@@ -5213,7 +5213,7 @@ RequireNumberOfWispsLessThan = 7
 
 [node name="Trigger" parent="DialogiTriggeriPoisSuolta/WispInteractable" index="0" unique_id=1478185290]
 position = Vector2(34, 13)
-shape = SubResource("CircleShape2D_ybwp6")
+shape = SubResource("CircleShape2D_aeeyx")
 
 [node name="Target" parent="DialogiTriggeriPoisSuolta/WispInteractable" index="1" unique_id=439795568]
 position = Vector2(35, -13)

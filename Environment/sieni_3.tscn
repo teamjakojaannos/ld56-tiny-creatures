@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bw70hen0ks6o0"]
 
-[ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://Environment/Chantarell.png" id="1_oilue"]
+[ext_resource type="Texture2D" uid="uid://br8lxa8dh2phi" path="res://environment/forest/Chantarell.png" id="1_oilue"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_42p5s"]
 animations = [{

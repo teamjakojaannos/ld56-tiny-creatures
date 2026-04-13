@@ -4,25 +4,25 @@
 [ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_6f77w"]
 [ext_resource type="PackedScene" uid="uid://nqeqabuij5vq" path="res://Environment/tree_pile_1.tscn" id="3_nar2a"]
 [ext_resource type="PackedScene" uid="uid://dq300dobm3iu7" path="res://Environment/runko.tscn" id="5_tj2ar"]
-[ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://Environment/medium_patch_1.png" id="6_hhum4"]
-[ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://Environment/small_ptach1.png" id="7_5k2xx"]
-[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://Environment/big_patch_1b.png" id="8_xkn2t"]
-[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://Environment/kivirykelma_1.png" id="9_kqbk1"]
-[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://Environment/kivirykelma_2_.png" id="10_43yia"]
+[ext_resource type="Texture2D" uid="uid://c8vbmk3dggoch" path="res://environment/background/medium_patch_1.png" id="6_hhum4"]
+[ext_resource type="Texture2D" uid="uid://i58w1w4p8c8b" path="res://environment/background/small_ptach1.png" id="7_5k2xx"]
+[ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://environment/background/big_patch_1b.png" id="8_xkn2t"]
+[ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://environment/rocks/kivirykelma_1.png" id="9_kqbk1"]
+[ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://environment/rocks/kivirykelma_2_.png" id="10_43yia"]
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_40s0t"]
 [ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="13_lug5l"]
 [ext_resource type="PackedScene" uid="uid://ddydax43gghjj" path="res://Environment/spooky_tree.tscn" id="14_nvxan"]
 [ext_resource type="PackedScene" uid="uid://cye1w3nfypxqd" path="res://Environment/joku_hassu_kallo_keppi.tscn" id="15_4m3yo"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="15_lorar"]
-[ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://Environment/slab1.png" id="16_u8hyu"]
+[ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://environment/rocks/slab1.png" id="16_u8hyu"]
 [ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="16_wbc7m"]
 [ext_resource type="PackedScene" uid="uid://dgc05m6sm8gve" path="res://Environment/sieni_1.tscn" id="17_1k70n"]
-[ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://Environment/slab2.png" id="17_rapc4"]
+[ext_resource type="Texture2D" uid="uid://cwmyiwxmwxnoi" path="res://environment/rocks/slab2.png" id="17_rapc4"]
 [ext_resource type="PackedScene" uid="uid://bw70hen0ks6o0" path="res://Environment/sieni_3.tscn" id="18_64m0k"]
-[ext_resource type="Texture2D" uid="uid://ticgxfbkpce8" path="res://Environment/slab3.png" id="18_c8wf1"]
-[ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://Environment/slab4.png" id="19_etteb"]
+[ext_resource type="Texture2D" uid="uid://ticgxfbkpce8" path="res://environment/rocks/slab3.png" id="18_c8wf1"]
+[ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://environment/rocks/slab4.png" id="19_etteb"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="19_jmbxi"]
-[ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://Environment/slab5.png" id="20_3da3i"]
+[ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://environment/rocks/slab5.png" id="20_3da3i"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="20_8l740"]
 [ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="21_m7ic5"]
 [ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="22_sxeog"]
@@ -38,7 +38,7 @@
 [ext_resource type="Script" uid="uid://cxxfk8oudgcrs" path="res://gameplay/player_trigger_area_2d.gd" id="42_18km7"]
 [ext_resource type="PackedScene" uid="uid://c6q3aycuacspl" path="res://gameplay/objectives/spirit_lantern.tscn" id="43_j7kq0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j7kq0"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hvsfi"]
 resource_local_to_scene = true
 radius = 78.0256
 
@@ -61,7 +61,7 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navmesh"
 agent_radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_18km7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_toat2"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -74,7 +74,7 @@ point_count = 8
 [sub_resource type="CircleShape2D" id="CircleShape2D_ibgb3"]
 radius = 46.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wsycs"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7y1kb"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -84,7 +84,7 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k7kbv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hwnev"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -94,7 +94,7 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wn70w"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_xv5wd"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -155,7 +155,7 @@ size = Vector2(38.9823, 359.417)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_00op0"]
 size = Vector2(191.67, 810.256)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5s5rr"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7kq0"]
 resource_local_to_scene = true
 radius = 92.0217
 
@@ -2487,7 +2487,7 @@ OneShot = true
 
 [node name="Trigger" parent="JokuHassuKalloKeppi/WispInteractable2" index="0" unique_id=1478185290]
 position = Vector2(-3, 3)
-shape = SubResource("CircleShape2D_j7kq0")
+shape = SubResource("CircleShape2D_hvsfi")
 
 [node name="Target" parent="JokuHassuKalloKeppi/WispInteractable2" index="1" unique_id=439795568]
 position = Vector2(18, -28)
@@ -2514,7 +2514,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-1085, -624)
 
 [node name="Trigger" parent="SpiritLantern (kantolyhty)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_18km7")
+shape = SubResource("CircleShape2D_toat2")
 
 [node name="SpiritPath" parent="SpiritLantern (kantolyhty)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_o8i5l")
@@ -2597,7 +2597,7 @@ location = "metsä_south"
 
 [node name="Trigger" parent="SpiritLantern (metsä_south)" index="1" unique_id=480170960]
 position = Vector2(-1, -6)
-shape = SubResource("CircleShape2D_wsycs")
+shape = SubResource("CircleShape2D_7y1kb")
 
 [node name="SpiritPath" parent="SpiritLantern (metsä_south)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_5s5rr")
@@ -2608,7 +2608,7 @@ location = "pulu"
 
 [node name="Trigger" parent="SpiritLantern (pulu)" index="1" unique_id=480170960]
 position = Vector2(-7, 2)
-shape = SubResource("CircleShape2D_k7kbv")
+shape = SubResource("CircleShape2D_hwnev")
 
 [node name="SpiritPath" parent="SpiritLantern (pulu)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_18km7")
@@ -2619,7 +2619,7 @@ location = "metsä"
 
 [node name="Trigger" parent="SpiritLantern (metsä)" index="1" unique_id=480170960]
 position = Vector2(3, -7)
-shape = SubResource("CircleShape2D_wn70w")
+shape = SubResource("CircleShape2D_xv5wd")
 
 [node name="SpiritPath" parent="SpiritLantern (metsä)" index="2" unique_id=664202222]
 curve = SubResource("Curve2D_j7kq0")
@@ -2720,7 +2720,7 @@ position = Vector2(458, -360)
 RequireNumberOfWispsLessThan = 5
 
 [node name="Trigger" parent="SuoDialogiTriggeri/WispInteractable" index="0" unique_id=1478185290]
-shape = SubResource("CircleShape2D_5s5rr")
+shape = SubResource("CircleShape2D_j7kq0")
 
 [node name="WispInteractableDialogueTrigger" type="Node2D" parent="SuoDialogiTriggeri/WispInteractable" unique_id=566350473]
 script = ExtResource("21_m7ic5")

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ben7tsyxrttyu" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
-[ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://Environment/gradient.png" id="2_uyh0o"]
+[ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://environment/background/gradient.png" id="2_uyh0o"]
 [ext_resource type="PackedScene" uid="uid://c3kraya2m5ti6" path="res://levels/hubarea.tscn" id="3_fayk7"]
-[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://Environment/hubcolor.png" id="3_vpm8c"]
+[ext_resource type="Texture2D" uid="uid://7rb0nqljqmqe" path="res://environment/background/hubcolor.png" id="3_vpm8c"]
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
 [ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
