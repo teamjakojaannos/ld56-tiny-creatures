@@ -8,21 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://bltq7cr2yubdt" path="res://Environment/Massaily_takamehta.png" id="7_cy7vp"]
 [ext_resource type="Texture2D" uid="uid://2bklg3qfsuj0" path="res://Environment/medium_patch_1R.png" id="8_xi6nj"]
 [ext_resource type="Texture2D" uid="uid://c8s85trdbnhqt" path="res://Environment/smalpatchG.png" id="9_kgfcd"]
-[ext_resource type="PackedScene" uid="uid://of321o8cgfku" path="res://Environment/wisp_interactable_jeesus.tscn" id="10_lsb5y"]
 [ext_resource type="PackedScene" uid="uid://b4m5y670nh0g5" path="res://Environment/hautakivirykelmä.tscn" id="11_321uu"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://Characters/Player/spirit_sprite_frames.tres" id="12_bjl3q"]
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_i73y1"]
-[ext_resource type="Script" uid="uid://bngbbhivm7ixj" path="res://levels/hubarea/HupiVispila.cs" id="12_lkge0"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="12_p0n0e"]
-[ext_resource type="Script" uid="uid://cvhpmu7f7be08" path="res://Environment/GameplayRoina/SpiritLantern.cs" id="14_ntq3p"]
-[ext_resource type="Script" uid="uid://cuqtmwortpn0m" path="res://Environment/WispInteractable.cs" id="15_t7bcq"]
-[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="16_qg4uk"]
-[ext_resource type="Script" uid="uid://bnv2cmyotauj2" path="res://Environment/WispInteractableAnimatedProp.cs" id="17_sqd7e"]
-[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="17_xsia8"]
-[ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="18_xn54u"]
-[ext_resource type="Resource" uid="uid://cpu2n8yikp7d" path="res://Characters/character_wisp.tres" id="19_3jhl5"]
-[ext_resource type="Resource" uid="uid://ca5s22es0j6kc" path="res://Characters/character_player.tres" id="20_whttt"]
-[ext_resource type="Script" uid="uid://o8i5olgm7jbs" path="res://dialogue/DialogueTree.cs" id="21_dpr77"]
+[ext_resource type="Script" uid="uid://ddqngxl7skvsa" path="res://gameplay/props/hub/statue.gd" id="16_4x642"]
+[ext_resource type="Script" uid="uid://bpqskmnis7fey" path="res://gameplay/wisp_position.gd" id="17_21kqm"]
+[ext_resource type="SpriteFrames" uid="uid://70g6ju7a5cdd" path="res://gameplay/props/hub/statue_frames.tres" id="18_hxati"]
+[ext_resource type="Script" uid="uid://brk1fmakg5e7o" path="res://gameplay/objectives/hub_wisp.gd" id="22_0kr7o"]
+[ext_resource type="Script" uid="uid://duj3pa6kl5ih3" path="res://Environment/fake_light_mask.gd" id="22_5xqg4"]
 [ext_resource type="PackedScene" uid="uid://c37akv2ma8ael" path="res://Environment/water_fall_thing.tscn" id="23_cspl0"]
 [ext_resource type="PackedScene" uid="uid://b40kecv7ytk0c" path="res://Environment/fern.tscn" id="24_wympi"]
 [ext_resource type="Texture2D" uid="uid://dhxhdqbmbd08l" path="res://Environment/joki1.png" id="25_gl4a6"]
@@ -30,7 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://ekfgg6vmxihr" path="res://Environment/SuoKansio/nakki_ruoho.tscn" id="27_7pay1"]
 [ext_resource type="PackedScene" uid="uid://d1vmt0w7rbmpt" path="res://Environment/SuoKansio/nakki_ruoho2.tscn" id="28_eaaws"]
 [ext_resource type="Script" uid="uid://db84q0o2plx4a" path="res://gameplay/touch_trigger.gd" id="31_3sf1f"]
-[ext_resource type="Script" uid="uid://de8kgrv34786f" path="res://levels/hubarea/enter_hub_trigger.gd" id="31_hxati"]
+[ext_resource type="Script" uid="uid://c1601w316622d" path="res://gameplay/start_conversation.gd" id="33_fgaf1"]
+[ext_resource type="PackedScene" uid="uid://c6q3aycuacspl" path="res://gameplay/objectives/spirit_lantern.tscn" id="33_wpohp"]
+[ext_resource type="Resource" uid="uid://c7t1gwrllo38q" path="res://gameplay/dialogue/conversations/hub/enter_hub/01_safety_at_last.tres" id="34_hxati"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t6djx"]
 size = Vector2(134.5, 299.375)
@@ -38,33 +34,8 @@ size = Vector2(134.5, 299.375)
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyqg1"]
 radius = 62.0
 
-[sub_resource type="Resource" id="Resource_31hsm"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-Lines = Array[String](["...Maybe."])
-
-[sub_resource type="Resource" id="Resource_yhm2x"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-Lines = Array[String](["I'm not quite sure! But doesn't he look a bit like you?"])
-Next = SubResource("Resource_31hsm")
-
-[sub_resource type="Resource" id="Resource_0hvjq"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-Lines = Array[String](["...Who is this guy anyway?"])
-Next = SubResource("Resource_yhm2x")
-
-[sub_resource type="Resource" id="Resource_ri0jq"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-Lines = Array[String](["Look at me! I'm a statue!"])
-Next = SubResource("Resource_0hvjq")
-
-[sub_resource type="Resource" id="Resource_lars4"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-Lines = Array[String](["We did! We saved all my friends!"])
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ele0"]
+size = Vector2(41, 22)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ss1vx"]
 radius = 319.0
@@ -79,372 +50,6 @@ gradient = SubResource("Gradient_rmp88")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bw1ej"]
-resource_local_to_scene = true
-radius = 46.0435
-
-[sub_resource type="Curve2D" id="Curve2D_ht8rr"]
-_data = {
-"points": PackedVector2Array(27.3827, -18.0567, -27.3827, 18.0567, 0, 0, 2.18268, 18.652, -2.18268, -18.652, -44, -18, -44.0504, -5.35748, 44.0504, 5.35748, 1, -78, -44.4472, 1.19055, 44.4472, -1.19055, 87, -7)
-}
-point_count = 4
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10var"]
-atlas = ExtResource("17_xsia8")
-region = Rect2(0, 0, 45, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_beeid"]
-atlas = ExtResource("17_xsia8")
-region = Rect2(45, 0, 45, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nljhc"]
-atlas = ExtResource("17_xsia8")
-region = Rect2(0, 0, 45, 45)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2e78h"]
-atlas = ExtResource("17_xsia8")
-region = Rect2(45, 0, 45, 45)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kwh76"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_10var")
-}],
-"loop": true,
-"name": &"idle_closed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_beeid")
-}],
-"loop": true,
-"name": &"idle_open",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nljhc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2e78h")
-}],
-"loop": false,
-"name": &"open",
-"speed": 5.0
-}]
-
-[sub_resource type="Animation" id="Animation_6ieeh"]
-resource_name = "RESET"
-length = 0.001
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 1, 0.55, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Lantern:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle_closed"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Lantern:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BackWall:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SpiritPath/Spirit:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SpiritPath/Spirit:z_index")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_2mg1j"]
-resource_name = "out"
-length = 5.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
-tracks/0/interp = 2
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.76667, 3.36667, 4.86667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.102688, 0.290309, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 3.93333, 4.86667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0, 1, 0.55, 1), Color(0, 1, 0.55, 1), Color(0, 1, 0.55, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
-tracks/2/interp = 2
-tracks/2/loop_wrap = false
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 1.8, 3.96667, 4.86667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 1.25, 1.0, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Lantern:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"open"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Lantern:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BackWall:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_kgfnr"]
-resource_name = "out_hupialue"
-length = 3.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SpiritPath/Spirit:progress_ratio")
-tracks/0/interp = 2
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SpiritPath/Spirit/Sprite:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 1, 0.55, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SpiritPath/Spirit/Light:energy")
-tracks/2/interp = 2
-tracks/2/loop_wrap = false
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 1.7, 2.1, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 1.25, 1.0, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Lantern:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"open"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Lantern:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BackWall:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SpiritPath/Spirit:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SpiritPath/Spirit:z_index")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 1.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 10]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vlr5"]
-_data = {
-&"RESET": SubResource("Animation_6ieeh"),
-&"out": SubResource("Animation_2mg1j"),
-&"out_hupialue": SubResource("Animation_kgfnr")
-}
-
-[sub_resource type="Resource" id="Resource_7gj5o"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-Lines = Array[String](["Thank you!"])
-
-[sub_resource type="Resource" id="Resource_gn1c6"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-Lines = Array[String](["No!! Don't leave me here!!"])
-
-[sub_resource type="Resource" id="Resource_o41ml"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("20_whttt")
-IsInteractive = true
-Lines = Array[String](["Yes", "No"])
-Next = SubResource("Resource_7gj5o")
-Next2 = SubResource("Resource_gn1c6")
-
-[sub_resource type="Resource" id="Resource_kxuv5"]
-script = ExtResource("21_dpr77")
-Character = ExtResource("19_3jhl5")
-Lines = Array[String](["Free the wisp?"])
-Next = SubResource("Resource_o41ml")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21kqm"]
 size = Vector2(350, 50)
@@ -915,28 +520,35 @@ position = Vector2(169, -518)
 [node name="NakkiRuoho3" parent="LevelProps" unique_id=1242731711 instance=ExtResource("28_eaaws")]
 position = Vector2(207, -325)
 
-[node name="Jösses" parent="." unique_id=811168965 instance=ExtResource("10_lsb5y")]
-position = Vector2(4.5, 106.5)
+[node name="Statue" type="Area2D" parent="." unique_id=1935478926]
+position = Vector2(5, 107)
+script = ExtResource("16_4x642")
+metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
-[node name="Trigger" parent="Jösses" index="0" unique_id=1478185290]
+[node name="Trigger" type="CollisionShape2D" parent="Statue" unique_id=2107468562]
 shape = SubResource("CircleShape2D_nyqg1")
+debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="WispInteractableDialogueTrigger" parent="Jösses" index="4" unique_id=1752275537]
-DialogueTree = SubResource("Resource_ri0jq")
-OneShot = true
+[node name="WispPosition" type="Marker2D" parent="Statue" unique_id=1086182746 node_paths=PackedStringArray("trigger")]
+position = Vector2(0, -53)
+script = ExtResource("17_21kqm")
+trigger = NodePath("..")
+metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
-[node name="Jösses_Win" parent="." unique_id=1032007136 instance=ExtResource("10_lsb5y")]
-position = Vector2(4.5, 106.5)
-RequireNumberOfWispsGreaterThan = 6
-RequireNumberOfWispsLessThan = 10
+[node name="Sprite" type="AnimatedSprite2D" parent="Statue" unique_id=1423722454]
+position = Vector2(0, 18)
+sprite_frames = ExtResource("18_hxati")
+animation = &"wisp_inside"
+offset = Vector2(0, -43)
+script = ExtResource("22_5xqg4")
 
-[node name="Trigger" parent="Jösses_Win" index="0" unique_id=1478185290]
-shape = SubResource("CircleShape2D_nyqg1")
+[node name="Collider" type="StaticBody2D" parent="Statue" unique_id=980789218]
+y_sort_enabled = true
+position = Vector2(0, 18)
 
-[node name="WispInteractableDialogueTrigger" parent="Jösses_Win" index="4" unique_id=1752275537]
-DialogueTree = SubResource("Resource_lars4")
-OneShot = true
-SetStateAfterDialogueEnd = "viineri"
+[node name="Shape" type="CollisionShape2D" parent="Statue/Collider" unique_id=1312157960]
+position = Vector2(-0.5, -12)
+shape = SubResource("RectangleShape2D_5ele0")
 
 [node name="Hautakivirykelmä" parent="." unique_id=759226067 instance=ExtResource("11_321uu")]
 position = Vector2(3, 13)
@@ -961,8 +573,8 @@ y_sort_enabled = true
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(-53, 19)
-script = ExtResource("12_lkge0")
-Location = "hupialue"
+script = ExtResource("22_0kr7o")
+location = "hupialue"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (hupialue)" unique_id=47317540]
 z_index = 10
@@ -984,8 +596,8 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(-30, -7)
-script = ExtResource("12_lkge0")
-Location = "metsä_south"
+script = ExtResource("22_0kr7o")
+location = "metsä_south"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (metsä_south)" unique_id=33746866]
 z_index = 10
@@ -1007,8 +619,8 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(3, -44)
-script = ExtResource("12_lkge0")
-Location = "pulu"
+script = ExtResource("22_0kr7o")
+location = "pulu"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (pulu)" unique_id=991729269]
 z_index = 10
@@ -1030,8 +642,8 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(30, -3)
-script = ExtResource("12_lkge0")
-Location = "metsä"
+script = ExtResource("22_0kr7o")
+location = "metsä"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (metsä)" unique_id=189539759]
 z_index = 10
@@ -1053,8 +665,8 @@ metadata/_edit_lock_ = true
 modulate = Color(0, 1, 0.55, 1)
 y_sort_enabled = true
 position = Vector2(58, 14)
-script = ExtResource("12_lkge0")
-Location = "kantolyhty"
+script = ExtResource("22_0kr7o")
+location = "kantolyhty"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (kantolyhty)" unique_id=1156661520]
 z_index = 10
@@ -1077,8 +689,8 @@ modulate = Color(0, 1, 0.55, 1)
 z_index = 2
 y_sort_enabled = true
 position = Vector2(-21, 63)
-script = ExtResource("12_lkge0")
-Location = "suo_etelä"
+script = ExtResource("22_0kr7o")
+location = "suo_etelä"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suo_etelä)" unique_id=543381612]
 z_index = 10
@@ -1101,8 +713,8 @@ modulate = Color(0, 1, 0.55, 1)
 z_index = 2
 y_sort_enabled = true
 position = Vector2(30, 64)
-script = ExtResource("12_lkge0")
-Location = "suosaari"
+script = ExtResource("22_0kr7o")
+location = "suosaari"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Vispilät/Vispilä (suosaari)" unique_id=1605091096]
 z_index = 10
@@ -1120,110 +732,38 @@ color = Color(0, 1, 0.55, 1)
 texture = SubResource("GradientTexture2D_hcffb")
 metadata/_edit_lock_ = true
 
-[node name="SpiritLantern" type="Node2D" parent="." unique_id=1293728636 node_paths=PackedStringArray("AnimPlayer")]
-position = Vector2(-140, 30)
-script = ExtResource("14_ntq3p")
-AnimPlayer = NodePath("WispInteractable/SpiritLantern/AnimationPlayer")
-AnimName = "out_hupialue"
-
-[node name="WispInteractable" type="Area2D" parent="SpiritLantern" unique_id=225130077 node_paths=PackedStringArray("Target")]
-y_sort_enabled = true
-script = ExtResource("15_t7bcq")
-Target = NodePath("Target")
-
-[node name="Trigger" type="CollisionShape2D" parent="SpiritLantern/WispInteractable" unique_id=1079443703]
-shape = SubResource("CircleShape2D_bw1ej")
-debug_color = Color(0.332261, 0.488051, 1, 0.42)
-
-[node name="Target" type="Marker2D" parent="SpiritLantern/WispInteractable" unique_id=859279212]
-position = Vector2(-22, -22)
-
-[node name="SpiritLantern" type="Node2D" parent="SpiritLantern/WispInteractable" unique_id=465472071]
-
-[node name="Base" type="Sprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=627345944]
-texture_filter = 1
-texture = ExtResource("16_qg4uk")
-offset = Vector2(-7, -20)
-
-[node name="BackWall" type="Sprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=771221038]
-visible = false
-modulate = Color(0.51, 0.51, 0.51, 1)
-texture_filter = 1
-position = Vector2(2, 7)
-texture = ExtResource("17_xsia8")
-offset = Vector2(-7, -20)
-region_enabled = true
-region_rect = Rect2(30, 23, 8, 18)
-
-[node name="SpiritPath" type="Path2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=1299684697]
-position = Vector2(0, -4)
-curve = SubResource("Curve2D_ht8rr")
-
-[node name="Spirit" type="PathFollow2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath" unique_id=1648205471]
-rotates = false
-
-[node name="Sprite" type="AnimatedSprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath/Spirit" unique_id=276728545]
-modulate = Color(0, 1, 0.55, 1)
-texture_filter = 1
-sprite_frames = ExtResource("12_bjl3q")
-autoplay = "default"
-frame_progress = 0.984137
-offset = Vector2(0, -12)
-metadata/_edit_lock_ = true
-
-[node name="Light" type="PointLight2D" parent="SpiritLantern/WispInteractable/SpiritLantern/SpiritPath/Spirit" unique_id=600958416]
-position = Vector2(1, -7)
-scale = Vector2(2.9375, 2.9375)
-color = Color(0, 1, 0.55, 1)
-texture = SubResource("GradientTexture2D_hcffb")
-metadata/_edit_lock_ = true
-
-[node name="Lantern" type="AnimatedSprite2D" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=1393926185]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_kwh76")
-animation = &"idle_closed"
-autoplay = "idle_closed"
-offset = Vector2(-7, -20)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpiritLantern/WispInteractable/SpiritLantern" unique_id=208291487]
-libraries/ = SubResource("AnimationLibrary_7vlr5")
-autoplay = &"RESET"
-
-[node name="WispInteractableAnimatedProp" type="Node2D" parent="SpiritLantern/WispInteractable" unique_id=1112890453 node_paths=PackedStringArray("AnimPlayer")]
-script = ExtResource("17_sqd7e")
-AnimPlayer = NodePath("../SpiritLantern/AnimationPlayer")
-Animation = "out_hupialue"
-RequireDialogue = true
-DialogueTrigger = "Yes"
-
-[node name="WispInteractableDialogueTrigger" type="Node2D" parent="SpiritLantern/WispInteractable" unique_id=2108568414]
-script = ExtResource("18_xn54u")
-DialogueTree = SubResource("Resource_kxuv5")
-
-[node name="EnterHubTrigger" type="Area2D" parent="." unique_id=1473409925]
-position = Vector2(10, 253)
+[node name="EnterHubTrigger" type="Area2D" parent="." unique_id=1075940590]
+position = Vector2(10, 225)
 collision_layer = 0
-script = ExtResource("31_hxati")
 
-[node name="Shape" type="CollisionShape2D" parent="EnterHubTrigger" unique_id=585984606]
-position = Vector2(0, -28)
-shape = SubResource("RectangleShape2D_21kqm")
-debug_color = Color(0, 0.64213544, 0.32803938, 0.41960785)
-
-[node name="WispPosition" type="Marker2D" parent="EnterHubTrigger" unique_id=630321352]
-position = Vector2(-45, -66)
-
-[node name="TouchTrigger" type="Node" parent="EnterHubTrigger" unique_id=1889397543]
+[node name="TouchTrigger" type="Node" parent="EnterHubTrigger" unique_id=249500878]
 script = ExtResource("31_3sf1f")
 one_shot = true
 metadata/_custom_type_script = "uid://db84q0o2plx4a"
 
-[connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
-[connection signal="body_exited" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_exited"]
-[connection signal="fire" from="EnterHubTrigger/TouchTrigger" to="EnterHubTrigger" method="_on_touch_trigger_fire"]
+[node name="StartConversation" type="Node" parent="EnterHubTrigger" unique_id=934695633 node_paths=PackedStringArray("touch_trigger")]
+script = ExtResource("33_fgaf1")
+conversation = ExtResource("34_hxati")
+touch_trigger = NodePath("../TouchTrigger")
+metadata/_custom_type_script = "uid://c1601w316622d"
 
-[editable path="Jösses"]
-[editable path="Jösses/JesusStatue"]
-[editable path="Jösses_Win"]
-[editable path="Jösses_Win/JesusStatue"]
+[node name="Shape" type="CollisionShape2D" parent="EnterHubTrigger" unique_id=1017508243]
+shape = SubResource("RectangleShape2D_21kqm")
+debug_color = Color(0, 0.64213544, 0.32803938, 0.41960785)
+
+[node name="SpiritLantern (hupialue)" parent="." unique_id=1070014990 instance=ExtResource("33_wpohp")]
+position = Vector2(-140, 30)
+location = "hupialue"
+animation = "out_hupialue"
+
+[connection signal="body_entered" from="Statue" to="Statue" method="_on_body_entered"]
+[connection signal="body_exited" from="Statue" to="Statue" method="_on_body_exited"]
+[connection signal="player_entered" from="Statue" to="Statue/WispPosition" method="_on_player_entered"]
+[connection signal="player_exited" from="Statue" to="Statue/WispPosition" method="_on_player_exited"]
+[connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger" method="_on_body_entered"]
+[connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="EnterHubTrigger" to="EnterHubTrigger" method="_on_body_exited"]
+[connection signal="body_exited" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_exited"]
+[connection signal="fire" from="EnterHubTrigger/TouchTrigger" to="EnterHubTrigger/StartConversation" method="start"]
+
 [editable path="MuzakTrigger"]

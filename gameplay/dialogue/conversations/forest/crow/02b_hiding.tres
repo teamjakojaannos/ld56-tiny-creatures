@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://c1ep0rrdvq6mf"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_wnne4"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_5lig7"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_kjkvw"]
+[ext_resource type="Resource" uid="uid://c37874ru7764v" path="res://gameplay/dialogue/speakers/crow.tres" id="3_tnj1s"]
+
+[sub_resource type="Resource" id="Resource_2tw5s"]
+script = ExtResource("2_5lig7")
+text = "Well, you should stay here with me then, bud.
+The monster can't get here!"
+side = 1
+speaker = ExtResource("3_tnj1s")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_kjkvw")
+lines = Array[ExtResource("1_wnne4")]([SubResource("Resource_2tw5s")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

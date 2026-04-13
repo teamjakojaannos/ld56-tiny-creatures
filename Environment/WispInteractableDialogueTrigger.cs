@@ -67,7 +67,10 @@ public partial class WispInteractableDialogueTrigger : Node2D {
 
 	private void DialogueFinished() {
 		if (SetStateAfterDialogueEnd is not null && SetStateAfterDialogueEnd.Trim().Length > 0) {
-			this.Persistent().State.Add(SetStateAfterDialogueEnd);
+			this.Persistent()
+				.Get("state")
+				.AsStringArray()
+				.Append(SetStateAfterDialogueEnd);
 
 			var parent = GetParent<WispInteractable>();
 			if (SetStateAfterDialogueEnd == "viineri" && parent is not null && parent.isWispInteracting) {
@@ -76,7 +79,7 @@ public partial class WispInteractableDialogueTrigger : Node2D {
 					this.Jukebox().SwitchTrack(Jukebox.MuzakTrack.Credits);
 
 					GetTree().CreateTimer(3.0f).Timeout += () => {
-						this.Persistent().Player.Call("teleport", win);
+						//this.Persistent().Player.Call("teleport", win);
 						//this.Persistent().Intro.FadeInAfterWin();
 						//this.Persistent().Player.IsInCinematic = false;
 					};

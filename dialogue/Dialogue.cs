@@ -2,8 +2,6 @@ using System;
 
 using Godot;
 
-using Jakojaannos.WisperingWoods.Cinematic;
-using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 public partial class Dialogue : CanvasLayer {
 	public static Dialogue Instance(Node node) {
@@ -112,8 +110,8 @@ public partial class Dialogue : CanvasLayer {
 
 		if (ActiveDialogueRow is not null && DialogueList is not null) {
 			var row = ActiveDialogueRow;
-			row.SpeakerIsOnLeft = content.DialogueSide == DialogueSide.Left;
-			row.PortraitIsFlippedOnLeft = content.PortraitFacing == DialogueSide.Right;
+			//row.SpeakerIsOnLeft = content.DialogueSide == DialogueSide.Left;
+			//row.PortraitIsFlippedOnLeft = content.PortraitFacing == DialogueSide.Right;
 			DialogueList.AddChild(row);
 
 			var portrait = content?.Character?.Portrait;
@@ -135,7 +133,7 @@ public partial class Dialogue : CanvasLayer {
 
 			if (content is not null && content.ScreenShakeAmount > 0.1f) {
 				GetTree().CreateTimer(0.75f).Timeout += () => {
-					this.MainCamera().ApplyCameraShake(content!.ScreenShakeAmount, content.ScreenShakeFade);
+					//this.MainCamera().ApplyCameraShake(content!.ScreenShakeAmount, content.ScreenShakeFade);
 				};
 			}
 

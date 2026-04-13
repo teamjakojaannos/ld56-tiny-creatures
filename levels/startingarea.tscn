@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://msnb3307oquv" path="res://Environment/puu_entrance.tscn" id="15_3aa4f"]
 [ext_resource type="Texture2D" uid="uid://dhe2rld1iajvw" path="res://Environment/colorlol.png" id="16_4hpj2"]
 [ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="17_g8vca"]
-[ext_resource type="Script" uid="uid://bsbke7al56ksm" path="res://gameplay/props/jack_o_lantern.gd" id="18_4ptxt"]
+[ext_resource type="Script" uid="uid://bsbke7al56ksm" path="res://gameplay/props/start_forest/jack_o_lantern.gd" id="18_4ptxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nk46w"]
 size = Vector2(448, 72)

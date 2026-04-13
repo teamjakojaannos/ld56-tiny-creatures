@@ -39,11 +39,11 @@ func set_fully_obscured() -> void:
 
 
 func fade_to_black(duration: float = 2.5) -> void:
-	_tween_fade_progress(duration, 0.0, 1.0)
+	await _tween_fade_progress(duration, 0.0, 1.0)
 
 
 func fade_to_visible(duration: float = 2.5) -> void:
-	_tween_fade_progress(duration, 1.0, 0.0)
+	await _tween_fade_progress(duration, 1.0, 0.0)
 
 
 func _refresh_zoom() -> void:

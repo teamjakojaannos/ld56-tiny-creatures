@@ -27,8 +27,8 @@ public partial class RequireLineOfSightToPlayer : BTNode {
 	}
 
 	public override StatusCode Tick(AIState state, float delta) {
-		var player = this.Persistent().Player;
-		var targetPosition = player.GlobalPosition;
+		var player = this.Persistent().Get("player").As<Node>();
+		var targetPosition = player.Get("global_position").AsVector2();
 
 		// raycast wants target as relative to itself, not global
 		var target = targetPosition - LineOfSightRay.GlobalPosition;

@@ -1,4 +1,5 @@
 using Godot;
+
 using System.Linq;
 
 using Jakojaannos.WisperingWoods.Characters.Player;
@@ -145,9 +146,9 @@ public partial class NakkiV2 : Path2D {
 
 		ResetStateToDefault();
 
-		this.Persistent().PlayerRespawned += () => {
-			ResetStateToDefault();
-		};
+		//this.Persistent().PlayerRespawned += () => {
+		//	ResetStateToDefault();
+		//};
 	}
 
 	public void ResetStateToDefault() {

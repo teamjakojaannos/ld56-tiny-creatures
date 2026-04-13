@@ -4,26 +4,10 @@ using Godot;
 using Godot.Collections;
 
 using Jakojaannos.WisperingWoods.Characters;
-using Jakojaannos.WisperingWoods.Gameplay.Dialogue;
 
 [Tool]
 [GlobalClass]
 public partial class DialogueTree : Resource {
-	public DialogueSide DialogueSide =>
-		OverriddenSide
-		?? Character?.DefaultDialogueSide
-		?? throw new InvalidOperationException("Dialogue tree missing game character information");
-
-	private DialogueSide? OverriddenSide => SideOverride switch {
-		DialogueSideOverride.Left => DialogueSide.Left,
-		DialogueSideOverride.Right => DialogueSide.Right,
-		_ => null
-	};
-
-	public DialogueSide PortraitFacing =>
-		Character?.PortraitFacing
-		?? throw new InvalidOperationException("Dialogue tree missing game character information");
-
 	[Export]
 	public GameCharacter? Character;
 

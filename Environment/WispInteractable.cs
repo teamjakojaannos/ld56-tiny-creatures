@@ -74,14 +74,17 @@ public partial class WispInteractable : Area2D {
 	public delegate void InteractStopEventHandler();
 
 	private bool RequirementsMet() {
-		bool state = RequireState.Trim().Length == 0 || this.Persistent().State.Contains(RequireState.Trim());
-		bool wispsGreat = RequireNumberOfWispsGreaterThan == -1 || this.Persistent().SavedCount > RequireNumberOfWispsGreaterThan;
-		bool wispsLess = RequireNumberOfWispsLessThan == -1 || this.Persistent().SavedCount < RequireNumberOfWispsLessThan;
-		return state && wispsGreat && wispsLess;
+		var state = this.Persistent().Get("state").AsStringArray();
+		var wisps_saved = this.Persistent().Get("wisps_saved").AsInt32();
+		bool state_ok = RequireState.Trim().Length == 0 || state.Contains(RequireState.Trim());
+		bool wispsGreat = RequireNumberOfWispsGreaterThan == -1 || wisps_saved > RequireNumberOfWispsGreaterThan;
+		bool wispsLess = RequireNumberOfWispsLessThan == -1 || wisps_saved < RequireNumberOfWispsLessThan;
+		return state_ok && wispsGreat && wispsLess;
 	}
 
 	private bool IsDisabledByState() {
-		return DisableIfState.Trim().Length != 0 && this.Persistent().State.Contains(DisableIfState.Trim());
+		var state = this.Persistent().Get("state").AsStringArray();
+		return DisableIfState.Trim().Length != 0 && state.Contains(DisableIfState.Trim());
 	}
 
 	public override void _Ready() {

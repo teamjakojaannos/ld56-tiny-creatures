@@ -25,7 +25,7 @@ public partial class PlayerCharacter : CharacterBody2D {
 	}
 	private AnimationPlayer? _animation;
 
-	public bool IsAllowedToMove => !Dialogue.Instance(this).Visible && !frozen && !IsInCinematic;
+	public bool IsAllowedToMove => true;//!Dialogue.Instance(this).Visible && !frozen && !IsInCinematic;
 
 	private bool frozen = false;
 
@@ -143,25 +143,6 @@ public partial class PlayerCharacter : CharacterBody2D {
 		}
 	}
 
-	public void TeleportTo(Node2D target) {
-		if (!target.IsInsideTree() || target.IsQueuedForDeletion()) {
-			throw new InvalidOperationException("Tried teleporting to a non-existent/deleted node!");
-		}
-
-		Reparent(target.GetParent() ?? target);
-
-		GlobalPosition = target.GlobalPosition;
-
-		Invulnerable = false;
-		ResetPhysicsInterpolation();
-		EmitSignal(SignalName.Teleported);
-		EmitSignal(SignalName.ReadyToGo);
-
-		if (!Engine.IsEditorHint()) {
-			RestoreCollision();
-		}
-	}
-
 	internal void RestoreCollision() {
 		CollisionLayer = _collisionLayer!.Value;
 		CollisionMask = _collisionMask!.Value;
@@ -233,7 +214,7 @@ public partial class PlayerCharacter : CharacterBody2D {
 
 		GD.Print("I am dead.");
 		FootstepsTimer?.Stop();
-		this.Persistent().ResetPlayerToHub();
+		//this.Persistent().ResetPlayerToHub();
 		LieDown();
 		this.Jukebox().StopChase();
 	}
@@ -267,7 +248,7 @@ public partial class PlayerCharacter : CharacterBody2D {
 		MovementEnabled = true;
 		IsInCinematic = false;
 
-		this.Persistent().EmitSignal(Persistent.SignalName.PlayerRespawned);
+		//this.Persistent().EmitSignal(Persistent.SignalName.PlayerRespawned);
 	}
 
 	[Export]

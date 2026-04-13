@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://hleqsy3eme27"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_0t6g7"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_c0kt8"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_tdi5x"]
+[ext_resource type="Resource" uid="uid://c37874ru7764v" path="res://gameplay/dialogue/speakers/crow.tres" id="3_quwtm"]
+[ext_resource type="Resource" uid="uid://b00hwncavn1md" path="res://gameplay/dialogue/conversations/forest/crow/02a_looking_for_wisps.tres" id="4_32tq3"]
+[ext_resource type="Resource" uid="uid://c1ep0rrdvq6mf" path="res://gameplay/dialogue/conversations/forest/crow/02b_hiding.tres" id="5_kaexh"]
+[ext_resource type="Script" uid="uid://bgo60blfy1ww6" path="res://gameplay/dialogue/dialogue_choice_line.gd" id="6_bk2ae"]
+[ext_resource type="Resource" uid="uid://bk7se6e2uhtwk" path="res://gameplay/dialogue/speakers/player.tres" id="7_l3ygw"]
+
+[sub_resource type="Resource" id="Resource_23lfo"]
+script = ExtResource("2_c0kt8")
+text = "Caw Caw!
+What ya doin here bud?"
+side = 1
+speaker = ExtResource("3_quwtm")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[sub_resource type="Resource" id="Resource_k74kj"]
+script = ExtResource("6_bk2ae")
+choice_text_a = "Looking for wisps"
+choice_branch_a = ExtResource("4_32tq3")
+choice_text_b = "Trying to run away from the monster"
+choice_branch_b = ExtResource("5_kaexh")
+speaker = ExtResource("7_l3ygw")
+metadata/_custom_type_script = "uid://bgo60blfy1ww6"
+
+[resource]
+script = ExtResource("2_tdi5x")
+lines = Array[ExtResource("1_0t6g7")]([SubResource("Resource_23lfo"), SubResource("Resource_k74kj")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

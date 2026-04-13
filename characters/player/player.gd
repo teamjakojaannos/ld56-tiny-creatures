@@ -20,6 +20,10 @@ var is_dead: bool = false
 var move_speed_modifier: float:
 	get:
 		return 0.5 if is_slowed else 1.0
+var can_move: bool:
+	get:
+		return not is_dead \
+		&& not Conversation.is_in_conversation
 
 @onready var rig: PlayerSprite = $Sprite
 
@@ -29,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	var input_dir := Vector2.ZERO
-	if controller:
+	if controller and can_move:
 		input_dir = controller.input_direction.limit_length(1.0)
 
 	_process_movement(input_dir, delta)

@@ -44,7 +44,7 @@ public partial class Levels : Node2D {
 		AdjustLevelPositionRelativeToCurrent(nextLevel, entranceNodePath, exitNode);
 
 		// Move the player to the new scene
-		var player = this.Persistent().PlayerController;
+		var player = this.Persistent().Get("player_controller").As<Node2D>();
 		player.Reparent(nextLevel);
 		player.ResetPhysicsInterpolation();
 

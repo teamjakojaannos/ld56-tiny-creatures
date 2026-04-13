@@ -103,10 +103,10 @@ public partial class Chaser : RigidBody2D {
 
 		ActivateSightCone(2);
 
-		this.Persistent().PlayerRespawned += () => {
+		this.Persistent().Connect("player_respawned", Callable.From(() => {
 			isAttacking = false;
 			aiState = new IdleState();
-		};
+		}));
 
 		if (FootstepsTimer is not null) {
 			FootstepsTimer.Timeout += () => {

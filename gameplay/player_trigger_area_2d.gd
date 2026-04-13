@@ -15,7 +15,7 @@ func _on_body_entered(node: Node2D) -> void:
 	if node is not Player or Engine.is_editor_hint():
 		return
 
-	var wisp: Wisp = Persistent.PlayerController.wisp
+	var wisp: Wisp = Persistent.wisp
 	player_entered.emit(node, wisp)
 
 
@@ -23,5 +23,5 @@ func _on_body_exited(node: Node2D) -> void:
 	if node is not Player or Engine.is_editor_hint():
 		return
 
-	var wisp: Wisp = Persistent.PlayerController.wisp
+	var wisp: Wisp = Persistent.wisp
 	player_exited.emit(node, wisp)

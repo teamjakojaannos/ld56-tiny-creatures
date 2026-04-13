@@ -2,7 +2,7 @@ extends Node2D
 
 
 func _process(_delta: float) -> void:
-	var pc: PlayerController = Persistent.PlayerController
+	var pc: PlayerController = Persistent.player_controller
 	var wisp := pc.wisp
 
 	var is_player_past = wisp.global_position.y > global_position.y

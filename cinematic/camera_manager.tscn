@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dndpqcsyrj7s7"]
+
+[ext_resource type="Script" uid="uid://daif84oldhlid" path="res://managers/camera_manager.gd" id="1_umhha"]
+[ext_resource type="Script" uid="uid://b57htxmls512y" path="res://cinematic/screen_fader.gd" id="2_t2vug"]
+[ext_resource type="Script" uid="uid://ccxjfh6gwjqbc" path="res://utilities/shaker.gd" id="3_lqbif"]
+[ext_resource type="AudioStream" uid="uid://cj6rdnu57olcg" path="res://cinematic/isoaskel1.ogg" id="4_q7cwi"]
+
+[node name="CameraManager" type="Node2D" unique_id=1871712937 groups=["MainCamera"]]
+script = ExtResource("1_umhha")
+metadata/_custom_type_script = "uid://daif84oldhlid"
+
+[node name="ScreenFader" type="CanvasLayer" parent="." unique_id=451443826]
+script = ExtResource("2_t2vug")
+metadata/_custom_type_script = "uid://b57htxmls512y"
+
+[node name="Shaker" type="Node2D" parent="." unique_id=1917220931 node_paths=PackedStringArray("target")]
+script = ExtResource("3_lqbif")
+target = NodePath("Camera")
+target_property = &"offset"
+metadata/_custom_type_script = "uid://ccxjfh6gwjqbc"
+
+[node name="Camera" type="Camera2D" parent="Shaker" unique_id=1171620722]
+process_callback = 0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Shaker/Camera" unique_id=786518906]
+
+[node name="ThudSfx" type="AudioStreamPlayer" parent="." unique_id=297982750]
+stream = ExtResource("4_q7cwi")
+volume_db = -5.0
+pitch_scale = 0.75
+bus = &"SFX"

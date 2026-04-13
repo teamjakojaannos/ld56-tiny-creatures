@@ -9,7 +9,7 @@ namespace Jakojaannos.WisperingWoods.Gameplay.Creatures.Chaser;
 [GlobalClass]
 public partial class SetPlayerPositionAsMoveTarget : BTNode {
 	public override StatusCode Tick(AIState state, float delta) {
-		var target = this.Persistent().Player.GlobalPosition;
+		var target = this.Persistent().Get("Player").As<Node2D>().GlobalPosition;
 		state.SetState("target", target);
 		state.SetState("lastKnownTarget", target);
 		return StatusCode.Success;

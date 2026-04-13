@@ -67,13 +67,13 @@ public partial class BogMonster : PathFollow2D {
 
 		ai = DefaultState();
 
-		this.Persistent().PlayerRespawned += () => {
+		this.Persistent().Connect("player_respawned", Callable.From(() => {
 			playerWasKill = false;
 			animationPlayer?.Play("emerge_from_water", customSpeed: Stats.emergeAnimationSpeed);
 			// this fixes things
 			ai = new MovementState(goingForward: true, Stats.speed);
 			fakePlayer.Visible = false;
-		};
+		}));
 	}
 
 	public BogMonsterAIState DefaultState() {

@@ -87,7 +87,7 @@ public partial class WispInteractableAnimatedProp : Node2D {
 		if (chosenOption == DialogueTrigger) {
 			InteractStart();
 			if (DialogueTrigger is not null) {
-				this.Persistent().State.Add(DialogueTrigger);
+				//this.Persistent().State.Add(DialogueTrigger);
 			}
 
 			if (TriggerOnlyOnce) {

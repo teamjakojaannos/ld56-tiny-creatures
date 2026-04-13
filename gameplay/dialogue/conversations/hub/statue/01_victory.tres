@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="DialogueConversation" format=3 uid="uid://dluw81ekbnloc"]
+
+[ext_resource type="Script" uid="uid://bi3xn4m85wg5g" path="res://gameplay/dialogue/dialogue_line.gd" id="1_iyxbg"]
+[ext_resource type="Script" uid="uid://v41h3cet8my1" path="res://gameplay/dialogue/dialogue_text_line.gd" id="2_pa46s"]
+[ext_resource type="Script" uid="uid://jfout84hb58v" path="res://gameplay/dialogue/dialogue_conversation.gd" id="2_wcqrl"]
+[ext_resource type="Resource" uid="uid://n75b83asan86" path="res://gameplay/dialogue/speakers/wisp.tres" id="3_0s71t"]
+
+[sub_resource type="Resource" id="Resource_fu8qx"]
+script = ExtResource("2_pa46s")
+text = "We did it! We saved all my friends!"
+side = 1
+speaker = ExtResource("3_0s71t")
+metadata/_custom_type_script = "uid://v41h3cet8my1"
+
+[resource]
+script = ExtResource("2_wcqrl")
+lines = Array[ExtResource("1_iyxbg")]([SubResource("Resource_fu8qx")])
+metadata/_custom_type_script = "uid://jfout84hb58v"

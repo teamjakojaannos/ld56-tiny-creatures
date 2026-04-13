@@ -3,7 +3,7 @@ extends Area2D
 var _conv_01_safety_at_last: DialogueConversation = preload("uid://c7t1gwrllo38q")
 
 
-func _on_touch_trigger_fire(_cause: Node2D) -> void:
+func _on_touch_trigger_fire() -> void:
 	Conversation.begin(_conv_01_safety_at_last)
 
 	var pc: PlayerController = Persistent.PlayerController

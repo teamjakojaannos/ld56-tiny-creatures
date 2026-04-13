@@ -99,7 +99,8 @@ func choose_option() -> void:
 	if current_option == 2:
 		branch = active_choice.choice_branch_c
 
-	_append_conversation(branch)
+	if branch and not branch.lines.is_empty():
+		_append_conversation(branch)
 
 	option_chosen.emit(current_option)
 

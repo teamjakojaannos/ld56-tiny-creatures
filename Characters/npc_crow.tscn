@@ -19,6 +19,8 @@ size = Vector2(12, 3)
 [node name="NPC_crow" type="Node2D" unique_id=2016195711]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1474579427]
+collision_layer = 2
+collision_mask = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1046519010]
 y_sort_enabled = true
@@ -27,6 +29,6 @@ sprite_frames = SubResource("SpriteFrames_bffue")
 centered = false
 offset = Vector2(-12.72, -29.345)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/AnimatedSprite2D" unique_id=262849458]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=262849458]
 position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_pjvfa")

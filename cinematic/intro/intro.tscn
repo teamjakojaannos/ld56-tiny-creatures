@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2uu7btegjbbx"]
 
-[ext_resource type="Script" uid="uid://bqttah22wv7hd" path="res://Cinematic/Intro/intro.gd" id="1_udox3"]
+[ext_resource type="Script" uid="uid://bqttah22wv7hd" path="res://cinematic/intro/intro.gd" id="1_udox3"]
 [ext_resource type="PackedScene" uid="uid://pni5mmab3ipw" path="res://characters/player/player.tscn" id="4_wxmdh"]
 [ext_resource type="Script" uid="uid://docy2nqsx8p56" path="res://editor/editor_only.gd" id="5_ssx7r"]
 [ext_resource type="AudioStream" uid="uid://btqwfh2qajfp5" path="res://cinematic/bip1.ogg" id="5_t3d2a"]

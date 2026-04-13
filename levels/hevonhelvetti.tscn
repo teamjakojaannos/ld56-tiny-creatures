@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmvi58d0isrru"]
 
-[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://Environment/WispInsideStatue.png" id="1_2ysck"]
+[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://gameplay/props/hub/WispInsideStatue.png" id="1_2ysck"]
 [ext_resource type="PackedScene" uid="uid://c287axru5rdlt" path="res://Environment/ryhmähauta.tscn" id="2_1vlf7"]
 [ext_resource type="PackedScene" uid="uid://dh0xgrc5pkvcy" path="res://Environment/wisp_interactable_prop.tscn" id="3_q5w04"]
 [ext_resource type="Script" uid="uid://byrw173ugnu5n" path="res://Environment/WispInteractableDialogueTrigger.cs" id="4_d57h3"]

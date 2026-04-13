@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c3il8pjsf0t3w" path="res://characters/wisp/wisp_follow_target.gd" id="4_77eeu"]
 [ext_resource type="Script" uid="uid://co28hwq7cnp4j" path="res://characters/player/debug_controller.gd" id="4_b7ahd"]
 [ext_resource type="PackedScene" uid="uid://pni5mmab3ipw" path="res://characters/player/player.tscn" id="4_s5eq7"]
-[ext_resource type="PackedScene" uid="uid://dndpqcsyrj7s7" path="res://gameplay/camera_manager.tscn" id="5_b6b08"]
+[ext_resource type="PackedScene" uid="uid://dndpqcsyrj7s7" path="res://cinematic/camera_manager.tscn" id="5_b6b08"]
 [ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="7_b6b08"]
 
 [node name="PlayerController" type="Node2D" unique_id=1783032070]

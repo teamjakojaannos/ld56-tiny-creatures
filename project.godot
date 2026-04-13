@@ -20,7 +20,6 @@ config/icon="res://icon.svg"
 Persistent="*res://persistent.tscn"
 Dialogue="*res://dialogue/dialogue_ui.tscn"
 Jukebox="*res://music/jukebox.tscn"
-DialogueMan="*res://Gameplay/Dialogue/Dialogue.tscn"
 LevelManager="*res://managers/level_manager.gd"
 Conversation="*uid://cmsp0cu1vn6g8"
 
