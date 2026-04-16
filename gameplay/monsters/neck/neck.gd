@@ -1,6 +1,8 @@
 @tool
 extends Node2D
 
+@export var follow_speed: float = 60.0
+
 @export_tool_button("Swoop Left")
 var debug_swoop_left = swoop_left
 @export_tool_button("Swoop Right")
@@ -11,6 +13,9 @@ var debug_unswoop_left = unswoop_left
 var debug_unswoop_right = unswoop_right
 var _is_swooping_left: bool = false
 var _is_swooping_right: bool = false
+var _left_offset: Vector2 = Vector2.ZERO
+var _right_offset: Vector2 = Vector2.ZERO
+var _cur_follow_speed: float = 0.0
 
 @onready var _swooper_left: Swooper = $LeftSwoop/LeftSwooper
 @onready var _swooper_right: Swooper = $RightSwoop/RightSwooper
@@ -25,12 +30,26 @@ var _is_swooping_right: bool = false
 
 func _ready() -> void:
 	$Sprite.play("idle")
+	_hand_left.reset(false, false)
+	_hand_right.reset(false, false)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
 	var player := Persistent.player
 	if _dangerzone.overlaps_body(player) and not player.is_dead:
 		_try_attack(player.global_position)
+
+	if _is_swooping_left and not player.is_dead:
+		var pos := _left_pivot.global_position - _left_offset
+		var new_pos := pos.move_toward(player.global_position, delta * _cur_follow_speed)
+		_left_pivot.global_position = new_pos + _left_offset
+	if _is_swooping_right and not player.is_dead:
+		var pos := _right_pivot.global_position - _right_offset
+		var new_pos := pos.move_toward(player.global_position, delta * _cur_follow_speed)
+		_right_pivot.global_position = new_pos + _right_offset
 
 
 func swoop_left() -> bool:
@@ -56,13 +75,17 @@ func _try_attack(target: Vector2) -> void:
 	_is_swooping_left = true
 	_is_swooping_right = true
 
-	var left_offset := Vector2.LEFT * (6.0 + randf() * 16.0)
-	var left_pos := target + left_offset
+	_left_offset = Vector2.LEFT * (16.0 + randf() * 48.0)
+	var left_pos := target + _left_offset
 	_left_pivot.global_position = left_pos
 
-	var right_offset := Vector2.RIGHT * (6.0 + randf() * 16.0)
-	var right_pos := target + right_offset
+	_right_offset = Vector2.RIGHT * (16.0 + randf() * 48.0)
+	var right_pos := target + _right_offset
 	_right_pivot.global_position = right_pos
+
+	_cur_follow_speed = follow_speed
+	var t = create_tween()
+	t.tween_property(self, "_cur_follow_speed", 0.0, 1.5)
 
 	get_tree().create_timer(0.1).timeout.connect(
 		func():
@@ -126,7 +149,6 @@ func _swoop(hand: NeckHand, swooper: Swooper, killzone: Area2D) -> bool:
 
 	swooper.swoop()
 
-	await get_tree().create_timer(0.5).timeout
 	await hand.grab()
 
 	var player := Persistent.player

@@ -7,7 +7,7 @@ signal moving_stop
 signal dead
 signal teleported
 
-@export var move_speed: float = 300.0
+@export var move_speed: float = 150.0
 @export var friction: float = 10.0
 @export var controller: MovementController
 

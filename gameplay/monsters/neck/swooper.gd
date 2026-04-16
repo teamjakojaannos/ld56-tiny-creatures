@@ -10,19 +10,8 @@ func swoop() -> void:
 
 	_tween = create_tween()
 	_tween.set_trans(Tween.TRANS_CUBIC)
-	_tween.set_ease(Tween.EASE_IN)
-	_tween.tween_property(self, "progress_ratio", 1.0, 1.0)
-
-	await _tween.finished
-
-
-func unswoop() -> void:
-	reset(true)
-
-	_tween = create_tween()
-	_tween.set_trans(Tween.TRANS_CUBIC)
-	_tween.set_ease(Tween.EASE_IN_OUT)
-	_tween.tween_property(self, "progress_ratio", 0.0, 3.0)
+	_tween.set_ease(Tween.EASE_OUT)
+	_tween.tween_property(self, "progress_ratio", 1.0, 0.5)
 
 	await _tween.finished
 

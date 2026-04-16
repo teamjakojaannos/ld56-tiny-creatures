@@ -14,4 +14,7 @@ wisp = NodePath("PlayerController/Wisp")
 
 [node name="PlayerController" parent="." unique_id=863084154 instance=ExtResource("4_xal42")]
 
+[node name="Player" parent="PlayerController" index="2" unique_id=470942182]
+move_speed = 75.0
+
 [editable path="PlayerController"]

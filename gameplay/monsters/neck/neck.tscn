@@ -7,50 +7,49 @@
 
 [sub_resource type="Curve2D" id="Curve2D_7kli0"]
 _data = {
-"points": PackedVector2Array(-3.956892, -17.410324, 4, 18, -79, -28, -10, -3, 10, 3, -47, -3, -22, 0, 22.158596, 0, 0, 0)
+"points": PackedVector2Array(-3.956892, -17.410324, 0, 15, -11, -28, -9.341644, -13.2753725, 9.341644, 13.2753725, 0, 0)
 }
-point_count = 3
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7kli0"]
-radius = 18.0
+radius = 21.0
 
 [sub_resource type="Curve2D" id="Curve2D_xbart"]
 _data = {
-"points": PackedVector2Array(4.352581, -16.025412, -4, 16, 82, -29, 16, -3, -16, 3, 50, -5, 25, -1, -24.92842, 0.7913784, 0, 0)
+"points": PackedVector2Array(4.352581, -16.025412, 0, 15, 11, -27, 9.776903, -14.581147, -9.776903, 14.581147, 0, 0)
 }
-point_count = 3
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7kli0"]
-size = Vector2(166, 24)
+size = Vector2(102, 42)
 
 [node name="Neck" type="Node2D" unique_id=280957086]
 y_sort_enabled = true
 script = ExtResource("1_xbart")
+follow_speed = null
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1852924460]
 y_sort_enabled = true
 sprite_frames = ExtResource("1_w8ypy")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.6356809
+frame_progress = 0.124408446
 offset = Vector2(-1, -13)
 
 [node name="HandLeft" parent="." unique_id=435686791 instance=ExtResource("3_4g1r8")]
-position = Vector2(-32, 0)
+position = Vector2(-25, -4)
 
 [node name="SpriteOrigin" parent="HandLeft" index="0" unique_id=1027217500]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 16)
 
 [node name="Sprite" parent="HandLeft/SpriteOrigin" index="0" unique_id=1079599987]
-animation = &"open"
 frame = 2
 offset = Vector2(-5, -23)
 flip_h = true
 
 [node name="SpriteTop" parent="HandLeft/SpriteOrigin" index="1" unique_id=1375425638]
-animation = &"open"
-frame = 1
+frame = 2
 offset = Vector2(-5, -23)
 flip_h = true
 
@@ -61,19 +60,17 @@ position = Vector2(-7, 14)
 visible = false
 
 [node name="HandRight" parent="." unique_id=1168485841 instance=ExtResource("3_4g1r8")]
-position = Vector2(32, 0)
+position = Vector2(25, -4)
 
 [node name="SpriteOrigin" parent="HandRight" index="0" unique_id=1027217500]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 16)
 
 [node name="Sprite" parent="HandRight/SpriteOrigin" index="0" unique_id=1079599987]
-animation = &"open"
 frame = 2
 
 [node name="SpriteTop" parent="HandRight/SpriteOrigin" index="1" unique_id=1375425638]
-animation = &"open"
-frame = 1
+frame = 2
 
 [node name="PreviewPlayer" parent="HandRight/SpriteOrigin/GrabbedPlayerPosition" parent_id_path=PackedInt32Array(1168485841, 787153564) index="0" unique_id=1046530825]
 visible = false
@@ -83,15 +80,16 @@ position = Vector2(-32, 0)
 curve = SubResource("Curve2D_7kli0")
 
 [node name="LeftSwooper" type="PathFollow2D" parent="LeftSwoop" unique_id=1399289905]
-progress = 90.23463
+position = Vector2(0, -2.3841858e-07)
+progress = 59.4584
 rotates = false
 script = ExtResource("6_jx50c")
 
 [node name="HandPosition" type="RemoteTransform2D" parent="LeftSwoop/LeftSwooper" unique_id=616724356]
+position = Vector2(7, -4)
 remote_path = NodePath("../../../HandLeft")
 
 [node name="Killzone" type="Area2D" parent="LeftSwoop" unique_id=1235302809]
-position = Vector2(-7, 8)
 
 [node name="Shape" type="CollisionShape2D" parent="LeftSwoop/Killzone" unique_id=479967459]
 shape = SubResource("CircleShape2D_7kli0")
@@ -102,15 +100,16 @@ position = Vector2(32, 0)
 curve = SubResource("Curve2D_xbart")
 
 [node name="RightSwooper" type="PathFollow2D" parent="RightSwoop" unique_id=290274050]
-progress = 93.06753
+position = Vector2(1.1920929e-07, -2.3841858e-07)
+progress = 59.4584
 rotates = false
 script = ExtResource("6_jx50c")
 
 [node name="HandPosition" type="RemoteTransform2D" parent="RightSwoop/RightSwooper" unique_id=1527706176]
+position = Vector2(-7, -4)
 remote_path = NodePath("../../../HandRight")
 
 [node name="Killzone" type="Area2D" parent="RightSwoop" unique_id=504089383]
-position = Vector2(7, 8)
 
 [node name="Shape" type="CollisionShape2D" parent="RightSwoop/Killzone" unique_id=2062229529]
 shape = SubResource("CircleShape2D_7kli0")
@@ -119,7 +118,7 @@ debug_color = Color(0.97155577, 0, 0.45039672, 0.41960785)
 [node name="Dangerzone" type="Area2D" parent="." unique_id=1538975557]
 
 [node name="Shape" type="CollisionShape2D" parent="Dangerzone" unique_id=869220922]
-position = Vector2(0, 26)
+position = Vector2(0, 35)
 shape = SubResource("RectangleShape2D_7kli0")
 debug_color = Color(0.5906618, 0.5479349, 1.92523e-07, 0.41960785)
 

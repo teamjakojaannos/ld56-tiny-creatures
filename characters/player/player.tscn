@@ -27,7 +27,6 @@ light_mode = 1
 y_sort_enabled = true
 collision_mask = 3
 script = ExtResource("1_508ok")
-move_speed = 100.0
 metadata/_custom_type_script = "uid://jnjbe520h5bv"
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=39810092]
