@@ -67,7 +67,7 @@ public partial class BogMonster : PathFollow2D {
 
 		ai = DefaultState();
 
-		this.Persistent().Connect("player_respawned", Callable.From(() => {
+		GetTree().Root.GetNode("/root/Persistent").Connect("player_respawned", Callable.From(() => {
 			playerWasKill = false;
 			animationPlayer?.Play("emerge_from_water", customSpeed: Stats.emergeAnimationSpeed);
 			// this fixes things

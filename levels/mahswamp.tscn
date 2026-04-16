@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://byyt6gntc3yw1" path="res://Characters/etana.png" id="36_axpkq"]
 [ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="37_csc8o"]
+[ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://gameplay/monsters/neck/neck.png" id="39_7p256"]
 [ext_resource type="PackedScene" uid="uid://c6q3aycuacspl" path="res://gameplay/objectives/spirit_lantern.tscn" id="40_iht3d"]
 [ext_resource type="Script" uid="uid://dlwkg1ib8hdes" path="res://gameplay/misc/swamp/watch_out_monster.gd" id="41_axpkq"]
 [ext_resource type="Script" uid="uid://mpgp8undemqv" path="res://gameplay/misc/swamp/creepy_statue.gd" id="42_axpkq"]
@@ -76,7 +77,7 @@ radius = 56.0089
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5gve"]
 size = Vector2(25, 5.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t7ybm"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7p256"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -87,15 +88,52 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j2828"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ojyh"]
 resource_local_to_scene = true
 radius = 46.0435
 
 [sub_resource type="Curve2D" id="Curve2D_aev7m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 350, 0)
+"points": PackedVector2Array(-6.3726144, -5.2139573, 6.3726144, 5.2139573, 0, 0, -18.24885, 0, 18.24885, 0, 78, 7, -13.614222, 0.2896643, 13.614222, -0.2896643, 129, 1, -12.1659, 0, 12.1659, 0, 181, 7, -11.007243, 0, 11.007243, 0, 269, 0, -19.117844, 5.793286, 19.117844, -5.793286, 350, 7, 3.1863072, 11.296907, -3.1863072, -11.296907, 364, -28, 15.931537, 4.3449645, -15.931537, -4.3449645, 323, -63, 26.069786, 0.8689929, -26.069786, -0.8689929, 236, -73, 19.117844, -0.8689929, -19.117844, 0.8689929, 169, -62, 19.407509, 0.2896643, -19.407509, -0.2896643, 84, -71, 14.483215, 1.1586572, -14.483215, -1.1586572, 33, -65, 8.979593, -5.2139573, -8.979593, 5.2139573, -6, -71, 0, -12.745229, 0, 12.745229, -18, -33, -7.531272, -7.2416077, 7.531272, 7.2416077, 0, 0)
 }
-point_count = 2
+point_count = 15
+
+[sub_resource type="Animation" id="Animation_t7ybm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_j2828"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axpkq"]
+_data = {
+&"RESET": SubResource("Animation_t7ybm"),
+&"move": SubResource("Animation_j2828")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qrcvk"]
 size = Vector2(412.5, 11)
@@ -4989,9 +5027,9 @@ location = "suosaari"
 
 [node name="Trigger" parent="SpiritLantern (suosaari)" index="1" unique_id=480170960]
 position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_t7ybm")
+shape = SubResource("CircleShape2D_7p256")
 
-[node name="SpiritPath" parent="SpiritLantern (suosaari)" index="2" unique_id=664202222]
+[node name="SpiritPath" parent="SpiritLantern (suosaari)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
 
 [node name="SpiritLantern (suo_etelä)" parent="." unique_id=1542843274 instance=ExtResource("40_iht3d")]
@@ -4999,14 +5037,31 @@ position = Vector2(546, 4)
 location = "suo_etelä"
 
 [node name="Trigger" parent="SpiritLantern (suo_etelä)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_j2828")
+shape = SubResource("CircleShape2D_1ojyh")
 
-[node name="SpiritPath" parent="SpiritLantern (suo_etelä)" index="2" unique_id=664202222]
+[node name="SpiritPath" parent="SpiritLantern (suo_etelä)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
 
-[node name="BogMonster" parent="." unique_id=90067688 instance=ExtResource("36_i1gca")]
+[node name="SneakyNeckPath" type="Path2D" parent="." unique_id=90067688]
 position = Vector2(-230, -432)
 curve = SubResource("Curve2D_aev7m")
+
+[node name="Neck" type="PathFollow2D" parent="SneakyNeckPath" unique_id=1947887033]
+rotates = false
+loop = false
+
+[node name="Sprite" type="Sprite2D" parent="SneakyNeckPath/Neck" unique_id=35020633]
+modulate = Color(1, 1, 1, 0.078431375)
+texture_filter = 1
+position = Vector2(1.90735e-06, 1.90735e-06)
+texture = ExtResource("39_7p256")
+region_enabled = true
+region_rect = Rect2(0, 0, 76, 25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SneakyNeckPath/Neck" unique_id=1961299262]
+libraries/ = SubResource("AnimationLibrary_axpkq")
+autoplay = &"move"
+speed_scale = 0.01
 
 [node name="LosBlockers" type="Area2D" parent="." unique_id=391163391]
 visible = false

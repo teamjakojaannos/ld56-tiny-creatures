@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bjx73xc8t74mp"]
 
 [ext_resource type="Script" uid="uid://kyyhfnfxiqis" path="res://characters/wisp/wisp.gd" id="1_8q3ut"]
-[ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="2_2mpa2"]
 [ext_resource type="SpriteFrames" uid="uid://btv5f3lthbf47" path="res://characters/wisp/wisp.sprite_frames.tres" id="3_ngo84"]
+[ext_resource type="Script" uid="uid://dhosbd82ivr3q" path="res://utilities/starts_at_node.gd" id="3_piu6w"]
 [ext_resource type="PackedScene" uid="uid://ysee08ttrir6" path="res://gameplay/remark/remark_bubble.tscn" id="4_tia6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ql1ed"]
@@ -46,10 +46,10 @@ script = ExtResource("1_8q3ut")
 [node name="Shape" type="CollisionShape2D" parent="." unique_id=259751983]
 shape = SubResource("CircleShape2D_ql1ed")
 
-[node name="StartsAtNode" type="Node" parent="." unique_id=1640497147]
-script = ExtResource("2_2mpa2")
-SpawnpointGroups = Array[StringName]([&"IntroWispSpawn", &"WorldPlayerStart", &"PlayerStart"])
-metadata/_custom_type_script = "uid://dw3a5r4lxgnwa"
+[node name="StartsAtNode" type="Node" parent="." unique_id=461274771]
+script = ExtResource("3_piu6w")
+spawnpoint_groups = Array[String](["IntroWispSpawn", "WorldPlayerStart", "PlayerStart"])
+metadata/_custom_type_script = "uid://dhosbd82ivr3q"
 
 [node name="WispVisuals" type="Node2D" parent="." unique_id=1034236945]
 y_sort_enabled = true

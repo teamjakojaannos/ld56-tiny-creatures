@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://co28hwq7cnp4j" path="res://characters/player/debug_controller.gd" id="4_b7ahd"]
 [ext_resource type="PackedScene" uid="uid://pni5mmab3ipw" path="res://characters/player/player.tscn" id="4_s5eq7"]
 [ext_resource type="PackedScene" uid="uid://dndpqcsyrj7s7" path="res://cinematic/camera_manager.tscn" id="5_b6b08"]
-[ext_resource type="Script" uid="uid://dw3a5r4lxgnwa" path="res://Gameplay/StartsAtNode.cs" id="7_b6b08"]
+[ext_resource type="Script" uid="uid://dhosbd82ivr3q" path="res://utilities/starts_at_node.gd" id="6_b7ahd"]
 
 [node name="PlayerController" type="Node2D" unique_id=1783032070]
 y_sort_enabled = true
@@ -25,10 +25,10 @@ metadata/_custom_type_script = "uid://bon0diatk0pop"
 collision_mask = 2
 controller = NodePath("../MovementController")
 
-[node name="StartsAtNode" type="Node" parent="Player" unique_id=1875884115]
-script = ExtResource("7_b6b08")
-SpawnpointGroups = Array[StringName]([&"IntroPlayerSpawn", &"WorldPlayerSpawn", &"PlayerSpawn"])
-metadata/_custom_type_script = "uid://dw3a5r4lxgnwa"
+[node name="StartsAtNode" type="Node" parent="Player" unique_id=2099313300]
+script = ExtResource("6_b7ahd")
+spawnpoint_groups = Array[String](["IntroPlayerStart", "WorldPlayerSpawn", "PlayerSpawn"])
+metadata/_custom_type_script = "uid://dhosbd82ivr3q"
 
 [node name="MainCamera" parent="Player" unique_id=1429878680 instance=ExtResource("5_b6b08")]
 zoom = 2.0

@@ -2,7 +2,11 @@
 class_name PersistentState
 extends Node
 
+## Player has fully respawned and stood up.
 signal player_respawned
+## Game has faded out after death.
+signal player_respawning
+## Player releases a wisp at given location.
 signal wisp_saved(location: String)
 
 @export var player: Player
@@ -41,7 +45,14 @@ func save_wisp(location: String) -> void:
 
 
 func reset_player_to_hub() -> void:
-	var spawnpoint: Node = get_tree().get_nodes_in_group("HubSpawn").pick_random()
+	var spawnpoints := get_tree().get_nodes_in_group("HubSpawn")
+	var spawnpoint: Node = null
+	if spawnpoints.is_empty():
+		print("No hub spawnpoints available: Falling back to scene root!")
+		spawnpoint = LevelManager.current_scene
+	else:
+		spawnpoint = spawnpoints.pick_random()
+
 	if spawnpoint is not Node2D:
 		var path = spawnpoint.get_path()
 		printerr("Spawnpoint \"%s\" is not valid!" % path)
@@ -50,13 +61,20 @@ func reset_player_to_hub() -> void:
 	player_controller.movement.is_allowed = false
 	await main_camera.fade_to_black(2.5)
 
-	player.teleport(spawnpoint)
+	player.teleport.call_deferred(spawnpoint)
+	await player.teleported
+
+	player_respawning.emit()
+
 	player.is_prone = true
+	player.is_in_trouble = false
 
 	await main_camera.fade_to_visible(1.5)
 	player.is_prone = false
 
 	# FIXME: await player.standing
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(2.5).timeout
 	player_controller.movement.is_allowed = true
+	player.is_dead = false
+
 	player_respawned.emit()

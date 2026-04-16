@@ -6,6 +6,7 @@ signal initial_scene_ready
 var world_root: Node2D:
 	get:
 		return self
+var current_scene: Node2D
 
 
 func _ready() -> void:
@@ -28,6 +29,7 @@ func _kidnap_initial_scene() -> void:
 	loader.name = key
 	add_child(loader, true)
 
+	current_scene = scene
 	initial_scene_ready.emit()
 
 

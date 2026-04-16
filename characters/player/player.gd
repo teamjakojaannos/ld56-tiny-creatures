@@ -17,6 +17,7 @@ var is_prone: bool = false
 var is_slowed: bool = false
 var is_invulnerable: bool = false
 var is_dead: bool = false
+var is_in_trouble: bool = false
 var move_speed_modifier: float:
 	get:
 		return 0.5 if is_slowed else 1.0

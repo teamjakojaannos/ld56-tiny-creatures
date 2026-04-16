@@ -17,6 +17,17 @@ signal fade_finished
 @onready var _thud_sfx: AudioStreamPlayer = $ThudSfx
 
 
+func detach_from_player() -> void:
+	reparent(Persistent, true)
+	reset_physics_interpolation()
+
+
+func attach_to_player() -> void:
+	reparent(Persistent.player)
+	global_position = Persistent.player.global_position
+	reset_physics_interpolation()
+
+
 func shake(magnitude: float, duration: float, direction: Vector2 = Vector2.ZERO) -> void:
 	_shaker.magnitude = magnitude
 	_shaker.shake_direction = direction.limit_length(1.0)

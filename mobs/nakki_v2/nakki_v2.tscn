@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cd8qrla1d18g8"]
 
 [ext_resource type="Script" uid="uid://chml1pydo7hg0" path="res://mobs/nakki_v2/NakkiV2.cs" id="1_vi6in"]
-[ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://mobs/nakken.png" id="2_88m0x"]
-[ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://mobs/kasianimaatio-sheet.png" id="3_bvjim"]
-[ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://mobs/kasianimaatio-sheet-top.png" id="4_3k7wb"]
+[ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://gameplay/monsters/neck/neck.png" id="2_88m0x"]
+[ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://gameplay/monsters/neck/hand.png" id="3_bvjim"]
+[ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://gameplay/monsters/neck/hand_top_layer.png" id="4_3k7wb"]
 [ext_resource type="SpriteFrames" uid="uid://b1l5xdbf81x8i" path="res://Characters/Player/player_sprite_frames.tres" id="5_x2o33"]
 [ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="9_oeiko"]
 

@@ -1,0 +1,43 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dbb212kxuqfob"]
+
+[ext_resource type="Texture2D" uid="uid://dk4crmuqmsot3" path="res://gameplay/monsters/neck/hand_top_layer.png" id="1_1oop1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78ec2"]
+atlas = ExtResource("1_1oop1")
+region = Rect2(0, 0, 55, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl4wc"]
+atlas = ExtResource("1_1oop1")
+region = Rect2(55, 0, 55, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne22g"]
+atlas = ExtResource("1_1oop1")
+region = Rect2(110, 0, 55, 50)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78ec2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl4wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne22g")
+}],
+"loop": false,
+"name": &"grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78ec2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl4wc")
+}],
+"loop": false,
+"name": &"open",
+"speed": 1.0
+}]

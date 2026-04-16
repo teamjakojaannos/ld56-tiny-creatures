@@ -15,7 +15,7 @@ extends Node2D
 		if Facing.is_h(value):
 			action_facing = Facing.as_h(value)
 @export var is_moving: bool = false
-@export_subgroup("Prone")
+@export_subgroup("Dead states")
 @export var is_prone: bool = false:
 	get:
 		return is_prone
@@ -25,6 +25,15 @@ extends Node2D
 
 		if value and not was_already_prone:
 			_set_state_to_prone.call_deferred()
+@export var is_in_trouble: bool = false:
+	get:
+		return is_in_trouble
+	set(value):
+		var was_already_in_trouble := is_in_trouble
+		is_in_trouble = value
+
+		if value and not was_already_in_trouble:
+			_set_state_to_in_trouble.call_deferred()
 @export_subgroup("Cutscenes and actions")
 @export var is_in_intro: bool = false
 ## HACK: Function callback tracks are not executed in-editor (prevents preview)
@@ -69,6 +78,7 @@ func _process(_delta: float) -> void:
 	facing = player.facing
 	is_moving = player.is_moving
 	is_prone = player.is_prone
+	is_in_trouble = player.is_in_trouble
 
 
 func _open_lantern() -> void:
@@ -81,3 +91,7 @@ func _on_player_dead() -> void:
 
 func _set_state_to_prone() -> void:
 	_anim_state_machine.travel("prone")
+
+
+func _set_state_to_in_trouble() -> void:
+	_anim_state_machine.travel("in_trouble")

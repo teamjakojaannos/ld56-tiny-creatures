@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://6s8ixo0g1ia8"]
+
+[ext_resource type="Texture2D" uid="uid://n8263kljjucv" path="res://gameplay/monsters/neck/hand.png" id="1_q2c32"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkw3h"]
+atlas = ExtResource("1_q2c32")
+region = Rect2(0, 0, 55, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g1r8"]
+atlas = ExtResource("1_q2c32")
+region = Rect2(55, 0, 55, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o6g8"]
+atlas = ExtResource("1_q2c32")
+region = Rect2(110, 0, 55, 50)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkw3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g1r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o6g8")
+}],
+"loop": false,
+"name": &"grab",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkw3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g1r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkw3h")
+}],
+"loop": false,
+"name": &"open",
+"speed": 1.0
+}]

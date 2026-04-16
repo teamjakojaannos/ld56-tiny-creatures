@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n8263kljjucv"
-path="res://.godot/imported/kasianimaatio-sheet.png-f1e25b3e1489682dca1a5183f01c0935.ctex"
+uid="uid://dk4crmuqmsot3"
+path="res://.godot/imported/hand_top_layer.png-625a2ed64398c7aa70639608e4f3a9e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/kasianimaatio-sheet.png"
-dest_files=["res://.godot/imported/kasianimaatio-sheet.png-f1e25b3e1489682dca1a5183f01c0935.ctex"]
+source_file="res://gameplay/monsters/neck/hand_top_layer.png"
+dest_files=["res://.godot/imported/hand_top_layer.png-625a2ed64398c7aa70639608e4f3a9e3.ctex"]
 
 [params]
 

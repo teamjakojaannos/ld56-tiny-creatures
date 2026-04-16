@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk4crmuqmsot3"
-path="res://.godot/imported/kasianimaatio-sheet-top.png-2d429b7410acf0ddb119d54ddefe257f.ctex"
+uid="uid://c0xrhncubhc27"
+path="res://.godot/imported/neck_idle.png-2941aab3e91cf5bf9f6eac7ea3d9cc4b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mobs/kasianimaatio-sheet-top.png"
-dest_files=["res://.godot/imported/kasianimaatio-sheet-top.png-2d429b7410acf0ddb119d54ddefe257f.ctex"]
+source_file="res://gameplay/monsters/neck/neck_idle.png"
+dest_files=["res://.godot/imported/neck_idle.png-2941aab3e91cf5bf9f6eac7ea3d9cc4b.ctex"]
 
 [params]
 

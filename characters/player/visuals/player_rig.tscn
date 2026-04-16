@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b702m0uxy7s5a" path="res://characters/player/visuals/player_front_idle.png" id="4_ivs2y"]
 [ext_resource type="Texture2D" uid="uid://6i2p27gnt5og" path="res://characters/player/visuals/player_idle_side.png" id="5_puw5l"]
 [ext_resource type="Texture2D" uid="uid://b3hw04ijrmoqo" path="res://characters/player/visuals/player_side_open_cage.png" id="6_dq2sc"]
+[ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://characters/player/visuals/player_in_trouble.png" id="6_tjdc1"]
 [ext_resource type="Texture2D" uid="uid://df7iw1y0i025q" path="res://characters/player/visuals/player_walk_back.png" id="7_7mjb4"]
 [ext_resource type="Texture2D" uid="uid://ce7j6gj4747hm" path="res://characters/player/visuals/player_walk_front.png" id="8_molsn"]
 [ext_resource type="Texture2D" uid="uid://c0ccrgb82b3lp" path="res://characters/player/visuals/player_walk_side.png" id="9_dduit"]
@@ -110,6 +111,10 @@ region = Rect2(64, 0, 32, 45)
 [sub_resource type="AtlasTexture" id="AtlasTexture_n614u"]
 atlas = ExtResource("3_tjdc1")
 region = Rect2(96, 0, 32, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fauwa"]
+atlas = ExtResource("6_tjdc1")
+region = Rect2(0, 0, 32, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dspmj"]
 atlas = ExtResource("6_dq2sc")
@@ -409,6 +414,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fauwa")
+}],
+"loop": true,
+"name": &"in_trouble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dspmj")
 }, {
 "duration": 1.0,
@@ -645,10 +658,21 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0, -2)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Shadow:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ptaye"]
 length = 1.6
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1073,6 +1097,47 @@ tracks/1/keys = {
 "values": ["idle_up"]
 }
 
+[sub_resource type="Animation" id="Animation_ojg2d"]
+resource_name = "in_trouble"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"in_trouble"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Shadow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_n614u"]
 resource_name = "open_lantern_intro"
 length = 3.0
@@ -1326,6 +1391,7 @@ _data = {
 &"idle_prone_right": SubResource("Animation_0njgf"),
 &"idle_right": SubResource("Animation_ivs2y"),
 &"idle_up": SubResource("Animation_puw5l"),
+&"in_trouble": SubResource("Animation_ojg2d"),
 &"open_lantern_intro": SubResource("Animation_n614u"),
 &"open_lantern_left": SubResource("Animation_vixj4"),
 &"open_lantern_right": SubResource("Animation_v7mfa"),
@@ -1401,6 +1467,9 @@ states/right/node = SubResource("AnimationNodeAnimation_7mjb4")
 states/right/position = Vector2(512, 149)
 transitions = ["Start", "left", SubResource("AnimationNodeStateMachineTransition_xoiva"), "Start", "right", SubResource("AnimationNodeStateMachineTransition_6knnm"), "left", "End", SubResource("AnimationNodeStateMachineTransition_sgmce"), "right", "End", SubResource("AnimationNodeStateMachineTransition_uleqb")]
 graph_offset = Vector2(-122, -63)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ptaye"]
+animation = &"in_trouble"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h16v2"]
 animation = &"idle_left"
@@ -1659,6 +1728,10 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kdipe"]
+advance_mode = 2
+advance_expression = "!is_in_trouble"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_66gcg"]
 states/End/position = Vector2(1141, 9)
 states/Start/position = Vector2(128, 198)
@@ -1666,6 +1739,8 @@ states/down/node = SubResource("AnimationNodeStateMachine_jhbka")
 states/down/position = Vector2(561, 198)
 states/get_up/node = SubResource("AnimationNodeStateMachine_sgmce")
 states/get_up/position = Vector2(822, 198)
+states/in_trouble/node = SubResource("AnimationNodeAnimation_ptaye")
+states/in_trouble/position = Vector2(674, 304)
 states/left/node = SubResource("AnimationNodeStateMachine_m6vtm")
 states/left/position = Vector2(457, 100)
 states/open_lantern/node = SubResource("AnimationNodeStateMachine_dq2sc")
@@ -1676,8 +1751,8 @@ states/right/node = SubResource("AnimationNodeStateMachine_m7x75")
 states/right/position = Vector2(674, 100)
 states/up/node = SubResource("AnimationNodeStateMachine_bv67w")
 states/up/position = Vector2(561, 0)
-transitions = ["left", "up", SubResource("AnimationNodeStateMachineTransition_s4lbh"), "up", "left", SubResource("AnimationNodeStateMachineTransition_m27su"), "left", "right", SubResource("AnimationNodeStateMachineTransition_vvj5j"), "right", "left", SubResource("AnimationNodeStateMachineTransition_6phsv"), "right", "up", SubResource("AnimationNodeStateMachineTransition_ok0l2"), "up", "right", SubResource("AnimationNodeStateMachineTransition_f8vie"), "right", "down", SubResource("AnimationNodeStateMachineTransition_sunvu"), "down", "right", SubResource("AnimationNodeStateMachineTransition_l3wb0"), "left", "down", SubResource("AnimationNodeStateMachineTransition_si43w"), "down", "left", SubResource("AnimationNodeStateMachineTransition_2nkkv"), "down", "up", SubResource("AnimationNodeStateMachineTransition_o7dwb"), "up", "down", SubResource("AnimationNodeStateMachineTransition_wtpyt"), "Start", "down", SubResource("AnimationNodeStateMachineTransition_wdp36"), "prone", "get_up", SubResource("AnimationNodeStateMachineTransition_vixj4"), "get_up", "right", SubResource("AnimationNodeStateMachineTransition_v7mfa"), "open_lantern", "right", SubResource("AnimationNodeStateMachineTransition_ixw5w")]
-graph_offset = Vector2(69, -1)
+transitions = ["left", "up", SubResource("AnimationNodeStateMachineTransition_s4lbh"), "up", "left", SubResource("AnimationNodeStateMachineTransition_m27su"), "left", "right", SubResource("AnimationNodeStateMachineTransition_vvj5j"), "right", "left", SubResource("AnimationNodeStateMachineTransition_6phsv"), "right", "up", SubResource("AnimationNodeStateMachineTransition_ok0l2"), "up", "right", SubResource("AnimationNodeStateMachineTransition_f8vie"), "right", "down", SubResource("AnimationNodeStateMachineTransition_sunvu"), "down", "right", SubResource("AnimationNodeStateMachineTransition_l3wb0"), "left", "down", SubResource("AnimationNodeStateMachineTransition_si43w"), "down", "left", SubResource("AnimationNodeStateMachineTransition_2nkkv"), "down", "up", SubResource("AnimationNodeStateMachineTransition_o7dwb"), "up", "down", SubResource("AnimationNodeStateMachineTransition_wtpyt"), "Start", "down", SubResource("AnimationNodeStateMachineTransition_wdp36"), "prone", "get_up", SubResource("AnimationNodeStateMachineTransition_vixj4"), "get_up", "right", SubResource("AnimationNodeStateMachineTransition_v7mfa"), "open_lantern", "right", SubResource("AnimationNodeStateMachineTransition_ixw5w"), "in_trouble", "prone", SubResource("AnimationNodeStateMachineTransition_kdipe")]
+graph_offset = Vector2(-113, -40)
 
 [node name="SpriteRig" type="Node2D" unique_id=1084364185]
 y_sort_enabled = true
