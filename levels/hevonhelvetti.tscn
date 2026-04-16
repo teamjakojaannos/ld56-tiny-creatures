@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmvi58d0isrru"]
 
-[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://gameplay/props/hub/WispInsideStatue.png" id="1_2ysck"]
-[ext_resource type="Script" uid="uid://bialmulp3e758" path="res://gameplay/props/victory_area/credits_graves.gd" id="2_ci1sm"]
+[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://gameplay/misc/hub/WispInsideStatue.png" id="1_2ysck"]
+[ext_resource type="Script" uid="uid://bialmulp3e758" path="res://gameplay/misc/victory_area/credits_graves.gd" id="2_ci1sm"]
 [ext_resource type="Texture2D" uid="uid://jhhjkmm48j4e" path="res://environment/victory_area/ryhmahauta_handsomeDogs.png" id="3_ys41d"]
 [ext_resource type="Script" uid="uid://bpqskmnis7fey" path="res://gameplay/wisp_position.gd" id="9_ys41d"]
 

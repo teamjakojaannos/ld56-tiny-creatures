@@ -25,6 +25,7 @@ light_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=1643329307 groups=["Player"]]
 y_sort_enabled = true
+collision_mask = 3
 script = ExtResource("1_508ok")
 move_speed = 100.0
 metadata/_custom_type_script = "uid://jnjbe520h5bv"

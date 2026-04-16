@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cye1w3nfypxqd"]
 
-[ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://gameplay/props/forest/jokuhassuproppi_idk.png" id="1_f5uop"]
+[ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://gameplay/misc/forest/jokuhassuproppi_idk.png" id="1_f5uop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axo0v"]
 size = Vector2(11, 3)

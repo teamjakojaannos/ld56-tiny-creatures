@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b65xsddtvqnp3"]
+
+[ext_resource type="Texture2D" uid="uid://d2wrace6vpna6" path="res://gameplay/misc/start_forest/pumpkin.png" id="1_57yk6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acp5i"]
+atlas = ExtResource("1_57yk6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_208q3"]
+atlas = ExtResource("1_57yk6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjoio"]
+atlas = ExtResource("1_57yk6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os1x5"]
+atlas = ExtResource("1_57yk6")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_acp5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_208q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjoio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os1x5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

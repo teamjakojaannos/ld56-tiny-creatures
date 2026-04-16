@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
 [ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
-[ext_resource type="Script" uid="uid://3g3r5wdu47jg" path="res://gameplay/props/forest/swamp_shortcut_trigger.gd" id="9_54i5j"]
+[ext_resource type="Script" uid="uid://3g3r5wdu47jg" path="res://gameplay/misc/forest/swamp_shortcut_trigger.gd" id="9_54i5j"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_i1ql1"]
 [ext_resource type="Script" uid="uid://cxxfk8oudgcrs" path="res://gameplay/player_trigger_area_2d.gd" id="10_oxfhy"]
 [ext_resource type="AudioStream" uid="uid://p615o3bijnql" path="res://random_sfx/kivipamahtaa.ogg" id="10_wrd2w"]

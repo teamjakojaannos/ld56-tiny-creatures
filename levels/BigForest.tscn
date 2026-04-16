@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://f7d6u1q6m3ox" path="res://environment/rocks/kivirykelma_1.png" id="9_kqbk1"]
 [ext_resource type="Texture2D" uid="uid://bpfllis5ltnli" path="res://environment/rocks/kivirykelma_2_.png" id="10_43yia"]
 [ext_resource type="PackedScene" uid="uid://0dq7nmfcpdtd" path="res://Environment/the_wall.tscn" id="12_40s0t"]
-[ext_resource type="PackedScene" uid="uid://pk3tc6o4spst" path="res://mobs/chaser.tscn" id="13_lug5l"]
 [ext_resource type="PackedScene" uid="uid://ddydax43gghjj" path="res://Environment/spooky_tree.tscn" id="14_nvxan"]
 [ext_resource type="PackedScene" uid="uid://cua1u4d3r83qd" path="res://Environment/sieni_2.tscn" id="15_lorar"]
 [ext_resource type="Texture2D" uid="uid://cx6quphmf4smd" path="res://environment/rocks/slab1.png" id="16_u8hyu"]
@@ -21,12 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://bo3slv43w07g" path="res://environment/rocks/slab4.png" id="19_etteb"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="19_jmbxi"]
 [ext_resource type="Texture2D" uid="uid://cfopi7xi181p" path="res://environment/rocks/slab5.png" id="20_3da3i"]
-[ext_resource type="Script" uid="uid://t6lj2hn6mue7" path="res://gameplay/props/forest/skull_stick.gd" id="23_toat2"]
-[ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://gameplay/props/forest/jokuhassuproppi_idk.png" id="24_7y1kb"]
+[ext_resource type="PackedScene" uid="uid://b7fice7b5uih7" path="res://gameplay/monsters/chaser/chaser.tscn" id="22_qokuh"]
+[ext_resource type="Script" uid="uid://t6lj2hn6mue7" path="res://gameplay/misc/forest/skull_stick.gd" id="23_toat2"]
+[ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://gameplay/misc/forest/jokuhassuproppi_idk.png" id="24_7y1kb"]
 [ext_resource type="PackedScene" uid="uid://cektsywqa3k5v" path="res://Characters/npc_crow.tscn" id="31_8avri"]
 [ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="34_jlyps"]
 [ext_resource type="Script" uid="uid://db84q0o2plx4a" path="res://gameplay/touch_trigger.gd" id="37_7y1kb"]
-[ext_resource type="Script" uid="uid://fuxvwo4nad6i" path="res://gameplay/props/forest/entering_swamp_too_soon.gd" id="37_hvsfi"]
+[ext_resource type="Script" uid="uid://fuxvwo4nad6i" path="res://gameplay/misc/forest/entering_swamp_too_soon.gd" id="37_hvsfi"]
 [ext_resource type="Script" uid="uid://c1601w316622d" path="res://gameplay/start_conversation.gd" id="37_hwnev"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="38_82gr2"]
 [ext_resource type="Resource" uid="uid://hleqsy3eme27" path="res://gameplay/dialogue/conversations/forest/crow/01_meet_crow.tres" id="38_ibgb3"]
@@ -2457,8 +2457,8 @@ texture_filter = 1
 position = Vector2(-1301, 172.5)
 texture = ExtResource("20_3da3i")
 
-[node name="Chaser" parent="." unique_id=1000113095 instance=ExtResource("13_lug5l")]
-position = Vector2(-1054, -177)
+[node name="Chaser" parent="." unique_id=307052258 instance=ExtResource("22_qokuh")]
+position = Vector2(-1029, -143)
 
 [node name="SpookyTree" parent="." unique_id=140161245 instance=ExtResource("14_nvxan")]
 position = Vector2(-1088, -615)
@@ -2475,7 +2475,7 @@ position = Vector2(4, 26)
 shape = SubResource("CircleShape2D_hvsfi")
 debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="Sprite" type="Sprite2D" parent="SkullStick" unique_id=1514478308]
+[node name="Sprite" type="Sprite2D" parent="SkullStick" unique_id=1514478308 groups=["chaser_roam_marker"]]
 y_sort_enabled = true
 texture = ExtResource("24_7y1kb")
 offset = Vector2(-1, -25)
@@ -2517,7 +2517,7 @@ position = Vector2(-1085, -624)
 [node name="Trigger" parent="SpiritLantern (kantolyhty)" index="1" unique_id=480170960]
 shape = SubResource("CircleShape2D_myhnb")
 
-[node name="SpiritPath" parent="SpiritLantern (kantolyhty)" index="2" unique_id=664202222]
+[node name="SpiritPath" parent="SpiritLantern (kantolyhty)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_o8i5l")
 
 [node name="LosBlocker" type="Area2D" parent="." unique_id=1917883717]
@@ -2563,33 +2563,33 @@ script = ExtResource("39_hwnev")
 trigger = NodePath("..")
 metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
-[node name="MarkoMarkers" type="Node2D" parent="." unique_id=1321089220 groups=["MarkoMarkersRoot"]]
+[node name="MarkoMarkers" type="Node2D" parent="." unique_id=1321089220]
 
-[node name="Marker2D" type="Marker2D" parent="MarkoMarkers" unique_id=243354216]
+[node name="Marker2D" type="Marker2D" parent="MarkoMarkers" unique_id=243354216 groups=["chaser_roam_marker"]]
 position = Vector2(-1083.81, -186.027)
 
-[node name="Marker2D2" type="Marker2D" parent="MarkoMarkers" unique_id=222673170]
+[node name="Marker2D2" type="Marker2D" parent="MarkoMarkers" unique_id=222673170 groups=["chaser_roam_marker"]]
 position = Vector2(-1025, -27)
 
-[node name="Marker2D3" type="Marker2D" parent="MarkoMarkers" unique_id=698435153]
+[node name="Marker2D3" type="Marker2D" parent="MarkoMarkers" unique_id=698435153 groups=["chaser_roam_marker"]]
 position = Vector2(-742, -70)
 
-[node name="Marker2D4" type="Marker2D" parent="MarkoMarkers" unique_id=1975641689]
+[node name="Marker2D4" type="Marker2D" parent="MarkoMarkers" unique_id=1975641689 groups=["chaser_roam_marker"]]
 position = Vector2(-888, -341)
 
-[node name="Marker2D5" type="Marker2D" parent="MarkoMarkers" unique_id=1269736268]
+[node name="Marker2D5" type="Marker2D" parent="MarkoMarkers" unique_id=1269736268 groups=["chaser_roam_marker"]]
 position = Vector2(-604, -381)
 
-[node name="Marker2D6" type="Marker2D" parent="MarkoMarkers" unique_id=165217200]
+[node name="Marker2D6" type="Marker2D" parent="MarkoMarkers" unique_id=165217200 groups=["chaser_roam_marker"]]
 position = Vector2(-400, -427)
 
-[node name="Marker2D7" type="Marker2D" parent="MarkoMarkers" unique_id=1713502021]
+[node name="Marker2D7" type="Marker2D" parent="MarkoMarkers" unique_id=1713502021 groups=["chaser_roam_marker"]]
 position = Vector2(-409, 190)
 
-[node name="Marker2D8" type="Marker2D" parent="MarkoMarkers" unique_id=1282102888]
+[node name="Marker2D8" type="Marker2D" parent="MarkoMarkers" unique_id=1282102888 groups=["chaser_roam_marker"]]
 position = Vector2(-322.258, -61.0251)
 
-[node name="Marker2D9" type="Marker2D" parent="MarkoMarkers" unique_id=120619271]
+[node name="Marker2D9" type="Marker2D" parent="MarkoMarkers" unique_id=120619271 groups=["chaser_roam_marker"]]
 position = Vector2(-1174.01, 212.755)
 
 [node name="SpiritLantern (metsä_south)" parent="." unique_id=1256199140 instance=ExtResource("43_j7kq0")]
@@ -2600,7 +2600,7 @@ location = "metsä_south"
 position = Vector2(-1, -6)
 shape = SubResource("CircleShape2D_qokuh")
 
-[node name="SpiritPath" parent="SpiritLantern (metsä_south)" index="2" unique_id=664202222]
+[node name="SpiritPath" parent="SpiritLantern (metsä_south)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_5s5rr")
 
 [node name="SpiritLantern (pulu)" parent="." unique_id=258489109 instance=ExtResource("43_j7kq0")]
@@ -2611,7 +2611,7 @@ location = "pulu"
 position = Vector2(-7, 2)
 shape = SubResource("CircleShape2D_u0hnh")
 
-[node name="SpiritPath" parent="SpiritLantern (pulu)" index="2" unique_id=664202222]
+[node name="SpiritPath" parent="SpiritLantern (pulu)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_18km7")
 
 [node name="SpiritLantern (metsä)" parent="." unique_id=1828342421 instance=ExtResource("43_j7kq0")]
@@ -2622,7 +2622,7 @@ location = "metsä"
 position = Vector2(3, -7)
 shape = SubResource("CircleShape2D_6ns6m")
 
-[node name="SpiritPath" parent="SpiritLantern (metsä)" index="2" unique_id=664202222]
+[node name="SpiritPath" parent="SpiritLantern (metsä)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_j7kq0")
 
 [node name="AreaColliders" type="Node2D" parent="." unique_id=390830517]

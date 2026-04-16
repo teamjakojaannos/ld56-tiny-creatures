@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b7fice7b5uih7"]
+
+[ext_resource type="Script" uid="uid://cf5jhpvohg4es" path="res://gameplay/monsters/chaser/chaser.gd" id="1_drdwq"]
+[ext_resource type="SpriteFrames" uid="uid://ctfd8lai0f3eu" path="res://gameplay/monsters/chaser/chaser_frames.tres" id="2_6koku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ye8i0"]
+size = Vector2(24, 4)
+
+[node name="Chaser" type="CharacterBody2D" unique_id=307052258]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_drdwq")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1975651543]
+texture_filter = 1
+position = Vector2(0, -43.5)
+sprite_frames = ExtResource("2_6koku")
+animation = &"attack"
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=956557084]
+shape = SubResource("RectangleShape2D_ye8i0")
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="." unique_id=1596049073]
+
+[node name="LineOfSight" type="RayCast2D" parent="." unique_id=279307979]
+target_position = Vector2(0, -50)
+collision_mask = 5
+collide_with_areas = true
+
+[node name="SightCone" type="Area2D" parent="." unique_id=2036279658]
+z_index = 1
+
+[node name="Shape" type="CollisionPolygon2D" parent="SightCone" unique_id=489972493]
+position = Vector2(0.68416, -87.950836)
+scale = Vector2(100, 256)
+polygon = PackedVector2Array(-0.0068416, 0.52715164, 0.3731584, 0.46855795, 0.53315836, 0.3474642, 0.3831584, 0.23027669, 0.1531584, 0.17168294, 0.9926361, -0.6564625, -1.0073639, -0.6564625, -0.15684159, 0.17168294, -0.3868416, 0.23808919, -0.5168416, 0.34355795, -0.3768416, 0.4646517)
+
+[connection signal="body_entered" from="SightCone" to="." method="_sight_cone_entered"]
+[connection signal="body_exited" from="SightCone" to="." method="_sight_cone_exited"]

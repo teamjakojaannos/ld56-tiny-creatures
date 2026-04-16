@@ -1,0 +1,73 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://70g6ju7a5cdd"]
+
+[ext_resource type="Texture2D" uid="uid://dmvtd7g7w28x6" path="res://gameplay/misc/hub/yojeesus.png" id="1_kdkok"]
+[ext_resource type="Texture2D" uid="uid://cvcobtr3j66hx" path="res://gameplay/misc/hub/WispInsideStatue.png" id="2_3jca8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jca8"]
+atlas = ExtResource("1_kdkok")
+region = Rect2(0, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ivt1"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(0, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0k20"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(56, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1bbx"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(112, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pukgc"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(168, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm4ab"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(224, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83nt1"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(280, 0, 56, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_633qd"]
+atlas = ExtResource("2_3jca8")
+region = Rect2(336, 0, 56, 89)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jca8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ivt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0k20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1bbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pukgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm4ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83nt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_633qd")
+}],
+"loop": true,
+"name": &"wisp_inside",
+"speed": 5.0
+}]
