@@ -48,7 +48,7 @@ shape = SubResource("CircleShape2D_ql1ed")
 
 [node name="StartsAtNode" type="Node" parent="." unique_id=461274771]
 script = ExtResource("3_piu6w")
-spawnpoint_groups = Array[String](["IntroWispSpawn", "WorldPlayerStart", "PlayerStart"])
+spawnpoint_groups = Array[String](["IntroWispSpawn", "WorldPlayerStart", "PlayerStart", "PlayerSpawn"])
 metadata/_custom_type_script = "uid://dhosbd82ivr3q"
 
 [node name="WispVisuals" type="Node2D" parent="." unique_id=1034236945]
