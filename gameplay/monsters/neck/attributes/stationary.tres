@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="NeckAttributes" format=3 uid="uid://c1wq1dg7scydf"]
+
+[ext_resource type="Script" uid="uid://buli50qx5r0cl" path="res://gameplay/monsters/neck/neck_attributes.gd" id="1_df5bv"]
+
+[resource]
+script = ExtResource("1_df5bv")
+detection_gain = 400.0
+detection_decay = 400.0
+move_time = 0.0
+stop_move_chance = 1.0
+change_direction_instead_of_stopping_chance = 0.0
+go_underwater_chance = 1.0
+min_underwater_time = 2.0
+max_underwater_time = 7.0
+min_idle_time = 4.0
+max_idle_time = 10.0
+emerge_at_player_chance = 0.0
+emerge_at_same_location_chance = 1.0
+alert_threshold = 200.0
+attack_time = 0.1
+attack_animation_speed = 5.0
+emerge_animation_speed = 2.5
+metadata/_custom_type_script = "uid://buli50qx5r0cl"

@@ -3,126 +3,235 @@
 [ext_resource type="SpriteFrames" uid="uid://cwbfrgxwmm0fn" path="res://gameplay/monsters/neck/neck_frames.tres" id="1_w8ypy"]
 [ext_resource type="Script" uid="uid://c8rpitk812dso" path="res://gameplay/monsters/neck/neck.gd" id="1_xbart"]
 [ext_resource type="PackedScene" uid="uid://g2dy0aa22ajr" path="res://gameplay/monsters/neck/neck_hand.tscn" id="3_4g1r8"]
-[ext_resource type="Script" uid="uid://c0gsm2xw4y7gc" path="res://gameplay/monsters/neck/swooper.gd" id="6_jx50c"]
+[ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="4_7kli0"]
 
-[sub_resource type="Curve2D" id="Curve2D_7kli0"]
-_data = {
-"points": PackedVector2Array(-3.956892, -17.410324, 0, 15, -11, -28, -9.341644, -13.2753725, 9.341644, 13.2753725, 0, 0)
+[sub_resource type="Animation" id="Animation_xbart"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
-point_count = 2
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7kli0"]
-radius = 21.0
-
-[sub_resource type="Curve2D" id="Curve2D_xbart"]
-_data = {
-"points": PackedVector2Array(4.352581, -16.025412, 0, 15, 11, -27, 9.776903, -14.581147, -9.776903, 14.581147, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
-point_count = 2
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7kli0"]
-size = Vector2(102, 42)
+[sub_resource type="Animation" id="Animation_jx50c"]
+resource_name = "emerge_from_water"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Attack:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4g1r8"]
+resource_name = "finish_attack"
+length = 0.7
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"disappear"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7kli0"]
+resource_name = "go_underwater"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bkw3h"]
+resource_name = "start_attack"
+length = 0.7
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"appear"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Attack:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bkw3h"]
+_data = {
+&"RESET": SubResource("Animation_xbart"),
+&"emerge_from_water": SubResource("Animation_jx50c"),
+&"finish_attack": SubResource("Animation_4g1r8"),
+&"go_underwater": SubResource("Animation_7kli0"),
+&"start_attack": SubResource("Animation_bkw3h")
+}
 
 [node name="Neck" type="Node2D" unique_id=280957086]
 y_sort_enabled = true
 script = ExtResource("1_xbart")
-follow_speed = null
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1852924460]
 y_sort_enabled = true
 sprite_frames = ExtResource("1_w8ypy")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.124408446
+frame_progress = 0.39955592
 offset = Vector2(-1, -13)
 
-[node name="HandLeft" parent="." unique_id=435686791 instance=ExtResource("3_4g1r8")]
+[node name="SightCone" type="Area2D" parent="." unique_id=943019416]
+collision_layer = 0
+
+[node name="Shape" type="CollisionPolygon2D" parent="SightCone" unique_id=1213658513]
+polygon = PackedVector2Array(0, 0, -100, 250, 100, 250)
+
+[node name="LineOfSight" type="RayCast2D" parent="." unique_id=586921110]
+enabled = false
+collision_mask = 5
+collide_with_areas = true
+
+[node name="Hand" parent="." unique_id=435686791 instance=ExtResource("3_4g1r8")]
 position = Vector2(-25, -4)
 
-[node name="SpriteOrigin" parent="HandLeft" index="0" unique_id=1027217500]
+[node name="SpriteOrigin" parent="Hand" index="0" unique_id=1027217500]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(0, 16)
 
-[node name="Sprite" parent="HandLeft/SpriteOrigin" index="0" unique_id=1079599987]
+[node name="Sprite" parent="Hand/SpriteOrigin" index="0" unique_id=1079599987]
 frame = 2
 offset = Vector2(-5, -23)
 flip_h = true
 
-[node name="SpriteTop" parent="HandLeft/SpriteOrigin" index="1" unique_id=1375425638]
+[node name="SpriteTop" parent="Hand/SpriteOrigin" index="1" unique_id=1375425638]
 frame = 2
 offset = Vector2(-5, -23)
 flip_h = true
 
-[node name="GrabbedPlayerPosition" parent="HandLeft/SpriteOrigin" index="2" unique_id=787153564]
+[node name="GrabbedPlayerPosition" parent="Hand/SpriteOrigin" index="2" unique_id=787153564]
 position = Vector2(-7, 14)
 
-[node name="PreviewPlayer" parent="HandLeft/SpriteOrigin/GrabbedPlayerPosition" index="0" unique_id=1046530825]
+[node name="PreviewPlayer" parent="Hand/SpriteOrigin/GrabbedPlayerPosition" index="0" unique_id=1046530825]
 visible = false
 
-[node name="HandRight" parent="." unique_id=1168485841 instance=ExtResource("3_4g1r8")]
-position = Vector2(25, -4)
+[node name="UnderwaterCooldown" type="Timer" parent="." unique_id=957085707]
+wait_time = 10.0
+one_shot = true
 
-[node name="SpriteOrigin" parent="HandRight" index="0" unique_id=1027217500]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(0, 16)
+[node name="AttackTimer" type="Timer" parent="." unique_id=2137503943]
+one_shot = true
 
-[node name="Sprite" parent="HandRight/SpriteOrigin" index="0" unique_id=1079599987]
-frame = 2
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=1688676486]
+libraries/ = SubResource("AnimationLibrary_bkw3h")
 
-[node name="SpriteTop" parent="HandRight/SpriteOrigin" index="1" unique_id=1375425638]
-frame = 2
+[node name="Attack" type="AudioStreamPlayer2D" parent="." unique_id=165071334]
+stream = ExtResource("4_7kli0")
+volume_db = -15.0
+max_distance = 300.0
+bus = &"SFX"
 
-[node name="PreviewPlayer" parent="HandRight/SpriteOrigin/GrabbedPlayerPosition" parent_id_path=PackedInt32Array(1168485841, 787153564) index="0" unique_id=1046530825]
-visible = false
+[connection signal="area_entered" from="SightCone" to="." method="_sight_cone_entered"]
+[connection signal="area_exited" from="SightCone" to="." method="_sight_cone_exited"]
+[connection signal="timeout" from="AttackTimer" to="." method="_attack_timer_finished"]
+[connection signal="animation_finished" from="Animations" to="." method="_animation_finished"]
 
-[node name="LeftSwoop" type="Path2D" parent="." unique_id=1013979636]
-position = Vector2(-32, 0)
-curve = SubResource("Curve2D_7kli0")
-
-[node name="LeftSwooper" type="PathFollow2D" parent="LeftSwoop" unique_id=1399289905]
-position = Vector2(0, -2.3841858e-07)
-progress = 59.4584
-rotates = false
-script = ExtResource("6_jx50c")
-
-[node name="HandPosition" type="RemoteTransform2D" parent="LeftSwoop/LeftSwooper" unique_id=616724356]
-position = Vector2(7, -4)
-remote_path = NodePath("../../../HandLeft")
-
-[node name="Killzone" type="Area2D" parent="LeftSwoop" unique_id=1235302809]
-
-[node name="Shape" type="CollisionShape2D" parent="LeftSwoop/Killzone" unique_id=479967459]
-shape = SubResource("CircleShape2D_7kli0")
-debug_color = Color(0.97155577, 0, 0.45039672, 0.41960785)
-
-[node name="RightSwoop" type="Path2D" parent="." unique_id=1761965129]
-position = Vector2(32, 0)
-curve = SubResource("Curve2D_xbart")
-
-[node name="RightSwooper" type="PathFollow2D" parent="RightSwoop" unique_id=290274050]
-position = Vector2(1.1920929e-07, -2.3841858e-07)
-progress = 59.4584
-rotates = false
-script = ExtResource("6_jx50c")
-
-[node name="HandPosition" type="RemoteTransform2D" parent="RightSwoop/RightSwooper" unique_id=1527706176]
-position = Vector2(-7, -4)
-remote_path = NodePath("../../../HandRight")
-
-[node name="Killzone" type="Area2D" parent="RightSwoop" unique_id=504089383]
-
-[node name="Shape" type="CollisionShape2D" parent="RightSwoop/Killzone" unique_id=2062229529]
-shape = SubResource("CircleShape2D_7kli0")
-debug_color = Color(0.97155577, 0, 0.45039672, 0.41960785)
-
-[node name="Dangerzone" type="Area2D" parent="." unique_id=1538975557]
-
-[node name="Shape" type="CollisionShape2D" parent="Dangerzone" unique_id=869220922]
-position = Vector2(0, 35)
-shape = SubResource("RectangleShape2D_7kli0")
-debug_color = Color(0.5906618, 0.5479349, 1.92523e-07, 0.41960785)
-
-[connection signal="body_entered" from="Dangerzone" to="." method="_on_dangerzone_entered"]
-
-[editable path="HandLeft"]
-[editable path="HandRight"]
+[editable path="Hand"]

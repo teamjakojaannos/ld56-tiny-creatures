@@ -1,162 +1,257 @@
 @tool
+class_name Neck
 extends Node2D
 
-@export var follow_speed: float = 60.0
+@export var attributes: NeckAttributes
+@export var path_follower: PathFollow2D
+@export var default_state_is_wait: bool = false
 
-@export_tool_button("Swoop Left")
-var debug_swoop_left = swoop_left
-@export_tool_button("Swoop Right")
-var debug_swoop_right = swoop_right
-@export_tool_button("Unswoop Left")
-var debug_unswoop_left = unswoop_left
-@export_tool_button("Unswoop Right")
-var debug_unswoop_right = unswoop_right
-var _is_swooping_left: bool = false
-var _is_swooping_right: bool = false
-var _left_offset: Vector2 = Vector2.ZERO
-var _right_offset: Vector2 = Vector2.ZERO
-var _cur_follow_speed: float = 0.0
+var detection_level: float = 0.0
+var can_go_underwater: bool:
+	get:
+		return _underwater_cooldown.is_stopped()
+var ai: NeckAiState
+var _water_splash: PackedScene = preload("uid://dx5xfep76dve6")
+var _target: Player
 
-@onready var _swooper_left: Swooper = $LeftSwoop/LeftSwooper
-@onready var _swooper_right: Swooper = $RightSwoop/RightSwooper
-@onready var _hand_left: NeckHand = $HandLeft
-@onready var _hand_right: NeckHand = $HandRight
-@onready var _left_pivot: Node2D = $LeftSwoop
-@onready var _right_pivot: Node2D = $RightSwoop
-@onready var _killzone_left: Area2D = $LeftSwoop/Killzone
-@onready var _killzone_right: Area2D = $RightSwoop/Killzone
-@onready var _dangerzone: Area2D = $Dangerzone
+@onready var _hand: NeckHand = $Hand
+@onready var _underwater_cooldown: Timer = $UnderwaterCooldown
+@onready var _animations: AnimationPlayer = $Animations
+@onready var _attack_timer: Timer = $AttackTimer
+@onready var _los: RayCast2D = $LineOfSight
 
 
 func _ready() -> void:
-	$Sprite.play("idle")
-	_hand_left.reset(false, false)
-	_hand_right.reset(false, false)
+	if not Engine.is_editor_hint():
+		$Sprite.play("idle")
+		$Hand.reset(false, false)
+
+	Signals.try_connect(_animations.animation_finished, _animation_finished)
+	Signals.try_connect($AttackTimer.timeout, _attack_timer_finished)
+
+	var sight_cone: Area2D = $SightCone
+	Signals.try_connect(sight_cone.area_entered, _sight_cone_entered)
+	Signals.try_connect(sight_cone.area_exited, _sight_cone_exited)
+
+	Signals.try_connect(Persistent.player_respawned, _player_respawned)
+
+	var attack_timer: Timer = $AttackTimer
+	attack_timer.wait_time = attributes.attack_time
+
+	ai = _default_state()
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
+	ai.do_update(self, delta)
+
+	if ai.should_tick_detection():
+		_update_detection(delta)
+
+	if _attack_timer and not _attack_timer.is_stopped():
+		_sync_hand_location(Persistent.player, 1.0 * delta)
+
+
+func roll_to_go_under_water(chance: float) -> bool:
+	if not can_go_underwater:
+		return false
+
+	var should_hide := randf() < chance
+	if should_hide:
+		go_underwater()
+		return true
+
+	return false
+
+
+func go_underwater(time_mult: float = 1.0) -> void:
+	var min_time := attributes.min_underwater_time
+	var max_time := attributes.max_underwater_time
+	var underwater_time := randf_range(min_time, max_time)
+	ai = NeckAiState.UnderwaterState.new(underwater_time * time_mult)
+	_animations.play("go_underwater")
+	_underwater_cooldown.start()
+
+
+func force_underwater() -> void:
+	_animations.play("go_underwater", -1, 1.0, true)
+	_animations.advance(0.0)
+
+
+func emerge_from_water_at_position(pos: float) -> void:
+	if path_follower:
+		path_follower.progress_ratio = pos
+
+	_animations.play("emerge_from_water", -1, attributes.emerge_animation_speed)
+
+
+func emerge_from_water_near_player() -> void:
+	var pos_ratio := _get_follower_progress_ratio_near_player()
+	emerge_from_water_at_position(pos_ratio)
+
+
+func play_attack_animation() -> void:
 	var player := Persistent.player
-	if _dangerzone.overlaps_body(player) and not player.is_dead:
-		_try_attack(player.global_position)
+	if player:
+		if _hand:
+			var flip_h := player.global_position.x < global_position.x
+			_hand.scale.x = -1 if flip_h else 1
 
-	if _is_swooping_left and not player.is_dead:
-		var pos := _left_pivot.global_position - _left_offset
-		var new_pos := pos.move_toward(player.global_position, delta * _cur_follow_speed)
-		_left_pivot.global_position = new_pos + _left_offset
-	if _is_swooping_right and not player.is_dead:
-		var pos := _right_pivot.global_position - _right_offset
-		var new_pos := pos.move_toward(player.global_position, delta * _cur_follow_speed)
-		_right_pivot.global_position = new_pos + _right_offset
+		if _water_splash:
+			var splash = _water_splash.instantiate()
+			get_parent().add_child(splash)
+			splash.global_position = player.global_position
 
+		player.is_slowed = true
+		_sync_hand_location(player, 1.0)
 
-func swoop_left() -> bool:
-	return await _swoop(_hand_left, _swooper_left, _killzone_left)
-
-
-func swoop_right() -> bool:
-	return await _swoop(_hand_right, _swooper_right, _killzone_right)
+	_animations.play("start_attack", -1, attributes.attack_animation_speed)
 
 
-func unswoop_left() -> void:
-	await _unswoop(_hand_left, _swooper_left)
+func _update_detection(delta) -> void:
+	var old_level := detection_level
+
+	var can_see_player := _raycast_to_player()
+	if can_see_player:
+		detection_level += attributes.detection_gain * delta
+	else:
+		detection_level -= attributes.detection_decay * delta
+
+	detection_level = clamp(detection_level, 0.0, 100.0)
+
+	if detection_level != old_level:
+		ai.detection_level_changed(self)
 
 
-func unswoop_right() -> void:
-	await _unswoop(_hand_right, _swooper_right)
+func _raycast_to_player() -> bool:
+	if not _target or _los:
+		return false
+
+	var player_pos: = _target.global_position
+	var target_pos := player_pos - _los.global_position
+	_los.target_position = target_pos
+
+	_los.force_raycast_update()
+	if not _los.is_colliding():
+		return false
+
+	var collider := _los.get_collider()
+	var can_see_player := collider is Player
+
+	return can_see_player
 
 
-func _try_attack(target: Vector2) -> void:
-	if _is_swooping_left or _is_swooping_right:
+func _default_state() -> NeckAiState:
+	if default_state_is_wait:
+		return NeckAiState.WaitForTriggerState.new()
+
+	return NeckAiState.MovementState.new(NeckAiState.Direction.FORWARD, attributes.speed)
+
+
+func _player_respawned() -> void:
+	_animations.play("emerge_from_water")
+	ai = _default_state()
+
+
+func _sight_cone_entered(body: Node2D) -> void:
+	if body is Player:
+		_target = body
+
+
+func _sight_cone_exited(body: Node2D) -> void:
+	if body is Player:
+		_target = null
+
+
+func _animation_finished(animation: String) -> void:
+	match animation:
+		"emerge_from_water":
+			_emerge_from_water_done()
+		"start_attack":
+			_attack_timer.start()
+		"finish_attack":
+			_attack_animation_done()
+		"go_underwater":
+			_go_underwater_animation_done()
+
+
+func _emerge_from_water_done() -> void:
+	var d = NeckAiState.Direction.FORWARD if randf() < 0.5 else NeckAiState.Direction.BACKWARD
+	ai = NeckAiState.MovementState.new(d, attributes.speed)
+
+
+func _attack_timer_finished() -> void:
+	_try_kill(Persistent.player)
+	_animations.play("finish_attack")
+	_hand.grab()
+
+
+func _attack_animation_done() -> void:
+	var player := Persistent.player
+	if player:
+		player.is_slowed = false
+		go_underwater(0.25)
+		_hand.disappear()
+
+
+func _go_underwater_animation_done() -> void:
+	var player := Persistent.player
+
+	# Player is dead, stay underwater
+	if player and player.is_dead:
 		return
 
-	_is_swooping_left = true
-	_is_swooping_right = true
-
-	_left_offset = Vector2.LEFT * (16.0 + randf() * 48.0)
-	var left_pos := target + _left_offset
-	_left_pivot.global_position = left_pos
-
-	_right_offset = Vector2.RIGHT * (16.0 + randf() * 48.0)
-	var right_pos := target + _right_offset
-	_right_pivot.global_position = right_pos
-
-	_cur_follow_speed = follow_speed
-	var t = create_tween()
-	t.tween_property(self, "_cur_follow_speed", 0.0, 1.5)
-
-	get_tree().create_timer(0.1).timeout.connect(
-		func():
-			await _do_swoop(_hand_left, swoop_left, unswoop_left)
-			_is_swooping_left = false
-	)
-	get_tree().create_timer(0.1).timeout.connect(
-		func():
-			await _do_swoop(_hand_right, swoop_right, unswoop_right)
-			_is_swooping_right = false
-	)
+	if ai is NeckAiState.UnderwaterState:
+		ai.animation_done = true
 
 
-func _do_swoop(
-		hand: NeckHand,
-		swoop_fn: Callable,
-		unswoop_fn: Callable,
-) -> void:
-	var is_hit = await swoop_fn.call()
-	if is_hit:
-		await _hit(hand)
-	else:
-		await get_tree().create_timer(0.5).timeout
-		await unswoop_fn.call()
+func _sync_hand_location(player: Player, delta: float) -> void:
+	if not _hand:
+		return
+
+	var pos := _hand.global_position
+	var distance := pos.distance_to(player.global_position)
+	_hand.global_position = pos.move_toward(player.global_position, distance * delta)
 
 
-func _hit(hand: NeckHand) -> void:
-	var pivot := hand.player_pivot
+func _try_kill(player: Player) -> void:
+	if not _hand.is_player_in_danger:
+		return
 
-	Persistent.main_camera.detach_from_player()
-
-	var player := Persistent.player
-	player.reparent(pivot, false)
+	_sync_hand_location(player, 1.0)
+	player.reparent(_hand.player_pivot, false)
 	player.position = Vector2.ZERO
+
 	player.is_in_trouble = true
 	player.die()
 
-	get_tree().create_timer(3.0).timeout.connect(hand.disappear)
-	# HACK: wait a moment for the animations to finish or tweeners will be in funky states
-	await get_tree().create_timer(2.5).timeout
 
-	Persistent.reset_player_to_hub()
-	await Persistent.player_respawning
+func _get_follower_progress_ratio_near_player() -> float:
+	if not path_follower:
+		return randf()
 
-	Persistent.main_camera.attach_to_player()
-
-	_hand_left.reset(false, false)
-	_swooper_left.reset(false)
-	_hand_right.reset(false, false)
-	_swooper_right.reset(false)
-
-	_is_swooping_left = false
-	_is_swooping_right = false
-
-
-func _swoop(hand: NeckHand, swooper: Swooper, killzone: Area2D) -> bool:
-	hand.reset(false, false)
-	swooper.reset(false)
-
-	await hand.appear()
-
-	swooper.swoop()
-
-	await hand.grab()
+	var parent = path_follower.get_parent()
+	if parent is not Path2D:
+		return randf()
+	var path: Path2D = parent
 
 	var player := Persistent.player
-	return killzone.overlaps_body(player)
+	if not player:
+		return randf()
 
+	var player_pos := player.global_position
 
-func _unswoop(hand: NeckHand, swooper: Swooper) -> void:
-	hand.reset(true, true)
-	swooper.reset(true)
+	var points = path.curve.get_baked_points()
+	var first: Vector2 = points[0] + path.global_position
+	var last: Vector2 = points[points.size() - 1] + path.global_position
 
-	await hand.disappear()
+	var min_x := minf(first.x, last.x)
+	var max_x := maxf(first.x, last.x)
+	var length := absf(max_x - min_x)
+	if length == 0.0:
+		return randf()
+
+	var progress := (player_pos.x - min_x) / length
+	return clampf(progress, 0.0, 1.0)

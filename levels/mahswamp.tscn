@@ -36,15 +36,16 @@
 [ext_resource type="Script" uid="uid://d3ikspdwij5j7" path="res://gameplay/misc/swamp/snail_dialogue.gd" id="34_axpkq"]
 [ext_resource type="Script" uid="uid://bpqskmnis7fey" path="res://gameplay/wisp_position.gd" id="35_axpkq"]
 [ext_resource type="Texture2D" uid="uid://byyt6gntc3yw1" path="res://Characters/etana.png" id="36_axpkq"]
-[ext_resource type="PackedScene" uid="uid://lqgrfvh7c3b0" path="res://mobs/bog_monster.tscn" id="36_i1gca"]
 [ext_resource type="Texture2D" uid="uid://bime6a1p6yjmm" path="res://Characters/shadow.png" id="37_csc8o"]
 [ext_resource type="Texture2D" uid="uid://c0r0ilbgl1mtu" path="res://gameplay/monsters/neck/neck.png" id="39_7p256"]
+[ext_resource type="PackedScene" uid="uid://bt477bud51y3h" path="res://gameplay/monsters/neck/neck.tscn" id="40_1ojyh"]
 [ext_resource type="PackedScene" uid="uid://c6q3aycuacspl" path="res://gameplay/objectives/spirit_lantern.tscn" id="40_iht3d"]
 [ext_resource type="Script" uid="uid://dlwkg1ib8hdes" path="res://gameplay/misc/swamp/watch_out_monster.gd" id="41_axpkq"]
+[ext_resource type="Resource" uid="uid://c1wq1dg7scydf" path="res://gameplay/monsters/neck/attributes/stationary.tres" id="41_crlco"]
 [ext_resource type="Script" uid="uid://mpgp8undemqv" path="res://gameplay/misc/swamp/creepy_statue.gd" id="42_axpkq"]
 [ext_resource type="Texture2D" uid="uid://bdq24yqlpo8lb" path="res://environment/swamp/ryhmahauta.png" id="42_j2828"]
 [ext_resource type="Script" uid="uid://br4kgbblurd6h" path="res://gameplay/misc/swamp/swamp_exit_too_soon.gd" id="44_t7ybm"]
-[ext_resource type="Resource" uid="uid://cu2rxvl4dhjsk" path="res://mobs/nakki/nakki_stationary_stats.tres" id="49_6hpki"]
+[ext_resource type="Resource" uid="uid://dh4kqtkmaj7cp" path="res://gameplay/monsters/neck/attributes/moving.tres" id="48_j2828"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf1mt"]
 radius = 107.0
@@ -77,7 +78,7 @@ radius = 56.0089
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5gve"]
 size = Vector2(25, 5.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7p256"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aeeyx"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -88,7 +89,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1ojyh"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_lara4"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -152,12 +153,6 @@ size = Vector2(21.8097, 5.23373)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js3x6"]
 size = Vector2(986, 36.5961)
-
-[sub_resource type="Curve2D" id="Curve2D_5t27y"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0)
-}
-point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ub25o"]
 resource_local_to_scene = true
@@ -4978,6 +4973,7 @@ polygon = PackedVector2Array(1113, -20, 1118, -40, 1151, -17, 1219, -42, 1224, -
 polygon = PackedVector2Array(-546, 27, -425, 31, -101, 234, 30, 289, 104, 288, 124, 209, 202, 232, 137, 361, 113, 446, -522, 408)
 
 [node name="PlayerStart" type="Marker2D" parent="." unique_id=1356800316 groups=["PlayerSpawn"]]
+y_sort_enabled = true
 position = Vector2(-422, -581)
 
 [node name="NpcSnail" type="Area2D" parent="." unique_id=1814767096]
@@ -5027,7 +5023,7 @@ location = "suosaari"
 
 [node name="Trigger" parent="SpiritLantern (suosaari)" index="1" unique_id=480170960]
 position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_7p256")
+shape = SubResource("CircleShape2D_aeeyx")
 
 [node name="SpiritPath" parent="SpiritLantern (suosaari)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
@@ -5037,7 +5033,7 @@ position = Vector2(546, 4)
 location = "suo_etelä"
 
 [node name="Trigger" parent="SpiritLantern (suo_etelä)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_1ojyh")
+shape = SubResource("CircleShape2D_lara4")
 
 [node name="SpiritPath" parent="SpiritLantern (suo_etelä)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
@@ -5103,17 +5099,15 @@ shape = SubResource("RectangleShape2D_fbene")
 position = Vector2(654, 324.298)
 shape = SubResource("RectangleShape2D_js3x6")
 
-[node name="StationaryNakki" parent="." unique_id=1126536096 instance=ExtResource("36_i1gca")]
-position = Vector2(448.216, -160.421)
-curve = SubResource("Curve2D_5t27y")
+[node name="StationaryNeck" parent="." unique_id=280957086 instance=ExtResource("40_1ojyh")]
+position = Vector2(449, -147)
+attributes = ExtResource("41_crlco")
+default_state_is_wait = true
 
-[node name="BogMonsterEntity" parent="StationaryNakki" index="0" unique_id=1947887033]
-Stats = ExtResource("49_6hpki")
-defaultStateIsWaitForTrigger = true
-
-[node name="WatchOutMonster" type="Area2D" parent="." unique_id=2053750236]
+[node name="WatchOutMonster" type="Area2D" parent="." unique_id=2053750236 node_paths=PackedStringArray("neck")]
 position = Vector2(333, -143)
 script = ExtResource("41_axpkq")
+neck = NodePath("../StationaryNeck")
 metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
 [node name="Trigger" type="CollisionShape2D" parent="WatchOutMonster" unique_id=2135648073]
@@ -5140,9 +5134,22 @@ debug_color = Color(0.332261, 0.488051, 1, 0.42)
 texture = ExtResource("42_j2828")
 offset = Vector2(0, -37)
 
-[node name="BogMonster2" parent="." unique_id=1495449576 instance=ExtResource("36_i1gca")]
+[node name="MovingNeckPath" type="Path2D" parent="." unique_id=1495449576]
 position = Vector2(659.237, -200.745)
 curve = SubResource("Curve2D_4fpn1")
+
+[node name="Follower" type="PathFollow2D" parent="MovingNeckPath" unique_id=1350656544]
+rotates = false
+loop = false
+
+[node name="MovingNeckPosition" type="RemoteTransform2D" parent="MovingNeckPath/Follower" unique_id=1679176256]
+position = Vector2(1, 13)
+remote_path = NodePath("../../../MovingNeck")
+
+[node name="MovingNeck" parent="." unique_id=98049395 node_paths=PackedStringArray("path_follower") instance=ExtResource("40_1ojyh")]
+position = Vector2(660.237, -187.745)
+attributes = ExtResource("48_j2828")
+path_follower = NodePath("../MovingNeckPath/Follower")
 
 [node name="SwampExitTooSoon" type="Area2D" parent="." unique_id=887546474]
 position = Vector2(-444, -67)
@@ -5180,4 +5187,3 @@ metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
 [editable path="SpiritLantern (suosaari)"]
 [editable path="SpiritLantern (suo_etelä)"]
-[editable path="StationaryNakki"]

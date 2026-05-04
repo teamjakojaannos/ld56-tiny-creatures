@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="NeckAttributes" format=3 uid="uid://dh4kqtkmaj7cp"]
+
+[ext_resource type="Script" uid="uid://buli50qx5r0cl" path="res://gameplay/monsters/neck/neck_attributes.gd" id="1_nyhgq"]
+
+[resource]
+script = ExtResource("1_nyhgq")
+alert_threshold = 20.0
+metadata/_custom_type_script = "uid://buli50qx5r0cl"
