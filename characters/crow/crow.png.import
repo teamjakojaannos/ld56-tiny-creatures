@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdg318iofalvg"
-path="res://.godot/imported/Harakka.png-4268ddf4b3803e3bf07b85ac6303fcea.ctex"
+path="res://.godot/imported/crow.png-be019aa9821eb92d48a76b1d1f7284a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/Harakka.png"
-dest_files=["res://.godot/imported/Harakka.png-4268ddf4b3803e3bf07b85ac6303fcea.ctex"]
+source_file="res://characters/crow/crow.png"
+dest_files=["res://.godot/imported/crow.png-be019aa9821eb92d48a76b1d1f7284a8.ctex"]
 
 [params]
 

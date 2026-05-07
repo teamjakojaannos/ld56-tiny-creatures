@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbjneumbl2cxk"
-path="res://.godot/imported/IsopuuIso.png-b78dc4acbe7d3bbe713434e60d8ac39b.ctex"
+uid="uid://byyt6gntc3yw1"
+path="res://.godot/imported/etana.png-bb47537e9124a4e6cae83a50223179fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://archive/IsopuuIso.png"
-dest_files=["res://.godot/imported/IsopuuIso.png-b78dc4acbe7d3bbe713434e60d8ac39b.ctex"]
+source_file="res://characters/slimak/etana.png"
+dest_files=["res://.godot/imported/etana.png-bb47537e9124a4e6cae83a50223179fe.ctex"]
 
 [params]
 

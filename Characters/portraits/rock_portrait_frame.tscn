@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://vtuy0o27q8p3"]
-
-[ext_resource type="PackedScene" uid="uid://dva0mxjbjqfxy" path="res://Characters/portraits/TEMPLATE_character_portrait.tscn" id="1_dik25"]
-[ext_resource type="Texture2D" uid="uid://qhxoo20uwhxk" path="res://environment/rocks/kiviaki_kiinnostaa.png" id="2_awjpr"]
-
-[node name="Container" unique_id=2053344940 instance=ExtResource("1_dik25")]
-
-[node name="Character" parent="PortraitFrame" index="0"]
-texture = ExtResource("2_awjpr")
