@@ -100,7 +100,7 @@ class AttackState extends NeckAiState:
 	func do_update(neck: Neck, _delta: float) -> void:
 		if not _animation_playing:
 			_animation_playing = true
-			neck.play_attack_animation()
+			neck.do_attack()
 
 
 	func detection_level_changed(_neck: Neck) -> void:

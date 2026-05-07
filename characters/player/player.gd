@@ -24,7 +24,7 @@ var move_speed_modifier: float:
 var can_move: bool:
 	get:
 		return not is_dead \
-		&& not Conversation.is_in_conversation
+				&& not Conversation.is_in_conversation
 
 @onready var rig: PlayerSprite = $Sprite
 
@@ -85,6 +85,9 @@ func die(force: bool = false) -> void:
 
 	is_dead = true
 	dead.emit()
+
+	await get_tree().create_timer(1.0).timeout
+	Persistent.reset_player_to_hub()
 
 
 func _process_movement(input_dir: Vector2, delta: float) -> void:

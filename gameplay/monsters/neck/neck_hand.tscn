@@ -5,6 +5,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dbb212kxuqfob" path="res://gameplay/monsters/neck/neck_hand_top_frames.tres" id="3_enp15"]
 [ext_resource type="Texture2D" uid="uid://deaxntv27j776" path="res://characters/player/visuals/player_in_trouble.png" id="4_rc6nn"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrkuo"]
+radius = 22.0
+
 [node name="NeckHand" type="Node2D" unique_id=435686791]
 y_sort_enabled = true
 script = ExtResource("1_wrkuo")
@@ -32,3 +35,10 @@ position = Vector2(7, 14)
 y_sort_enabled = true
 texture = ExtResource("4_rc6nn")
 offset = Vector2(0, -22.5)
+
+[node name="Dangerzone" type="Area2D" parent="." unique_id=956932006]
+
+[node name="Shape" type="CollisionShape2D" parent="Dangerzone" unique_id=1891857553]
+position = Vector2(7, 2)
+shape = SubResource("CircleShape2D_wrkuo")
+debug_color = Color(0.9910781, 0.069441795, 0.1546672, 0.41960785)

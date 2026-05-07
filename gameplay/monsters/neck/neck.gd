@@ -13,12 +13,13 @@ var can_go_underwater: bool:
 var ai: NeckAiState
 var _water_splash: PackedScene = preload("uid://dx5xfep76dve6")
 var _target: Player
+var _is_attack_in_progress: bool = false
 
 @onready var _hand: NeckHand = $Hand
 @onready var _underwater_cooldown: Timer = $UnderwaterCooldown
 @onready var _animations: AnimationPlayer = $Animations
-@onready var _attack_timer: Timer = $AttackTimer
 @onready var _los: RayCast2D = $LineOfSight
+@onready var _attack_sfx: AudioStreamPlayer2D = $Attack
 
 
 func _ready() -> void:
@@ -26,17 +27,10 @@ func _ready() -> void:
 		$Sprite.play("idle")
 		$Hand.reset(false, false)
 
-	Signals.try_connect(_animations.animation_finished, _animation_finished)
-	Signals.try_connect($AttackTimer.timeout, _attack_timer_finished)
-
-	var sight_cone: Area2D = $SightCone
-	Signals.try_connect(sight_cone.area_entered, _sight_cone_entered)
-	Signals.try_connect(sight_cone.area_exited, _sight_cone_exited)
-
 	Signals.try_connect(Persistent.player_respawned, _player_respawned)
-
-	var attack_timer: Timer = $AttackTimer
-	attack_timer.wait_time = attributes.attack_time
+	Signals.try_connect($Animations.animation_finished, _animation_finished)
+	Signals.try_connect($SightCone.body_entered, _sight_cone_entered)
+	Signals.try_connect($SightCone.body_exited, _sight_cone_exited)
 
 	ai = _default_state()
 
@@ -50,8 +44,9 @@ func _physics_process(delta: float) -> void:
 	if ai.should_tick_detection():
 		_update_detection(delta)
 
-	if _attack_timer and not _attack_timer.is_stopped():
-		_sync_hand_location(Persistent.player, 1.0 * delta)
+	var player = Persistent.player
+	if _is_attack_in_progress and not player.is_dead:
+		_sync_hand_location(player, 1.0 * delta)
 
 
 func roll_to_go_under_water(chance: float) -> bool:
@@ -92,22 +87,47 @@ func emerge_from_water_near_player() -> void:
 	emerge_from_water_at_position(pos_ratio)
 
 
-func play_attack_animation() -> void:
+func do_attack() -> void:
 	var player := Persistent.player
-	if player:
-		if _hand:
-			var flip_h := player.global_position.x < global_position.x
-			_hand.scale.x = -1 if flip_h else 1
+	if not player or player.is_dead or player.is_in_trouble:
+		return
 
-		if _water_splash:
-			var splash = _water_splash.instantiate()
-			get_parent().add_child(splash)
-			splash.global_position = player.global_position
+	if _is_attack_in_progress:
+		return
 
-		player.is_slowed = true
-		_sync_hand_location(player, 1.0)
+	_is_attack_in_progress = true
 
-	_animations.play("start_attack", -1, attributes.attack_animation_speed)
+	# Position hand
+	var flip_h := player.global_position.x < global_position.x
+	_hand.scale.x = -1 if flip_h else 1
+	_sync_hand_location(player, 1.0)
+
+	# Spawn water splash
+	var splash = _water_splash.instantiate()
+	get_parent().add_child(splash)
+	splash.global_position = player.global_position
+
+	# Start the attack sequence
+	player.is_slowed = true
+	await _hand.appear()
+	_attack_sfx.play()
+
+	# Wait a moment to give player time to react
+	await get_tree().create_timer(attributes.attack_time).timeout
+
+	# KILL KILL KILL
+	await _hand.grab()
+	player.is_slowed = false
+	_try_kill(player)
+
+	# Delay so player has time to process what happened
+	await get_tree().create_timer(1.5).timeout
+
+	# Finish the attack. If player is grabbed, they are reparented to the hand
+	# and will disappear alongside the hand.
+	go_underwater(0.25)
+	await _hand.disappear()
+	_is_attack_in_progress = false
 
 
 func _update_detection(delta) -> void:
@@ -126,7 +146,7 @@ func _update_detection(delta) -> void:
 
 
 func _raycast_to_player() -> bool:
-	if not _target or _los:
+	if not _target or not _los:
 		return false
 
 	var player_pos: = _target.global_position
@@ -169,31 +189,21 @@ func _animation_finished(animation: String) -> void:
 	match animation:
 		"emerge_from_water":
 			_emerge_from_water_done()
-		"start_attack":
-			_attack_timer.start()
-		"finish_attack":
-			_attack_animation_done()
 		"go_underwater":
 			_go_underwater_animation_done()
+		_:
+			pass
 
 
 func _emerge_from_water_done() -> void:
 	var d = NeckAiState.Direction.FORWARD if randf() < 0.5 else NeckAiState.Direction.BACKWARD
-	ai = NeckAiState.MovementState.new(d, attributes.speed)
-
-
-func _attack_timer_finished() -> void:
-	_try_kill(Persistent.player)
-	_animations.play("finish_attack")
-	_hand.grab()
-
-
-func _attack_animation_done() -> void:
-	var player := Persistent.player
-	if player:
-		player.is_slowed = false
-		go_underwater(0.25)
-		_hand.disappear()
+	if path_follower:
+		ai = NeckAiState.MovementState.new(d, attributes.speed)
+	else:
+		var min_time := attributes.min_idle_time
+		var max_time := attributes.max_idle_time
+		var time := randf_range(min_time, max_time)
+		ai = NeckAiState.IdleState.new(time, d)
 
 
 func _go_underwater_animation_done() -> void:
@@ -220,7 +230,6 @@ func _try_kill(player: Player) -> void:
 	if not _hand.is_player_in_danger:
 		return
 
-	_sync_hand_location(player, 1.0)
 	player.reparent(_hand.player_pivot, false)
 	player.position = Vector2.ZERO
 

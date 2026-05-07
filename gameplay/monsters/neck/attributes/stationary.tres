@@ -17,7 +17,5 @@ max_idle_time = 10.0
 emerge_at_player_chance = 0.0
 emerge_at_same_location_chance = 1.0
 alert_threshold = 200.0
-attack_time = 0.1
-attack_animation_speed = 5.0
 emerge_animation_speed = 2.5
 metadata/_custom_type_script = "uid://buli50qx5r0cl"

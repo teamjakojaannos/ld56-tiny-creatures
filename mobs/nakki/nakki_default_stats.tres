@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="BogMonsterStats" format=3 uid="uid://clyis4j0lhx0d"]
-
-[ext_resource type="Script" uid="uid://brdes8yg3h2dy" path="res://mobs/BogMonsterStats.cs" id="1_us665"]
-
-[resource]
-script = ExtResource("1_us665")
-alertThreshold = 20.0

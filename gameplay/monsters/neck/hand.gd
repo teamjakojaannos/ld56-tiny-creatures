@@ -8,12 +8,16 @@ var debug_grab = grab
 var debug_appear = appear
 @export_tool_button("Disappear")
 var debug_disappear = disappear
+var is_player_in_danger: bool:
+	get:
+		return _dangerzone.overlaps_body(Persistent.player)
 var _tween: Tween
 
 @onready var sprite_origin: Node2D = $SpriteOrigin
 @onready var sprite: AnimatedSprite2D = $SpriteOrigin/Sprite
 @onready var sprite_top: AnimatedSprite2D = $SpriteOrigin/SpriteTop
 @onready var player_pivot: Node2D = $SpriteOrigin/GrabbedPlayerPosition
+@onready var _dangerzone: Area2D = $Dangerzone
 
 
 func _ready() -> void:

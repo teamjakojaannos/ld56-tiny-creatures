@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dqmcerhi4wqpl"]
 
-[ext_resource type="Script" uid="uid://ben7tsyxrttyu" path="res://hidden_in_editor.gd" id="1_chwgl"]
 [ext_resource type="PackedScene" uid="uid://bm0s5e11ef8rh" path="res://levels/BigForest.tscn" id="2_q4msv"]
 [ext_resource type="Texture2D" uid="uid://d4avnjhpk3q71" path="res://environment/background/gradient.png" id="2_uyh0o"]
 [ext_resource type="PackedScene" uid="uid://c3kraya2m5ti6" path="res://levels/hubarea.tscn" id="3_fayk7"]
@@ -211,16 +210,6 @@ metadata/_edit_lock_ = true
 position = Vector2(-730, 215)
 metadata/_edit_lock_ = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1236587131]
-visible = false
-position = Vector2(-486, -508)
-scale = Vector2(2, 2)
-color = Color(0.0474933, 0.0432, 0.08, 1)
-script = ExtResource("1_chwgl")
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=843570143]
-energy = 0.15
-
 [node name="MAHSWAMP" parent="." unique_id=581989962 instance=ExtResource("7_h7nj4")]
 position = Vector2(591, -186)
 metadata/_edit_lock_ = true
@@ -344,6 +333,7 @@ position = Vector2(-5, -6817)
 
 [connection signal="body_entered" from="SwampShortcutTrigger" to="SwampShortcutTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="SwampShortcutTrigger" to="SwampShortcutTrigger" method="_on_body_exited"]
+[connection signal="player_entered" from="SwampShortcutTrigger" to="SwampShortcutTrigger" method="_on_player_entered"]
 [connection signal="body_entered" from="SwampToHubShortcutTrigger" to="SwampToHubShortcutTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="SwampToHubShortcutTrigger" to="SwampToHubShortcutTrigger" method="_on_body_exited"]
 

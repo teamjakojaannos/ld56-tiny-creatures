@@ -83,24 +83,6 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_4g1r8"]
-resource_name = "finish_attack"
-length = 0.7
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hand")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"disappear"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_7kli0"]
 resource_name = "go_underwater"
 tracks/0/type = "value"
@@ -128,43 +110,11 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bkw3h"]
-resource_name = "start_attack"
-length = 0.7
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hand")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"appear"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Attack:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bkw3h"]
 _data = {
 &"RESET": SubResource("Animation_xbart"),
 &"emerge_from_water": SubResource("Animation_jx50c"),
-&"finish_attack": SubResource("Animation_4g1r8"),
-&"go_underwater": SubResource("Animation_7kli0"),
-&"start_attack": SubResource("Animation_bkw3h")
+&"go_underwater": SubResource("Animation_7kli0")
 }
 
 [node name="Neck" type="Node2D" unique_id=280957086]
@@ -183,6 +133,7 @@ offset = Vector2(-1, -13)
 collision_layer = 0
 
 [node name="Shape" type="CollisionPolygon2D" parent="SightCone" unique_id=1213658513]
+position = Vector2(0, -32)
 polygon = PackedVector2Array(0, 0, -100, 250, 100, 250)
 
 [node name="LineOfSight" type="RayCast2D" parent="." unique_id=586921110]
@@ -217,9 +168,6 @@ visible = false
 wait_time = 10.0
 one_shot = true
 
-[node name="AttackTimer" type="Timer" parent="." unique_id=2137503943]
-one_shot = true
-
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=1688676486]
 libraries/ = SubResource("AnimationLibrary_bkw3h")
 
@@ -229,9 +177,8 @@ volume_db = -15.0
 max_distance = 300.0
 bus = &"SFX"
 
-[connection signal="area_entered" from="SightCone" to="." method="_sight_cone_entered"]
-[connection signal="area_exited" from="SightCone" to="." method="_sight_cone_exited"]
-[connection signal="timeout" from="AttackTimer" to="." method="_attack_timer_finished"]
+[connection signal="body_entered" from="SightCone" to="." method="_sight_cone_entered"]
+[connection signal="body_exited" from="SightCone" to="." method="_sight_cone_exited"]
 [connection signal="animation_finished" from="Animations" to="." method="_animation_finished"]
 
 [editable path="Hand"]

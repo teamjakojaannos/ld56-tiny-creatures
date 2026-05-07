@@ -8,7 +8,7 @@ func _ready() -> void:
 	Signals.try_connect(player_entered, _on_player_entered)
 
 
-func _on_player_entered() -> void:
+func _on_player_entered(_player: Player, _wisp: Wisp) -> void:
 	var _is_every_swamp_wisp_saved: bool = Persistent.wisps_saved >= 7
 	if _is_every_swamp_wisp_saved:
 		return

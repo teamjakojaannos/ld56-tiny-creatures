@@ -78,7 +78,7 @@ radius = 56.0089
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5gve"]
 size = Vector2(25, 5.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aeeyx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ojyh"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -89,7 +89,7 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lara4"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_crlco"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -156,7 +156,7 @@ size = Vector2(986, 36.5961)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ub25o"]
 resource_local_to_scene = true
-radius = 46.0109
+radius = 38.052597
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_axpkq"]
 resource_local_to_scene = true
@@ -4972,9 +4972,9 @@ polygon = PackedVector2Array(1113, -20, 1118, -40, 1151, -17, 1219, -42, 1224, -
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="SwampColliders" unique_id=1496365619]
 polygon = PackedVector2Array(-546, 27, -425, 31, -101, 234, 30, 289, 104, 288, 124, 209, 202, 232, 137, 361, 113, 446, -522, 408)
 
-[node name="PlayerStart" type="Marker2D" parent="." unique_id=1356800316 groups=["PlayerSpawn"]]
+[node name="PlayerStart" type="Marker2D" parent="." unique_id=1356800316 groups=["HubSpawn", "PlayerSpawn"]]
 y_sort_enabled = true
-position = Vector2(-422, -581)
+position = Vector2(260, -219)
 
 [node name="NpcSnail" type="Area2D" parent="." unique_id=1814767096]
 y_sort_enabled = true
@@ -5023,7 +5023,7 @@ location = "suosaari"
 
 [node name="Trigger" parent="SpiritLantern (suosaari)" index="1" unique_id=480170960]
 position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_aeeyx")
+shape = SubResource("CircleShape2D_1ojyh")
 
 [node name="SpiritPath" parent="SpiritLantern (suosaari)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
@@ -5033,7 +5033,7 @@ position = Vector2(546, 4)
 location = "suo_etelä"
 
 [node name="Trigger" parent="SpiritLantern (suo_etelä)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_lara4")
+shape = SubResource("CircleShape2D_crlco")
 
 [node name="SpiritPath" parent="SpiritLantern (suo_etelä)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_sjoxl")
@@ -5111,11 +5111,12 @@ neck = NodePath("../StationaryNeck")
 metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 
 [node name="Trigger" type="CollisionShape2D" parent="WatchOutMonster" unique_id=2135648073]
+position = Vector2(23, 13)
 shape = SubResource("CircleShape2D_ub25o")
 debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
 [node name="WispPosition" type="Marker2D" parent="WatchOutMonster" unique_id=1279379749 node_paths=PackedStringArray("trigger")]
-position = Vector2(76, -42)
+position = Vector2(77, -38)
 script = ExtResource("35_axpkq")
 trigger = NodePath("..")
 metadata/_custom_type_script = "uid://bpqskmnis7fey"

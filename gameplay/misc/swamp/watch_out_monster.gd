@@ -15,7 +15,7 @@ func _on_player_entered(_player: Player, _wisp: Wisp) -> void:
 	if not _is_first_time:
 		return
 
-	_is_first_time = true
+	_is_first_time = false
 	Conversation.begin(_conversation)
 
 	# HACK: the conversation has three lines, show monster on the last one

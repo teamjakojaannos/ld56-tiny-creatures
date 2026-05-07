@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dndpqcsyrj7s7"]
 
 [ext_resource type="Script" uid="uid://daif84oldhlid" path="res://managers/camera_manager.gd" id="1_umhha"]
+[ext_resource type="Script" uid="uid://ben7tsyxrttyu" path="res://hidden_in_editor.gd" id="2_revnl"]
 [ext_resource type="Script" uid="uid://b57htxmls512y" path="res://cinematic/screen_fader.gd" id="2_t2vug"]
 [ext_resource type="Script" uid="uid://ccxjfh6gwjqbc" path="res://utilities/shaker.gd" id="3_lqbif"]
 [ext_resource type="AudioStream" uid="uid://cj6rdnu57olcg" path="res://cinematic/isoaskel1.ogg" id="4_q7cwi"]
@@ -8,6 +9,16 @@
 [node name="CameraManager" type="Node2D" unique_id=1871712937 groups=["MainCamera"]]
 script = ExtResource("1_umhha")
 metadata/_custom_type_script = "uid://daif84oldhlid"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=212472113]
+visible = false
+position = Vector2(-486, -508)
+scale = Vector2(2, 2)
+color = Color(0.0474933, 0.0432, 0.08, 1)
+script = ExtResource("2_revnl")
+
+[node name="AmbientLight" type="DirectionalLight2D" parent="." unique_id=1188805845]
+energy = 0.15
 
 [node name="ScreenFader" type="CanvasLayer" parent="." unique_id=451443826]
 script = ExtResource("2_t2vug")
