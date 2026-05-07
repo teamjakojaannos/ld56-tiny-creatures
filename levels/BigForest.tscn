@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://t6lj2hn6mue7" path="res://gameplay/misc/forest/skull_stick.gd" id="23_toat2"]
 [ext_resource type="Texture2D" uid="uid://d1a4n5kclnp5p" path="res://gameplay/misc/forest/jokuhassuproppi_idk.png" id="24_7y1kb"]
 [ext_resource type="PackedScene" uid="uid://cektsywqa3k5v" path="res://characters/crow/npc_crow.tscn" id="31_8avri"]
+[ext_resource type="Script" uid="uid://k6paof6nnw5c" path="res://music/music_area.gd" id="33_qokuh"]
 [ext_resource type="PackedScene" uid="uid://dn0l286a1r8i7" path="res://Environment/puska.tscn" id="34_jlyps"]
 [ext_resource type="Script" uid="uid://db84q0o2plx4a" path="res://gameplay/touch_trigger.gd" id="37_7y1kb"]
 [ext_resource type="Script" uid="uid://fuxvwo4nad6i" path="res://gameplay/misc/forest/entering_swamp_too_soon.gd" id="37_hvsfi"]
@@ -55,7 +56,7 @@ source_geometry_mode = 2
 source_geometry_group_name = &"navmesh"
 agent_radius = 25.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_myhnb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0hnh"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -68,7 +69,7 @@ point_count = 8
 [sub_resource type="CircleShape2D" id="CircleShape2D_ibgb3"]
 radius = 46.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qokuh"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ns6m"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -78,7 +79,7 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u0hnh"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7y1kb"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -88,7 +89,7 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6ns6m"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hwnev"]
 resource_local_to_scene = true
 radius = 46.0435
 
@@ -2515,7 +2516,7 @@ metadata/_edit_lock_ = true
 position = Vector2(-1085, -624)
 
 [node name="Trigger" parent="SpiritLantern (kantolyhty)" index="1" unique_id=480170960]
-shape = SubResource("CircleShape2D_myhnb")
+shape = SubResource("CircleShape2D_u0hnh")
 
 [node name="SpiritPath" parent="SpiritLantern (kantolyhty)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_o8i5l")
@@ -2598,7 +2599,7 @@ location = "metsä_south"
 
 [node name="Trigger" parent="SpiritLantern (metsä_south)" index="1" unique_id=480170960]
 position = Vector2(-1, -6)
-shape = SubResource("CircleShape2D_qokuh")
+shape = SubResource("CircleShape2D_6ns6m")
 
 [node name="SpiritPath" parent="SpiritLantern (metsä_south)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_5s5rr")
@@ -2609,7 +2610,7 @@ location = "pulu"
 
 [node name="Trigger" parent="SpiritLantern (pulu)" index="1" unique_id=480170960]
 position = Vector2(-7, 2)
-shape = SubResource("CircleShape2D_u0hnh")
+shape = SubResource("CircleShape2D_7y1kb")
 
 [node name="SpiritPath" parent="SpiritLantern (pulu)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_18km7")
@@ -2620,7 +2621,7 @@ location = "metsä"
 
 [node name="Trigger" parent="SpiritLantern (metsä)" index="1" unique_id=480170960]
 position = Vector2(3, -7)
-shape = SubResource("CircleShape2D_6ns6m")
+shape = SubResource("CircleShape2D_hwnev")
 
 [node name="SpiritPath" parent="SpiritLantern (metsä)" index="3" unique_id=664202222]
 curve = SubResource("Curve2D_j7kq0")
@@ -2705,8 +2706,9 @@ rotation = -1.8326
 shape = SubResource("RectangleShape2D_7obqx")
 
 [node name="MuzakTrigger" parent="." unique_id=300872895 instance=ExtResource("38_82gr2")]
-visible = false
 position = Vector2(-37, 27)
+script = ExtResource("33_qokuh")
+track = 0
 
 [node name="CollisionShape2D" parent="MuzakTrigger" index="0" unique_id=81006674]
 position = Vector2(152, -265)

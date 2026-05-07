@@ -18,7 +18,7 @@ func _on_player_entered() -> void:
 
 	var is_objective_complete: bool = Persistent.wisps_saved == 7
 	if is_objective_complete:
-		Jukebox.SwitchTrack(4) # Credits music
+		Jukebox.switch_track(Jukebox.Track.Credits)
 		Persistent.player_controller.movement.is_allowed = false
 
 		Conversation.begin(_victory_conversation)

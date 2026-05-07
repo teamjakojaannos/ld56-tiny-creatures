@@ -529,10 +529,9 @@ metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 shape = SubResource("CircleShape2D_nyqg1")
 debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="WispPosition" type="Marker2D" parent="Statue" unique_id=1086182746 node_paths=PackedStringArray("trigger")]
+[node name="WispPosition" type="Marker2D" parent="Statue" unique_id=1086182746]
 position = Vector2(0, -53)
 script = ExtResource("17_21kqm")
-trigger = NodePath("..")
 metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Statue" unique_id=1423722454]
@@ -554,12 +553,9 @@ shape = SubResource("RectangleShape2D_5ele0")
 position = Vector2(3, 13)
 
 [node name="MuzakTrigger" parent="." unique_id=204526649 instance=ExtResource("12_p0n0e")]
-visible = false
 position = Vector2(10, 121)
-Music = 1
 
 [node name="CollisionShape2D" parent="MuzakTrigger" index="0" unique_id=81006674]
-visible = false
 position = Vector2(0, 34)
 shape = SubResource("CircleShape2D_ss1vx")
 
@@ -758,10 +754,6 @@ animation = "out_hupialue"
 
 [connection signal="body_entered" from="Statue" to="Statue" method="_on_body_entered"]
 [connection signal="body_exited" from="Statue" to="Statue" method="_on_body_exited"]
-[connection signal="player_entered" from="Statue" to="Statue" method="_on_player_entered"]
-[connection signal="player_entered" from="Statue" to="Statue/WispPosition" method="_on_player_entered"]
-[connection signal="player_exited" from="Statue" to="Statue" method="_on_player_exited"]
-[connection signal="player_exited" from="Statue" to="Statue/WispPosition" method="_on_player_exited"]
 [connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="EnterHubTrigger" to="EnterHubTrigger" method="_on_body_exited"]

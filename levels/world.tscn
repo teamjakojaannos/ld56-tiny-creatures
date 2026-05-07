@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqnpbajdyitec" path="res://levels/startingarea.tscn" id="4_n55f1"]
 [ext_resource type="PackedScene" uid="uid://coeua2ueyu3oa" path="res://levels/mahswamp.tscn" id="7_h7nj4"]
 [ext_resource type="PackedScene" uid="uid://cgl3kd7qf4amn" path="res://music/muzak_trigger.tscn" id="8_apjqm"]
+[ext_resource type="Script" uid="uid://k6paof6nnw5c" path="res://music/music_area.gd" id="8_mla2a"]
 [ext_resource type="Script" uid="uid://3g3r5wdu47jg" path="res://gameplay/misc/forest/swamp_shortcut_trigger.gd" id="9_54i5j"]
 [ext_resource type="PackedScene" uid="uid://cqq2ugabdph4k" path="res://Environment/big_stone.tscn" id="9_i1ql1"]
 [ext_resource type="Script" uid="uid://cxxfk8oudgcrs" path="res://gameplay/player_trigger_area_2d.gd" id="10_oxfhy"]
@@ -215,8 +216,9 @@ position = Vector2(591, -186)
 metadata/_edit_lock_ = true
 
 [node name="MuzakTrigger" parent="." unique_id=1279963589 instance=ExtResource("8_apjqm")]
-visible = false
 position = Vector2(116, -679)
+script = ExtResource("8_mla2a")
+track = 1
 
 [node name="CollisionShape2D" parent="MuzakTrigger" index="0" unique_id=81006674]
 position = Vector2(-94.5746, -19.2407)
@@ -225,18 +227,18 @@ shape = SubResource("RectangleShape2D_vohu8")
 debug_color = Color(0.870796, 0.266297, 0.579592, 0.42)
 
 [node name="MuzakTrigger2" parent="." unique_id=1966097287 instance=ExtResource("8_apjqm")]
-visible = false
 position = Vector2(305, -881)
-Music = 3
+script = ExtResource("8_mla2a")
+track = 4
 
 [node name="CollisionShape2D" parent="MuzakTrigger2" index="0" unique_id=81006674]
 shape = SubResource("CircleShape2D_cegll")
 debug_color = Color(0.876866, 0.252168, 0.589213, 0.42)
 
 [node name="MuzakTrigger3" parent="." unique_id=1510110190 instance=ExtResource("8_apjqm")]
-visible = false
 position = Vector2(1117, -418)
-Music = 2
+script = ExtResource("8_mla2a")
+track = 3
 
 [node name="CollisionShape2D" parent="MuzakTrigger3" index="0" unique_id=81006674]
 position = Vector2(67.8562, -26.1995)
@@ -245,9 +247,10 @@ shape = SubResource("RectangleShape2D_s2jur")
 debug_color = Color(0.896646, 0.237324, 0.535031, 0.42)
 
 [node name="MuzakTrigger (starting area)" parent="." unique_id=805811598 instance=ExtResource("8_apjqm")]
-visible = false
 position = Vector2(-661, 478)
 collision_layer = 0
+script = ExtResource("8_mla2a")
+track = 0
 
 [node name="CollisionShape2D" parent="MuzakTrigger (starting area)" index="0" unique_id=81006674]
 position = Vector2(16, -173.5)

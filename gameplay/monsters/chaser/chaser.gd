@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 	if _try_seek(monster, delta):
 		return
 
+	Jukebox.stop_chase()
 	_roam(monster, delta)
 
 
@@ -121,6 +122,7 @@ func _try_chase(monster: CharacterBody2D, player: Player, delta: float) -> bool:
 	if not _try_face_target(monster, delta):
 		return false
 
+	Jukebox.start_chase()
 	return _try_move()
 
 

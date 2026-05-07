@@ -1,44 +1,37 @@
 [gd_scene format=3 uid="uid://ccfpbd6r6ek72"]
 
+[ext_resource type="Script" uid="uid://bv0ix8pctboaf" path="res://music/jukebox.gd" id="1_80veq"]
 [ext_resource type="AudioStream" uid="uid://bes13ryernvjn" path="res://music/pornhubimusa.ogg" id="1_a553t"]
-[ext_resource type="Script" uid="uid://bl2cqf5qjnf4i" path="res://music/Jukebox.cs" id="1_kqeya"]
 [ext_resource type="AudioStream" uid="uid://ck0ul4q2cf13y" path="res://music/metsamusa.ogg" id="2_4a1vx"]
 [ext_resource type="AudioStream" uid="uid://dvsmqj05ptpdo" path="res://music/suomusiikkiV2.ogg" id="3_i10xf"]
 [ext_resource type="AudioStream" uid="uid://cd8asm3qotxca" path="res://music/velhopsykoosi.ogg" id="5_hb858"]
 [ext_resource type="AudioStream" uid="uid://bnoj0relh32hj" path="res://music/vaaramusaV2.ogg" id="6_4qtf4"]
 [ext_resource type="AudioStream" uid="uid://bu0cp5gpcb1bn" path="res://music/creditsmusic.ogg" id="7_oemhg"]
 
-[node name="Jukebox" type="Node2D" unique_id=325569028 node_paths=PackedStringArray("Metsämusa", "Pornhub", "Swhamp", "Psykoosi", "Credits", "Combat")]
-script = ExtResource("1_kqeya")
-FadeInSpeed = 0.1
-"Metsämusa" = NodePath("Metsamusa")
-Pornhub = NodePath("Pornhubimusa")
-Swhamp = NodePath("SuomusiikkiV2")
-Psykoosi = NodePath("Velhopsykoosi")
-Credits = NodePath("Creditsmusic")
-Combat = NodePath("VaaramusaV2")
+[node name="Jukebox" type="Node2D" unique_id=325569028]
+script = ExtResource("1_80veq")
 
-[node name="Pornhubimusa" type="AudioStreamPlayer" parent="." unique_id=1342060687]
+[node name="Hub" type="AudioStreamPlayer" parent="." unique_id=1342060687]
 stream = ExtResource("1_a553t")
 bus = &"Music"
 playback_type = 1
 
-[node name="Metsamusa" type="AudioStreamPlayer" parent="." unique_id=247485899]
+[node name="Forest" type="AudioStreamPlayer" parent="." unique_id=247485899]
 stream = ExtResource("2_4a1vx")
 bus = &"Music"
 
-[node name="SuomusiikkiV2" type="AudioStreamPlayer" parent="." unique_id=1670023255]
+[node name="Swamp" type="AudioStreamPlayer" parent="." unique_id=1670023255]
 stream = ExtResource("3_i10xf")
 bus = &"Music"
 
-[node name="Velhopsykoosi" type="AudioStreamPlayer" parent="." unique_id=297312867]
+[node name="Psychosis" type="AudioStreamPlayer" parent="." unique_id=297312867]
 stream = ExtResource("5_hb858")
 pitch_scale = 2.0
 bus = &"Music"
 
-[node name="VaaramusaV2" type="AudioStreamPlayer" parent="." unique_id=1097963667]
+[node name="Danger" type="AudioStreamPlayer" parent="." unique_id=1097963667]
 stream = ExtResource("6_4qtf4")
 bus = &"Music"
 
-[node name="Creditsmusic" type="AudioStreamPlayer" parent="." unique_id=1980111185]
+[node name="Credits" type="AudioStreamPlayer" parent="." unique_id=1980111185]
 stream = ExtResource("7_oemhg")
