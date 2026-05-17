@@ -26,13 +26,12 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		$Sprite.play("idle")
 		$Hand.reset(false, false)
+		ai = _default_state()
 
 	Signals.try_connect(Persistent.player_respawned, _player_respawned)
 	Signals.try_connect($Animations.animation_finished, _animation_finished)
 	Signals.try_connect($SightCone.body_entered, _sight_cone_entered)
 	Signals.try_connect($SightCone.body_exited, _sight_cone_exited)
-
-	ai = _default_state()
 
 
 func _physics_process(delta: float) -> void:
