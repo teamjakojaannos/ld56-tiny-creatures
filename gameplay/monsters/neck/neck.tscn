@@ -3,7 +3,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cwbfrgxwmm0fn" path="res://gameplay/monsters/neck/neck_frames.tres" id="1_w8ypy"]
 [ext_resource type="Script" uid="uid://c8rpitk812dso" path="res://gameplay/monsters/neck/neck.gd" id="1_xbart"]
 [ext_resource type="PackedScene" uid="uid://g2dy0aa22ajr" path="res://gameplay/monsters/neck/neck_hand.tscn" id="3_4g1r8"]
-[ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://mobs/nakki/nakkiattack.ogg" id="4_7kli0"]
+[ext_resource type="AudioStream" uid="uid://12bispf77dhc" path="res://gameplay/monsters/neck/nakkiattack.ogg" id="4_7kli0"]
 
 [sub_resource type="Animation" id="Animation_xbart"]
 length = 0.001

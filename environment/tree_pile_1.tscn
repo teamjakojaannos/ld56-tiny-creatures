@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://nqeqabuij5vq"]
 
-[ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://Environment/Tree2.tscn" id="1_64oya"]
-[ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://Environment/tree_1.tscn" id="2_pk8gs"]
+[ext_resource type="PackedScene" uid="uid://b5ecjvg27kdtr" path="res://environment/Tree2.tscn" id="1_64oya"]
+[ext_resource type="PackedScene" uid="uid://ipshuk80iqxa" path="res://environment/tree_1.tscn" id="2_pk8gs"]
 
 [node name="TreePile1" type="Node2D" unique_id=810817043]
 y_sort_enabled = true

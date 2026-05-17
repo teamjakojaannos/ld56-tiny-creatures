@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://docy2nqsx8p56" path="res://editor/editor_only.gd" id="5_ssx7r"]
 [ext_resource type="AudioStream" uid="uid://btqwfh2qajfp5" path="res://cinematic/bip1.ogg" id="5_t3d2a"]
 [ext_resource type="AudioStream" uid="uid://cklwljchbv4xl" path="res://cinematic/bip2.ogg" id="6_mrwub"]
-[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="6_qrwc5"]
-[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="7_b25v0"]
+[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://gameplay/objectives/LyhtyPohja1.png" id="6_qrwc5"]
+[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://gameplay/objectives/Lyhty.png" id="7_b25v0"]
 [ext_resource type="AudioStream" uid="uid://cmcv86kvp32ul" path="res://cinematic/randomaani.ogg" id="9_y4k7t"]
 [ext_resource type="AudioStream" uid="uid://3kxovh4nqxxy" path="res://cinematic/bip3.ogg" id="10_3pcu4"]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dx5xfep76dve6"]
 
-[ext_resource type="AudioStream" uid="uid://d7ythkgypxe3" path="res://mobs/nakki/stepwater5.ogg" id="1_m8vc0"]
+[ext_resource type="AudioStream" uid="uid://d7ythkgypxe3" path="res://gameplay/monsters/neck/stepwater5.ogg" id="1_m8vc0"]
 [ext_resource type="Texture2D" uid="uid://bmsmh4po2yjns" path="res://environment/background/big_patch_1b.png" id="2_iysyv"]
 
 [sub_resource type="Animation" id="Animation_n7t8s"]

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c5x36plj3n7yl" path="res://gameplay/objectives/spirit_lantern.gd" id="1_bhy3h"]
 [ext_resource type="Script" uid="uid://bpqskmnis7fey" path="res://gameplay/wisp_position.gd" id="2_7m81c"]
-[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://Environment/GameplayRoina/LyhtyPohja1.png" id="3_7m81c"]
-[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://Environment/GameplayRoina/Lyhty.png" id="4_jsrph"]
+[ext_resource type="Texture2D" uid="uid://c7ej6k1ois6ji" path="res://gameplay/objectives/LyhtyPohja1.png" id="3_7m81c"]
+[ext_resource type="Texture2D" uid="uid://bviaiban6lqyy" path="res://gameplay/objectives/Lyhty.png" id="4_jsrph"]
 [ext_resource type="SpriteFrames" uid="uid://d1hhxfg3klnqu" path="res://characters/spirit_sprite_frames.tres" id="5_66sfh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bw1ej"]

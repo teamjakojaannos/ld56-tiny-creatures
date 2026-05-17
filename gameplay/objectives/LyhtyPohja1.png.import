@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7ej6k1ois6ji"
-path="res://.godot/imported/LyhtyPohja1.png-556903a9e44d56e302fe888a0f6bfc09.ctex"
+path="res://.godot/imported/LyhtyPohja1.png-080333947438b1071460910424d003e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environment/GameplayRoina/LyhtyPohja1.png"
-dest_files=["res://.godot/imported/LyhtyPohja1.png-556903a9e44d56e302fe888a0f6bfc09.ctex"]
+source_file="res://gameplay/objectives/LyhtyPohja1.png"
+dest_files=["res://.godot/imported/LyhtyPohja1.png-080333947438b1071460910424d003e9.ctex"]
 
 [params]
 

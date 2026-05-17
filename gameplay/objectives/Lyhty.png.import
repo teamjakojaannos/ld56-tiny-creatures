@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7vwxtdhm67ao"
-path="res://.godot/imported/shadowpatch.png-1c42ce71e256158f41d0cda9df98f1b5.ctex"
+uid="uid://bviaiban6lqyy"
+path="res://.godot/imported/Lyhty.png-1f474460417d1dfdbb235271500c030b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environment/shadowpatch.png"
-dest_files=["res://.godot/imported/shadowpatch.png-1c42ce71e256158f41d0cda9df98f1b5.ctex"]
+source_file="res://gameplay/objectives/Lyhty.png"
+dest_files=["res://.godot/imported/Lyhty.png-1f474460417d1dfdbb235271500c030b.ctex"]
 
 [params]
 
