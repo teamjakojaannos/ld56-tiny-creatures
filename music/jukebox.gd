@@ -22,6 +22,9 @@ const ALL_TRACKS: Array[Track] = [
 @export var fade_in_speed := 0.05
 @export var fade_out_speed := 0.5
 
+var is_playing: bool:
+	get:
+		return ALL_TRACKS.any(is_track_playing)
 var _current_track: Track = Track.HUB
 var _is_in_combat = false
 
@@ -34,15 +37,8 @@ var _is_in_combat = false
 
 
 func _ready() -> void:
-	for track in ALL_TRACKS:
-		var stream := _get_stream_player(track)
-		if not track:
-			printerr("Missing track: %s" % track)
-			continue
-
-		stream.volume_db = linear_to_db(0.0)
-		if track == _current_track:
-			stream.play()
+	#_start_music.call_deferred()
+	pass
 
 
 func _process(delta: float) -> void:
@@ -74,6 +70,11 @@ func _process(delta: float) -> void:
 		_track_danger.stop()
 
 
+func is_track_playing(track: Track) -> bool:
+	var stream = _get_stream_player(track)
+	return stream.playing
+
+
 func switch_track(track: Track) -> void:
 	if _current_track == Track.CREDITS:
 		return
@@ -98,6 +99,11 @@ func start_chase() -> void:
 
 func stop_chase() -> void:
 	_is_in_combat = false
+
+
+func _start_music() -> void:
+	if not is_playing:
+		switch_track(_current_track)
 
 
 func _get_stream_player(track: Track) -> AudioStreamPlayer:

@@ -11,13 +11,17 @@
 [node name="Jukebox" type="Node2D" unique_id=325569028]
 script = ExtResource("1_80veq")
 
+[node name="Forest" type="AudioStreamPlayer" parent="." unique_id=247485899]
+stream = ExtResource("2_4a1vx")
+bus = &"Music"
+
 [node name="Hub" type="AudioStreamPlayer" parent="." unique_id=1342060687]
 stream = ExtResource("1_a553t")
 bus = &"Music"
 playback_type = 1
 
-[node name="Forest" type="AudioStreamPlayer" parent="." unique_id=247485899]
-stream = ExtResource("2_4a1vx")
+[node name="Danger" type="AudioStreamPlayer" parent="." unique_id=1097963667]
+stream = ExtResource("6_4qtf4")
 bus = &"Music"
 
 [node name="Swamp" type="AudioStreamPlayer" parent="." unique_id=1670023255]
@@ -27,10 +31,6 @@ bus = &"Music"
 [node name="Psychosis" type="AudioStreamPlayer" parent="." unique_id=297312867]
 stream = ExtResource("5_hb858")
 pitch_scale = 2.0
-bus = &"Music"
-
-[node name="Danger" type="AudioStreamPlayer" parent="." unique_id=1097963667]
-stream = ExtResource("6_4qtf4")
 bus = &"Music"
 
 [node name="Credits" type="AudioStreamPlayer" parent="." unique_id=1980111185]
