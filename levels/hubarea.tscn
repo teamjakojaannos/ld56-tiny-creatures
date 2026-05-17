@@ -529,9 +529,10 @@ metadata/_custom_type_script = "uid://cxxfk8oudgcrs"
 shape = SubResource("CircleShape2D_nyqg1")
 debug_color = Color(0.332261, 0.488051, 1, 0.42)
 
-[node name="WispPosition" type="Marker2D" parent="Statue" unique_id=1086182746]
+[node name="WispPosition" type="Marker2D" parent="Statue" unique_id=1086182746 node_paths=PackedStringArray("trigger")]
 position = Vector2(0, -53)
 script = ExtResource("17_21kqm")
+trigger = NodePath("..")
 metadata/_custom_type_script = "uid://bpqskmnis7fey"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Statue" unique_id=1423722454]
@@ -754,6 +755,10 @@ animation = "out_hupialue"
 
 [connection signal="body_entered" from="Statue" to="Statue" method="_on_body_entered"]
 [connection signal="body_exited" from="Statue" to="Statue" method="_on_body_exited"]
+[connection signal="player_entered" from="Statue" to="Statue" method="_on_player_entered"]
+[connection signal="player_entered" from="Statue" to="Statue/WispPosition" method="_on_player_entered"]
+[connection signal="player_exited" from="Statue" to="Statue" method="_on_player_exited"]
+[connection signal="player_exited" from="Statue" to="Statue/WispPosition" method="_on_player_exited"]
 [connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger" method="_on_body_entered"]
 [connection signal="body_entered" from="EnterHubTrigger" to="EnterHubTrigger/TouchTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="EnterHubTrigger" to="EnterHubTrigger" method="_on_body_exited"]

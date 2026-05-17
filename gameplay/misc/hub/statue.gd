@@ -13,12 +13,12 @@ func _ready() -> void:
 	Signals.try_connect(player_exited, _on_player_exited)
 
 
-func _on_player_entered() -> void:
+func _on_player_entered(_player: Player, _wisp: Wisp) -> void:
 	sprite.play("wisp_inside")
 
 	var is_objective_complete: bool = Persistent.wisps_saved == 7
 	if is_objective_complete:
-		Jukebox.switch_track(Jukebox.Track.Credits)
+		Jukebox.switch_track(Jukebox.Track.CREDITS)
 		Persistent.player_controller.movement.is_allowed = false
 
 		Conversation.begin(_victory_conversation)
@@ -26,7 +26,7 @@ func _on_player_entered() -> void:
 
 		await Persistent.main_camera.fade_to_black()
 		# FIXME: can we drop this?
-		Jukebox.SwitchTrack(4) # Credits music
+		Jukebox.switch_track(Jukebox.Track.CREDITS)
 
 		await get_tree().create_timer(3.0).timeout
 
@@ -41,5 +41,5 @@ func _on_player_entered() -> void:
 		Conversation.begin(_first_time_conversation)
 
 
-func _on_player_exited() -> void:
+func _on_player_exited(_player: Player, _wisp: Wisp) -> void:
 	sprite.play("idle")
