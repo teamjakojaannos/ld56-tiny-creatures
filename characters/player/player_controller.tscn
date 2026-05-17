@@ -27,7 +27,7 @@ controller = NodePath("../MovementController")
 
 [node name="StartsAtNode" type="Node" parent="Player" unique_id=2099313300]
 script = ExtResource("6_b7ahd")
-spawnpoint_groups = Array[String](["IntroPlayerStart", "WorldPlayerSpawn", "PlayerSpawn"])
+spawnpoint_groups = Array[String](["IntroPlayerSpawn", "WorldPlayerSpawn", "PlayerSpawn"])
 metadata/_custom_type_script = "uid://dhosbd82ivr3q"
 
 [node name="MainCamera" parent="Player" unique_id=1429878680 instance=ExtResource("5_b6b08")]
