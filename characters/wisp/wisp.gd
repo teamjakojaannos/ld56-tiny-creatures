@@ -8,7 +8,7 @@ signal teleported
 @export var target_radius: float = 5.0
 @export var max_velocity: float = 250.0
 @export var follow_target: WispFollowTarget
-@export var player: PlayerCharacter
+@export var player: Player
 
 var target_global_position: Vector2:
 	get:
@@ -87,8 +87,10 @@ func _check_go_to_target_status() -> void:
 
 
 func _apply_movement_forces() -> void:
-	var is_player_moving = true # TODO
-	linear_damp = 1.5 if is_player_moving else 2.0
+	if not player:
+		return
+
+	linear_damp = 1.5 if player.is_moving else 2.0
 	if _go_to_target.is_finite():
 		linear_damp = 3.5
 

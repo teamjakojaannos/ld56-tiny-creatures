@@ -38,8 +38,9 @@ position = Vector2(58, -34)
 script = ExtResource("4_77eeu")
 metadata/_custom_type_script = "uid://c3il8pjsf0t3w"
 
-[node name="Wisp" parent="." unique_id=1868363079 node_paths=PackedStringArray("follow_target") instance=ExtResource("2_bksb5")]
+[node name="Wisp" parent="." unique_id=1868363079 node_paths=PackedStringArray("follow_target", "player") instance=ExtResource("2_bksb5")]
 position = Vector2(0, 56)
 follow_target = NodePath("../Player/WispFollowTarget")
+player = NodePath("../Player")
 
 [connection signal="teleported" from="Player" to="." method="_on_player_teleported"]
